@@ -2,7 +2,7 @@
 
 # Execute this script from inside the openapi folder
 
-SPEC_FILE=https://raw.githubusercontent.com/ziqniio/ziqni-gamification-api-clients/main/openapi/ziqni-gamification-api.yml
+SPEC_FILE=../ziqni-gamification-api.yml
 CONF_FILE=ziqni-gamification-api.config.yml
 GEN_DIR=generated
 FILE=generate-client-code.sh
