@@ -1,0 +1,79 @@
+package {{invokerPackage}};
+
+import com.ziqni.gamification.client.configuration.ApiRestClientFactory;
+import {{invokerPackage}}.configuration.AdminApiClientConfig;
+import {{invokerPackage}}.api.*;
+import {{invokerPackage}}.ws.WsAddress;
+import java.time.Duration;
+import com.ziqni.gamification.client.notifications.SystemNotifications;
+import java.util.concurrent.atomic.AtomicReference;
+import com.ziqni.gamification.client.notifications.model.SubscriptionResponse;
+import com.ziqni.gamification.client.notifications.model.SubscriptionTypes;
+import java.util.function.Consumer;
+
+public abstract class ApiClientFactory {
+
+    private static StreamingClient streamingClient;
+    private static Boolean initialised = false;
+    {{#apiInfo}}{{#apis}}private static {{classname}} {{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}};
+    {{/apis}}{{/apiInfo}}
+
+    public static void initialise() throws Exception {
+        if(initialised) return;
+
+        ApiClientFactory.initialised = true;
+
+        if(AdminApiClientConfig.isWebsocket())
+            streamingClient = new StreamingClient(new WsAddress().getAddress());
+    }
+
+    private static void init() {
+        try {
+            initialise();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static Boolean getInitialised() {
+        return initialised;
+    }
+
+    public static StreamingClient getStreamingClient() {
+        assert getInitialised();
+        return streamingClient;
+    }
+
+    private static final AtomicReference<SystemNotifications> systemNotificationsAtomicReference = new AtomicReference<>();
+    public static void initSystemNotifications(Consumer<SubscriptionResponse> onSubscriptionResponse, Consumer<SubscriptionTypes> onSubscriptionTypes) throws Exception {
+        assert AdminApiClientConfig.isWebsocket();
+        if(!ApiClientFactory.initialised) init();
+        if(systemNotificationsAtomicReference.get() != null)
+            throw new Exception("System notification already initialised");
+        getStreamingClient().asyncWebSocketClient(ws -> {
+            var s = new SystemNotifications(ws,onSubscriptionResponse,onSubscriptionTypes);
+            systemNotificationsAtomicReference.set(s);
+        });
+    }
+
+    public static SystemNotifications getSystemNotificationsApi(){
+        assert AdminApiClientConfig.isWebsocket();
+        if(systemNotificationsAtomicReference.get() == null)
+            throw new RuntimeException("System notification not initialised");
+        return systemNotificationsAtomicReference.get();
+    }
+
+    {{#apiInfo}}{{#apis}} public static {{classname}} get{{classname}}() {
+        if(ApiClientFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}} == null) {
+            init();
+
+            ApiClientFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}} = (AdminApiClientConfig.isWebsocket())
+                    ? new {{classname}}Ws(ApiRestClientFactory.getApiClient(), streamingClient, Duration.ofSeconds(5))
+                    : new {{classname}}(ApiRestClientFactory.getApiClient());
+        }
+
+        return ApiClientFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}};
+    }
+
+    {{/apis}}{{/apiInfo}}
+}
