@@ -3,7 +3,7 @@
  */
 package com.ziqni.gamification.client.ws;
 
-import com.ziqni.gamification.client.configuration.AdminApiClientConfig;
+import com.ziqni.gamification.client.configuration.ApiClientConfig;
 
 public class WsAddress {
 
@@ -11,11 +11,11 @@ public class WsAddress {
 
     public WsAddress(){
         StringBuilder sb = new StringBuilder();
-        sb.append(AdminApiClientConfig.getAdminClientServerScheme());
+        sb.append(ApiClientConfig.getAdminClientServerScheme());
         sb.append("://");
-        sb.append(AdminApiClientConfig.getAdminClientServerHost());
-        if(AdminApiClientConfig.getAdminClientServerPort() != null && (AdminApiClientConfig.getAdminClientServerPort() != 80 || AdminApiClientConfig.getAdminClientServerPort() != 443))
-            sb.append(":").append(AdminApiClientConfig.getAdminClientServerPort());
+        sb.append(ApiClientConfig.getAdminClientServerHost());
+        if(ApiClientConfig.getAdminClientServerPort() != null && (ApiClientConfig.getAdminClientServerPort() != 80 || ApiClientConfig.getAdminClientServerPort() != 443))
+            sb.append(":").append(ApiClientConfig.getAdminClientServerPort());
         sb.append("/ws");
 
         this.address = sb.toString();

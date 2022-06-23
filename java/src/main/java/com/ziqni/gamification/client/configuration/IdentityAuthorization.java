@@ -12,13 +12,10 @@ public class IdentityAuthorization {
 
     public static String getAccessTokenString() {
 
-        var i = AdminApiClientConfig
-                .getIdentityClient();
+//        var i = ApiClientConfig.getIdentityClient();
+//
+//        logger.debug("Is identity client closed [{}]", i.isClosed());
 
-        logger.debug("Is identity client closed [{}]", i.isClosed());
-
-        return i
-                .tokenManager()
-                .getAccessTokenString();
+        return ""; // i.tokenManager().getAccessTokenString();
     }
 }

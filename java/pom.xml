@@ -42,7 +42,6 @@
         <jetty-version>9.4.40.v20210413</jetty-version>
         <junit-version>5.4.0</junit-version>
         <logback.version>1.2.11</logback.version>
-        <keycloak.version>18.0.0</keycloak.version>
         <swagger-annotations-version>1.5.22</swagger-annotations-version>
         <jackson.version>2.12.4</jackson.version>
         <jackson-datatype-jsr310.version>2.12.3</jackson-datatype-jsr310.version>
@@ -95,12 +94,6 @@
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
             <version>${swagger-annotations-version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.keycloak</groupId>
-            <artifactId>keycloak-admin-client</artifactId>
-            <version>${keycloak.version}</version>
         </dependency>
 
         <dependency>

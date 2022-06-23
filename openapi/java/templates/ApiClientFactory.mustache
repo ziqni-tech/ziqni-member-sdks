@@ -1,7 +1,7 @@
 package {{invokerPackage}};
 
 import com.ziqni.gamification.client.configuration.ApiRestClientFactory;
-import {{invokerPackage}}.configuration.AdminApiClientConfig;
+import {{invokerPackage}}.configuration.ApiClientConfig;
 import {{invokerPackage}}.api.*;
 import {{invokerPackage}}.ws.WsAddress;
 import java.time.Duration;
@@ -23,7 +23,7 @@ public abstract class ApiClientFactory {
 
         ApiClientFactory.initialised = true;
 
-        if(AdminApiClientConfig.isWebsocket())
+        if(ApiClientConfig.isWebsocket())
             streamingClient = new StreamingClient(new WsAddress().getAddress());
     }
 
@@ -46,7 +46,7 @@ public abstract class ApiClientFactory {
 
     private static final AtomicReference<SystemNotifications> systemNotificationsAtomicReference = new AtomicReference<>();
     public static void initSystemNotifications(Consumer<SubscriptionResponse> onSubscriptionResponse, Consumer<SubscriptionTypes> onSubscriptionTypes) throws Exception {
-        assert AdminApiClientConfig.isWebsocket();
+        assert ApiClientConfig.isWebsocket();
         if(!ApiClientFactory.initialised) init();
         if(systemNotificationsAtomicReference.get() != null)
             throw new Exception("System notification already initialised");
@@ -57,7 +57,7 @@ public abstract class ApiClientFactory {
     }
 
     public static SystemNotifications getSystemNotificationsApi(){
-        assert AdminApiClientConfig.isWebsocket();
+        assert ApiClientConfig.isWebsocket();
         if(systemNotificationsAtomicReference.get() == null)
             throw new RuntimeException("System notification not initialised");
         return systemNotificationsAtomicReference.get();
@@ -67,7 +67,7 @@ public abstract class ApiClientFactory {
         if(ApiClientFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}} == null) {
             init();
 
-            ApiClientFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}} = (AdminApiClientConfig.isWebsocket())
+            ApiClientFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}} = (ApiClientConfig.isWebsocket())
                     ? new {{classname}}Ws(ApiRestClientFactory.getApiClient(), streamingClient, Duration.ofSeconds(5))
                     : new {{classname}}(ApiRestClientFactory.getApiClient());
         }

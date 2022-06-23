@@ -42,3 +42,4 @@ build/
 /gamification-api-java/openapi/generated/
 /gateway-api-java/openapi/generated/
 /openapi/javascript/generated/
+/java/logs/

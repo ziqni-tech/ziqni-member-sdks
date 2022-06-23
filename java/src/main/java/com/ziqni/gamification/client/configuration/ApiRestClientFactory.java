@@ -64,12 +64,14 @@ public abstract class ApiRestClientFactory {
 
         ApiRestClientFactory.apiClient = com.ziqni.gamification.client.Configuration.getDefaultApiClient()
                 .setHttpClientBuilder(builder)
-                .setBasePath(AdminApiClientConfig.getAdminClientServerBasePath())
-                .setHost(AdminApiClientConfig.getAdminClientServerHost())
-                .setPort(AdminApiClientConfig.getAdminClientServerPort())
-                .setScheme(AdminApiClientConfig.getAdminClientServerScheme())
+                .setBasePath(ApiClientConfig.getAdminClientServerBasePath())
+                .setHost(ApiClientConfig.getAdminClientServerHost())
+                .setPort(ApiClientConfig.getAdminClientServerPort())
+                .setScheme(ApiClientConfig.getAdminClientServerScheme())
                 .setObjectMapper(new CoreClientObjectMapper().serializingObjectMapper())
-                .setRequestInterceptor(b -> b.header("Authorization", "Bearer " + AdminApiClientConfig.getAccessTokenString()));
+                .setRequestInterceptor(b ->
+                        b.header("Authorization", "Bearer " + ApiClientConfig.getAccessTokenString())
+                );
     }
 
     public static ApiClient getApiClient(){

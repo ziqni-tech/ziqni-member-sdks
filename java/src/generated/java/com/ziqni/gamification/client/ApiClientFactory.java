@@ -1,7 +1,7 @@
 package com.ziqni.gamification.client;
 
 import com.ziqni.gamification.client.configuration.ApiRestClientFactory;
-import com.ziqni.gamification.client.configuration.AdminApiClientConfig;
+import com.ziqni.gamification.client.configuration.ApiClientConfig;
 import com.ziqni.gamification.client.api.*;
 import com.ziqni.gamification.client.ws.WsAddress;
 import java.time.Duration;
@@ -33,7 +33,7 @@ public abstract class ApiClientFactory {
 
         ApiClientFactory.initialised = true;
 
-        if(AdminApiClientConfig.isWebsocket())
+        if(ApiClientConfig.isWebsocket())
             streamingClient = new StreamingClient(new WsAddress().getAddress());
     }
 
@@ -56,7 +56,7 @@ public abstract class ApiClientFactory {
 
     private static final AtomicReference<SystemNotifications> systemNotificationsAtomicReference = new AtomicReference<>();
     public static void initSystemNotifications(Consumer<SubscriptionResponse> onSubscriptionResponse, Consumer<SubscriptionTypes> onSubscriptionTypes) throws Exception {
-        assert AdminApiClientConfig.isWebsocket();
+        assert ApiClientConfig.isWebsocket();
         if(!ApiClientFactory.initialised) init();
         if(systemNotificationsAtomicReference.get() != null)
             throw new Exception("System notification already initialised");
@@ -67,7 +67,7 @@ public abstract class ApiClientFactory {
     }
 
     public static SystemNotifications getSystemNotificationsApi(){
-        assert AdminApiClientConfig.isWebsocket();
+        assert ApiClientConfig.isWebsocket();
         if(systemNotificationsAtomicReference.get() == null)
             throw new RuntimeException("System notification not initialised");
         return systemNotificationsAtomicReference.get();
@@ -77,7 +77,7 @@ public abstract class ApiClientFactory {
         if(ApiClientFactory.achievementsApi == null) {
             init();
 
-            ApiClientFactory.achievementsApi = (AdminApiClientConfig.isWebsocket())
+            ApiClientFactory.achievementsApi = (ApiClientConfig.isWebsocket())
                     ? new AchievementsApiWs(ApiRestClientFactory.getApiClient(), streamingClient, Duration.ofSeconds(5))
                     : new AchievementsApi(ApiRestClientFactory.getApiClient());
         }
@@ -89,7 +89,7 @@ public abstract class ApiClientFactory {
         if(ApiClientFactory.awardsApi == null) {
             init();
 
-            ApiClientFactory.awardsApi = (AdminApiClientConfig.isWebsocket())
+            ApiClientFactory.awardsApi = (ApiClientConfig.isWebsocket())
                     ? new AwardsApiWs(ApiRestClientFactory.getApiClient(), streamingClient, Duration.ofSeconds(5))
                     : new AwardsApi(ApiRestClientFactory.getApiClient());
         }
@@ -101,7 +101,7 @@ public abstract class ApiClientFactory {
         if(ApiClientFactory.competitionsApi == null) {
             init();
 
-            ApiClientFactory.competitionsApi = (AdminApiClientConfig.isWebsocket())
+            ApiClientFactory.competitionsApi = (ApiClientConfig.isWebsocket())
                     ? new CompetitionsApiWs(ApiRestClientFactory.getApiClient(), streamingClient, Duration.ofSeconds(5))
                     : new CompetitionsApi(ApiRestClientFactory.getApiClient());
         }
@@ -113,7 +113,7 @@ public abstract class ApiClientFactory {
         if(ApiClientFactory.contestsApi == null) {
             init();
 
-            ApiClientFactory.contestsApi = (AdminApiClientConfig.isWebsocket())
+            ApiClientFactory.contestsApi = (ApiClientConfig.isWebsocket())
                     ? new ContestsApiWs(ApiRestClientFactory.getApiClient(), streamingClient, Duration.ofSeconds(5))
                     : new ContestsApi(ApiRestClientFactory.getApiClient());
         }
@@ -125,7 +125,7 @@ public abstract class ApiClientFactory {
         if(ApiClientFactory.filesApi == null) {
             init();
 
-            ApiClientFactory.filesApi = (AdminApiClientConfig.isWebsocket())
+            ApiClientFactory.filesApi = (ApiClientConfig.isWebsocket())
                     ? new FilesApiWs(ApiRestClientFactory.getApiClient(), streamingClient, Duration.ofSeconds(5))
                     : new FilesApi(ApiRestClientFactory.getApiClient());
         }
@@ -137,7 +137,7 @@ public abstract class ApiClientFactory {
         if(ApiClientFactory.membersApi == null) {
             init();
 
-            ApiClientFactory.membersApi = (AdminApiClientConfig.isWebsocket())
+            ApiClientFactory.membersApi = (ApiClientConfig.isWebsocket())
                     ? new MembersApiWs(ApiRestClientFactory.getApiClient(), streamingClient, Duration.ofSeconds(5))
                     : new MembersApi(ApiRestClientFactory.getApiClient());
         }
@@ -149,7 +149,7 @@ public abstract class ApiClientFactory {
         if(ApiClientFactory.messagesApi == null) {
             init();
 
-            ApiClientFactory.messagesApi = (AdminApiClientConfig.isWebsocket())
+            ApiClientFactory.messagesApi = (ApiClientConfig.isWebsocket())
                     ? new MessagesApiWs(ApiRestClientFactory.getApiClient(), streamingClient, Duration.ofSeconds(5))
                     : new MessagesApi(ApiRestClientFactory.getApiClient());
         }
@@ -161,7 +161,7 @@ public abstract class ApiClientFactory {
         if(ApiClientFactory.proxyApi == null) {
             init();
 
-            ApiClientFactory.proxyApi = (AdminApiClientConfig.isWebsocket())
+            ApiClientFactory.proxyApi = (ApiClientConfig.isWebsocket())
                     ? new ProxyApiWs(ApiRestClientFactory.getApiClient(), streamingClient, Duration.ofSeconds(5))
                     : new ProxyApi(ApiRestClientFactory.getApiClient());
         }
@@ -173,7 +173,7 @@ public abstract class ApiClientFactory {
         if(ApiClientFactory.rewardsApi == null) {
             init();
 
-            ApiClientFactory.rewardsApi = (AdminApiClientConfig.isWebsocket())
+            ApiClientFactory.rewardsApi = (ApiClientConfig.isWebsocket())
                     ? new RewardsApiWs(ApiRestClientFactory.getApiClient(), streamingClient, Duration.ofSeconds(5))
                     : new RewardsApi(ApiRestClientFactory.getApiClient());
         }
@@ -185,7 +185,7 @@ public abstract class ApiClientFactory {
         if(ApiClientFactory.rulesApi == null) {
             init();
 
-            ApiClientFactory.rulesApi = (AdminApiClientConfig.isWebsocket())
+            ApiClientFactory.rulesApi = (ApiClientConfig.isWebsocket())
                     ? new RulesApiWs(ApiRestClientFactory.getApiClient(), streamingClient, Duration.ofSeconds(5))
                     : new RulesApi(ApiRestClientFactory.getApiClient());
         }
@@ -197,7 +197,7 @@ public abstract class ApiClientFactory {
         if(ApiClientFactory.tokenApi == null) {
             init();
 
-            ApiClientFactory.tokenApi = (AdminApiClientConfig.isWebsocket())
+            ApiClientFactory.tokenApi = (ApiClientConfig.isWebsocket())
                     ? new TokenApiWs(ApiRestClientFactory.getApiClient(), streamingClient, Duration.ofSeconds(5))
                     : new TokenApi(ApiRestClientFactory.getApiClient());
         }

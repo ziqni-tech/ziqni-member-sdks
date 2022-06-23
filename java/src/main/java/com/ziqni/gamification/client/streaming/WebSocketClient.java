@@ -4,7 +4,7 @@
 package com.ziqni.gamification.client.streaming;
 
 import com.google.common.collect.Iterables;
-import com.ziqni.gamification.client.configuration.AdminApiClientConfig;
+import com.ziqni.gamification.client.configuration.ApiClientConfig;
 import com.ziqni.gamification.client.util.Common;
 import com.ziqni.gamification.client.util.CoreClientObjectMapper;
 import org.slf4j.Logger;
@@ -104,7 +104,7 @@ public class WebSocketClient {
     }
 
     private static void updateOauthToken(StompHeaders stompHeaders){
-        String oauthToken = AdminApiClientConfig.getAccessTokenString();
+        String oauthToken = ApiClientConfig.getAccessTokenString();
         if (stompHeaders.containsKey("Authorization"))
             stompHeaders.remove("Authorization");
 
