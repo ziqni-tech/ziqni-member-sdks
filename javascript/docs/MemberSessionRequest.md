@@ -4,6 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**memberRefId** | **String** |  | 
+**id** | **Object** |  | [optional] 
 
 

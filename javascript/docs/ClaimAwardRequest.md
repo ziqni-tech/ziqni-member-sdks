@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**memberRefId** | **String** |  | 
 **awardIds** | **[String]** |  | [optional] 
 
 

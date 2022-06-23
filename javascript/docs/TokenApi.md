@@ -1,6 +1,6 @@
 # @ZiqniTechGamificationApiClient.TokenApi
 
-All URIs are relative to *https://api.ziqni.io*
+All URIs are relative to *https://gamification-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

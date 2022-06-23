@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**memberRefId** | **String** |  | 
 **contestFilter** | [**ContestFilter**](ContestFilter.md) |  | [optional] 
 
 
