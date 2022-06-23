@@ -18,8 +18,6 @@ import com.ziqni.gamification.client.ApiException;
 import com.ziqni.gamification.client.model.*;
 import org.junit.jupiter.api.*;
 
-import java.util.concurrent.CompletableFuture;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
