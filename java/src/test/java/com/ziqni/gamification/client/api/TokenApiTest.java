@@ -44,12 +44,12 @@ public class TokenApiTest implements tests.utils.CompleteableFutureTestWrapper{
     @Test
     public void getTokenTest() throws ApiException {
         TokenRequest tokenRequest = new TokenRequest()
-                .apiKey("")
-                .expires(5)
-                .isReferenceId(true)
-                .member("");
+                .apiKey("2c90c068a8319a4503a9fc0addc48501")
+                .expires(60)
+                .isReferenceId(false)
+                .member("PUBLIC");
 
-        TokenResponse response = $(api.getToken(tokenRequest));
+        TokenResponse response = api.getToken(tokenRequest).join();
 
         assertNotNull(response.getData());
     }
