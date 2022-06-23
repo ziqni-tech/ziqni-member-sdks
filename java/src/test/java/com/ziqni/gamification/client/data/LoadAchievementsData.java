@@ -11,10 +11,9 @@ public class LoadAchievementsData implements CompleteableFutureTestWrapper {
     public AchievementRequest getRequest() {
         int limit =  20;
         int skip = 0;
-        String memberRefId = "Test_key-9a1f3fce-f8dc-456a-9eeb-3ee4d8116596";
-        String achievementId = "SmYQXoEBl_GIktlk0BC9";
+        String achievementId = "88V1kIEBZ5CX7dWnd6HT";
         List<String> productIds = new ArrayList<>();
-        List<String> tags = List.of("Test_key-14ab32aa-e356-4668-9b2e-ddba26cef9c4");
+        List<String> tags = List.of("Test_key-1f97cdc4-fdb4-4f1e-b93c-e3bc3a7fd69f");
 
         var rangeQuery = new RangeQuery();
         rangeQuery.setConstraints(List.of(""));
@@ -25,19 +24,18 @@ public class LoadAchievementsData implements CompleteableFutureTestWrapper {
         querySortBy.setQueryField("id");
         querySortBy.setOrder(SortOrder.ASC);
 
-        var contestFilter = new AchievementFilter();
-        contestFilter.setIds(List.of(achievementId));
-        contestFilter.setStartDate(null);
-        contestFilter.setEndDate(null);
-        contestFilter.setProductIds(productIds);
-        contestFilter.setTags(tags);
-        contestFilter.setSortBy(List.of(querySortBy));
-        contestFilter.setLimit(limit);
-        contestFilter.setSkip(skip);
+        var achievementFilter = new AchievementFilter();
+        achievementFilter.setIds(List.of(achievementId));
+        achievementFilter.setStartDate(null);
+        achievementFilter.setEndDate(null);
+        achievementFilter.setProductIds(productIds);
+        achievementFilter.setTags(tags);
+        achievementFilter.setSortBy(List.of(querySortBy));
+        achievementFilter.setLimit(limit);
+        achievementFilter.setSkip(skip);
 
         var achievementRequest = new AchievementRequest();
-//        achievementRequest.setMemberRefId(memberRefId);
-        achievementRequest.setAchievementFilter(contestFilter);
+        achievementRequest.setAchievementFilter(achievementFilter);
 
         return achievementRequest;
     }

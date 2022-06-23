@@ -46,8 +46,8 @@ public class TokenApiTest implements tests.utils.CompleteableFutureTestWrapper{
         TokenRequest tokenRequest = new TokenRequest()
                 .apiKey("2c90c068a8319a4503a9fc0addc48501")
                 .expires(60)
-                .isReferenceId(false)
-                .member("PUBLIC");
+                .isReferenceId(true)
+                .member("100015619");
 
         TokenResponse response = api.getToken(tokenRequest).join();
 
