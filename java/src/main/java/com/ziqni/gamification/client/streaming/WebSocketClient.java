@@ -128,9 +128,7 @@ public class WebSocketClient {
     }
 
     public void subscribe(EventHandler<?> handler) {
-        if (topicHandlers.get(handler.getTopic()) == null) {
-            topicHandlers.put(handler.getTopic(), Collections.synchronizedList(new ArrayList<>()));
-        }
+        topicHandlers.computeIfAbsent(handler.getTopic(), k -> Collections.synchronizedList(new ArrayList<>()));
         topicHandlers.get(handler.getTopic()).add(handler);
         if (stompSession != null && stompSession.isConnected()) {
             logger.info("Subscribing to " + handler.getTopic());
