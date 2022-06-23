@@ -11,6 +11,6 @@ files:
     folder: src/main/java/com/ziqni/gamification/client
     templateType: SupportingFiles
     destinationFilename: ApiClientFactory.java
-  ws_api_delegate.mustache:
-    templateType: API
-    destinationFilename: Ws.java
+#  ws_api_delegate.mustache:
+#    templateType: API
+#    destinationFilename: Ws.java

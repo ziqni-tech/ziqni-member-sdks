@@ -286,25 +286,6 @@ paths:
       operationId: getFiles
       summary: Get files.
       description: This operation supports retrieval of file objects for one or many entities.
-  /gc/get-token:
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TokenRequest'
-        required: true
-      tags:
-        - token
-      responses:
-        '200':
-          $ref: '#/components/responses/TokenResponseBody'
-        '400':
-          $ref: '#/components/responses/TokenResponseBody'
-        '500':
-          $ref: '#/components/responses/TokenResponseBody'
-      operationId: getToken
-      description: Get Jwt Token
   /gc/awards-claim:
     summary: Award operations
     description: This endpoint is used to perform award operations.
@@ -357,6 +338,31 @@ paths:
       operationId: getContests
       summary: Get contests by member reference Id
       description: Returns a list of contests for the provided member ref id and applied filters.
+  /gc/get-token:
+    description: >-
+      The services returns a JWT token used to authorize requests to the other service end points. Use
+      this JWT as an auth header parameter for future requests: 
+      
+      --header 'Authorization: Bearer <jwt-token-from-api>'
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+        required: true
+      tags:
+        - token
+      responses:
+        '200':
+          $ref: '#/components/responses/TokenResponseBody'
+        '400':
+          $ref: '#/components/responses/TokenResponseBody'
+        '500':
+          $ref: '#/components/responses/TokenResponseBody'
+      operationId: getToken
+      description: Get Jwt Token
+      x-ws-exclude: true
 components:
   schemas:
     ResponseMeta:

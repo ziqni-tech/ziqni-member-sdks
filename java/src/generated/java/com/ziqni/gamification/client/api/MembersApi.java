@@ -12,359 +12,97 @@
 
 package com.ziqni.gamification.client.api;
 
+import com.ziqni.gamification.client.StreamingClient;
 import com.ziqni.gamification.client.ApiClient;
 import com.ziqni.gamification.client.ApiException;
 import com.ziqni.gamification.client.ApiResponse;
 import com.ziqni.gamification.client.Pair;
-
-import com.ziqni.gamification.client.model.MemberOptinRequest;
-import com.ziqni.gamification.client.model.MemberRequest;
-import com.ziqni.gamification.client.model.MemberResponse;
-import com.ziqni.gamification.client.model.MemberSessionRequest;
-import com.ziqni.gamification.client.model.MemberSessionResponse;
+    import com.ziqni.gamification.client.model.MemberOptinRequest;
+    import com.ziqni.gamification.client.model.MemberRequest;
+    import com.ziqni.gamification.client.model.MemberResponse;
+    import com.ziqni.gamification.client.model.MemberSessionRequest;
+    import com.ziqni.gamification.client.model.MemberSessionResponse;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.time.Duration;
+    import java.util.*;
 
-import java.util.ArrayList;
-import java.util.StringJoiner;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Consumer;
-
-import java.util.concurrent.CompletableFuture;
+    import java.util.concurrent.CompletableFuture;
 
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class MembersApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+    public class MembersApi { //extends MembersApi {
+    private final ApiClient apiClient;
+    private final ObjectMapper memberVarObjectMapper;
+    private final Duration memberVarReadTimeout;
+    private final StreamingClient streamingClient;
 
-  public MembersApi() {
-    this(new ApiClient());
-  }
-
-  public MembersApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  private ApiException getApiException(String operationId, HttpResponse<String> response) {
-    String message = formatExceptionMessage(operationId, response.statusCode(), response.body());
-    return new ApiException(response.statusCode(), message, response.headers(), response.body());
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
+    public MembersApi(ApiClient apiClient, StreamingClient streamingClient, Duration readTimeout) {
+    this.apiClient = apiClient;
+    this.memberVarObjectMapper = apiClient.getObjectMapper();
+    this.streamingClient = streamingClient;
+    this.memberVarReadTimeout = null;
     }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
 
-  /**
-   * Get member information by member reference id
-   * Returns member information for the provided member reference id
-   * @param memberRequest  (required)
-   * @return CompletableFuture&lt;MemberResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<MemberResponse> getMember(MemberRequest memberRequest) throws ApiException {
-    try {
-      HttpRequest.Builder localVarRequestBuilder = getMemberRequestBuilder(memberRequest);
-      return memberVarHttpClient.sendAsync(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
-            if (localVarResponse.statusCode()/ 100 != 2) {
-              return CompletableFuture.failedFuture(getApiException("getMember", localVarResponse));
-            }
-            try {
-              return CompletableFuture.completedFuture(
-                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<MemberResponse>() {})
-              );
-            } catch (IOException e) {
-              return CompletableFuture.failedFuture(new ApiException(e));
-            }
-      });
-    }
-    catch (ApiException e) {
-      return CompletableFuture.failedFuture(e);
-    }
-  }
+        // x-ws-exclude --> 
+            /**
+            * Get member information by member reference id
+            * Returns member information for the provided member reference id
+                * @param memberRequest  (required)
+                * @return CompletableFuture&lt;MemberResponse&gt;
+            * @throws ApiException if fails to make API call
+            */
+            public CompletableFuture<MemberResponse> getMember(MemberRequest memberRequest) {
+                var request = new HashMap<String, Object>();
+            
+                        
 
-  /**
-   * Get member information by member reference id
-   * Returns member information for the provided member reference id
-   * @param memberRequest  (required)
-   * @return CompletableFuture&lt;ApiResponse&lt;MemberResponse&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<ApiResponse<MemberResponse>> getMemberWithHttpInfo(MemberRequest memberRequest) throws ApiException {
-    try {
-      HttpRequest.Builder localVarRequestBuilder = getMemberRequestBuilder(memberRequest);
-      return memberVarHttpClient.sendAsync(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
-            if (memberVarAsyncResponseInterceptor != null) {
-              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            
+                        
+            request.put("memberRequest",memberRequest);
+
+                CompletableFuture<MemberResponse> result = this.streamingClient.sendWithApiCallback("/aapi/getMember", request);
+                return result;
             }
-            if (localVarResponse.statusCode()/ 100 != 2) {
-              return CompletableFuture.failedFuture(getApiException("getMember", localVarResponse));
+        // x-ws-exclude --> 
+            /**
+            * Get member optin information
+            * Returns a list of member optin information
+                * @param memberOptinRequest  (required)
+                * @return CompletableFuture&lt;MemberResponse&gt;
+            * @throws ApiException if fails to make API call
+            */
+            public CompletableFuture<MemberResponse> getMemberOptinInfo(MemberOptinRequest memberOptinRequest) {
+                var request = new HashMap<String, Object>();
+            
+                        
+
+            
+                        
+            request.put("memberOptinRequest",memberOptinRequest);
+
+                CompletableFuture<MemberResponse> result = this.streamingClient.sendWithApiCallback("/aapi/getMemberOptinInfo", request);
+                return result;
             }
-            try {
-              return CompletableFuture.completedFuture(
-                  new ApiResponse<MemberResponse>(
-                      localVarResponse.statusCode(),
-                      localVarResponse.headers().map(),
-                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<MemberResponse>() {}))
-              );
-            } catch (IOException e) {
-              return CompletableFuture.failedFuture(new ApiException(e));
+        // x-ws-exclude --> 
+            /**
+            * Get member session by member reference id
+            * Returns member&#39;s active session information.
+                * @param memberSessionRequest  (required)
+                * @return CompletableFuture&lt;MemberSessionResponse&gt;
+            * @throws ApiException if fails to make API call
+            */
+            public CompletableFuture<MemberSessionResponse> getMemberSession(MemberSessionRequest memberSessionRequest) {
+                var request = new HashMap<String, Object>();
+            
+                        
+
+            
+                        
+            request.put("memberSessionRequest",memberSessionRequest);
+
+                CompletableFuture<MemberSessionResponse> result = this.streamingClient.sendWithApiCallback("/aapi/getMemberSession", request);
+                return result;
             }
         }
-      );
-    }
-    catch (ApiException e) {
-      return CompletableFuture.failedFuture(e);
-    }
-  }
-
-  private HttpRequest.Builder getMemberRequestBuilder(MemberRequest memberRequest) throws ApiException {
-    // verify the required parameter 'memberRequest' is set
-    if (memberRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'memberRequest' when calling getMember");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/gc/member-info";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(memberRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get member optin information
-   * Returns a list of member optin information
-   * @param memberOptinRequest  (required)
-   * @return CompletableFuture&lt;MemberResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<MemberResponse> getMemberOptinInfo(MemberOptinRequest memberOptinRequest) throws ApiException {
-    try {
-      HttpRequest.Builder localVarRequestBuilder = getMemberOptinInfoRequestBuilder(memberOptinRequest);
-      return memberVarHttpClient.sendAsync(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
-            if (localVarResponse.statusCode()/ 100 != 2) {
-              return CompletableFuture.failedFuture(getApiException("getMemberOptinInfo", localVarResponse));
-            }
-            try {
-              return CompletableFuture.completedFuture(
-                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<MemberResponse>() {})
-              );
-            } catch (IOException e) {
-              return CompletableFuture.failedFuture(new ApiException(e));
-            }
-      });
-    }
-    catch (ApiException e) {
-      return CompletableFuture.failedFuture(e);
-    }
-  }
-
-  /**
-   * Get member optin information
-   * Returns a list of member optin information
-   * @param memberOptinRequest  (required)
-   * @return CompletableFuture&lt;ApiResponse&lt;MemberResponse&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<ApiResponse<MemberResponse>> getMemberOptinInfoWithHttpInfo(MemberOptinRequest memberOptinRequest) throws ApiException {
-    try {
-      HttpRequest.Builder localVarRequestBuilder = getMemberOptinInfoRequestBuilder(memberOptinRequest);
-      return memberVarHttpClient.sendAsync(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
-            if (memberVarAsyncResponseInterceptor != null) {
-              memberVarAsyncResponseInterceptor.accept(localVarResponse);
-            }
-            if (localVarResponse.statusCode()/ 100 != 2) {
-              return CompletableFuture.failedFuture(getApiException("getMemberOptinInfo", localVarResponse));
-            }
-            try {
-              return CompletableFuture.completedFuture(
-                  new ApiResponse<MemberResponse>(
-                      localVarResponse.statusCode(),
-                      localVarResponse.headers().map(),
-                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<MemberResponse>() {}))
-              );
-            } catch (IOException e) {
-              return CompletableFuture.failedFuture(new ApiException(e));
-            }
-        }
-      );
-    }
-    catch (ApiException e) {
-      return CompletableFuture.failedFuture(e);
-    }
-  }
-
-  private HttpRequest.Builder getMemberOptinInfoRequestBuilder(MemberOptinRequest memberOptinRequest) throws ApiException {
-    // verify the required parameter 'memberOptinRequest' is set
-    if (memberOptinRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'memberOptinRequest' when calling getMemberOptinInfo");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/gc/member-manage-optin";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(memberOptinRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get member session by member reference id
-   * Returns member&#39;s active session information.
-   * @param memberSessionRequest  (required)
-   * @return CompletableFuture&lt;MemberSessionResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<MemberSessionResponse> getMemberSession(MemberSessionRequest memberSessionRequest) throws ApiException {
-    try {
-      HttpRequest.Builder localVarRequestBuilder = getMemberSessionRequestBuilder(memberSessionRequest);
-      return memberVarHttpClient.sendAsync(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
-            if (localVarResponse.statusCode()/ 100 != 2) {
-              return CompletableFuture.failedFuture(getApiException("getMemberSession", localVarResponse));
-            }
-            try {
-              return CompletableFuture.completedFuture(
-                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<MemberSessionResponse>() {})
-              );
-            } catch (IOException e) {
-              return CompletableFuture.failedFuture(new ApiException(e));
-            }
-      });
-    }
-    catch (ApiException e) {
-      return CompletableFuture.failedFuture(e);
-    }
-  }
-
-  /**
-   * Get member session by member reference id
-   * Returns member&#39;s active session information.
-   * @param memberSessionRequest  (required)
-   * @return CompletableFuture&lt;ApiResponse&lt;MemberSessionResponse&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<ApiResponse<MemberSessionResponse>> getMemberSessionWithHttpInfo(MemberSessionRequest memberSessionRequest) throws ApiException {
-    try {
-      HttpRequest.Builder localVarRequestBuilder = getMemberSessionRequestBuilder(memberSessionRequest);
-      return memberVarHttpClient.sendAsync(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
-            if (memberVarAsyncResponseInterceptor != null) {
-              memberVarAsyncResponseInterceptor.accept(localVarResponse);
-            }
-            if (localVarResponse.statusCode()/ 100 != 2) {
-              return CompletableFuture.failedFuture(getApiException("getMemberSession", localVarResponse));
-            }
-            try {
-              return CompletableFuture.completedFuture(
-                  new ApiResponse<MemberSessionResponse>(
-                      localVarResponse.statusCode(),
-                      localVarResponse.headers().map(),
-                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<MemberSessionResponse>() {}))
-              );
-            } catch (IOException e) {
-              return CompletableFuture.failedFuture(new ApiException(e));
-            }
-        }
-      );
-    }
-    catch (ApiException e) {
-      return CompletableFuture.failedFuture(e);
-    }
-  }
-
-  private HttpRequest.Builder getMemberSessionRequestBuilder(MemberSessionRequest memberSessionRequest) throws ApiException {
-    // verify the required parameter 'memberSessionRequest' is set
-    if (memberSessionRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'memberSessionRequest' when calling getMemberSession");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/gc/member-session";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(memberSessionRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-}

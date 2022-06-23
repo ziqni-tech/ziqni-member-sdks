@@ -13,6 +13,7 @@
 
 package com.ziqni.gamification.client.api;
 
+import com.ziqni.gamification.client.ApiClientFactory;
 import com.ziqni.gamification.client.ApiException;
 import com.ziqni.gamification.client.model.ProxyRequest;
 import com.ziqni.gamification.client.model.ProxyResponse;
@@ -31,9 +32,12 @@ import java.util.concurrent.CompletableFuture;
 
 public class ProxyApiTest {
 
-    private final ProxyApi api = new ProxyApi();
+    private final ProxyApi api;
 
-    
+    public ProxyApiTest() {
+        this.api = ApiClientFactory.getProxyApi();
+    }
+
     /**
      * Proxy
      *

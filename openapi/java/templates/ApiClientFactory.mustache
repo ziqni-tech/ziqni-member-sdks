@@ -66,10 +66,7 @@ public abstract class ApiClientFactory {
     {{#apiInfo}}{{#apis}} public static {{classname}} get{{classname}}() {
         if(ApiClientFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}} == null) {
             init();
-
-            ApiClientFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}} = (ApiClientConfig.isWebsocket())
-                    ? new {{classname}}Ws(ApiRestClientFactory.getApiClient(), streamingClient, Duration.ofSeconds(5))
-                    : new {{classname}}(ApiRestClientFactory.getApiClient());
+            ApiClientFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}} = new {{classname}}(ApiRestClientFactory.getApiClient(), streamingClient, Duration.ofSeconds(5));
         }
 
         return ApiClientFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}};

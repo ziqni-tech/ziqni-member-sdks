@@ -10,23 +10,12 @@
  * Do not edit the class manually.
  */
 
-
 package com.ziqni.gamification.client.api;
 
 import com.ziqni.gamification.client.ApiClientFactory;
 import com.ziqni.gamification.client.ApiException;
 import com.ziqni.gamification.client.data.LoadRewardsData;
-import com.ziqni.gamification.client.data.LoadRulesData;
-import com.ziqni.gamification.client.model.RewardRequest;
-import com.ziqni.gamification.client.model.RewardResponse;
 import org.junit.jupiter.api.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import java.util.concurrent.CompletableFuture;
 
 import static org.junit.jupiter.api.Assertions.*;
 

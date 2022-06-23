@@ -12,164 +12,54 @@
 
 package com.ziqni.gamification.client.api;
 
+import com.ziqni.gamification.client.StreamingClient;
 import com.ziqni.gamification.client.ApiClient;
 import com.ziqni.gamification.client.ApiException;
 import com.ziqni.gamification.client.ApiResponse;
 import com.ziqni.gamification.client.Pair;
-
-import com.ziqni.gamification.client.model.FileRequest;
-import com.ziqni.gamification.client.model.FileResponse;
+    import com.ziqni.gamification.client.model.FileRequest;
+    import com.ziqni.gamification.client.model.FileResponse;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.time.Duration;
+    import java.util.*;
 
-import java.util.ArrayList;
-import java.util.StringJoiner;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Consumer;
-
-import java.util.concurrent.CompletableFuture;
+    import java.util.concurrent.CompletableFuture;
 
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class FilesApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+    public class FilesApi { //extends FilesApi {
+    private final ApiClient apiClient;
+    private final ObjectMapper memberVarObjectMapper;
+    private final Duration memberVarReadTimeout;
+    private final StreamingClient streamingClient;
 
-  public FilesApi() {
-    this(new ApiClient());
-  }
-
-  public FilesApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  private ApiException getApiException(String operationId, HttpResponse<String> response) {
-    String message = formatExceptionMessage(operationId, response.statusCode(), response.body());
-    return new ApiException(response.statusCode(), message, response.headers(), response.body());
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
+    public FilesApi(ApiClient apiClient, StreamingClient streamingClient, Duration readTimeout) {
+    this.apiClient = apiClient;
+    this.memberVarObjectMapper = apiClient.getObjectMapper();
+    this.streamingClient = streamingClient;
+    this.memberVarReadTimeout = null;
     }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
 
-  /**
-   * Get files.
-   * This operation supports retrieval of file objects for one or many entities.
-   * @param fileRequest  (required)
-   * @return CompletableFuture&lt;FileResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<FileResponse> getFiles(FileRequest fileRequest) throws ApiException {
-    try {
-      HttpRequest.Builder localVarRequestBuilder = getFilesRequestBuilder(fileRequest);
-      return memberVarHttpClient.sendAsync(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
-            if (localVarResponse.statusCode()/ 100 != 2) {
-              return CompletableFuture.failedFuture(getApiException("getFiles", localVarResponse));
-            }
-            try {
-              return CompletableFuture.completedFuture(
-                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FileResponse>() {})
-              );
-            } catch (IOException e) {
-              return CompletableFuture.failedFuture(new ApiException(e));
-            }
-      });
-    }
-    catch (ApiException e) {
-      return CompletableFuture.failedFuture(e);
-    }
-  }
+        // x-ws-exclude --> 
+            /**
+            * Get files.
+            * This operation supports retrieval of file objects for one or many entities.
+                * @param fileRequest  (required)
+                * @return CompletableFuture&lt;FileResponse&gt;
+            * @throws ApiException if fails to make API call
+            */
+            public CompletableFuture<FileResponse> getFiles(FileRequest fileRequest) {
+                var request = new HashMap<String, Object>();
+            
+                        
 
-  /**
-   * Get files.
-   * This operation supports retrieval of file objects for one or many entities.
-   * @param fileRequest  (required)
-   * @return CompletableFuture&lt;ApiResponse&lt;FileResponse&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<ApiResponse<FileResponse>> getFilesWithHttpInfo(FileRequest fileRequest) throws ApiException {
-    try {
-      HttpRequest.Builder localVarRequestBuilder = getFilesRequestBuilder(fileRequest);
-      return memberVarHttpClient.sendAsync(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
-            if (memberVarAsyncResponseInterceptor != null) {
-              memberVarAsyncResponseInterceptor.accept(localVarResponse);
-            }
-            if (localVarResponse.statusCode()/ 100 != 2) {
-              return CompletableFuture.failedFuture(getApiException("getFiles", localVarResponse));
-            }
-            try {
-              return CompletableFuture.completedFuture(
-                  new ApiResponse<FileResponse>(
-                      localVarResponse.statusCode(),
-                      localVarResponse.headers().map(),
-                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FileResponse>() {}))
-              );
-            } catch (IOException e) {
-              return CompletableFuture.failedFuture(new ApiException(e));
+            
+                        
+            request.put("fileRequest",fileRequest);
+
+                CompletableFuture<FileResponse> result = this.streamingClient.sendWithApiCallback("/aapi/getFiles", request);
+                return result;
             }
         }
-      );
-    }
-    catch (ApiException e) {
-      return CompletableFuture.failedFuture(e);
-    }
-  }
-
-  private HttpRequest.Builder getFilesRequestBuilder(FileRequest fileRequest) throws ApiException {
-    // verify the required parameter 'fileRequest' is set
-    if (fileRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'fileRequest' when calling getFiles");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/gc/files";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(fileRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-}

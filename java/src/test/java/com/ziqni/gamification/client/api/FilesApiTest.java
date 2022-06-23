@@ -13,6 +13,7 @@
 
 package com.ziqni.gamification.client.api;
 
+import com.ziqni.gamification.client.ApiClientFactory;
 import com.ziqni.gamification.client.ApiException;
 import com.ziqni.gamification.client.model.*;
 import org.junit.jupiter.api.*;
@@ -30,9 +31,12 @@ import java.util.concurrent.CompletableFuture;
 
 public class FilesApiTest {
 
-    private final FilesApi api = new FilesApi();
+    private final FilesApi api;
 
-    
+    public FilesApiTest() {
+        this.api = ApiClientFactory.getFilesApi();
+    }
+
     /**
      * Get files.
      *
