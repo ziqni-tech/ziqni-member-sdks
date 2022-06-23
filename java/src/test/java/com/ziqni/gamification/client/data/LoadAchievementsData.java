@@ -36,7 +36,7 @@ public class LoadAchievementsData implements CompleteableFutureTestWrapper {
         contestFilter.setSkip(skip);
 
         var achievementRequest = new AchievementRequest();
-        achievementRequest.setMemberRefId(memberRefId);
+//        achievementRequest.setMemberRefId(memberRefId);
         achievementRequest.setAchievementFilter(contestFilter);
 
         return achievementRequest;

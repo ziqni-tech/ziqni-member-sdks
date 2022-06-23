@@ -1,6 +1,6 @@
 # ProxyApi
 
-All URIs are relative to *https://api.ziqni.io*
+All URIs are relative to *https://gamification-api.ziqni.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -31,7 +31,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://gamification-api.ziqni.com");
 
         ProxyApi apiInstance = new ProxyApi(defaultClient);
         ProxyRequest proxyRequest = new ProxyRequest(); // ProxyRequest | 
@@ -100,7 +100,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://gamification-api.ziqni.com");
 
         ProxyApi apiInstance = new ProxyApi(defaultClient);
         ProxyRequest proxyRequest = new ProxyRequest(); // ProxyRequest | 

@@ -8,7 +8,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**memberRefId** | **String** |  |  |
+|**id** | **String** |  |  |
 
 
 

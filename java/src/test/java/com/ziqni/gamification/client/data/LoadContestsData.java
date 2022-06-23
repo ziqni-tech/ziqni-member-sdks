@@ -38,7 +38,7 @@ public class LoadContestsData implements CompleteableFutureTestWrapper {
         contestFilter.setSkip(skip);
 
         var contestRequest = new ContestRequest();
-        contestRequest.setMemberRefId(memberRefId);
+        //contestRequest.setMemberRefId(memberRefId);
         contestRequest.setContestFilter(contestFilter);
 
         return contestRequest;

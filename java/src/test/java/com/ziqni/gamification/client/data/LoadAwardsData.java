@@ -10,13 +10,13 @@ import java.util.List;
 public class LoadAwardsData implements CompleteableFutureTestWrapper {
 
     public AwardRequest getRequest(String memberRefId) {
-        return new AwardRequest()
-                .memberRefId(memberRefId);
+        return new AwardRequest();
+//                .memberRefId(memberRefId);
 
     }
     public ClaimAwardRequest getClaimAwardRequest(String memberRefId, List<String> awardIds) {
         return new ClaimAwardRequest()
-                .memberRefId(memberRefId)
+//                .memberRefId(memberRefId)
                 .awardIds(awardIds)
                 ;
 

@@ -34,7 +34,7 @@ public abstract class AdminApiClientConfig {
     public static void load() {
         if (loaded) return;
 
-       adminClientServerBasePath = ConfigurationLoader.getParameter("admin.client.base.path").orElse("");
+        adminClientServerBasePath = ConfigurationLoader.getParameter("admin.client.base.path").orElse("");
         adminClientServerHost = ConfigurationLoader.getParameter("admin.client.server.host").get();
         adminClientServerPort = Integer.valueOf(ConfigurationLoader.getParameter("admin.client.server.port").get());
         adminClientServerScheme = ConfigurationLoader.getParameter("admin.client.server.scheme").get();

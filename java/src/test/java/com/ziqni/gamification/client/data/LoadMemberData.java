@@ -9,8 +9,8 @@ import java.util.List;
 public class LoadMemberData implements CompleteableFutureTestWrapper {
 
     public MemberRequest getRequest(String memberRefId) {
-        return new MemberRequest()
-                .memberRefId(memberRefId);
+        return new MemberRequest();
+//                .memberRefId(memberRefId);
 
     }
 

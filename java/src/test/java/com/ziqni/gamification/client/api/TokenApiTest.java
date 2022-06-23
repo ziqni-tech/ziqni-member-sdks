@@ -13,22 +13,28 @@
 
 package com.ziqni.gamification.client.api;
 
+import com.ziqni.gamification.client.ApiClientFactory;
 import com.ziqni.gamification.client.ApiException;
 import com.ziqni.gamification.client.model.*;
 import org.junit.jupiter.api.*;
 
 import java.util.concurrent.CompletableFuture;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 /**
  * API tests for TokenApi
  */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TokenApiTest {
+public class TokenApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
-    private final TokenApi api = new TokenApi();
+    private final TokenApi api;
 
-    
+    public TokenApiTest() {
+        this.api = ApiClientFactory.getTokenApi();
+    }
+
     /**
      * 
      *
@@ -39,11 +45,15 @@ public class TokenApiTest {
      */
     @Test
     public void getTokenTest() throws ApiException {
-        TokenRequest tokenRequest = null;
-        CompletableFuture<TokenResponse> response =
-        api.getToken(tokenRequest);
-        
-        // TODO: test validations
+        TokenRequest tokenRequest = new TokenRequest()
+                .apiKey("")
+                .expires(5)
+                .isReferenceId(true)
+                .member("");
+
+        TokenResponse response = $(api.getToken(tokenRequest));
+
+        assertNotNull(response.getData());
     }
     
 }
