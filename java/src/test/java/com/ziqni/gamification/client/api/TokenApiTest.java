@@ -13,11 +13,14 @@
 
 package com.ziqni.gamification.client.api;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.ziqni.gamification.client.ApiClientFactory;
 import com.ziqni.gamification.client.ApiException;
 import com.ziqni.gamification.client.model.*;
 import org.junit.jupiter.api.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
@@ -52,6 +55,10 @@ public class TokenApiTest implements tests.utils.CompleteableFutureTestWrapper{
         TokenResponse response = api.getToken(tokenRequest).join();
 
         assertNotNull(response.getData());
+
+        DecodedJWT jwt = JWT.decode(response.getData().getJwtToken());
+        assertNotNull(jwt);
+        assertEquals("100015619",jwt.getClaims().get("member_reference_id").asString());
     }
     
 }
