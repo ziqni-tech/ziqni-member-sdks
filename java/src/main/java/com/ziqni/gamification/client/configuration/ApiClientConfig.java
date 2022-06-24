@@ -21,7 +21,7 @@ public abstract class ApiClientConfig {
     private static Integer adminClientServerPort;
     private static String adminClientServerScheme;
 
-    private static boolean isWebsocket;
+    private static boolean isSecure;
 
     public static void load() {
         if (loaded) return;
@@ -36,7 +36,7 @@ public abstract class ApiClientConfig {
         if(!isValidScheme)
             throw new RuntimeException("Invalid scheme " + adminClientServerScheme + ". Valid schemes are http, https, ws, wss");
 
-        isWebsocket = adminClientServerScheme.equals("ws") || adminClientServerScheme.equals("wss");
+        isSecure = adminClientServerScheme.equals("https") || adminClientServerScheme.equals("wss");
         loaded = true;
     }
 
@@ -60,9 +60,9 @@ public abstract class ApiClientConfig {
         return adminClientServerScheme;
     }
 
-    public static boolean isWebsocket() {
+    public static boolean isSecure() {
         load();
-        return isWebsocket;
+        return isSecure;
     }
 
     public static String getAccessTokenString() {

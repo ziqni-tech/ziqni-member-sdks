@@ -33,8 +33,7 @@ public abstract class ApiClientFactory {
 
         ApiClientFactory.initialised = true;
 
-        if(ApiClientConfig.isWebsocket())
-            streamingClient = new StreamingClient(new WsAddress().getAddress());
+        streamingClient = new StreamingClient(new WsAddress().getAddress());
     }
 
     private static void init() {
@@ -56,7 +55,7 @@ public abstract class ApiClientFactory {
 
     private static final AtomicReference<SystemNotifications> systemNotificationsAtomicReference = new AtomicReference<>();
     public static void initSystemNotifications(Consumer<SubscriptionResponse> onSubscriptionResponse, Consumer<SubscriptionTypes> onSubscriptionTypes) throws Exception {
-        assert ApiClientConfig.isWebsocket();
+
         if(!ApiClientFactory.initialised) init();
         if(systemNotificationsAtomicReference.get() != null)
             throw new Exception("System notification already initialised");
@@ -67,7 +66,7 @@ public abstract class ApiClientFactory {
     }
 
     public static SystemNotifications getSystemNotificationsApi(){
-        assert ApiClientConfig.isWebsocket();
+
         if(systemNotificationsAtomicReference.get() == null)
             throw new RuntimeException("System notification not initialised");
         return systemNotificationsAtomicReference.get();

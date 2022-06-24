@@ -11,7 +11,7 @@ public class WsAddress {
 
     public WsAddress(){
         StringBuilder sb = new StringBuilder();
-        sb.append(ApiClientConfig.getAdminClientServerScheme());
+        sb.append(ApiClientConfig.isSecure() ? "wss" : "ws");
         sb.append("://");
         sb.append(ApiClientConfig.getAdminClientServerHost());
         if(ApiClientConfig.getAdminClientServerPort() != null && (ApiClientConfig.getAdminClientServerPort() != 80 || ApiClientConfig.getAdminClientServerPort() != 443))
