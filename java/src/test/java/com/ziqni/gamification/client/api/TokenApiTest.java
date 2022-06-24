@@ -45,7 +45,7 @@ public class TokenApiTest implements tests.utils.CompleteableFutureTestWrapper{
      *          if the Api call fails
      */
     @Test
-    public void getTokenTest() throws ApiException {
+    public void getMemberSessionTokenTest() throws ApiException {
         TokenRequest tokenRequest = new TokenRequest()
                 .apiKey("2c90c068a8319a4503a9fc0addc48501")
                 .expires(60)
@@ -59,6 +59,31 @@ public class TokenApiTest implements tests.utils.CompleteableFutureTestWrapper{
         DecodedJWT jwt = JWT.decode(response.getData().getJwtToken());
         assertNotNull(jwt);
         assertEquals("100015619",jwt.getClaims().get("member_reference_id").asString());
+    }
+
+    /**
+     *
+     *
+     * Get Jwt Token
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getPublicSessionTokenTest() throws ApiException {
+        TokenRequest tokenRequest = new TokenRequest()
+                .apiKey("2c90c068a8319a4503a9fc0addc48501")
+                .expires(600)
+                .isReferenceId(false)
+                .member("PUBLIC");
+
+        TokenResponse response = api.getToken(tokenRequest).join();
+
+        assertNotNull(response.getData());
+
+        DecodedJWT jwt = JWT.decode(response.getData().getJwtToken());
+        assertNotNull(jwt);
+        assertEquals("PUBLIC",jwt.getClaims().get("member_reference_id").asString());
     }
     
 }
