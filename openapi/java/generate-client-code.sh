@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Execute this script from inside the openapi folder
-
+openapi-generator-cli version 6.0
 SPEC_FILE=../ziqni-gamification-api.yml
 CONF_FILE=ziqni-gamification-api.config.yml
 GEN_DIR=generated
@@ -30,7 +30,7 @@ if [[ -d "$GEN_DIR" ]]; then
   mkdir generated
   echo "$GEN_DIR created."
 
-  openapi-generator-cli  generate -g java -i $SPEC_FILE -c $CONF_FILE -o ./generated --additional-properties=asyncNative=true --additional-properties=library=native -t ./templates
+  openapi-generator-cli  generate -g java -i $SPEC_FILE -c $CONF_FILE -o ./generated -t ./templates --additional-properties=asyncNative=true --additional-properties=library=native
 
   # Copy the updated docs
   rm -rf ../../java/docs

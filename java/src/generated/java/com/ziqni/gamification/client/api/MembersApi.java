@@ -11,7 +11,7 @@
  */
 
 package com.ziqni.gamification.client.api;
-
+import javax.ws.rs.core.GenericType;
 import com.ziqni.gamification.client.StreamingClient;
 import com.ziqni.gamification.client.ApiClient;
 import com.ziqni.gamification.client.ApiException;
@@ -28,8 +28,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.time.Duration;
     import java.util.*;
-
-    import java.util.concurrent.CompletableFuture;
+//asyncNative:true
+import java.util.concurrent.CompletableFuture;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+import java.util.function.Consumer;
 
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
     public class MembersApi { //extends MembersApi {
@@ -38,71 +46,95 @@ import java.time.Duration;
     private final Duration memberVarReadTimeout;
     private final StreamingClient streamingClient;
 
+    private final HttpClient memberVarHttpClient;
+    private final String memberVarBaseUri;
+    private final Consumer<HttpRequest.Builder> memberVarInterceptor;
+    private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
+    private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+
     public MembersApi(ApiClient apiClient, StreamingClient streamingClient, Duration readTimeout) {
-    this.apiClient = apiClient;
-    this.memberVarObjectMapper = apiClient.getObjectMapper();
-    this.streamingClient = streamingClient;
-    this.memberVarReadTimeout = null;
+        this.apiClient = apiClient;
+        this.memberVarObjectMapper = apiClient.getObjectMapper();
+        this.streamingClient = streamingClient;
+        this.memberVarReadTimeout = null;
+
+        memberVarHttpClient = apiClient.getHttpClient();
+        memberVarBaseUri = apiClient.getBaseUri();
+        memberVarInterceptor = apiClient.getRequestInterceptor();
+        memberVarResponseInterceptor = apiClient.getResponseInterceptor();
+        memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
     }
 
         // x-ws-exclude --> 
-            /**
-            * Get member information by member reference id
-            * Returns member information for the provided member reference id
-                * @param memberRequest  (required)
-                * @return CompletableFuture&lt;MemberResponse&gt;
-            * @throws ApiException if fails to make API call
-            */
-            public CompletableFuture<MemberResponse> getMember(MemberRequest memberRequest) {
-                var request = new HashMap<String, Object>();
-            
-                        
+    /**
+    * Get member information by member reference id
+    * Returns member information for the provided member reference id
+        * @param memberRequest  (required)
+        * @return CompletableFuture&lt;MemberResponse&gt;
+    * @throws ApiException if fails to make API call
+    */
+    public CompletableFuture<MemberResponse> getMember(MemberRequest memberRequest) {
+        var request = new HashMap<String, Object>();
+    
+        
 
-            
-                        
-            request.put("memberRequest",memberRequest);
+    
+        
+    request.put("memberRequest",memberRequest);
 
-                CompletableFuture<MemberResponse> result = this.streamingClient.sendWithApiCallback("/aapi/getMember", request);
-                return result;
-            }
+        CompletableFuture<MemberResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getMember", request);
+        return result;
+    }
         // x-ws-exclude --> 
-            /**
-            * Get member optin information
-            * Returns a list of member optin information
-                * @param memberOptinRequest  (required)
-                * @return CompletableFuture&lt;MemberResponse&gt;
-            * @throws ApiException if fails to make API call
-            */
-            public CompletableFuture<MemberResponse> getMemberOptinInfo(MemberOptinRequest memberOptinRequest) {
-                var request = new HashMap<String, Object>();
-            
-                        
+    /**
+    * Get member optin information
+    * Returns a list of member optin information
+        * @param memberOptinRequest  (required)
+        * @return CompletableFuture&lt;MemberResponse&gt;
+    * @throws ApiException if fails to make API call
+    */
+    public CompletableFuture<MemberResponse> getMemberOptinInfo(MemberOptinRequest memberOptinRequest) {
+        var request = new HashMap<String, Object>();
+    
+        
 
-            
-                        
-            request.put("memberOptinRequest",memberOptinRequest);
+    
+        
+    request.put("memberOptinRequest",memberOptinRequest);
 
-                CompletableFuture<MemberResponse> result = this.streamingClient.sendWithApiCallback("/aapi/getMemberOptinInfo", request);
-                return result;
-            }
+        CompletableFuture<MemberResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getMemberOptinInfo", request);
+        return result;
+    }
         // x-ws-exclude --> 
-            /**
-            * Get member session by member reference id
-            * Returns member&#39;s active session information.
-                * @param memberSessionRequest  (required)
-                * @return CompletableFuture&lt;MemberSessionResponse&gt;
-            * @throws ApiException if fails to make API call
-            */
-            public CompletableFuture<MemberSessionResponse> getMemberSession(MemberSessionRequest memberSessionRequest) {
-                var request = new HashMap<String, Object>();
-            
-                        
+    /**
+    * Get member session by member reference id
+    * Returns member&#39;s active session information.
+        * @param memberSessionRequest  (required)
+        * @return CompletableFuture&lt;MemberSessionResponse&gt;
+    * @throws ApiException if fails to make API call
+    */
+    public CompletableFuture<MemberSessionResponse> getMemberSession(MemberSessionRequest memberSessionRequest) {
+        var request = new HashMap<String, Object>();
+    
+        
 
-            
-                        
-            request.put("memberSessionRequest",memberSessionRequest);
+    
+        
+    request.put("memberSessionRequest",memberSessionRequest);
 
-                CompletableFuture<MemberSessionResponse> result = this.streamingClient.sendWithApiCallback("/aapi/getMemberSession", request);
-                return result;
-            }
+        CompletableFuture<MemberSessionResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getMemberSession", request);
+        return result;
+    }
+
+    private ApiException getApiException(String operationId, HttpResponse<String> response) {
+        String message = formatExceptionMessage(operationId, response.statusCode(), response.body());
+        return new ApiException(response.statusCode(), message, response.headers(), response.body());
+    }
+
+    private String formatExceptionMessage(String operationId, int statusCode, String body) {
+        if (body == null || body.isEmpty()) {
+            body = "[no body]";
         }
+        return operationId + " call failed with: " + statusCode + " - " + body;
+    }
+}
