@@ -8,189 +8,7 @@ servers:
     url: 'https://gamification-api.ziqni.com'
     description: Live
 paths:
-  /gc/achievements:
-    summary: Member achievements operation
-    description: This endpoint supports member's achievements operation.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AchievementRequest'
-        required: true
-      tags:
-        - achievements
-      responses:
-        '200':
-          $ref: '#/components/responses/AchievementResponseBody'
-        '400':
-          $ref: '#/components/responses/AchievementResponseBody'
-        '500':
-          $ref: '#/components/responses/AchievementResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewAchievements
-      operationId: getAchievements
-      summary: Get achievements by member reference id
-      description: Returns a list of achievements for the provided member ref id and applied filters.
-      x-ws-only: true
-  /gc/awards:
-    summary: Award operations
-    description: This endpoint is used to perform award operations.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AwardRequest'
-        required: true
-      tags:
-        - awards
-      responses:
-        '200':
-          $ref: '#/components/responses/AwardResponseBody'
-        '400':
-          $ref: '#/components/responses/AwardResponseBody'
-        '500':
-          $ref: '#/components/responses/AwardResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewAwards
-      operationId: getAwards
-      summary: Get awards.
-      description: This operation supports retrieval of awards for one or many entities.
-      x-ws-only: true
-  /gc/awards-claim:
-    summary: Award operations
-    description: This endpoint is used to perform award operations.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ClaimAwardRequest'
-        required: true
-      tags:
-        - awards
-      responses:
-        '200':
-          $ref: '#/components/responses/AwardResponseBody'
-        '400':
-          $ref: '#/components/responses/AwardResponseBody'
-        '500':
-          $ref: '#/components/responses/AwardResponseBody'
-      security:
-        -
-          OAuth2:
-            - ClaimAwards
-      operationId: claimAwards
-      summary: Claim awards.
-      description: This operation enables a member to claim awards.
-      x-ws-only: true
-  /gc/competitions:
-    summary: Member competitions operation
-    description: This endpoint supports member's competitions operation.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CompetitionRequest'
-        required: true
-      tags:
-        - competitions
-      responses:
-        '200':
-          $ref: '#/components/responses/CompetitionResponseBody'
-        '400':
-          $ref: '#/components/responses/CompetitionResponseBody'
-        '500':
-          $ref: '#/components/responses/CompetitionResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewCompetitions
-      operationId: getCompetitions
-      summary: Get competitions by member reference id
-      description: Returns a list of competitions for the provided member ref id and applied filters.
-      x-ws-only: true
-  /gc/contests:
-    summary: Member contests operation
-    description: This endpoint supports member's contests operation.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ContestRequest'
-        required: true
-      tags:
-        - contests
-      responses:
-        '200':
-          $ref: '#/components/responses/ContestResponseBody'
-        '400':
-          $ref: '#/components/responses/ContestResponseBody'
-        '500':
-          $ref: '#/components/responses/ContestResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewContests
-      operationId: getContests
-      summary: Get contests by member reference Id
-      description: Returns a list of contests for the provided member ref id and applied filters.
-      x-ws-only: true
-  /gc/files:
-    summary: Files operations
-    description: This endpoint is used to perform files operations.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/FileRequest'
-        required: true
-      tags:
-        - files
-      responses:
-        '200':
-          $ref: '#/components/responses/FileResponseBody'
-        '400':
-          $ref: '#/components/responses/FileResponseBody'
-        '500':
-          $ref: '#/components/responses/FileResponseBody'
-      operationId: getFiles
-      summary: Get files.
-      description: This operation supports retrieval of file objects for one or many entities.
-      x-ws-only: true
-  /gc/get-token:
-    description: >-
-      The services returns a JWT token used to authorize requests to the other service end points. Use
-      this JWT as an auth header parameter for future requests: 
-      
-      --header 'Authorization: Bearer <jwt-token-from-api>'
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TokenRequest'
-        required: true
-      tags:
-        - token
-      responses:
-        '200':
-          $ref: '#/components/responses/TokenResponseBody'
-        '400':
-          $ref: '#/components/responses/TokenResponseBody'
-        '500':
-          $ref: '#/components/responses/TokenResponseBody'
-      operationId: getToken
-      description: Get Jwt Token
-  /gc/member-info:
+  /member-info:
     summary: Member information
     description: The endpoint provides information about the member.
     post:
@@ -217,7 +35,7 @@ paths:
       summary: Get member information by member reference id
       description: Returns member information for the provided member reference id
       x-ws-only: true
-  /gc/member-manage-optin:
+  /member-manage-optin:
     summary: Member optin operation
     description: This endpoint supports member's optin operation.
     post:
@@ -244,7 +62,7 @@ paths:
       summary: Get member optin information
       description: Returns a list of member optin information
       x-ws-only: true
-  /gc/member-session:
+  /member-session:
     summary: Member session
     description: This endpoint provides member's active session information.
     post:
@@ -271,7 +89,7 @@ paths:
       summary: Get member session by member reference id
       description: Returns member's active session information.
       x-ws-only: true
-  /gc/messages:
+  /messages:
     summary: Member messages operation
     description: This endpoint supports member's messages operation.
     post:
@@ -298,7 +116,7 @@ paths:
       summary: Get messages by member reference id
       description: Returns a list of messages for the provided member ref id and applied filters.
       x-ws-only: true
-  /gc/proxy:
+  /proxy:
     summary: Proxy operation
     description: Support proxy operations
     post:
@@ -321,7 +139,7 @@ paths:
       summary: Proxy
       description: Perform proxy operations.
       x-ws-only: true
-  /gc/rewards:
+  /rewards:
     summary: Reward operations
     description: This endpoint is used to perform reward operations.
     post:
@@ -348,7 +166,7 @@ paths:
       summary: Get rewards
       description: This operation support retrieval of rewards for one or many entitites.
       x-ws-only: true
-  /gc/rules:
+  /rules:
     summary: Rules operations
     description: This endpoint is used to perform rules operations.
     post:
@@ -375,6 +193,190 @@ paths:
       summary: Get rules
       description: This operation support retrieval of rules for one or many entities.
       x-ws-only: true
+  /achievements:
+    summary: Member achievements operation
+    description: This endpoint supports member's achievements operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AchievementRequest'
+        required: true
+      tags:
+        - achievements
+      responses:
+        '200':
+          $ref: '#/components/responses/AchievementResponseBody'
+        '400':
+          $ref: '#/components/responses/AchievementResponseBody'
+        '500':
+          $ref: '#/components/responses/AchievementResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewAchievements
+      operationId: getAchievements
+      summary: Get achievements by member reference id
+      description: Returns a list of achievements for the provided member ref id and applied filters.
+      x-ws-only: true
+  /awards:
+    summary: Award operations
+    description: This endpoint is used to perform award operations.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AwardRequest'
+        required: true
+      tags:
+        - awards
+      responses:
+        '200':
+          $ref: '#/components/responses/AwardResponseBody'
+        '400':
+          $ref: '#/components/responses/AwardResponseBody'
+        '500':
+          $ref: '#/components/responses/AwardResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewAwards
+      operationId: getAwards
+      summary: Get awards.
+      description: This operation supports retrieval of awards for one or many entities.
+      x-ws-only: true
+  /awards-claim:
+    summary: Award operations
+    description: This endpoint is used to perform award operations.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClaimAwardRequest'
+        required: true
+      tags:
+        - awards
+      responses:
+        '200':
+          $ref: '#/components/responses/AwardResponseBody'
+        '400':
+          $ref: '#/components/responses/AwardResponseBody'
+        '500':
+          $ref: '#/components/responses/AwardResponseBody'
+      security:
+        -
+          OAuth2:
+            - ClaimAwards
+      operationId: claimAwards
+      summary: Claim awards.
+      description: This operation enables a member to claim awards.
+      x-ws-only: true
+  /competitions:
+    summary: Member competitions operation
+    description: This endpoint supports member's competitions operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompetitionRequest'
+        required: true
+      tags:
+        - competitions
+      responses:
+        '200':
+          $ref: '#/components/responses/CompetitionResponseBody'
+        '400':
+          $ref: '#/components/responses/CompetitionResponseBody'
+        '500':
+          $ref: '#/components/responses/CompetitionResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewCompetitions
+      operationId: getCompetitions
+      summary: Get competitions by member reference id
+      description: Returns a list of competitions for the provided member ref id and applied filters.
+      x-ws-only: true
+  /contests:
+    summary: Member contests operation
+    description: This endpoint supports member's contests operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContestRequest'
+        required: true
+      tags:
+        - contests
+      responses:
+        '200':
+          $ref: '#/components/responses/ContestResponseBody'
+        '400':
+          $ref: '#/components/responses/ContestResponseBody'
+        '500':
+          $ref: '#/components/responses/ContestResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewContests
+      operationId: getContests
+      summary: Get contests by member reference Id
+      description: Returns a list of contests for the provided member ref id and applied filters.
+      x-ws-only: true
+  /files:
+    summary: Files operations
+    description: This endpoint is used to perform files operations.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileRequest'
+        required: true
+      tags:
+        - files
+      responses:
+        '200':
+          $ref: '#/components/responses/FileResponseBody'
+        '400':
+          $ref: '#/components/responses/FileResponseBody'
+        '500':
+          $ref: '#/components/responses/FileResponseBody'
+      operationId: getFiles
+      summary: Get files.
+      description: This operation supports retrieval of file objects for one or many entities.
+      x-ws-only: true
+  /get-token:
+    description: >-
+      Deprecated, use the service hosted in admin api. ::: The services returns a JWT token used to
+      authorize requests to the other service end points. Use this JWT as an auth header parameter for
+      future requests: 
+      
+      --header 'Authorization: Bearer <jwt-token-from-api>'
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+        required: true
+      tags:
+        - token
+      responses:
+        '200':
+          $ref: '#/components/responses/TokenResponseBody'
+        '400':
+          $ref: '#/components/responses/TokenResponseBody'
+        '500':
+          $ref: '#/components/responses/TokenResponseBody'
+      deprecated: true
+      operationId: getToken
+      description: Get Jwt Token
 components:
   schemas:
     ResponseMeta:
