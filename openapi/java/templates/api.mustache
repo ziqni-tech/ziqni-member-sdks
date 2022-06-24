@@ -57,7 +57,7 @@ import java.util.function.Consumer;
     }
 
     {{#operation}}
-        {{#vendorExtensions}}{{#x-ws-exclude}}{{>api-http}}{{/x-ws-exclude}}{{^x-ws-exclude}}{{>api-ws}}{{/x-ws-exclude}}{{/vendorExtensions}}
+        {{#vendorExtensions}}{{#x-ws-only}}{{>api-ws}}{{/x-ws-only}}{{^x-ws-only}}{{>api-http}}{{/x-ws-only}}{{/vendorExtensions}}
     {{/operation}}
 
     {{#asyncNative}}

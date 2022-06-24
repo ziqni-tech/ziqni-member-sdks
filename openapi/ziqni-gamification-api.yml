@@ -34,184 +34,7 @@ paths:
       operationId: getAchievements
       summary: Get achievements by member reference id
       description: Returns a list of achievements for the provided member ref id and applied filters.
-  /gc/competitions:
-    summary: Member competitions operation
-    description: This endpoint supports member's competitions operation.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CompetitionRequest'
-        required: true
-      tags:
-        - competitions
-      responses:
-        '200':
-          $ref: '#/components/responses/CompetitionResponseBody'
-        '400':
-          $ref: '#/components/responses/CompetitionResponseBody'
-        '500':
-          $ref: '#/components/responses/CompetitionResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewCompetitions
-      operationId: getCompetitions
-      summary: Get competitions by member reference id
-      description: Returns a list of competitions for the provided member ref id and applied filters.
-  /gc/rewards:
-    summary: Reward operations
-    description: This endpoint is used to perform reward operations.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RewardRequest'
-        required: true
-      tags:
-        - rewards
-      responses:
-        '200':
-          $ref: '#/components/responses/RewardResponseBody'
-        '400':
-          $ref: '#/components/responses/RewardResponseBody'
-        '500':
-          $ref: '#/components/responses/RewardResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewRewards
-      operationId: getRewards
-      summary: Get rewards
-      description: This operation support retrieval of rewards for one or many entitites.
-  /gc/rules:
-    summary: Rules operations
-    description: This endpoint is used to perform rules operations.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RuleRequest'
-        required: true
-      tags:
-        - rules
-      responses:
-        '200':
-          $ref: '#/components/responses/RuleResponseBody'
-        '400':
-          $ref: '#/components/responses/RuleResponseBody'
-        '500':
-          $ref: '#/components/responses/RuleResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewRules
-      operationId: getRules
-      summary: Get rules
-      description: This operation support retrieval of rules for one or many entities.
-  /gc/messages:
-    summary: Member messages operation
-    description: This endpoint supports member's messages operation.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MessageRequest'
-        required: true
-      tags:
-        - messages
-      responses:
-        '200':
-          $ref: '#/components/responses/MessageResponseBody'
-        '400':
-          $ref: '#/components/responses/MessageResponseBody'
-        '500':
-          $ref: '#/components/responses/MessageResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewMessages
-      operationId: getMessages
-      summary: Get messages by member reference id
-      description: Returns a list of messages for the provided member ref id and applied filters.
-  /gc/proxy:
-    summary: Proxy operation
-    description: Support proxy operations
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ProxyRequest'
-        required: true
-      tags:
-        - proxy
-      responses:
-        '200':
-          $ref: '#/components/responses/ProxyResponseBody'
-        '400':
-          $ref: '#/components/responses/ProxyResponseBody'
-        '500':
-          $ref: '#/components/responses/ProxyResponseBody'
-      operationId: proxy
-      summary: Proxy
-      description: Perform proxy operations.
-  /gc/member-info:
-    summary: Member information
-    description: The endpoint provides information about the member.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MemberRequest'
-        required: true
-      tags:
-        - members
-      responses:
-        '200':
-          $ref: '#/components/responses/MemberResponseBody'
-        '400':
-          $ref: '#/components/responses/MemberResponseBody'
-        '500':
-          $ref: '#/components/responses/MemberResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewMembers
-      operationId: getMember
-      summary: Get member information by member reference id
-      description: Returns member information for the provided member reference id
-  /gc/member-session:
-    summary: Member session
-    description: This endpoint provides member's active session information.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MemberSessionRequest'
-        required: true
-      tags:
-        - members
-      responses:
-        '200':
-          $ref: '#/components/responses/MemberSessionResponseBody'
-        '400':
-          $ref: '#/components/responses/MemberSessionResponseBody'
-        '500':
-          $ref: '#/components/responses/MemberSessionResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewMembers
-      operationId: getMemberSession
-      summary: Get member session by member reference id
-      description: Returns member's active session information.
+      x-ws-only: true
   /gc/awards:
     summary: Award operations
     description: This endpoint is used to perform award operations.
@@ -238,54 +61,7 @@ paths:
       operationId: getAwards
       summary: Get awards.
       description: This operation supports retrieval of awards for one or many entities.
-  /gc/member-manage-optin:
-    summary: Member optin operation
-    description: This endpoint supports member's optin operation.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MemberOptinRequest'
-        required: true
-      tags:
-        - members
-      responses:
-        '200':
-          $ref: '#/components/responses/MemberResponseBody'
-        '400':
-          $ref: '#/components/responses/MemberResponseBody'
-        '500':
-          $ref: '#/components/responses/MemberResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewMembers
-      operationId: getMemberOptinInfo
-      summary: Get member optin information
-      description: Returns a list of member optin information
-  /gc/files:
-    summary: Files operations
-    description: This endpoint is used to perform files operations.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/FileRequest'
-        required: true
-      tags:
-        - files
-      responses:
-        '200':
-          $ref: '#/components/responses/FileResponseBody'
-        '400':
-          $ref: '#/components/responses/FileResponseBody'
-        '500':
-          $ref: '#/components/responses/FileResponseBody'
-      operationId: getFiles
-      summary: Get files.
-      description: This operation supports retrieval of file objects for one or many entities.
+      x-ws-only: true
   /gc/awards-claim:
     summary: Award operations
     description: This endpoint is used to perform award operations.
@@ -312,6 +88,34 @@ paths:
       operationId: claimAwards
       summary: Claim awards.
       description: This operation enables a member to claim awards.
+      x-ws-only: true
+  /gc/competitions:
+    summary: Member competitions operation
+    description: This endpoint supports member's competitions operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompetitionRequest'
+        required: true
+      tags:
+        - competitions
+      responses:
+        '200':
+          $ref: '#/components/responses/CompetitionResponseBody'
+        '400':
+          $ref: '#/components/responses/CompetitionResponseBody'
+        '500':
+          $ref: '#/components/responses/CompetitionResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewCompetitions
+      operationId: getCompetitions
+      summary: Get competitions by member reference id
+      description: Returns a list of competitions for the provided member ref id and applied filters.
+      x-ws-only: true
   /gc/contests:
     summary: Member contests operation
     description: This endpoint supports member's contests operation.
@@ -338,6 +142,30 @@ paths:
       operationId: getContests
       summary: Get contests by member reference Id
       description: Returns a list of contests for the provided member ref id and applied filters.
+      x-ws-only: true
+  /gc/files:
+    summary: Files operations
+    description: This endpoint is used to perform files operations.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileRequest'
+        required: true
+      tags:
+        - files
+      responses:
+        '200':
+          $ref: '#/components/responses/FileResponseBody'
+        '400':
+          $ref: '#/components/responses/FileResponseBody'
+        '500':
+          $ref: '#/components/responses/FileResponseBody'
+      operationId: getFiles
+      summary: Get files.
+      description: This operation supports retrieval of file objects for one or many entities.
+      x-ws-only: true
   /gc/get-token:
     description: >-
       The services returns a JWT token used to authorize requests to the other service end points. Use
@@ -362,7 +190,191 @@ paths:
           $ref: '#/components/responses/TokenResponseBody'
       operationId: getToken
       description: Get Jwt Token
-      x-ws-exclude: true
+  /gc/member-info:
+    summary: Member information
+    description: The endpoint provides information about the member.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberRequest'
+        required: true
+      tags:
+        - members
+      responses:
+        '200':
+          $ref: '#/components/responses/MemberResponseBody'
+        '400':
+          $ref: '#/components/responses/MemberResponseBody'
+        '500':
+          $ref: '#/components/responses/MemberResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewMembers
+      operationId: getMember
+      summary: Get member information by member reference id
+      description: Returns member information for the provided member reference id
+      x-ws-only: true
+  /gc/member-manage-optin:
+    summary: Member optin operation
+    description: This endpoint supports member's optin operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberOptinRequest'
+        required: true
+      tags:
+        - members
+      responses:
+        '200':
+          $ref: '#/components/responses/MemberResponseBody'
+        '400':
+          $ref: '#/components/responses/MemberResponseBody'
+        '500':
+          $ref: '#/components/responses/MemberResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewMembers
+      operationId: getMemberOptinInfo
+      summary: Get member optin information
+      description: Returns a list of member optin information
+      x-ws-only: true
+  /gc/member-session:
+    summary: Member session
+    description: This endpoint provides member's active session information.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberSessionRequest'
+        required: true
+      tags:
+        - members
+      responses:
+        '200':
+          $ref: '#/components/responses/MemberSessionResponseBody'
+        '400':
+          $ref: '#/components/responses/MemberSessionResponseBody'
+        '500':
+          $ref: '#/components/responses/MemberSessionResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewMembers
+      operationId: getMemberSession
+      summary: Get member session by member reference id
+      description: Returns member's active session information.
+      x-ws-only: true
+  /gc/messages:
+    summary: Member messages operation
+    description: This endpoint supports member's messages operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageRequest'
+        required: true
+      tags:
+        - messages
+      responses:
+        '200':
+          $ref: '#/components/responses/MessageResponseBody'
+        '400':
+          $ref: '#/components/responses/MessageResponseBody'
+        '500':
+          $ref: '#/components/responses/MessageResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewMessages
+      operationId: getMessages
+      summary: Get messages by member reference id
+      description: Returns a list of messages for the provided member ref id and applied filters.
+      x-ws-only: true
+  /gc/proxy:
+    summary: Proxy operation
+    description: Support proxy operations
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProxyRequest'
+        required: true
+      tags:
+        - proxy
+      responses:
+        '200':
+          $ref: '#/components/responses/ProxyResponseBody'
+        '400':
+          $ref: '#/components/responses/ProxyResponseBody'
+        '500':
+          $ref: '#/components/responses/ProxyResponseBody'
+      operationId: proxy
+      summary: Proxy
+      description: Perform proxy operations.
+      x-ws-only: true
+  /gc/rewards:
+    summary: Reward operations
+    description: This endpoint is used to perform reward operations.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RewardRequest'
+        required: true
+      tags:
+        - rewards
+      responses:
+        '200':
+          $ref: '#/components/responses/RewardResponseBody'
+        '400':
+          $ref: '#/components/responses/RewardResponseBody'
+        '500':
+          $ref: '#/components/responses/RewardResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewRewards
+      operationId: getRewards
+      summary: Get rewards
+      description: This operation support retrieval of rewards for one or many entitites.
+      x-ws-only: true
+  /gc/rules:
+    summary: Rules operations
+    description: This endpoint is used to perform rules operations.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuleRequest'
+        required: true
+      tags:
+        - rules
+      responses:
+        '200':
+          $ref: '#/components/responses/RuleResponseBody'
+        '400':
+          $ref: '#/components/responses/RuleResponseBody'
+        '500':
+          $ref: '#/components/responses/RuleResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewRules
+      operationId: getRules
+      summary: Get rules
+      description: This operation support retrieval of rules for one or many entities.
+      x-ws-only: true
 components:
   schemas:
     ResponseMeta:
