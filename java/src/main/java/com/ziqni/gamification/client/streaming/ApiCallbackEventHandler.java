@@ -36,7 +36,7 @@ public class ApiCallbackEventHandler extends EventHandler<String> {
     public ApiCallbackEventHandler(String topic) {
         this.topic = topic;
         this.cachedThreadPool = Executors.newCachedThreadPool();
-        this.classScanner = new ClassScanner("com.ziqni.admin.client.model");
+        this.classScanner = new ClassScanner("com.ziqni.gamification.client.model");
     }
 
     @Override

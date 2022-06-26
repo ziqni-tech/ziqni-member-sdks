@@ -19,6 +19,7 @@ import com.ziqni.gamification.client.data.LoadAchievementsData;
 import com.ziqni.gamification.client.model.Achievement;
 import com.ziqni.gamification.client.model.AchievementRequest;
 import com.ziqni.gamification.client.model.AchievementResponse;
+import com.ziqni.gamification.client.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
@@ -40,7 +41,8 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
     private final AchievementsApi api;
     private final LoadAchievementsData loadAchievementsData;
 
-    public AchievementsApiTest() {
+    public AchievementsApiTest() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory();
         this.api = ApiClientFactory.getAchievementsApi();
         this.loadAchievementsData = new LoadAchievementsData();
     }

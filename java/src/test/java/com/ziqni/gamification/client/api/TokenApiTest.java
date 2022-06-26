@@ -72,7 +72,8 @@ public class TokenApiTest implements tests.utils.CompleteableFutureTestWrapper{
     @Test
     public void getPublicSessionTokenTest() throws ApiException {
         TokenRequest tokenRequest = new TokenRequest()
-                .apiKey("2c90c068a8319a4503a9fc0addc48501")
+//                .apiKey("2c90c068a8319a4503a9fc0addc48501")
+                .apiKey("b69bc598abcfaa48f6a9b39a2d8bddbe")
                 .expires(600)
                 .isReferenceId(false)
                 .member("PUBLIC");

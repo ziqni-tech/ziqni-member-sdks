@@ -70,7 +70,9 @@ import java.util.function.Consumer;
    * @param tokenRequest  (required)
    * @return CompletableFuture&lt;TokenResponse&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public CompletableFuture<TokenResponse> getToken(TokenRequest tokenRequest) throws ApiException {
     try {
       HttpRequest.Builder localVarRequestBuilder = getTokenRequestBuilder(tokenRequest);
@@ -100,7 +102,9 @@ import java.util.function.Consumer;
    * @param tokenRequest  (required)
    * @return CompletableFuture&lt;ApiResponse&lt;TokenResponse&gt;&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public CompletableFuture<ApiResponse<TokenResponse>> getTokenWithHttpInfo(TokenRequest tokenRequest) throws ApiException {
     try {
       HttpRequest.Builder localVarRequestBuilder = getTokenRequestBuilder(tokenRequest);
@@ -139,7 +143,7 @@ import java.util.function.Consumer;
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
-    String localVarPath = "/gc/get-token";
+    String localVarPath = "/get-token";
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 

@@ -4,8 +4,8 @@ All URIs are relative to *https://gamification-api.ziqni.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getToken**](TokenApi.md#getToken) | **POST** /gc/get-token |  |
-| [**getTokenWithHttpInfo**](TokenApi.md#getTokenWithHttpInfo) | **POST** /gc/get-token |  |
+| [**getToken**](TokenApi.md#getToken) | **POST** /get-token |  |
+| [**getTokenWithHttpInfo**](TokenApi.md#getTokenWithHttpInfo) | **POST** /get-token |  |
 
 
 

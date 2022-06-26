@@ -4,10 +4,10 @@ All URIs are relative to *https://gamification-api.ziqni.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**claimAwards**](AwardsApi.md#claimAwards) | **POST** /gc/awards-claim | Claim awards. |
-| [**claimAwardsWithHttpInfo**](AwardsApi.md#claimAwardsWithHttpInfo) | **POST** /gc/awards-claim | Claim awards. |
-| [**getAwards**](AwardsApi.md#getAwards) | **POST** /gc/awards | Get awards. |
-| [**getAwardsWithHttpInfo**](AwardsApi.md#getAwardsWithHttpInfo) | **POST** /gc/awards | Get awards. |
+| [**claimAwards**](AwardsApi.md#claimAwards) | **POST** /awards-claim | Claim awards. |
+| [**claimAwardsWithHttpInfo**](AwardsApi.md#claimAwardsWithHttpInfo) | **POST** /awards-claim | Claim awards. |
+| [**getAwards**](AwardsApi.md#getAwards) | **POST** /awards | Get awards. |
+| [**getAwardsWithHttpInfo**](AwardsApi.md#getAwardsWithHttpInfo) | **POST** /awards | Get awards. |
 
 
 

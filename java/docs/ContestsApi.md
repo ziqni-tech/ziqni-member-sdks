@@ -4,8 +4,8 @@ All URIs are relative to *https://gamification-api.ziqni.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getContests**](ContestsApi.md#getContests) | **POST** /gc/contests | Get contests by member reference Id |
-| [**getContestsWithHttpInfo**](ContestsApi.md#getContestsWithHttpInfo) | **POST** /gc/contests | Get contests by member reference Id |
+| [**getContests**](ContestsApi.md#getContests) | **POST** /contests | Get contests by member reference Id |
+| [**getContestsWithHttpInfo**](ContestsApi.md#getContestsWithHttpInfo) | **POST** /contests | Get contests by member reference Id |
 
 
 

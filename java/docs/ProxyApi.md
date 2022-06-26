@@ -4,8 +4,8 @@ All URIs are relative to *https://gamification-api.ziqni.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**proxy**](ProxyApi.md#proxy) | **POST** /gc/proxy | Proxy |
-| [**proxyWithHttpInfo**](ProxyApi.md#proxyWithHttpInfo) | **POST** /gc/proxy | Proxy |
+| [**proxy**](ProxyApi.md#proxy) | **POST** /proxy | Proxy |
+| [**proxyWithHttpInfo**](ProxyApi.md#proxyWithHttpInfo) | **POST** /proxy | Proxy |
 
 
 
