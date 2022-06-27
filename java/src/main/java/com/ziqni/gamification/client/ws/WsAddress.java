@@ -13,9 +13,9 @@ public class WsAddress {
         StringBuilder sb = new StringBuilder();
         sb.append(ApiClientConfig.isSecure() ? "wss" : "ws");
         sb.append("://");
-        sb.append(ApiClientConfig.getAdminClientServerHost());
-        if(ApiClientConfig.getAdminClientServerPort() != null && (ApiClientConfig.getAdminClientServerPort() != 80 || ApiClientConfig.getAdminClientServerPort() != 443))
-            sb.append(":").append(ApiClientConfig.getAdminClientServerPort());
+        sb.append(ApiClientConfig.getGamificationClientServerHost());
+        if(ApiClientConfig.getGamificationClientServerPort() != null && (ApiClientConfig.getGamificationClientServerPort() != 80 || ApiClientConfig.getGamificationClientServerPort() != 443))
+            sb.append(":").append(ApiClientConfig.getGamificationClientServerPort());
         sb.append("/ws");
 
         this.address = sb.toString();

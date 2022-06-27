@@ -16,48 +16,48 @@ public abstract class ApiClientConfig {
     private static Boolean loaded = false;
 
     //todo - replace this with gamification client
-    private static String adminClientServerBasePath;
-    private static String adminClientServerHost;
-    private static Integer adminClientServerPort;
-    private static String adminClientServerScheme;
+    private static String gamificationClientServerBasePath;
+    private static String gamificationClientServerHost;
+    private static Integer gamificationClientServerPort;
+    private static String gamificationClientServerScheme;
 
     private static boolean isSecure;
 
     public static void load() {
         if (loaded) return;
 
-        adminClientServerBasePath = ConfigurationLoader.getParameter("admin.client.base.path").orElse("");
-        adminClientServerHost = ConfigurationLoader.getParameter("admin.client.server.host").orElse("gamification-api.ziqni.com");
-        adminClientServerPort = Integer.valueOf(ConfigurationLoader.getParameter("admin.client.server.port").orElse("443"));
-        adminClientServerScheme = ConfigurationLoader.getParameter("admin.client.server.scheme").orElse("wss");
+        gamificationClientServerBasePath = ConfigurationLoader.getParameter("gamification.client.base.path").orElse("");
+        gamificationClientServerHost = ConfigurationLoader.getParameter("gamification.client.server.host").orElse("gamification-api.ziqni.com");
+        gamificationClientServerPort = Integer.valueOf(ConfigurationLoader.getParameter("gamification.client.server.port").orElse("443"));
+        gamificationClientServerScheme = ConfigurationLoader.getParameter("gamification.client.server.scheme").orElse("wss");
 
-        var isValidScheme = adminClientServerScheme.equals("http") || adminClientServerScheme.equals("https") || adminClientServerScheme.equals("ws") || adminClientServerScheme.equals("wss");
+        var isValidScheme = gamificationClientServerScheme.equals("http") || gamificationClientServerScheme.equals("https") || gamificationClientServerScheme.equals("ws") || gamificationClientServerScheme.equals("wss");
 
         if(!isValidScheme)
-            throw new RuntimeException("Invalid scheme " + adminClientServerScheme + ". Valid schemes are http, https, ws, wss");
+            throw new RuntimeException("Invalid scheme " + gamificationClientServerScheme + ". Valid schemes are http, https, ws, wss");
 
-        isSecure = adminClientServerScheme.equals("https") || adminClientServerScheme.equals("wss");
+        isSecure = gamificationClientServerScheme.equals("https") || gamificationClientServerScheme.equals("wss");
         loaded = true;
     }
 
-    public static String getAdminClientServerBasePath() {
+    public static String getGamificationClientServerBasePath() {
         load();
-        return adminClientServerBasePath;
+        return gamificationClientServerBasePath;
     }
 
-    public static String getAdminClientServerHost() {
+    public static String getGamificationClientServerHost() {
         load();
-        return adminClientServerHost;
+        return gamificationClientServerHost;
     }
 
-    public static Integer getAdminClientServerPort() {
+    public static Integer getGamificationClientServerPort() {
         load();
-        return adminClientServerPort;
+        return gamificationClientServerPort;
     }
 
-    public static String getAdminClientServerScheme() {
+    public static String getGamificationClientServerScheme() {
         load();
-        return adminClientServerScheme;
+        return gamificationClientServerScheme;
     }
 
     public static boolean isSecure() {

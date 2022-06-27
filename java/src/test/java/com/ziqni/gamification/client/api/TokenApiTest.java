@@ -15,11 +15,12 @@ package com.ziqni.gamification.client.api;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.ziqni.gamification.client.ApiClientFactory;
-import com.ziqni.gamification.client.ApiException;
-import com.ziqni.gamification.client.model.*;
+import com.ziqni.admin.client.model.MemberTokenRequest;
+import com.ziqni.gamification.client.util.MemberTokenHelper;
 import org.junit.jupiter.api.*;
 
+import static com.ziqni.gamification.client.util.MemberTokenHelper.TEST_API_TOKEN;
+import static com.ziqni.gamification.client.util.MemberTokenHelper.TEST_MEMBER_TOKEN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -30,35 +31,29 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TokenApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
-    private final TokenApi api;
-
-    public TokenApiTest() {
-        this.api = ApiClientFactory.getTokenApi();
-    }
-
     /**
-     * 
+     *
      *
      * Get Jwt Token
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getMemberSessionTokenTest() throws ApiException {
-        TokenRequest tokenRequest = new TokenRequest()
-                .apiKey("2c90c068a8319a4503a9fc0addc48501")
+    public void getMemberSessionTokenTest() throws Exception {
+        MemberTokenRequest tokenRequest = new MemberTokenRequest()
+                .apiKey(TEST_API_TOKEN)
                 .expires(60)
                 .isReferenceId(true)
-                .member("100015619");
+                .member(TEST_MEMBER_TOKEN);
 
-        TokenResponse response = api.getToken(tokenRequest).join();
+        var token = MemberTokenHelper.getToken(tokenRequest).join();
 
-        assertNotNull(response.getData());
+        assertNotNull(token);
 
-        DecodedJWT jwt = JWT.decode(response.getData().getJwtToken());
+        DecodedJWT jwt = JWT.decode(token);
         assertNotNull(jwt);
-        assertEquals("100015619",jwt.getClaims().get("member_reference_id").asString());
+        assertEquals(TEST_MEMBER_TOKEN,jwt.getClaims().get("member_reference_id").asString());
     }
 
     /**
@@ -66,25 +61,25 @@ public class TokenApiTest implements tests.utils.CompleteableFutureTestWrapper{
      *
      * Get Jwt Token
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getPublicSessionTokenTest() throws ApiException {
-        TokenRequest tokenRequest = new TokenRequest()
-//                .apiKey("2c90c068a8319a4503a9fc0addc48501")
+    public void getPublicSessionTokenTest() throws Exception {
+        var tokenRequest = new MemberTokenRequest()
+//                .apiKey(TEST_API_TOKEN)
                 .apiKey("b69bc598abcfaa48f6a9b39a2d8bddbe")
                 .expires(600)
                 .isReferenceId(false)
                 .member("PUBLIC");
 
-        TokenResponse response = api.getToken(tokenRequest).join();
+        String token = MemberTokenHelper.getToken(tokenRequest).join();
 
-        assertNotNull(response.getData());
+        assertNotNull(token);
 
-        DecodedJWT jwt = JWT.decode(response.getData().getJwtToken());
+        DecodedJWT jwt = JWT.decode(token);
         assertNotNull(jwt);
         assertEquals("PUBLIC",jwt.getClaims().get("member_reference_id").asString());
     }
-    
+
 }

@@ -50,6 +50,7 @@
         <spring-version>5.3.11</spring-version>
         <jupiter.version>5.7.0</jupiter.version>
         <jsonwebtoken.version>0.11.1</jsonwebtoken.version>
+        <ziqni-admin-api.version>1.0-SNAPSHOT</ziqni-admin-api.version>
     </properties>
 
     <dependencies>
@@ -202,6 +203,13 @@
             <scope>test</scope>
         </dependency>
 
+
+        <dependency>
+            <groupId>com.ziqni</groupId>
+            <artifactId>ziqni-admin-api</artifactId>
+            <version>${ziqni-admin-api.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

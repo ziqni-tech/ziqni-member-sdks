@@ -9,13 +9,9 @@ import com.ziqni.gamification.client.notifications.SystemNotifications;
 import java.util.concurrent.atomic.AtomicReference;
 import com.ziqni.gamification.client.notifications.model.SubscriptionResponse;
 import com.ziqni.gamification.client.notifications.model.SubscriptionTypes;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.function.Consumer;
 
 public abstract class ApiClientFactory {
-    private static final Logger logger = LoggerFactory.getLogger(ApiClientFactory.class);
 
     private static StreamingClient streamingClient;
     private static Boolean initialised = false;
@@ -29,7 +25,6 @@ public abstract class ApiClientFactory {
     private static ProxyApi proxyApi;
     private static RewardsApi rewardsApi;
     private static RulesApi rulesApi;
-    private static TokenApi tokenApi;
     
 
     public static void initialise() throws Exception {
@@ -38,8 +33,6 @@ public abstract class ApiClientFactory {
         ApiClientFactory.initialised = true;
 
         streamingClient = new StreamingClient(new WsAddress().getAddress());
-
-        logger.info("streaming client initialised [{}]", streamingClient.isConnected());
     }
 
     private static void init() {
@@ -166,15 +159,6 @@ public abstract class ApiClientFactory {
         }
 
         return ApiClientFactory.rulesApi;
-    }
-
-     public static TokenApi getTokenApi() {
-        if(ApiClientFactory.tokenApi == null) {
-            init();
-            ApiClientFactory.tokenApi = new TokenApi(ApiRestClientFactory.getApiClient(), streamingClient, Duration.ofSeconds(5));
-        }
-
-        return ApiClientFactory.tokenApi;
     }
 
     
