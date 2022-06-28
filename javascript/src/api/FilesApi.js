@@ -71,7 +71,7 @@ export default class FilesApi {
       let accepts = ['application/json'];
       let returnType = FileResponse;
       return this.apiClient.callApi(
-        '/gc/files', 'POST',
+        '/files', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

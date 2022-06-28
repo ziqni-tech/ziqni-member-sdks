@@ -62,7 +62,7 @@ export default class MessagesApi {
     let contentTypes = ['application/json'];
     let accepts = ['application/json'];
     let returnType = MessageResponse;
-    return this.apiClient.callApi('/gc/messages', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
+    return this.apiClient.callApi('/messages', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
   }
 
 }

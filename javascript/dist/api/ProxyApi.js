@@ -62,7 +62,7 @@ export default class ProxyApi {
     let contentTypes = ['application/json'];
     let accepts = ['application/json'];
     let returnType = ProxyResponse;
-    return this.apiClient.callApi('/gc/proxy', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
+    return this.apiClient.callApi('/proxy', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
   }
 
 }

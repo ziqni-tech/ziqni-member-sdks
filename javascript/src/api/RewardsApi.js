@@ -71,7 +71,7 @@ export default class RewardsApi {
       let accepts = ['application/json'];
       let returnType = RewardResponse;
       return this.apiClient.callApi(
-        '/gc/rewards', 'POST',
+        '/rewards', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

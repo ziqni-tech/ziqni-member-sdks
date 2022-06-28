@@ -4,7 +4,7 @@ All URIs are relative to *https://gamification-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getFiles**](FilesApi.md#getFiles) | **POST** /gc/files | Get files.
+[**getFiles**](FilesApi.md#getFiles) | **POST** /files | Get files.
 
 
 

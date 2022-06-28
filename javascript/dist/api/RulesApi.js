@@ -62,7 +62,7 @@ export default class RulesApi {
     let contentTypes = ['application/json'];
     let accepts = ['application/json'];
     let returnType = RuleResponse;
-    return this.apiClient.callApi('/gc/rules', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
+    return this.apiClient.callApi('/rules', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
   }
 
 }

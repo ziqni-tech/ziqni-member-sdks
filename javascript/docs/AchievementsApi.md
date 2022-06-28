@@ -4,7 +4,7 @@ All URIs are relative to *https://gamification-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getAchievements**](AchievementsApi.md#getAchievements) | **POST** /gc/achievements | Get achievements by member reference id
+[**getAchievements**](AchievementsApi.md#getAchievements) | **POST** /achievements | Get achievements by member reference id
 
 
 

@@ -10,15 +10,15 @@ public class WsAddress {
     final String address;
 
     public WsAddress(){
-        StringBuilder sb = new StringBuilder();
-        sb.append(ApiClientConfig.isSecure() ? "wss" : "ws");
-        sb.append("://");
-        sb.append(ApiClientConfig.getGamificationClientServerHost());
-        if(ApiClientConfig.getGamificationClientServerPort() != null && (ApiClientConfig.getGamificationClientServerPort() != 80 || ApiClientConfig.getGamificationClientServerPort() != 443))
-            sb.append(":").append(ApiClientConfig.getGamificationClientServerPort());
-        sb.append("/ws");
+        StringBuilder stringBuilder = new StringBuilder()
+                .append(ApiClientConfig.isSecure() ? "wss" : "ws")
+                .append("://")
+                .append(ApiClientConfig.getGamificationClientServerHost());
 
-        this.address = sb.toString();
+        if(ApiClientConfig.getGamificationClientServerPort() != null && !(ApiClientConfig.getGamificationClientServerPort() != 80 || ApiClientConfig.getGamificationClientServerPort() != 443))
+            stringBuilder.append(":").append(ApiClientConfig.getGamificationClientServerPort());
+
+        this.address = stringBuilder.append("/ws").toString();
     }
 
     public String getAddress() {

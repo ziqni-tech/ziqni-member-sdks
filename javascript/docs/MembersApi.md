@@ -4,9 +4,9 @@ All URIs are relative to *https://gamification-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getMember**](MembersApi.md#getMember) | **POST** /gc/member-info | Get member information by member reference id
-[**getMemberOptinInfo**](MembersApi.md#getMemberOptinInfo) | **POST** /gc/member-manage-optin | Get member optin information
-[**getMemberSession**](MembersApi.md#getMemberSession) | **POST** /gc/member-session | Get member session by member reference id
+[**getMember**](MembersApi.md#getMember) | **POST** /member-info | Get member information by member reference id
+[**getMemberOptinInfo**](MembersApi.md#getMemberOptinInfo) | **POST** /member-manage-optin | Get member optin information
+[**getMemberSession**](MembersApi.md#getMemberSession) | **POST** /member-session | Get member session by member reference id
 
 
 

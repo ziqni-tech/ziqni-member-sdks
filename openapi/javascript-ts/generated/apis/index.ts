@@ -10,4 +10,3 @@ export * from './MessagesApi';
 export * from './ProxyApi';
 export * from './RewardsApi';
 export * from './RulesApi';
-export * from './TokenApi';

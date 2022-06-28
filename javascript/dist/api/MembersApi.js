@@ -65,7 +65,7 @@ export default class MembersApi {
     let contentTypes = ['application/json'];
     let accepts = ['application/json'];
     let returnType = MemberResponse;
-    return this.apiClient.callApi('/gc/member-info', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
+    return this.apiClient.callApi('/member-info', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
   }
   /**
    * Callback function to receive the result of the getMemberOptinInfo operation.
@@ -99,7 +99,7 @@ export default class MembersApi {
     let contentTypes = ['application/json'];
     let accepts = ['application/json'];
     let returnType = MemberResponse;
-    return this.apiClient.callApi('/gc/member-manage-optin', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
+    return this.apiClient.callApi('/member-manage-optin', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
   }
   /**
    * Callback function to receive the result of the getMemberSession operation.
@@ -133,7 +133,7 @@ export default class MembersApi {
     let contentTypes = ['application/json'];
     let accepts = ['application/json'];
     let returnType = MemberSessionResponse;
-    return this.apiClient.callApi('/gc/member-session', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
+    return this.apiClient.callApi('/member-session', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
   }
 
 }

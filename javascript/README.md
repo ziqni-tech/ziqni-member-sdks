@@ -124,20 +124,19 @@ All URIs are relative to *https://gamification-api.ziqni.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*@ZiqniTechGamificationApiClient.AchievementsApi* | [**getAchievements**](docs/AchievementsApi.md#getAchievements) | **POST** /gc/achievements | Get achievements by member reference id
-*@ZiqniTechGamificationApiClient.AwardsApi* | [**claimAwards**](docs/AwardsApi.md#claimAwards) | **POST** /gc/awards-claim | Claim awards.
-*@ZiqniTechGamificationApiClient.AwardsApi* | [**getAwards**](docs/AwardsApi.md#getAwards) | **POST** /gc/awards | Get awards.
-*@ZiqniTechGamificationApiClient.CompetitionsApi* | [**getCompetitions**](docs/CompetitionsApi.md#getCompetitions) | **POST** /gc/competitions | Get competitions by member reference id
-*@ZiqniTechGamificationApiClient.ContestsApi* | [**getContests**](docs/ContestsApi.md#getContests) | **POST** /gc/contests | Get contests by member reference Id
-*@ZiqniTechGamificationApiClient.FilesApi* | [**getFiles**](docs/FilesApi.md#getFiles) | **POST** /gc/files | Get files.
-*@ZiqniTechGamificationApiClient.MembersApi* | [**getMember**](docs/MembersApi.md#getMember) | **POST** /gc/member-info | Get member information by member reference id
-*@ZiqniTechGamificationApiClient.MembersApi* | [**getMemberOptinInfo**](docs/MembersApi.md#getMemberOptinInfo) | **POST** /gc/member-manage-optin | Get member optin information
-*@ZiqniTechGamificationApiClient.MembersApi* | [**getMemberSession**](docs/MembersApi.md#getMemberSession) | **POST** /gc/member-session | Get member session by member reference id
-*@ZiqniTechGamificationApiClient.MessagesApi* | [**getMessages**](docs/MessagesApi.md#getMessages) | **POST** /gc/messages | Get messages by member reference id
-*@ZiqniTechGamificationApiClient.ProxyApi* | [**proxy**](docs/ProxyApi.md#proxy) | **POST** /gc/proxy | Proxy
-*@ZiqniTechGamificationApiClient.RewardsApi* | [**getRewards**](docs/RewardsApi.md#getRewards) | **POST** /gc/rewards | Get rewards
-*@ZiqniTechGamificationApiClient.RulesApi* | [**getRules**](docs/RulesApi.md#getRules) | **POST** /gc/rules | Get rules
-*@ZiqniTechGamificationApiClient.TokenApi* | [**getToken**](docs/TokenApi.md#getToken) | **POST** /gc/get-token | 
+*@ZiqniTechGamificationApiClient.AchievementsApi* | [**getAchievements**](docs/AchievementsApi.md#getAchievements) | **POST** /achievements | Get achievements by member reference id
+*@ZiqniTechGamificationApiClient.AwardsApi* | [**claimAwards**](docs/AwardsApi.md#claimAwards) | **POST** /awards-claim | Claim awards.
+*@ZiqniTechGamificationApiClient.AwardsApi* | [**getAwards**](docs/AwardsApi.md#getAwards) | **POST** /awards | Get awards.
+*@ZiqniTechGamificationApiClient.CompetitionsApi* | [**getCompetitions**](docs/CompetitionsApi.md#getCompetitions) | **POST** /competitions | Get competitions by member reference id
+*@ZiqniTechGamificationApiClient.ContestsApi* | [**getContests**](docs/ContestsApi.md#getContests) | **POST** /contests | Get contests by member reference Id
+*@ZiqniTechGamificationApiClient.FilesApi* | [**getFiles**](docs/FilesApi.md#getFiles) | **POST** /files | Get files.
+*@ZiqniTechGamificationApiClient.MembersApi* | [**getMember**](docs/MembersApi.md#getMember) | **POST** /member-info | Get member information by member reference id
+*@ZiqniTechGamificationApiClient.MembersApi* | [**getMemberOptinInfo**](docs/MembersApi.md#getMemberOptinInfo) | **POST** /member-manage-optin | Get member optin information
+*@ZiqniTechGamificationApiClient.MembersApi* | [**getMemberSession**](docs/MembersApi.md#getMemberSession) | **POST** /member-session | Get member session by member reference id
+*@ZiqniTechGamificationApiClient.MessagesApi* | [**getMessages**](docs/MessagesApi.md#getMessages) | **POST** /messages | Get messages by member reference id
+*@ZiqniTechGamificationApiClient.ProxyApi* | [**proxy**](docs/ProxyApi.md#proxy) | **POST** /proxy | Proxy
+*@ZiqniTechGamificationApiClient.RewardsApi* | [**getRewards**](docs/RewardsApi.md#getRewards) | **POST** /rewards | Get rewards
+*@ZiqniTechGamificationApiClient.RulesApi* | [**getRules**](docs/RulesApi.md#getRules) | **POST** /rules | Get rules
 
 
 ## Documentation for Models
@@ -221,9 +220,6 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechGamificationApiClient.SortOrder](docs/SortOrder.md)
  - [@ZiqniTechGamificationApiClient.Strategy](docs/Strategy.md)
  - [@ZiqniTechGamificationApiClient.StrategyType](docs/StrategyType.md)
- - [@ZiqniTechGamificationApiClient.Token](docs/Token.md)
- - [@ZiqniTechGamificationApiClient.TokenRequest](docs/TokenRequest.md)
- - [@ZiqniTechGamificationApiClient.TokenResponse](docs/TokenResponse.md)
  - [@ZiqniTechGamificationApiClient.Translation](docs/Translation.md)
  - [@ZiqniTechGamificationApiClient.TranslationEntry](docs/TranslationEntry.md)
  - [@ZiqniTechGamificationApiClient.TranslationRequest](docs/TranslationRequest.md)

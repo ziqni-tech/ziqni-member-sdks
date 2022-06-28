@@ -4,7 +4,7 @@ All URIs are relative to *https://gamification-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getMessages**](MessagesApi.md#getMessages) | **POST** /gc/messages | Get messages by member reference id
+[**getMessages**](MessagesApi.md#getMessages) | **POST** /messages | Get messages by member reference id
 
 
 

@@ -9,7 +9,6 @@ apis/MessagesApi.ts
 apis/ProxyApi.ts
 apis/RewardsApi.ts
 apis/RulesApi.ts
-apis/TokenApi.ts
 apis/index.ts
 index.ts
 models/Achievement.ts
@@ -91,9 +90,6 @@ models/ScoringStrategy.ts
 models/SortOrder.ts
 models/Strategy.ts
 models/StrategyType.ts
-models/Token.ts
-models/TokenRequest.ts
-models/TokenResponse.ts
 models/Translation.ts
 models/TranslationEntry.ts
 models/TranslationRequest.ts

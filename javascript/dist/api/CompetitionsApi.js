@@ -62,7 +62,7 @@ export default class CompetitionsApi {
     let contentTypes = ['application/json'];
     let accepts = ['application/json'];
     let returnType = CompetitionResponse;
-    return this.apiClient.callApi('/gc/competitions', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
+    return this.apiClient.callApi('/competitions', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
   }
 
 }

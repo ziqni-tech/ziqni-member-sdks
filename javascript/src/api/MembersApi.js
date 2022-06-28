@@ -74,7 +74,7 @@ export default class MembersApi {
       let accepts = ['application/json'];
       let returnType = MemberResponse;
       return this.apiClient.callApi(
-        '/gc/member-info', 'POST',
+        '/member-info', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );
@@ -116,7 +116,7 @@ export default class MembersApi {
       let accepts = ['application/json'];
       let returnType = MemberResponse;
       return this.apiClient.callApi(
-        '/gc/member-manage-optin', 'POST',
+        '/member-manage-optin', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );
@@ -158,7 +158,7 @@ export default class MembersApi {
       let accepts = ['application/json'];
       let returnType = MemberSessionResponse;
       return this.apiClient.callApi(
-        '/gc/member-session', 'POST',
+        '/member-session', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

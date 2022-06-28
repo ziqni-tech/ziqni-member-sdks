@@ -71,7 +71,7 @@ export default class ContestsApi {
       let accepts = ['application/json'];
       let returnType = ContestResponse;
       return this.apiClient.callApi(
-        '/gc/contests', 'POST',
+        '/contests', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

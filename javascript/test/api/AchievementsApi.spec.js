@@ -17,18 +17,18 @@
     define(['expect.js', process.cwd()+'/src/index'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), '/home/carel/IdeaProjects/ziqniio/ziqni-gamification-api-clients/javascript/src/index.js');
+    factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ZiqniTechGamificationApiClient);
+    factory(root.expect, root.@ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, ZiqniTechGamificationApiClient) {
+}(this, function(expect, @ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ZiqniTechGamificationApiClient.AchievementsApi();
+    instance = new @ZiqniTechGamificationApiClient.AchievementsApi();
   });
 
   var getProperty = function(object, getter, property) {

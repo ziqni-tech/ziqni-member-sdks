@@ -90,9 +90,6 @@ import ScoringStrategy from './model/ScoringStrategy';
 import SortOrder from './model/SortOrder';
 import Strategy from './model/Strategy';
 import StrategyType from './model/StrategyType';
-import Token from './model/Token';
-import TokenRequest from './model/TokenRequest';
-import TokenResponse from './model/TokenResponse';
 import Translation from './model/Translation';
 import TranslationEntry from './model/TranslationEntry';
 import TranslationRequest from './model/TranslationRequest';
@@ -107,7 +104,6 @@ import MessagesApi from './api/MessagesApi';
 import ProxyApi from './api/ProxyApi';
 import RewardsApi from './api/RewardsApi';
 import RulesApi from './api/RulesApi';
-import TokenApi from './api/TokenApi';
 /**
 * Client library for Ziqni Gamification API.<br>
 * The <code>index</code> module provides access to constructors for all the classes which comprise the public API.
@@ -542,21 +538,6 @@ Strategy,
  */
 StrategyType,
 /**
- * The Token model constructor.
- * @property {module:model/Token}
- */
-Token,
-/**
- * The TokenRequest model constructor.
- * @property {module:model/TokenRequest}
- */
-TokenRequest,
-/**
- * The TokenResponse model constructor.
- * @property {module:model/TokenResponse}
- */
-TokenResponse,
-/**
  * The Translation model constructor.
  * @property {module:model/Translation}
  */
@@ -625,9 +606,4 @@ RewardsApi,
 * The RulesApi service constructor.
 * @property {module:api/RulesApi}
 */
-RulesApi,
-/**
-* The TokenApi service constructor.
-* @property {module:api/TokenApi}
-*/
-TokenApi };
+RulesApi };

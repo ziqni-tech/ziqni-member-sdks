@@ -71,7 +71,7 @@ export default class AchievementsApi {
       let accepts = ['application/json'];
       let returnType = AchievementResponse;
       return this.apiClient.callApi(
-        '/gc/achievements', 'POST',
+        '/achievements', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

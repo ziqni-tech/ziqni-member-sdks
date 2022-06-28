@@ -63,7 +63,7 @@ export default class AwardsApi {
     let contentTypes = ['application/json'];
     let accepts = ['application/json'];
     let returnType = AwardResponse;
-    return this.apiClient.callApi('/gc/awards-claim', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
+    return this.apiClient.callApi('/awards-claim', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
   }
   /**
    * Callback function to receive the result of the getAwards operation.
@@ -97,7 +97,7 @@ export default class AwardsApi {
     let contentTypes = ['application/json'];
     let accepts = ['application/json'];
     let returnType = AwardResponse;
-    return this.apiClient.callApi('/gc/awards', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
+    return this.apiClient.callApi('/awards', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
   }
 
 }

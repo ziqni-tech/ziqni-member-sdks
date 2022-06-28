@@ -18,6 +18,7 @@ import com.ziqni.gamification.client.ApiClientFactory;
 import com.ziqni.gamification.client.ApiException;
 import com.ziqni.gamification.client.configuration.ApiClientConfig;
 import com.ziqni.gamification.client.data.LoadAchievementsData;
+import com.ziqni.gamification.client.util.ApiClientFactoryUtil;
 import com.ziqni.gamification.client.util.TestMemberTokenLoader;
 import org.junit.jupiter.api.*;
 
@@ -35,7 +36,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
     private LoadAchievementsData loadAchievementsData;
 
     @BeforeAll
-    public void start(){
+    public void start() throws Exception {
         TestMemberTokenLoader testMemberTokenLoader = new TestMemberTokenLoader();
         MemberTokenRequest tokenRequest = new MemberTokenRequest()
                 .apiKey(testMemberTokenLoader.getApiKey())
@@ -47,6 +48,8 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
         ApiClientConfig.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
         this.api = ApiClientFactory.getAchievementsApi();
         this.loadAchievementsData = new LoadAchievementsData();
+
+        ApiClientFactoryUtil.initApiClientFactory();
     }
 
     @AfterAll
@@ -64,8 +67,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
      */
     @Test
     public void getAchievementsTest() throws Exception {
-        ApiClientFactory.initialise();
-        ApiClientFactory.getStreamingClient().start().join();
+
         var response = api.getAchievements(loadAchievementsData.getRequest()).join();
 
         assertNotNull(response);
