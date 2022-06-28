@@ -61,10 +61,10 @@ public class ApiCallbackEventHandler extends EventHandler<String> {
 
     @Override
     public void handleFrame(StompHeaders headers, Object payload) {
-        var sn = getSequenceNumber(headers);
+        var messageId = getMessageId(headers);
 
-        if(sn.isPresent()){
-            handleWithSequenceNumber(this.cachedThreadPool, sn.get(), headers, payload);
+        if(messageId.isPresent()){
+            handleWithMessageId(this.cachedThreadPool, messageId.get(), headers, payload);
         }
         else {
             if(!payload.getClass().isInstance(Message.class))
@@ -74,42 +74,30 @@ public class ApiCallbackEventHandler extends EventHandler<String> {
 
     public static  <TIN, TOUT> ApiCallbackResponse<TIN, TOUT> send(String destination, TIN payload, CompletableFuture<TOUT> completableFuture, BiConsumer<StompHeaders, TIN> doSend){
 
-        var sn = sequenceNumber.incrementAndGet();
-        var nextSeq = Long.toString(sn);
-
+        var messageId = sequenceNumber.incrementAndGet();
+        var nextSeq = Long.toString(messageId);
         StompHeaders headers = new StompHeaders();
         headers.setDestination(destination);
-        headers.setReceiptId(nextSeq);
-        headers.add("sn", nextSeq);
+        headers.setMessageId(nextSeq);
 
         logger.debug("WS sent request to destination [{}] with receipt id [{}] and payload [{}] and headers [{}] and callback []", destination, nextSeq, payload, headers.toSingleValueMap());
 
-        var streamingResponse = new ApiCallbackResponse<>(sn, payload, completableFuture);
+        var streamingResponse = new ApiCallbackResponse<>(messageId, payload, completableFuture);
         awaitingResponse.put(streamingResponse.getSequenceNumberAsString(), streamingResponse);
         doSend.accept(headers, payload);
 
         return streamingResponse;
     }
 
-    private static Optional<String> getSequenceNumber(StompHeaders headers){
-        return Optional.ofNullable(headers.get("sn")).map(list -> {
-            var snIter = list.iterator();
-            if(snIter.hasNext()){
-                var sn = snIter.next();
-                return (sn != null && !sn.trim().isBlank())
-                        ? sn
-                        : null;
-            }
-            else
-                return null;
-        });
+    private static Optional<String> getMessageId(StompHeaders headers){
+        return Optional.ofNullable(headers.getMessageId());
     }
 
-    private static void handleWithSequenceNumber(ExecutorService cachedThreadPool, String sequenceNumber, StompHeaders headers, Object payload) {
-        final var handleWith = Optional.ofNullable(awaitingResponse.get(sequenceNumber));
+    private static void handleWithMessageId(ExecutorService cachedThreadPool, String messageId, StompHeaders headers, Object payload) {
+        final var handleWith = Optional.ofNullable(awaitingResponse.get(messageId));
 
         if(handleWith.isEmpty()) {
-            logger.debug("No handler waiting for sequence number: " + sequenceNumber + ". Headers: " + headers + ". Payload: " + payload);
+            logger.debug("No handler waiting for sequence number: " + messageId + ". Headers: " + headers + ". Payload: " + payload);
             return;
         }
 
@@ -117,6 +105,6 @@ public class ApiCallbackEventHandler extends EventHandler<String> {
             cachedThreadPool.submit( callback.onCallBack(headers,payload) )
         );
 
-        awaitingResponse.remove(sequenceNumber);
+        awaitingResponse.remove(messageId);
     }
 }
