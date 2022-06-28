@@ -38,8 +38,8 @@ if [[ -d "$GEN_DIR" ]]; then
   cp -v ./generated/docs/* ../../java/docs/
 
   # Copy the new sources
-      mkdir -p ../../java/src/generated
-      cp -rf ./generated/src/main/java ../../java/src/generated/
+  mkdir -p ../../java/src/generated
+  cp -rf ./generated/src/main/java ../../java/src/generated/
 
 else
   echo "Directory '<project-root>/openapi/java/$GEN_DIR' not found"

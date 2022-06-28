@@ -63,7 +63,9 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
      *          if the Api call fails
      */
     @Test
-    public void getAchievementsTest() throws ApiException {
+    public void getAchievementsTest() throws Exception {
+        ApiClientFactory.initialise();
+        ApiClientFactory.getStreamingClient().start().join();
         var response = api.getAchievements(loadAchievementsData.getRequest()).join();
 
         assertNotNull(response);
