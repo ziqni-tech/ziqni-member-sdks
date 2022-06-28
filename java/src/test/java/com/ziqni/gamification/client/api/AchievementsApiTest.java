@@ -46,10 +46,10 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
                 .resource("ziqni-gapi");
 
         ApiClientConfig.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
+        ApiClientFactoryUtil.initApiClientFactory();
+
         this.api = ApiClientFactory.getAchievementsApi();
         this.loadAchievementsData = new LoadAchievementsData();
-
-        ApiClientFactoryUtil.initApiClientFactory();
     }
 
     @AfterAll
