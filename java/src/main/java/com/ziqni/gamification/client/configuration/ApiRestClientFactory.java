@@ -4,6 +4,7 @@
 package com.ziqni.gamification.client.configuration;
 
 import com.ziqni.gamification.client.ApiClient;
+import com.ziqni.gamification.client.security.IdentityAuthorisationException;
 import com.ziqni.gamification.client.util.CoreClientObjectMapper;
 
 import javax.net.ssl.SSLContext;

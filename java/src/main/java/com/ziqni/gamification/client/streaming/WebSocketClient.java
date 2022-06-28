@@ -76,7 +76,7 @@ public class WebSocketClient {
     private final Consumer<Integer> onStateChange;
 
 
-    public WebSocketClient(String wsUri, Consumer<Integer> onStateChange) {
+    public WebSocketClient(String wsUri, Consumer<Integer> onStateChange) throws Exception {
         this(wsUri, DEFAULT_RECONNECT_DELAY, DEFAULT_RECONNECT_ATTEMPTS, makeAuthHeader(), onStateChange);
     }
 
@@ -97,13 +97,13 @@ public class WebSocketClient {
         this.onStateChange = onStateChange;
     }
 
-    private static StompHeaders makeAuthHeader(){
+    private static StompHeaders makeAuthHeader() throws Exception {
         StompHeaders stompHeaders = new StompHeaders();
         updateOauthToken(stompHeaders);
         return stompHeaders;
     }
 
-    private static void updateOauthToken(StompHeaders stompHeaders){
+    private static void updateOauthToken(StompHeaders stompHeaders) throws Exception {
         String oauthToken = ApiClientConfig.getAccessTokenString();
         if (stompHeaders.containsKey("Authorization"))
             stompHeaders.remove("Authorization");
@@ -380,37 +380,42 @@ public class WebSocketClient {
 
     private CompletableFuture<StompSession> doConnect() {
 
-        updateOauthToken(stompHeaders);
+        try {
+            updateOauthToken(stompHeaders);
 
-        ListenableFuture<StompSession> future = stompClient.connect(wsUri, new WebSocketHttpHeaders(), stompHeaders, new StompSessionHandlerAdapter() {
-            @Override
-            public void handleException(StompSession session, StompCommand command, StompHeaders headers, byte[] payload, Throwable exception) {
-                logger.debug("Stomp client connection exception. [{}] ", exception.getMessage());
-            }
+            final ListenableFuture<StompSession> future = stompClient.connect(wsUri, new WebSocketHttpHeaders(), stompHeaders, new StompSessionHandlerAdapter() {
+                @Override
+                public void handleException(StompSession session, StompCommand command, StompHeaders headers, byte[] payload, Throwable exception) {
+                    logger.debug("Stomp client connection exception. [{}] ", exception.getMessage());
+                }
 
-            @Override
-            public void handleTransportError(StompSession session, Throwable exception) {
-                logger.debug("Stomp client connection transport error. [{}] ", exception.getMessage());
-            }
-        });
+                @Override
+                public void handleTransportError(StompSession session, Throwable exception) {
+                    logger.debug("Stomp client connection transport error. [{}] ", exception.getMessage());
+                }
+            });
 
-        future.completable()
-                .thenApply(newStompSession -> {
-                    stompSession = newStompSession;
-                    logger.info("Connection established successfully with the server.");
-                    if (topicHandlers != null && !topicHandlers.isEmpty()) {
-                        reconnectAllTopics();
-                    }
-                    notifyConnectListeners(newStompSession);
-                    return future;
-                }).exceptionally(throwable -> {
-                    logger.debug("Stomp client connection call back exception. [{}]", throwable.getMessage());
-                    notifyDisconnectListeners(throwable);
-                    return future;
-                });
+            future.completable()
+                    .thenApply(newStompSession -> {
+                        stompSession = newStompSession;
+                        logger.info("Connection established successfully with the server.");
+                        if (topicHandlers != null && !topicHandlers.isEmpty()) {
+                            reconnectAllTopics();
+                        }
+                        notifyConnectListeners(newStompSession);
+                        return future;
+                    }).exceptionally(throwable -> {
+                        logger.debug("Stomp client connection call back exception. [{}]", throwable.getMessage());
+                        notifyDisconnectListeners(throwable);
+                        return future;
+                    });
 
-        return future.completable();
-
+            return future.completable();
+        } catch (Exception e) {
+            var future = new CompletableFuture<StompSession>().toCompletableFuture();
+            future.completeExceptionally(e);
+            return future;
+        }
     }
 
     private void notifyConnectListeners(StompSession session) {

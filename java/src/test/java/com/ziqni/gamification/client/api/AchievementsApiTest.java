@@ -13,22 +13,15 @@
 
 package com.ziqni.gamification.client.api;
 
+import com.ziqni.admin.client.model.MemberTokenRequest;
 import com.ziqni.gamification.client.ApiClientFactory;
 import com.ziqni.gamification.client.ApiException;
+import com.ziqni.gamification.client.configuration.ApiClientConfig;
 import com.ziqni.gamification.client.data.LoadAchievementsData;
-import com.ziqni.gamification.client.model.Achievement;
-import com.ziqni.gamification.client.model.AchievementRequest;
-import com.ziqni.gamification.client.model.AchievementResponse;
-import com.ziqni.gamification.client.util.ApiClientFactoryUtil;
+import com.ziqni.gamification.client.util.TestMemberTokenLoader;
 import org.junit.jupiter.api.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import java.util.concurrent.CompletableFuture;
-
+import static com.ziqni.gamification.client.util.TestMemberTokenLoader.TEST_MEMBER_TOKEN;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -38,13 +31,27 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
-    private final AchievementsApi api;
-    private final LoadAchievementsData loadAchievementsData;
+    private AchievementsApi api;
+    private LoadAchievementsData loadAchievementsData;
 
-    public AchievementsApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
+    @BeforeAll
+    public void start(){
+        TestMemberTokenLoader testMemberTokenLoader = new TestMemberTokenLoader();
+        MemberTokenRequest tokenRequest = new MemberTokenRequest()
+                .apiKey(testMemberTokenLoader.getApiKey())
+                .expires(60)
+                .isReferenceId(true)
+                .member(TEST_MEMBER_TOKEN)
+                .resource("ziqni-gapi");
+
+        ApiClientConfig.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
         this.api = ApiClientFactory.getAchievementsApi();
         this.loadAchievementsData = new LoadAchievementsData();
+    }
+
+    @AfterAll
+    public  void stop(){
+        ApiClientFactory.getStreamingClient().stop();
     }
 
     /**
@@ -65,6 +72,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
         assertTrue(response.getErrors().isEmpty(), "Should have no errors");
         assertFalse(response.getData().isEmpty(), "Should have results");
 
+
     }
-    
+
 }

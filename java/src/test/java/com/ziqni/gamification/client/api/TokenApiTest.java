@@ -16,11 +16,10 @@ package com.ziqni.gamification.client.api;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.ziqni.admin.client.model.MemberTokenRequest;
-import com.ziqni.gamification.client.util.MemberTokenHelper;
+import com.ziqni.gamification.client.util.TestMemberTokenLoader;
 import org.junit.jupiter.api.*;
 
-import static com.ziqni.gamification.client.util.MemberTokenHelper.TEST_API_TOKEN;
-import static com.ziqni.gamification.client.util.MemberTokenHelper.TEST_MEMBER_TOKEN;
+import static com.ziqni.gamification.client.util.TestMemberTokenLoader.TEST_MEMBER_TOKEN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -41,13 +40,15 @@ public class TokenApiTest implements tests.utils.CompleteableFutureTestWrapper{
      */
     @Test
     public void getMemberSessionTokenTest() throws Exception {
+        TestMemberTokenLoader memberTokenHelper = new TestMemberTokenLoader();
         MemberTokenRequest tokenRequest = new MemberTokenRequest()
-                .apiKey(TEST_API_TOKEN)
+                .apiKey(memberTokenHelper.getApiKey())
                 .expires(60)
                 .isReferenceId(true)
-                .member(TEST_MEMBER_TOKEN);
+                .member(TEST_MEMBER_TOKEN)
+                .resource("ziqni-gapi");
 
-        var token = MemberTokenHelper.getToken(tokenRequest).join();
+        var token = memberTokenHelper.getToken(tokenRequest).join();
 
         assertNotNull(token);
 
@@ -66,14 +67,16 @@ public class TokenApiTest implements tests.utils.CompleteableFutureTestWrapper{
      */
     @Test
     public void getPublicSessionTokenTest() throws Exception {
+        TestMemberTokenLoader memberTokenHelper = new TestMemberTokenLoader();
         var tokenRequest = new MemberTokenRequest()
-//                .apiKey(TEST_API_TOKEN)
-                .apiKey("b69bc598abcfaa48f6a9b39a2d8bddbe")
+                .apiKey(memberTokenHelper.getApiKey())
+//                .apiKey("b69bc598abcfaa48f6a9b39a2d8bddbe")
                 .expires(600)
                 .isReferenceId(false)
-                .member("PUBLIC");
+                .member("PUBLIC")
+                .resource("ziqni-gapi");
 
-        String token = MemberTokenHelper.getToken(tokenRequest).join();
+        String token = memberTokenHelper.getToken(tokenRequest).join();
 
         assertNotNull(token);
 

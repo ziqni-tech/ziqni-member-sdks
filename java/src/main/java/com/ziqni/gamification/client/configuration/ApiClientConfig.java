@@ -3,6 +3,8 @@
  */
 package com.ziqni.gamification.client.configuration;
 
+import com.ziqni.gamification.client.security.IdentityAuthorisationException;
+import com.ziqni.gamification.client.security.IdentityAuthorization;
 import com.ziqni.gamification.client.util.ConfigurationLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +22,9 @@ public abstract class ApiClientConfig {
     private static String gamificationClientServerHost;
     private static Integer gamificationClientServerPort;
     private static String gamificationClientServerScheme;
+
+    private static String identityAuthorizationToken;
+    private static IdentityAuthorization identityAuthorization;
 
     private static boolean isSecure;
 
@@ -65,13 +70,20 @@ public abstract class ApiClientConfig {
         return isSecure;
     }
 
-    public static String getAccessTokenString() {
-        try {
-            return IdentityAuthorization.getAccessTokenString();
-        } catch (Exception e) {
-            logger.error("Access token error.", e);
-            throw e;
+    public static IdentityAuthorization getIdentityAuthorization() {
+        if(identityAuthorization == null) {
+            identityAuthorizationToken = ConfigurationLoader.getParameter("gamification.client.access.token").orElse("");
+            identityAuthorization = () -> identityAuthorizationToken;
         }
+        return identityAuthorization;
+    }
+
+    public static void setIdentityAuthorization(IdentityAuthorization identityAuthorization) {
+        ApiClientConfig.identityAuthorization = identityAuthorization;
+    }
+
+    public static String getAccessTokenString() throws IdentityAuthorisationException {
+        return getIdentityAuthorization().getAccessTokenString();
     }
 
     public static Optional<String> getByName(String parameterName) {
