@@ -22,6 +22,8 @@ import com.ziqni.gamification.client.util.ApiClientFactoryUtil;
 import com.ziqni.gamification.client.util.TestMemberTokenLoader;
 import org.junit.jupiter.api.*;
 
+import java.util.concurrent.TimeUnit;
+
 import static com.ziqni.gamification.client.util.TestMemberTokenLoader.TEST_MEMBER_TOKEN;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -68,7 +70,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
     @Test
     public void getAchievementsTest() throws Exception {
 
-        var response = api.getAchievements(loadAchievementsData.getRequest()).join();
+        var response = api.getAchievements(loadAchievementsData.getRequest()).get(3, TimeUnit.SECONDS);
 
         assertNotNull(response);
         assertNotNull(response.getData());

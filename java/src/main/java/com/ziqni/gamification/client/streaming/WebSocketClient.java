@@ -105,10 +105,8 @@ public class WebSocketClient {
 
     private static void updateOauthToken(StompHeaders stompHeaders) throws Exception {
         String oauthToken = ApiClientConfig.getAccessTokenString();
-        if (stompHeaders.containsKey("Authorization"))
-            stompHeaders.remove("Authorization");
-
-        stompHeaders.add("Authorization", "Bearer " + oauthToken);
+        stompHeaders.setLogin("Bearer");
+        stompHeaders.setPasscode(oauthToken);
     }
 
     public <T> void send(StompHeaders headers, T payload){
