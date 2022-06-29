@@ -417,17 +417,7 @@ public class WsClient implements Runnable {
         try {
             updateOauthToken(stompHeaders);
 
-            final ListenableFuture<StompSession> future = stompClient.connect(wsUri, new WebSocketHttpHeaders(), stompHeaders, new StompSessionHandlerAdapter() {
-                @Override
-                public void handleException(StompSession session, StompCommand command, StompHeaders headers, byte[] payload, Throwable exception) {
-                    logger.debug("Stomp client connection exception. [{}] ", exception.getMessage());
-                }
-
-                @Override
-                public void handleTransportError(StompSession session, Throwable exception) {
-                    logger.debug("Stomp client connection transport error. [{}] ", exception.getMessage());
-                }
-            });
+            final ListenableFuture<StompSession> future = stompClient.connect(wsUri, new WebSocketHttpHeaders(), stompHeaders, new WsStompSessionHandler());
 
             future.completable()
                     .thenApply(newStompSession -> {

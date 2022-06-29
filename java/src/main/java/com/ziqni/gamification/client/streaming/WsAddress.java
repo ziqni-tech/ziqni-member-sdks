@@ -15,7 +15,7 @@ public class WsAddress {
                 .append("://")
                 .append(ApiClientConfig.getGamificationClientServerHost());
 
-        if(ApiClientConfig.getGamificationClientServerPort() != null && !(ApiClientConfig.getGamificationClientServerPort() != 80 || ApiClientConfig.getGamificationClientServerPort() != 443))
+        if(ApiClientConfig.getGamificationClientServerPort() != null && (ApiClientConfig.getGamificationClientServerPort() != 80 || ApiClientConfig.getGamificationClientServerPort() != 443))
             stringBuilder.append(":").append(ApiClientConfig.getGamificationClientServerPort());
 
         this.address = stringBuilder.append("/ws").toString();
