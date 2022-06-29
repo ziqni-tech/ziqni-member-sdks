@@ -11,9 +11,6 @@ import java.util.function.Consumer;
 
 public class StreamingClient {
 
-    private static final int DEFAULT_RECONNECT_ATTEMPTS = 5;
-    private static final int DEFAULT_RECONNECT_DELAY = 1000;
-
     private final ExecutorService websocketSendExecutor;
 
     public final LinkedBlockingDeque<Runnable> webSocketClientTasks;
@@ -71,24 +68,6 @@ public class StreamingClient {
             });
         });
         return result;
-    }
-
-    public CompletableFuture<Boolean> reconnect(boolean force) {
-        return reconnect(DEFAULT_RECONNECT_ATTEMPTS, DEFAULT_RECONNECT_DELAY, force);
-    }
-
-    public CompletableFuture<Boolean> reconnect(int maxRetryCount, long reconnectDelay, boolean force) {
-        final var result = new CompletableFuture<Boolean>();
-        this.websocketSendExecutor.submit( () ->
-                this.wsClient.reconnect(result, 0, maxRetryCount, reconnectDelay, force)
-        );
-        return result;
-    }
-
-    public <T> void subscribe(EventHandler<T> eventHandler){
-        this.websocketSendExecutor.submit( () ->
-                this.wsClient.subscribe(eventHandler)
-        );
     }
 
     public void addOnStopHandler(String key, Consumer<StreamingClient> consumer){
