@@ -6,14 +6,11 @@ package com.ziqni.gamification.client.streaming;
 import com.google.common.collect.Iterables;
 import com.ziqni.gamification.client.configuration.ApiClientConfig;
 import com.ziqni.gamification.client.util.Common;
-import com.ziqni.gamification.client.util.CoreClientObjectMapper;
+import com.ziqni.gamification.client.util.ZiqniClientObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
-import org.springframework.messaging.simp.stomp.StompCommand;
-import org.springframework.messaging.simp.stomp.StompHeaders;
-import org.springframework.messaging.simp.stomp.StompSession;
-import org.springframework.messaging.simp.stomp.StompSessionHandlerAdapter;
+import org.springframework.messaging.simp.stomp.*;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.util.concurrent.FailureCallback;
@@ -314,18 +311,24 @@ public class WsClient implements Runnable {
 
         final String jobId = Common.getNextId();
 
-        return doManagement(() -> {
+        return doManagement( () -> {
             setConnectionState(Connecting);
             logger.info("Connecting");
             createClient();
             return doConnect().join().isConnected();
-        }, jobId).getCompletableFuture().
+            }, jobId).getCompletableFuture().
                 thenApply((connected) -> {
                     setIsConnected();
                     return connected;
                 }).exceptionally((exception) -> {
+                    if(ConnectionLostException.class.isAssignableFrom(exception.getCause().getClass())) {
+                        final var e = (ConnectionLostException) exception.getCause();
+                        logger.error("[Start] [doConnect] Exception occurred: " + e.getMessage());
+                    }
+                    else {
+                        logger.error("[Start] [doConnect] Exception occurred", exception.getCause());
+                    }
                     setConnectionState(SevereFailure);
-                    logger.error("[Start] [doConnect] Exception occurred", exception);
                     return false;
                 });
     }
@@ -403,7 +406,7 @@ public class WsClient implements Runnable {
         // create stomp client
         stompClient = new WebSocketStompClient(sockJsClient);
         var objectMapper = new MappingJackson2MessageConverter();
-        objectMapper.setObjectMapper(new CoreClientObjectMapper().serializingObjectMapper());
+        objectMapper.setObjectMapper(new ZiqniClientObjectMapper().serializingObjectMapper());
         stompClient.setMessageConverter(objectMapper);
         stompClient.setTaskScheduler(taskScheduler);
         stompClient.start();
@@ -541,10 +544,9 @@ public class WsClient implements Runnable {
         @Override
         public void run() {
             try {
-                var funcRes = function.get();
-                completableFuture.complete(funcRes);
-            } catch (Throwable t) {
-                logger.debug("Management function failed with exception [{}]", t.getMessage());
+                completableFuture.complete(function.get());
+            }
+            catch (Throwable t) {
                 completableFuture.completeExceptionally(t);
             }
         }

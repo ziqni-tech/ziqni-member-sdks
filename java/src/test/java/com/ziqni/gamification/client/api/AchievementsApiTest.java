@@ -40,7 +40,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
         TestMemberTokenLoader testMemberTokenLoader = new TestMemberTokenLoader();
         MemberTokenRequest tokenRequest = new MemberTokenRequest()
                 .apiKey(testMemberTokenLoader.getApiKey())
-                .expires(60)
+                .expires(0)
                 .isReferenceId(true)
                 .member(TEST_MEMBER_TOKEN)
                 .resource("ziqni-gapi");

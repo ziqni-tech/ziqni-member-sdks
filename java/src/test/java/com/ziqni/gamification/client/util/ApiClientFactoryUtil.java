@@ -20,6 +20,8 @@ public class ApiClientFactoryUtil {
         while (!ApiClientFactoryWs.getStreamingClient().isConnected()) {
             Thread.sleep(500);
             logger.info("Waiting for the streaming client start");
+            if(ApiClientFactoryWs.getStreamingClient().isFailure())
+                throw new RuntimeException("Streaming client dead");
         }
     }
 

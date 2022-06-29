@@ -33,4 +33,5 @@ public class MessageEventHandler extends EventHandler<Message> {
     public void onData(Message data) {
         logger.info("Received: " + data);
     }
+
 }

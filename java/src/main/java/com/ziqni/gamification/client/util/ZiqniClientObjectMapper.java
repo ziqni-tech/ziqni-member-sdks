@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class CoreClientObjectMapper {
+public class ZiqniClientObjectMapper {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.SSSXXXX");
 

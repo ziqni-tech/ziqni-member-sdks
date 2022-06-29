@@ -54,7 +54,6 @@ public class StreamingClient {
             try {
                 ApiCallbackEventHandler.send(destination, payload, fut, ws::send);
             } catch (Throwable t){
-                logger.error("Failed to send the message", t);
                 fut.completeExceptionally(t);
             }
         });
@@ -90,10 +89,12 @@ public class StreamingClient {
     public CompletableFuture<Boolean> start() {
         final var result = new CompletableFuture<Boolean>();
         this.webSocketClientTasks.offer( ws -> {
-            ws.startClient(result);
-            if(ws.isConnected()) {
-                executeOnStartHandlers();
-            }
+            ws.startClient(result).thenApply(isConnected -> {
+                if(isConnected()) {
+                    executeOnStartHandlers();
+                }
+                return isConnected;
+            });
         });
         return result;
     }

@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import com.ziqni.gamification.client.notifications.model.SubscriptionResponse;
 import com.ziqni.gamification.client.notifications.model.SubscriptionTypes;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public abstract class ApiClientFactoryWs {
 
@@ -25,6 +26,11 @@ public abstract class ApiClientFactoryWs {
     private static RewardsApiWs rewardsApiWs;
     private static RulesApiWs rulesApiWs;
     
+
+    public static <T> T initialise(Supplier<T> then) throws Exception {
+        initialise();
+        return then.get();
+    }
 
     public static void initialise() throws Exception {
         if(initialised) return;
