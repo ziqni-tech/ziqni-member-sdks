@@ -164,9 +164,140 @@ public class WsClient {
         return connectionStateAtomic.get() == SevereFailure;
     }
 
-    public CompletableFuture<Boolean> reconnect() {
-        return reconnect(false);
+    private void cleanUpScheduledTasks(String jobId) {
+        scheduledTasks.computeIfPresent(jobId, (k, v) -> {
+            try {
+                v.cancel(true);
+            } catch (Exception e) {
+                logger.error("scheduled future cancelling jobId [{}] threw exception [{}]", k, e.getMessage());
+            }
+            return null;
+        });
     }
+
+    public CompletableFuture<Boolean> startClient(CompletableFuture<Boolean> startResult) {
+        if(isConnected()) {
+            startResult.complete(isConnected());
+            return startResult;
+        }
+
+        try {
+            setConnectionState(Connecting);
+            logger.info("Connecting");
+            createClient();
+            var connected = doConnect().join().isConnected();
+            setIsConnected();
+            setConnectionState(Connected);
+            startResult.complete(isConnected());
+        }
+        catch (ConnectionLostException e){
+            setConnectionState(SevereFailure);
+            logger.error("[Start] [doConnect] Exception occurred: " + e.getMessage());
+            startResult.completeExceptionally(e);
+        }
+        catch (Throwable throwable){
+            setConnectionState(SevereFailure);
+            startResult.completeExceptionally(throwable);
+        }
+
+        return startResult;
+    }
+
+    public void shutdown() {
+
+        if (isNotConnected())
+            return;
+
+        setConnectionState(Disconnecting);
+        final String jobId = Common.getNextId();
+        disconnect(jobId);
+        reconnectTimer.cancel();
+        scheduledExecutor.shutdown();
+    }
+
+    private void disconnect(final String jobId) {
+        disconnectFunc(jobId);
+        stompClient = null;
+        stompSession = null;
+    }
+
+    private WebSocketStompClient disconnectFunc(String jobId) {
+        if (stompClient != null && stompClient.isRunning()) {
+            try {
+                if(stompClient.isRunning())
+                    try {
+                        stompClient.stop();
+                    } catch (RuntimeException e) {
+                        logger.error("Stomp client stop operation exception [{}] produced result [{}] operation for jobId [{}] and connection state is [{}]", e.getMessage(), stompClient.isRunning(), jobId, connectionStateAtomic.get());
+                    }
+                setConnectionState(NotConnected);
+                return stompClient;
+            } catch (Throwable t) {
+                setConnectionState(SevereFailure);
+                logger.error("err stopping client: " + t);
+                throw t;
+            }
+        } else
+            return stompClient;
+    }
+
+    private <T> ManagementFunction<T> doScheduleManagement(final Supplier<T> func, final String jobId, final long reconnectDelay, final TimeUnit timeUnit) {
+        final var managementFunction = new ManagementFunction<>(func, jobId);
+
+        scheduledTasks.computeIfAbsent(
+                managementFunction.getJobId(),
+                s -> scheduledExecutor.scheduleWithFixedDelay(managementFunction, reconnectDelay, reconnectDelay, timeUnit)
+        );
+
+        return managementFunction;
+    }
+
+    private void createClient() {
+        // setup transports & socksjs
+        JettyWebSocketClient jettyWebSocketClient = new JettyWebSocketClient();
+        List<Transport> transports = new ArrayList<>(2);
+        transports.add(new WebSocketTransport(jettyWebSocketClient));
+        SockJsClient sockJsClient = new SockJsClient(transports);
+
+        // create stomp client
+        stompClient = new WebSocketStompClient(sockJsClient);
+        stompClient.setTaskScheduler(taskScheduler);
+
+        var mappingJackson2MessageConverter = new MappingJackson2MessageConverter();
+        mappingJackson2MessageConverter.setObjectMapper(new ZiqniClientObjectMapper().serializingObjectMapper());
+        stompClient.setMessageConverter(mappingJackson2MessageConverter);
+
+        stompClient.start();
+    }
+
+    private CompletableFuture<StompSession> doConnect() {
+
+        try {
+            updateOauthToken(stompHeaders);
+
+            final ListenableFuture<StompSession> future = stompClient.connect(wsUri, new WebSocketHttpHeaders(), stompHeaders, stompSessionHandler);
+
+            future.completable()
+                    .thenApply(newStompSession -> {
+                        stompSession = newStompSession;
+                        logger.info("Connection established successfully with the server.");
+                        this.stompSessionHandler.reconnectAllTopics(stompSession);
+                        notifyConnectListeners(newStompSession);
+                        return future;
+                    }).exceptionally(throwable -> {
+                        logger.debug("Stomp client connection call back exception. [{}]", throwable.getMessage());
+                        notifyDisconnectListeners(throwable);
+                        return future;
+                    });
+
+            return future.completable();
+        } catch (Exception e) {
+            var future = new CompletableFuture<StompSession>().toCompletableFuture();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
 
     public CompletableFuture<Boolean> reconnect(boolean force) {
         return reconnect(0, reconnectAttempts, reconnectDelay, force);
@@ -239,159 +370,6 @@ public class WsClient {
                 logger.error("Exception occurred while attempting establish connection during reconnect operation [{}]", t.getMessage());
                 throw t;
             }
-        }
-    }
-
-    private void cleanUpScheduledTasks(String jobId) {
-        scheduledTasks.computeIfPresent(jobId, (k, v) -> {
-            try {
-                v.cancel(true);
-            } catch (Exception e) {
-                logger.error("scheduled future cancelling jobId [{}] threw exception [{}]", k, e.getMessage());
-            }
-            return null;
-        });
-    }
-
-    public CompletableFuture<Boolean> startClient(CompletableFuture<Boolean> startResult) {
-        if(isConnected()) {
-            startResult.complete(isConnected());
-            return startResult;
-        }
-
-        final String jobId = Common.getNextId();
-
-        return doManagement( () -> {
-            setConnectionState(Connecting);
-            logger.info("Connecting");
-            createClient();
-            return doConnect().join().isConnected();
-            }, jobId).getCompletableFuture().
-                thenApply((connected) -> {
-                    setIsConnected();
-                    return connected;
-                }).exceptionally((exception) -> {
-                    if(ConnectionLostException.class.isAssignableFrom(exception.getCause().getClass())) {
-                        final var e = (ConnectionLostException) exception.getCause();
-                        logger.error("[Start] [doConnect] Exception occurred: " + e.getMessage());
-                    }
-                    else {
-                        logger.error("[Start] [doConnect] Exception occurred", exception.getCause());
-                    }
-                    setConnectionState(SevereFailure);
-                    return false;
-                });
-    }
-
-    public void shutdown() {
-
-        if (isNotConnected())
-            return;
-
-        setConnectionState(Disconnecting);
-        final String jobId = Common.getNextId();
-        disconnect(jobId);
-        reconnectTimer.cancel();
-        // do not accept new work
-        // finish what is in pipeline
-
-        scheduledExecutor.shutdown();
-    }
-
-    private void disconnect(final String jobId) {
-        doManagement(() -> disconnectFunc(jobId), jobId );
-        stompClient = null;
-        stompSession = null;
-    }
-
-    private WebSocketStompClient disconnectFunc(String jobId) {
-        if (stompClient != null && stompClient.isRunning()) {
-            try {
-                if(stompClient.isRunning())
-                    try {
-                        stompClient.stop();
-                    } catch (RuntimeException e) {
-                        logger.error("Stomp client stop operation exception [{}] produced result [{}] operation for jobId [{}] and connection state is [{}]", e.getMessage(), stompClient.isRunning(), jobId, connectionStateAtomic.get());
-                    }
-                setConnectionState(NotConnected);
-                return stompClient;
-            } catch (Throwable t) {
-                setConnectionState(SevereFailure);
-                logger.error("err stopping client: " + t);
-                throw t;
-            }
-        } else
-            return stompClient;
-    }
-
-
-    private <T> ManagementFunction<T> doManagement(Supplier<T> func, final String jobId) {
-        var m = new ManagementFunction<T>(func, jobId);
-
-        try {
-            scheduledExecutor.submit(m);
-        } catch (Exception e) {
-            logger.error("Management task failed to submit to the executor for job id [{}] with error [{}]", m.getJobId(), e.getMessage());
-        }
-
-        return m;
-
-    }
-
-    private <T> ManagementFunction<T> doScheduleManagement(final Supplier<T> func, final String jobId, final long reconnectDelay, final TimeUnit timeUnit) {
-        final var managementFunction = new ManagementFunction<>(func, jobId);
-
-        scheduledTasks.computeIfAbsent(
-                managementFunction.getJobId(),
-                s -> scheduledExecutor.scheduleWithFixedDelay(managementFunction, reconnectDelay, reconnectDelay, timeUnit)
-        );
-
-        return managementFunction;
-    }
-
-    private void createClient() {
-        // setup transports & socksjs
-        JettyWebSocketClient jettyWebSocketClient = new JettyWebSocketClient();
-        List<Transport> transports = new ArrayList<>(2);
-        transports.add(new WebSocketTransport(jettyWebSocketClient));
-        SockJsClient sockJsClient = new SockJsClient(transports);
-
-        // create stomp client
-        stompClient = new WebSocketStompClient(sockJsClient);
-        stompClient.setTaskScheduler(taskScheduler);
-
-        var mappingJackson2MessageConverter = new MappingJackson2MessageConverter();
-        mappingJackson2MessageConverter.setObjectMapper(new ZiqniClientObjectMapper().serializingObjectMapper());
-        stompClient.setMessageConverter(mappingJackson2MessageConverter);
-
-        stompClient.start();
-    }
-
-    private CompletableFuture<StompSession> doConnect() {
-
-        try {
-            updateOauthToken(stompHeaders);
-
-            final ListenableFuture<StompSession> future = stompClient.connect(wsUri, new WebSocketHttpHeaders(), stompHeaders, stompSessionHandler);
-
-            future.completable()
-                    .thenApply(newStompSession -> {
-                        stompSession = newStompSession;
-                        logger.info("Connection established successfully with the server.");
-                        this.stompSessionHandler.reconnectAllTopics(stompSession);
-                        notifyConnectListeners(newStompSession);
-                        return future;
-                    }).exceptionally(throwable -> {
-                        logger.debug("Stomp client connection call back exception. [{}]", throwable.getMessage());
-                        notifyDisconnectListeners(throwable);
-                        return future;
-                    });
-
-            return future.completable();
-        } catch (Exception e) {
-            var future = new CompletableFuture<StompSession>().toCompletableFuture();
-            future.completeExceptionally(e);
-            return future;
         }
     }
 

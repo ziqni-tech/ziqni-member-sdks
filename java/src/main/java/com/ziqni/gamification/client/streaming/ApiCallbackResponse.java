@@ -11,6 +11,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CompletableFuture;
 
 public class ApiCallbackResponse<TIN, TOUT> {
+
+    private final static String OBJECT_TYPE_KEY = "objectType";
     private final long sequenceNumber;
     private final TIN payload;
     private final CompletableFuture<TOUT> completableFuture;
@@ -39,7 +41,11 @@ public class ApiCallbackResponse<TIN, TOUT> {
 
     public Runnable onCallBack(StompHeaders headers, Object response) {
         try {
-            var failed = headers.get("objectType").stream().findFirst().map(value -> value.equals(ApiException.class.getSimpleName())).orElse(false);
+            var failed = headers.get(OBJECT_TYPE_KEY)
+                    .stream()
+                    .findFirst()
+                    .map(value -> value.equals(ApiException.class.getSimpleName()))
+                    .orElse(false);
 
             if(failed)
                 return onApiExceptionCallBack(headers,response);
@@ -54,7 +60,6 @@ public class ApiCallbackResponse<TIN, TOUT> {
     }
 
     private Runnable onApiExceptionCallBack(StompHeaders headers, Object response) {
-
         final var json = new String((byte[])response, StandardCharsets.UTF_8);
         final var error = JSON.getDefault().getMapper().convertValue(json,ApiException.class);
         return () -> getCompletableFuture().completeExceptionally(error);
