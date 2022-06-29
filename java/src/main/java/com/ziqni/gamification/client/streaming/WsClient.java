@@ -3,8 +3,9 @@
  */
 package com.ziqni.gamification.client.streaming;
 
-import com.google.common.collect.Iterables;
 import com.ziqni.gamification.client.configuration.ApiClientConfig;
+import com.ziqni.gamification.client.streaming.concurrent.ManagementFunction;
+import com.ziqni.gamification.client.streaming.concurrent.MessageToSend;
 import com.ziqni.gamification.client.util.Common;
 import com.ziqni.gamification.client.util.ZiqniClientObjectMapper;
 import org.slf4j.Logger;
@@ -29,18 +30,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class WsClient implements Runnable {
+public class WsClient {
 
     private static final Logger logger = LoggerFactory.getLogger(WsClient.class);
 
     private static final long DEFAULT_RECONNECT_DELAY = 1000;
     private static final int DEFAULT_RECONNECT_ATTEMPTS = 5;
 
-    private final static ExecutorService websocketSendExecutor = Executors.newSingleThreadExecutor();
-
     private final static ScheduledExecutorService scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
 
     private final static ConcurrentHashMap<String, ScheduledFuture<?>> scheduledTasks = new ConcurrentHashMap<>();
+
+    private final WsStompSessionHandler stompSessionHandler;
 
     private final Timer reconnectTimer;
 
@@ -58,73 +59,47 @@ public class WsClient implements Runnable {
 
     private StompSession stompSession;
 
-    private final Map<String, List<EventHandler<?>>> topicHandlers;
-
     private final List<SuccessCallback<StompSession>> connectListeners;
 
     private final List<FailureCallback> disconnectListeners;
 
     public static final int SevereFailure = -1;
     public static final int NotConnected = 0;
+
     public static final int Connecting = 1;
     public static final int Connected = 2;
     public static final int Disconnecting = 3;
-    public final LinkedBlockingDeque<Consumer<WsClient>> webSocketClientTasks;
+
+
     private final AtomicInteger connectionStateAtomic = new AtomicInteger(NotConnected);
+
     private final Consumer<Integer> onStateChange;
 
 
-    public WsClient(final String wsUri, final LinkedBlockingDeque<Consumer<WsClient>> webSocketClientTasks,
-                    final Consumer<Integer> onStateChange) {
-        this(wsUri, DEFAULT_RECONNECT_DELAY, DEFAULT_RECONNECT_ATTEMPTS, makeAuthHeader(), webSocketClientTasks, onStateChange);
+    public WsClient(final String wsUri, final Consumer<Integer> onStateChange) {
+        this(wsUri, DEFAULT_RECONNECT_DELAY, DEFAULT_RECONNECT_ATTEMPTS, makeAuthHeader(), onStateChange);
     }
 
-    protected WsClient(final String wsUri, final StompHeaders stompHeaders,
-                       final LinkedBlockingDeque<Consumer<WsClient>> webSocketClientTasks, final Consumer<Integer> onStateChange) {
-        this(wsUri, DEFAULT_RECONNECT_DELAY, DEFAULT_RECONNECT_ATTEMPTS, stompHeaders, webSocketClientTasks, onStateChange);
+    protected WsClient(final String wsUri, final StompHeaders stompHeaders, final Consumer<Integer> onStateChange) {
+        this(wsUri, DEFAULT_RECONNECT_DELAY, DEFAULT_RECONNECT_ATTEMPTS, stompHeaders, onStateChange);
     }
 
-    protected WsClient(final String wsUri, final long reconnectDelay, final int reconnectAttempts, final StompHeaders stompHeaders,
-                       final LinkedBlockingDeque<Consumer<WsClient>> webSocketClientTasks, final Consumer<Integer> onStateChange) {
-        this.webSocketClientTasks = webSocketClientTasks;
+    protected WsClient(final String wsUri, final long reconnectDelay, final int reconnectAttempts, final StompHeaders stompHeaders, final Consumer<Integer> onStateChange) {
+
         this.wsUri = wsUri;
         this.reconnectAttempts = reconnectAttempts;
         this.taskScheduler = new ThreadPoolTaskScheduler();
         this.reconnectTimer = new Timer("ReconnectTimer");
         this.reconnectDelay = reconnectDelay;
-        this.topicHandlers = new LinkedHashMap<>();
+        this.stompSessionHandler = new WsStompSessionHandler();
         this.connectListeners = new ArrayList<>();
         this.disconnectListeners = new ArrayList<>();
         this.stompHeaders = stompHeaders;
         this.onStateChange = onStateChange;
     }
 
-
-    @Override
-    public void run() {
-        try {
-            final var apiCallbackEventHandler = new ApiCallbackEventHandler();
-            this.subscribe(apiCallbackEventHandler);
-            this.subscribe(new MessageEventHandler("/user/queue/messages"));
-            this.startClient();
-
-            try {
-                while (true) {
-                    final var task = webSocketClientTasks.take();
-                    try {
-                        task.accept(this);
-                    } catch (Throwable t){
-                        logger.error("Streaming client failure", t);
-                    }
-                }
-            } catch (InterruptedException e) {
-                logger.error("Streaming client interupted", e);
-                Thread.currentThread().interrupt();
-            }
-        } catch (Throwable t){
-            logger.error("Streaming client failure", t);
-        }
-        logger.info("+++++ Streaming client thread shutting down");
+    public void subscribe(EventHandler<?> handler) {
+        stompSessionHandler.subscribe(stompSession,handler);
     }
 
     private static StompHeaders makeAuthHeader() {
@@ -139,29 +114,8 @@ public class WsClient implements Runnable {
         stompHeaders.setPasscode(oauthToken);
     }
 
-    public <T> void send(StompHeaders headers, T payload){
-        send(headers,payload, (r)->{});
-    }
-
-    public <T> void send(StompHeaders headers, T payload, Consumer<StompSession.Receiptable> onSent){
-        try {
-            if(isConnected())
-                websocketSendExecutor.submit(new MessageToSend<>(headers, payload, stompSession, onSent)); // todo - change this add the message to local queue and executor should poll for messages from the queue and execute
-            else
-                logger.warn("Websocket client not connected. Connection state is [{}]. Do something useful with the incoming messages.", connectionStateAtomic.get()); // todo - add it to the local queue, publish them once connection is re-established
-        } catch (Throwable t) {
-            logger.error("Exception occurred while attempting to send message.", t);
-            throw t;
-        }
-    }
-
-    public void subscribe(EventHandler<?> handler) {
-        topicHandlers.computeIfAbsent(handler.getTopic(), k -> Collections.synchronizedList(new ArrayList<>()));
-        topicHandlers.get(handler.getTopic()).add(handler);
-        if (stompSession != null && stompSession.isConnected()) {
-            logger.info("Subscribing to " + handler.getTopic());
-            handler.setStompSubscription(stompSession.subscribe(handler.getTopic(), handler));
-        }
+    public <T> MessageToSend<T> prepareMessageToSend(StompHeaders headers, T payload){
+        return new MessageToSend<>(headers, payload, stompSession);
     }
 
     /**
@@ -299,10 +253,6 @@ public class WsClient implements Runnable {
         });
     }
 
-    public CompletableFuture<Boolean> startClient() {
-        return startClient(new CompletableFuture<>());
-    }
-
     public CompletableFuture<Boolean> startClient(CompletableFuture<Boolean> startResult) {
         if(isConnected()) {
             startResult.complete(isConnected());
@@ -346,7 +296,6 @@ public class WsClient implements Runnable {
         // finish what is in pipeline
 
         scheduledExecutor.shutdown();
-        websocketSendExecutor.shutdown();
     }
 
     private void disconnect(final String jobId) {
@@ -390,10 +339,14 @@ public class WsClient implements Runnable {
     }
 
     private <T> ManagementFunction<T> doScheduleManagement(final Supplier<T> func, final String jobId, final long reconnectDelay, final TimeUnit timeUnit) {
-        final var m = new ManagementFunction<T>(func, jobId);
-        final ScheduledFuture<?> future = scheduledExecutor.scheduleWithFixedDelay(m, reconnectDelay, reconnectDelay, timeUnit);
-        scheduledTasks.putIfAbsent(m.getJobId(), future);
-        return m;
+        final var managementFunction = new ManagementFunction<>(func, jobId);
+
+        scheduledTasks.computeIfAbsent(
+                managementFunction.getJobId(),
+                s -> scheduledExecutor.scheduleWithFixedDelay(managementFunction, reconnectDelay, reconnectDelay, timeUnit)
+        );
+
+        return managementFunction;
     }
 
     private void createClient() {
@@ -405,10 +358,12 @@ public class WsClient implements Runnable {
 
         // create stomp client
         stompClient = new WebSocketStompClient(sockJsClient);
-        var objectMapper = new MappingJackson2MessageConverter();
-        objectMapper.setObjectMapper(new ZiqniClientObjectMapper().serializingObjectMapper());
-        stompClient.setMessageConverter(objectMapper);
         stompClient.setTaskScheduler(taskScheduler);
+
+        var mappingJackson2MessageConverter = new MappingJackson2MessageConverter();
+        mappingJackson2MessageConverter.setObjectMapper(new ZiqniClientObjectMapper().serializingObjectMapper());
+        stompClient.setMessageConverter(mappingJackson2MessageConverter);
+
         stompClient.start();
     }
 
@@ -417,15 +372,13 @@ public class WsClient implements Runnable {
         try {
             updateOauthToken(stompHeaders);
 
-            final ListenableFuture<StompSession> future = stompClient.connect(wsUri, new WebSocketHttpHeaders(), stompHeaders, new WsStompSessionHandler());
+            final ListenableFuture<StompSession> future = stompClient.connect(wsUri, new WebSocketHttpHeaders(), stompHeaders, stompSessionHandler);
 
             future.completable()
                     .thenApply(newStompSession -> {
                         stompSession = newStompSession;
                         logger.info("Connection established successfully with the server.");
-                        if (topicHandlers != null && !topicHandlers.isEmpty()) {
-                            reconnectAllTopics();
-                        }
+                        this.stompSessionHandler.reconnectAllTopics(stompSession);
                         notifyConnectListeners(newStompSession);
                         return future;
                     }).exceptionally(throwable -> {
@@ -454,30 +407,6 @@ public class WsClient implements Runnable {
         }
     }
 
-    private void reconnectAllTopics() {
-        if (topicHandlers == null || topicHandlers.isEmpty() || stompSession == null) {
-            return;
-        }
-
-        pruneInactiveTopicHandlers(); // cleanup handlers before resubscribing
-
-        for (String topic : topicHandlers.keySet()) {
-            List<EventHandler<?>> handlers = topicHandlers.get(topic);
-            for (EventHandler<?> handler : handlers) {
-                if (handler.isActive()) {
-                    logger.warn("Resubscribing to " + topic);
-                    handler.setStompSubscription(stompSession.subscribe(topic, handler));
-                }
-            }
-        }
-    }
-
-    private void pruneInactiveTopicHandlers() {
-        for (String topic : topicHandlers.keySet()) {
-            Iterables.removeIf(topicHandlers.get(topic), input -> !input.isActive());
-        }
-    }
-
     private void setIsConnected() {
         if (stompClient != null
                 && stompClient.isRunning()
@@ -488,65 +417,4 @@ public class WsClient implements Runnable {
             setConnectionState(Connected);
     }
 
-    private static class MessageToSend<T> implements Runnable {
-
-        private final StompHeaders headers;
-        private final T payload;
-        private final StompSession stompSession;
-        private final Consumer<StompSession.Receiptable> onSent;
-
-        public MessageToSend(StompHeaders headers, T payload, StompSession stompSession, Consumer<StompSession.Receiptable> onSent) {
-            this.headers = headers;
-            this.payload = payload;
-            this.stompSession = stompSession;
-            this.onSent = onSent;
-        }
-
-        @Override
-        public void run() {
-            try {
-                logger.debug("send remote request with headers [{}] and payload [{}]", this.headers, this.payload);
-                var x = this.stompSession.send(this.headers, this.payload);
-                onSent.accept(x);
-                logger.debug("executed function for recieptable [{}]", x);
-            } catch (IllegalStateException i){
-                logger.error("Client is disconnected from the server.", i);
-                throw i;
-            } catch (Throwable throwable){
-                logger.error("Failed to send message over websocket", throwable);
-                throw throwable;
-            }
-        }
-    }
-
-    private static class ManagementFunction<T> implements Runnable {
-
-        private final Supplier<T> function;
-        private final CompletableFuture<T> completableFuture = new CompletableFuture<>();
-        private final String jobId;
-
-        public ManagementFunction(Supplier<T> function, String jobId) {
-            assert function != null;
-            this.function = function;
-            this.jobId = jobId;
-        }
-
-        @Override
-        public void run() {
-            try {
-                completableFuture.complete(function.get());
-            }
-            catch (Throwable t) {
-                completableFuture.completeExceptionally(t);
-            }
-        }
-
-        public String getJobId() {
-            return jobId;
-        }
-
-        public CompletableFuture<T> getCompletableFuture() {
-            return completableFuture;
-        }
-    }
 }

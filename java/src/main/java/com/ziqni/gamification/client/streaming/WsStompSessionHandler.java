@@ -5,28 +5,40 @@ import org.slf4j.LoggerFactory;
 import org.springframework.messaging.simp.stomp.*;
 
 import java.lang.reflect.Type;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WsStompSessionHandler extends StompSessionHandlerAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(WsStompSessionHandler.class);
 
-    private void subscribeTopic(String topic, StompSession session) {
-        session.subscribe(topic, new StompFrameHandler() {
-            @Override
-            public Type getPayloadType(StompHeaders headers) {
+    private final Map<String, List<EventHandler<?>>> topicHandlers;
 
-                logger.info("HANDLER");
-                return String.class;
-            }
+    public WsStompSessionHandler() {
+        this(new LinkedHashMap<>());
+    }
 
-            @Override
-            public void handleFrame(StompHeaders headers, Object payload) {
-                logger.info("TEST HEKHEK");
-            }
-        });
+    public WsStompSessionHandler(Map<String, List<EventHandler<?>>> topicHandlers) {
+        this.topicHandlers = topicHandlers;
+    }
 
+    public void subscribe(StompSession session, EventHandler<?> handler) {
+        topicHandlers.computeIfAbsent(handler.getTopic(), k -> Collections.synchronizedList(new ArrayList<>()));
+        topicHandlers.get(handler.getTopic()).add(handler);
+        if (session != null && session.isConnected()) {
+            logger.info("Subscribing to " + handler.getTopic());
+            handler.setStompSubscription(session.subscribe(handler.getTopic(), handler));
+        }
+    }
+
+    public void reconnectAllTopics(StompSession session){
+        this.topicHandlers.forEach((topic, eventHandlers) ->
+                eventHandlers.forEach(handler -> {
+                        if (handler.isActive()) {
+                            logger.warn("Resubscribing to " + topic);
+                            handler.setStompSubscription(session.subscribe(topic, handler));
+                        }
+                })
+        );
     }
 
     @Override

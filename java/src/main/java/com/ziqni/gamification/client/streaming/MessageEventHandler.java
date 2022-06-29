@@ -11,6 +11,7 @@ import org.springframework.messaging.simp.stomp.StompHeaders;
 
 public class MessageEventHandler extends EventHandler<Message> {
 
+    public final static String DEFAULT_TOPIC = "/user/queue/messages";
     private static final Logger logger = LoggerFactory.getLogger(MessageEventHandler.class);
 
     private final String topic;
@@ -34,4 +35,7 @@ public class MessageEventHandler extends EventHandler<Message> {
         logger.info("Received: " + data);
     }
 
+    public static MessageEventHandler create(){
+        return new MessageEventHandler(DEFAULT_TOPIC);
+    }
 }

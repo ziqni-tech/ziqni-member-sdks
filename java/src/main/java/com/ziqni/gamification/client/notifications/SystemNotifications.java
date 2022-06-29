@@ -43,7 +43,7 @@ public class SystemNotifications {
     public NotificationSubscription subscribeToNotifications(String entityType, List<String> constraints, Consumer<EntityChanged> onEntityChanged, Consumer<EntityStateChanged> onEntityStateChanged){
         final StompHeaders headers = new StompHeaders();
         headers.setDestination("/aapi/cn-subscribe");
-        getWebSocketClient().send(headers, new SubscriptionRequest().addEntityTypesItem(new SubscriptionRequestItem().entityType(entityType).constraints(constraints)));
+        getWebSocketClient().prepareMessageToSend(headers, new SubscriptionRequest().addEntityTypesItem(new SubscriptionRequestItem().entityType(entityType).constraints(constraints))).run();
 
         final var subscription = new NotificationSubscription(entityType,onEntityChanged,onEntityStateChanged);
         this.subscriptions.compute( entityType, (k,v) -> subscription);
@@ -86,26 +86,26 @@ public class SystemNotifications {
     public void unsubscribe(NotificationSubscription subscription){
         final StompHeaders headers = new StompHeaders();
         headers.setDestination("/aapi/cn-unsubscribe");
-        getWebSocketClient().send(headers, List.of(subscription.getEntityType()));
+        getWebSocketClient().prepareMessageToSend(headers, List.of(subscription.getEntityType())).run();
         this.subscriptions.computeIfPresent( subscription.entityType, (k,v) -> null);
     }
 
     public void requestSubscriptions(){
         final StompHeaders headers = new StompHeaders();
         headers.setDestination("/aapi/cn-subscriptions");
-        getWebSocketClient().send(headers, null);
+        getWebSocketClient().prepareMessageToSend(headers, null).run();
     }
 
     public void requestSampleNotificationMessages(SubscriptionRequest samplesFor){
         final StompHeaders headers = new StompHeaders();
         headers.setDestination("/aapi/cn-sampleMessage");
-        getWebSocketClient().send(headers, samplesFor);
+        getWebSocketClient().prepareMessageToSend(headers, samplesFor).run();
     }
 
     public void requestListOfAvailableEntityTypes(){
         final StompHeaders headers = new StompHeaders();
         headers.setDestination("/aapi/cn-availableEntityTypes");
-        getWebSocketClient().send(headers, null);
+        getWebSocketClient().prepareMessageToSend(headers, null).run();
     }
 
     public static class NotificationSubscription{

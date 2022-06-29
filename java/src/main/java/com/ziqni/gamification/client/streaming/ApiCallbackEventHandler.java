@@ -21,21 +21,21 @@ import java.util.function.BiConsumer;
 
 public class ApiCallbackEventHandler extends EventHandler<String> {
 
+    public final static String DEFAULT_TOPIC = "/user/queue/rpc-results";
     private static final Logger logger = LoggerFactory.getLogger(ApiCallbackEventHandler.class);
     private static final AtomicLong sequenceNumber = new AtomicLong(0);
     private static final ConcurrentHashMap<String, ApiCallbackResponse<?,?>> awaitingResponse = new ConcurrentHashMap<>();
+    private static final ExecutorService executorService = Executors.newCachedThreadPool();
 
     private final String topic;
     private final ClassScanner classScanner;
-    private final ExecutorService cachedThreadPool;
 
     public ApiCallbackEventHandler() {
-        this("/user/queue/rpc-results");
+        this(DEFAULT_TOPIC);
     }
 
     public ApiCallbackEventHandler(String topic) {
         this.topic = topic;
-        this.cachedThreadPool = Executors.newCachedThreadPool();
         this.classScanner = new ClassScanner("com.ziqni.gamification.client.model");
     }
 
@@ -64,7 +64,7 @@ public class ApiCallbackEventHandler extends EventHandler<String> {
         var messageId = getMessageId(headers);
 
         if(messageId.isPresent()){
-            handleWithMessageId(this.cachedThreadPool, messageId.get(), headers, payload);
+            handleWithMessageId(messageId.get(), headers, payload);
         }
         else {
             if(!payload.getClass().isInstance(Message.class))
@@ -72,7 +72,7 @@ public class ApiCallbackEventHandler extends EventHandler<String> {
         }
     }
 
-    public static  <TIN, TOUT> ApiCallbackResponse<TIN, TOUT> send(String destination, TIN payload, CompletableFuture<TOUT> completableFuture, BiConsumer<StompHeaders, TIN> doSend){
+    public static  <TIN, TOUT> ApiCallbackResponse<TIN, TOUT> submit(String destination, TIN payload, CompletableFuture<TOUT> completableFuture, BiConsumer<StompHeaders, TIN> doSend){
 
         var messageId = sequenceNumber.incrementAndGet();
         var nextSeq = Long.toString(messageId);
@@ -93,18 +93,15 @@ public class ApiCallbackEventHandler extends EventHandler<String> {
         return Optional.ofNullable(headers.getMessageId());
     }
 
-    private static void handleWithMessageId(ExecutorService cachedThreadPool, String messageId, StompHeaders headers, Object payload) {
-        final var handleWith = Optional.ofNullable(awaitingResponse.get(messageId));
-
-        if(handleWith.isEmpty()) {
-            logger.debug("No handler waiting for sequence number: " + messageId + ". Headers: " + headers + ". Payload: " + payload);
-            return;
-        }
-
-        handleWith.map( callback ->
-            cachedThreadPool.submit( callback.onCallBack(headers,payload) )
+    private static void handleWithMessageId(String messageId, StompHeaders headers, Object payload) {
+        Optional.ofNullable(awaitingResponse.get(messageId)).ifPresent( callback ->
+                executorService.submit(callback.onCallBack(headers, payload))
         );
 
         awaitingResponse.remove(messageId);
+    }
+
+    public static ApiCallbackEventHandler create(){
+        return new ApiCallbackEventHandler(DEFAULT_TOPIC);
     }
 }

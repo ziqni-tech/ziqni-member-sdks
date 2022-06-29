@@ -3,10 +3,15 @@
  */
 package com.ziqni.gamification.client.streaming;
 
+import com.ziqni.gamification.client.ApiClientFactoryWs;
+import com.ziqni.gamification.client.ApiException;
+import com.ziqni.gamification.client.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.simp.stomp.StompHeaders;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class ApiCallbackResponse<TIN, TOUT> {
@@ -38,8 +43,25 @@ public class ApiCallbackResponse<TIN, TOUT> {
     }
 
     public Runnable onCallBack(StompHeaders headers, Object response) {
-        logger.debug("handle callback response for sequence [{}] receipt id [{}] headers [{}] and response []", getSequenceNumberAsString(), headers.getReceiptId(), headers.toSingleValueMap());
-        return () ->
-                getCompletableFuture().complete((TOUT)response);
+        try {
+            var failed = headers.get("objectType").stream().findFirst().map(value -> value.equals(ApiException.class.getSimpleName())).orElse(false);
+
+            if(failed)
+                return onApiExceptionCallBack(headers,response);
+            else {
+                final var result = (TOUT)response;
+                return () -> getCompletableFuture().complete(result);
+            }
+        }
+        catch (Throwable throwable){
+            return () -> getCompletableFuture().completeExceptionally(throwable);
+        }
+    }
+
+    private Runnable onApiExceptionCallBack(StompHeaders headers, Object response) {
+
+        final var json = new String((byte[])response, StandardCharsets.UTF_8);
+        final var error = new JSON().getMapper().convertValue(json,ApiException.class);
+        return () -> getCompletableFuture().completeExceptionally(error);
     }
 }
