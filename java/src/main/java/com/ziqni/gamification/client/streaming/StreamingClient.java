@@ -19,12 +19,16 @@ public class StreamingClient {
     private final AtomicInteger connectionState = new AtomicInteger(WsClient.NotConnected);
 
     private final WsClient wsClient;
+    private final ApiCallbackEventHandler apiCallbackEventHandler;
+    private final MessageEventHandler messageEventHandler;
 
     public StreamingClient(String URL) throws ExecutionException, InterruptedException {
 
         this.webSocketClientTasks = new LinkedBlockingDeque<>();
         this.websocketSendExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, webSocketClientTasks);
         this.wsClient = new WsClient(URL, connectionState::set);
+        this.apiCallbackEventHandler = ApiCallbackEventHandler.create();
+        this.messageEventHandler = MessageEventHandler.create();
     }
 
     public void asyncWebSocketClient(Consumer<WsClient> consumer) {
@@ -60,8 +64,8 @@ public class StreamingClient {
         this.websocketSendExecutor.submit( () -> {
             this.wsClient.startClient(result).thenApply(isConnected -> {
                 if(isConnected()) {
-                    this.wsClient.subscribe( ApiCallbackEventHandler.create() );
-                    this.wsClient.subscribe( MessageEventHandler.create() );
+                    this.wsClient.subscribe( this.apiCallbackEventHandler );
+                    this.wsClient.subscribe( this.messageEventHandler );
                     executeOnStartHandlers();
                 }
                 return isConnected;
