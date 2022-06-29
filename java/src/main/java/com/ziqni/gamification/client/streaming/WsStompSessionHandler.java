@@ -61,7 +61,7 @@ public class WsStompSessionHandler extends StompSessionHandlerAdapter {
 
         logger.info("CONNECTED");
         for(Map.Entry<String, List<String>> entry: connectedHeaders.entrySet()) {
-            logger.info(entry.getKey()+"S");
+            logger.info(entry.getKey()+": "+entry.getValue());
         }
     }
 
