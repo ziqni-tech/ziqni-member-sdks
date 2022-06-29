@@ -12,7 +12,7 @@
 
 package com.ziqni.gamification.client.api;
 import javax.ws.rs.core.GenericType;
-import com.ziqni.gamification.client.StreamingClient;
+import com.ziqni.gamification.client.streaming.StreamingClient;
 import com.ziqni.gamification.client.ApiException;
     import com.ziqni.gamification.client.model.ContestRequest;
     import com.ziqni.gamification.client.model.ContestResponse;

@@ -1,10 +1,9 @@
 /*
  * Copyright (c) 2022. ZIQNI LTD registered in England and Wales, company registration number-09693684
  */
-package com.ziqni.gamification.client;
+package com.ziqni.gamification.client.streaming;
 
 
-import com.ziqni.gamification.client.streaming.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

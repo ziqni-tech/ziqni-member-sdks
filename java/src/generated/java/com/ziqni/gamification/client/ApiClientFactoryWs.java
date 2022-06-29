@@ -3,6 +3,7 @@ package com.ziqni.gamification.client;
 import com.ziqni.gamification.client.configuration.ApiClientConfig;
 import com.ziqni.gamification.client.api.*;
 import com.ziqni.gamification.client.streaming.WsAddress;
+import com.ziqni.gamification.client.streaming.StreamingClient;
 import java.time.Duration;
 import com.ziqni.gamification.client.notifications.SystemNotifications;
 import java.util.concurrent.atomic.AtomicReference;

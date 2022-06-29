@@ -75,8 +75,6 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
         assertNotNull(response.getErrors());
         assertTrue(response.getErrors().isEmpty(), "Should have no errors");
         assertFalse(response.getData().isEmpty(), "Should have results");
-
-
     }
 
 }
