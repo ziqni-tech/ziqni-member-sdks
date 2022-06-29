@@ -32,9 +32,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class WebSocketClient {
+public class WsClient implements Runnable {
 
-    private static final Logger logger = LoggerFactory.getLogger(WebSocketClient.class);
+    private static final Logger logger = LoggerFactory.getLogger(WsClient.class);
 
     private static final long DEFAULT_RECONNECT_DELAY = 1000;
     private static final int DEFAULT_RECONNECT_ATTEMPTS = 5;
@@ -72,19 +72,24 @@ public class WebSocketClient {
     public static final int Connecting = 1;
     public static final int Connected = 2;
     public static final int Disconnecting = 3;
+    public final LinkedBlockingDeque<Consumer<WsClient>> webSocketClientTasks;
     private final AtomicInteger connectionStateAtomic = new AtomicInteger(NotConnected);
     private final Consumer<Integer> onStateChange;
 
 
-    public WebSocketClient(String wsUri, Consumer<Integer> onStateChange) throws Exception {
-        this(wsUri, DEFAULT_RECONNECT_DELAY, DEFAULT_RECONNECT_ATTEMPTS, makeAuthHeader(), onStateChange);
+    public WsClient(final String wsUri, final LinkedBlockingDeque<Consumer<WsClient>> webSocketClientTasks,
+                    final Consumer<Integer> onStateChange) {
+        this(wsUri, DEFAULT_RECONNECT_DELAY, DEFAULT_RECONNECT_ATTEMPTS, makeAuthHeader(), webSocketClientTasks, onStateChange);
     }
 
-    protected WebSocketClient(String wsUri, StompHeaders stompHeaders, Consumer<Integer> onStateChange) {
-        this(wsUri, DEFAULT_RECONNECT_DELAY, DEFAULT_RECONNECT_ATTEMPTS, stompHeaders, onStateChange);
+    protected WsClient(final String wsUri, final StompHeaders stompHeaders,
+                       final LinkedBlockingDeque<Consumer<WsClient>> webSocketClientTasks, final Consumer<Integer> onStateChange) {
+        this(wsUri, DEFAULT_RECONNECT_DELAY, DEFAULT_RECONNECT_ATTEMPTS, stompHeaders, webSocketClientTasks, onStateChange);
     }
 
-    protected WebSocketClient(String wsUri, long reconnectDelay, int reconnectAttempts, StompHeaders stompHeaders, Consumer<Integer> onStateChange) {
+    protected WsClient(final String wsUri, final long reconnectDelay, final int reconnectAttempts, final StompHeaders stompHeaders,
+                       final LinkedBlockingDeque<Consumer<WsClient>> webSocketClientTasks, final Consumer<Integer> onStateChange) {
+        this.webSocketClientTasks = webSocketClientTasks;
         this.wsUri = wsUri;
         this.reconnectAttempts = reconnectAttempts;
         this.taskScheduler = new ThreadPoolTaskScheduler();
@@ -97,13 +102,41 @@ public class WebSocketClient {
         this.onStateChange = onStateChange;
     }
 
-    private static StompHeaders makeAuthHeader() throws Exception {
+
+    @Override
+    public void run() {
+        try {
+            final var apiCallbackEventHandler = new ApiCallbackEventHandler();
+            this.subscribe(apiCallbackEventHandler);
+            this.subscribe(new MessageEventHandler("/user/queue/messages"));
+            this.startClient();
+
+            try {
+                while (true) {
+                    final var task = webSocketClientTasks.take();
+                    try {
+                        task.accept(this);
+                    } catch (Throwable t){
+                        logger.error("Streaming client failure", t);
+                    }
+                }
+            } catch (InterruptedException e) {
+                logger.error("Streaming client interupted", e);
+                Thread.currentThread().interrupt();
+            }
+        } catch (Throwable t){
+            logger.error("Streaming client failure", t);
+        }
+        logger.info("+++++ Streaming client thread shutting down");
+    }
+
+    private static StompHeaders makeAuthHeader() {
         StompHeaders stompHeaders = new StompHeaders();
         updateOauthToken(stompHeaders);
         return stompHeaders;
     }
 
-    private static void updateOauthToken(StompHeaders stompHeaders) throws Exception {
+    private static void updateOauthToken(StompHeaders stompHeaders) {
         String oauthToken = ApiClientConfig.getAccessTokenString();
         stompHeaders.setLogin("Bearer");
         stompHeaders.setPasscode(oauthToken);

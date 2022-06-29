@@ -9,8 +9,6 @@ import com.ziqni.gamification.client.security.IdentityAuthorisationException;
 import com.ziqni.gamification.client.security.IdentityAuthorization;
 import com.ziqni.gamification.client.util.ConfigurationLoader;
 
-import java.util.Optional;
-
 public abstract class ApiClientConfig {
 
     private static Boolean loaded = false;
@@ -75,11 +73,6 @@ public abstract class ApiClientConfig {
 
     public static String getAccessTokenString() throws IdentityAuthorisationException {
         return getIdentityAuthorization().getAccessTokenString();
-    }
-
-    public static Optional<String> getByName(String parameterName) {
-        load();
-        return ConfigurationLoader.getParameter(parameterName);
     }
 
     public static ObjectMapper createDefaultObjectMapper() {

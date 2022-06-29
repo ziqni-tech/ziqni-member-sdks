@@ -3,7 +3,6 @@
  */
 package com.ziqni.gamification.client.streaming;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,48 +26,23 @@ public class StreamingClient {
     private final Thread webSocketClientThread;
     private final Map<String, Consumer<StreamingClient>> onStartHandlers = new HashMap<>();
     private final Map<String, Consumer<StreamingClient>> onStopHandlers = new HashMap<>();
-    private final LinkedBlockingDeque<Consumer<WebSocketClient>> webSocketClientTasks = new LinkedBlockingDeque<>();
-    private final AtomicInteger connectionState = new AtomicInteger(WebSocketClient.NotConnected);
+    private final LinkedBlockingDeque<Consumer<WsClient>> webSocketClientTasks = new LinkedBlockingDeque<>();
+    private final AtomicInteger connectionState = new AtomicInteger(WsClient.NotConnected);
 
     public StreamingClient(String URL) throws ExecutionException, InterruptedException {
 
-        this.webSocketClientThread = new Thread(new ThreadGroup("sockets"), () -> threadRunner(URL, this.webSocketClientTasks, this.connectionState),"WebSocketClient-" + threadCount.incrementAndGet());
+        final var ws = new WsClient(URL, this.webSocketClientTasks, connectionState::set);
+        this.webSocketClientThread = new Thread(new ThreadGroup("sockets"), ws,"WebSocketClient-" + threadCount.incrementAndGet());
+        this.webSocketClientThread.setUncaughtExceptionHandler(this::uncaughtExceptionInThread);
         this.webSocketClientThread.start();
         Thread.sleep(500);
     }
 
-    private static void threadRunner(final String URL, final LinkedBlockingDeque<Consumer<WebSocketClient>> webSocketClientTasks, final AtomicInteger connectionState){
-        try {
-            final var ws = new WebSocketClient(URL, connectionState::set);
-            final var apiCallbackEventHandler = new ApiCallbackEventHandler();
-            ws.subscribe(apiCallbackEventHandler);
-            ws.subscribe(new MessageEventHandler("/user/queue/messages"));
-            ws.startClient();
-
-            try {
-                while (true) {
-                    final var task = webSocketClientTasks.take();
-                    try {
-                        task.accept(ws);
-                    } catch (Throwable t){
-                        logger.error("Streaming client failure", t);
-                    }
-                }
-            } catch (InterruptedException e) {
-                logger.error("Streaming client interupted", e);
-                Thread.currentThread().interrupt();
-            }
-        } catch (Throwable t){
-            logger.error("Streaming client failure", t);
-        }
-        logger.info("+++++ Streaming client thread shutting down");
+    private void uncaughtExceptionInThread(Thread t, Throwable e){
+        logger.error("Uncaught exception in thread " + t.getId() + " - " + t.getName() , t);
     }
 
-    public Thread getWebSocketClientThread() {
-        return webSocketClientThread;
-    }
-
-    public void asyncWebSocketClient(Consumer<WebSocketClient> consumer) {
+    public void asyncWebSocketClient(Consumer<WsClient> consumer) {
         this.webSocketClientTasks.offer(consumer);
     }
 
@@ -90,27 +64,27 @@ public class StreamingClient {
 
 
     public boolean isConnected() {
-        return connectionState.get() == WebSocketClient.Connected && this.webSocketClientThread.isAlive();
+        return connectionState.get() == WsClient.Connected && this.webSocketClientThread.isAlive();
     }
 
     public boolean isNotConnected() {
-        return connectionState.get() == WebSocketClient.NotConnected;
+        return connectionState.get() == WsClient.NotConnected;
     }
 
     public boolean isConnecting() {
-        return connectionState.get() == WebSocketClient.Connecting;
+        return connectionState.get() == WsClient.Connecting;
     }
 
     public boolean isDisconnecting() {
-        return connectionState.get() == WebSocketClient.Disconnecting;
+        return connectionState.get() == WsClient.Disconnecting;
     }
 
     public boolean isFailure() {
-        return connectionState.get() == WebSocketClient.SevereFailure;
+        return connectionState.get() == WsClient.SevereFailure;
     }
 
     public void stop() {
-        this.webSocketClientTasks.offer(WebSocketClient::shutdown);
+        this.webSocketClientTasks.offer(WsClient::shutdown);
     }
 
     public CompletableFuture<Boolean> start() {

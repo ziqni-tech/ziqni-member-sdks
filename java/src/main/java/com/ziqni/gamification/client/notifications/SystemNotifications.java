@@ -4,7 +4,7 @@
 package com.ziqni.gamification.client.notifications;
 
 import com.ziqni.gamification.client.notifications.model.*;
-import com.ziqni.gamification.client.streaming.WebSocketClient;
+import com.ziqni.gamification.client.streaming.WsClient;
 import org.springframework.messaging.simp.stomp.StompHeaders;
 
 import java.util.Collections;
@@ -17,9 +17,9 @@ public class SystemNotifications {
 
     public final ConcurrentHashMap<String, NotificationSubscription> subscriptions;
     private final SystemNotificationHandler systemNotificationHandler;
-    private final WebSocketClient webSocketClient;
+    private final WsClient webSocketClient;
 
-    public SystemNotifications(WebSocketClient webSocketClient, Consumer<SubscriptionResponse> onSubscriptionResponse, Consumer<SubscriptionTypes> onSubscriptionTypes){
+    public SystemNotifications(WsClient webSocketClient, Consumer<SubscriptionResponse> onSubscriptionResponse, Consumer<SubscriptionTypes> onSubscriptionTypes){
         this.systemNotificationHandler = new SystemNotificationHandler(onSubscriptionResponse,onSubscriptionTypes);
         this.subscriptions = new ConcurrentHashMap<>();
         this.webSocketClient = webSocketClient;
@@ -31,7 +31,7 @@ public class SystemNotifications {
         return systemNotificationHandler;
     }
 
-    public WebSocketClient getWebSocketClient() {
+    public WsClient getWebSocketClient() {
         return webSocketClient;
     }
 
