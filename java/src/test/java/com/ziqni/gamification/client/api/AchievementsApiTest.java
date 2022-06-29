@@ -14,11 +14,11 @@
 package com.ziqni.gamification.client.api;
 
 import com.ziqni.admin.client.model.MemberTokenRequest;
-import com.ziqni.gamification.client.ApiClientFactoryWs;
+import com.ziqni.gamification.client.ApiClientFactoryWsWs;
 import com.ziqni.gamification.client.ApiException;
 import com.ziqni.gamification.client.configuration.ApiClientConfig;
 import com.ziqni.gamification.client.data.LoadAchievementsData;
-import com.ziqni.gamification.client.util.ApiClientFactoryUtil;
+import com.ziqni.gamification.client.util.ApiClientFactoryWsUtil;
 import com.ziqni.gamification.client.util.TestMemberTokenLoader;
 import org.junit.jupiter.api.*;
 
@@ -49,14 +49,14 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
 
         ApiClientConfig.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
 
-        this.api = ApiClientFactoryWs.getAchievementsApi();
+        this.api = ApiClientFactoryWsWs.getAchievementsApi();
         this.loadAchievementsData = new LoadAchievementsData();
-        ApiClientFactoryUtil.initApiClientFactory();
+        ApiClientFactoryWsUtil.initApiClientFactoryWs();
     }
 
     @AfterAll
     public  void stop(){
-        ApiClientFactoryWs.getStreamingClient().stop();
+        ApiClientFactoryWsWs.getStreamingClient().stop();
     }
 
     /**

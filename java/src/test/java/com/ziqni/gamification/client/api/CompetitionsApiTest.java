@@ -13,7 +13,7 @@
 
 package com.ziqni.gamification.client.api;
 
-import com.ziqni.gamification.client.ApiClientFactory;
+import com.ziqni.gamification.client.ApiClientFactoryWs;
 import com.ziqni.gamification.client.ApiException;
 import com.ziqni.gamification.client.data.LoadCompetitionsData;
 import org.junit.jupiter.api.*;
@@ -26,12 +26,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWrapper {
 
-    private final CompetitionsApi api;
+    private final CompetitionsApiWs api;
     private final LoadCompetitionsData loadCompetitionsData;
 
 
     public CompetitionsApiTest() {
-        this.api = ApiClientFactory.getCompetitionsApi();
+        this.api = ApiClientFactoryWs.getCompetitionsApi();
         this.loadCompetitionsData = new LoadCompetitionsData();
     }
 

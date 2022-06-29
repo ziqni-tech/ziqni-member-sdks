@@ -12,7 +12,7 @@
 
 package com.ziqni.gamification.client.api;
 
-import com.ziqni.gamification.client.ApiClientFactory;
+import com.ziqni.gamification.client.ApiClientFactoryWs;
 import com.ziqni.gamification.client.ApiException;
 import com.ziqni.gamification.client.data.LoadRewardsData;
 import org.junit.jupiter.api.*;
@@ -26,11 +26,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class RewardsApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
-    private final RewardsApi api;
+    private final RewardsApiWs api;
     private final LoadRewardsData loadRewardsData;
 
     public RewardsApiTest(){
-        this.api = ApiClientFactory.getRewardsApi();
+        this.api = ApiClientFactoryWs.getRewardsApi();
         this.loadRewardsData = new LoadRewardsData();
     }
     

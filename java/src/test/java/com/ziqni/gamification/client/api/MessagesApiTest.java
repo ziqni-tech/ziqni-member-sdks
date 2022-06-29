@@ -13,7 +13,7 @@
 
 package com.ziqni.gamification.client.api;
 
-import com.ziqni.gamification.client.ApiClientFactory;
+import com.ziqni.gamification.client.ApiClientFactoryWs;
 import com.ziqni.gamification.client.ApiException;
 import com.ziqni.gamification.client.data.LoadMessageData;
 import com.ziqni.gamification.client.model.MessageRequest;
@@ -35,11 +35,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MessagesApiTest implements tests.utils.CompleteableFutureTestWrapper {
 
-    private final MessagesApi api ;
+    private final MessagesApiWs api ;
     private  final LoadMessageData loadMessageData;
 
     public MessagesApiTest() {
-        this.api = ApiClientFactory.getMessagesApi();
+        this.api = ApiClientFactoryWs.getMessagesApi();
         this.loadMessageData=new LoadMessageData();
     }
 
