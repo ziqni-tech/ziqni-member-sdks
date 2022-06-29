@@ -37,9 +37,20 @@ if [[ -d "$GEN_DIR" ]]; then
   mkdir ../../java/docs
   cp -v ./generated/docs/* ../../java/docs/
 
-  # Copy the new sources
   mkdir -p ../../java/src/generated
-  cp -rf ./generated/src/main/java ../../java/src/generated/
+  mkdir -p ../../java/src/generated/java/com/ziqni/gamification/client/api
+  mkdir -p ../../java/src/generated/java/com/ziqni/gamification/client/model
+
+  # Copy the new sources - openapi/java/generated/src/main/java/com/ziqni/gamification/client/api
+  cp -rf ./generated/src/main/java/com/ziqni/gamification/client/api/*Ws.java ../../java/src/generated/java/com/ziqni/gamification/client/api/
+
+  # Copy the new sources - openapi/java/generated/src/main/java/com/ziqni/gamification/client/model
+  cp -rf ./generated/src/main/java/com/ziqni/gamification/client/model ../../java/src/generated/java/com/ziqni/gamification/client
+
+  cp -rf ./generated/src/main/java/com/ziqni/gamification/client/ApiClientFactoryWs.java ../../java/src/generated/java/com/ziqni/gamification/client
+  cp -rf ./generated/src/main/java/com/ziqni/gamification/client/ApiException.java ../../java/src/generated/java/com/ziqni/gamification/client
+  cp -rf ./generated/src/main/java/com/ziqni/gamification/client/JSON.java ../../java/src/generated/java/com/ziqni/gamification/client
+  cp -rf ./generated/src/main/java/com/ziqni/gamification/client/RFC3339DateFormat.java ../../java/src/generated/java/com/ziqni/gamification/client
 
 else
   echo "Directory '<project-root>/openapi/java/$GEN_DIR' not found"

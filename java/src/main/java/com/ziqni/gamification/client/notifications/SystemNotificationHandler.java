@@ -5,9 +5,9 @@ package com.ziqni.gamification.client.notifications;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ziqni.gamification.client.configuration.ApiClientConfig;
 import com.ziqni.gamification.client.streaming.EventHandler;
 import com.ziqni.gamification.client.util.ClassScanner;
-import com.ziqni.gamification.client.configuration.ApiRestClientFactory;
 import com.ziqni.gamification.client.notifications.model.EntityChanged;
 import com.ziqni.gamification.client.notifications.model.EntityStateChanged;
 import com.ziqni.gamification.client.notifications.model.SubscriptionResponse;
@@ -37,7 +37,7 @@ public class SystemNotificationHandler extends EventHandler<Object> {
         this.onSubscriptionTypes = onSubscriptionTypes;
 
         this.classScanner = new ClassScanner("com.ziqni.admin.client.notifications.model");
-        this.mapper = ApiRestClientFactory.getApiClient().getObjectMapper();
+        this.mapper = ApiClientConfig.createDefaultObjectMapper();
     }
 
     protected synchronized void updateNotification(Map<String, SystemNotifications.NotificationSubscription> subscriptions){

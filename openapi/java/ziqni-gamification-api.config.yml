@@ -7,10 +7,10 @@ artifactId: ziqni-gamification-api-client
 dateLibrary: java8
 hideGenerationTimestamp: true
 files:
-  ApiClientFactory.mustache:
+  ApiClientFactoryWs.mustache:
     folder: src/main/java/com/ziqni/gamification/client
     templateType: SupportingFiles
-    destinationFilename: ApiClientFactory.java
-#  ws_api_delegate.mustache:
-#    templateType: API
-#    destinationFilename: Ws.java
+    destinationFilename: ApiClientFactoryWs.java
+  api-ws-client.mustache:
+    templateType: API
+    destinationFilename: Ws.java
