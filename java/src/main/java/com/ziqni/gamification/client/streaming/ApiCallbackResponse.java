@@ -3,20 +3,14 @@
  */
 package com.ziqni.gamification.client.streaming;
 
-import com.ziqni.gamification.client.ApiClientFactoryWs;
 import com.ziqni.gamification.client.ApiException;
 import com.ziqni.gamification.client.JSON;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.messaging.simp.stomp.StompHeaders;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class ApiCallbackResponse<TIN, TOUT> {
-
-    private static final Logger logger = LoggerFactory.getLogger(ApiCallbackResponse.class);
     private final long sequenceNumber;
     private final TIN payload;
     private final CompletableFuture<TOUT> completableFuture;
@@ -30,6 +24,7 @@ public class ApiCallbackResponse<TIN, TOUT> {
     public long getSequenceNumber() {
         return sequenceNumber;
     }
+
     public String getSequenceNumberAsString() {
         return Long.toString(sequenceNumber);
     }
@@ -61,7 +56,7 @@ public class ApiCallbackResponse<TIN, TOUT> {
     private Runnable onApiExceptionCallBack(StompHeaders headers, Object response) {
 
         final var json = new String((byte[])response, StandardCharsets.UTF_8);
-        final var error = new JSON().getMapper().convertValue(json,ApiException.class);
+        final var error = JSON.getDefault().getMapper().convertValue(json,ApiException.class);
         return () -> getCompletableFuture().completeExceptionally(error);
     }
 }
