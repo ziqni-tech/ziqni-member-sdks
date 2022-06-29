@@ -77,7 +77,8 @@ import java.util.function.Consumer;
 
     
         
-    request.put("proxyRequest",proxyRequest);
+    //request.put("proxyRequest",proxyRequest);
+    request.put("body",proxyRequest);
 
         CompletableFuture<ProxyResponse> result = this.streamingClient.sendWithApiCallback("/gapi/proxy", request);
         return result;

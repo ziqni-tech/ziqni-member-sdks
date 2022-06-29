@@ -77,7 +77,8 @@ import java.util.function.Consumer;
 
     
         
-    request.put("ruleRequest",ruleRequest);
+    //request.put("ruleRequest",ruleRequest);
+    request.put("body",ruleRequest);
 
         CompletableFuture<RuleResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getRules", request);
         return result;

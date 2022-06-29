@@ -77,7 +77,8 @@ import java.util.function.Consumer;
 
     
         
-    request.put("messageRequest",messageRequest);
+    //request.put("messageRequest",messageRequest);
+    request.put("body",messageRequest);
 
         CompletableFuture<MessageResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getMessages", request);
         return result;

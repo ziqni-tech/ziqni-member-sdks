@@ -77,7 +77,8 @@ import java.util.function.Consumer;
 
     
         
-    request.put("fileRequest",fileRequest);
+    //request.put("fileRequest",fileRequest);
+    request.put("body",fileRequest);
 
         CompletableFuture<FileResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getFiles", request);
         return result;

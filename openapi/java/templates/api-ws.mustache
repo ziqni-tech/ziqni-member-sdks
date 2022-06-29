@@ -92,7 +92,8 @@
     {{#pathParams}}pathParam.put("{{paramName}}", {{paramName}});
     {{/pathParams}}
     {{#hasPathParams}}request.put("path",pathParam);{{/hasPathParams}}
-    {{#hasBodyParam}}{{#bodyParams}}request.put("{{paramName}}",{{paramName}});{{^-last}}, {{/-last}}{{/bodyParams}}{{/hasBodyParam}}
+    //{{#hasBodyParam}}{{#bodyParams}}request.put("{{paramName}}",{{paramName}});{{^-last}}, {{/-last}}{{/bodyParams}}{{/hasBodyParam}}
+    {{#hasBodyParam}}{{#bodyParams}}request.put("body",{{paramName}});{{^-last}}, {{/-last}}{{/bodyParams}}{{/hasBodyParam}}
 
         CompletableFuture<{{^returnType}}Void{{/returnType}}{{#returnType}}{{{returnType}}}{{/returnType}}> result = this.streamingClient.sendWithApiCallback("/gapi/{{{operationId}}}", request);
         return result;

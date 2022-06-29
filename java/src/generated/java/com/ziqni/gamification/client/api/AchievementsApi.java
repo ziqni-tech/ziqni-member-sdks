@@ -77,7 +77,8 @@ import java.util.function.Consumer;
 
     
         
-    request.put("achievementRequest",achievementRequest);
+    //request.put("achievementRequest",achievementRequest);
+    request.put("body",achievementRequest);
 
         CompletableFuture<AchievementResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getAchievements", request);
         return result;

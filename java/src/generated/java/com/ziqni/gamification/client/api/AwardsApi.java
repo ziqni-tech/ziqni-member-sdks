@@ -78,7 +78,8 @@ import java.util.function.Consumer;
 
     
         
-    request.put("claimAwardRequest",claimAwardRequest);
+    //request.put("claimAwardRequest",claimAwardRequest);
+    request.put("body",claimAwardRequest);
 
         CompletableFuture<AwardResponse> result = this.streamingClient.sendWithApiCallback("/gapi/claimAwards", request);
         return result;
@@ -98,7 +99,8 @@ import java.util.function.Consumer;
 
     
         
-    request.put("awardRequest",awardRequest);
+    //request.put("awardRequest",awardRequest);
+    request.put("body",awardRequest);
 
         CompletableFuture<AwardResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getAwards", request);
         return result;

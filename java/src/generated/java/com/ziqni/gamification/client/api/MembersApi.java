@@ -80,7 +80,8 @@ import java.util.function.Consumer;
 
     
         
-    request.put("memberRequest",memberRequest);
+    //request.put("memberRequest",memberRequest);
+    request.put("body",memberRequest);
 
         CompletableFuture<MemberResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getMember", request);
         return result;
@@ -100,7 +101,8 @@ import java.util.function.Consumer;
 
     
         
-    request.put("memberOptinRequest",memberOptinRequest);
+    //request.put("memberOptinRequest",memberOptinRequest);
+    request.put("body",memberOptinRequest);
 
         CompletableFuture<MemberResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getMemberOptinInfo", request);
         return result;
@@ -120,7 +122,8 @@ import java.util.function.Consumer;
 
     
         
-    request.put("memberSessionRequest",memberSessionRequest);
+    //request.put("memberSessionRequest",memberSessionRequest);
+    request.put("body",memberSessionRequest);
 
         CompletableFuture<MemberSessionResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getMemberSession", request);
         return result;

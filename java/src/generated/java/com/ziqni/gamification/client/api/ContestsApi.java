@@ -77,7 +77,8 @@ import java.util.function.Consumer;
 
     
         
-    request.put("contestRequest",contestRequest);
+    //request.put("contestRequest",contestRequest);
+    request.put("body",contestRequest);
 
         CompletableFuture<ContestResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getContests", request);
         return result;

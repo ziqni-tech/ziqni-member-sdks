@@ -77,7 +77,8 @@ import java.util.function.Consumer;
 
     
         
-    request.put("rewardRequest",rewardRequest);
+    //request.put("rewardRequest",rewardRequest);
+    request.put("body",rewardRequest);
 
         CompletableFuture<RewardResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getRewards", request);
         return result;

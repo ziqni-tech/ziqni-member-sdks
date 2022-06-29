@@ -48,10 +48,10 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
                 .resource("ziqni-gapi");
 
         ApiClientConfig.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
-        ApiClientFactoryUtil.initApiClientFactory();
 
         this.api = ApiClientFactory.getAchievementsApi();
         this.loadAchievementsData = new LoadAchievementsData();
+        ApiClientFactoryUtil.initApiClientFactory();
     }
 
     @AfterAll
@@ -70,7 +70,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
     @Test
     public void getAchievementsTest() throws Exception {
 
-        var response = api.getAchievements(loadAchievementsData.getRequest()).get(3, TimeUnit.SECONDS);
+        var response = api.getAchievements(loadAchievementsData.getRequest()).join();
 
         assertNotNull(response);
         assertNotNull(response.getData());
