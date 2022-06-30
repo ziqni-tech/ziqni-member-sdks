@@ -37,10 +37,7 @@ public class SampleApp {
                                     return null;
                                 });
 
-                        ApiClientFactoryWs.getMembersApi().getMember(new MemberRequest()
-                                .addIncludeFieldsItem(MemberProjections.MEMBER_REF_ID)
-                                .addIncludeFieldsItem(MemberProjections.CUSTOM_FIELD("my-field"))
-                        );
+                        ApiClientFactoryWs.getMembersApi().getMember(new MemberRequest().addIncludeFieldsItem(Member.JSON_PROPERTY_MEMBER_REF_ID));
                     }, 5, 5, TimeUnit.SECONDS));
 
             return ApiClientFactoryWs.getStreamingClient().start();
