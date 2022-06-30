@@ -1,8 +1,5 @@
 package com.ziqni.gamification.client.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-
 public abstract class MemberProjections {
 
     public final static String ALL = "ALL";
