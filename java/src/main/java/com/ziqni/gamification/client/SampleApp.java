@@ -39,7 +39,7 @@ public class SampleApp {
 
                         ApiClientFactoryWs.getMembersApi().getMember(new MemberRequest()
                                 .addIncludeFieldsItem(MemberProjections.MEMBER_REF_ID)
-                                .addIncludeFieldsItem(MemberProjections.NAME)
+                                .addIncludeFieldsItem(MemberProjections.CUSTOM_FIELD("my-field"))
                         );
                     }, 5, 5, TimeUnit.SECONDS));
 

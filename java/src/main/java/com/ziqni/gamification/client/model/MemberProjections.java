@@ -25,6 +25,8 @@ public abstract class MemberProjections {
 
     public final static String CUSTOM_FIELDS = "CUSTOM_FIELDS";
 
+    public final static String CUSTOM_FIELD(String key) {  return CUSTOM_FIELDS+"["+key+"]"; };
+
     public final static String TAGS = "TAGS";
 
     public final static String METADATA = "METADATA";
