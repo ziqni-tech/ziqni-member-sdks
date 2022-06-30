@@ -1,11 +1,9 @@
-package com.ziqni.gamification.client.streaming.concurrent;
+package com.ziqni.gamification.client.streaming.runnables;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.simp.stomp.StompHeaders;
 import org.springframework.messaging.simp.stomp.StompSession;
-
-import java.util.function.Consumer;
 
 public final class MessageToSend <T> implements Runnable {
 
@@ -24,13 +22,13 @@ public final class MessageToSend <T> implements Runnable {
     @Override
     public void run() {
         try {
-            logger.debug("send remote request with headers [{}] and payload [{}]", this.headers, this.payload);
-            var x = this.stompSession.send(this.headers, this.payload);
-            logger.debug("executed function for recieptable [{}]", x);
-        } catch (IllegalStateException i){
-            logger.error("Client is disconnected from the server.", i);
+            this.stompSession.send(this.headers, this.payload);
+        }
+        catch (IllegalStateException i){
+            logger.error("Client is disconnected from the server. {}", i.getMessage());
             throw i;
-        } catch (Throwable throwable){
+        }
+        catch (Throwable throwable){
             logger.error("Failed to send message over websocket", throwable);
             throw throwable;
         }

@@ -1,4 +1,4 @@
-package com.ziqni.gamification.client.streaming.concurrent;
+package com.ziqni.gamification.client.streaming.runnables;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;

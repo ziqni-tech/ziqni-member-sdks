@@ -31,8 +31,18 @@ public class StreamingClient {
         this.messageEventHandler = MessageEventHandler.create();
     }
 
-    public void asyncWebSocketClient(Consumer<WsClient> consumer) {
-        this.websocketSendExecutor.submit(() -> consumer.accept(this.wsClient) );
+    public CompletableFuture<Void> asyncWebSocketClient(Consumer<WsClient> consumer) {
+        final CompletableFuture<Void> result = new CompletableFuture<>();
+        this.websocketSendExecutor.submit(() -> {
+            try {
+                consumer.accept(this.wsClient);
+                result.complete(null);
+            }catch (Throwable throwable){
+                result.completeExceptionally(throwable);
+            }
+        });
+
+        return result;
     }
 
     public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload){
@@ -44,9 +54,10 @@ public class StreamingClient {
                         destination,
                         payload,
                         completableFuture,
-                        (stompHeaders, tPayload) -> this.websocketSendExecutor.submit(this.wsClient.prepareMessageToSend(stompHeaders,tPayload))
+                        (stompHeaders, tPayload) -> this.wsClient.prepareMessageToSend(stompHeaders, tPayload).run()
                 );
-            } catch (Throwable t){
+            }
+            catch (Throwable t) {
                 completableFuture.completeExceptionally(t);
             }
         });

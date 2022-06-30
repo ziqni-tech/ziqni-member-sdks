@@ -18,10 +18,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.BiConsumer;
 
-
 public class ApiCallbackEventHandler extends EventHandler<String> {
 
     public final static String DEFAULT_TOPIC = "/user/queue/rpc-results";
+    public final static String CLASS_TO_SCAN_FOR_PAYLOAD_TYPE = "com.ziqni.gamification.client.model";
     private static final Logger logger = LoggerFactory.getLogger(ApiCallbackEventHandler.class);
     private static final AtomicLong sequenceNumber = new AtomicLong(0);
     private static final ConcurrentHashMap<String, ApiCallbackResponse<?,?>> awaitingResponse = new ConcurrentHashMap<>();
@@ -36,7 +36,7 @@ public class ApiCallbackEventHandler extends EventHandler<String> {
 
     public ApiCallbackEventHandler(String topic) {
         this.topic = topic;
-        this.classScanner = new ClassScanner("com.ziqni.gamification.client.model");
+        this.classScanner = new ClassScanner(CLASS_TO_SCAN_FOR_PAYLOAD_TYPE);
     }
 
     @Override
@@ -74,19 +74,26 @@ public class ApiCallbackEventHandler extends EventHandler<String> {
 
     public static  <TIN, TOUT> ApiCallbackResponse<TIN, TOUT> submit(String destination, TIN payload, CompletableFuture<TOUT> completableFuture, BiConsumer<StompHeaders, TIN> doSend){
 
-        var messageId = sequenceNumber.incrementAndGet();
-        var nextSeq = Long.toString(messageId);
-        StompHeaders headers = new StompHeaders();
-        headers.setDestination(destination);
-        headers.setMessageId(nextSeq);
+        final var messageId = sequenceNumber.incrementAndGet();
+        final var streamingResponse = new ApiCallbackResponse<>(messageId, payload, completableFuture);
 
-        logger.debug("WS sent request to destination [{}] with receipt id [{}] and payload [{}] and headers [{}] and callback []", destination, nextSeq, payload, headers.toSingleValueMap());
+        try {
+            var nextSeq = Long.toString(messageId);
+            StompHeaders headers = new StompHeaders();
+            headers.setDestination(destination);
+            headers.setMessageId(nextSeq);
 
-        var streamingResponse = new ApiCallbackResponse<>(messageId, payload, completableFuture);
-        awaitingResponse.put(streamingResponse.getSequenceNumberAsString(), streamingResponse);
-        doSend.accept(headers, payload);
+            logger.debug("WS sent request to destination [{}] with receipt id [{}] and payload [{}] and headers [{}] and callback []", destination, nextSeq, payload, headers.toSingleValueMap());
 
-        return streamingResponse;
+            awaitingResponse.put(streamingResponse.getSequenceNumberAsString(), streamingResponse);
+
+            doSend.accept(headers, payload);
+            return streamingResponse;
+        }
+        catch (Throwable throwable){
+            awaitingResponse.remove(streamingResponse.getSequenceNumberAsString());
+            throw throwable;
+        }
     }
 
     private static Optional<String> getMessageId(StompHeaders headers){
@@ -102,6 +109,6 @@ public class ApiCallbackEventHandler extends EventHandler<String> {
     }
 
     public static ApiCallbackEventHandler create(){
-        return new ApiCallbackEventHandler(DEFAULT_TOPIC);
+        return new ApiCallbackEventHandler();
     }
 }

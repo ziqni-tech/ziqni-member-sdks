@@ -24,6 +24,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -32,39 +34,44 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @ApiModel(description = "")
 @JsonPropertyOrder({
-  MemberRequest.JSON_PROPERTY_ID
+  MemberRequest.JSON_PROPERTY_INCLUDE_FIELDS
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class MemberRequest {
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  public static final String JSON_PROPERTY_INCLUDE_FIELDS = "includeFields";
+  private List<String> includeFields = new ArrayList<>();
 
   public MemberRequest() { 
   }
 
-  public MemberRequest id(String id) {
-    this.id = id;
+  public MemberRequest includeFields(List<String> includeFields) {
+    this.includeFields = includeFields;
+    return this;
+  }
+
+  public MemberRequest addIncludeFieldsItem(String includeFieldsItem) {
+    this.includeFields.add(includeFieldsItem);
     return this;
   }
 
    /**
-   * 
-   * @return id
+   * ALL, NAME, MEMBER_REF_ID, MEMBER_TYPE, TEAM_MEMBERS, CONSTRAINTS, TIME_ZONE_OFFSET, ID, CREATED, CUSTOM_FIELDS, TAGS, METADATA
+   * @return includeFields
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_ID)
+  @ApiModelProperty(required = true, value = "ALL, NAME, MEMBER_REF_ID, MEMBER_TYPE, TEAM_MEMBERS, CONSTRAINTS, TIME_ZONE_OFFSET, ID, CREATED, CUSTOM_FIELDS, TAGS, METADATA")
+  @JsonProperty(JSON_PROPERTY_INCLUDE_FIELDS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getId() {
-    return id;
+  public List<String> getIncludeFields() {
+    return includeFields;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_INCLUDE_FIELDS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(String id) {
-    this.id = id;
+  public void setIncludeFields(List<String> includeFields) {
+    this.includeFields = includeFields;
   }
 
 
@@ -80,19 +87,19 @@ public class MemberRequest {
       return false;
     }
     MemberRequest memberRequest = (MemberRequest) o;
-    return Objects.equals(this.id, memberRequest.id);
+    return Objects.equals(this.includeFields, memberRequest.includeFields);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(includeFields);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class MemberRequest {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    includeFields: ").append(toIndentedString(includeFields)).append("\n");
     sb.append("}");
     return sb.toString();
   }

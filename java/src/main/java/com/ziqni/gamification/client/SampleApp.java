@@ -1,9 +1,7 @@
 package com.ziqni.gamification.client;
 
 import com.ziqni.gamification.client.configuration.ApiClientConfig;
-import com.ziqni.gamification.client.model.AchievementFilter;
-import com.ziqni.gamification.client.model.AchievementRequest;
-import com.ziqni.gamification.client.model.AchievementResponse;
+import com.ziqni.gamification.client.model.*;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -16,8 +14,8 @@ public class SampleApp {
     public static void main(String[] args) throws Exception {
 
         ApiClientConfig.setIdentityAuthorization(() ->
-                //"eyJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5X2lkIjoiUmlvMVBtVUJtMVh5Nk9XRkloTkoiLCJtZW1iZXJfcmVmZXJlbmNlX2lkIjoidml4d29uZzg2LjExIiwiYWNjb3VudF9pZCI6Inc1ZFM4bVFCeVQ0WFJHZy1CbHUwIiwic3BhY2VfbmFtZSI6Im15c3BhY2UyIiwibmFtZSI6InZpeHdvbmc4NiIsIm1lbWJlcl90eXBlIjoiSW5kaXZpZHVhbCIsIm1lbWJlcl9pZCI6IkpSY0pOMjBCMmNRbXZhX1BMdDdHIiwicmVzb3VyY2VfYWNjZXNzIjp7InppcW5pLWdhcGkiOnsicm9sZXMiOlsiUHVibGljIiwiTWVtYmVyIiwiVmlld0FjaGlldmVtZW50cyIsIlZpZXdBd2FyZHMiLCJDbGFpbUF3YXJkcyIsIlZpZXdDb21wZXRpdGlvbnMiLCJWaWV3Q29udGVzdHMiLCJWaWV3RmlsZXMiLCJWaWV3TWVtYmVycyIsIk1lbWJlcnNPcHRpbiIsIlZpZXdNZXNzYWdlcyIsIkNvbm5lY3RQcm94eSIsIlZpZXdSZXdhcmRzIiwiVmlld1J1bGVzIl19fSwic3ViIjoiSlJjSk4yMEIyY1FtdmFfUEx0N0ciLCJqdGkiOiI5ODRlNjZiZC0yOTcwLTRmNzUtYjMzZS05N2E2NDg4NDkwY2MiLCJpYXQiOjE2NTY1MjE0MTEsImV4cCI6MjMyNTY1MjE0MTF9.jWH-J4NkXvegny7R_Ia_G9bfSg809feUrmQH_4QVD9o"
-                "eyJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5X2lkIjoicXhtcXFZRUJUZVV0U0VzNEVJLWgiLCJtZW1iZXJfcmVmZXJlbmNlX2lkIjoiMTAwMDI1NDE5IiwiYWNjb3VudF9pZCI6IkY3bThkSHdCc3ctT0gzTUVvVzIzIiwic3BhY2VfbmFtZSI6ImZpcnN0LXNwYWNlIiwibmFtZSI6Im5hbWUxIiwibWVtYmVyX3R5cGUiOiJJbmRpdmlkdWFsIiwibWVtYmVyX2lkIjoiX01XRmtJRUJaNUNYN2RXbnFhR0kiLCJyZXNvdXJjZV9hY2Nlc3MiOnsiemlxbmktZ2FwaSI6eyJyb2xlcyI6WyJQdWJsaWMiLCJNZW1iZXIiLCJWaWV3QWNoaWV2ZW1lbnRzIiwiVmlld0F3YXJkcyIsIkNsYWltQXdhcmRzIiwiVmlld0NvbXBldGl0aW9ucyIsIlZpZXdDb250ZXN0cyIsIlZpZXdGaWxlcyIsIlZpZXdNZW1iZXJzIiwiTWVtYmVyc09wdGluIiwiVmlld01lc3NhZ2VzIiwiQ29ubmVjdFByb3h5IiwiVmlld1Jld2FyZHMiLCJWaWV3UnVsZXMiXX19LCJzdWIiOiJfTVdGa0lFQlo1Q1g3ZFducWFHSSIsImp0aSI6IjMyZDJhMTRiLTljNzQtNDNjNC1hYTQzLThkN2NkNGExZGE5YiIsImlhdCI6MTY1NjUzNjI1NCwiZXhwIjoyMzI1NjUzNjI1NH0.Utbidk2t170fxsAS-chMJ048-hXvty3nclqNm5UPx-c"
+                "eyJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5X2lkIjoiUmlvMVBtVUJtMVh5Nk9XRkloTkoiLCJtZW1iZXJfcmVmZXJlbmNlX2lkIjoidml4d29uZzg2LjExIiwiYWNjb3VudF9pZCI6Inc1ZFM4bVFCeVQ0WFJHZy1CbHUwIiwic3BhY2VfbmFtZSI6Im15c3BhY2UyIiwibmFtZSI6InZpeHdvbmc4NiIsIm1lbWJlcl90eXBlIjoiSW5kaXZpZHVhbCIsIm1lbWJlcl9pZCI6IkpSY0pOMjBCMmNRbXZhX1BMdDdHIiwicmVzb3VyY2VfYWNjZXNzIjp7InppcW5pLWdhcGkiOnsicm9sZXMiOlsiUHVibGljIiwiTWVtYmVyIiwiVmlld0FjaGlldmVtZW50cyIsIlZpZXdBd2FyZHMiLCJDbGFpbUF3YXJkcyIsIlZpZXdDb21wZXRpdGlvbnMiLCJWaWV3Q29udGVzdHMiLCJWaWV3RmlsZXMiLCJWaWV3TWVtYmVycyIsIk1lbWJlcnNPcHRpbiIsIlZpZXdNZXNzYWdlcyIsIkNvbm5lY3RQcm94eSIsIlZpZXdSZXdhcmRzIiwiVmlld1J1bGVzIl19fSwic3ViIjoiSlJjSk4yMEIyY1FtdmFfUEx0N0ciLCJqdGkiOiI5ODRlNjZiZC0yOTcwLTRmNzUtYjMzZS05N2E2NDg4NDkwY2MiLCJpYXQiOjE2NTY1MjE0MTEsImV4cCI6MjMyNTY1MjE0MTF9.jWH-J4NkXvegny7R_Ia_G9bfSg809feUrmQH_4QVD9o"
+//                "eyJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5X2lkIjoicXhtcXFZRUJUZVV0U0VzNEVJLWgiLCJtZW1iZXJfcmVmZXJlbmNlX2lkIjoiMTAwMDI1NDE5IiwiYWNjb3VudF9pZCI6IkY3bThkSHdCc3ctT0gzTUVvVzIzIiwic3BhY2VfbmFtZSI6ImZpcnN0LXNwYWNlIiwibmFtZSI6Im5hbWUxIiwibWVtYmVyX3R5cGUiOiJJbmRpdmlkdWFsIiwibWVtYmVyX2lkIjoiX01XRmtJRUJaNUNYN2RXbnFhR0kiLCJyZXNvdXJjZV9hY2Nlc3MiOnsiemlxbmktZ2FwaSI6eyJyb2xlcyI6WyJQdWJsaWMiLCJNZW1iZXIiLCJWaWV3QWNoaWV2ZW1lbnRzIiwiVmlld0F3YXJkcyIsIkNsYWltQXdhcmRzIiwiVmlld0NvbXBldGl0aW9ucyIsIlZpZXdDb250ZXN0cyIsIlZpZXdGaWxlcyIsIlZpZXdNZW1iZXJzIiwiTWVtYmVyc09wdGluIiwiVmlld01lc3NhZ2VzIiwiQ29ubmVjdFByb3h5IiwiVmlld1Jld2FyZHMiLCJWaWV3UnVsZXMiXX19LCJzdWIiOiJfTVdGa0lFQlo1Q1g3ZFducWFHSSIsImp0aSI6IjExNzRjN2E2LTAwODAtNDE0Yi04ODVjLTAwZDk4ZjBkNDg0MiIsImlhdCI6MTY1NjU3MzkxMywiZXhwIjoyMzI1NjU3MzkxM30.zw7YeG5doaNwLaImYGRtLzGC8Xd_2xz6QTodfr4wPHw"
         );
 
         ApiClientFactoryWs.initialise(() -> {
@@ -38,6 +36,11 @@ public class SampleApp {
                                     throwable.printStackTrace();
                                     return null;
                                 });
+
+                        ApiClientFactoryWs.getMembersApi().getMember(new MemberRequest()
+                                .addIncludeFieldsItem(MemberProjections.MEMBER_REF_ID)
+                                .addIncludeFieldsItem(MemberProjections.NAME)
+                        );
                     }, 5, 5, TimeUnit.SECONDS));
 
             return ApiClientFactoryWs.getStreamingClient().start();

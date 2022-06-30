@@ -43,3 +43,4 @@ build/
 /gateway-api-java/openapi/generated/
 /openapi/javascript/generated/
 /java/logs/
+/logs/

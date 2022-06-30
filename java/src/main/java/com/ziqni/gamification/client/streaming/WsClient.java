@@ -4,8 +4,7 @@
 package com.ziqni.gamification.client.streaming;
 
 import com.ziqni.gamification.client.configuration.ApiClientConfig;
-import com.ziqni.gamification.client.streaming.concurrent.ManagementFunction;
-import com.ziqni.gamification.client.streaming.concurrent.MessageToSend;
+import com.ziqni.gamification.client.streaming.runnables.MessageToSend;
 import com.ziqni.gamification.client.util.Common;
 import com.ziqni.gamification.client.util.ZiqniClientObjectMapper;
 import org.slf4j.Logger;
@@ -28,26 +27,16 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class WsClient {
 
     private static final Logger logger = LoggerFactory.getLogger(WsClient.class);
-
-    private static final long DEFAULT_RECONNECT_DELAY = 1000;
-    private static final int DEFAULT_RECONNECT_ATTEMPTS = 5;
-
-    private final static ScheduledExecutorService scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
 
     private final static ConcurrentHashMap<String, ScheduledFuture<?>> scheduledTasks = new ConcurrentHashMap<>();
 
     private final WsStompSessionHandler stompSessionHandler;
 
     private final Timer reconnectTimer;
-
-    private final long reconnectDelay;
-
-    private final int reconnectAttempts;
 
     private final TaskScheduler taskScheduler;
 
@@ -77,20 +66,14 @@ public class WsClient {
 
 
     public WsClient(final String wsUri, final Consumer<Integer> onStateChange) {
-        this(wsUri, DEFAULT_RECONNECT_DELAY, DEFAULT_RECONNECT_ATTEMPTS, makeAuthHeader(), onStateChange);
+        this(wsUri, makeAuthHeader(), onStateChange);
     }
 
     protected WsClient(final String wsUri, final StompHeaders stompHeaders, final Consumer<Integer> onStateChange) {
-        this(wsUri, DEFAULT_RECONNECT_DELAY, DEFAULT_RECONNECT_ATTEMPTS, stompHeaders, onStateChange);
-    }
-
-    protected WsClient(final String wsUri, final long reconnectDelay, final int reconnectAttempts, final StompHeaders stompHeaders, final Consumer<Integer> onStateChange) {
 
         this.wsUri = wsUri;
-        this.reconnectAttempts = reconnectAttempts;
         this.taskScheduler = new ThreadPoolTaskScheduler();
         this.reconnectTimer = new Timer("ReconnectTimer");
-        this.reconnectDelay = reconnectDelay;
         this.stompSessionHandler = new WsStompSessionHandler();
         this.connectListeners = new ArrayList<>();
         this.disconnectListeners = new ArrayList<>();
@@ -212,7 +195,6 @@ public class WsClient {
         final String jobId = Common.getNextId();
         disconnect(jobId);
         reconnectTimer.cancel();
-        scheduledExecutor.shutdown();
     }
 
     private void disconnect(final String jobId) {
@@ -239,17 +221,6 @@ public class WsClient {
             }
         } else
             return stompClient;
-    }
-
-    private <T> ManagementFunction<T> doScheduleManagement(final Supplier<T> func, final String jobId, final long reconnectDelay, final TimeUnit timeUnit) {
-        final var managementFunction = new ManagementFunction<>(func, jobId);
-
-        scheduledTasks.computeIfAbsent(
-                managementFunction.getJobId(),
-                s -> scheduledExecutor.scheduleWithFixedDelay(managementFunction, reconnectDelay, reconnectDelay, timeUnit)
-        );
-
-        return managementFunction;
     }
 
     private void createClient() {
@@ -295,81 +266,6 @@ public class WsClient {
             var future = new CompletableFuture<StompSession>().toCompletableFuture();
             future.completeExceptionally(e);
             return future;
-        }
-    }
-
-
-    public CompletableFuture<Boolean> reconnect(boolean force) {
-        return reconnect(0, reconnectAttempts, reconnectDelay, force);
-    }
-
-    public CompletableFuture<Boolean> reconnect(final int retryCount, final int maxRetryCount, final long reconnectDelay, final boolean force) {
-        logger.warn("Connection lost, attempting to reconnect to the server.");
-        final var result = new CompletableFuture<Boolean>();
-        reconnect(result, retryCount, maxRetryCount, reconnectDelay, force);
-        return result;
-    }
-
-    public CompletableFuture<Boolean> reconnect(final CompletableFuture<Boolean> resultCompletableFuture, final int retryCount, final int maxRetryCount, final long reconnectDelay, final boolean force) {
-        final String jobId = Common.getNextId();
-        reconnect(resultCompletableFuture, jobId, retryCount, maxRetryCount, reconnectDelay, force);
-        return resultCompletableFuture;
-    }
-
-    private void reconnect(final CompletableFuture<Boolean> resultCompletableFuture, final String jobId, final int retryCount, final int maxRetryCount, final long reconnectDelay, final boolean force) {
-        logger.debug("Attempting to reconnect websocket client to server with details, jobId [{}], retryCount [{}], maxRetryCount [{}], reconnectDelay [{}], force [{}]", jobId, retryCount, maxRetryCount, reconnectDelay, force);
-        if (this.isConnected() && !force) {
-            cleanUpScheduledTasks(jobId);
-            resultCompletableFuture.complete(this.isConnected());
-        } else {
-            setConnectionState(Disconnecting);
-            disconnect(jobId);
-            try {
-                doScheduleManagement(() -> reconnectFunc(retryCount, maxRetryCount, jobId),jobId , reconnectDelay, TimeUnit.MILLISECONDS)
-                        .getCompletableFuture()
-                        .thenApply((stompSession) -> {
-                                    resultCompletableFuture.complete(stompSession.isConnected());
-                                    cleanUpScheduledTasks(jobId);
-                                    return stompSession.isConnected();
-                                }
-                        ).exceptionally((exception) -> {
-                            if (retryCount < maxRetryCount) {
-                                reconnect(resultCompletableFuture, retryCount + 1, maxRetryCount, reconnectDelay, false); // increment retry count
-                            } else {
-                                logger.error("Reconnect failure. Retry attempts exhausted for job id [{}] retry count [{}] of max attempts [{}]", jobId, retryCount, maxRetryCount, exception);
-                                setConnectionState(SevereFailure);
-                                resultCompletableFuture.complete(false);
-                            }
-                            return false;
-                        })
-                        .get(reconnectDelay, TimeUnit.MILLISECONDS);
-            } catch (InterruptedException | ExecutionException | TimeoutException e) {
-                logger.debug("Exception waiting reconnect for job to complete. [{}]", e.getMessage());
-            }
-        }
-    }
-
-    public StompSession reconnectFunc(final int retryCount, final int maxAttempts, final String jobId) {
-        if(isConnected()) {
-            cleanUpScheduledTasks(jobId);
-            return stompSession;
-        } else if(retryCount >= maxAttempts && !isConnected()) {
-            setConnectionState(SevereFailure);
-            var connectErrorMessage = "Reconnect failure. Retry attempts exhausted for jobId [" + jobId + "] and retry attempts [" + retryCount + "], max attempts ["+ maxAttempts + "]";
-            var t = new RuntimeException(connectErrorMessage);
-            logger.error("connection failure", t);
-            throw t;
-        } else {
-            try {
-                createClient();
-                var doConnectFuture = doConnect();
-                var resToReturn = doConnectFuture.join();
-                setIsConnected();
-                return resToReturn;
-            } catch (Throwable t) {
-                logger.error("Exception occurred while attempting establish connection during reconnect operation [{}]", t.getMessage());
-                throw t;
-            }
         }
     }
 

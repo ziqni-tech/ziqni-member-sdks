@@ -2756,14 +2756,18 @@ components:
     MemberRequest:
       description: ''
       required:
-        - id
+        - includeFields
       type: object
       properties:
-        id:
-          description: ''
-          type: string
+        includeFields:
+          description: >-
+            ALL, NAME, MEMBER_REF_ID, MEMBER_TYPE, TEAM_MEMBERS, CONSTRAINTS, TIME_ZONE_OFFSET,
+            ID, CREATED, CUSTOM_FIELDS, TAGS, METADATA
+          type: array
+          items:
+            type: string
       example:
-        memberRefId: some text
+        includeFields: ALL
     MemberResponse:
       description: '        '
       required: []
