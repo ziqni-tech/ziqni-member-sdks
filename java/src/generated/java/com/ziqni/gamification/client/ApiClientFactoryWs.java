@@ -4,10 +4,7 @@ import com.ziqni.gamification.client.api.*;
 import com.ziqni.gamification.client.streaming.WsAddress;
 import com.ziqni.gamification.client.streaming.StreamingClient;
 import java.time.Duration;
-import com.ziqni.gamification.client.notifications.SystemNotifications;
 import java.util.concurrent.atomic.AtomicReference;
-import com.ziqni.gamification.client.notifications.model.SubscriptionResponse;
-import com.ziqni.gamification.client.notifications.model.SubscriptionTypes;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -25,6 +22,7 @@ public abstract class ApiClientFactoryWs {
     private static ProxyApiWs proxyApiWs;
     private static RewardsApiWs rewardsApiWs;
     private static RulesApiWs rulesApiWs;
+    private static SystemNotificationsApiWs systemNotificationsApiWs;
     
 
     public static <T> T initialise(Supplier<T> then) throws Exception {
@@ -55,25 +53,6 @@ public abstract class ApiClientFactoryWs {
     public static StreamingClient getStreamingClient() {
         assert getInitialised();
         return streamingClient;
-    }
-
-    private static final AtomicReference<SystemNotifications> systemNotificationsAtomicReference = new AtomicReference<>();
-    public static void initSystemNotifications(Consumer<SubscriptionResponse> onSubscriptionResponse, Consumer<SubscriptionTypes> onSubscriptionTypes) throws Exception {
-
-        if(!ApiClientFactoryWs.initialised) init();
-        if(systemNotificationsAtomicReference.get() != null)
-            throw new Exception("System notification already initialised");
-        getStreamingClient().asyncWebSocketClient(ws -> {
-            var s = new SystemNotifications(ws,onSubscriptionResponse,onSubscriptionTypes);
-            systemNotificationsAtomicReference.set(s);
-        });
-    }
-
-    public static SystemNotifications getSystemNotificationsApi(){
-
-        if(systemNotificationsAtomicReference.get() == null)
-            throw new RuntimeException("System notification not initialised");
-        return systemNotificationsAtomicReference.get();
     }
 
      public static AchievementsApiWs getAchievementsApi() {
@@ -164,6 +143,15 @@ public abstract class ApiClientFactoryWs {
         }
 
         return ApiClientFactoryWs.rulesApiWs;
+    }
+
+     public static SystemNotificationsApiWs getSystemNotificationsApi() {
+        if(ApiClientFactoryWs.systemNotificationsApiWs == null) {
+            init();
+            ApiClientFactoryWs.systemNotificationsApiWs = new SystemNotificationsApiWs(streamingClient, Duration.ofSeconds(5));
+        }
+
+        return ApiClientFactoryWs.systemNotificationsApiWs;
     }
 
     

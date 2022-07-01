@@ -34,12 +34,20 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @ApiModel(description = "")
 @JsonPropertyOrder({
-  MemberRequest.JSON_PROPERTY_INCLUDE_FIELDS
+  MemberRequest.JSON_PROPERTY_INCLUDE_FIELDS,
+  MemberRequest.JSON_PROPERTY_INCLUDE_CUSTOM_FIELDS,
+  MemberRequest.JSON_PROPERTY_INCLUDE_META_DATA_FIELDS
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class MemberRequest {
   public static final String JSON_PROPERTY_INCLUDE_FIELDS = "includeFields";
-  private List<String> includeFields = new ArrayList<>();
+  private List<String> includeFields = null;
+
+  public static final String JSON_PROPERTY_INCLUDE_CUSTOM_FIELDS = "includeCustomFields";
+  private List<String> includeCustomFields = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_INCLUDE_META_DATA_FIELDS = "includeMetaDataFields";
+  private List<String> includeMetaDataFields = null;
 
   public MemberRequest() { 
   }
@@ -50,18 +58,21 @@ public class MemberRequest {
   }
 
   public MemberRequest addIncludeFieldsItem(String includeFieldsItem) {
+    if (this.includeFields == null) {
+      this.includeFields = new ArrayList<>();
+    }
     this.includeFields.add(includeFieldsItem);
     return this;
   }
 
    /**
-   * ALL, NAME, MEMBER_REF_ID, MEMBER_TYPE, TEAM_MEMBERS, CONSTRAINTS, TIME_ZONE_OFFSET, ID, CREATED, CUSTOM_FIELDS, TAGS, METADATA
+   * ALL, or else the name of the top level fields you want to include
    * @return includeFields
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "ALL, NAME, MEMBER_REF_ID, MEMBER_TYPE, TEAM_MEMBERS, CONSTRAINTS, TIME_ZONE_OFFSET, ID, CREATED, CUSTOM_FIELDS, TAGS, METADATA")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ALL, or else the name of the top level fields you want to include")
   @JsonProperty(JSON_PROPERTY_INCLUDE_FIELDS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<String> getIncludeFields() {
     return includeFields;
@@ -69,9 +80,74 @@ public class MemberRequest {
 
 
   @JsonProperty(JSON_PROPERTY_INCLUDE_FIELDS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIncludeFields(List<String> includeFields) {
     this.includeFields = includeFields;
+  }
+
+
+  public MemberRequest includeCustomFields(List<String> includeCustomFields) {
+    this.includeCustomFields = includeCustomFields;
+    return this;
+  }
+
+  public MemberRequest addIncludeCustomFieldsItem(String includeCustomFieldsItem) {
+    this.includeCustomFields.add(includeCustomFieldsItem);
+    return this;
+  }
+
+   /**
+   * Only include custom fields that have these keys
+   * @return includeCustomFields
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Only include custom fields that have these keys")
+  @JsonProperty(JSON_PROPERTY_INCLUDE_CUSTOM_FIELDS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public List<String> getIncludeCustomFields() {
+    return includeCustomFields;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_INCLUDE_CUSTOM_FIELDS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setIncludeCustomFields(List<String> includeCustomFields) {
+    this.includeCustomFields = includeCustomFields;
+  }
+
+
+  public MemberRequest includeMetaDataFields(List<String> includeMetaDataFields) {
+    this.includeMetaDataFields = includeMetaDataFields;
+    return this;
+  }
+
+  public MemberRequest addIncludeMetaDataFieldsItem(String includeMetaDataFieldsItem) {
+    if (this.includeMetaDataFields == null) {
+      this.includeMetaDataFields = new ArrayList<>();
+    }
+    this.includeMetaDataFields.add(includeMetaDataFieldsItem);
+    return this;
+  }
+
+   /**
+   * Only include metadata that have these keys
+   * @return includeMetaDataFields
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Only include metadata that have these keys")
+  @JsonProperty(JSON_PROPERTY_INCLUDE_META_DATA_FIELDS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<String> getIncludeMetaDataFields() {
+    return includeMetaDataFields;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_INCLUDE_META_DATA_FIELDS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIncludeMetaDataFields(List<String> includeMetaDataFields) {
+    this.includeMetaDataFields = includeMetaDataFields;
   }
 
 
@@ -87,12 +163,14 @@ public class MemberRequest {
       return false;
     }
     MemberRequest memberRequest = (MemberRequest) o;
-    return Objects.equals(this.includeFields, memberRequest.includeFields);
+    return Objects.equals(this.includeFields, memberRequest.includeFields) &&
+        Objects.equals(this.includeCustomFields, memberRequest.includeCustomFields) &&
+        Objects.equals(this.includeMetaDataFields, memberRequest.includeMetaDataFields);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(includeFields);
+    return Objects.hash(includeFields, includeCustomFields, includeMetaDataFields);
   }
 
   @Override
@@ -100,6 +178,8 @@ public class MemberRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class MemberRequest {\n");
     sb.append("    includeFields: ").append(toIndentedString(includeFields)).append("\n");
+    sb.append("    includeCustomFields: ").append(toIndentedString(includeCustomFields)).append("\n");
+    sb.append("    includeMetaDataFields: ").append(toIndentedString(includeMetaDataFields)).append("\n");
     sb.append("}");
     return sb.toString();
   }
