@@ -4,7 +4,7 @@ import javax.ws.rs.core.GenericType;
 import {{invokerPackage}}.streaming.StreamingClient;
 import {{invokerPackage}}.ApiException;
 {{#imports}}
-    import {{import}};
+import {{import}};
 {{/imports}}
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -30,7 +30,7 @@ import java.util.function.Consumer;
 {{/hasCallbacks}}
 {{>generatedAnnotation}}
 {{#operations}}
-    public class {{classname}}Ws {
+public class {{classname}}Ws {
 
     private final Duration memberVarReadTimeout;
     private final StreamingClient streamingClient;

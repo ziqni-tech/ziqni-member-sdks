@@ -13,7 +13,9 @@
 
 package com.ziqni.member.sdk.model;
 
+import com.ziqni.member.sdk.ApiException;
 import java.util.Objects;
+import java.lang.reflect.Type;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonValue;

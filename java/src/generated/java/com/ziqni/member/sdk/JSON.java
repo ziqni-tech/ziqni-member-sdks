@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.*;
 import org.openapitools.jackson.nullable.JsonNullableModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.ziqni.gamification.client.model.*;
+import com.ziqni.member.sdk.model.*;
 
 import java.text.DateFormat;
 import java.util.HashMap;

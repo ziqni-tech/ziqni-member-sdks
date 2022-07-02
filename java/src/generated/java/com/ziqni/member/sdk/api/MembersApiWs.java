@@ -14,11 +14,11 @@ package com.ziqni.member.sdk.api;
 import javax.ws.rs.core.GenericType;
 import com.ziqni.member.sdk.streaming.StreamingClient;
 import com.ziqni.member.sdk.ApiException;
-    import com.ziqni.gamification.client.model.MemberOptinRequest;
-    import com.ziqni.gamification.client.model.MemberRequest;
-    import com.ziqni.gamification.client.model.MemberResponse;
-    import com.ziqni.gamification.client.model.MemberSessionRequest;
-    import com.ziqni.gamification.client.model.MemberSessionResponse;
+import com.ziqni.member.sdk.model.MemberOptinRequest;
+import com.ziqni.member.sdk.model.MemberRequest;
+import com.ziqni.member.sdk.model.MemberResponse;
+import com.ziqni.member.sdk.model.MemberSessionRequest;
+import com.ziqni.member.sdk.model.MemberSessionResponse;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,7 +37,7 @@ import java.time.Duration;
 import java.util.function.Consumer;
 
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-    public class MembersApiWs {
+public class MembersApiWs {
 
     private final Duration memberVarReadTimeout;
     private final StreamingClient streamingClient;

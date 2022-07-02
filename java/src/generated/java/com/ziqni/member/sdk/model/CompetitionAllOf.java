@@ -14,11 +14,19 @@
 package com.ziqni.member.sdk.model;
 
 import java.util.Objects;
-
+import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.ziqni.member.sdk.model.CompetitionStatus;
+import com.ziqni.member.sdk.model.CompetitionType;
+import com.ziqni.member.sdk.model.ProductReduced;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;

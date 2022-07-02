@@ -14,8 +14,8 @@ package com.ziqni.member.sdk.api;
 import javax.ws.rs.core.GenericType;
 import com.ziqni.member.sdk.streaming.StreamingClient;
 import com.ziqni.member.sdk.ApiException;
-    import com.ziqni.gamification.client.model.RuleRequest;
-    import com.ziqni.gamification.client.model.RuleResponse;
+import com.ziqni.member.sdk.model.RuleRequest;
+import com.ziqni.member.sdk.model.RuleResponse;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,7 +34,7 @@ import java.time.Duration;
 import java.util.function.Consumer;
 
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-    public class RulesApiWs {
+public class RulesApiWs {
 
     private final Duration memberVarReadTimeout;
     private final StreamingClient streamingClient;
