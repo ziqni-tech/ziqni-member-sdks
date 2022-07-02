@@ -4,14 +4,14 @@ All URIs are relative to *https://gamification-api.ziqni.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**subscribePost**](SystemNotificationsApi.md#subscribePost) | **POST** /subscribe |  |
-| [**subscribePostWithHttpInfo**](SystemNotificationsApi.md#subscribePostWithHttpInfo) | **POST** /subscribe |  |
+| [**systemNotificationsPost**](SystemNotificationsApi.md#systemNotificationsPost) | **POST** /system-notifications |  |
+| [**systemNotificationsPostWithHttpInfo**](SystemNotificationsApi.md#systemNotificationsPostWithHttpInfo) | **POST** /system-notifications |  |
 
 
 
-## subscribePost
+## systemNotificationsPost
 
-> CompletableFuture<SubscribePost201Response> subscribePost(callbackUrl)
+> CompletableFuture<SubscriptionResponse> systemNotificationsPost(subscriptionRequest)
 
 
 
@@ -34,12 +34,12 @@ public class Example {
         defaultClient.setBasePath("https://gamification-api.ziqni.com");
 
         SystemNotificationsApi apiInstance = new SystemNotificationsApi(defaultClient);
-        URI callbackUrl = new URI(); // URI | the location where data will be sent.  Must be network accessible by the source server 
+        SubscriptionRequest subscriptionRequest = new SubscriptionRequest(); // SubscriptionRequest | 
         try {
-            CompletableFuture<SubscribePost201Response> result = apiInstance.subscribePost(callbackUrl);
+            CompletableFuture<SubscriptionResponse> result = apiInstance.systemNotificationsPost(subscriptionRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling SystemNotificationsApi#subscribePost");
+            System.err.println("Exception when calling SystemNotificationsApi#systemNotificationsPost");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -54,11 +54,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **callbackUrl** | **URI**| the location where data will be sent.  Must be network accessible by the source server  | |
+| **subscriptionRequest** | [**SubscriptionRequest**](SubscriptionRequest.md)|  | |
 
 ### Return type
 
-CompletableFuture<[**SubscribePost201Response**](SubscribePost201Response.md)>
+CompletableFuture<[**SubscriptionResponse**](SubscriptionResponse.md)>
 
 
 ### Authorization
@@ -67,17 +67,19 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | subscription successfully created |  -  |
+| **202** |  |  -  |
+| **400** |  |  -  |
+| **500** |  |  -  |
 
-## subscribePostWithHttpInfo
+## systemNotificationsPostWithHttpInfo
 
-> CompletableFuture<ApiResponse<SubscribePost201Response>> subscribePost subscribePostWithHttpInfo(callbackUrl)
+> CompletableFuture<ApiResponse<SubscriptionResponse>> systemNotificationsPost systemNotificationsPostWithHttpInfo(subscriptionRequest)
 
 
 
@@ -101,21 +103,21 @@ public class Example {
         defaultClient.setBasePath("https://gamification-api.ziqni.com");
 
         SystemNotificationsApi apiInstance = new SystemNotificationsApi(defaultClient);
-        URI callbackUrl = new URI(); // URI | the location where data will be sent.  Must be network accessible by the source server 
+        SubscriptionRequest subscriptionRequest = new SubscriptionRequest(); // SubscriptionRequest | 
         try {
-            CompletableFuture<ApiResponse<SubscribePost201Response>> response = apiInstance.subscribePostWithHttpInfo(callbackUrl);
+            CompletableFuture<ApiResponse<SubscriptionResponse>> response = apiInstance.systemNotificationsPostWithHttpInfo(subscriptionRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling SystemNotificationsApi#subscribePost");
+            System.err.println("Exception when calling SystemNotificationsApi#systemNotificationsPost");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling SystemNotificationsApi#subscribePost");
+            System.err.println("Exception when calling SystemNotificationsApi#systemNotificationsPost");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -130,11 +132,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **callbackUrl** | **URI**| the location where data will be sent.  Must be network accessible by the source server  | |
+| **subscriptionRequest** | [**SubscriptionRequest**](SubscriptionRequest.md)|  | |
 
 ### Return type
 
-CompletableFuture<ApiResponse<[**SubscribePost201Response**](SubscribePost201Response.md)>>
+CompletableFuture<ApiResponse<[**SubscriptionResponse**](SubscriptionResponse.md)>>
 
 
 ### Authorization
@@ -143,11 +145,13 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | subscription successfully created |  -  |
+| **202** |  |  -  |
+| **400** |  |  -  |
+| **500** |  |  -  |
 

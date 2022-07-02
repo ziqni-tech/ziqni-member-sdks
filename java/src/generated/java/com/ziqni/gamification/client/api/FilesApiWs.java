@@ -44,6 +44,8 @@ import java.util.function.Consumer;
         this.memberVarReadTimeout = readTimeout;
     }
 
+/**
+*/
     /**
     * Get files.
     * This operation supports retrieval of file objects for one or many entities.

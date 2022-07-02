@@ -44,6 +44,8 @@ import java.util.function.Consumer;
         this.memberVarReadTimeout = readTimeout;
     }
 
+/**
+*/
     /**
     * Get achievements by member reference id
     * Returns a list of achievements for the provided member ref id and applied filters.

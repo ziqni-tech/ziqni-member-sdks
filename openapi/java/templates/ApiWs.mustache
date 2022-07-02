@@ -26,6 +26,8 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.function.Consumer;
 
+{{#hasCallbacks}} /// hasCallbacks /// hasCallbacks /// hasCallbacks /// hasCallbacks
+{{/hasCallbacks}}
 {{>generatedAnnotation}}
 {{#operations}}
     public class {{classname}}Ws {
@@ -39,6 +41,15 @@ import java.util.function.Consumer;
     }
 
     {{#operation}}
+/**
+    {{#callbacks}}
+          {{#urls}}
+            {{#requests}}
+            {{{operationId}}}
+            {{/requests}}
+          {{/urls}}
+        {{/callbacks}}
+*/
 {{#vendorExtensions.x-group-parameters}}
     {{#hasParams}}
         /**

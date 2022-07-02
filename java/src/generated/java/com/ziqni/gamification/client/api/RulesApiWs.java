@@ -44,6 +44,8 @@ import java.util.function.Consumer;
         this.memberVarReadTimeout = readTimeout;
     }
 
+/**
+*/
     /**
     * Get rules
     * This operation support retrieval of rules for one or many entities.

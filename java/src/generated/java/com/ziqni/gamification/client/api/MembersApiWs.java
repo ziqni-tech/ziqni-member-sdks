@@ -47,6 +47,8 @@ import java.util.function.Consumer;
         this.memberVarReadTimeout = readTimeout;
     }
 
+/**
+*/
     /**
     * Get member information by member reference id
     * Returns member information for the provided member reference id
@@ -67,6 +69,8 @@ import java.util.function.Consumer;
         CompletableFuture<MemberResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getMember", request);
         return result;
     }
+/**
+*/
     /**
     * Get member optin information
     * Returns a list of member optin information
@@ -87,6 +91,8 @@ import java.util.function.Consumer;
         CompletableFuture<MemberResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getMemberOptinInfo", request);
         return result;
     }
+/**
+*/
     /**
     * Get member session by member reference id
     * Returns member&#39;s active session information.

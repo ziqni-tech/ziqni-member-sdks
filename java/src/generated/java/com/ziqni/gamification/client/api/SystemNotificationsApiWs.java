@@ -11,11 +11,10 @@
  */
 
 package com.ziqni.gamification.client.api;
-import javax.ws.rs.core.GenericType;
 import com.ziqni.gamification.client.streaming.StreamingClient;
 import com.ziqni.gamification.client.ApiException;
-    import com.ziqni.gamification.client.model.SubscribePost201Response;
-    import java.net.URI;
+import com.ziqni.gamification.client.model.SubscriptionRequest;
+import com.ziqni.gamification.client.model.SubscriptionResponse;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,25 +43,28 @@ import java.util.function.Consumer;
         this.memberVarReadTimeout = readTimeout;
     }
 
+/**
+            onEntityChangedEntityChangedPost
+            onEntityStateChangedEntityStateChangedPost
+*/
     /**
     * 
     * subscribes a client to receive out-of-band data
-        * @param callbackUrl the location where data will be sent.  Must be network accessible by the source server  (required)
-        * @return CompletableFuture&lt;SubscribePost201Response&gt;
+        * @param subscriptionRequest  (required)
+        * @return CompletableFuture&lt;SubscriptionResponse&gt;
     * @throws ApiException if fails to make API call
     */
-    public CompletableFuture<SubscribePost201Response> subscribePost(URI callbackUrl) {
+    public CompletableFuture<SubscriptionResponse> systemNotificationsPost(SubscriptionRequest subscriptionRequest) {
         var request = new HashMap<String, Object>();
-    var queryParam = new HashMap<String, Object>();
-    queryParam.put("callbackUrl", callbackUrl);
-    request.put("query",queryParam);
-
     
         
 
     
+        
 
-        CompletableFuture<SubscribePost201Response> result = this.streamingClient.sendWithApiCallback("/gapi/subscribePost", request);
+    request.put("body",subscriptionRequest);
+
+        CompletableFuture<SubscriptionResponse> result = this.streamingClient.sendWithApiCallback("/gapi/systemNotificationsPost", request);
         return result;
     }
 

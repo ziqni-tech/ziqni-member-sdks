@@ -44,6 +44,8 @@ import java.util.function.Consumer;
         this.memberVarReadTimeout = readTimeout;
     }
 
+/**
+*/
     /**
     * Get contests by member reference Id
     * Returns a list of contests for the provided member ref id and applied filters.

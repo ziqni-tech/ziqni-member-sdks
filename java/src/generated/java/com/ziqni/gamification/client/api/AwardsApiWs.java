@@ -45,6 +45,8 @@ import java.util.function.Consumer;
         this.memberVarReadTimeout = readTimeout;
     }
 
+/**
+*/
     /**
     * Claim awards.
     * This operation enables a member to claim awards.
@@ -65,6 +67,8 @@ import java.util.function.Consumer;
         CompletableFuture<AwardResponse> result = this.streamingClient.sendWithApiCallback("/gapi/claimAwards", request);
         return result;
     }
+/**
+*/
     /**
     * Get awards.
     * This operation supports retrieval of awards for one or many entities.

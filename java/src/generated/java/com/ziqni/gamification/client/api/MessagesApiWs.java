@@ -44,6 +44,8 @@ import java.util.function.Consumer;
         this.memberVarReadTimeout = readTimeout;
     }
 
+/**
+*/
     /**
     * Get messages by member reference id
     * Returns a list of messages for the provided member ref id and applied filters.
