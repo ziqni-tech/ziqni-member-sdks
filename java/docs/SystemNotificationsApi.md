@@ -21,11 +21,13 @@ subscribes a client to receive out-of-band data
 
 ```java
 // Import classes:
+
 import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
+import com.ziqni.member.sdk.ApiException;
 import com.ziqni.gamification.client.Configuration;
 import com.ziqni.gamification.client.models.*;
 import com.ziqni.gamification.client.api.SystemNotificationsApi;
+
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -89,12 +91,14 @@ subscribes a client to receive out-of-band data
 
 ```java
 // Import classes:
+
 import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
+import com.ziqni.member.sdk.ApiException;
 import com.ziqni.gamification.client.ApiResponse;
 import com.ziqni.gamification.client.Configuration;
 import com.ziqni.gamification.client.models.*;
 import com.ziqni.gamification.client.api.SystemNotificationsApi;
+
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -110,7 +114,7 @@ public class Example {
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
-            ApiException apiException = (ApiException)e.getCause();
+            ApiException apiException = (ApiException) e.getCause();
             System.err.println("Exception when calling SystemNotificationsApi#systemNotificationsPost");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());

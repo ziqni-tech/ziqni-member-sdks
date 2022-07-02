@@ -73,8 +73,11 @@ Please follow the [installation](#installation) instruction and execute the foll
 ```java
 
 import com.ziqni.gamification.client.*;
-import com.ziqni.gamification.client.model.*;
 import com.ziqni.gamification.client.api.AchievementsApi;
+import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.model.AchievementRequest;
+import com.ziqni.member.sdk.model.AchievementResponse;
+
 import java.util.concurrent.CompletableFuture;
 
 public class AchievementsApiExample {

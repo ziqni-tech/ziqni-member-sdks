@@ -25,19 +25,21 @@ Returns member information for the provided member reference id
 
 ```java
 // Import classes:
+
 import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
+import com.ziqni.member.sdk.ApiException;
 import com.ziqni.gamification.client.Configuration;
 import com.ziqni.gamification.client.auth.*;
 import com.ziqni.gamification.client.models.*;
 import com.ziqni.gamification.client.api.MembersApi;
+
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://gamification-api.ziqni.com");
-        
+
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
@@ -98,20 +100,22 @@ Returns member information for the provided member reference id
 
 ```java
 // Import classes:
+
 import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
+import com.ziqni.member.sdk.ApiException;
 import com.ziqni.gamification.client.ApiResponse;
 import com.ziqni.gamification.client.Configuration;
 import com.ziqni.gamification.client.auth.*;
 import com.ziqni.gamification.client.models.*;
 import com.ziqni.gamification.client.api.MembersApi;
+
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://gamification-api.ziqni.com");
-        
+
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
@@ -124,7 +128,7 @@ public class Example {
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
-            ApiException apiException = (ApiException)e.getCause();
+            ApiException apiException = (ApiException) e.getCause();
             System.err.println("Exception when calling MembersApi#getMember");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
@@ -182,19 +186,21 @@ Returns a list of member optin information
 
 ```java
 // Import classes:
+
 import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
+import com.ziqni.member.sdk.ApiException;
 import com.ziqni.gamification.client.Configuration;
 import com.ziqni.gamification.client.auth.*;
 import com.ziqni.gamification.client.models.*;
 import com.ziqni.gamification.client.api.MembersApi;
+
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://gamification-api.ziqni.com");
-        
+
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
@@ -255,20 +261,22 @@ Returns a list of member optin information
 
 ```java
 // Import classes:
+
 import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
+import com.ziqni.member.sdk.ApiException;
 import com.ziqni.gamification.client.ApiResponse;
 import com.ziqni.gamification.client.Configuration;
 import com.ziqni.gamification.client.auth.*;
 import com.ziqni.gamification.client.models.*;
 import com.ziqni.gamification.client.api.MembersApi;
+
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://gamification-api.ziqni.com");
-        
+
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
@@ -281,7 +289,7 @@ public class Example {
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
-            ApiException apiException = (ApiException)e.getCause();
+            ApiException apiException = (ApiException) e.getCause();
             System.err.println("Exception when calling MembersApi#getMemberOptinInfo");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
@@ -339,19 +347,21 @@ Returns member&#39;s active session information.
 
 ```java
 // Import classes:
+
 import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
+import com.ziqni.member.sdk.ApiException;
 import com.ziqni.gamification.client.Configuration;
 import com.ziqni.gamification.client.auth.*;
 import com.ziqni.gamification.client.models.*;
 import com.ziqni.gamification.client.api.MembersApi;
+
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://gamification-api.ziqni.com");
-        
+
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
@@ -412,20 +422,22 @@ Returns member&#39;s active session information.
 
 ```java
 // Import classes:
+
 import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
+import com.ziqni.member.sdk.ApiException;
 import com.ziqni.gamification.client.ApiResponse;
 import com.ziqni.gamification.client.Configuration;
 import com.ziqni.gamification.client.auth.*;
 import com.ziqni.gamification.client.models.*;
 import com.ziqni.gamification.client.api.MembersApi;
+
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://gamification-api.ziqni.com");
-        
+
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
@@ -438,7 +450,7 @@ public class Example {
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
-            ApiException apiException = (ApiException)e.getCause();
+            ApiException apiException = (ApiException) e.getCause();
             System.err.println("Exception when calling MembersApi#getMemberSession");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
