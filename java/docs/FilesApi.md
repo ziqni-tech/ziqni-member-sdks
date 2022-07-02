@@ -21,13 +21,11 @@ This operation supports retrieval of file objects for one or many entities.
 
 ```java
 // Import classes:
-
-import com.ziqni.gamification.client.ApiClient;
+import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.gamification.client.Configuration;
-import com.ziqni.gamification.client.models.*;
-import com.ziqni.gamification.client.api.FilesApi;
-
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.FilesApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -91,14 +89,12 @@ This operation supports retrieval of file objects for one or many entities.
 
 ```java
 // Import classes:
-
-import com.ziqni.gamification.client.ApiClient;
+import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.gamification.client.ApiResponse;
-import com.ziqni.gamification.client.Configuration;
-import com.ziqni.gamification.client.models.*;
-import com.ziqni.gamification.client.api.FilesApi;
-
+import com.ziqni.member.sdk.ApiResponse;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.FilesApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -114,7 +110,7 @@ public class Example {
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
-            ApiException apiException = (ApiException) e.getCause();
+            ApiException apiException = (ApiException)e.getCause();
             System.err.println("Exception when calling FilesApi#getFiles");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());

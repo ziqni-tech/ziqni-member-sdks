@@ -1,11 +1,11 @@
 package com.ziqni.member.sdk;
 
-import com.ziqni.gamification.client.api.*;
+import com.ziqni.member.sdk.api.*;
 import com.ziqni.member.sdk.streaming.WsAddress;
 import com.ziqni.member.sdk.streaming.StreamingClient;
-import com.ziqni.member.sdk.api.*;
-
 import java.time.Duration;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public abstract class ApiClientFactoryWs {

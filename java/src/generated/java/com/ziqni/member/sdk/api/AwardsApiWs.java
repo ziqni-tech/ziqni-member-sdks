@@ -11,17 +11,28 @@
  */
 
 package com.ziqni.member.sdk.api;
+import javax.ws.rs.core.GenericType;
 import com.ziqni.member.sdk.streaming.StreamingClient;
 import com.ziqni.member.sdk.ApiException;
-    import com.ziqni.member.sdk.model.AwardRequest;
-    import com.ziqni.member.sdk.model.AwardResponse;
-    import com.ziqni.member.sdk.model.ClaimAwardRequest;
+    import com.ziqni.gamification.client.model.AwardRequest;
+    import com.ziqni.gamification.client.model.AwardResponse;
+    import com.ziqni.gamification.client.model.ClaimAwardRequest;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.time.Duration;
     import java.util.*;
 //asyncNative:true
 import java.util.concurrent.CompletableFuture;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
+import java.util.function.Consumer;
 
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
     public class AwardsApiWs {

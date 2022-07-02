@@ -23,21 +23,19 @@ This operation enables a member to claim awards.
 
 ```java
 // Import classes:
-
-import com.ziqni.gamification.client.ApiClient;
+import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.gamification.client.Configuration;
-import com.ziqni.gamification.client.auth.*;
-import com.ziqni.gamification.client.models.*;
-import com.ziqni.gamification.client.api.AwardsApi;
-
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.AwardsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://gamification-api.ziqni.com");
-
+        
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
@@ -98,22 +96,20 @@ This operation enables a member to claim awards.
 
 ```java
 // Import classes:
-
-import com.ziqni.gamification.client.ApiClient;
+import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.gamification.client.ApiResponse;
-import com.ziqni.gamification.client.Configuration;
-import com.ziqni.gamification.client.auth.*;
-import com.ziqni.gamification.client.models.*;
-import com.ziqni.gamification.client.api.AwardsApi;
-
+import com.ziqni.member.sdk.ApiResponse;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.AwardsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://gamification-api.ziqni.com");
-
+        
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
@@ -126,7 +122,7 @@ public class Example {
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
-            ApiException apiException = (ApiException) e.getCause();
+            ApiException apiException = (ApiException)e.getCause();
             System.err.println("Exception when calling AwardsApi#claimAwards");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
@@ -184,21 +180,19 @@ This operation supports retrieval of awards for one or many entities.
 
 ```java
 // Import classes:
-
-import com.ziqni.gamification.client.ApiClient;
+import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.gamification.client.Configuration;
-import com.ziqni.gamification.client.auth.*;
-import com.ziqni.gamification.client.models.*;
-import com.ziqni.gamification.client.api.AwardsApi;
-
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.AwardsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://gamification-api.ziqni.com");
-
+        
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
@@ -259,22 +253,20 @@ This operation supports retrieval of awards for one or many entities.
 
 ```java
 // Import classes:
-
-import com.ziqni.gamification.client.ApiClient;
+import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.gamification.client.ApiResponse;
-import com.ziqni.gamification.client.Configuration;
-import com.ziqni.gamification.client.auth.*;
-import com.ziqni.gamification.client.models.*;
-import com.ziqni.gamification.client.api.AwardsApi;
-
+import com.ziqni.member.sdk.ApiResponse;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.AwardsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://gamification-api.ziqni.com");
-
+        
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
@@ -287,7 +279,7 @@ public class Example {
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
-            ApiException apiException = (ApiException) e.getCause();
+            ApiException apiException = (ApiException)e.getCause();
             System.err.println("Exception when calling AwardsApi#getAwards");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
