@@ -1,7 +1,6 @@
 package com.ziqni.member.sdk;
 
 import com.ziqni.member.sdk.configuration.ApiClientConfig;
-import com.ziqni.gamification.client.model.*;
 import com.ziqni.member.sdk.model.*;
 
 import java.util.concurrent.Executors;
