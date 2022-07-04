@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2022. ZIQNI LTD registered in England and Wales, company registration number-09693684
  */
-package com.ziqni.member.sdk.streaming;
+package com.ziqni.member.sdk.streaming.handlers;
 
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.JSON;
@@ -10,14 +10,14 @@ import org.springframework.messaging.simp.stomp.StompHeaders;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CompletableFuture;
 
-public class ApiCallbackResponse<TIN, TOUT> {
+public class RpcResultsResponse<TIN, TOUT> {
 
     private final static String OBJECT_TYPE_KEY = "objectType";
     private final long sequenceNumber;
     private final TIN payload;
     private final CompletableFuture<TOUT> completableFuture;
 
-    public ApiCallbackResponse(long sequenceNumber, TIN payload, CompletableFuture<TOUT> completableFuture) {
+    public RpcResultsResponse(long sequenceNumber, TIN payload, CompletableFuture<TOUT> completableFuture) {
         this.sequenceNumber = sequenceNumber;
         this.payload = payload;
         this.completableFuture = completableFuture;

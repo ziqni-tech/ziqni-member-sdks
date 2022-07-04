@@ -3,9 +3,8 @@
  */
 package com.ziqni.member.sdk.streaming;
 
-import com.ziqni.member.sdk.streaming.handlers.ApiCallbackEventHandler;
+import com.ziqni.member.sdk.streaming.handlers.RpcResultsEventHandler;
 import com.ziqni.member.sdk.streaming.handlers.CallbackEventHandler;
-import com.ziqni.member.sdk.streaming.handlers.MessageEventHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,18 +22,16 @@ public class StreamingClient {
     private final AtomicInteger connectionState = new AtomicInteger(WsClient.NotConnected);
 
     private final WsClient wsClient;
-    private final ApiCallbackEventHandler apiCallbackEventHandler;
+    private final RpcResultsEventHandler rpcResultsEventHandler;
     private final CallbackEventHandler callbackEventHandler;
-    private final MessageEventHandler messageEventHandler;
 
     public StreamingClient(String URL) throws ExecutionException, InterruptedException {
 
         this.webSocketClientTasks = new LinkedBlockingDeque<>();
         this.websocketSendExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, webSocketClientTasks);
         this.wsClient = new WsClient(URL, connectionState::set);
-        this.apiCallbackEventHandler = ApiCallbackEventHandler.create();
+        this.rpcResultsEventHandler = RpcResultsEventHandler.create();
         this.callbackEventHandler = CallbackEventHandler.create();
-        this.messageEventHandler = MessageEventHandler.create();
     }
 
     public CompletableFuture<Void> asyncWebSocketClient(Consumer<WsClient> consumer) {
@@ -56,7 +53,7 @@ public class StreamingClient {
 
         this.websocketSendExecutor.submit(() -> {
             try {
-                ApiCallbackEventHandler.submit(
+                RpcResultsEventHandler.submit(
                         destination,
                         payload,
                         completableFuture,
@@ -81,8 +78,8 @@ public class StreamingClient {
         this.websocketSendExecutor.submit( () -> {
             this.wsClient.startClient(result).thenApply(isConnected -> {
                 if(isConnected()) {
-                    this.wsClient.subscribe( this.apiCallbackEventHandler );
-                    this.wsClient.subscribe( this.messageEventHandler );
+                    this.wsClient.subscribe( this.rpcResultsEventHandler);
+                    this.wsClient.subscribe( this.callbackEventHandler );
                     executeOnStartHandlers();
                 }
                 return isConnected;

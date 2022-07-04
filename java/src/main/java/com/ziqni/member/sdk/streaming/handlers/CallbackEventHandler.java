@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.JSON;
 import com.ziqni.member.sdk.streaming.EventHandler;
+import com.ziqni.member.sdk.util.ClassScanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.simp.stomp.StompHeaders;
@@ -22,6 +23,9 @@ public class CallbackEventHandler extends EventHandler<String> {
 
     public final static String DEFAULT_TOPIC = "/user/queue/callbacks";
 
+    public final static String CLASS_TO_SCAN_FOR_PAYLOAD_TYPE = "com.ziqni.member.sdk.model";
+    private final ClassScanner classScanner;
+
     private static final ExecutorService executorService = Executors.newCachedThreadPool();
 
     protected static final ObjectMapper objectMapper = new ObjectMapper();
@@ -30,6 +34,7 @@ public class CallbackEventHandler extends EventHandler<String> {
     public final Map<String,CallbackConsumer<?>> callbackConsumerMap = new ConcurrentHashMap<>();
 
     public CallbackEventHandler() {
+        this.classScanner = new ClassScanner(CLASS_TO_SCAN_FOR_PAYLOAD_TYPE);
     }
 
     public <T> void registerCallbackHandler(CallbackConsumer<T> callbackConsumer){
@@ -47,16 +52,13 @@ public class CallbackEventHandler extends EventHandler<String> {
     }
 
     @Override
-    public Type getPayloadType(StompHeaders headers) {
-        final var found = this.callbackConsumerMap.get(headers.getFirst("callback"));
-        return found == null
-                ? OBJECT_JAVA_TYPE
-                : found.getJavaType();
+    public void onData(String data) {
+        throw new RuntimeException("Not implemented");
     }
 
     @Override
-    public void onData(String data) {
-        throw new RuntimeException("Not implemented");
+    public Type getPayloadType(StompHeaders headers) {
+        return this.classScanner.get(headers.getFirst("objectType")).orElse(Object.class);
     }
 
     @Override
