@@ -18,18 +18,18 @@ import java.util.Optional;
 public abstract class ConfigurationLoader {
 
     private static final String ziqniEnvironmentVariablePrefix = "ZIQNI_";
-    public static String DefaultConfigFileName = "application.properties";
+    public static final String DefaultConfigFileName = "application.properties";
     private static final String configFile = null;
     private static Map<String, String> cache;
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationLoader.class);
 
     public static void loadFromFile(Boolean doNotOverwrite) {
 
-        Parameters params = new Parameters();
-        FileBasedConfigurationBuilder<FileBasedConfiguration> builder =
-                new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
-                        .configure(params.properties()
-                                .setFileName(Optional.ofNullable(getConfigFile()).orElse(DefaultConfigFileName)));
+        final var params = new Parameters()
+                .properties()
+                .setFileName(Optional.ofNullable(getConfigFile()).orElse(DefaultConfigFileName));
+
+        final var builder = new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class).configure(params);
 
         logger.debug("Loaded config file [{}] from location [{}]", Optional.ofNullable(getConfigFile()).orElse(DefaultConfigFileName), builder.getFileHandler().getPath());
 
