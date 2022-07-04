@@ -1,6 +1,6 @@
 /*
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * Ziqni Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -46,6 +46,12 @@ import java.util.function.BiConsumer;
     this.memberVarReadTimeout = readTimeout;
     }
 
+    public class subscribeCallBacks {
+        public final static String ENTITYCHANGED ="entityChanged";
+        public final static String ENTITYSTATECHANGED ="entityStateChanged";
+        
+    }
+
 
     public SubscriptionsApiWs entityChangedPostHandler(BiConsumer<StompHeaders, EntityChanged> entityChanged, BiConsumer<StompHeaders, ApiException> onApiException){
         streamingClient.getCallbackEventHandler().registerCallbackHandler(new CallbackConsumer<EntityChanged>(EntityChanged.class, "entityChanged", entityChanged, onApiException));
@@ -64,7 +70,7 @@ import java.util.function.BiConsumer;
                 * @return CompletableFuture&lt;SubscriptionResponse&gt;
             * @throws ApiException if fails to make API call
             */
-            public CompletableFuture<SubscriptionResponse> subscribeToNotifications(SubscriptionRequest subscriptionRequest) {
+            public CompletableFuture<SubscriptionResponse> subscribe(SubscriptionRequest subscriptionRequest) {
                 var request = new HashMap<String, Object>();
             
                         
@@ -74,7 +80,7 @@ import java.util.function.BiConsumer;
 
             request.put("body",subscriptionRequest);
 
-            CompletableFuture<SubscriptionResponse> result = this.streamingClient.sendWithApiCallback("/gapi/subscribeToNotifications", request);
+            CompletableFuture<SubscriptionResponse> result = this.streamingClient.sendWithApiCallback("/gapi/subscribe", request);
             return result;
         }
 

@@ -4,14 +4,14 @@ All URIs are relative to *https://gamification-api.ziqni.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**subscribeToNotifications**](SubscriptionsApi.md#subscribeToNotifications) | **POST** /subscribe |  |
-| [**subscribeToNotificationsWithHttpInfo**](SubscriptionsApi.md#subscribeToNotificationsWithHttpInfo) | **POST** /subscribe |  |
+| [**subscribe**](SubscriptionsApi.md#subscribe) | **POST** /subscribe |  |
+| [**subscribeWithHttpInfo**](SubscriptionsApi.md#subscribeWithHttpInfo) | **POST** /subscribe |  |
 
 
 
-## subscribeToNotifications
+## subscribe
 
-> CompletableFuture<SubscriptionResponse> subscribeToNotifications(subscriptionRequest)
+> CompletableFuture<SubscriptionResponse> subscribe(subscriptionRequest)
 
 
 
@@ -36,10 +36,10 @@ public class Example {
         SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
         SubscriptionRequest subscriptionRequest = new SubscriptionRequest(); // SubscriptionRequest | subscription payload
         try {
-            CompletableFuture<SubscriptionResponse> result = apiInstance.subscribeToNotifications(subscriptionRequest);
+            CompletableFuture<SubscriptionResponse> result = apiInstance.subscribe(subscriptionRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling SubscriptionsApi#subscribeToNotifications");
+            System.err.println("Exception when calling SubscriptionsApi#subscribe");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -77,9 +77,9 @@ No authorization required
 | **400** |  |  -  |
 | **500** |  |  -  |
 
-## subscribeToNotificationsWithHttpInfo
+## subscribeWithHttpInfo
 
-> CompletableFuture<ApiResponse<SubscriptionResponse>> subscribeToNotifications subscribeToNotificationsWithHttpInfo(subscriptionRequest)
+> CompletableFuture<ApiResponse<SubscriptionResponse>> subscribe subscribeWithHttpInfo(subscriptionRequest)
 
 
 
@@ -105,19 +105,19 @@ public class Example {
         SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
         SubscriptionRequest subscriptionRequest = new SubscriptionRequest(); // SubscriptionRequest | subscription payload
         try {
-            CompletableFuture<ApiResponse<SubscriptionResponse>> response = apiInstance.subscribeToNotificationsWithHttpInfo(subscriptionRequest);
+            CompletableFuture<ApiResponse<SubscriptionResponse>> response = apiInstance.subscribeWithHttpInfo(subscriptionRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling SubscriptionsApi#subscribeToNotifications");
+            System.err.println("Exception when calling SubscriptionsApi#subscribe");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling SubscriptionsApi#subscribeToNotifications");
+            System.err.println("Exception when calling SubscriptionsApi#subscribe");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());

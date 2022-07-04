@@ -1,6 +1,6 @@
 /*
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * Ziqni Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -48,6 +48,7 @@ import java.util.function.BiConsumer;
     }
 
 
+
             /**
             * Claim awards.
             * This operation enables a member to claim awards.
@@ -68,6 +69,7 @@ import java.util.function.BiConsumer;
             CompletableFuture<AwardResponse> result = this.streamingClient.sendWithApiCallback("/gapi/claimAwards", request);
             return result;
         }
+
 
 
             /**

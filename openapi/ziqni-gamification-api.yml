@@ -1,8 +1,11 @@
 openapi: 3.0.2
 info:
-  title: Ziqni Gamification Cloud API
+  title: Ziqni Member API
   version: 1.0.0
-  description: This is the gamification cloud for Ziqni
+  description: >-
+    The ZIQNI Member-API is the primary resource used to build services and widgets for your members
+    [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
+    system is decribed using OpenApi schema for convenience.
 servers:
   -
     url: 'https://gamification-api.ziqni.com'
@@ -414,7 +417,7 @@ paths:
           $ref: '#/components/responses/SubscriptionResponseBody'
         '500':
           $ref: '#/components/responses/SubscriptionResponseBody'
-      operationId: subscribeToNotifications
+      operationId: subscribe
       description: subscribes a client to receive out-of-band data
 components:
   schemas:

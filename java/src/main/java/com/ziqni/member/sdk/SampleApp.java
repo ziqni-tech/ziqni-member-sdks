@@ -1,5 +1,6 @@
 package com.ziqni.member.sdk;
 
+import com.ziqni.member.sdk.api.SubscriptionsApiWs;
 import com.ziqni.member.sdk.configuration.ApiClientConfig;
 import com.ziqni.member.sdk.model.*;
 
@@ -50,8 +51,9 @@ public class SampleApp {
                     .entityStateChangedPostHandler(
                             ((stompHeaders, entityStateChanged) -> {}),
                             (stompHeaders, error) -> {}
-                    )
-                    .subscribeToNotifications(new SubscriptionRequest().callback("entityChanged").entityType("Member"));
+                    );
+            ApiClientFactoryWs.getSubscriptionsApi().subscribe(new SubscriptionRequest().callback(SubscriptionsApiWs.subscribeCallBacks.ENTITYCHANGED).entityType("Member"));
+            ApiClientFactoryWs.getSubscriptionsApi().subscribe(new SubscriptionRequest().callback(SubscriptionsApiWs.subscribeCallBacks.ENTITYSTATECHANGED).entityType("Member"));
         });
     }
 
