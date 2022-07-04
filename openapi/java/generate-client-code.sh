@@ -2,8 +2,8 @@
 
 # Execute this script from inside the openapi folder
 openapi-generator-cli version 6.0
-SPEC_FILE=../ziqni-gamification-api.yml
-CONF_FILE=ziqni-gamification-api.config.yml
+SPEC_FILE=../ziqni-member-api.yml
+CONF_FILE=ziqni-member-api.config.yml
 GEN_DIR=generated
 FILE=generate-client-code.sh
 
