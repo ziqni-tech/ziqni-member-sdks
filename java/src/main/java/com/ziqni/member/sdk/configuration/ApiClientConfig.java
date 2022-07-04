@@ -13,10 +13,10 @@ public abstract class ApiClientConfig {
 
     private static Boolean loaded = false;
 
-    //todo - replace this with gamification client
-    private static String gamificationClientServerHost;
-    private static Integer gamificationClientServerPort;
-    private static String gamificationClientServerScheme;
+    //todo - replace this with member client
+    private static String memberClientServerHost;
+    private static Integer memberClientServerPort;
+    private static String memberClientServerScheme;
 
     private static String identityAuthorizationToken;
     private static IdentityAuthorization identityAuthorization;
@@ -26,32 +26,32 @@ public abstract class ApiClientConfig {
     public static void load() {
         if (loaded) return;
 
-        gamificationClientServerHost = ConfigurationLoader.getParameter("gamification.client.server.host").orElse("gamification-api.ziqni.com");
-        gamificationClientServerPort = Integer.valueOf(ConfigurationLoader.getParameter("gamification.client.server.port").orElse("443"));
-        gamificationClientServerScheme = ConfigurationLoader.getParameter("gamification.client.server.scheme").orElse("wss");
+        memberClientServerHost = ConfigurationLoader.getParameter("member.client.server.host").orElse("Member-api.ziqni.com");
+        memberClientServerPort = Integer.valueOf(ConfigurationLoader.getParameter("member.client.server.port").orElse("443"));
+        memberClientServerScheme = ConfigurationLoader.getParameter("member.client.server.scheme").orElse("wss");
 
-        var isValidScheme = gamificationClientServerScheme.equals("ws") || gamificationClientServerScheme.equals("wss");
+        var isValidScheme = memberClientServerScheme.equals("ws") || memberClientServerScheme.equals("wss");
 
         if(!isValidScheme)
-            throw new RuntimeException("Invalid scheme " + gamificationClientServerScheme + ". Valid schemes are ws, wss");
+            throw new RuntimeException("Invalid scheme " + memberClientServerScheme + ". Valid schemes are ws, wss");
 
-        isSecure = gamificationClientServerScheme.equals("wss");
+        isSecure = memberClientServerScheme.equals("wss");
         loaded = true;
     }
 
-    public static String getGamificationClientServerHost() {
+    public static String getMemberClientServerHost() {
         load();
-        return gamificationClientServerHost;
+        return memberClientServerHost;
     }
 
-    public static Integer getGamificationClientServerPort() {
+    public static Integer getMemberClientServerPort() {
         load();
-        return gamificationClientServerPort;
+        return memberClientServerPort;
     }
 
-    public static String getGamificationClientServerScheme() {
+    public static String getMemberClientServerScheme() {
         load();
-        return gamificationClientServerScheme;
+        return memberClientServerScheme;
     }
 
     public static boolean isSecure() {
@@ -61,7 +61,7 @@ public abstract class ApiClientConfig {
 
     public static IdentityAuthorization getIdentityAuthorization() {
         if(identityAuthorization == null) {
-            identityAuthorizationToken = ConfigurationLoader.getParameter("gamification.client.access.token").orElse("");
+            identityAuthorizationToken = ConfigurationLoader.getParameter("member.client.access.token").orElse("");
             identityAuthorization = () -> identityAuthorizationToken;
         }
         return identityAuthorization;

@@ -24,7 +24,7 @@ import java.util.function.BiConsumer;
 public class ApiCallbackEventHandler extends EventHandler<String> {
 
     public final static String DEFAULT_TOPIC = "/user/queue/rpc-results";
-    public final static String CLASS_TO_SCAN_FOR_PAYLOAD_TYPE = "com.ziqni.gamification.client.model";
+    public final static String CLASS_TO_SCAN_FOR_PAYLOAD_TYPE = "com.ziqni.member.sdk.model";
     private static final Logger logger = LoggerFactory.getLogger(ApiCallbackEventHandler.class);
     private static final AtomicLong sequenceNumber = new AtomicLong(0);
     private static final ConcurrentHashMap<String, ApiCallbackResponse<?,?>> awaitingResponse = new ConcurrentHashMap<>();

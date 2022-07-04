@@ -13,12 +13,12 @@ public class WsAddress {
         StringBuilder stringBuilder = new StringBuilder()
                 .append(ApiClientConfig.isSecure() ? "wss" : "ws")
                 .append("://")
-                .append(ApiClientConfig.getGamificationClientServerHost());
+                .append(ApiClientConfig.getMemberClientServerHost());
 
-        final var standardPort = ApiClientConfig.getGamificationClientServerPort() == 80 || ApiClientConfig.getGamificationClientServerPort() == 443;
+        final var standardPort = ApiClientConfig.getMemberClientServerPort() == 80 || ApiClientConfig.getMemberClientServerPort() == 443;
 
-        if(ApiClientConfig.getGamificationClientServerPort() != null && !standardPort)
-            stringBuilder.append(":").append(ApiClientConfig.getGamificationClientServerPort());
+        if(ApiClientConfig.getMemberClientServerPort() != null && !standardPort)
+            stringBuilder.append(":").append(ApiClientConfig.getMemberClientServerPort());
 
         this.address = stringBuilder.append("/ws").toString();
     }

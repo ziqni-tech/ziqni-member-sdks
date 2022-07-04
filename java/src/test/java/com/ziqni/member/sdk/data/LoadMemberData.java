@@ -1,6 +1,5 @@
 package com.ziqni.member.sdk.data;
 
-import com.ziqni.gamification.client.model.*;
 import com.ziqni.member.sdk.model.MemberRequest;
 import tests.utils.CompleteableFutureTestWrapper;
 

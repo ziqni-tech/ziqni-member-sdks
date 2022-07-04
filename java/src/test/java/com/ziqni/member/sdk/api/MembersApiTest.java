@@ -1,6 +1,6 @@
 /*
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * Ziqni Member Cloud API
+ * This is the Member cloud for Ziqni
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -16,7 +16,6 @@ package com.ziqni.member.sdk.api;
 import com.ziqni.member.sdk.ApiClientFactoryWs;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.data.LoadMemberData;
-import com.ziqni.gamification.client.model.*;
 import com.ziqni.member.sdk.model.MemberOptinRequest;
 import com.ziqni.member.sdk.model.MemberResponse;
 import com.ziqni.member.sdk.model.MemberSessionRequest;

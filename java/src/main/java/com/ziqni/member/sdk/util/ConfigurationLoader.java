@@ -24,6 +24,7 @@ public abstract class ConfigurationLoader {
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationLoader.class);
 
     public static void loadFromFile(Boolean doNotOverwrite) {
+
         Parameters params = new Parameters();
         FileBasedConfigurationBuilder<FileBasedConfiguration> builder =
                 new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
@@ -57,7 +58,6 @@ public abstract class ConfigurationLoader {
             }
         }
         catch(org.apache.commons.configuration2.ex.ConfigurationException cex) {
-            logger.error("Loading of the configuration file failed");
             throw new RuntimeException(cex);
         }
 
