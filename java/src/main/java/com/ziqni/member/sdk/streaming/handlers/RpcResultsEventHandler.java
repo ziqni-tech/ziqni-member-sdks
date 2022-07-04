@@ -52,11 +52,6 @@ public class RpcResultsEventHandler extends EventHandler<String> {
     }
 
     @Override
-    public void onData(String data) {
-        throw new RuntimeException("Not implemented");
-    }
-
-    @Override
     public Type getPayloadType(StompHeaders headers) {
         return this.classScanner.get(headers.getFirst("objectType")).orElse(Object.class);
     }

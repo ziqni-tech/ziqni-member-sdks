@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Cleanup">
+    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Event notification subscriptions working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/SampleApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/SampleApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/ApiCallbackResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/handlers/RpcResultsResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/StreamingClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/StreamingClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/handlers/ApiCallbackEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/handlers/RpcResultsEventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/EventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/EventHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/handlers/CallbackEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/handlers/CallbackEventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/handlers/MessageEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/handlers/RpcResultsEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/handlers/RpcResultsEventHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +100,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1656966295087</updated>
-      <workItem from="1656966296382" duration="11558000" />
+      <workItem from="1656966296382" duration="11858000" />
     </task>
     <task id="LOCAL-00001" summary="Cleanup">
       <created>1656969494518</created>
@@ -112,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656969494518</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Event notification subscriptions working">
+      <created>1656978889915</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1656978889915</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,7 +135,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup" />
+    <MESSAGE value="Event notification subscriptions working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Event notification subscriptions working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
