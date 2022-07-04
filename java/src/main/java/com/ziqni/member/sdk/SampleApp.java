@@ -41,6 +41,17 @@ public class SampleApp {
                     }, 5, 5, TimeUnit.SECONDS));
 
             return ApiClientFactoryWs.getStreamingClient().start();
+        }).thenAccept(aBoolean -> {
+            ApiClientFactoryWs.getSubscriptionsApi()
+                    .entityChangedPostHandler(
+                        ((stompHeaders, entityChanged) -> {}),
+                        (stompHeaders, error) -> {}
+                    )
+                    .entityStateChangedPostHandler(
+                            ((stompHeaders, entityStateChanged) -> {}),
+                            (stompHeaders, error) -> {}
+                    )
+                    .subscribeToNotifications(new SubscriptionRequest().callback("entityChanged").entityType("Member"));
         });
     }
 

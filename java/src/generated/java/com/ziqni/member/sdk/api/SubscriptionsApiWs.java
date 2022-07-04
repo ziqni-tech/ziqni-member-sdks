@@ -47,12 +47,14 @@ import java.util.function.BiConsumer;
     }
 
 
-    public void entityChangedPostHandler(BiConsumer<StompHeaders, EntityChanged> entityChanged, BiConsumer<StompHeaders, ApiException> onApiException){
+    public SubscriptionsApiWs entityChangedPostHandler(BiConsumer<StompHeaders, EntityChanged> entityChanged, BiConsumer<StompHeaders, ApiException> onApiException){
         streamingClient.getCallbackEventHandler().registerCallbackHandler(new CallbackConsumer<EntityChanged>(EntityChanged.class, "entityChanged", entityChanged, onApiException));
+        return this;
     }
 
-    public void entityStateChangedPostHandler(BiConsumer<StompHeaders, EntityStateChanged> entityStateChanged, BiConsumer<StompHeaders, ApiException> onApiException){
+    public SubscriptionsApiWs entityStateChangedPostHandler(BiConsumer<StompHeaders, EntityStateChanged> entityStateChanged, BiConsumer<StompHeaders, ApiException> onApiException){
         streamingClient.getCallbackEventHandler().registerCallbackHandler(new CallbackConsumer<EntityStateChanged>(EntityStateChanged.class, "entityStateChanged", entityStateChanged, onApiException));
+        return this;
     }
 
             /**

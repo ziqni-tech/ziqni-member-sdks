@@ -42,8 +42,9 @@ import java.util.function.BiConsumer;
     {{#operation}}
 
 {{#callbacks}}{{#urls}}{{#requests}}
-    public void {{operationId}}Handler({{#allParams}}BiConsumer<StompHeaders, {{{dataType}}}> {{{paramName}}}{{/allParams}}, BiConsumer<StompHeaders, ApiException> onApiException){
+    public {{classname}}Ws {{operationId}}Handler({{#allParams}}BiConsumer<StompHeaders, {{{dataType}}}> {{{paramName}}}{{/allParams}}, BiConsumer<StompHeaders, ApiException> onApiException){
         {{#allParams}}streamingClient.getCallbackEventHandler().registerCallbackHandler(new CallbackConsumer<{{{dataType}}}>({{{dataType}}}.class, "{{{paramName}}}", {{{paramName}}}, onApiException));{{/allParams}}
+        return this;
     }
 {{/requests}}{{/urls}}{{/callbacks}}
     {{#vendorExtensions.x-group-parameters}}
