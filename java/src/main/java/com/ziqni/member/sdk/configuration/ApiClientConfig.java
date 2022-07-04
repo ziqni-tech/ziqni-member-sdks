@@ -61,7 +61,7 @@ public abstract class ApiClientConfig {
 
     public static IdentityAuthorization getIdentityAuthorization() {
         if(identityAuthorization == null) {
-            identityAuthorizationToken = ConfigurationLoader.getParameter("member.client.access.token").orElse("");
+            identityAuthorizationToken = ConfigurationLoader.getParameter("member.client.access-token").orElse("");
             identityAuthorization = () -> identityAuthorizationToken;
         }
         return identityAuthorization;
