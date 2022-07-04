@@ -11,7 +11,7 @@
 
 	<appender name="SAVE-TO-FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${LOG_PATH}/ziqni-gamification-services.log</file>
+		<file>${LOG_PATH}/ziqni-Member-services.log</file>
 		<encoder
 			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<pattern>%highlight(%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %class{0} %-5level) %cyan(%logger{15}) [%file: %line] - %msg %n</pattern>
@@ -19,11 +19,11 @@
 
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${LOG_PATH}/ziqni-gamification-services.%d{dd-MM-yyyy}.log</fileNamePattern>
+			<fileNamePattern>${LOG_PATH}/ziqni-Member-services.%d{dd-MM-yyyy}.log</fileNamePattern>
 		</rollingPolicy>
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-			<fileNamePattern>${LOG_PATH}/ziqni-gamification-services_%i.log</fileNamePattern>
+			<fileNamePattern>${LOG_PATH}/ziqni-Member-services_%i.log</fileNamePattern>
 		</rollingPolicy>
 		<triggeringPolicy
 			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">

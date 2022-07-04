@@ -1,0 +1,16 @@
+basePackage: com.ziqni.member.sdk
+configPackage: com.ziqni.member.sdk.config
+apiPackage: com.ziqni.member.sdk.api
+modelPackage: com.ziqni.member.sdk.model
+groupId: com.ziqni
+artifactId: ziqni-member-sdk
+dateLibrary: java8
+hideGenerationTimestamp: true
+files:
+  ApiClientFactoryWs.mustache:
+    folder: src/main/java/com/ziqni/member/sdk
+    templateType: SupportingFiles
+    destinationFilename: ApiClientFactoryWs.java
+  ApiWs.mustache:
+    templateType: API
+    destinationFilename: Ws.java

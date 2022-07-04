@@ -1,6 +1,6 @@
 package tests.utils;
 
-import com.ziqni.gamification.client.ApiException;
+import com.ziqni.member.sdk.ApiException;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;

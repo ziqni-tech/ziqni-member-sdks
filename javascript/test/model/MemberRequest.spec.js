@@ -54,8 +54,20 @@
       //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.MemberRequest);
     });
 
-    it('should have the property id (base name: "id")', function() {
-      // uncomment below and update the code to test the property id
+    it('should have the property includeFields (base name: "includeFields")', function() {
+      // uncomment below and update the code to test the property includeFields
+      //var instance = new @ZiqniTechGamificationApiClient.MemberRequest();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property includeCustomFields (base name: "includeCustomFields")', function() {
+      // uncomment below and update the code to test the property includeCustomFields
+      //var instance = new @ZiqniTechGamificationApiClient.MemberRequest();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property includeMetaDataFields (base name: "includeMetaDataFields")', function() {
+      // uncomment below and update the code to test the property includeMetaDataFields
       //var instance = new @ZiqniTechGamificationApiClient.MemberRequest();
       //expect(instance).to.be();
     });

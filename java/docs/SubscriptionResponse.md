@@ -8,7 +8,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**subscriptions** | [**List&lt;Subscription&gt;**](Subscription.md) | this unique identifier allows management of the subscription |  |
+|**meta** | [**ResponseMeta**](ResponseMeta.md) |  |  [optional] |
+|**data** | [**List&lt;Subscription&gt;**](Subscription.md) |  |  [optional] |
+|**errors** | [**List&lt;Error&gt;**](Error.md) |  |  [optional] |
 
 
 

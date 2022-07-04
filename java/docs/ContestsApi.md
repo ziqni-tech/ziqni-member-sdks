@@ -21,12 +21,12 @@ Returns a list of contests for the provided member ref id and applied filters.
 
 ```java
 // Import classes:
-import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
-import com.ziqni.gamification.client.Configuration;
-import com.ziqni.gamification.client.auth.*;
-import com.ziqni.gamification.client.models.*;
-import com.ziqni.gamification.client.api.ContestsApi;
+import com.ziqni.member.sdk.ApiClient;
+import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.ContestsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -94,13 +94,13 @@ Returns a list of contests for the provided member ref id and applied filters.
 
 ```java
 // Import classes:
-import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
-import com.ziqni.gamification.client.ApiResponse;
-import com.ziqni.gamification.client.Configuration;
-import com.ziqni.gamification.client.auth.*;
-import com.ziqni.gamification.client.models.*;
-import com.ziqni.gamification.client.api.ContestsApi;
+import com.ziqni.member.sdk.ApiClient;
+import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.ApiResponse;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.ContestsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {

@@ -38,6 +38,8 @@ import ContestResponse from './model/ContestResponse';
 import ContestStatus from './model/ContestStatus';
 import Dependancy from './model/Dependancy';
 import DependantOn from './model/DependantOn';
+import EntityChanged from './model/EntityChanged';
+import EntityStateChanged from './model/EntityStateChanged';
 import EntityType from './model/EntityType';
 import Error from './model/Error';
 import EventRefType from './model/EventRefType';
@@ -90,10 +92,14 @@ import ScoringStrategy from './model/ScoringStrategy';
 import SortOrder from './model/SortOrder';
 import Strategy from './model/Strategy';
 import StrategyType from './model/StrategyType';
+import Subscription from './model/Subscription';
+import SubscriptionRequest from './model/SubscriptionRequest';
+import SubscriptionResponse from './model/SubscriptionResponse';
 import Translation from './model/Translation';
 import TranslationEntry from './model/TranslationEntry';
 import TranslationRequest from './model/TranslationRequest';
 import TranslationResponse from './model/TranslationResponse';
+import UnsubscribeRequest from './model/UnsubscribeRequest';
 import AchievementsApi from './api/AchievementsApi';
 import AwardsApi from './api/AwardsApi';
 import CompetitionsApi from './api/CompetitionsApi';
@@ -101,6 +107,7 @@ import ContestsApi from './api/ContestsApi';
 import FilesApi from './api/FilesApi';
 import MembersApi from './api/MembersApi';
 import MessagesApi from './api/MessagesApi';
+import NotificationsApi from './api/NotificationsApi';
 import ProxyApi from './api/ProxyApi';
 import RewardsApi from './api/RewardsApi';
 import RulesApi from './api/RulesApi';
@@ -277,6 +284,16 @@ Dependancy,
  * @property {module:model/DependantOn}
  */
 DependantOn,
+/**
+ * The EntityChanged model constructor.
+ * @property {module:model/EntityChanged}
+ */
+EntityChanged,
+/**
+ * The EntityStateChanged model constructor.
+ * @property {module:model/EntityStateChanged}
+ */
+EntityStateChanged,
 /**
  * The EntityType model constructor.
  * @property {module:model/EntityType}
@@ -538,6 +555,21 @@ Strategy,
  */
 StrategyType,
 /**
+ * The Subscription model constructor.
+ * @property {module:model/Subscription}
+ */
+Subscription,
+/**
+ * The SubscriptionRequest model constructor.
+ * @property {module:model/SubscriptionRequest}
+ */
+SubscriptionRequest,
+/**
+ * The SubscriptionResponse model constructor.
+ * @property {module:model/SubscriptionResponse}
+ */
+SubscriptionResponse,
+/**
  * The Translation model constructor.
  * @property {module:model/Translation}
  */
@@ -557,6 +589,11 @@ TranslationRequest,
  * @property {module:model/TranslationResponse}
  */
 TranslationResponse,
+/**
+ * The UnsubscribeRequest model constructor.
+ * @property {module:model/UnsubscribeRequest}
+ */
+UnsubscribeRequest,
 /**
 * The AchievementsApi service constructor.
 * @property {module:api/AchievementsApi}
@@ -592,6 +629,11 @@ MembersApi,
 * @property {module:api/MessagesApi}
 */
 MessagesApi,
+/**
+* The NotificationsApi service constructor.
+* @property {module:api/NotificationsApi}
+*/
+NotificationsApi,
 /**
 * The ProxyApi service constructor.
 * @property {module:api/ProxyApi}

@@ -2,13 +2,15 @@
 
 # SubscriptionRequest
 
-Subscribes a client to receive out-of-band data
+
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**entityTypes** | [**List&lt;SubscriptionRequestItem&gt;**](SubscriptionRequestItem.md) |  |  |
+|**entityType** | **String** | What you are subscribing to, like Competition, Contest, Member, Award etc. |  |
+|**constraints** | **List&lt;String&gt;** | Constraints of this subscription. |  [optional] |
+|**callback** | **String** | The operation you are subscribing too. Like entityChanged or entityStateChanged |  |
 
 
 

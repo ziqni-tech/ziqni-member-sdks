@@ -21,12 +21,12 @@ This operation support retrieval of rules for one or many entities.
 
 ```java
 // Import classes:
-import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
-import com.ziqni.gamification.client.Configuration;
-import com.ziqni.gamification.client.auth.*;
-import com.ziqni.gamification.client.models.*;
-import com.ziqni.gamification.client.api.RulesApi;
+import com.ziqni.member.sdk.ApiClient;
+import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.RulesApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -94,13 +94,13 @@ This operation support retrieval of rules for one or many entities.
 
 ```java
 // Import classes:
-import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
-import com.ziqni.gamification.client.ApiResponse;
-import com.ziqni.gamification.client.Configuration;
-import com.ziqni.gamification.client.auth.*;
-import com.ziqni.gamification.client.models.*;
-import com.ziqni.gamification.client.api.RulesApi;
+import com.ziqni.member.sdk.ApiClient;
+import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.ApiResponse;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.RulesApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {

@@ -25,12 +25,12 @@ Returns member information for the provided member reference id
 
 ```java
 // Import classes:
-import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
-import com.ziqni.gamification.client.Configuration;
-import com.ziqni.gamification.client.auth.*;
-import com.ziqni.gamification.client.models.*;
-import com.ziqni.gamification.client.api.MembersApi;
+import com.ziqni.member.sdk.ApiClient;
+import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.MembersApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -98,13 +98,13 @@ Returns member information for the provided member reference id
 
 ```java
 // Import classes:
-import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
-import com.ziqni.gamification.client.ApiResponse;
-import com.ziqni.gamification.client.Configuration;
-import com.ziqni.gamification.client.auth.*;
-import com.ziqni.gamification.client.models.*;
-import com.ziqni.gamification.client.api.MembersApi;
+import com.ziqni.member.sdk.ApiClient;
+import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.ApiResponse;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.MembersApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -182,12 +182,12 @@ Returns a list of member optin information
 
 ```java
 // Import classes:
-import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
-import com.ziqni.gamification.client.Configuration;
-import com.ziqni.gamification.client.auth.*;
-import com.ziqni.gamification.client.models.*;
-import com.ziqni.gamification.client.api.MembersApi;
+import com.ziqni.member.sdk.ApiClient;
+import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.MembersApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -255,13 +255,13 @@ Returns a list of member optin information
 
 ```java
 // Import classes:
-import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
-import com.ziqni.gamification.client.ApiResponse;
-import com.ziqni.gamification.client.Configuration;
-import com.ziqni.gamification.client.auth.*;
-import com.ziqni.gamification.client.models.*;
-import com.ziqni.gamification.client.api.MembersApi;
+import com.ziqni.member.sdk.ApiClient;
+import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.ApiResponse;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.MembersApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -339,12 +339,12 @@ Returns member&#39;s active session information.
 
 ```java
 // Import classes:
-import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
-import com.ziqni.gamification.client.Configuration;
-import com.ziqni.gamification.client.auth.*;
-import com.ziqni.gamification.client.models.*;
-import com.ziqni.gamification.client.api.MembersApi;
+import com.ziqni.member.sdk.ApiClient;
+import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.MembersApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -412,13 +412,13 @@ Returns member&#39;s active session information.
 
 ```java
 // Import classes:
-import com.ziqni.gamification.client.ApiClient;
-import com.ziqni.gamification.client.ApiException;
-import com.ziqni.gamification.client.ApiResponse;
-import com.ziqni.gamification.client.Configuration;
-import com.ziqni.gamification.client.auth.*;
-import com.ziqni.gamification.client.models.*;
-import com.ziqni.gamification.client.api.MembersApi;
+import com.ziqni.member.sdk.ApiClient;
+import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.ApiResponse;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.MembersApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
