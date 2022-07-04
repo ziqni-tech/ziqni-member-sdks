@@ -15,9 +15,14 @@ package com.ziqni.gamification.client.api;
 
 import com.ziqni.gamification.client.ApiClientFactoryWs;
 import com.ziqni.gamification.client.ApiException;
+import com.ziqni.gamification.client.configuration.ApiClientConfig;
+import com.ziqni.gamification.client.data.LoadAchievementsData;
 import com.ziqni.gamification.client.data.LoadCompetitionsData;
+import com.ziqni.gamification.client.util.ApiClientFactoryUtil;
+import com.ziqni.gamification.client.util.TestMemberTokenLoader;
 import org.junit.jupiter.api.*;
 
+import static com.ziqni.gamification.client.util.TestMemberTokenLoader.TEST_MEMBER_TOKEN;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -26,13 +31,29 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWrapper {
 
-    private final CompetitionsApiWs api;
-    private final LoadCompetitionsData loadCompetitionsData;
+    private CompetitionsApiWs api;
+    private LoadCompetitionsData loadCompetitionsData;
 
+    @BeforeAll
+    public void start() throws Exception {
+        TestMemberTokenLoader testMemberTokenLoader = new TestMemberTokenLoader();
+        MemberTokenRequest tokenRequest = new MemberTokenRequest()
+                .apiKey(testMemberTokenLoader.getApiKey())
+                .expires(0)
+                .isReferenceId(true)
+                .member(TEST_MEMBER_TOKEN)
+                .resource("ziqni-gapi");
 
-    public CompetitionsApiTest() {
+        ApiClientConfig.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
+
         this.api = ApiClientFactoryWs.getCompetitionsApi();
         this.loadCompetitionsData = new LoadCompetitionsData();
+        ApiClientFactoryUtil.initApiClientFactory();
+    }
+
+    @AfterAll
+    public  void stop(){
+        ApiClientFactoryWs.getStreamingClient().stop();
     }
 
     /**

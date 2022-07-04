@@ -15,8 +15,12 @@ package com.ziqni.gamification.client.api;
 
 import com.ziqni.gamification.client.ApiClientFactoryWs;
 import com.ziqni.gamification.client.ApiException;
+import com.ziqni.gamification.client.configuration.ApiClientConfig;
+import com.ziqni.gamification.client.data.LoadCompetitionsData;
 import com.ziqni.gamification.client.data.LoadContestsData;
 import com.ziqni.gamification.client.model.*;
+import com.ziqni.gamification.client.util.ApiClientFactoryUtil;
+import com.ziqni.gamification.client.util.TestMemberTokenLoader;
 import org.junit.jupiter.api.*;
 
 import java.awt.*;
@@ -27,6 +31,7 @@ import java.util.Map;
 
 import java.util.concurrent.CompletableFuture;
 
+import static com.ziqni.gamification.client.util.TestMemberTokenLoader.TEST_MEMBER_TOKEN;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -37,14 +42,31 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ContestsApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
-    private final ContestsApiWs api;
-    private final LoadContestsData loadContestsData;
+    private ContestsApiWs api;
+    private LoadContestsData loadContestsData;
 
-    public ContestsApiTest(){
+    @BeforeAll
+    public void start() throws Exception {
+        TestMemberTokenLoader testMemberTokenLoader = new TestMemberTokenLoader();
+        MemberTokenRequest tokenRequest = new MemberTokenRequest()
+                .apiKey(testMemberTokenLoader.getApiKey())
+                .expires(0)
+                .isReferenceId(true)
+                .member(TEST_MEMBER_TOKEN)
+                .resource("ziqni-gapi");
+
+        ApiClientConfig.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
+
         this.api = ApiClientFactoryWs.getContestsApi();
         this.loadContestsData = new LoadContestsData();
+        ApiClientFactoryUtil.initApiClientFactory();
     }
-    
+
+    @AfterAll
+    public  void stop(){
+        ApiClientFactoryWs.getStreamingClient().stop();
+    }
+
     /**
      * Get contests by member reference Id
      *
