@@ -26,10 +26,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -51,7 +47,7 @@ public class SubscriptionRequest {
   private List<String> constraints = null;
 
   public static final String JSON_PROPERTY_CALLBACK = "callback";
-  private JsonNullable<Object> callback = JsonNullable.<Object>of(null);
+  private String callback;
 
   public SubscriptionRequest() { 
   }
@@ -116,8 +112,8 @@ public class SubscriptionRequest {
   }
 
 
-  public SubscriptionRequest callback(Object callback) {
-    this.callback = JsonNullable.<Object>of(callback);
+  public SubscriptionRequest callback(String callback) {
+    this.callback = callback;
     return this;
   }
 
@@ -125,28 +121,20 @@ public class SubscriptionRequest {
    * The operation you are subscribing too. Like entityChanged or entityStateChanged
    * @return callback
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The operation you are subscribing too. Like entityChanged or entityStateChanged")
-  @JsonIgnore
-
-  public Object getCallback() {
-        return callback.orElse(null);
-  }
-
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "The operation you are subscribing too. Like entityChanged or entityStateChanged")
   @JsonProperty(JSON_PROPERTY_CALLBACK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public JsonNullable<Object> getCallback_JsonNullable() {
+  public String getCallback() {
     return callback;
   }
-  
-  @JsonProperty(JSON_PROPERTY_CALLBACK)
-  public void setCallback_JsonNullable(JsonNullable<Object> callback) {
-    this.callback = callback;
-  }
 
-  public void setCallback(Object callback) {
-    this.callback = JsonNullable.<Object>of(callback);
+
+  @JsonProperty(JSON_PROPERTY_CALLBACK)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCallback(String callback) {
+    this.callback = callback;
   }
 
 
@@ -164,23 +152,12 @@ public class SubscriptionRequest {
     SubscriptionRequest subscriptionRequest = (SubscriptionRequest) o;
     return Objects.equals(this.entityType, subscriptionRequest.entityType) &&
         Objects.equals(this.constraints, subscriptionRequest.constraints) &&
-        equalsNullable(this.callback, subscriptionRequest.callback);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+        Objects.equals(this.callback, subscriptionRequest.callback);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(entityType, constraints, hashCodeNullable(callback));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(entityType, constraints, callback);
   }
 
   @Override

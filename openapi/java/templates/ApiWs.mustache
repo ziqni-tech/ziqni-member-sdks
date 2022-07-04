@@ -49,7 +49,7 @@ import java.util.function.BiConsumer;
 {{/callbacks.0}}
 
 {{#callbacks}}{{#urls}}{{#requests}}
-    public {{classname}}Ws {{operationId}}Handler({{#allParams}}BiConsumer<StompHeaders, {{{dataType}}}> {{{paramName}}}{{/allParams}}, BiConsumer<StompHeaders, ApiException> onApiException){
+    public {{classname}}Ws {{name}}Handler({{#allParams}}BiConsumer<StompHeaders, {{{dataType}}}> {{{paramName}}}{{/allParams}}, BiConsumer<StompHeaders, ApiException> onApiException){
         {{#allParams}}streamingClient.getCallbackEventHandler().registerCallbackHandler(new CallbackConsumer<{{{dataType}}}>({{{dataType}}}.class, "{{{paramName}}}", {{{paramName}}}, onApiException));{{/allParams}}
         return this;
     }

@@ -44,11 +44,11 @@ public class SampleApp {
             return ApiClientFactoryWs.getStreamingClient().start();
         }).thenAccept(aBoolean -> {
             ApiClientFactoryWs.getSubscriptionsApi()
-                    .entityChangedPostHandler(
+                    .entityChangedHandler(
                         ((stompHeaders, entityChanged) -> {}),
                         (stompHeaders, error) -> {}
                     )
-                    .entityStateChangedPostHandler(
+                    .entityStateChangedHandler(
                             ((stompHeaders, entityStateChanged) -> {}),
                             (stompHeaders, error) -> {}
                     );

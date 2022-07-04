@@ -3799,18 +3799,6 @@ components:
           $ref: '#/components/schemas/ModelDefault'
         -
           $ref: '#/components/schemas/OptionalModelFields'
-    SubscriptionResponse:
-      description: ''
-      required:
-        - subscriptions
-      type: object
-      properties:
-        subscriptions:
-          description: this unique identifier allows management of the subscription
-          type: array
-          items:
-            $ref: '#/components/schemas/Subscription'
-      example: 2531329f-fb09-4ef7-887e-84e648214436
     Subscription:
       description: Subscribes a client to receive out-of-band data
       required:
@@ -3933,6 +3921,7 @@ components:
       description: ''
       required:
         - entityType
+        - callback
       type: object
       properties:
         entityType:
@@ -3945,6 +3934,27 @@ components:
             type: string
         callback:
           description: The operation you are subscribing too. Like entityChanged or entityStateChanged
+          type: string
+    SubscriptionResponse:
+      description: ''
+      required:
+        - subscriptions
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      example: 2531329f-fb09-4ef7-887e-84e648214436
   responses:
     AchievementResponseBody:
       content:

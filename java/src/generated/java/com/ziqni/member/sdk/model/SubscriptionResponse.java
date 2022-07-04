@@ -22,6 +22,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.ziqni.member.sdk.model.Error;
+import com.ziqni.member.sdk.model.ResponseMeta;
 import com.ziqni.member.sdk.model.Subscription;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -35,44 +37,115 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @ApiModel(description = "")
 @JsonPropertyOrder({
-  SubscriptionResponse.JSON_PROPERTY_SUBSCRIPTIONS
+  SubscriptionResponse.JSON_PROPERTY_META,
+  SubscriptionResponse.JSON_PROPERTY_DATA,
+  SubscriptionResponse.JSON_PROPERTY_ERRORS
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionResponse {
-  public static final String JSON_PROPERTY_SUBSCRIPTIONS = "subscriptions";
-  private List<Subscription> subscriptions = new ArrayList<>();
+  public static final String JSON_PROPERTY_META = "meta";
+  private ResponseMeta meta;
+
+  public static final String JSON_PROPERTY_DATA = "data";
+  private List<Subscription> data = null;
+
+  public static final String JSON_PROPERTY_ERRORS = "errors";
+  private List<Error> errors = null;
 
   public SubscriptionResponse() { 
   }
 
-  public SubscriptionResponse subscriptions(List<Subscription> subscriptions) {
-    this.subscriptions = subscriptions;
-    return this;
-  }
-
-  public SubscriptionResponse addSubscriptionsItem(Subscription subscriptionsItem) {
-    this.subscriptions.add(subscriptionsItem);
+  public SubscriptionResponse meta(ResponseMeta meta) {
+    this.meta = meta;
     return this;
   }
 
    /**
-   * this unique identifier allows management of the subscription
-   * @return subscriptions
+   * Get meta
+   * @return meta
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "this unique identifier allows management of the subscription")
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTIONS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_META)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Subscription> getSubscriptions() {
-    return subscriptions;
+  public ResponseMeta getMeta() {
+    return meta;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTIONS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSubscriptions(List<Subscription> subscriptions) {
-    this.subscriptions = subscriptions;
+  @JsonProperty(JSON_PROPERTY_META)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMeta(ResponseMeta meta) {
+    this.meta = meta;
+  }
+
+
+  public SubscriptionResponse data(List<Subscription> data) {
+    this.data = data;
+    return this;
+  }
+
+  public SubscriptionResponse addDataItem(Subscription dataItem) {
+    if (this.data == null) {
+      this.data = new ArrayList<>();
+    }
+    this.data.add(dataItem);
+    return this;
+  }
+
+   /**
+   * 
+   * @return data
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<Subscription> getData() {
+    return data;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setData(List<Subscription> data) {
+    this.data = data;
+  }
+
+
+  public SubscriptionResponse errors(List<Error> errors) {
+    this.errors = errors;
+    return this;
+  }
+
+  public SubscriptionResponse addErrorsItem(Error errorsItem) {
+    if (this.errors == null) {
+      this.errors = new ArrayList<>();
+    }
+    this.errors.add(errorsItem);
+    return this;
+  }
+
+   /**
+   * 
+   * @return errors
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_ERRORS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<Error> getErrors() {
+    return errors;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ERRORS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setErrors(List<Error> errors) {
+    this.errors = errors;
   }
 
 
@@ -88,19 +161,23 @@ public class SubscriptionResponse {
       return false;
     }
     SubscriptionResponse subscriptionResponse = (SubscriptionResponse) o;
-    return Objects.equals(this.subscriptions, subscriptionResponse.subscriptions);
+    return Objects.equals(this.meta, subscriptionResponse.meta) &&
+        Objects.equals(this.data, subscriptionResponse.data) &&
+        Objects.equals(this.errors, subscriptionResponse.errors);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subscriptions);
+    return Objects.hash(meta, data, errors);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SubscriptionResponse {\n");
-    sb.append("    subscriptions: ").append(toIndentedString(subscriptions)).append("\n");
+    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("}");
     return sb.toString();
   }
