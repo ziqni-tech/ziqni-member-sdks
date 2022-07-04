@@ -1,9 +1,12 @@
 /*
  * Copyright (c) 2022. ZIQNI LTD registered in England and Wales, company registration number-09693684
  */
-package com.ziqni.member.sdk.streaming;
+package com.ziqni.member.sdk.streaming.handlers;
 
 import com.fasterxml.jackson.databind.JavaType;
+import com.ziqni.member.sdk.streaming.ApiCallbackResponse;
+import com.ziqni.member.sdk.streaming.EventHandler;
+import com.ziqni.member.sdk.streaming.Message;
 import com.ziqni.member.sdk.util.ClassScanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -13,13 +13,16 @@
 package com.ziqni.member.sdk.api;
 import javax.ws.rs.core.GenericType;
 import com.ziqni.member.sdk.streaming.StreamingClient;
+import com.ziqni.member.sdk.streaming.EventHandler;
+import com.ziqni.member.sdk.streaming.handlers.CallbackConsumer;
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.member.sdk.model.ProxyRequest;
-import com.ziqni.member.sdk.model.ProxyResponse;
+import org.springframework.messaging.simp.stomp.StompHeaders;
+    import com.ziqni.member.sdk.model.ProxyRequest;
+    import com.ziqni.member.sdk.model.ProxyResponse;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.ziqni.member.sdk.model.*;
 import java.time.Duration;
     import java.util.*;
 //asyncNative:true
@@ -31,51 +34,49 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
-import java.util.function.Consumer;
-
+import java.util.function.BiConsumer;
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ProxyApiWs {
+    public class ProxyApiWs {
 
     private final Duration memberVarReadTimeout;
     private final StreamingClient streamingClient;
 
     public ProxyApiWs(StreamingClient streamingClient, Duration readTimeout) {
-        this.streamingClient = streamingClient;
-        this.memberVarReadTimeout = readTimeout;
+    this.streamingClient = streamingClient;
+    this.memberVarReadTimeout = readTimeout;
     }
 
-/**
-*/
-    /**
-    * Proxy
-    * Perform proxy operations.
-        * @param proxyRequest  (required)
-        * @return CompletableFuture&lt;ProxyResponse&gt;
-    * @throws ApiException if fails to make API call
-    */
-    public CompletableFuture<ProxyResponse> proxy(ProxyRequest proxyRequest) {
-        var request = new HashMap<String, Object>();
-    
-        
 
-    
-        
+            /**
+            * Proxy
+            * Perform proxy operations.
+                * @param proxyRequest  (required)
+                * @return CompletableFuture&lt;ProxyResponse&gt;
+            * @throws ApiException if fails to make API call
+            */
+            public CompletableFuture<ProxyResponse> proxy(ProxyRequest proxyRequest) {
+                var request = new HashMap<String, Object>();
+            
+                        
 
-    request.put("body",proxyRequest);
+            
+                        
 
-        CompletableFuture<ProxyResponse> result = this.streamingClient.sendWithApiCallback("/gapi/proxy", request);
-        return result;
-    }
+            request.put("body",proxyRequest);
 
-    private ApiException getApiException(String operationId, HttpResponse<String> response) {
+            CompletableFuture<ProxyResponse> result = this.streamingClient.sendWithApiCallback("/gapi/proxy", request);
+            return result;
+        }
+
+        private ApiException getApiException(String operationId, HttpResponse<String> response) {
         String message = formatExceptionMessage(operationId, response.statusCode(), response.body());
         return new ApiException(response.statusCode(), message, response.headers(), response.body());
     }
 
     private String formatExceptionMessage(String operationId, int statusCode, String body) {
-        if (body == null || body.isEmpty()) {
-            body = "[no body]";
-        }
-        return operationId + " call failed with: " + statusCode + " - " + body;
+    if (body == null || body.isEmpty()) {
+    body = "[no body]";
+    }
+    return operationId + " call failed with: " + statusCode + " - " + body;
     }
 }

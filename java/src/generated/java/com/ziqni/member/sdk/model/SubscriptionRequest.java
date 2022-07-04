@@ -22,57 +22,131 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.ziqni.member.sdk.model.SubscriptionRequestItem;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * Subscribes a client to receive out-of-band data
+ * 
  */
-@ApiModel(description = "Subscribes a client to receive out-of-band data")
+@ApiModel(description = "")
 @JsonPropertyOrder({
-  SubscriptionRequest.JSON_PROPERTY_ENTITY_TYPES
+  SubscriptionRequest.JSON_PROPERTY_ENTITY_TYPE,
+  SubscriptionRequest.JSON_PROPERTY_CONSTRAINTS,
+  SubscriptionRequest.JSON_PROPERTY_CALLBACK
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionRequest {
-  public static final String JSON_PROPERTY_ENTITY_TYPES = "entityTypes";
-  private List<SubscriptionRequestItem> entityTypes = new ArrayList<>();
+  public static final String JSON_PROPERTY_ENTITY_TYPE = "entityType";
+  private String entityType;
+
+  public static final String JSON_PROPERTY_CONSTRAINTS = "constraints";
+  private List<String> constraints = null;
+
+  public static final String JSON_PROPERTY_CALLBACK = "callback";
+  private JsonNullable<Object> callback = JsonNullable.<Object>of(null);
 
   public SubscriptionRequest() { 
   }
 
-  public SubscriptionRequest entityTypes(List<SubscriptionRequestItem> entityTypes) {
-    this.entityTypes = entityTypes;
-    return this;
-  }
-
-  public SubscriptionRequest addEntityTypesItem(SubscriptionRequestItem entityTypesItem) {
-    this.entityTypes.add(entityTypesItem);
+  public SubscriptionRequest entityType(String entityType) {
+    this.entityType = entityType;
     return this;
   }
 
    /**
-   * 
-   * @return entityTypes
+   * What you are subscribing to, like Competition, Contest, Member, Award etc.
+   * @return entityType
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_ENTITY_TYPES)
+  @ApiModelProperty(required = true, value = "What you are subscribing to, like Competition, Contest, Member, Award etc.")
+  @JsonProperty(JSON_PROPERTY_ENTITY_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<SubscriptionRequestItem> getEntityTypes() {
-    return entityTypes;
+  public String getEntityType() {
+    return entityType;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ENTITY_TYPES)
+  @JsonProperty(JSON_PROPERTY_ENTITY_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setEntityTypes(List<SubscriptionRequestItem> entityTypes) {
-    this.entityTypes = entityTypes;
+  public void setEntityType(String entityType) {
+    this.entityType = entityType;
+  }
+
+
+  public SubscriptionRequest constraints(List<String> constraints) {
+    this.constraints = constraints;
+    return this;
+  }
+
+  public SubscriptionRequest addConstraintsItem(String constraintsItem) {
+    if (this.constraints == null) {
+      this.constraints = new ArrayList<>();
+    }
+    this.constraints.add(constraintsItem);
+    return this;
+  }
+
+   /**
+   * Constraints of this subscription.
+   * @return constraints
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Constraints of this subscription.")
+  @JsonProperty(JSON_PROPERTY_CONSTRAINTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<String> getConstraints() {
+    return constraints;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CONSTRAINTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setConstraints(List<String> constraints) {
+    this.constraints = constraints;
+  }
+
+
+  public SubscriptionRequest callback(Object callback) {
+    this.callback = JsonNullable.<Object>of(callback);
+    return this;
+  }
+
+   /**
+   * The operation you are subscribing too. Like entityChanged or entityStateChanged
+   * @return callback
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The operation you are subscribing too. Like entityChanged or entityStateChanged")
+  @JsonIgnore
+
+  public Object getCallback() {
+        return callback.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_CALLBACK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Object> getCallback_JsonNullable() {
+    return callback;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CALLBACK)
+  public void setCallback_JsonNullable(JsonNullable<Object> callback) {
+    this.callback = callback;
+  }
+
+  public void setCallback(Object callback) {
+    this.callback = JsonNullable.<Object>of(callback);
   }
 
 
@@ -88,19 +162,34 @@ public class SubscriptionRequest {
       return false;
     }
     SubscriptionRequest subscriptionRequest = (SubscriptionRequest) o;
-    return Objects.equals(this.entityTypes, subscriptionRequest.entityTypes);
+    return Objects.equals(this.entityType, subscriptionRequest.entityType) &&
+        Objects.equals(this.constraints, subscriptionRequest.constraints) &&
+        equalsNullable(this.callback, subscriptionRequest.callback);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(entityTypes);
+    return Objects.hash(entityType, constraints, hashCodeNullable(callback));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SubscriptionRequest {\n");
-    sb.append("    entityTypes: ").append(toIndentedString(entityTypes)).append("\n");
+    sb.append("    entityType: ").append(toIndentedString(entityType)).append("\n");
+    sb.append("    constraints: ").append(toIndentedString(constraints)).append("\n");
+    sb.append("    callback: ").append(toIndentedString(callback)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -14,57 +14,62 @@
 package com.ziqni.member.sdk.model;
 
 import java.util.Objects;
-
+import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * subscription information
+ * 
  */
-@ApiModel(description = "subscription information")
+@ApiModel(description = "")
 @JsonPropertyOrder({
-  SubscribePost201Response.JSON_PROPERTY_SUBSCRIPTION_ID
+  UnsubscribeRequest.JSON_PROPERTY_SUNSCRIPTION_ID
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class SubscribePost201Response {
-  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
-  private String subscriptionId;
+public class UnsubscribeRequest {
+  public static final String JSON_PROPERTY_SUNSCRIPTION_ID = "sunscriptionId";
+  private String sunscriptionId;
 
-  public SubscribePost201Response() { 
+  public UnsubscribeRequest() { 
   }
 
-  public SubscribePost201Response subscriptionId(String subscriptionId) {
-    this.subscriptionId = subscriptionId;
+  public UnsubscribeRequest sunscriptionId(String sunscriptionId) {
+    this.sunscriptionId = sunscriptionId;
     return this;
   }
 
    /**
-   * this unique identifier allows management of the subscription
-   * @return subscriptionId
+   * 
+   * @return sunscriptionId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2531329f-fb09-4ef7-887e-84e648214436", required = true, value = "this unique identifier allows management of the subscription")
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_SUNSCRIPTION_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getSubscriptionId() {
-    return subscriptionId;
+  public String getSunscriptionId() {
+    return sunscriptionId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  @JsonProperty(JSON_PROPERTY_SUNSCRIPTION_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSubscriptionId(String subscriptionId) {
-    this.subscriptionId = subscriptionId;
+  public void setSunscriptionId(String sunscriptionId) {
+    this.sunscriptionId = sunscriptionId;
   }
 
 
   /**
-   * Return true if this _subscribe_post_201_response object is equal to o.
+   * Return true if this UnsubscribeRequest object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -74,20 +79,20 @@ public class SubscribePost201Response {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SubscribePost201Response subscribePost201Response = (SubscribePost201Response) o;
-    return Objects.equals(this.subscriptionId, subscribePost201Response.subscriptionId);
+    UnsubscribeRequest unsubscribeRequest = (UnsubscribeRequest) o;
+    return Objects.equals(this.sunscriptionId, unsubscribeRequest.sunscriptionId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subscriptionId);
+    return Objects.hash(sunscriptionId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SubscribePost201Response {\n");
-    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
+    sb.append("class UnsubscribeRequest {\n");
+    sb.append("    sunscriptionId: ").append(toIndentedString(sunscriptionId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

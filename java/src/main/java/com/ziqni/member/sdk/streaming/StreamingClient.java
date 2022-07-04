@@ -3,6 +3,10 @@
  */
 package com.ziqni.member.sdk.streaming;
 
+import com.ziqni.member.sdk.streaming.handlers.ApiCallbackEventHandler;
+import com.ziqni.member.sdk.streaming.handlers.CallbackEventHandler;
+import com.ziqni.member.sdk.streaming.handlers.MessageEventHandler;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.*;
@@ -20,6 +24,7 @@ public class StreamingClient {
 
     private final WsClient wsClient;
     private final ApiCallbackEventHandler apiCallbackEventHandler;
+    private final CallbackEventHandler callbackEventHandler;
     private final MessageEventHandler messageEventHandler;
 
     public StreamingClient(String URL) throws ExecutionException, InterruptedException {
@@ -28,6 +33,7 @@ public class StreamingClient {
         this.websocketSendExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, webSocketClientTasks);
         this.wsClient = new WsClient(URL, connectionState::set);
         this.apiCallbackEventHandler = ApiCallbackEventHandler.create();
+        this.callbackEventHandler = CallbackEventHandler.create();
         this.messageEventHandler = MessageEventHandler.create();
     }
 
@@ -85,6 +91,10 @@ public class StreamingClient {
         return result;
     }
 
+    public void subscribe(EventHandler<?> handler) {
+        this.wsClient.subscribe(handler);
+    }
+
     public void addOnStopHandler(String key, Consumer<StreamingClient> consumer){
         this.onStopHandlers.compute( key, (k,v) -> consumer);
     }
@@ -105,6 +115,9 @@ public class StreamingClient {
         );
     }
 
+    public CallbackEventHandler getCallbackEventHandler() {
+        return callbackEventHandler;
+    }
 
     /** Helper methods **/
 

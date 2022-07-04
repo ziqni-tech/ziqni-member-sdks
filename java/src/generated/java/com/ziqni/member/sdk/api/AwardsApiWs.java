@@ -13,14 +13,17 @@
 package com.ziqni.member.sdk.api;
 import javax.ws.rs.core.GenericType;
 import com.ziqni.member.sdk.streaming.StreamingClient;
+import com.ziqni.member.sdk.streaming.EventHandler;
+import com.ziqni.member.sdk.streaming.handlers.CallbackConsumer;
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.member.sdk.model.AwardRequest;
-import com.ziqni.member.sdk.model.AwardResponse;
-import com.ziqni.member.sdk.model.ClaimAwardRequest;
+import org.springframework.messaging.simp.stomp.StompHeaders;
+    import com.ziqni.member.sdk.model.AwardRequest;
+    import com.ziqni.member.sdk.model.AwardResponse;
+    import com.ziqni.member.sdk.model.ClaimAwardRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.ziqni.member.sdk.model.*;
 import java.time.Duration;
     import java.util.*;
 //asyncNative:true
@@ -32,73 +35,71 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
-import java.util.function.Consumer;
-
+import java.util.function.BiConsumer;
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class AwardsApiWs {
+    public class AwardsApiWs {
 
     private final Duration memberVarReadTimeout;
     private final StreamingClient streamingClient;
 
     public AwardsApiWs(StreamingClient streamingClient, Duration readTimeout) {
-        this.streamingClient = streamingClient;
-        this.memberVarReadTimeout = readTimeout;
+    this.streamingClient = streamingClient;
+    this.memberVarReadTimeout = readTimeout;
     }
 
-/**
-*/
-    /**
-    * Claim awards.
-    * This operation enables a member to claim awards.
-        * @param claimAwardRequest  (required)
-        * @return CompletableFuture&lt;AwardResponse&gt;
-    * @throws ApiException if fails to make API call
-    */
-    public CompletableFuture<AwardResponse> claimAwards(ClaimAwardRequest claimAwardRequest) {
-        var request = new HashMap<String, Object>();
-    
-        
 
-    
-        
+            /**
+            * Claim awards.
+            * This operation enables a member to claim awards.
+                * @param claimAwardRequest  (required)
+                * @return CompletableFuture&lt;AwardResponse&gt;
+            * @throws ApiException if fails to make API call
+            */
+            public CompletableFuture<AwardResponse> claimAwards(ClaimAwardRequest claimAwardRequest) {
+                var request = new HashMap<String, Object>();
+            
+                        
 
-    request.put("body",claimAwardRequest);
+            
+                        
 
-        CompletableFuture<AwardResponse> result = this.streamingClient.sendWithApiCallback("/gapi/claimAwards", request);
-        return result;
-    }
-/**
-*/
-    /**
-    * Get awards.
-    * This operation supports retrieval of awards for one or many entities.
-        * @param awardRequest  (required)
-        * @return CompletableFuture&lt;AwardResponse&gt;
-    * @throws ApiException if fails to make API call
-    */
-    public CompletableFuture<AwardResponse> getAwards(AwardRequest awardRequest) {
-        var request = new HashMap<String, Object>();
-    
-        
+            request.put("body",claimAwardRequest);
 
-    
-        
+            CompletableFuture<AwardResponse> result = this.streamingClient.sendWithApiCallback("/gapi/claimAwards", request);
+            return result;
+        }
 
-    request.put("body",awardRequest);
 
-        CompletableFuture<AwardResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getAwards", request);
-        return result;
-    }
+            /**
+            * Get awards.
+            * This operation supports retrieval of awards for one or many entities.
+                * @param awardRequest  (required)
+                * @return CompletableFuture&lt;AwardResponse&gt;
+            * @throws ApiException if fails to make API call
+            */
+            public CompletableFuture<AwardResponse> getAwards(AwardRequest awardRequest) {
+                var request = new HashMap<String, Object>();
+            
+                        
 
-    private ApiException getApiException(String operationId, HttpResponse<String> response) {
+            
+                        
+
+            request.put("body",awardRequest);
+
+            CompletableFuture<AwardResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getAwards", request);
+            return result;
+        }
+
+        private ApiException getApiException(String operationId, HttpResponse<String> response) {
         String message = formatExceptionMessage(operationId, response.statusCode(), response.body());
         return new ApiException(response.statusCode(), message, response.headers(), response.body());
     }
 
     private String formatExceptionMessage(String operationId, int statusCode, String body) {
-        if (body == null || body.isEmpty()) {
-            body = "[no body]";
-        }
-        return operationId + " call failed with: " + statusCode + " - " + body;
+    if (body == null || body.isEmpty()) {
+    body = "[no body]";
+    }
+    return operationId + " call failed with: " + statusCode + " - " + body;
     }
 }

@@ -1,17 +1,17 @@
-# SystemNotificationsApi
+# SubscriptionsApi
 
 All URIs are relative to *https://gamification-api.ziqni.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**systemNotificationsPost**](SystemNotificationsApi.md#systemNotificationsPost) | **POST** /system-notifications |  |
-| [**systemNotificationsPostWithHttpInfo**](SystemNotificationsApi.md#systemNotificationsPostWithHttpInfo) | **POST** /system-notifications |  |
+| [**subscribeToNotifications**](SubscriptionsApi.md#subscribeToNotifications) | **POST** /subscribe |  |
+| [**subscribeToNotificationsWithHttpInfo**](SubscriptionsApi.md#subscribeToNotificationsWithHttpInfo) | **POST** /subscribe |  |
 
 
 
-## systemNotificationsPost
+## subscribeToNotifications
 
-> CompletableFuture<SubscriptionResponse> systemNotificationsPost(subscriptionRequest)
+> CompletableFuture<SubscriptionResponse> subscribeToNotifications(subscriptionRequest)
 
 
 
@@ -25,7 +25,7 @@ import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
 import com.ziqni.member.sdk.models.*;
-import com.ziqni.member.sdk.api.SystemNotificationsApi;
+import com.ziqni.member.sdk.api.SubscriptionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -33,13 +33,13 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://gamification-api.ziqni.com");
 
-        SystemNotificationsApi apiInstance = new SystemNotificationsApi(defaultClient);
-        SubscriptionRequest subscriptionRequest = new SubscriptionRequest(); // SubscriptionRequest | 
+        SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
+        SubscriptionRequest subscriptionRequest = new SubscriptionRequest(); // SubscriptionRequest | subscription payload
         try {
-            CompletableFuture<SubscriptionResponse> result = apiInstance.systemNotificationsPost(subscriptionRequest);
+            CompletableFuture<SubscriptionResponse> result = apiInstance.subscribeToNotifications(subscriptionRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling SystemNotificationsApi#systemNotificationsPost");
+            System.err.println("Exception when calling SubscriptionsApi#subscribeToNotifications");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -54,7 +54,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **subscriptionRequest** | [**SubscriptionRequest**](SubscriptionRequest.md)|  | |
+| **subscriptionRequest** | [**SubscriptionRequest**](SubscriptionRequest.md)| subscription payload | |
 
 ### Return type
 
@@ -77,9 +77,9 @@ No authorization required
 | **400** |  |  -  |
 | **500** |  |  -  |
 
-## systemNotificationsPostWithHttpInfo
+## subscribeToNotificationsWithHttpInfo
 
-> CompletableFuture<ApiResponse<SubscriptionResponse>> systemNotificationsPost systemNotificationsPostWithHttpInfo(subscriptionRequest)
+> CompletableFuture<ApiResponse<SubscriptionResponse>> subscribeToNotifications subscribeToNotificationsWithHttpInfo(subscriptionRequest)
 
 
 
@@ -94,7 +94,7 @@ import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
 import com.ziqni.member.sdk.models.*;
-import com.ziqni.member.sdk.api.SystemNotificationsApi;
+import com.ziqni.member.sdk.api.SubscriptionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -102,22 +102,22 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://gamification-api.ziqni.com");
 
-        SystemNotificationsApi apiInstance = new SystemNotificationsApi(defaultClient);
-        SubscriptionRequest subscriptionRequest = new SubscriptionRequest(); // SubscriptionRequest | 
+        SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
+        SubscriptionRequest subscriptionRequest = new SubscriptionRequest(); // SubscriptionRequest | subscription payload
         try {
-            CompletableFuture<ApiResponse<SubscriptionResponse>> response = apiInstance.systemNotificationsPostWithHttpInfo(subscriptionRequest);
+            CompletableFuture<ApiResponse<SubscriptionResponse>> response = apiInstance.subscribeToNotificationsWithHttpInfo(subscriptionRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling SystemNotificationsApi#systemNotificationsPost");
+            System.err.println("Exception when calling SubscriptionsApi#subscribeToNotifications");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling SystemNotificationsApi#systemNotificationsPost");
+            System.err.println("Exception when calling SubscriptionsApi#subscribeToNotifications");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -132,7 +132,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **subscriptionRequest** | [**SubscriptionRequest**](SubscriptionRequest.md)|  | |
+| **subscriptionRequest** | [**SubscriptionRequest**](SubscriptionRequest.md)| subscription payload | |
 
 ### Return type
 

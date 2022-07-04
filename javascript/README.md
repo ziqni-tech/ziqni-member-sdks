@@ -134,6 +134,7 @@ Class | Method | HTTP request | Description
 *@ZiqniTechGamificationApiClient.MembersApi* | [**getMemberOptinInfo**](docs/MembersApi.md#getMemberOptinInfo) | **POST** /member-manage-optin | Get member optin information
 *@ZiqniTechGamificationApiClient.MembersApi* | [**getMemberSession**](docs/MembersApi.md#getMemberSession) | **POST** /member-session | Get member session by member reference id
 *@ZiqniTechGamificationApiClient.MessagesApi* | [**getMessages**](docs/MessagesApi.md#getMessages) | **POST** /messages | Get messages by member reference id
+*@ZiqniTechGamificationApiClient.NotificationsApi* | [**subscribeToNotifications**](docs/NotificationsApi.md#subscribeToNotifications) | **POST** /subscribe | 
 *@ZiqniTechGamificationApiClient.ProxyApi* | [**proxy**](docs/ProxyApi.md#proxy) | **POST** /proxy | Proxy
 *@ZiqniTechGamificationApiClient.RewardsApi* | [**getRewards**](docs/RewardsApi.md#getRewards) | **POST** /rewards | Get rewards
 *@ZiqniTechGamificationApiClient.RulesApi* | [**getRules**](docs/RulesApi.md#getRules) | **POST** /rules | Get rules
@@ -168,6 +169,8 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechGamificationApiClient.ContestStatus](docs/ContestStatus.md)
  - [@ZiqniTechGamificationApiClient.Dependancy](docs/Dependancy.md)
  - [@ZiqniTechGamificationApiClient.DependantOn](docs/DependantOn.md)
+ - [@ZiqniTechGamificationApiClient.EntityChanged](docs/EntityChanged.md)
+ - [@ZiqniTechGamificationApiClient.EntityStateChanged](docs/EntityStateChanged.md)
  - [@ZiqniTechGamificationApiClient.EntityType](docs/EntityType.md)
  - [@ZiqniTechGamificationApiClient.Error](docs/Error.md)
  - [@ZiqniTechGamificationApiClient.EventRefType](docs/EventRefType.md)
@@ -220,10 +223,14 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechGamificationApiClient.SortOrder](docs/SortOrder.md)
  - [@ZiqniTechGamificationApiClient.Strategy](docs/Strategy.md)
  - [@ZiqniTechGamificationApiClient.StrategyType](docs/StrategyType.md)
+ - [@ZiqniTechGamificationApiClient.Subscription](docs/Subscription.md)
+ - [@ZiqniTechGamificationApiClient.SubscriptionRequest](docs/SubscriptionRequest.md)
+ - [@ZiqniTechGamificationApiClient.SubscriptionResponse](docs/SubscriptionResponse.md)
  - [@ZiqniTechGamificationApiClient.Translation](docs/Translation.md)
  - [@ZiqniTechGamificationApiClient.TranslationEntry](docs/TranslationEntry.md)
  - [@ZiqniTechGamificationApiClient.TranslationRequest](docs/TranslationRequest.md)
  - [@ZiqniTechGamificationApiClient.TranslationResponse](docs/TranslationResponse.md)
+ - [@ZiqniTechGamificationApiClient.UnsubscribeRequest](docs/UnsubscribeRequest.md)
 
 
 ## Documentation for Authorization

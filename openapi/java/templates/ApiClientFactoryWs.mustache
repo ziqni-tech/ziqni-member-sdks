@@ -44,8 +44,13 @@ public abstract class ApiClientFactoryWs {
         assert getInitialised();
         return streamingClient;
     }
-
     {{#apiInfo}}{{#apis}} public static {{classname}}Ws get{{classname}}() {
+        /**
+        ------{{#operations}}{{#operation}}{{#callbacks.0}},{{/callbacks.0}}{{/operation}}{{/operations}}
+        {{#operations}}{{#operation}}{{#callbacks}}{{#urls}}{{#requests}}{{#allParams}}{{{paramName}}}: {{^required}}Option<{{/required}}{{#isArray}}&{{/isArray}}{{{dataType}}}{{^required}}>{{/required}},
+        {{/allParams}}{{{name}}}{{{operationId}}}{{/requests}}
+        {{/urls}}{{/callbacks}}{{/operation}}{{/operations}}
+        */
         if(ApiClientFactoryWs.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}Ws == null) {
             init();
             ApiClientFactoryWs.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}Ws = new {{classname}}Ws(streamingClient, Duration.ofSeconds(5));

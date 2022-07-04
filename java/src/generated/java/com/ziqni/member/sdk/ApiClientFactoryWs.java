@@ -22,7 +22,7 @@ public abstract class ApiClientFactoryWs {
     private static ProxyApiWs proxyApiWs;
     private static RewardsApiWs rewardsApiWs;
     private static RulesApiWs rulesApiWs;
-    private static SystemNotificationsApiWs systemNotificationsApiWs;
+    private static SubscriptionsApiWs subscriptionsApiWs;
     
 
     public static <T> T initialise(Supplier<T> then) throws Exception {
@@ -54,8 +54,11 @@ public abstract class ApiClientFactoryWs {
         assert getInitialised();
         return streamingClient;
     }
-
      public static AchievementsApiWs getAchievementsApi() {
+        /**
+        ------
+        
+        */
         if(ApiClientFactoryWs.achievementsApiWs == null) {
             init();
             ApiClientFactoryWs.achievementsApiWs = new AchievementsApiWs(streamingClient, Duration.ofSeconds(5));
@@ -65,6 +68,10 @@ public abstract class ApiClientFactoryWs {
     }
 
      public static AwardsApiWs getAwardsApi() {
+        /**
+        ------
+        
+        */
         if(ApiClientFactoryWs.awardsApiWs == null) {
             init();
             ApiClientFactoryWs.awardsApiWs = new AwardsApiWs(streamingClient, Duration.ofSeconds(5));
@@ -74,6 +81,10 @@ public abstract class ApiClientFactoryWs {
     }
 
      public static CompetitionsApiWs getCompetitionsApi() {
+        /**
+        ------
+        
+        */
         if(ApiClientFactoryWs.competitionsApiWs == null) {
             init();
             ApiClientFactoryWs.competitionsApiWs = new CompetitionsApiWs(streamingClient, Duration.ofSeconds(5));
@@ -83,6 +94,10 @@ public abstract class ApiClientFactoryWs {
     }
 
      public static ContestsApiWs getContestsApi() {
+        /**
+        ------
+        
+        */
         if(ApiClientFactoryWs.contestsApiWs == null) {
             init();
             ApiClientFactoryWs.contestsApiWs = new ContestsApiWs(streamingClient, Duration.ofSeconds(5));
@@ -92,6 +107,10 @@ public abstract class ApiClientFactoryWs {
     }
 
      public static FilesApiWs getFilesApi() {
+        /**
+        ------
+        
+        */
         if(ApiClientFactoryWs.filesApiWs == null) {
             init();
             ApiClientFactoryWs.filesApiWs = new FilesApiWs(streamingClient, Duration.ofSeconds(5));
@@ -101,6 +120,10 @@ public abstract class ApiClientFactoryWs {
     }
 
      public static MembersApiWs getMembersApi() {
+        /**
+        ------
+        
+        */
         if(ApiClientFactoryWs.membersApiWs == null) {
             init();
             ApiClientFactoryWs.membersApiWs = new MembersApiWs(streamingClient, Duration.ofSeconds(5));
@@ -110,6 +133,10 @@ public abstract class ApiClientFactoryWs {
     }
 
      public static MessagesApiWs getMessagesApi() {
+        /**
+        ------
+        
+        */
         if(ApiClientFactoryWs.messagesApiWs == null) {
             init();
             ApiClientFactoryWs.messagesApiWs = new MessagesApiWs(streamingClient, Duration.ofSeconds(5));
@@ -119,6 +146,10 @@ public abstract class ApiClientFactoryWs {
     }
 
      public static ProxyApiWs getProxyApi() {
+        /**
+        ------
+        
+        */
         if(ApiClientFactoryWs.proxyApiWs == null) {
             init();
             ApiClientFactoryWs.proxyApiWs = new ProxyApiWs(streamingClient, Duration.ofSeconds(5));
@@ -128,6 +159,10 @@ public abstract class ApiClientFactoryWs {
     }
 
      public static RewardsApiWs getRewardsApi() {
+        /**
+        ------
+        
+        */
         if(ApiClientFactoryWs.rewardsApiWs == null) {
             init();
             ApiClientFactoryWs.rewardsApiWs = new RewardsApiWs(streamingClient, Duration.ofSeconds(5));
@@ -137,6 +172,10 @@ public abstract class ApiClientFactoryWs {
     }
 
      public static RulesApiWs getRulesApi() {
+        /**
+        ------
+        
+        */
         if(ApiClientFactoryWs.rulesApiWs == null) {
             init();
             ApiClientFactoryWs.rulesApiWs = new RulesApiWs(streamingClient, Duration.ofSeconds(5));
@@ -145,13 +184,21 @@ public abstract class ApiClientFactoryWs {
         return ApiClientFactoryWs.rulesApiWs;
     }
 
-     public static SystemNotificationsApiWs getSystemNotificationsApi() {
-        if(ApiClientFactoryWs.systemNotificationsApiWs == null) {
+     public static SubscriptionsApiWs getSubscriptionsApi() {
+        /**
+        ------,
+        entityChanged: Option<EntityChanged>,
+        entityChangedentityChangedPost
+        entityStateChanged: Option<EntityStateChanged>,
+        entityStateChangedentityStateChangedPost
+        
+        */
+        if(ApiClientFactoryWs.subscriptionsApiWs == null) {
             init();
-            ApiClientFactoryWs.systemNotificationsApiWs = new SystemNotificationsApiWs(streamingClient, Duration.ofSeconds(5));
+            ApiClientFactoryWs.subscriptionsApiWs = new SubscriptionsApiWs(streamingClient, Duration.ofSeconds(5));
         }
 
-        return ApiClientFactoryWs.systemNotificationsApiWs;
+        return ApiClientFactoryWs.subscriptionsApiWs;
     }
 
     
