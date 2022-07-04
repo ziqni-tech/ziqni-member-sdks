@@ -4,145 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3894de87-1f24-4ea8-8625-8df4bf8dffa3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/dist/api/NotificationsApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/dist/model/EntityChanged.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/dist/model/EntityStateChanged.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/dist/model/Subscription.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/dist/model/SubscriptionRequest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/dist/model/SubscriptionResponse.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/dist/model/UnsubscribeRequest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/docs/EntityChanged.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/docs/EntityStateChanged.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/docs/NotificationsApi.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/docs/Subscription.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/docs/SubscriptionRequest.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/docs/SubscriptionResponse.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/docs/UnsubscribeRequest.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/src/api/NotificationsApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/src/model/EntityChanged.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/src/model/EntityStateChanged.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/src/model/Subscription.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/src/model/SubscriptionRequest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/src/model/SubscriptionResponse.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/src/model/UnsubscribeRequest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/test/api/NotificationsApi.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/test/model/EntityChanged.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/test/model/EntityStateChanged.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/test/model/Subscription.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/test/model/SubscriptionRequest.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/test/model/SubscriptionResponse.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/test/model/UnsubscribeRequest.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Achievement.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AchievementAllOf.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AchievementFilter.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AchievementRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AchievementResponse.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AchievementsApi.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Award.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AwardAllOf.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AwardFilter.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AwardRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AwardResponse.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AwardsApi.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ClaimAwardRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Competition.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/CompetitionAllOf.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/CompetitionFilter.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/CompetitionRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/CompetitionResponse.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/CompetitionStatus.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/CompetitionType.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/CompetitionsApi.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Contest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ContestAllOf.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ContestFilter.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ContestReduced.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ContestRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ContestResponse.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ContestStatus.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ContestsApi.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Dependancy.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/DependantOn.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/EntityChanged.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/EntityStateChanged.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/EntityType.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Error.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/EventRefType.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/FieldType.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/FileRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/FileResponse.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/FilesApi.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/LeaderboardFilter.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Member.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MemberAllOf.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MemberOptinRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MemberRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MemberResponse.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MemberSessionRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MemberSessionResponse.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MemberType.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MembersApi.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Message.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MessageAllOf.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MessageRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MessageResponse.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MessageStatus.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MessageType.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MessagesApi.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ModelDefault.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ModelFile.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/OptinAction.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/OptionalModelFields.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ProductReduced.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Proxy.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ProxyApi.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ProxyRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ProxyResponse.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/QueryMultipleFields.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/QuerySortBy.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RangeQuery.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RankingStrategy.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ResponseMeta.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Reward.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RewardReduced.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RewardRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RewardResponse.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RewardTypeReduced.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RewardsApi.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RoundType.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Rule.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RuleArgument.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RuleExpression.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RuleRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RuleResponse.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RuleRoutine.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RulesApi.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ScheduleType.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Scheduling.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ScoringStrategy.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/SortOrder.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Strategy.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/StrategyType.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Subscription.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/SubscriptionRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/SubscriptionResponse.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/SubscriptionsApi.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Translation.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/TranslationEntry.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/TranslationRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/TranslationResponse.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/UnsubscribeRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/openapi/java/generate-client-code.sh" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/java/generate-client-code.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/openapi/java/ziqni-gamification-api.config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/java/ziqni-member-api.config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/ziqni-gamification-api.config.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/openapi/javascript/ziqni-gamification-api.config.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/openapi/ziqni-gamification-api.yml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/ziqni-member-api.yml" afterDir="false" />
+    <list default="true" id="3894de87-1f24-4ea8-8625-8df4bf8dffa3" name="Changes" comment="Updated configurations">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/configuration/ApiClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/configuration/ApiClientConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,10 +48,33 @@
     "jdk.selected.JAVA_MODULE": "11",
     "last_opened_file_path": "/home/carel/IdeaProjects/ziqniio/ziqni-member-sdks/javascript",
     "nodejs_interpreter_path": "node",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="SampleApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ziqni.member.sdk.SampleApp" />
+      <module name="ziqni-member-sdk" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ziqni.member.sdk.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SampleApp" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -196,8 +83,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1656965240292</updated>
-      <workItem from="1656965241748" duration="403000" />
+      <workItem from="1656965241748" duration="596000" />
     </task>
+    <task id="LOCAL-00001" summary="Updated configurations">
+      <created>1656965675982</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1656965675982</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Updated configurations">
+      <created>1656965742649</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1656965742649</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,5 +115,11 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Updated configurations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated configurations" />
   </component>
 </project>

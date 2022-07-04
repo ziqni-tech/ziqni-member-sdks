@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2022. ZIQNI LTD registered in England and Wales, company registration number-09693684
  */
-package com.ziqni.member.sdk.util;
+package com.ziqni.member.sdk.configuration;
 
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.FileBasedConfiguration;

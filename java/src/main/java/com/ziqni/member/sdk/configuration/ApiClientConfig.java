@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ziqni.member.sdk.JSON;
 import com.ziqni.member.sdk.security.IdentityAuthorisationException;
 import com.ziqni.member.sdk.security.IdentityAuthorization;
-import com.ziqni.member.sdk.util.ConfigurationLoader;
 
 public abstract class ApiClientConfig {
 
@@ -26,7 +25,7 @@ public abstract class ApiClientConfig {
     public static void load() {
         if (loaded) return;
 
-        memberClientServerHost = ConfigurationLoader.getParameter("member.server.host").orElse("Member-api.ziqni.com");
+        memberClientServerHost = ConfigurationLoader.getParameter("member.server.host").orElse("gamification-api.ziqni.com");
         memberClientServerPort = Integer.valueOf(ConfigurationLoader.getParameter("member.server.port").orElse("443"));
         memberClientServerScheme = ConfigurationLoader.getParameter("member.server.scheme").orElse("wss");
 
