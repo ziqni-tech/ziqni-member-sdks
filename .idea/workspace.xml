@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Event notification subscriptions working">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/EventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/EventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/handlers/CallbackEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/handlers/CallbackEventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/handlers/RpcResultsEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/handlers/RpcResultsEventHandler.java" afterDir="false" />
-    </list>
+    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Event notification subscriptions working" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,7 +95,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1656966295087</updated>
-      <workItem from="1656966296382" duration="11858000" />
+      <workItem from="1656966296382" duration="12275000" />
     </task>
     <task id="LOCAL-00001" summary="Cleanup">
       <created>1656969494518</created>
@@ -116,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656978889915</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Event notification subscriptions working">
+      <created>1656979021764</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1656979021764</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
