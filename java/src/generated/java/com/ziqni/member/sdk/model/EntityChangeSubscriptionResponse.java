@@ -22,9 +22,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.ziqni.member.sdk.model.EntityChangeSubscription;
 import com.ziqni.member.sdk.model.Error;
 import com.ziqni.member.sdk.model.ResponseMeta;
-import com.ziqni.member.sdk.model.Subscription;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -37,25 +37,25 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @ApiModel(description = "")
 @JsonPropertyOrder({
-  SubscriptionResponse.JSON_PROPERTY_META,
-  SubscriptionResponse.JSON_PROPERTY_DATA,
-  SubscriptionResponse.JSON_PROPERTY_ERRORS
+  EntityChangeSubscriptionResponse.JSON_PROPERTY_META,
+  EntityChangeSubscriptionResponse.JSON_PROPERTY_DATA,
+  EntityChangeSubscriptionResponse.JSON_PROPERTY_ERRORS
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class SubscriptionResponse {
+public class EntityChangeSubscriptionResponse {
   public static final String JSON_PROPERTY_META = "meta";
   private ResponseMeta meta;
 
   public static final String JSON_PROPERTY_DATA = "data";
-  private List<Subscription> data = null;
+  private List<EntityChangeSubscription> data = null;
 
   public static final String JSON_PROPERTY_ERRORS = "errors";
   private List<Error> errors = null;
 
-  public SubscriptionResponse() { 
+  public EntityChangeSubscriptionResponse() { 
   }
 
-  public SubscriptionResponse meta(ResponseMeta meta) {
+  public EntityChangeSubscriptionResponse meta(ResponseMeta meta) {
     this.meta = meta;
     return this;
   }
@@ -81,12 +81,12 @@ public class SubscriptionResponse {
   }
 
 
-  public SubscriptionResponse data(List<Subscription> data) {
+  public EntityChangeSubscriptionResponse data(List<EntityChangeSubscription> data) {
     this.data = data;
     return this;
   }
 
-  public SubscriptionResponse addDataItem(Subscription dataItem) {
+  public EntityChangeSubscriptionResponse addDataItem(EntityChangeSubscription dataItem) {
     if (this.data == null) {
       this.data = new ArrayList<>();
     }
@@ -103,24 +103,24 @@ public class SubscriptionResponse {
   @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Subscription> getData() {
+  public List<EntityChangeSubscription> getData() {
     return data;
   }
 
 
   @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setData(List<Subscription> data) {
+  public void setData(List<EntityChangeSubscription> data) {
     this.data = data;
   }
 
 
-  public SubscriptionResponse errors(List<Error> errors) {
+  public EntityChangeSubscriptionResponse errors(List<Error> errors) {
     this.errors = errors;
     return this;
   }
 
-  public SubscriptionResponse addErrorsItem(Error errorsItem) {
+  public EntityChangeSubscriptionResponse addErrorsItem(Error errorsItem) {
     if (this.errors == null) {
       this.errors = new ArrayList<>();
     }
@@ -150,7 +150,7 @@ public class SubscriptionResponse {
 
 
   /**
-   * Return true if this SubscriptionResponse object is equal to o.
+   * Return true if this EntityChangeSubscriptionResponse object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -160,10 +160,10 @@ public class SubscriptionResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SubscriptionResponse subscriptionResponse = (SubscriptionResponse) o;
-    return Objects.equals(this.meta, subscriptionResponse.meta) &&
-        Objects.equals(this.data, subscriptionResponse.data) &&
-        Objects.equals(this.errors, subscriptionResponse.errors);
+    EntityChangeSubscriptionResponse entityChangeSubscriptionResponse = (EntityChangeSubscriptionResponse) o;
+    return Objects.equals(this.meta, entityChangeSubscriptionResponse.meta) &&
+        Objects.equals(this.data, entityChangeSubscriptionResponse.data) &&
+        Objects.equals(this.errors, entityChangeSubscriptionResponse.errors);
   }
 
   @Override
@@ -174,7 +174,7 @@ public class SubscriptionResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SubscriptionResponse {\n");
+    sb.append("class EntityChangeSubscriptionResponse {\n");
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");

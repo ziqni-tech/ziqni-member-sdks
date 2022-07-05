@@ -24,6 +24,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -32,39 +34,44 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @ApiModel(description = "")
 @JsonPropertyOrder({
-  RewardRequest.JSON_PROPERTY_ENTITY_ID
+  RewardRequest.JSON_PROPERTY_REWARD_IDS
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RewardRequest {
-  public static final String JSON_PROPERTY_ENTITY_ID = "entityId";
-  private String entityId;
+  public static final String JSON_PROPERTY_REWARD_IDS = "rewardIds";
+  private List<String> rewardIds = new ArrayList<>();
 
   public RewardRequest() { 
   }
 
-  public RewardRequest entityId(String entityId) {
-    this.entityId = entityId;
+  public RewardRequest rewardIds(List<String> rewardIds) {
+    this.rewardIds = rewardIds;
+    return this;
+  }
+
+  public RewardRequest addRewardIdsItem(String rewardIdsItem) {
+    this.rewardIds.add(rewardIdsItem);
     return this;
   }
 
    /**
    * 
-   * @return entityId
+   * @return rewardIds
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_ENTITY_ID)
+  @JsonProperty(JSON_PROPERTY_REWARD_IDS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getEntityId() {
-    return entityId;
+  public List<String> getRewardIds() {
+    return rewardIds;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ENTITY_ID)
+  @JsonProperty(JSON_PROPERTY_REWARD_IDS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setEntityId(String entityId) {
-    this.entityId = entityId;
+  public void setRewardIds(List<String> rewardIds) {
+    this.rewardIds = rewardIds;
   }
 
 
@@ -80,19 +87,19 @@ public class RewardRequest {
       return false;
     }
     RewardRequest rewardRequest = (RewardRequest) o;
-    return Objects.equals(this.entityId, rewardRequest.entityId);
+    return Objects.equals(this.rewardIds, rewardRequest.rewardIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(entityId);
+    return Objects.hash(rewardIds);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RewardRequest {\n");
-    sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
+    sb.append("    rewardIds: ").append(toIndentedString(rewardIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -11,7 +11,6 @@
 |**entityId** | **String** |  |  [optional] |
 |**entityType** | **String** |  |  [optional] |
 |**changedAt** | **OffsetDateTime** |  |  [optional] |
-|**changedBy** | **String** |  |  [optional] |
 |**typeOffChange** | **Integer** |  |  [optional] |
 |**displayName** | **String** |  |  [optional] |
 |**accountId** | **String** |  |  [optional] |

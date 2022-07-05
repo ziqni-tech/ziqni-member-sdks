@@ -16,13 +16,12 @@ public abstract class ApiClientFactoryWs {
     private static AwardsApiWs awardsApiWs;
     private static CompetitionsApiWs competitionsApiWs;
     private static ContestsApiWs contestsApiWs;
+    private static EntityChangesApiWs entityChangesApiWs;
     private static FilesApiWs filesApiWs;
     private static MembersApiWs membersApiWs;
     private static MessagesApiWs messagesApiWs;
-    private static ProxyApiWs proxyApiWs;
     private static RewardsApiWs rewardsApiWs;
     private static RulesApiWs rulesApiWs;
-    private static SubscriptionsApiWs subscriptionsApiWs;
     
 
     public static <T> T initialise(Supplier<T> then) throws Exception {
@@ -106,6 +105,23 @@ public abstract class ApiClientFactoryWs {
         return ApiClientFactoryWs.contestsApiWs;
     }
 
+     public static EntityChangesApiWs getEntityChangesApi() {
+        /**
+        ------,
+        entityChanged: Option<EntityChanged>,
+        entityChangedentityChangedPost
+        entityStateChanged: Option<EntityStateChanged>,
+        entityStateChangedentityStateChangedPost
+        
+        */
+        if(ApiClientFactoryWs.entityChangesApiWs == null) {
+            init();
+            ApiClientFactoryWs.entityChangesApiWs = new EntityChangesApiWs(streamingClient, Duration.ofSeconds(5));
+        }
+
+        return ApiClientFactoryWs.entityChangesApiWs;
+    }
+
      public static FilesApiWs getFilesApi() {
         /**
         ------
@@ -145,19 +161,6 @@ public abstract class ApiClientFactoryWs {
         return ApiClientFactoryWs.messagesApiWs;
     }
 
-     public static ProxyApiWs getProxyApi() {
-        /**
-        ------
-        
-        */
-        if(ApiClientFactoryWs.proxyApiWs == null) {
-            init();
-            ApiClientFactoryWs.proxyApiWs = new ProxyApiWs(streamingClient, Duration.ofSeconds(5));
-        }
-
-        return ApiClientFactoryWs.proxyApiWs;
-    }
-
      public static RewardsApiWs getRewardsApi() {
         /**
         ------
@@ -182,23 +185,6 @@ public abstract class ApiClientFactoryWs {
         }
 
         return ApiClientFactoryWs.rulesApiWs;
-    }
-
-     public static SubscriptionsApiWs getSubscriptionsApi() {
-        /**
-        ------,
-        entityChanged: Option<EntityChanged>,
-        entityChangedentityChangedPost
-        entityStateChanged: Option<EntityStateChanged>,
-        entityStateChangedentityStateChangedPost
-        
-        */
-        if(ApiClientFactoryWs.subscriptionsApiWs == null) {
-            init();
-            ApiClientFactoryWs.subscriptionsApiWs = new SubscriptionsApiWs(streamingClient, Duration.ofSeconds(5));
-        }
-
-        return ApiClientFactoryWs.subscriptionsApiWs;
     }
 
     

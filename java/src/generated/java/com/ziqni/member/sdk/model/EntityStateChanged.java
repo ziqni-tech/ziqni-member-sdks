@@ -25,6 +25,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -36,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EntityStateChanged.JSON_PROPERTY_ENTITY_ID,
   EntityStateChanged.JSON_PROPERTY_ENTITY_TYPE,
   EntityStateChanged.JSON_PROPERTY_CHANGED_AT,
-  EntityStateChanged.JSON_PROPERTY_CHANGED_BY,
   EntityStateChanged.JSON_PROPERTY_TYPE_OFF_CHANGE,
   EntityStateChanged.JSON_PROPERTY_DISPLAY_NAME,
   EntityStateChanged.JSON_PROPERTY_ACCOUNT_ID,
@@ -58,9 +60,6 @@ public class EntityStateChanged {
   public static final String JSON_PROPERTY_CHANGED_AT = "changedAt";
   private OffsetDateTime changedAt;
 
-  public static final String JSON_PROPERTY_CHANGED_BY = "changedBy";
-  private String changedBy;
-
   public static final String JSON_PROPERTY_TYPE_OFF_CHANGE = "typeOffChange";
   private Integer typeOffChange;
 
@@ -80,7 +79,7 @@ public class EntityStateChanged {
   private String entityParentId;
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
-  private Object metadata;
+  private Map<String, Object> metadata = null;
 
   public static final String JSON_PROPERTY_PREVIOUS_STATE = "previousState";
   private Integer previousState;
@@ -166,32 +165,6 @@ public class EntityStateChanged {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangedAt(OffsetDateTime changedAt) {
     this.changedAt = changedAt;
-  }
-
-
-  public EntityStateChanged changedBy(String changedBy) {
-    this.changedBy = changedBy;
-    return this;
-  }
-
-   /**
-   * 
-   * @return changedBy
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGED_BY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getChangedBy() {
-    return changedBy;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGED_BY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangedBy(String changedBy) {
-    this.changedBy = changedBy;
   }
 
 
@@ -351,8 +324,16 @@ public class EntityStateChanged {
   }
 
 
-  public EntityStateChanged metadata(Object metadata) {
+  public EntityStateChanged metadata(Map<String, Object> metadata) {
     this.metadata = metadata;
+    return this;
+  }
+
+  public EntityStateChanged putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
     return this;
   }
 
@@ -363,16 +344,16 @@ public class EntityStateChanged {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_METADATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Object getMetadata() {
+  public Map<String, Object> getMetadata() {
     return metadata;
   }
 
 
   @JsonProperty(JSON_PROPERTY_METADATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetadata(Object metadata) {
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMetadata(Map<String, Object> metadata) {
     this.metadata = metadata;
   }
 
@@ -444,7 +425,6 @@ public class EntityStateChanged {
     return Objects.equals(this.entityId, entityStateChanged.entityId) &&
         Objects.equals(this.entityType, entityStateChanged.entityType) &&
         Objects.equals(this.changedAt, entityStateChanged.changedAt) &&
-        Objects.equals(this.changedBy, entityStateChanged.changedBy) &&
         Objects.equals(this.typeOffChange, entityStateChanged.typeOffChange) &&
         Objects.equals(this.displayName, entityStateChanged.displayName) &&
         Objects.equals(this.accountId, entityStateChanged.accountId) &&
@@ -458,7 +438,7 @@ public class EntityStateChanged {
 
   @Override
   public int hashCode() {
-    return Objects.hash(entityId, entityType, changedAt, changedBy, typeOffChange, displayName, accountId, sequenceNumber, entityRefId, entityParentId, metadata, previousState, currentState);
+    return Objects.hash(entityId, entityType, changedAt, typeOffChange, displayName, accountId, sequenceNumber, entityRefId, entityParentId, metadata, previousState, currentState);
   }
 
   @Override
@@ -468,7 +448,6 @@ public class EntityStateChanged {
     sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
     sb.append("    entityType: ").append(toIndentedString(entityType)).append("\n");
     sb.append("    changedAt: ").append(toIndentedString(changedAt)).append("\n");
-    sb.append("    changedBy: ").append(toIndentedString(changedBy)).append("\n");
     sb.append("    typeOffChange: ").append(toIndentedString(typeOffChange)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");

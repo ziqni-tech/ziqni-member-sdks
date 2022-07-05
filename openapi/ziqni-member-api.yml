@@ -38,60 +38,6 @@ paths:
       summary: Get member information by member reference id
       description: Returns member information for the provided member reference id
       x-ws-only: true
-  /member-manage-optin:
-    summary: Member optin operation
-    description: This endpoint supports member's optin operation.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MemberOptinRequest'
-        required: true
-      tags:
-        - members
-      responses:
-        '200':
-          $ref: '#/components/responses/MemberResponseBody'
-        '400':
-          $ref: '#/components/responses/MemberResponseBody'
-        '500':
-          $ref: '#/components/responses/MemberResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewMembers
-      operationId: getMemberOptinInfo
-      summary: Get member optin information
-      description: Returns a list of member optin information
-      x-ws-only: true
-  /member-session:
-    summary: Member session
-    description: This endpoint provides member's active session information.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MemberSessionRequest'
-        required: true
-      tags:
-        - members
-      responses:
-        '200':
-          $ref: '#/components/responses/MemberSessionResponseBody'
-        '400':
-          $ref: '#/components/responses/MemberSessionResponseBody'
-        '500':
-          $ref: '#/components/responses/MemberSessionResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewMembers
-      operationId: getMemberSession
-      summary: Get member session by member reference id
-      description: Returns member's active session information.
-      x-ws-only: true
   /messages:
     summary: Member messages operation
     description: This endpoint supports member's messages operation.
@@ -118,29 +64,6 @@ paths:
       operationId: getMessages
       summary: Get messages by member reference id
       description: Returns a list of messages for the provided member ref id and applied filters.
-      x-ws-only: true
-  /proxy:
-    summary: Proxy operation
-    description: Support proxy operations
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ProxyRequest'
-        required: true
-      tags:
-        - proxy
-      responses:
-        '200':
-          $ref: '#/components/responses/ProxyResponseBody'
-        '400':
-          $ref: '#/components/responses/ProxyResponseBody'
-        '500':
-          $ref: '#/components/responses/ProxyResponseBody'
-      operationId: proxy
-      summary: Proxy
-      description: Perform proxy operations.
       x-ws-only: true
   /rewards:
     summary: Reward operations
@@ -354,14 +277,42 @@ paths:
       summary: Get files.
       description: This operation supports retrieval of file objects for one or many entities.
       x-ws-only: true
-  /subscribe:
+  /manage-optin:
+    summary: Member optin operation
+    description: This endpoint supports member's optin operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManageOptinRequest'
+        required: true
+      tags:
+        - members
+      responses:
+        '200':
+          $ref: '#/components/responses/MemberResponseBody'
+        '400':
+          $ref: '#/components/responses/MemberResponseBody'
+        '500':
+          $ref: '#/components/responses/MemberResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewMembers
+      operationId: manageOptin
+      summary: Get member optin information
+      description: Returns a list of member optin information
+      x-ws-only: true
+  /leaderboard: {}
+  /entity-changes:
     post:
       requestBody:
         description: subscription payload
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SubscriptionRequest'
+              $ref: '#/components/schemas/EntityChangeSubscriptionRequest'
         required: true
       callbacks:
         entityChanged:
@@ -409,15 +360,15 @@ paths:
                     Your server should return this HTTP status code if no longer
                     interested in further updates
       tags:
-        - subscriptions
+        - entity-changes
       responses:
         '202':
-          $ref: '#/components/responses/SubscriptionResponseBody'
+          $ref: '#/components/responses/EntityChangeSubscriptionResponseBody'
         '400':
-          $ref: '#/components/responses/SubscriptionResponseBody'
+          $ref: '#/components/responses/EntityChangeSubscriptionResponseBody'
         '500':
-          $ref: '#/components/responses/SubscriptionResponseBody'
-      operationId: subscribe
+          $ref: '#/components/responses/EntityChangeSubscriptionResponseBody'
+      operationId: subscribeToEntityChanges
       description: subscribes a client to receive out-of-band data
 components:
   schemas:
@@ -1632,12 +1583,14 @@ components:
     RewardRequest:
       description: ''
       required:
-        - entityId
+        - rewardIds
       type: object
       properties:
-        entityId:
+        rewardIds:
           description: ''
-          type: string
+          type: array
+          items:
+            type: string
     RewardResponse:
       description: '        '
       required: []
@@ -3111,24 +3064,6 @@ components:
         statusCode:
           - 60
           - 45
-    MemberOptinRequest:
-      description: ''
-      type: object
-      properties:
-        entityId:
-          description: ''
-          type: string
-        entityType:
-          description: ''
-          type: string
-        action:
-          description: ''
-          type: string
-      example:
-        memberRefId: some text
-        entityId: some text
-        entityType: some text
-        action: some text
     Achievement:
       description: ''
       type: object
@@ -3799,74 +3734,6 @@ components:
           $ref: '#/components/schemas/ModelDefault'
         -
           $ref: '#/components/schemas/OptionalModelFields'
-    Subscription:
-      description: Subscribes a client to receive out-of-band data
-      required:
-        - entityTypes
-        - subscriptionId
-        - entityType
-      type: object
-      properties:
-        entityType:
-          description: ''
-          type: string
-        subscriptionId:
-          description: ''
-          type: string
-        constraints:
-          description: Constraints of this subscription like gauranteedDelivery
-          type: array
-          items:
-            type: string
-    EntityStateChanged:
-      description: ''
-      required:
-        - state
-      type: object
-      properties:
-        entityId:
-          description: ''
-          type: string
-        entityType:
-          description: ''
-          type: string
-        changedAt:
-          format: date-time
-          description: ''
-          type: string
-        changedBy:
-          description: ''
-          type: string
-        typeOffChange:
-          format: int32
-          description: ''
-          type: integer
-        displayName:
-          description: ''
-          type: string
-        accountId:
-          description: ''
-          type: string
-        sequenceNumber:
-          format: int64
-          description: ''
-          type: integer
-        entityRefId:
-          description: ''
-          type: string
-        entityParentId:
-          description: ''
-          type: string
-        metadata:
-          type: object
-        previousState:
-          format: int32
-          description: ''
-          type: integer
-        currentState:
-          format: int32
-          description: ''
-          type: integer
     EntityChanged:
       description: ''
       required: []
@@ -3880,9 +3747,6 @@ components:
           type: string
         changedAt:
           format: date-time
-          description: ''
-          type: string
-        changedBy:
           description: ''
           type: string
         typeOffChange:
@@ -3917,7 +3781,72 @@ components:
         sunscriptionId:
           description: ''
           type: string
-    SubscriptionRequest:
+    EntityStateChanged:
+      description: ''
+      required:
+        - state
+      type: object
+      properties:
+        entityId:
+          description: ''
+          type: string
+        entityType:
+          description: ''
+          type: string
+        changedAt:
+          format: date-time
+          description: ''
+          type: string
+        typeOffChange:
+          format: int32
+          description: ''
+          type: integer
+        displayName:
+          description: ''
+          type: string
+        accountId:
+          description: ''
+          type: string
+        sequenceNumber:
+          format: int64
+          description: ''
+          type: integer
+        entityRefId:
+          description: ''
+          type: string
+        entityParentId:
+          description: ''
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true
+        previousState:
+          format: int32
+          description: ''
+          type: integer
+        currentState:
+          format: int32
+          description: ''
+          type: integer
+    ManageOptinRequest:
+      description: ''
+      type: object
+      properties:
+        entityId:
+          description: ''
+          type: string
+        entityType:
+          description: ''
+          type: string
+        action:
+          description: ''
+          type: string
+      example:
+        memberRefId: some text
+        entityId: some text
+        entityType: some text
+        action: some text
+    EntityChangeSubscriptionRequest:
       description: ''
       required:
         - entityType
@@ -3933,9 +3862,33 @@ components:
           items:
             type: string
         callback:
-          description: The operation you are subscribing too. Like entityChanged or entityStateChanged
+          description: >-
+            The callback operation you are subscribing too. Like entityChanged or
+            entityStateChanged
           type: string
-    SubscriptionResponse:
+    EntityChangeSubscription:
+      description: Subscribes a client to receive out-of-band data
+      required:
+        - entityTypes
+        - subscriptionId
+        - entityType
+      type: object
+      properties:
+        entityType:
+          description: ''
+          type: string
+        subscriptionId:
+          description: ''
+          type: string
+        constraints:
+          description: Constraints of this subscription like gauranteedDelivery
+          type: array
+          items:
+            type: string
+        topic:
+          description: /user/queue/callbacks
+          type: string
+    EntityChangeSubscriptionResponse:
       description: ''
       required:
         - subscriptions
@@ -3948,7 +3901,7 @@ components:
           description: ''
           type: array
           items:
-            $ref: '#/components/schemas/Subscription'
+            $ref: '#/components/schemas/EntityChangeSubscription'
         errors:
           description: ''
           type: array
@@ -4072,12 +4025,6 @@ components:
           schema:
             $ref: '#/components/schemas/RewardResponse'
       description: ''
-    TranslationResponseBody:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CompetitionResponse'
-      description: ''
     MessageResponseBody:
       content:
         application/json:
@@ -4090,23 +4037,11 @@ components:
           schema:
             $ref: '#/components/schemas/RuleResponse'
       description: ''
-    ProxyResponseBody:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ProxyResponse'
-      description: ''
     MemberResponseBody:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/MemberResponse'
-      description: ''
-    MemberSessionResponseBody:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/MemberSessionResponse'
       description: ''
     AwardResponseBody:
       content:
@@ -4120,11 +4055,11 @@ components:
           schema:
             $ref: '#/components/schemas/FileResponse'
       description: ''
-    SubscriptionResponseBody:
+    EntityChangeSubscriptionResponseBody:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/SubscriptionResponse'
+            $ref: '#/components/schemas/EntityChangeSubscriptionResponse'
       description: ''
   securitySchemes:
     OAuth2:

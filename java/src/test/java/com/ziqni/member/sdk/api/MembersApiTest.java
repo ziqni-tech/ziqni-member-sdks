@@ -16,7 +16,7 @@ package com.ziqni.member.sdk.api;
 import com.ziqni.member.sdk.ApiClientFactoryWs;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.data.LoadMemberData;
-import com.ziqni.member.sdk.model.MemberOptinRequest;
+import com.ziqni.member.sdk.model.ManageOptinRequest;
 import com.ziqni.member.sdk.model.MemberResponse;
 import com.ziqni.member.sdk.model.MemberSessionRequest;
 import com.ziqni.member.sdk.model.MemberSessionResponse;
@@ -73,26 +73,9 @@ public class MembersApiTest implements tests.utils.CompleteableFutureTestWrapper
      */
     @Test
     public void getMemberOptinInfoTest() throws ApiException {
-        MemberOptinRequest memberOptinRequest = null;
+        ManageOptinRequest memberOptinRequest = null;
         CompletableFuture<MemberResponse> response =
-        api.getMemberOptinInfo(memberOptinRequest);
-        
-        // TODO: test validations
-    }
-    
-    /**
-     * Get member session by member reference id
-     *
-     * Returns member&#39;s active session information.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getMemberSessionTest() throws ApiException {
-        MemberSessionRequest memberSessionRequest = null;
-        CompletableFuture<MemberSessionResponse> response =
-        api.getMemberSession(memberSessionRequest);
+        api.manageOptin(memberOptinRequest);
         
         // TODO: test validations
     }

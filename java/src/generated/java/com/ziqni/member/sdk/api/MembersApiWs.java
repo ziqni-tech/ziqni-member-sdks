@@ -17,11 +17,9 @@ import com.ziqni.member.sdk.streaming.EventHandler;
 import com.ziqni.member.sdk.streaming.handlers.CallbackConsumer;
 import com.ziqni.member.sdk.ApiException;
 import org.springframework.messaging.simp.stomp.StompHeaders;
-    import com.ziqni.member.sdk.model.MemberOptinRequest;
+    import com.ziqni.member.sdk.model.ManageOptinRequest;
     import com.ziqni.member.sdk.model.MemberRequest;
     import com.ziqni.member.sdk.model.MemberResponse;
-    import com.ziqni.member.sdk.model.MemberSessionRequest;
-    import com.ziqni.member.sdk.model.MemberSessionResponse;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -77,11 +75,11 @@ import java.util.function.BiConsumer;
             /**
             * Get member optin information
             * Returns a list of member optin information
-                * @param memberOptinRequest  (required)
+                * @param manageOptinRequest  (required)
                 * @return CompletableFuture&lt;MemberResponse&gt;
             * @throws ApiException if fails to make API call
             */
-            public CompletableFuture<MemberResponse> getMemberOptinInfo(MemberOptinRequest memberOptinRequest) {
+            public CompletableFuture<MemberResponse> manageOptin(ManageOptinRequest manageOptinRequest) {
                 var request = new HashMap<String, Object>();
             
                         
@@ -89,32 +87,9 @@ import java.util.function.BiConsumer;
             
                         
 
-            request.put("body",memberOptinRequest);
+            request.put("body",manageOptinRequest);
 
-            CompletableFuture<MemberResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getMemberOptinInfo", request);
-            return result;
-        }
-
-
-
-            /**
-            * Get member session by member reference id
-            * Returns member&#39;s active session information.
-                * @param memberSessionRequest  (required)
-                * @return CompletableFuture&lt;MemberSessionResponse&gt;
-            * @throws ApiException if fails to make API call
-            */
-            public CompletableFuture<MemberSessionResponse> getMemberSession(MemberSessionRequest memberSessionRequest) {
-                var request = new HashMap<String, Object>();
-            
-                        
-
-            
-                        
-
-            request.put("body",memberSessionRequest);
-
-            CompletableFuture<MemberSessionResponse> result = this.streamingClient.sendWithApiCallback("/gapi/getMemberSession", request);
+            CompletableFuture<MemberResponse> result = this.streamingClient.sendWithApiCallback("/gapi/manageOptin", request);
             return result;
         }
 
