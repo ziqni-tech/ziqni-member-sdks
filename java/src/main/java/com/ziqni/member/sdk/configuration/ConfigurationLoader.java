@@ -23,13 +23,13 @@ public abstract class ConfigurationLoader {
     private static Map<String, String> cache;
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationLoader.class);
 
-    public static void loadFromFile(Boolean doNotOverwrite) {
+    public static void loadFromFile() {
 
-        final var params = new Parameters()
-                .properties()
-                .setFileName(Optional.ofNullable(getConfigFile()).orElse(DefaultConfigFileName));
+        final var params = new Parameters();
 
-        final var builder = new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class).configure(params);
+        final FileBasedConfigurationBuilder<FileBasedConfiguration>  builder = new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class).configure(
+                params.properties().setFileName(Optional.ofNullable(getConfigFile()).orElse(DefaultConfigFileName))
+        );
 
         logger.debug("Loaded config file [{}] from location [{}]", Optional.ofNullable(getConfigFile()).orElse(DefaultConfigFileName), builder.getFileHandler().getPath());
 
@@ -42,19 +42,10 @@ public abstract class ConfigurationLoader {
 
             while (it.hasNext()){
                 var key = it.next();
+                var configValue = config.getString(key);
+                ConfigurationLoader.cache.put(key, configValue);
+                logger.debug("Overwriting loaded parameter [{}] with value [{}] from file [{}]", key, configValue, Optional.ofNullable(getConfigFile()).orElse(DefaultConfigFileName));
 
-                if(doNotOverwrite) {
-                    logger.debug("Do not overwrite value set to [{}]. Checking in cache for key [{}]", doNotOverwrite, key);
-                    var configValue = config.getString(key);
-                    if(ConfigurationLoader.cache.putIfAbsent(key, configValue) != null){
-                        logger.debug("Not found in cache, load parameter [{}] with value [{}] from file [{}]", key, configValue, Optional.ofNullable(getConfigFile()).orElse(DefaultConfigFileName));
-                    }
-                }
-                else {
-                    var configValue = config.getString(key);
-                    ConfigurationLoader.cache.put(key, configValue);
-                    logger.debug("Overwriting loaded parameter [{}] with value [{}] from file [{}]", key, configValue, Optional.ofNullable(getConfigFile()).orElse(DefaultConfigFileName));
-                }
             }
         }
         catch(org.apache.commons.configuration2.ex.ConfigurationException cex) {
@@ -71,7 +62,7 @@ public abstract class ConfigurationLoader {
 
     public static Map<String, String> Parameters() {
         if(ConfigurationLoader.cache == null) {
-            loadFromFile(true);
+            loadFromFile();
             assert ConfigurationLoader.cache.size() > 0;
         }
 

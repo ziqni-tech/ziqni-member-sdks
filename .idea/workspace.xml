@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3894de87-1f24-4ea8-8625-8df4bf8dffa3" name="Changes" comment="Updated configurations">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/configuration/ApiClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/configuration/ApiClientConfig.java" afterDir="false" />
-    </list>
+    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Event notification subscriptions working" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,10 +26,13 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
-  <component name="ProjectId" id="2BUel6FEZkxepVRsP6cFbd5e49G" />
+  <component name="ProjectId" id="2BUgtOtwqRCzOVcCBANBpfgF7oT" />
   <component name="ProjectViewState">
     <option name="compactDirectories" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -45,18 +45,25 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "11",
-    "last_opened_file_path": "/home/carel/IdeaProjects/ziqniio/ziqni-member-sdks/javascript",
+    "jdk.selected.JAVA_MODULE": "corretto-11",
+    "last_opened_file_path": "/home/carel/IdeaProjects/ziqniio/ziqni-member-sdks/java",
     "nodejs_interpreter_path": "node",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/java" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="SampleApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.ziqni.member.sdk.SampleApp" />
       <module name="ziqni-member-sdk" />
       <extension name="coverage">
@@ -64,6 +71,11 @@
           <option name="PATTERN" value="com.ziqni.member.sdk.*" />
           <option name="ENABLED" value="true" />
         </pattern>
+      </extension>
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
       </extension>
       <method v="2">
         <option name="Make" enabled="true" />
@@ -78,28 +90,35 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3894de87-1f24-4ea8-8625-8df4bf8dffa3" name="Changes" comment="" />
-      <created>1656965240292</created>
+      <changelist id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="" />
+      <created>1656966295087</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1656965240292</updated>
-      <workItem from="1656965241748" duration="596000" />
+      <updated>1656966295087</updated>
+      <workItem from="1656966296382" duration="12275000" />
     </task>
-    <task id="LOCAL-00001" summary="Updated configurations">
-      <created>1656965675982</created>
+    <task id="LOCAL-00001" summary="Cleanup">
+      <created>1656969494518</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1656965675982</updated>
+      <updated>1656969494518</updated>
     </task>
-    <task id="LOCAL-00002" summary="Updated configurations">
-      <created>1656965742649</created>
+    <task id="LOCAL-00002" summary="Event notification subscriptions working">
+      <created>1656978889915</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1656965742649</updated>
+      <updated>1656978889915</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Event notification subscriptions working">
+      <created>1656979021764</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1656979021764</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,9 +136,19 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Updated configurations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated configurations" />
+    <MESSAGE value="Cleanup" />
+    <MESSAGE value="Event notification subscriptions working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Event notification subscriptions working" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/WsStompSessionHandler.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

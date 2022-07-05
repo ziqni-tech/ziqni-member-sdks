@@ -44,3 +44,4 @@ build/
 /openapi/javascript/generated/
 /java/logs/
 /logs/
+/.idea/

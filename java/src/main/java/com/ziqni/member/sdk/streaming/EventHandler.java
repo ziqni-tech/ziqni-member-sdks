@@ -35,27 +35,10 @@ public abstract class EventHandler<T> implements StompFrameHandler {
      */
     public abstract JavaType getValType(StompHeaders headers);
 
-    /**
-     * Listener method which fires when new data arrives
-     *
-     * @param data
-     */
-    public abstract void onData(T data);
 
     @Override
     public Type getPayloadType(StompHeaders headers) {
         return String.class;
-    }
-
-    @Override
-    public void handleFrame(StompHeaders headers, Object payload) {
-        try {
-            T val = objectMapper.readValue((String) payload, getValType(headers));
-            onData(val);
-
-        } catch (IOException e) {
-            logger.error("Failed to decode message" + e);
-        }
     }
 
     public void unsubscribe() {

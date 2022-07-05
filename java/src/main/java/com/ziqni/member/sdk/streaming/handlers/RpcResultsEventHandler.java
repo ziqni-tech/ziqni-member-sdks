@@ -4,7 +4,6 @@
 package com.ziqni.member.sdk.streaming.handlers;
 
 import com.fasterxml.jackson.databind.JavaType;
-import com.ziqni.member.sdk.streaming.ApiCallbackResponse;
 import com.ziqni.member.sdk.streaming.EventHandler;
 import com.ziqni.member.sdk.streaming.Message;
 import com.ziqni.member.sdk.util.ClassScanner;
@@ -21,23 +20,23 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.BiConsumer;
 
-public class ApiCallbackEventHandler extends EventHandler<String> {
+public class RpcResultsEventHandler extends EventHandler<String> {
 
     public final static String DEFAULT_TOPIC = "/user/queue/rpc-results";
     public final static String CLASS_TO_SCAN_FOR_PAYLOAD_TYPE = "com.ziqni.member.sdk.model";
-    private static final Logger logger = LoggerFactory.getLogger(ApiCallbackEventHandler.class);
+    private static final Logger logger = LoggerFactory.getLogger(RpcResultsEventHandler.class);
     private static final AtomicLong sequenceNumber = new AtomicLong(0);
-    private static final ConcurrentHashMap<String, ApiCallbackResponse<?,?>> awaitingResponse = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, RpcResultsResponse<?,?>> awaitingResponse = new ConcurrentHashMap<>();
     private static final ExecutorService executorService = Executors.newCachedThreadPool();
 
     private final String topic;
     private final ClassScanner classScanner;
 
-    public ApiCallbackEventHandler() {
+    public RpcResultsEventHandler() {
         this(DEFAULT_TOPIC);
     }
 
-    public ApiCallbackEventHandler(String topic) {
+    public RpcResultsEventHandler(String topic) {
         this.topic = topic;
         this.classScanner = new ClassScanner(CLASS_TO_SCAN_FOR_PAYLOAD_TYPE);
     }
@@ -50,11 +49,6 @@ public class ApiCallbackEventHandler extends EventHandler<String> {
     @Override
     public JavaType getValType(StompHeaders headers) {
         return objectMapper.constructType(getPayloadType(headers));
-    }
-
-    @Override
-    public void onData(String data) {
-        throw new RuntimeException("Not implemented");
     }
 
     @Override
@@ -75,10 +69,10 @@ public class ApiCallbackEventHandler extends EventHandler<String> {
         }
     }
 
-    public static  <TIN, TOUT> ApiCallbackResponse<TIN, TOUT> submit(String destination, TIN payload, CompletableFuture<TOUT> completableFuture, BiConsumer<StompHeaders, TIN> doSend){
+    public static  <TIN, TOUT> RpcResultsResponse<TIN, TOUT> submit(String destination, TIN payload, CompletableFuture<TOUT> completableFuture, BiConsumer<StompHeaders, TIN> doSend){
 
         final var messageId = sequenceNumber.incrementAndGet();
-        final var streamingResponse = new ApiCallbackResponse<>(messageId, payload, completableFuture);
+        final var streamingResponse = new RpcResultsResponse<>(messageId, payload, completableFuture);
 
         try {
             var nextSeq = Long.toString(messageId);
@@ -111,7 +105,7 @@ public class ApiCallbackEventHandler extends EventHandler<String> {
         awaitingResponse.remove(messageId);
     }
 
-    public static ApiCallbackEventHandler create(){
-        return new ApiCallbackEventHandler();
+    public static RpcResultsEventHandler create(){
+        return new RpcResultsEventHandler();
     }
 }
