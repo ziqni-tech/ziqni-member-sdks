@@ -39,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EntityChanged.JSON_PROPERTY_ENTITY_ID,
   EntityChanged.JSON_PROPERTY_ENTITY_TYPE,
   EntityChanged.JSON_PROPERTY_CHANGED_AT,
-  EntityChanged.JSON_PROPERTY_CHANGED_BY,
   EntityChanged.JSON_PROPERTY_TYPE_OFF_CHANGE,
   EntityChanged.JSON_PROPERTY_DISPLAY_NAME,
   EntityChanged.JSON_PROPERTY_ACCOUNT_ID,
@@ -58,9 +57,6 @@ public class EntityChanged {
 
   public static final String JSON_PROPERTY_CHANGED_AT = "changedAt";
   private OffsetDateTime changedAt;
-
-  public static final String JSON_PROPERTY_CHANGED_BY = "changedBy";
-  private String changedBy;
 
   public static final String JSON_PROPERTY_TYPE_OFF_CHANGE = "typeOffChange";
   private Integer typeOffChange;
@@ -161,32 +157,6 @@ public class EntityChanged {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangedAt(OffsetDateTime changedAt) {
     this.changedAt = changedAt;
-  }
-
-
-  public EntityChanged changedBy(String changedBy) {
-    this.changedBy = changedBy;
-    return this;
-  }
-
-   /**
-   * 
-   * @return changedBy
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGED_BY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getChangedBy() {
-    return changedBy;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGED_BY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangedBy(String changedBy) {
-    this.changedBy = changedBy;
   }
 
 
@@ -395,7 +365,6 @@ public class EntityChanged {
     return Objects.equals(this.entityId, entityChanged.entityId) &&
         Objects.equals(this.entityType, entityChanged.entityType) &&
         Objects.equals(this.changedAt, entityChanged.changedAt) &&
-        Objects.equals(this.changedBy, entityChanged.changedBy) &&
         Objects.equals(this.typeOffChange, entityChanged.typeOffChange) &&
         Objects.equals(this.displayName, entityChanged.displayName) &&
         Objects.equals(this.accountId, entityChanged.accountId) &&
@@ -407,7 +376,7 @@ public class EntityChanged {
 
   @Override
   public int hashCode() {
-    return Objects.hash(entityId, entityType, changedAt, changedBy, typeOffChange, displayName, accountId, sequenceNumber, entityRefId, entityParentId, metadata);
+    return Objects.hash(entityId, entityType, changedAt, typeOffChange, displayName, accountId, sequenceNumber, entityRefId, entityParentId, metadata);
   }
 
   @Override
@@ -417,7 +386,6 @@ public class EntityChanged {
     sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
     sb.append("    entityType: ").append(toIndentedString(entityType)).append("\n");
     sb.append("    changedAt: ").append(toIndentedString(changedAt)).append("\n");
-    sb.append("    changedBy: ").append(toIndentedString(changedBy)).append("\n");
     sb.append("    typeOffChange: ").append(toIndentedString(typeOffChange)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");

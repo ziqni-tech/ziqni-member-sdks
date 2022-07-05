@@ -17,8 +17,8 @@ import com.ziqni.member.sdk.streaming.EventHandler;
 import com.ziqni.member.sdk.streaming.handlers.CallbackConsumer;
 import com.ziqni.member.sdk.ApiException;
 import org.springframework.messaging.simp.stomp.StompHeaders;
-    import com.ziqni.member.sdk.model.ProxyRequest;
-    import com.ziqni.member.sdk.model.ProxyResponse;
+    import com.ziqni.member.sdk.model.EntityChangeSubscriptionRequest;
+    import com.ziqni.member.sdk.model.EntityChangeSubscriptionResponse;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,26 +36,41 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.function.BiConsumer;
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-    public class ProxyApiWs {
+    public class EntityChangesApiWs {
 
     private final Duration memberVarReadTimeout;
     private final StreamingClient streamingClient;
 
-    public ProxyApiWs(StreamingClient streamingClient, Duration readTimeout) {
+    public EntityChangesApiWs(StreamingClient streamingClient, Duration readTimeout) {
     this.streamingClient = streamingClient;
     this.memberVarReadTimeout = readTimeout;
     }
 
+    public class subscribeToEntityChangesCallBacks {
+        public final static String ENTITYCHANGED ="entityChanged";
+        public final static String ENTITYSTATECHANGED ="entityStateChanged";
+        
+    }
 
+
+    public EntityChangesApiWs entityChangedHandler(BiConsumer<StompHeaders, EntityChanged> entityChanged, BiConsumer<StompHeaders, ApiException> onApiException){
+        streamingClient.getCallbackEventHandler().registerCallbackHandler(new CallbackConsumer<EntityChanged>(EntityChanged.class, "entityChanged", entityChanged, onApiException));
+        return this;
+    }
+
+    public EntityChangesApiWs entityStateChangedHandler(BiConsumer<StompHeaders, EntityStateChanged> entityStateChanged, BiConsumer<StompHeaders, ApiException> onApiException){
+        streamingClient.getCallbackEventHandler().registerCallbackHandler(new CallbackConsumer<EntityStateChanged>(EntityStateChanged.class, "entityStateChanged", entityStateChanged, onApiException));
+        return this;
+    }
 
             /**
-            * Proxy
-            * Perform proxy operations.
-                * @param proxyRequest  (required)
-                * @return CompletableFuture&lt;ProxyResponse&gt;
+            * 
+            * subscribes a client to receive out-of-band data
+                * @param entityChangeSubscriptionRequest subscription payload (required)
+                * @return CompletableFuture&lt;EntityChangeSubscriptionResponse&gt;
             * @throws ApiException if fails to make API call
             */
-            public CompletableFuture<ProxyResponse> proxy(ProxyRequest proxyRequest) {
+            public CompletableFuture<EntityChangeSubscriptionResponse> subscribeToEntityChanges(EntityChangeSubscriptionRequest entityChangeSubscriptionRequest) {
                 var request = new HashMap<String, Object>();
             
                         
@@ -63,9 +78,9 @@ import java.util.function.BiConsumer;
             
                         
 
-            request.put("body",proxyRequest);
+            request.put("body",entityChangeSubscriptionRequest);
 
-            CompletableFuture<ProxyResponse> result = this.streamingClient.sendWithApiCallback("/gapi/proxy", request);
+            CompletableFuture<EntityChangeSubscriptionResponse> result = this.streamingClient.sendWithApiCallback("/gapi/subscribeToEntityChanges", request);
             return result;
         }
 

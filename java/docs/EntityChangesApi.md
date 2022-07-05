@@ -1,17 +1,17 @@
-# SubscriptionsApi
+# EntityChangesApi
 
 All URIs are relative to *https://gamification-api.ziqni.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**subscribe**](SubscriptionsApi.md#subscribe) | **POST** /subscribe |  |
-| [**subscribeWithHttpInfo**](SubscriptionsApi.md#subscribeWithHttpInfo) | **POST** /subscribe |  |
+| [**subscribeToEntityChanges**](EntityChangesApi.md#subscribeToEntityChanges) | **POST** /entity-changes |  |
+| [**subscribeToEntityChangesWithHttpInfo**](EntityChangesApi.md#subscribeToEntityChangesWithHttpInfo) | **POST** /entity-changes |  |
 
 
 
-## subscribe
+## subscribeToEntityChanges
 
-> CompletableFuture<SubscriptionResponse> subscribe(subscriptionRequest)
+> CompletableFuture<EntityChangeSubscriptionResponse> subscribeToEntityChanges(entityChangeSubscriptionRequest)
 
 
 
@@ -25,7 +25,7 @@ import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
 import com.ziqni.member.sdk.models.*;
-import com.ziqni.member.sdk.api.SubscriptionsApi;
+import com.ziqni.member.sdk.api.EntityChangesApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -33,13 +33,13 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://gamification-api.ziqni.com");
 
-        SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
-        SubscriptionRequest subscriptionRequest = new SubscriptionRequest(); // SubscriptionRequest | subscription payload
+        EntityChangesApi apiInstance = new EntityChangesApi(defaultClient);
+        EntityChangeSubscriptionRequest entityChangeSubscriptionRequest = new EntityChangeSubscriptionRequest(); // EntityChangeSubscriptionRequest | subscription payload
         try {
-            CompletableFuture<SubscriptionResponse> result = apiInstance.subscribe(subscriptionRequest);
+            CompletableFuture<EntityChangeSubscriptionResponse> result = apiInstance.subscribeToEntityChanges(entityChangeSubscriptionRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling SubscriptionsApi#subscribe");
+            System.err.println("Exception when calling EntityChangesApi#subscribeToEntityChanges");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -54,11 +54,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **subscriptionRequest** | [**SubscriptionRequest**](SubscriptionRequest.md)| subscription payload | |
+| **entityChangeSubscriptionRequest** | [**EntityChangeSubscriptionRequest**](EntityChangeSubscriptionRequest.md)| subscription payload | |
 
 ### Return type
 
-CompletableFuture<[**SubscriptionResponse**](SubscriptionResponse.md)>
+CompletableFuture<[**EntityChangeSubscriptionResponse**](EntityChangeSubscriptionResponse.md)>
 
 
 ### Authorization
@@ -77,9 +77,9 @@ No authorization required
 | **400** |  |  -  |
 | **500** |  |  -  |
 
-## subscribeWithHttpInfo
+## subscribeToEntityChangesWithHttpInfo
 
-> CompletableFuture<ApiResponse<SubscriptionResponse>> subscribe subscribeWithHttpInfo(subscriptionRequest)
+> CompletableFuture<ApiResponse<EntityChangeSubscriptionResponse>> subscribeToEntityChanges subscribeToEntityChangesWithHttpInfo(entityChangeSubscriptionRequest)
 
 
 
@@ -94,7 +94,7 @@ import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
 import com.ziqni.member.sdk.models.*;
-import com.ziqni.member.sdk.api.SubscriptionsApi;
+import com.ziqni.member.sdk.api.EntityChangesApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -102,22 +102,22 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://gamification-api.ziqni.com");
 
-        SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
-        SubscriptionRequest subscriptionRequest = new SubscriptionRequest(); // SubscriptionRequest | subscription payload
+        EntityChangesApi apiInstance = new EntityChangesApi(defaultClient);
+        EntityChangeSubscriptionRequest entityChangeSubscriptionRequest = new EntityChangeSubscriptionRequest(); // EntityChangeSubscriptionRequest | subscription payload
         try {
-            CompletableFuture<ApiResponse<SubscriptionResponse>> response = apiInstance.subscribeWithHttpInfo(subscriptionRequest);
+            CompletableFuture<ApiResponse<EntityChangeSubscriptionResponse>> response = apiInstance.subscribeToEntityChangesWithHttpInfo(entityChangeSubscriptionRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling SubscriptionsApi#subscribe");
+            System.err.println("Exception when calling EntityChangesApi#subscribeToEntityChanges");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling SubscriptionsApi#subscribe");
+            System.err.println("Exception when calling EntityChangesApi#subscribeToEntityChanges");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -132,11 +132,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **subscriptionRequest** | [**SubscriptionRequest**](SubscriptionRequest.md)| subscription payload | |
+| **entityChangeSubscriptionRequest** | [**EntityChangeSubscriptionRequest**](EntityChangeSubscriptionRequest.md)| subscription payload | |
 
 ### Return type
 
-CompletableFuture<ApiResponse<[**SubscriptionResponse**](SubscriptionResponse.md)>>
+CompletableFuture<ApiResponse<[**EntityChangeSubscriptionResponse**](EntityChangeSubscriptionResponse.md)>>
 
 
 ### Authorization

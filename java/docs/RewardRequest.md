@@ -8,7 +8,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**entityId** | **String** |  |  |
+|**entityIds** | **List&lt;String&gt;** |  |  |
 
 
 

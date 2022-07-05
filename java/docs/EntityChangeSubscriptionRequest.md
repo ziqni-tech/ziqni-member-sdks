@@ -1,6 +1,6 @@
 
 
-# SubscriptionRequest
+# EntityChangeSubscriptionRequest
 
 
 
@@ -10,7 +10,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**entityType** | **String** | What you are subscribing to, like Competition, Contest, Member, Award etc. |  |
 |**constraints** | **List&lt;String&gt;** | Constraints of this subscription. |  [optional] |
-|**callback** | **String** | The operation you are subscribing too. Like entityChanged or entityStateChanged |  |
+|**callback** | **String** | The callback operation you are subscribing too. Like entityChanged or entityStateChanged |  |
 
 
 

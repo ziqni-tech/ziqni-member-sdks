@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Event notification subscriptions working" />
+    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Updated the method names to reflect actual usage">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/docs/RewardRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/RewardRequest.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/docs/RuleRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/RuleRequest.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RewardRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RewardRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RuleRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RuleRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/api/RulesApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/api/RulesApiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/data/LoadRewardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/data/LoadRewardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/data/LoadRulesData.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/data/LoadRulesData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/ziqni-member-api.yml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/ziqni-member-api.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -95,7 +105,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1656966295087</updated>
-      <workItem from="1656966296382" duration="12275000" />
+      <workItem from="1656966296382" duration="17179000" />
     </task>
     <task id="LOCAL-00001" summary="Cleanup">
       <created>1656969494518</created>
@@ -118,7 +128,21 @@
       <option name="project" value="LOCAL" />
       <updated>1656979021764</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Event notification subscriptions working">
+      <created>1656979492239</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1656979492239</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Updated the method names to reflect actual usage">
+      <created>1657009214027</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1657009214027</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,7 +162,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Cleanup" />
     <MESSAGE value="Event notification subscriptions working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Event notification subscriptions working" />
+    <MESSAGE value="Updated the method names to reflect actual usage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the method names to reflect actual usage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,6 +1,6 @@
 
 
-# Subscription
+# EntityChangeSubscription
 
 Subscribes a client to receive out-of-band data
 
@@ -11,6 +11,7 @@ Subscribes a client to receive out-of-band data
 |**entityType** | **String** |  |  |
 |**subscriptionId** | **String** |  |  |
 |**constraints** | **List&lt;String&gt;** | Constraints of this subscription like gauranteedDelivery |  [optional] |
+|**topic** | **String** | /user/queue/callbacks |  [optional] |
 
 
 

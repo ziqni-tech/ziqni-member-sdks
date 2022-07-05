@@ -32,12 +32,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @ApiModel(description = "")
 @JsonPropertyOrder({
-  MemberOptinRequest.JSON_PROPERTY_ENTITY_ID,
-  MemberOptinRequest.JSON_PROPERTY_ENTITY_TYPE,
-  MemberOptinRequest.JSON_PROPERTY_ACTION
+  ManageOptinRequest.JSON_PROPERTY_ENTITY_ID,
+  ManageOptinRequest.JSON_PROPERTY_ENTITY_TYPE,
+  ManageOptinRequest.JSON_PROPERTY_ACTION
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class MemberOptinRequest {
+public class ManageOptinRequest {
   public static final String JSON_PROPERTY_ENTITY_ID = "entityId";
   private String entityId;
 
@@ -47,10 +47,10 @@ public class MemberOptinRequest {
   public static final String JSON_PROPERTY_ACTION = "action";
   private String action;
 
-  public MemberOptinRequest() { 
+  public ManageOptinRequest() { 
   }
 
-  public MemberOptinRequest entityId(String entityId) {
+  public ManageOptinRequest entityId(String entityId) {
     this.entityId = entityId;
     return this;
   }
@@ -76,7 +76,7 @@ public class MemberOptinRequest {
   }
 
 
-  public MemberOptinRequest entityType(String entityType) {
+  public ManageOptinRequest entityType(String entityType) {
     this.entityType = entityType;
     return this;
   }
@@ -102,7 +102,7 @@ public class MemberOptinRequest {
   }
 
 
-  public MemberOptinRequest action(String action) {
+  public ManageOptinRequest action(String action) {
     this.action = action;
     return this;
   }
@@ -129,7 +129,7 @@ public class MemberOptinRequest {
 
 
   /**
-   * Return true if this MemberOptinRequest object is equal to o.
+   * Return true if this ManageOptinRequest object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -139,10 +139,10 @@ public class MemberOptinRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MemberOptinRequest memberOptinRequest = (MemberOptinRequest) o;
-    return Objects.equals(this.entityId, memberOptinRequest.entityId) &&
-        Objects.equals(this.entityType, memberOptinRequest.entityType) &&
-        Objects.equals(this.action, memberOptinRequest.action);
+    ManageOptinRequest manageOptinRequest = (ManageOptinRequest) o;
+    return Objects.equals(this.entityId, manageOptinRequest.entityId) &&
+        Objects.equals(this.entityType, manageOptinRequest.entityType) &&
+        Objects.equals(this.action, manageOptinRequest.action);
   }
 
   @Override
@@ -153,7 +153,7 @@ public class MemberOptinRequest {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MemberOptinRequest {\n");
+    sb.append("class ManageOptinRequest {\n");
     sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
     sb.append("    entityType: ").append(toIndentedString(entityType)).append("\n");
     sb.append("    action: ").append(toIndentedString(action)).append("\n");

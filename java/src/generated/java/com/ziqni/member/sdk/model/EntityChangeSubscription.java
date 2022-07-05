@@ -30,39 +30,43 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * 
+ * Subscribes a client to receive out-of-band data
  */
-@ApiModel(description = "")
+@ApiModel(description = "Subscribes a client to receive out-of-band data")
 @JsonPropertyOrder({
-  SubscriptionRequest.JSON_PROPERTY_ENTITY_TYPE,
-  SubscriptionRequest.JSON_PROPERTY_CONSTRAINTS,
-  SubscriptionRequest.JSON_PROPERTY_CALLBACK
+  EntityChangeSubscription.JSON_PROPERTY_ENTITY_TYPE,
+  EntityChangeSubscription.JSON_PROPERTY_SUBSCRIPTION_ID,
+  EntityChangeSubscription.JSON_PROPERTY_CONSTRAINTS,
+  EntityChangeSubscription.JSON_PROPERTY_TOPIC
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class SubscriptionRequest {
+public class EntityChangeSubscription {
   public static final String JSON_PROPERTY_ENTITY_TYPE = "entityType";
   private String entityType;
+
+  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
+  private String subscriptionId;
 
   public static final String JSON_PROPERTY_CONSTRAINTS = "constraints";
   private List<String> constraints = null;
 
-  public static final String JSON_PROPERTY_CALLBACK = "callback";
-  private String callback;
+  public static final String JSON_PROPERTY_TOPIC = "topic";
+  private String topic;
 
-  public SubscriptionRequest() { 
+  public EntityChangeSubscription() { 
   }
 
-  public SubscriptionRequest entityType(String entityType) {
+  public EntityChangeSubscription entityType(String entityType) {
     this.entityType = entityType;
     return this;
   }
 
    /**
-   * What you are subscribing to, like Competition, Contest, Member, Award etc.
+   * 
    * @return entityType
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "What you are subscribing to, like Competition, Contest, Member, Award etc.")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_ENTITY_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -78,12 +82,38 @@ public class SubscriptionRequest {
   }
 
 
-  public SubscriptionRequest constraints(List<String> constraints) {
+  public EntityChangeSubscription subscriptionId(String subscriptionId) {
+    this.subscriptionId = subscriptionId;
+    return this;
+  }
+
+   /**
+   * 
+   * @return subscriptionId
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getSubscriptionId() {
+    return subscriptionId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSubscriptionId(String subscriptionId) {
+    this.subscriptionId = subscriptionId;
+  }
+
+
+  public EntityChangeSubscription constraints(List<String> constraints) {
     this.constraints = constraints;
     return this;
   }
 
-  public SubscriptionRequest addConstraintsItem(String constraintsItem) {
+  public EntityChangeSubscription addConstraintsItem(String constraintsItem) {
     if (this.constraints == null) {
       this.constraints = new ArrayList<>();
     }
@@ -92,11 +122,11 @@ public class SubscriptionRequest {
   }
 
    /**
-   * Constraints of this subscription.
+   * Constraints of this subscription like gauranteedDelivery
    * @return constraints
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Constraints of this subscription.")
+  @ApiModelProperty(value = "Constraints of this subscription like gauranteedDelivery")
   @JsonProperty(JSON_PROPERTY_CONSTRAINTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -112,34 +142,34 @@ public class SubscriptionRequest {
   }
 
 
-  public SubscriptionRequest callback(String callback) {
-    this.callback = callback;
+  public EntityChangeSubscription topic(String topic) {
+    this.topic = topic;
     return this;
   }
 
    /**
-   * The operation you are subscribing too. Like entityChanged or entityStateChanged
-   * @return callback
+   * /user/queue/callbacks
+   * @return topic
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The operation you are subscribing too. Like entityChanged or entityStateChanged")
-  @JsonProperty(JSON_PROPERTY_CALLBACK)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "/user/queue/callbacks")
+  @JsonProperty(JSON_PROPERTY_TOPIC)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getCallback() {
-    return callback;
+  public String getTopic() {
+    return topic;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CALLBACK)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCallback(String callback) {
-    this.callback = callback;
+  @JsonProperty(JSON_PROPERTY_TOPIC)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTopic(String topic) {
+    this.topic = topic;
   }
 
 
   /**
-   * Return true if this SubscriptionRequest object is equal to o.
+   * Return true if this EntityChangeSubscription object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -149,24 +179,26 @@ public class SubscriptionRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SubscriptionRequest subscriptionRequest = (SubscriptionRequest) o;
-    return Objects.equals(this.entityType, subscriptionRequest.entityType) &&
-        Objects.equals(this.constraints, subscriptionRequest.constraints) &&
-        Objects.equals(this.callback, subscriptionRequest.callback);
+    EntityChangeSubscription entityChangeSubscription = (EntityChangeSubscription) o;
+    return Objects.equals(this.entityType, entityChangeSubscription.entityType) &&
+        Objects.equals(this.subscriptionId, entityChangeSubscription.subscriptionId) &&
+        Objects.equals(this.constraints, entityChangeSubscription.constraints) &&
+        Objects.equals(this.topic, entityChangeSubscription.topic);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(entityType, constraints, callback);
+    return Objects.hash(entityType, subscriptionId, constraints, topic);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SubscriptionRequest {\n");
+    sb.append("class EntityChangeSubscription {\n");
     sb.append("    entityType: ").append(toIndentedString(entityType)).append("\n");
+    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("    constraints: ").append(toIndentedString(constraints)).append("\n");
-    sb.append("    callback: ").append(toIndentedString(callback)).append("\n");
+    sb.append("    topic: ").append(toIndentedString(topic)).append("\n");
     sb.append("}");
     return sb.toString();
   }
