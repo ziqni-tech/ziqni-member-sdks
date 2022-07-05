@@ -4,35 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Event notification subscriptions working">
+    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Updated the method names to reflect actual usage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/EntityChanged.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/EntityChanged.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/EntityStateChanged.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/EntityStateChanged.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MemberOptinRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/ManageOptinRequest.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MembersApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/MembersApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ProxyApi.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/java/docs/RewardRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/RewardRequest.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Subscription.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/EntityChangeSubscription.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/SubscriptionRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/EntityChangeSubscriptionRequest.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/SubscriptionResponse.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/EntityChangeSubscriptionResponse.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/SubscriptionsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/EntityChangesApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/ApiClientFactoryWs.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/ApiClientFactoryWs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/api/MembersApiWs.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/api/MembersApiWs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/api/ProxyApiWs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/api/SubscriptionsApiWs.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/api/EntityChangesApiWs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/EntityChanged.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/EntityChanged.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/EntityStateChanged.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/EntityStateChanged.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/MemberOptinRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ManageOptinRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/docs/RuleRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/RuleRequest.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RewardRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RewardRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/Subscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/EntityChangeSubscription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/SubscriptionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/EntityChangeSubscriptionRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/SubscriptionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/EntityChangeSubscriptionResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/SampleApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/SampleApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/api/MembersApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/api/MembersApiTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/api/ProxyApiTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RuleRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RuleRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/api/RulesApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/api/RulesApiTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/data/LoadRewardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/data/LoadRewardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/model/MemberOptinRequestTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/data/LoadRulesData.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/data/LoadRulesData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/openapi/ziqni-member-api.yml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/ziqni-member-api.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +105,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1656966295087</updated>
-      <workItem from="1656966296382" duration="16260000" />
+      <workItem from="1656966296382" duration="17179000" />
     </task>
     <task id="LOCAL-00001" summary="Cleanup">
       <created>1656969494518</created>
@@ -155,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656979492239</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Updated the method names to reflect actual usage">
+      <created>1657009214027</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1657009214027</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,7 +162,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Cleanup" />
     <MESSAGE value="Event notification subscriptions working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Event notification subscriptions working" />
+    <MESSAGE value="Updated the method names to reflect actual usage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the method names to reflect actual usage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

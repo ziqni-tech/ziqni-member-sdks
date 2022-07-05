@@ -8,7 +8,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**rewardIds** | **List&lt;String&gt;** |  |  |
+|**entityIds** | **List&lt;String&gt;** |  |  |
 
 
 

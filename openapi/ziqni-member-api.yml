@@ -1583,10 +1583,10 @@ components:
     RewardRequest:
       description: ''
       required:
-        - rewardIds
+        - entityIds
       type: object
       properties:
-        rewardIds:
+        entityIds:
           description: ''
           type: array
           items:
@@ -2611,12 +2611,14 @@ components:
     RuleRequest:
       description: ''
       required:
-        - entityId
+        - entityIds
       type: object
       properties:
-        entityId:
+        entityIds:
           description: ''
-          type: string
+          type: array
+          items:
+            type: string
     RuleResponse:
       description: '        '
       required: []

@@ -6,7 +6,7 @@ import tests.utils.CompleteableFutureTestWrapper;
 public class LoadRewardsData implements CompleteableFutureTestWrapper {
 
     public RewardRequest getRequest(String rewardId) {
-        return new RewardRequest().addRewardIdsItem(rewardId);
+        return new RewardRequest().addEntityIdsItem(rewardId);
     }
 
 }

@@ -24,6 +24,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -32,39 +34,44 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @ApiModel(description = "")
 @JsonPropertyOrder({
-  RuleRequest.JSON_PROPERTY_ENTITY_ID
+  RuleRequest.JSON_PROPERTY_ENTITY_IDS
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RuleRequest {
-  public static final String JSON_PROPERTY_ENTITY_ID = "entityId";
-  private String entityId;
+  public static final String JSON_PROPERTY_ENTITY_IDS = "entityIds";
+  private List<String> entityIds = new ArrayList<>();
 
   public RuleRequest() { 
   }
 
-  public RuleRequest entityId(String entityId) {
-    this.entityId = entityId;
+  public RuleRequest entityIds(List<String> entityIds) {
+    this.entityIds = entityIds;
+    return this;
+  }
+
+  public RuleRequest addEntityIdsItem(String entityIdsItem) {
+    this.entityIds.add(entityIdsItem);
     return this;
   }
 
    /**
    * 
-   * @return entityId
+   * @return entityIds
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_ENTITY_ID)
+  @JsonProperty(JSON_PROPERTY_ENTITY_IDS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getEntityId() {
-    return entityId;
+  public List<String> getEntityIds() {
+    return entityIds;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ENTITY_ID)
+  @JsonProperty(JSON_PROPERTY_ENTITY_IDS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setEntityId(String entityId) {
-    this.entityId = entityId;
+  public void setEntityIds(List<String> entityIds) {
+    this.entityIds = entityIds;
   }
 
 
@@ -80,19 +87,19 @@ public class RuleRequest {
       return false;
     }
     RuleRequest ruleRequest = (RuleRequest) o;
-    return Objects.equals(this.entityId, ruleRequest.entityId);
+    return Objects.equals(this.entityIds, ruleRequest.entityIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(entityId);
+    return Objects.hash(entityIds);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RuleRequest {\n");
-    sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
+    sb.append("    entityIds: ").append(toIndentedString(entityIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -18,6 +18,8 @@ import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.data.LoadRulesData;
 import org.junit.jupiter.api.*;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -46,7 +48,7 @@ public class RulesApiTest implements tests.utils.CompleteableFutureTestWrapper{
     @Test
     public void getRulesTest() throws ApiException {
         String competitionId = "M2aFXYEBl_GIktlkShBQ";
-        var response = $(api.getRules(loadRulesData.getRequest(competitionId)));
+        var response = $(api.getRules(loadRulesData.getRequest(List.of(competitionId))));
 
         assertNotNull(response);
         assertNotNull(response.getData());
