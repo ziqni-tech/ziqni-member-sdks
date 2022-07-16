@@ -24,6 +24,7 @@
 |**statusCode** | **Integer** | The code of the competition |  [optional] [readonly] |
 |**constraints** | **Set&lt;String&gt;** | Additional constraints |  [optional] |
 |**products** | [**List&lt;ProductReduced&gt;**](ProductReduced.md) |  |  [optional] |
+|**memberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional] |
 
 
 

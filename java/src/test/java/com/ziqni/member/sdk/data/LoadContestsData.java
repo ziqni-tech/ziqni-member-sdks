@@ -33,7 +33,7 @@ public class LoadContestsData implements CompleteableFutureTestWrapper {
         contestFilter.setEndDate(null);
         contestFilter.setProductIds(productIds);
         contestFilter.setTags(tags);
-        contestFilter.setSortBy(querySortBy);
+        contestFilter.addSortByItem(querySortBy);
         contestFilter.setLimit(limit);
         contestFilter.setSkip(skip);
 

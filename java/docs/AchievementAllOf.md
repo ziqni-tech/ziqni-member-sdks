@@ -16,6 +16,7 @@
 |**dependantOn** | [**Dependancy**](Dependancy.md) |  |  [optional] |
 |**status** | **String** | Achievement status |  [optional] |
 |**statusCode** | **Integer** |  |  [optional] |
+|**memberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional] |
 
 
 

@@ -9,11 +9,11 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**tags** | **List&lt;String&gt;** |  |  [optional] |
-|**startDate** | [**RangeQuery**](RangeQuery.md) |  |  [optional] |
-|**endDate** | [**RangeQuery**](RangeQuery.md) |  |  [optional] |
+|**startDate** | [**DateRange**](DateRange.md) |  |  [optional] |
+|**endDate** | [**DateRange**](DateRange.md) |  |  [optional] |
 |**productIds** | **List&lt;String&gt;** |  |  [optional] |
+|**statusCode** | [**NumberRange**](NumberRange.md) |  |  [optional] |
 |**status** | **List&lt;CompetitionStatus&gt;** |  |  [optional] |
-|**competitionType** | **List&lt;CompetitionType&gt;** |  |  [optional] |
 |**sortBy** | [**List&lt;QuerySortBy&gt;**](QuerySortBy.md) |  |  [optional] |
 |**ids** | **List&lt;String&gt;** |  |  [optional] |
 |**skip** | **Integer** |  |  [optional] |

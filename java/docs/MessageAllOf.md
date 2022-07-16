@@ -16,8 +16,7 @@
 |**status** | **MessageStatus** |  |  [optional] |
 |**expiry** | **OffsetDateTime** | The time that the message will disappear after. ISO8601 timestamp |  [optional] |
 |**memberId** | **List&lt;String&gt;** | The reference ID of the event object |  [optional] |
-|**translations** | [**List&lt;Translation&gt;**](Translation.md) |  |  [optional] |
-|**translatableFields** | **List&lt;String&gt;** | Message translatable fields |  [optional] [readonly] |
+|**id** | **String** |  |  |
 
 
 

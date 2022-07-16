@@ -8,12 +8,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**tags** | **List&lt;String&gt;** |  |  [optional] |
-|**sortBy** | [**List&lt;QuerySortBy&gt;**](QuerySortBy.md) |  |  [optional] |
-|**skip** | **Integer** |  |  [optional] |
-|**limit** | **Integer** |  |  [optional] |
-|**statusCode** | **List&lt;Integer&gt;** | Achievement status code |  [optional] |
-|**constraints** | **List&lt;String&gt;** | Specify the constraints that need to be applied to the filter. |  [optional] |
+|**topRanksToInclude** | **Integer** | Include rank from one [1] to the rank specified here. The maximum allowed is 50 |  |
+|**ranksAboveToInclude** | **Integer** | Include ranks above member position. The maximum allowed is 20 |  [optional] |
+|**ranksBelowToInclude** | **Integer** | Include ranks below member position. The maximum allowed is 20 |  [optional] |
 
 
 

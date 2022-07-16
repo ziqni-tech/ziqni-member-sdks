@@ -1,7 +1,6 @@
 package com.ziqni.member.sdk;
 
 import com.ziqni.member.sdk.api.EntityChangesApiWs;
-import com.ziqni.member.sdk.configuration.ApiClientConfig;
 import com.ziqni.member.sdk.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,8 +40,7 @@ public class SampleApp {
 
             return ApiClientFactoryWs.getStreamingClient().start();
         }).thenAccept(aBoolean -> {
-            ApiClientFactoryWs.getEntityChangesApi()
-                    .entityChangedHandler(
+            ApiClientFactoryWs.getEntityChangesApi().entityChangedHandler(
                         ((stompHeaders, entityChanged) -> {
                             logger.info(entityChanged.toString());
                         }),
