@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: Ziqni Member API
+  title: ZIQNI Member API
   version: 1.0.0
   description: >-
     The ZIQNI Member-API is the primary resource used to build services and widgets for your members
@@ -37,33 +37,6 @@ paths:
       operationId: getMember
       summary: Get member information by member reference id
       description: Returns member information for the provided member reference id
-      x-ws-only: true
-  /messages:
-    summary: Member messages operation
-    description: This endpoint supports member's messages operation.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MessageRequest'
-        required: true
-      tags:
-        - messages
-      responses:
-        '200':
-          $ref: '#/components/responses/MessageResponseBody'
-        '400':
-          $ref: '#/components/responses/MessageResponseBody'
-        '500':
-          $ref: '#/components/responses/MessageResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewMessages
-      operationId: getMessages
-      summary: Get messages by member reference id
-      description: Returns a list of messages for the provided member ref id and applied filters.
       x-ws-only: true
   /rewards:
     summary: Reward operations
@@ -304,7 +277,76 @@ paths:
       summary: Get member optin information
       description: Returns a list of member optin information
       x-ws-only: true
-  /leaderboard: {}
+  /leaderboard:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaderboardSubscriptionRequest'
+      callbacks:
+        leaderboardUpdate:
+          '{$request.body#/id}':
+            post:
+              requestBody:
+                description: New message
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Message'
+              responses:
+                '202':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the http protocol and only if the data was received
+                    successfully
+      responses:
+        '200':
+          $ref: '#/components/responses/LeaderboardResponseBody'
+      operationId: subscribeToLeaderboard
+  /messages:
+    summary: Member messages operation
+    description: This endpoint supports member's messages operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageRequest'
+        required: true
+      callbacks:
+        newMessage:
+          '{$request.body#/id}':
+            post:
+              requestBody:
+                description: New message
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Message'
+              responses:
+                '200':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the http protocol and only if the data was received
+                    successfully
+      tags:
+        - messages
+      responses:
+        '200':
+          $ref: '#/components/responses/MessageResponseBody'
+        '400':
+          $ref: '#/components/responses/MessageResponseBody'
+        '500':
+          $ref: '#/components/responses/MessageResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewMessages
+      operationId: getMessages
+      summary: Get messages by member reference id
+      description: Returns a list of messages for the provided member ref id and applied filters.
+      x-ws-only: true
   /entity-changes:
     post:
       requestBody:
@@ -421,98 +463,6 @@ components:
         message: 'No account found for space name - [test]'
         code: 1007
         status: 404
-    AchievementRequest:
-      description: ''
-      type: object
-      properties:
-        achievementFilter:
-          $ref: '#/components/schemas/AchievementFilter'
-          description: ''
-      example:
-        memberRefId: some text
-        achievementFilter:
-          productIds:
-            - some text
-            - some text
-          tags:
-            - some text
-            - some text
-          startDate:
-            gt: some text
-            lt: some text
-            constraints:
-              - some text
-              - some text
-          endDate:
-            gt: some text
-            lt: some text
-            constraints:
-              - some text
-              - some text
-          ids:
-            - some text
-            - some text
-          status:
-            - some text
-            - some text
-          sortBy:
-            -
-              queryField: some text
-              order: Desc
-            -
-              queryField: some text
-              order: Desc
-          skip: 11
-          limit: 75
-          statusCode:
-            - 54
-            - 63
-    CompetitionRequest:
-      description: ''
-      type: object
-      properties:
-        competitionFilter:
-          $ref: '#/components/schemas/CompetitionFilter'
-          description: ''
-      example:
-        memberRefId: some text
-        competitionFilter:
-          tags:
-            - some text
-            - some text
-          startDate:
-            gt: some text
-            lt: some text
-            constraints:
-              - some text
-              - some text
-          endDate:
-            gt: some text
-            lt: some text
-            constraints:
-              - some text
-              - some text
-          productIds:
-            - some text
-            - some text
-          status:
-            - Deleting
-            - Finishing
-          competitionType:
-            - Leaderboard
-            - Leaderboard
-          sortBy:
-            -
-              queryField: some text
-              order: Asc
-            -
-              queryField: some text
-              order: Asc
-          ids:
-            - some text
-            - some text
-          skip: 9
-          limit: 26
     QueryMultipleFields:
       description: ''
       type: object
@@ -948,42 +898,6 @@ components:
       enum:
         - Leaderboard
       type: string
-    ContestRequest:
-      description: This is a request to get Contest
-      type: object
-      properties:
-        contestFilter:
-          $ref: '#/components/schemas/ContestFilter'
-          description: ''
-      example:
-        memberRefId: some text
-        achievementFilter:
-          productIds:
-            - some text
-            - some text
-          tags:
-            - some text
-            - some text
-          startDate:
-            gt: some text
-            lt: some text
-            constraints:
-              - some text
-              - some text
-          endDate:
-            gt: some text
-            lt: some text
-            constraints:
-              - some text
-              - some text
-          sortBy:
-            queryField: some text
-            order: Asc
-          competitionIds:
-            - some text
-            - some text
-          skip: 61
-          limit: 92
     ContestResponse:
       description: This is a Contest Response
       required: []
@@ -1107,10 +1021,10 @@ components:
           items:
             type: string
         startDate:
-          $ref: '#/components/schemas/RangeQuery'
+          $ref: '#/components/schemas/DateRange'
           description: startDate
         endDate:
-          $ref: '#/components/schemas/RangeQuery'
+          $ref: '#/components/schemas/DateRange'
           description: ''
         ids:
           description: ''
@@ -1136,11 +1050,8 @@ components:
           description: ''
           type: integer
         statusCode:
+          $ref: '#/components/schemas/NumberRange'
           description: Achievement status code
-          type: array
-          items:
-            format: int32
-            type: integer
         constraints:
           description: Specify the constraints that need to be applied to the filter.
           type: array
@@ -1188,102 +1099,6 @@ components:
         statusCode:
           - 60
           - 45
-    CompetitionFilter:
-      description: ''
-      type: object
-      properties:
-        tags:
-          description: ''
-          type: array
-          items:
-            type: string
-        startDate:
-          $ref: '#/components/schemas/RangeQuery'
-          description: startDate
-        endDate:
-          $ref: '#/components/schemas/RangeQuery'
-          description: ''
-        productIds:
-          description: ''
-          type: array
-          items:
-            type: string
-        status:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/CompetitionStatus'
-        competitionType:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/CompetitionType'
-          example: ''
-        sortBy:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/QuerySortBy'
-        ids:
-          description: ''
-          type: array
-          items:
-            type: string
-        skip:
-          format: int32
-          description: ''
-          type: integer
-        limit:
-          format: int32
-          description: ''
-          type: integer
-        constraints:
-          description: Specify the constraints that need to be applied to the filter.
-          type: array
-          items:
-            type: string
-          example: |-
-            - hasTranslations
-            - hasRewards
-            - hasRules
-            - optinRequired
-      example:
-        tags:
-          - some text
-          - some text
-        startDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        endDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        productIds:
-          - some text
-          - some text
-        status:
-          - Finished
-          - Deleted
-        competitionType:
-          - Leaderboard
-          - Leaderboard
-        sortBy:
-          -
-            queryField: some text
-            order: Asc
-          -
-            queryField: some text
-            order: Desc
-        ids:
-          - some text
-          - some text
-        skip: 81
-        limit: 79
     Scheduling:
       required:
         - scheduleType
@@ -1580,17 +1395,6 @@ components:
       enum:
         - Individual
       type: string
-    RewardRequest:
-      description: ''
-      required:
-        - entityIds
-      type: object
-      properties:
-        entityIds:
-          description: ''
-          type: array
-          items:
-            type: string
     RewardResponse:
       description: '        '
       required: []
@@ -1695,128 +1499,6 @@ components:
             message: some text
             code: 88
             status: 70
-    TranslationRequest:
-      description: ''
-      required:
-        - entityId
-      type: object
-      properties:
-        entityId:
-          description: ''
-          type: string
-    TranslationResponse:
-      description: '        '
-      required: []
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-          description: ''
-        data:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/Translation'
-        errors:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-      example:
-        meta:
-          totalRecordsFound: 59
-          skip: 93
-          limit: 53
-          time: '2018-02-10T09:30Z'
-        data:
-          -
-            icon: some text
-            jsonClass: some text
-            name: some text
-            description: some text
-            termsAndConditions: some text
-            constraints:
-              - some text
-              - some text
-            maxNumberOfIssues: 44
-            achievementLiveStatus: Live
-            scheduling:
-              scheduleType: Once
-              scheduleOccurrencesLimit: 63
-              every:
-                - 2
-                - 29
-              startDate: '2018-02-10T09:30Z'
-              endDate: '2018-02-10T09:30Z'
-              constraints:
-                - some text
-                - some text
-            dependantOn:
-              entityType: some text
-              dependantOn:
-                must:
-                  - some text
-                  - some text
-                mustNot:
-                  - some text
-                  - some text
-                should:
-                  - some text
-                  - some text
-                shouldMatchAtLeast: 8
-          -
-            icon: some text
-            jsonClass: some text
-            name: some text
-            description: some text
-            termsAndConditions: some text
-            constraints:
-              - some text
-              - some text
-            maxNumberOfIssues: 62
-            achievementLiveStatus: Draft
-            scheduling:
-              scheduleType: Weekly
-              scheduleOccurrencesLimit: 15
-              every:
-                - 36
-                - 65
-              startDate: '2018-02-10T09:30Z'
-              endDate: '2018-02-10T09:30Z'
-              constraints:
-                - some text
-                - some text
-            dependantOn:
-              entityType: some text
-              dependantOn:
-                must:
-                  - some text
-                  - some text
-                mustNot:
-                  - some text
-                  - some text
-                should:
-                  - some text
-                  - some text
-                shouldMatchAtLeast: 18
-        errors:
-          -
-            message: some text
-            code: 61
-            status: 75
-          -
-            message: some text
-            code: 88
-            status: 70
-    MessageRequest:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
-          type: string
-      example:
-        memberRefId: some text
     MessageResponse:
       description: '        '
       required: []
@@ -1921,346 +1603,6 @@ components:
             message: some text
             code: 24
             status: 48
-    Competition:
-      description: ''
-      type: object
-      allOf:
-        -
-          type: object
-          properties:
-            competitionType:
-              $ref: '#/components/schemas/CompetitionType'
-            numberOfRounds:
-              format: int32
-              description: Number of rounds to be played in a competition
-              type: integer
-            numberOfGroupStages:
-              description: Number of group stages
-              type: integer
-            maxNumberOfEntrants:
-              format: int32
-              description: Maximum number of partiipants allowed in a competition
-              type: integer
-              example: '9999'
-            minNumberOfEntrants:
-              format: int32
-              description: Maximum number of partiipants allowed in a competition
-              type: integer
-              example: '0'
-            name:
-              description: ''
-              type: string
-            description:
-              description: ''
-              type: string
-            termsAndConditions:
-              description: ''
-              type: string
-            entrantMemberType:
-              type: string
-            scheduledStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition should start. All records are stored
-                in UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            scheduledEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition should end. All records are stored in
-                UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            actualStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition started. All records are stored in
-                UTC time zone
-              type: string
-              readOnly: true
-              example: '2019-09-25T15:47:00.000+0000'
-            actualEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition ended. All records are stored in UTC
-                time zone
-              type: string
-              readOnly: true
-              example: '2019-09-25T15:47:00.000+0000'
-            status:
-              $ref: '#/components/schemas/CompetitionStatus'
-            statusCode:
-              description: The code of the competition
-              type: integer
-              readOnly: true
-              example: '5'
-            constraints:
-              description: Additional constraints
-              uniqueItems: true
-              type: array
-              items:
-                type: string
-              example: |-
-                - hasTranslations
-                - hasRewards
-                - isPublic
-                - optinRequiredForEntrants
-            products:
-              description: ''
-              type: array
-              items:
-                $ref: '#/components/schemas/ProductReduced'
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptionalModelFields'
-      example:
-        id: ziqniId
-        competitionType: Leaderboard
-        numberOfRounds: 70
-        numberOfGroupStages: 98
-        maxNumberOfEntrants: 70
-        minNumberOfEntrants: 25
-        jsonClass: some text
-        name: some text
-        description: some text
-        termsAndConditions: some text
-        entrantMemberType: some text
-        dependantOn:
-          entityType: some text
-          dependantOn:
-            must:
-              - some text
-              - some text
-            mustNot:
-              - some text
-              - some text
-            should:
-              - some text
-              - some text
-            shouldMatchAtLeast: 8
-        scheduledStartDate: '2018-02-10T09:30Z'
-        scheduledEndDate: '2018-02-10T09:30Z'
-        actualStartDate: '2018-02-10T09:30Z'
-        actualEndDate: '2018-02-10T09:30Z'
-        status: Ready
-        statusCode: 22
-        contests:
-          -
-            competitionId: some text
-            row: 80
-            name: some text
-            round: 63
-            groupStage: 4
-            entrantsFromContest:
-              - some text
-              - some text
-            status: Cancelled
-            statusCode: 11
-            scheduledStartDate: '2018-02-10T09:30Z'
-            scheduledEndDate: '2018-02-10T09:30Z'
-            actualStartDate: '2018-02-10T09:30Z'
-            actualEndDate: '2018-02-10T09:30Z'
-            tags:
-              - some text
-              - some text
-            rewards:
-              -
-                rewardRank: some text
-                name: some text
-                rewardValue: 16.29
-                rewardType: some text
-                rewardTypeId: some text
-              -
-                rewardRank: some text
-                name: some text
-                rewardValue: 63.01
-                rewardType: some text
-                rewardTypeId: some text
-          -
-            competitionId: some text
-            row: 5
-            name: some text
-            round: 62
-            groupStage: 35
-            entrantsFromContest:
-              - some text
-              - some text
-            status: Finished
-            statusCode: 8
-            scheduledStartDate: '2018-02-10T09:30Z'
-            scheduledEndDate: '2018-02-10T09:30Z'
-            actualStartDate: '2018-02-10T09:30Z'
-            actualEndDate: '2018-02-10T09:30Z'
-            tags:
-              - some text
-              - some text
-            rewards:
-              -
-                rewardRank: some text
-                name: some text
-                rewardValue: 94.38
-                rewardType: some text
-                rewardTypeId: some text
-              -
-                rewardRank: some text
-                name: some text
-                rewardValue: 4.66
-                rewardType: some text
-                rewardTypeId: some text
-        constraints:
-          - some text
-          - some text
-        products:
-          -
-            name: some text
-            productRefId: some text
-            tags:
-              - some text
-              - some text
-          -
-            name: some text
-            productRefId: some text
-            tags:
-              - some text
-              - some text
-    Contest:
-      description: This is a contest model
-      type: object
-      allOf:
-        -
-          type: object
-          properties:
-            name:
-              description: ''
-              type: string
-            description:
-              description: ''
-              type: string
-            termsAndConditions:
-              description: ''
-              type: string
-            competitionId:
-              description: A unique identifier of a Competition
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            round:
-              format: int32
-              description: To what round does the contest belong
-              type: integer
-              example: '2'
-            roundType:
-              $ref: '#/components/schemas/RoundType'
-            groupStage:
-              format: int32
-              description: >-
-                Is used for more complex Competitions e.g. multi round competitions where
-                round 1 group stage matched round 2
-              type: integer
-              example: '2'
-            groupStageLabel:
-              description: The name of the group stages
-              type: string
-              example: Semi-finals
-            maxNumberOfEntrants:
-              format: int32
-              description: Maximum number of entrants for the contest
-              type: integer
-              example: '9999'
-            minNumberOfEntrants:
-              format: int32
-              description: Minimum number of entrants for the contest
-              type: integer
-              example: '0'
-            scheduledStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Contest should start. All records are stored in
-                UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            scheduledEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Contest should end. All records are stored in UTC
-                time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            actualStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition started. All records are stored in
-                UTC time zone
-              type: string
-              readOnly: true
-              example: '2019-09-25T15:47:00.000+0000'
-            actualEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition ended. All records are stored in UTC
-                time zone
-              type: string
-              readOnly: true
-              example: '2019-09-25T15:47:00.000+0000'
-            strategies:
-              $ref: '#/components/schemas/Strategy'
-            status:
-              $ref: '#/components/schemas/ContestStatus'
-            statusCode:
-              description: The code of the contest
-              type: integer
-              readOnly: true
-              example: '3'
-            constraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: |-
-                - hasTranslations
-                - hasRewards
-                - hasRules
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptionalModelFields'
-      example:
-        jsonClass: some text
-        name: some text
-        description: some text
-        termsAndConditions: some text
-        competitionId: some text
-        row: 6
-        round: 11
-        roundType: TargetBased
-        groupStage: 90
-        groupStageLabel: some text
-        entrantsFromContest:
-          - some text
-          - some text
-        maxNumberOfEntrants: 25
-        minNumberOfEntrants: 91
-        scheduledStartDate: '2018-02-10T09:30Z'
-        scheduledEndDate: '2018-02-10T09:30Z'
-        actualStartDate: '2018-02-10T09:30Z'
-        actualEndDate: '2018-02-10T09:30Z'
-        strategies:
-          strategyType: SumBest
-          rankingStrategy:
-            constraints:
-              - some text
-              - some text
-          scoringStrategy:
-            limitUpdatesTo: 83
-            sumBestXOf: 0
-            lastUpdateTimeStamp: 7
-            recordTimeWhenSumReaches: 9.61
-        status: Finalised
-        statusCode: 46
-        constraints:
-          - some text
-          - some text
     Strategy:
       description: ''
       type: object
@@ -2335,59 +1677,6 @@ components:
         - TimeBound
         - TargetBased
       type: string
-    Translation:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
-          type: string
-        accountId:
-          description: ''
-          type: string
-        entityId:
-          description: ''
-          type: string
-        entityType:
-          description: ''
-          type: string
-        version:
-          format: int64
-          description: ''
-          type: integer
-        created:
-          format: date-time
-          description: date-time
-          type: string
-        translations:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/TranslationEntry'
-        languageId:
-          description: ''
-          type: string
-        languageKey:
-          description: ''
-          type: string
-    TranslationEntry:
-      description: This the translationEntry model
-      required:
-        - fieldName
-        - text
-      type: object
-      properties:
-        fieldName:
-          description: Field name to associate the translationEntry to.
-          type: string
-          x-es-converter: TranslationEntry
-          x-es-fieldName: fieldName
-        text:
-          description: Corresponding translated text
-          type: string
-          x-es-converter: TranslationEntry
-          x-es-fieldName: text
-      x-es-companionObject: com.ziqni.dao.elasticsearch.documents.TranslationEntryDoc
     Reward:
       description: ''
       type: object
@@ -3108,6 +2397,9 @@ components:
               format: int32
               description: ''
               type: integer
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
         -
           $ref: '#/components/schemas/ModelDefault'
         -
@@ -3179,52 +2471,6 @@ components:
         - Canceled
         - Deprecated
       type: string
-    AwardRequest:
-      description: ''
-      type: object
-      properties:
-        awardFilter:
-          $ref: '#/components/schemas/AwardFilter'
-          description: ''
-      example:
-        memberRefId: some text
-        awardFilter:
-          productIds:
-            - some text
-            - some text
-          tags:
-            - some text
-            - some text
-          startDate:
-            gt: some text
-            lt: some text
-            constraints:
-              - some text
-              - some text
-          endDate:
-            gt: some text
-            lt: some text
-            constraints:
-              - some text
-              - some text
-          ids:
-            - some text
-            - some text
-          status:
-            - some text
-            - some text
-          sortBy:
-            -
-              queryField: some text
-              order: Desc
-            -
-              queryField: some text
-              order: Desc
-          skip: 24
-          limit: 67
-          statusCode:
-            - 11
-            - 9
     AwardResponse:
       description: '        '
       required: []
@@ -3306,98 +2552,6 @@ components:
             message: some text
             code: 72
             status: 71
-    FieldType:
-      description: The data type of custom field
-      enum:
-        - Text
-        - TextArray
-        - Number
-        - NumberArray
-      type: string
-      example: '"String"'
-      x-enum-varnames:
-        - Text
-        - TextArray
-        - Number
-        - NumberArray
-    ContestFilter:
-      description: Filter to trim results from list of Contets
-      type: object
-      properties:
-        productIds:
-          description: ''
-          type: array
-          items:
-            type: string
-        tags:
-          description: ''
-          type: array
-          items:
-            type: string
-        startDate:
-          $ref: '#/components/schemas/RangeQuery'
-          description: startDate
-        endDate:
-          $ref: '#/components/schemas/RangeQuery'
-          description: ''
-        sortBy:
-          $ref: '#/components/schemas/QuerySortBy'
-          description: ''
-        competitionIds:
-          description: ''
-          type: array
-          items:
-            type: string
-        status:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/ContestStatus'
-        skip:
-          format: int32
-          description: ''
-          type: integer
-        limit:
-          format: int32
-          description: ''
-          type: integer
-        constraints:
-          description: Specify the constraints that need to be applied to the filter.
-          type: array
-          items:
-            type: string
-          example: |-
-            - hasTranslations
-            - hasRewards
-            - hasRules
-            - optinRequired
-      example:
-        productIds:
-          - some text
-          - some text
-        tags:
-          - some text
-          - some text
-        startDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        endDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        sortBy:
-          queryField: some text
-          order: Asc
-        competitionIds:
-          - some text
-          - some text
-        skip: 55
-        limit: 61
     File:
       description: This is the File model
       allOf:
@@ -3441,10 +2595,6 @@ components:
               items:
                 type: string
               example: '- Dc4swmQBVd51K6gPQqFx'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
             translatableFields:
               description: Message translatable fields
               type: array
@@ -3489,6 +2639,7 @@ components:
               example: Dc4swmQBVd51K6gPQqFx
             rewardType:
               $ref: '#/components/schemas/RewardTypeReduced'
+              description: The type of reward issued
             rewardRank:
               description: >-
                 If used in the context of contest this will associate with the rank of the
@@ -3507,6 +2658,7 @@ components:
               example: '2'
             entityType:
               $ref: '#/components/schemas/EntityType'
+              description: 'Competition, Contest, or Achievement'
             entityId:
               description: >-
                 The Id of the contest or achievement related to this Award. Dependant on
@@ -3535,6 +2687,7 @@ components:
               items:
                 type: string
             metadata:
+              description: The metadata associated with this award
               type: object
               additionalProperties:
                 type: string
@@ -3560,6 +2713,8 @@ components:
       type: object
       allOf:
         -
+          required:
+            - id
           type: object
           properties:
             eventRefType:
@@ -3596,113 +2751,19 @@ components:
               items:
                 type: string
               example: '- Dc4swmQBVd51K6gPQqFx'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-            translatableFields:
-              description: Message translatable fields
-              type: array
-              items:
-                type: string
-              readOnly: true
-              example: '- subject - body'
+            id:
+              description: ''
+              type: string
         -
           $ref: '#/components/schemas/ModelDefault'
         -
           $ref: '#/components/schemas/OptionalModelFields'
-    ClaimAwardRequest:
-      description: ''
-      required:
-        - awardId
-      type: object
-      properties:
-        awardIds:
-          description: ''
-          type: array
-          items:
-            type: string
     OptinAction:
       description: ''
       enum:
         - opt-in
         - opt-out
       type: string
-    LeaderboardFilter:
-      description: ''
-      type: object
-      properties:
-        tags:
-          description: ''
-          type: array
-          items:
-            type: string
-        sortBy:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/QuerySortBy'
-        skip:
-          format: int32
-          description: ''
-          type: integer
-        limit:
-          format: int32
-          description: ''
-          type: integer
-        statusCode:
-          description: Achievement status code
-          type: array
-          items:
-            format: int32
-            type: integer
-        constraints:
-          description: Specify the constraints that need to be applied to the filter.
-          type: array
-          items:
-            type: string
-          example: |-
-            - hasTranslations
-            - hasRewards
-            - hasRules
-            - optinRequired
-      example:
-        productIds:
-          - some text
-          - some text
-        tags:
-          - some text
-          - some text
-        startDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        endDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        ids:
-          - some text
-          - some text
-        status:
-          - some text
-          - some text
-        sortBy:
-          -
-            queryField: some text
-            order: Asc
-          -
-            queryField: some text
-            order: Desc
-        skip: 0
-        limit: 72
-        statusCode:
-          - 60
-          - 45
     Member:
       description: This is the Member model
       allOf:
@@ -3853,6 +2914,7 @@ components:
       required:
         - entityType
         - callback
+        - action
       type: object
       properties:
         entityType:
@@ -3867,6 +2929,12 @@ components:
           description: >-
             The callback operation you are subscribing too. Like entityChanged or
             entityStateChanged
+          type: string
+        action:
+          description: Either subscribe or unsubscribe from the data feed
+          enum:
+            - Subscribe
+            - Unsubscribe
           type: string
     EntityChangeSubscription:
       description: Subscribes a client to receive out-of-band data
@@ -3910,6 +2978,891 @@ components:
           items:
             $ref: '#/components/schemas/Error'
       example: 2531329f-fb09-4ef7-887e-84e648214436
+    LeaderboardSubscriptionRequest:
+      description: ''
+      required:
+        - entityId
+        - action
+      type: object
+      properties:
+        leaderboardFilter:
+          $ref: '#/components/schemas/LeaderboardFilter'
+          description: Used when subscribing to a leaderboard feed
+        entityId:
+          description: 'Either the competition, contest, tournament or match identifier'
+          type: string
+        action:
+          description: Either subscribe or unsubscribe from the data feed
+          enum:
+            - Subscribe
+    LeaderboardFilter:
+      description: ''
+      required:
+        - topRanksToInclude
+      type: object
+      properties:
+        topRanksToInclude:
+          format: int32
+          description: 'Include rank from one [1] to the rank specified here. The maximum allowed is 50'
+          maximum: 50
+          minimum: 1
+          type: integer
+        ranksAboveToInclude:
+          format: int32
+          description: Include ranks above member position. The maximum allowed is 20
+          maximum: 20
+          minimum: 0
+          type: integer
+        ranksBelowToInclude:
+          format: int32
+          description: Include ranks below member position. The maximum allowed is 20
+          maximum: 20
+          minimum: 0
+          type: integer
+    DateRange:
+      description: ''
+      type: object
+      properties:
+        before:
+          format: date-time
+          description: ''
+          type: string
+        after:
+          format: date-time
+          description: ''
+          type: string
+    NumberRange:
+      description: ''
+      type: object
+      properties:
+        moreThan:
+          format: int64
+          description: ''
+          type: integer
+        lessThan:
+          format: int64
+          description: ''
+          type: integer
+    FieldType:
+      description: The data type of custom field
+      enum:
+        - Text
+        - TextArray
+        - Number
+        - NumberArray
+      type: string
+      example: '"String"'
+      x-enum-varnames:
+        - Text
+        - TextArray
+        - Number
+        - NumberArray
+    ContestFilter:
+      description: Filter to trim results from list of Contets
+      type: object
+      properties:
+        productIds:
+          description: ''
+          type: array
+          items:
+            type: string
+        tags:
+          description: ''
+          type: array
+          items:
+            type: string
+        startDate:
+          $ref: '#/components/schemas/DateRange'
+          description: startDate
+        endDate:
+          $ref: '#/components/schemas/DateRange'
+          description: ''
+        sortBy:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        ids:
+          description: ''
+          type: array
+          items:
+            type: string
+        competitionIds:
+          description: ''
+          type: array
+          items:
+            type: string
+        status:
+          description: ''
+          type: array
+          items:
+            type: string
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
+        statusCode:
+          $ref: '#/components/schemas/NumberRange'
+          description: Contest status code
+        constraints:
+          description: Specify the constraints that need to be applied to the filter.
+          type: array
+          items:
+            type: string
+          example: |-
+            - hasTranslations
+            - hasRewards
+            - hasRules
+            - optinRequired
+      example:
+        productIds:
+          - some text
+          - some text
+        tags:
+          - some text
+          - some text
+        startDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        endDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        sortBy:
+          queryField: some text
+          order: Asc
+        competitionIds:
+          - some text
+          - some text
+        skip: 55
+        limit: 61
+    CompetitionFilter:
+      description: ''
+      type: object
+      properties:
+        tags:
+          description: ''
+          type: array
+          items:
+            type: string
+        startDate:
+          $ref: '#/components/schemas/DateRange'
+          description: startDate
+        endDate:
+          $ref: '#/components/schemas/DateRange'
+          description: ''
+        productIds:
+          description: ''
+          type: array
+          items:
+            type: string
+        statusCode:
+          $ref: '#/components/schemas/NumberRange'
+          description: Competition status code
+        status:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/CompetitionStatus'
+        sortBy:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        ids:
+          description: ''
+          type: array
+          items:
+            type: string
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
+        constraints:
+          description: Specify the constraints that need to be applied to the filter.
+          type: array
+          items:
+            type: string
+          example: |-
+            - hasTranslations
+            - hasRewards
+            - hasRules
+            - optinRequired
+      example:
+        tags:
+          - some text
+          - some text
+        startDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        endDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        productIds:
+          - some text
+          - some text
+        status:
+          - Finished
+          - Deleted
+        competitionType:
+          - Leaderboard
+          - Leaderboard
+        sortBy:
+          -
+            queryField: some text
+            order: Asc
+          -
+            queryField: some text
+            order: Desc
+        ids:
+          - some text
+          - some text
+        skip: 81
+        limit: 79
+    Competition:
+      description: ''
+      type: object
+      allOf:
+        -
+          type: object
+          properties:
+            competitionType:
+              $ref: '#/components/schemas/CompetitionType'
+            numberOfRounds:
+              format: int32
+              description: Number of rounds to be played in a competition
+              type: integer
+            numberOfGroupStages:
+              description: Number of group stages
+              type: integer
+            maxNumberOfEntrants:
+              format: int32
+              description: Maximum number of partiipants allowed in a competition
+              type: integer
+              example: '9999'
+            minNumberOfEntrants:
+              format: int32
+              description: Maximum number of partiipants allowed in a competition
+              type: integer
+              example: '0'
+            name:
+              description: ''
+              type: string
+            description:
+              description: ''
+              type: string
+            termsAndConditions:
+              description: ''
+              type: string
+            entrantMemberType:
+              type: string
+            scheduledStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition should start. All records are stored
+                in UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            scheduledEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition should end. All records are stored in
+                UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            actualStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition started. All records are stored in
+                UTC time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+            actualEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition ended. All records are stored in UTC
+                time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+            status:
+              $ref: '#/components/schemas/CompetitionStatus'
+            statusCode:
+              description: The code of the competition
+              type: integer
+              readOnly: true
+              example: '5'
+            constraints:
+              description: Additional constraints
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+              example: |-
+                - hasTranslations
+                - hasRewards
+                - isPublic
+                - optinRequiredForEntrants
+            products:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductReduced'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+      example:
+        id: ziqniId
+        competitionType: Leaderboard
+        numberOfRounds: 70
+        numberOfGroupStages: 98
+        maxNumberOfEntrants: 70
+        minNumberOfEntrants: 25
+        jsonClass: some text
+        name: some text
+        description: some text
+        termsAndConditions: some text
+        entrantMemberType: some text
+        dependantOn:
+          entityType: some text
+          dependantOn:
+            must:
+              - some text
+              - some text
+            mustNot:
+              - some text
+              - some text
+            should:
+              - some text
+              - some text
+            shouldMatchAtLeast: 8
+        scheduledStartDate: '2018-02-10T09:30Z'
+        scheduledEndDate: '2018-02-10T09:30Z'
+        actualStartDate: '2018-02-10T09:30Z'
+        actualEndDate: '2018-02-10T09:30Z'
+        status: Ready
+        statusCode: 22
+        contests:
+          -
+            competitionId: some text
+            row: 80
+            name: some text
+            round: 63
+            groupStage: 4
+            entrantsFromContest:
+              - some text
+              - some text
+            status: Cancelled
+            statusCode: 11
+            scheduledStartDate: '2018-02-10T09:30Z'
+            scheduledEndDate: '2018-02-10T09:30Z'
+            actualStartDate: '2018-02-10T09:30Z'
+            actualEndDate: '2018-02-10T09:30Z'
+            tags:
+              - some text
+              - some text
+            rewards:
+              -
+                rewardRank: some text
+                name: some text
+                rewardValue: 16.29
+                rewardType: some text
+                rewardTypeId: some text
+              -
+                rewardRank: some text
+                name: some text
+                rewardValue: 63.01
+                rewardType: some text
+                rewardTypeId: some text
+          -
+            competitionId: some text
+            row: 5
+            name: some text
+            round: 62
+            groupStage: 35
+            entrantsFromContest:
+              - some text
+              - some text
+            status: Finished
+            statusCode: 8
+            scheduledStartDate: '2018-02-10T09:30Z'
+            scheduledEndDate: '2018-02-10T09:30Z'
+            actualStartDate: '2018-02-10T09:30Z'
+            actualEndDate: '2018-02-10T09:30Z'
+            tags:
+              - some text
+              - some text
+            rewards:
+              -
+                rewardRank: some text
+                name: some text
+                rewardValue: 94.38
+                rewardType: some text
+                rewardTypeId: some text
+              -
+                rewardRank: some text
+                name: some text
+                rewardValue: 4.66
+                rewardType: some text
+                rewardTypeId: some text
+        constraints:
+          - some text
+          - some text
+        products:
+          -
+            name: some text
+            productRefId: some text
+            tags:
+              - some text
+              - some text
+          -
+            name: some text
+            productRefId: some text
+            tags:
+              - some text
+              - some text
+    Contest:
+      description: This is a contest model
+      type: object
+      allOf:
+        -
+          type: object
+          properties:
+            name:
+              description: ''
+              type: string
+            description:
+              description: ''
+              type: string
+            termsAndConditions:
+              description: ''
+              type: string
+            competitionId:
+              description: A unique identifier of a Competition
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            round:
+              format: int32
+              description: To what round does the contest belong
+              type: integer
+              example: '2'
+            roundType:
+              $ref: '#/components/schemas/RoundType'
+            groupStage:
+              format: int32
+              description: >-
+                Is used for more complex Competitions e.g. multi round competitions where
+                round 1 group stage matched round 2
+              type: integer
+              example: '2'
+            groupStageLabel:
+              description: The name of the group stages
+              type: string
+              example: Semi-finals
+            maxNumberOfEntrants:
+              format: int32
+              description: Maximum number of entrants for the contest
+              type: integer
+              example: '9999'
+            minNumberOfEntrants:
+              format: int32
+              description: Minimum number of entrants for the contest
+              type: integer
+              example: '0'
+            scheduledStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Contest should start. All records are stored in
+                UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            scheduledEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Contest should end. All records are stored in UTC
+                time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            actualStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition started. All records are stored in
+                UTC time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+            actualEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition ended. All records are stored in UTC
+                time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+            strategies:
+              $ref: '#/components/schemas/Strategy'
+            status:
+              $ref: '#/components/schemas/ContestStatus'
+            statusCode:
+              description: The code of the contest
+              type: integer
+              readOnly: true
+              example: '3'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            constraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: |-
+                - hasTranslations
+                - hasRewards
+                - hasRules
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+      example:
+        jsonClass: some text
+        name: some text
+        description: some text
+        termsAndConditions: some text
+        competitionId: some text
+        row: 6
+        round: 11
+        roundType: TargetBased
+        groupStage: 90
+        groupStageLabel: some text
+        entrantsFromContest:
+          - some text
+          - some text
+        maxNumberOfEntrants: 25
+        minNumberOfEntrants: 91
+        scheduledStartDate: '2018-02-10T09:30Z'
+        scheduledEndDate: '2018-02-10T09:30Z'
+        actualStartDate: '2018-02-10T09:30Z'
+        actualEndDate: '2018-02-10T09:30Z'
+        strategies:
+          strategyType: SumBest
+          rankingStrategy:
+            constraints:
+              - some text
+              - some text
+          scoringStrategy:
+            limitUpdatesTo: 83
+            sumBestXOf: 0
+            lastUpdateTimeStamp: 7
+            recordTimeWhenSumReaches: 9.61
+        status: Finalised
+        statusCode: 46
+        constraints:
+          - some text
+          - some text
+    EntityFilter:
+      description: ''
+      type: object
+      properties:
+        entityType:
+          description: ''
+          type: string
+        entityIds:
+          description: ''
+          type: array
+          items:
+            type: string
+    AchievementRequest:
+      description: ''
+      type: object
+      properties:
+        achievementFilter:
+          $ref: '#/components/schemas/AchievementFilter'
+          description: ''
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+      example:
+        memberRefId: some text
+        achievementFilter:
+          productIds:
+            - some text
+            - some text
+          tags:
+            - some text
+            - some text
+          startDate:
+            gt: some text
+            lt: some text
+            constraints:
+              - some text
+              - some text
+          endDate:
+            gt: some text
+            lt: some text
+            constraints:
+              - some text
+              - some text
+          ids:
+            - some text
+            - some text
+          status:
+            - some text
+            - some text
+          sortBy:
+            -
+              queryField: some text
+              order: Desc
+            -
+              queryField: some text
+              order: Desc
+          skip: 11
+          limit: 75
+          statusCode:
+            - 54
+            - 63
+    AwardRequest:
+      description: ''
+      type: object
+      properties:
+        awardFilter:
+          $ref: '#/components/schemas/AwardFilter'
+          description: ''
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+      example:
+        memberRefId: some text
+        awardFilter:
+          productIds:
+            - some text
+            - some text
+          tags:
+            - some text
+            - some text
+          startDate:
+            gt: some text
+            lt: some text
+            constraints:
+              - some text
+              - some text
+          endDate:
+            gt: some text
+            lt: some text
+            constraints:
+              - some text
+              - some text
+          ids:
+            - some text
+            - some text
+          status:
+            - some text
+            - some text
+          sortBy:
+            -
+              queryField: some text
+              order: Desc
+            -
+              queryField: some text
+              order: Desc
+          skip: 24
+          limit: 67
+          statusCode:
+            - 11
+            - 9
+    ClaimAwardRequest:
+      description: ''
+      required:
+        - awardId
+      type: object
+      properties:
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        awardIds:
+          description: ''
+          type: array
+          items:
+            type: string
+    CompetitionRequest:
+      description: ''
+      type: object
+      properties:
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        competitionFilter:
+          $ref: '#/components/schemas/CompetitionFilter'
+          description: ''
+      example:
+        memberRefId: some text
+        competitionFilter:
+          tags:
+            - some text
+            - some text
+          startDate:
+            gt: some text
+            lt: some text
+            constraints:
+              - some text
+              - some text
+          endDate:
+            gt: some text
+            lt: some text
+            constraints:
+              - some text
+              - some text
+          productIds:
+            - some text
+            - some text
+          status:
+            - Deleting
+            - Finishing
+          competitionType:
+            - Leaderboard
+            - Leaderboard
+          sortBy:
+            -
+              queryField: some text
+              order: Asc
+            -
+              queryField: some text
+              order: Asc
+          ids:
+            - some text
+            - some text
+          skip: 9
+          limit: 26
+    ContestRequest:
+      description: This is a request to get Contest
+      type: object
+      properties:
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        contestFilter:
+          $ref: '#/components/schemas/ContestFilter'
+          description: ''
+      example:
+        memberRefId: some text
+        achievementFilter:
+          productIds:
+            - some text
+            - some text
+          tags:
+            - some text
+            - some text
+          startDate:
+            gt: some text
+            lt: some text
+            constraints:
+              - some text
+              - some text
+          endDate:
+            gt: some text
+            lt: some text
+            constraints:
+              - some text
+              - some text
+          sortBy:
+            queryField: some text
+            order: Asc
+          competitionIds:
+            - some text
+            - some text
+          skip: 61
+          limit: 92
+    MessageRequest:
+      description: ''
+      type: object
+      properties:
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        id:
+          description: ''
+          type: string
+      example:
+        memberRefId: some text
+    RewardRequest:
+      description: ''
+      required:
+        - entityIds
+      type: object
+      properties:
+        entityIds:
+          description: ''
+          type: array
+          items:
+            type: string
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+    EntityRequest:
+      description: ''
+      type: object
+      properties:
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        entityFilter:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityFilter'
+        sortBy:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
   responses:
     AchievementResponseBody:
       content:
@@ -4062,6 +4015,10 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/EntityChangeSubscriptionResponse'
+      description: ''
+    LeaderboardResponseBody:
+      content:
+        application/json: {}
       description: ''
   securitySchemes:
     OAuth2:

@@ -24,6 +24,7 @@
 |**strategies** | [**Strategy**](Strategy.md) |  |  [optional] |
 |**status** | **ContestStatus** |  |  [optional] |
 |**statusCode** | **Integer** | The code of the contest |  [optional] [readonly] |
+|**memberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional] |
 |**constraints** | **List&lt;String&gt;** | Additional constraints |  [optional] |
 
 
