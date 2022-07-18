@@ -13,6 +13,7 @@
 
 package com.ziqni.member.sdk.api;
 
+import com.ziqni.admin.client.model.EntityType;
 import com.ziqni.admin.client.model.MemberTokenRequest;
 import com.ziqni.member.sdk.ApiClientFactoryWs;
 import com.ziqni.member.sdk.ApiException;
@@ -72,12 +73,12 @@ public class RulesApiTest implements tests.utils.CompleteableFutureTestWrapper{
      */
     @Test
     public void getRulesTest() throws ApiException {
-        String competitionId = "M2aFXYEBl_GIktlkShBQ";
-        var response = $(api.getRules(loadRulesData.getRequest(competitionId)));
+
+        var response = $(api.getRules(loadRulesData.getRequest(null, EntityType.ACHIEVEMENT.getValue())));
 
         assertNotNull(response);
         assertNotNull(response.getData());
-        assertNull(response.getErrors());
+        assertNotNull(response.getErrors());
         Assertions.assertTrue(response.getErrors().isEmpty(), "Should have no errors");
         Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
     }

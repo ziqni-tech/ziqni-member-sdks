@@ -12,6 +12,7 @@
 
 package com.ziqni.member.sdk.api;
 
+import com.ziqni.admin.client.model.EntityType;
 import com.ziqni.admin.client.model.MemberTokenRequest;
 import com.ziqni.member.sdk.ApiClientFactoryWs;
 import com.ziqni.member.sdk.ApiException;
@@ -69,8 +70,8 @@ public class RewardsApiTest implements tests.utils.CompleteableFutureTestWrapper
      */
     @Test
     public void getRewardsTest() throws ApiException {
-        String competitionId = "-2-J6n0B5qrcys6LgijD";
-        var response = api.getRewards(loadRewardsData.getRequest(competitionId)).join();
+        String achievementId = "bMLMv34B99ZI0UTU5MKP";
+        var response = api.getRewards(loadRewardsData.getRequest(achievementId, EntityType.ACHIEVEMENT.getValue())).join();
 
         assertNotNull(response);
         assertNotNull(response.getData());
