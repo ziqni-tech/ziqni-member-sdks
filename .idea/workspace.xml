@@ -4,149 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Domain changed to member-api.ziqni.com">
+    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Updated schema and generated sources location">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Achievement.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/Achievement.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AchievementAllOf.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/AchievementAllOf.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AchievementFilter.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/AchievementFilter.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AchievementRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/AchievementRequest.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Award.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/Award.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AwardAllOf.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/AwardAllOf.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AwardRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/AwardRequest.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ClaimAwardRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/ClaimAwardRequest.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Competition.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/Competition.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/CompetitionAllOf.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/CompetitionAllOf.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/CompetitionFilter.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/CompetitionFilter.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/CompetitionRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/CompetitionRequest.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Contest.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/Contest.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ContestAllOf.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/ContestAllOf.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ContestFilter.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/ContestFilter.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ContestRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/ContestRequest.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/EntityChangeSubscriptionRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/EntityChangeSubscriptionRequest.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/LeaderboardFilter.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/LeaderboardFilter.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Message.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/Message.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MessageAllOf.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/MessageAllOf.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MessageRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/MessageRequest.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RewardRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/RewardRequest.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RulesApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/RulesApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Translation.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/TranslationEntry.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/TranslationRequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/TranslationResponse.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/ApiClientFactoryWs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/ApiException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/JSON.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/RFC3339DateFormat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/api/AchievementsApiWs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/api/AwardsApiWs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/api/CompetitionsApiWs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/api/ContestsApiWs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/api/EntityChangesApiWs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/api/FilesApiWs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/api/MembersApiWs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/api/MessagesApiWs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/api/RewardsApiWs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/api/RulesApiWs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/AbstractOpenApiSchema.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/Achievement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/AchievementAllOf.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/AchievementFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/AchievementRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/AchievementResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/Award.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/AwardAllOf.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/AwardFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/AwardRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/AwardResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ClaimAwardRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/Competition.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/CompetitionAllOf.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/CompetitionFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/CompetitionRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/CompetitionResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/CompetitionStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/CompetitionType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/Contest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ContestAllOf.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ContestFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ContestReduced.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ContestRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ContestResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ContestStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/Dependancy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/DependantOn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/EntityChangeSubscription.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/EntityChangeSubscriptionRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/EntityChangeSubscriptionResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/EntityChanged.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/EntityStateChanged.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/EntityType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/Error.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/EventRefType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/FieldType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/FileRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/FileResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/LeaderboardFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ManageOptinRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/Member.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/MemberAllOf.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/MemberRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/MemberResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/MemberSessionRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/MemberSessionResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/MemberType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/Message.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/MessageAllOf.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/MessageRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/MessageResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/MessageStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/MessageType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ModelDefault.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ModelFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/OptinAction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/OptionalModelFields.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ProductReduced.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/Proxy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ProxyRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ProxyResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/QueryMultipleFields.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/QuerySortBy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RangeQuery.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RankingStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ResponseMeta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/Reward.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RewardReduced.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RewardRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RewardResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RewardTypeReduced.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RoundType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/Rule.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RuleArgument.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RuleExpression.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RuleRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RuleResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/RuleRoutine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ScheduleType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/Scheduling.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/ScoringStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/SortOrder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/Strategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/StrategyType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/Translation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/TranslationEntry.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/TranslationRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/TranslationResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/generated/java/com/ziqni/member/sdk/model/UnsubscribeRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/SampleApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/SampleApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/data/LoadContestsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/data/LoadContestsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/model/TranslationEntryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/model/TranslationEntryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/model/TranslationRequestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/model/TranslationRequestTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/model/TranslationResponseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/model/TranslationResponseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/model/TranslationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/model/TranslationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/openapi/java/generate-client-code.sh" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/java/generate-client-code.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/openapi/ziqni-member-api.yml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/ziqni-member-api.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,7 +115,7 @@
       <option name="presentableId" value="Default" />
       <updated>1656966295087</updated>
       <workItem from="1656966296382" duration="22983000" />
-      <workItem from="1657700962198" duration="15699000" />
+      <workItem from="1657700962198" duration="17409000" />
     </task>
     <task id="LOCAL-00001" summary="Cleanup">
       <created>1656969494518</created>
@@ -314,7 +173,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657017486838</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Updated schema and generated sources location">
+      <created>1657957137478</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1657957137478</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,6 +203,7 @@
     <MESSAGE value="Updated the method names to reflect actual usage" />
     <MESSAGE value="Updated the config for convenience" />
     <MESSAGE value="Domain changed to member-api.ziqni.com" />
-    <option name="LAST_COMMIT_MESSAGE" value="Domain changed to member-api.ziqni.com" />
+    <MESSAGE value="Updated schema and generated sources location" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated schema and generated sources location" />
   </component>
 </project>
