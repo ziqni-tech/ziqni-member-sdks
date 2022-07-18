@@ -13,13 +13,19 @@
 
 package com.ziqni.member.sdk.api;
 
+import com.ziqni.admin.client.model.MemberTokenRequest;
 import com.ziqni.member.sdk.ApiClientFactoryWs;
 import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.configuration.ApiClientConfig;
+import com.ziqni.member.sdk.data.LoadAchievementsData;
 import com.ziqni.member.sdk.data.LoadRulesData;
+import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
+import com.ziqni.member.sdk.util.TestMemberTokenLoader;
 import org.junit.jupiter.api.*;
 
 import java.util.List;
 
+import static com.ziqni.member.sdk.util.TestMemberTokenLoader.TEST_MEMBER_TOKEN;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -29,13 +35,32 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class RulesApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
-    private final RulesApiWs api;
-    private final LoadRulesData loadRulesData;
+    private  RulesApiWs api;
+    private  LoadRulesData loadRulesData;
 
-    public RulesApiTest(){
+    @BeforeAll
+    public void start() throws Exception {
+        TestMemberTokenLoader testMemberTokenLoader = new TestMemberTokenLoader();
+        MemberTokenRequest tokenRequest = new MemberTokenRequest()
+                .apiKey(testMemberTokenLoader.getApiKey())
+                .expires(6000)
+                .isReferenceId(true)
+                .member(TEST_MEMBER_TOKEN)
+                .resource("ziqni-gapi");
+
+        // ApiClientConfig.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
+        ApiClientConfig.setIdentityAuthorization(null);
         this.api = ApiClientFactoryWs.getRulesApi();
         this.loadRulesData = new LoadRulesData();
+        ApiClientFactoryUtil.initApiClientFactory();
     }
+
+    @AfterAll
+    public  void stop(){
+        ApiClientFactoryWs.getStreamingClient().stop();
+    }
+
+
     
     /**
      * Get rules
@@ -48,7 +73,7 @@ public class RulesApiTest implements tests.utils.CompleteableFutureTestWrapper{
     @Test
     public void getRulesTest() throws ApiException {
         String competitionId = "M2aFXYEBl_GIktlkShBQ";
-        var response = $(api.getRules(loadRulesData.getRequest(List.of(competitionId))));
+        var response = $(api.getRules(loadRulesData.getRequest(competitionId)));
 
         assertNotNull(response);
         assertNotNull(response.getData());

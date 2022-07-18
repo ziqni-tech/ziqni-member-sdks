@@ -11,7 +11,7 @@ All URIs are relative to *https://gamification-api.ziqni.com*
 
 ## getRules
 
-> CompletableFuture<RuleResponse> getRules(ruleRequest)
+> CompletableFuture<RuleResponse> getRules(entityRequest)
 
 Get rules
 
@@ -39,9 +39,9 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         RulesApi apiInstance = new RulesApi(defaultClient);
-        RuleRequest ruleRequest = new RuleRequest(); // RuleRequest | 
+        EntityRequest entityRequest = new EntityRequest(); // EntityRequest | 
         try {
-            CompletableFuture<RuleResponse> result = apiInstance.getRules(ruleRequest);
+            CompletableFuture<RuleResponse> result = apiInstance.getRules(entityRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling RulesApi#getRules");
@@ -59,7 +59,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **ruleRequest** | [**RuleRequest**](RuleRequest.md)|  | |
+| **entityRequest** | [**EntityRequest**](EntityRequest.md)|  | |
 
 ### Return type
 
@@ -84,7 +84,7 @@ CompletableFuture<[**RuleResponse**](RuleResponse.md)>
 
 ## getRulesWithHttpInfo
 
-> CompletableFuture<ApiResponse<RuleResponse>> getRules getRulesWithHttpInfo(ruleRequest)
+> CompletableFuture<ApiResponse<RuleResponse>> getRules getRulesWithHttpInfo(entityRequest)
 
 Get rules
 
@@ -113,9 +113,9 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         RulesApi apiInstance = new RulesApi(defaultClient);
-        RuleRequest ruleRequest = new RuleRequest(); // RuleRequest | 
+        EntityRequest entityRequest = new EntityRequest(); // EntityRequest | 
         try {
-            CompletableFuture<ApiResponse<RuleResponse>> response = apiInstance.getRulesWithHttpInfo(ruleRequest);
+            CompletableFuture<ApiResponse<RuleResponse>> response = apiInstance.getRulesWithHttpInfo(entityRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
@@ -142,7 +142,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **ruleRequest** | [**RuleRequest**](RuleRequest.md)|  | |
+| **entityRequest** | [**EntityRequest**](EntityRequest.md)|  | |
 
 ### Return type
 
