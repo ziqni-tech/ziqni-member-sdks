@@ -11,7 +11,7 @@ All URIs are relative to *https://gamification-api.ziqni.com*
 
 ## getRewards
 
-> CompletableFuture<RewardResponse> getRewards(rewardRequest)
+> CompletableFuture<RewardResponse> getRewards(entityRequest)
 
 Get rewards
 
@@ -39,9 +39,9 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         RewardsApi apiInstance = new RewardsApi(defaultClient);
-        RewardRequest rewardRequest = new RewardRequest(); // RewardRequest | 
+        EntityRequest entityRequest = new EntityRequest(); // EntityRequest | 
         try {
-            CompletableFuture<RewardResponse> result = apiInstance.getRewards(rewardRequest);
+            CompletableFuture<RewardResponse> result = apiInstance.getRewards(entityRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling RewardsApi#getRewards");
@@ -59,7 +59,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **rewardRequest** | [**RewardRequest**](RewardRequest.md)|  | |
+| **entityRequest** | [**EntityRequest**](EntityRequest.md)|  | |
 
 ### Return type
 
@@ -84,7 +84,7 @@ CompletableFuture<[**RewardResponse**](RewardResponse.md)>
 
 ## getRewardsWithHttpInfo
 
-> CompletableFuture<ApiResponse<RewardResponse>> getRewards getRewardsWithHttpInfo(rewardRequest)
+> CompletableFuture<ApiResponse<RewardResponse>> getRewards getRewardsWithHttpInfo(entityRequest)
 
 Get rewards
 
@@ -113,9 +113,9 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         RewardsApi apiInstance = new RewardsApi(defaultClient);
-        RewardRequest rewardRequest = new RewardRequest(); // RewardRequest | 
+        EntityRequest entityRequest = new EntityRequest(); // EntityRequest | 
         try {
-            CompletableFuture<ApiResponse<RewardResponse>> response = apiInstance.getRewardsWithHttpInfo(rewardRequest);
+            CompletableFuture<ApiResponse<RewardResponse>> response = apiInstance.getRewardsWithHttpInfo(entityRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
@@ -142,7 +142,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **rewardRequest** | [**RewardRequest**](RewardRequest.md)|  | |
+| **entityRequest** | [**EntityRequest**](EntityRequest.md)|  | |
 
 ### Return type
 
