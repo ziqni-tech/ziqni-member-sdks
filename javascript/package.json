@@ -1,5 +1,5 @@
 {
-  "name": "@ziqni-tech/gamification-api-client",
+  "name": "@ziqni-tech/member-api-client",
   "version": "0.0.1",
   "description": "Client library for Ziqni Gamification API",
   "license": "Ziqni Commercial License",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@babel/cli": "^7.0.0",
-    "@ziqni-tech/gamification-api-client": "^0.0.1",
+    "@ziqni-tech/member-api-client": "^0.0.1",
     "superagent": "^5.3.0"
   },
   "devDependencies": {

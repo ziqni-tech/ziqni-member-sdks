@@ -8,7 +8,7 @@ info:
     system is decribed using OpenApi schema for convenience.
 servers:
   -
-    url: 'https://gamification-api.ziqni.com'
+    url: 'https://member-api.ziqni.com'
     description: Live
 paths:
   /member-info:

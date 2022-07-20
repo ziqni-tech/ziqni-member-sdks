@@ -1,6 +1,6 @@
 # @ZiqniTechGamificationApiClient.MembersApi
 
-All URIs are relative to *https://gamification-api.ziqni.com*
+All URIs are relative to *https://member-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -21,7 +21,7 @@ Returns member information for the provided member reference id
 ### Example
 
 ```javascript
-import @ZiqniTechGamificationApiClient from '@ziqni-tech/gamification-api-client';
+import @ZiqniTechGamificationApiClient from '@ziqni-tech/member-api-client';
 let defaultClient = @ZiqniTechGamificationApiClient.ApiClient.instance;
 // Configure OAuth2 access token for authorization: OAuth2
 let OAuth2 = defaultClient.authentications['OAuth2'];
@@ -70,7 +70,7 @@ Returns a list of member optin information
 ### Example
 
 ```javascript
-import @ZiqniTechGamificationApiClient from '@ziqni-tech/gamification-api-client';
+import @ZiqniTechGamificationApiClient from '@ziqni-tech/member-api-client';
 let defaultClient = @ZiqniTechGamificationApiClient.ApiClient.instance;
 // Configure OAuth2 access token for authorization: OAuth2
 let OAuth2 = defaultClient.authentications['OAuth2'];
@@ -119,7 +119,7 @@ Returns member&#39;s active session information.
 ### Example
 
 ```javascript
-import @ZiqniTechGamificationApiClient from '@ziqni-tech/gamification-api-client';
+import @ZiqniTechGamificationApiClient from '@ziqni-tech/member-api-client';
 let defaultClient = @ZiqniTechGamificationApiClient.ApiClient.instance;
 // Configure OAuth2 access token for authorization: OAuth2
 let OAuth2 = defaultClient.authentications['OAuth2'];

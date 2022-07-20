@@ -13,7 +13,7 @@
  */
 
 
-export const BASE_PATH = "https://gamification-api.ziqni.com".replace(/\/+$/, "");
+export const BASE_PATH = "https://member-api.ziqni.com".replace(/\/+$/, "");
 
 const isBlob = (value: any) => typeof Blob !== 'undefined' && value instanceof Blob;
 
