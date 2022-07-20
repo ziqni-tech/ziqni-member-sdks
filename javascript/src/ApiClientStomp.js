@@ -110,7 +110,7 @@ class ApiClientStomp {
             brokerURL: 'wss://member-api.ziqni.com/ws',
             connectHeaders: {
                 login: 'Bearer',
-                passcode: 'JWT token you get from https://api.ziqni.com/swagger-ui/#/member-token/createMemberToken',
+                passcode: 'eyJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5X2lkIjoicXhtcXFZRUJUZVV0U0VzNEVJLWgiLCJtZW1iZXJfcmVmZXJlbmNlX2lkIjoiMTAwMDI1NDE5IiwiYWNjb3VudF9pZCI6IkY3bThkSHdCc3ctT0gzTUVvVzIzIiwic3BhY2VfbmFtZSI6ImZpcnN0LXNwYWNlIiwibmFtZSI6Im5hbWUxIiwibWVtYmVyX3R5cGUiOiJJbmRpdmlkdWFsIiwibWVtYmVyX2lkIjoiX01XRmtJRUJaNUNYN2RXbnFhR0kiLCJyZXNvdXJjZV9hY2Nlc3MiOnsiemlxbmktZ2FwaSI6eyJyb2xlcyI6WyJQdWJsaWMiLCJNZW1iZXIiLCJWaWV3QWNoaWV2ZW1lbnRzIiwiVmlld0F3YXJkcyIsIkNsYWltQXdhcmRzIiwiVmlld0NvbXBldGl0aW9ucyIsIlZpZXdDb250ZXN0cyIsIlZpZXdGaWxlcyIsIlZpZXdNZW1iZXJzIiwiTWVtYmVyc09wdGluIiwiVmlld01lc3NhZ2VzIiwiQ29ubmVjdFByb3h5IiwiVmlld1Jld2FyZHMiLCJWaWV3UnVsZXMiXX19LCJzdWIiOiJfTVdGa0lFQlo1Q1g3ZFducWFHSSIsImp0aSI6ImEyMmM3N2RmLWMzMTEtNGNiYS1iOWQ2LTBjNTU5YzE4Mjc2ZiIsImlhdCI6MTY1NzAwNjA5MywiZXhwIjoyMzI1NzAwNjA5M30.FB-c9I2im-dQWZ-ggUmOELj259rUfgAWJDWccXmZEiQ', // 'JWT token you get from https://api.ziqni.com/swagger-ui/#/member-token/createMemberToken',
             },
             debug: function (str) {
                 console.log(str);
@@ -146,6 +146,9 @@ class ApiClientStomp {
 
         client.activate();
 
+        var rpcCallbackSubscription = client.subscribe("/user/queue/rpc-results", handleRpcCallback);
+        var sysCallbackSubscription = client.subscribe("/user/queue/callbacks", handleSysCallback);
+
         // We need to subscribe to:
         // topic ==> /user/queue/callbacks
         // and
@@ -161,6 +164,30 @@ class ApiClientStomp {
         //
         // client.send('/gapi/getMember', messageHeaders, JSON.stringify(message));
     }
+
+    uuidv4() {
+        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+        );
+    }
+
+    handleRpcCallback = function(message) {
+        // called when the client receives a STOMP message from the server
+        if (message.body) {
+            alert("got message with body " + message.body)
+        } else {
+            alert("got empty message");
+        }
+    };
+
+    handleSysCallback = function(message) {
+        // called when the client receives a STOMP message from the server
+        if (message.body) {
+            alert("got message with body " + message.body)
+        } else {
+            alert("got empty message");
+        }
+    };
 }
 
 

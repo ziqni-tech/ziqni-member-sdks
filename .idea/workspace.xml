@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Added comments">
-      <change afterPath="$PROJECT_DIR$/javascript/src/StompMessageHeader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/src/api/MembersApiWs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/src/ApiClientStomp.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/src/ApiClientStomp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/src/api/MembersApiWs.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/src/api/MembersApiWs.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +128,7 @@
       <option name="presentableId" value="Default" />
       <updated>1656966295087</updated>
       <workItem from="1656966296382" duration="22983000" />
-      <workItem from="1657700962198" duration="21764000" />
+      <workItem from="1657700962198" duration="22181000" />
     </task>
     <task id="LOCAL-00001" summary="Cleanup">
       <created>1656969494518</created>
@@ -221,7 +221,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658300827447</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added comments">
+      <created>1658306420787</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1658306420787</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
