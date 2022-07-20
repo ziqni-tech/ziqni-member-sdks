@@ -14,6 +14,7 @@
 
 import superagent from "superagent";
 import querystring from "querystring";
+import MemberRequest from "./model/MemberRequest";
 
 /**
 * @module ApiClient
@@ -98,6 +99,8 @@ class ApiClientStomp {
          */
         this.plugins = null;
 
+        this.rpcCallBacks = new Map();
+
     }
 
     /**
@@ -146,8 +149,8 @@ class ApiClientStomp {
 
         client.activate();
 
-        var rpcCallbackSubscription = client.subscribe("/user/queue/rpc-results", handleRpcCallback);
-        var sysCallbackSubscription = client.subscribe("/user/queue/callbacks", handleSysCallback);
+        let rpcCallbackSubscription = client.subscribe("/user/queue/rpc-results", handleRpcCallback);
+        let sysCallbackSubscription = client.subscribe("/user/queue/callbacks", handleSysCallback);
 
         // We need to subscribe to:
         // topic ==> /user/queue/callbacks
@@ -174,6 +177,8 @@ class ApiClientStomp {
     handleRpcCallback = function(message) {
         // called when the client receives a STOMP message from the server
         if (message.body) {
+            // Get the messageId then
+            //this.rpcCallBacks.get(messageId)(message.body)
             alert("got message with body " + message.body)
         } else {
             alert("got empty message");
@@ -188,6 +193,14 @@ class ApiClientStomp {
             alert("got empty message");
         }
     };
+
+    sendRpc(to, message, callback){
+        let messageId = apiClientStomp.uuidv4();
+        let messageHeaders = messageHeaders.setMessageId(messageId);
+        let messageContainer = { body: MemberRequest };
+        apiClientStomp.send('/gapi/getMember', messageHeaders, JSON.stringify(messageContainer));
+        this.rpcCallBacks.set(messageId, callback)
+    }
 }
 
 

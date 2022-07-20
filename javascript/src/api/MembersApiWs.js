@@ -61,14 +61,10 @@ export default class MembersApiWs {
         throw new Error("Missing the required parameter 'memberRequest' when calling getMember");
       }
 
-      let authNames = ['OAuth2'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = MemberResponse;
       let messageHeaders = messageHeaders.setMessageId(apiClientStomp.uuidv4());
       let message = { body: MemberRequest };
 
-      apiClientStomp.send('/gapi/getMember', messageHeaders, JSON.stringify(message));
+      apiClientStomp.sendRpc('/gapi/getMember', message, callback);
 
     }
 
