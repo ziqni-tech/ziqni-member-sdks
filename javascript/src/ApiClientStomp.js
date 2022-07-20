@@ -27,7 +27,7 @@ import querystring from "querystring";
 * @alias module:ApiClient
 * @class
 */
-class ApiClient {
+class ApiClientStomp {
     /**
      * The base URL against which to resolve every API call's (relative) path.
      * Overrides the default value set in spec file if present
@@ -155,15 +155,19 @@ class ApiClient {
         // We always prefix with /gapi/<Operation-ID> like getMessages, getRewards etc will be /gapi/getMessages /gapi/getRewards
         //
         //  messageHeaders.setMessageId(nextSeq) ==> nextSeq is added to the callback so we can correlate the response to the request
-        // client.send('/gapi/getMember', messageHeaders, JSON.stringify(MemberRequest));
+        //
+        // message = { data: MemberRequest }
+        //
+        //
+        // client.send('/gapi/getMember', messageHeaders, JSON.stringify(message));
     }
 }
 
 
 
 /**
-* The default API client implementation.
-* @type {module:ApiClient}
+* The default API  Stomp client implementation.
+* @type {module:ApiClientStomp}
 */
-ApiClient.instance = new ApiClient();
-export default ApiClient;
+ApiClientStomp.instance = new ApiClientStomp();
+export default ApiClientStomp;

@@ -4,42 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Updated schema and generated sources location">
-      <change afterPath="$PROJECT_DIR$/javascript/src/ApiClientSock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Added comments">
+      <change afterPath="$PROJECT_DIR$/javascript/src/api/MembersApiStomp.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AchievementsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/AchievementsApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/AwardsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/AwardsApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/CompetitionsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/CompetitionsApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/ContestsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/ContestsApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/EntityChangesApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/EntityChangesApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/FilesApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/FilesApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MembersApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/MembersApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/MessagesApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/MessagesApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RewardsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/RewardsApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RulesApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/RulesApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/configuration/ApiClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/configuration/ApiClientConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/test/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/dist/ApiClient.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/dist/ApiClient.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/docs/AchievementsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/docs/AchievementsApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/docs/AwardsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/docs/AwardsApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/docs/CompetitionsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/docs/CompetitionsApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/docs/ContestsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/docs/ContestsApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/docs/FilesApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/docs/FilesApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/docs/MembersApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/docs/MembersApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/docs/MessagesApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/docs/MessagesApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/docs/NotificationsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/docs/NotificationsApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/docs/ProxyApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/docs/ProxyApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/docs/RewardsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/docs/RewardsApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/docs/RulesApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/docs/RulesApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/src/ApiClient.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/src/ApiClient.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generate-client-code.sh" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/javascript-ts/generate-client-code.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/runtime.ts" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/javascript-ts/generated/runtime.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/openapi/javascript/generate-client-code.sh" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/javascript/generate-client-code.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/openapi/ziqni-member-api.yml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/ziqni-member-api.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/src/ApiClientStomp.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/src/ApiClientStomp.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +50,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "corretto-11",
-    "last_opened_file_path": "/home/carel/IdeaProjects/ziqniio/ziqni-member-sdks/javascript/src",
+    "last_opened_file_path": "/home/carel/IdeaProjects/ziqniio/ziqni-member-sdks/javascript/src/api",
     "nodejs_interpreter_path": "node",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
@@ -94,6 +62,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/javascript/src/api" />
       <recent name="$PROJECT_DIR$/javascript/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -152,7 +121,7 @@
       <option name="presentableId" value="Default" />
       <updated>1656966295087</updated>
       <workItem from="1656966296382" duration="22983000" />
-      <workItem from="1657700962198" duration="19521000" />
+      <workItem from="1657700962198" duration="19826000" />
     </task>
     <task id="LOCAL-00001" summary="Cleanup">
       <created>1656969494518</created>
@@ -224,7 +193,21 @@
       <option name="project" value="LOCAL" />
       <updated>1658148370045</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added comments">
+      <created>1658300567541</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1658300567541</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added comments">
+      <created>1658300607684</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1658300607684</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,12 +225,15 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Cleanup" />
     <MESSAGE value="Event notification subscriptions working" />
     <MESSAGE value="Updated the method names to reflect actual usage" />
     <MESSAGE value="Updated the config for convenience" />
     <MESSAGE value="Domain changed to member-api.ziqni.com" />
     <MESSAGE value="Updated schema and generated sources location" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated schema and generated sources location" />
+    <MESSAGE value="Added comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added comments" />
   </component>
 </project>
