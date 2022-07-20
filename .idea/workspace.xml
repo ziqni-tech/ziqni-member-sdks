@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Something like this">
-      <change afterPath="$PROJECT_DIR$/openapi/javascript/templates/ApiClientStomp.mustache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/openapi/javascript/templates/api-stomp.mustache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/openapi/javascript/ziqni-member-api.config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Added a template to generate the websocket APIs">
+      <change afterPath="$PROJECT_DIR$/javascript/src/api/CompetitionsApiWs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/javascript/src/ApiClientStomp.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/src/ApiClientStomp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/openapi/javascript/generate-client-code.sh" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/javascript/generate-client-code.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +56,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "corretto-11",
-    "last_opened_file_path": "/home/carel/IdeaProjects/ziqniio/ziqni-member-sdks/openapi/javascript",
+    "last_opened_file_path": "/home/carel/IdeaProjects/ziqniio/ziqni-member-sdks/javascript/src/api",
     "nodejs_interpreter_path": "node",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
@@ -72,9 +68,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/javascript/src/api" />
       <recent name="$PROJECT_DIR$/openapi/javascript" />
       <recent name="$PROJECT_DIR$/openapi/javascript/templates" />
-      <recent name="$PROJECT_DIR$/javascript/src/api" />
       <recent name="$PROJECT_DIR$/javascript/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -133,7 +129,7 @@
       <option name="presentableId" value="Default" />
       <updated>1656966295087</updated>
       <workItem from="1656966296382" duration="22983000" />
-      <workItem from="1657700962198" duration="27428000" />
+      <workItem from="1657700962198" duration="27737000" />
     </task>
     <task id="LOCAL-00001" summary="Cleanup">
       <created>1656969494518</created>
@@ -247,7 +243,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658310983339</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Added a template to generate the websocket APIs">
+      <created>1658313094180</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1658313094180</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,6 +278,7 @@
     <MESSAGE value="Updated schema and generated sources location" />
     <MESSAGE value="Added comments" />
     <MESSAGE value="Something like this" />
-    <option name="LAST_COMMIT_MESSAGE" value="Something like this" />
+    <MESSAGE value="Added a template to generate the websocket APIs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a template to generate the websocket APIs" />
   </component>
 </project>

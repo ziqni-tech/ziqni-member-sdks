@@ -193,10 +193,17 @@ class ApiClientStomp {
         }
     };
 
-    sendRpc(to, message, callback){
+    sendRpc(destination, callback, pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody, returnType){
+        // private Map<String, Object> query;
+        // private Map<String, Object> path;
+        // private T body;
         let messageId = apiClientStomp.uuidv4();
         let messageHeaders = messageHeaders.setMessageId(messageId);
-        let messageContainer = { body: message };
+        let messageContainer = {
+            query: queryParams,
+            path: pathParams,
+            body: postBody
+        };
         apiClientStomp.send('/gapi/getMember', messageHeaders, JSON.stringify(messageContainer));
         this.rpcCallBacks.set(messageId, callback)
     }
