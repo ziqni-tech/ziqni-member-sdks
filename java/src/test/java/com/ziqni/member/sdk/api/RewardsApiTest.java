@@ -12,11 +12,18 @@
 
 package com.ziqni.member.sdk.api;
 
+import com.ziqni.admin.client.model.EntityType;
+import com.ziqni.admin.client.model.MemberTokenRequest;
 import com.ziqni.member.sdk.ApiClientFactoryWs;
 import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.configuration.ApiClientConfig;
 import com.ziqni.member.sdk.data.LoadRewardsData;
+import com.ziqni.member.sdk.data.LoadRulesData;
+import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
+import com.ziqni.member.sdk.util.TestMemberTokenLoader;
 import org.junit.jupiter.api.*;
 
+import static com.ziqni.member.sdk.util.TestMemberTokenLoader.TEST_MEMBER_TOKEN;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -26,13 +33,32 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class RewardsApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
-    private final RewardsApiWs api;
-    private final LoadRewardsData loadRewardsData;
+    private  RewardsApiWs api;
+    private  LoadRewardsData loadRewardsData;
 
-    public RewardsApiTest(){
+    @BeforeAll
+    public void start() throws Exception {
+        TestMemberTokenLoader testMemberTokenLoader = new TestMemberTokenLoader();
+        MemberTokenRequest tokenRequest = new MemberTokenRequest()
+                .apiKey(testMemberTokenLoader.getApiKey())
+                .expires(6000)
+                .isReferenceId(true)
+                .member(TEST_MEMBER_TOKEN)
+                .resource("ziqni-gapi");
+
+        // ApiClientConfig.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
+        ApiClientConfig.setIdentityAuthorization(null);
         this.api = ApiClientFactoryWs.getRewardsApi();
         this.loadRewardsData = new LoadRewardsData();
+        ApiClientFactoryUtil.initApiClientFactory();
     }
+
+    @AfterAll
+    public  void stop(){
+        ApiClientFactoryWs.getStreamingClient().stop();
+    }
+
+
     
     /**
      * Get rewards
@@ -44,8 +70,8 @@ public class RewardsApiTest implements tests.utils.CompleteableFutureTestWrapper
      */
     @Test
     public void getRewardsTest() throws ApiException {
-        String competitionId = "M2aFXYEBl_GIktlkShBQ";
-        var response = api.getRewards(loadRewardsData.getRequest(competitionId)).join();
+        String achievementId = "bMLMv34B99ZI0UTU5MKP";
+        var response = api.getRewards(loadRewardsData.getRequest(achievementId, EntityType.ACHIEVEMENT.getValue())).join();
 
         assertNotNull(response);
         assertNotNull(response.getData());

@@ -46,7 +46,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RewardRequest'
+              $ref: '#/components/schemas/EntityRequest'
         required: true
       tags:
         - rewards
@@ -73,7 +73,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RuleRequest'
+              $ref: '#/components/schemas/EntityRequest'
         required: true
       tags:
         - rules
