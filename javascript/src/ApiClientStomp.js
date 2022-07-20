@@ -14,7 +14,6 @@
 
 import superagent from "superagent";
 import querystring from "querystring";
-import MemberRequest from "./model/MemberRequest";
 
 /**
 * @module ApiClient
@@ -197,7 +196,7 @@ class ApiClientStomp {
     sendRpc(to, message, callback){
         let messageId = apiClientStomp.uuidv4();
         let messageHeaders = messageHeaders.setMessageId(messageId);
-        let messageContainer = { body: MemberRequest };
+        let messageContainer = { body: message };
         apiClientStomp.send('/gapi/getMember', messageHeaders, JSON.stringify(messageContainer));
         this.rpcCallBacks.set(messageId, callback)
     }
