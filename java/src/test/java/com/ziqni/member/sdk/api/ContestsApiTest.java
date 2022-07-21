@@ -13,12 +13,21 @@
 
 package com.ziqni.member.sdk.api;
 
+import com.ziqni.admin.client.model.MemberTokenRequest;
 import com.ziqni.member.sdk.ApiClientFactoryWs;
 import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.configuration.ApiClientConfig;
 import com.ziqni.member.sdk.data.LoadContestsData;
+import com.ziqni.member.sdk.data.LoadRewardsData;
 import com.ziqni.member.sdk.model.*;
+import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
+import com.ziqni.member.sdk.util.TestMemberTokenLoader;
 import org.junit.jupiter.api.*;
 
+import java.util.Objects;
+
+import static com.ziqni.member.sdk.util.TestMemberTokenLoader.TEST_MEMBER_TOKEN;
+import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -32,7 +41,18 @@ public class ContestsApiTest implements tests.utils.CompleteableFutureTestWrappe
     private final ContestsApiWs api;
     private final LoadContestsData loadContestsData;
 
-    public ContestsApiTest(){
+    public ContestsApiTest() throws Exception {
+        TestMemberTokenLoader testMemberTokenLoader = new TestMemberTokenLoader();
+        MemberTokenRequest tokenRequest = new MemberTokenRequest()
+                .apiKey(testMemberTokenLoader.getApiKey())
+                .expires(6000)
+                .isReferenceId(true)
+                .member(TEST_MEMBER_TOKEN)
+                .resource("ziqni-gapi");
+
+        // ApiClientConfig.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
+        ApiClientConfig.setIdentityAuthorization(null);
+        ApiClientFactoryUtil.initApiClientFactory();
         this.api = ApiClientFactoryWs.getContestsApi();
         this.loadContestsData = new LoadContestsData();
     }
@@ -46,15 +66,30 @@ public class ContestsApiTest implements tests.utils.CompleteableFutureTestWrappe
      *          if the Api call fails
      */
     @Test
-    public void getContestsTest() throws ApiException {
+    public void getMemberContestsTest() throws ApiException {
         var response = $(api.getContests(loadContestsData.getRequest()));
+
+        assertNotNull(response);
+        assertNotNull(response.getData());
+        final var actual = response.getData().stream().filter(competition -> Objects.nonNull(competition.getMemberTagsFilter())).collect(toList());
+
+        assertTrue( actual.size()>0);
+        assertNotNull(response.getErrors());
+        Assertions.assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+        Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
+
+    }
+    @Test
+    public void getPublicContestsTest() throws Exception {
+
+        var response = api.getContests(loadContestsData.getRequest()).join();
 
         assertNotNull(response);
         assertNotNull(response.getData());
         assertNotNull(response.getErrors());
         Assertions.assertTrue(response.getErrors().isEmpty(), "Should have no errors");
         Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
-
     }
+
 
 }
