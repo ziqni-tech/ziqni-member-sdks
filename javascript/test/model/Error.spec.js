@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.Error();
+    instance = new ZiqniTechGamificationApiClient.Error();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,25 +50,25 @@
   describe('Error', function() {
     it('should create an instance of Error', function() {
       // uncomment below and update the code to test Error
-      //var instance = new @ZiqniTechGamificationApiClient.Error();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.Error);
+      //var instance = new ZiqniTechGamificationApiClient.Error();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.Error);
     });
 
     it('should have the property message (base name: "message")', function() {
       // uncomment below and update the code to test the property message
-      //var instance = new @ZiqniTechGamificationApiClient.Error();
+      //var instance = new ZiqniTechGamificationApiClient.Error();
       //expect(instance).to.be();
     });
 
     it('should have the property code (base name: "code")', function() {
       // uncomment below and update the code to test the property code
-      //var instance = new @ZiqniTechGamificationApiClient.Error();
+      //var instance = new ZiqniTechGamificationApiClient.Error();
       //expect(instance).to.be();
     });
 
     it('should have the property status (base name: "status")', function() {
       // uncomment below and update the code to test the property status
-      //var instance = new @ZiqniTechGamificationApiClient.Error();
+      //var instance = new ZiqniTechGamificationApiClient.Error();
       //expect(instance).to.be();
     });
 

@@ -7,27 +7,27 @@ CONF_FILE=ziqni-member-api.config.yml
 GEN_DIR=generated
 FILE=generate-client-code.sh
 
+
+if [ -z "$1" ]; then
+  echo "No argument supplied"
+else
+  cd ../openapi/java || exit
+fi
+
 echo "++++++++++ GENERATING ++++++++++"
 pwd
 
 if [ -f "$FILE" ]; then
   echo "$FILE exists."
 else
-  echo "<project-root>/openapi/javascript/$FILE does not exist."
+  echo "$FILE does not exist."
   exit
 fi
 
-if [[ -d "$GEN_DIR" ]]; then
-  echo "$GEN_DIR exists."
-  rm -rf ./generated
-  echo "$GEN_DIR deleted."
-  mkdir generated
-  echo "$GEN_DIR created."
+openapi-generator-cli generate -g  go -i $SPEC_FILE -c $CONF_FILE -o ./$GEN_DIR -t ./templates
 
-  openapi-generator-cli generate -g  typescript-fetch -i $SPEC_FILE -c $CONF_FILE -o ./generated
+#cd ../../javascript || exit
 
-#  cd ../../javascript || exit
-#
 #  rm -rf ./*
 #  cp -rf ../openapi/javascript/generated/* ./
 #
@@ -36,6 +36,3 @@ if [[ -d "$GEN_DIR" ]]; then
 #  npm run build
 #  npm install @ziqni-tech/member-api-client
 
-else
-  echo "Directory '<project-root>/openapi/javascript/$GEN_DIR' not found"
-fi

@@ -5,8 +5,309 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Added a template to generate the websocket APIs">
-      <change afterPath="$PROJECT_DIR$/javascript/src/api/CompetitionsApiWs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openapi/go/ziqni-member-api.config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/ApiClient.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/AchievementsApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/AwardsApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/CompetitionsApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/ContestsApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/FilesApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/MembersApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/MessagesApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/ProxyApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/RewardsApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/RulesApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Achievement.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/AchievementAllOf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/AchievementFilter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/AchievementRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/AchievementResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Award.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/AwardFilter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/AwardRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/AwardResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Competition.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/CompetitionAllOf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/CompetitionFilter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/CompetitionRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/CompetitionResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/CompetitionStatus.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/CompetitionType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Contest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ContestAllOf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ContestFilter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ContestReduced.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ContestRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ContestResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ContestStatus.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Dependancy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/DependantOn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/EntityType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Error.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/EventRefType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/FieldType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/File.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/FileRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/FileResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Member.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MemberAllOf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MemberOptinRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MemberRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MemberResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MemberSessionRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MemberSessionResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MemberType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Message.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MessageAllOf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MessageRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MessageResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MessageStatus.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MessageType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ModelDefault.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/OptinAction.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/OptionalModelFields.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ProductReduced.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Proxy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ProxyRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ProxyResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/QueryMultipleFields.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/QuerySortBy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RangeQuery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RankingStrategy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ResponseMeta.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Reward.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RewardReduced.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RewardRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RewardResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RewardTypeReduced.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RoundType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Rule.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RuleArgument.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RuleExpression.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RuleRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RuleResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RuleRoutine.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ScheduleType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Scheduling.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ScoringStrategy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/SortOrder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Strategy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/StrategyType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Translation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/TranslationEntry.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/TranslationRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/TranslationResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/package.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/javascript/src/ApiClientStomp.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/src/ApiClientStomp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/api/AchievementsApi.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/api/AchievementsApi.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/api/AwardsApi.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/api/AwardsApi.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/api/CompetitionsApi.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/api/CompetitionsApi.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/api/ContestsApi.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/api/ContestsApi.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/api/FilesApi.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/api/FilesApi.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/api/MembersApi.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/api/MembersApi.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/api/MessagesApi.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/api/MessagesApi.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/api/NotificationsApi.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/api/NotificationsApi.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/api/ProxyApi.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/api/ProxyApi.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/api/RewardsApi.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/api/RewardsApi.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/api/RulesApi.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/api/RulesApi.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/Achievement.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/Achievement.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/AchievementAllOf.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/AchievementAllOf.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/AchievementFilter.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/AchievementFilter.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/AchievementRequest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/AchievementRequest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/AchievementResponse.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/AchievementResponse.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/Award.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/Award.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/AwardAllOf.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/AwardAllOf.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/AwardFilter.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/AwardFilter.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/AwardRequest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/AwardRequest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/AwardResponse.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/AwardResponse.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/ClaimAwardRequest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/ClaimAwardRequest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/Competition.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/Competition.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/CompetitionAllOf.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/CompetitionAllOf.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/CompetitionFilter.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/CompetitionFilter.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/CompetitionRequest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/CompetitionRequest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/CompetitionResponse.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/CompetitionResponse.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/CompetitionStatus.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/CompetitionStatus.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/CompetitionType.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/CompetitionType.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/Contest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/Contest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/ContestAllOf.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/ContestAllOf.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/ContestFilter.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/ContestFilter.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/ContestReduced.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/ContestReduced.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/ContestRequest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/ContestRequest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/ContestResponse.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/ContestResponse.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/ContestStatus.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/ContestStatus.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/Dependancy.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/Dependancy.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/DependantOn.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/DependantOn.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/EntityChanged.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/EntityChanged.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/EntityStateChanged.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/EntityStateChanged.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/EntityType.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/EntityType.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/Error.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/Error.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/EventRefType.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/EventRefType.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/FieldType.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/FieldType.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/File.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/File.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/FileRequest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/FileRequest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/FileResponse.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/FileResponse.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/LeaderboardFilter.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/LeaderboardFilter.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/Member.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/Member.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/MemberAllOf.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/MemberAllOf.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/MemberOptinRequest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/MemberOptinRequest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/MemberRequest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/MemberRequest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/MemberResponse.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/MemberResponse.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/MemberSessionRequest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/MemberSessionRequest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/MemberSessionResponse.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/MemberSessionResponse.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/MemberType.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/MemberType.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/Message.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/Message.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/MessageAllOf.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/MessageAllOf.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/MessageRequest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/MessageRequest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/MessageResponse.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/MessageResponse.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/MessageStatus.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/MessageStatus.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/MessageType.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/MessageType.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/ModelDefault.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/ModelDefault.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/OptinAction.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/OptinAction.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/OptionalModelFields.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/OptionalModelFields.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/ProductReduced.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/ProductReduced.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/Proxy.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/Proxy.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/ProxyRequest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/ProxyRequest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/ProxyResponse.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/ProxyResponse.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/QueryMultipleFields.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/QueryMultipleFields.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/QuerySortBy.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/QuerySortBy.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/RangeQuery.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/RangeQuery.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/RankingStrategy.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/RankingStrategy.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/ResponseMeta.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/ResponseMeta.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/Reward.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/Reward.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/RewardReduced.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/RewardReduced.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/RewardRequest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/RewardRequest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/RewardResponse.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/RewardResponse.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/RewardTypeReduced.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/RewardTypeReduced.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/RoundType.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/RoundType.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/Rule.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/Rule.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/RuleArgument.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/RuleArgument.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/RuleExpression.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/RuleExpression.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/RuleRequest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/RuleRequest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/RuleResponse.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/RuleResponse.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/RuleRoutine.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/RuleRoutine.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/ScheduleType.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/ScheduleType.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/Scheduling.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/Scheduling.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/ScoringStrategy.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/ScoringStrategy.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/SortOrder.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/SortOrder.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/Strategy.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/Strategy.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/StrategyType.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/StrategyType.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/Subscription.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/Subscription.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/SubscriptionRequest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/SubscriptionRequest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/SubscriptionResponse.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/SubscriptionResponse.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/Translation.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/Translation.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/TranslationEntry.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/TranslationEntry.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/TranslationRequest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/TranslationRequest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/TranslationResponse.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/TranslationResponse.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test/model/UnsubscribeRequest.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test/model/UnsubscribeRequest.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generate-client-code.sh" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/go/generate-client-code.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/.openapi-generator-ignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/.openapi-generator/FILES" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/.openapi-generator/VERSION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/apis/AchievementsApi.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/apis/AwardsApi.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/apis/CompetitionsApi.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/apis/ContestsApi.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/apis/FilesApi.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/apis/MembersApi.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/apis/MessagesApi.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/apis/ProxyApi.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/apis/RewardsApi.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/apis/RulesApi.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/apis/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/Achievement.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/AchievementAllOf.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/AchievementFilter.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/AchievementRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/AchievementResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/Award.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/AwardAllOf.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/AwardFilter.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/AwardRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/AwardResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/ClaimAwardRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/Competition.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/CompetitionAllOf.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/CompetitionFilter.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/CompetitionRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/CompetitionResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/CompetitionStatus.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/CompetitionType.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/Contest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/ContestAllOf.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/ContestFilter.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/ContestReduced.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/ContestRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/ContestResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/ContestStatus.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/Dependancy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/DependantOn.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/EntityType.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/EventRefType.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/FieldType.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/FileRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/FileResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/LeaderboardFilter.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/Member.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/MemberAllOf.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/MemberOptinRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/MemberRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/MemberResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/MemberSessionRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/MemberSessionResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/MemberType.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/Message.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/MessageAllOf.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/MessageRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/MessageResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/MessageStatus.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/MessageType.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/ModelDefault.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/ModelError.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/ModelFile.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/OptinAction.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/OptionalModelFields.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/ProductReduced.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/Proxy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/ProxyRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/ProxyResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/QueryMultipleFields.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/QuerySortBy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/RangeQuery.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/RankingStrategy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/ResponseMeta.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/Reward.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/RewardReduced.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/RewardRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/RewardResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/RewardTypeReduced.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/RoundType.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/Rule.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/RuleArgument.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/RuleExpression.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/RuleRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/RuleResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/RuleRoutine.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/ScheduleType.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/Scheduling.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/ScoringStrategy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/SortOrder.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/Strategy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/StrategyType.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/Translation.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/TranslationEntry.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/TranslationRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/TranslationResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/models/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/generated/runtime.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript-ts/openapitools.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/javascript/generate-client-code.sh" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/javascript/generate-client-code.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +324,18 @@
       </list>
     </option>
   </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="false" />
+    <option name="myAllFileTypesSelected" value="true" />
+    <option name="mySelectedFileTypes">
+      <set />
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="true" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -38,6 +349,13 @@
   </component>
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="false" />
+    <option name="myAllFileTypesSelected" value="true" />
+    <option name="mySelectedFileTypes">
+      <set />
+    </option>
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
@@ -54,10 +372,15 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true",
     "jdk.selected.JAVA_MODULE": "corretto-11",
-    "last_opened_file_path": "/home/carel/IdeaProjects/ziqniio/ziqni-member-sdks/javascript/src/api",
+    "last_opened_file_path": "/home/carel/IdeaProjects/ziqniio/ziqni-member-sdks/openapi/go",
     "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -68,6 +391,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/openapi/go" />
       <recent name="$PROJECT_DIR$/javascript/src/api" />
       <recent name="$PROJECT_DIR$/openapi/javascript" />
       <recent name="$PROJECT_DIR$/openapi/javascript/templates" />
@@ -77,7 +401,7 @@
       <recent name="$PROJECT_DIR$/java" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.SampleApp">
     <configuration name="SampleApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -98,6 +422,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AchievementsApi.spec.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/javascript/test/api/AchievementsApi.spec.js" working-dir="$PROJECT_DIR$/javascript/test/api">
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="SwaggerCodegen">
       <option name="activeConfigurationType" value="FILE" />
       <option name="configurationPath" value="" />
@@ -117,6 +444,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.SampleApp" />
+        <item itemvalue="Node.js.AchievementsApi.spec.js" />
       </list>
     </recent_temporary>
   </component>
@@ -129,7 +457,8 @@
       <option name="presentableId" value="Default" />
       <updated>1656966295087</updated>
       <workItem from="1656966296382" duration="22983000" />
-      <workItem from="1657700962198" duration="27737000" />
+      <workItem from="1657700962198" duration="36751000" />
+      <workItem from="1658437395232" duration="6943000" />
     </task>
     <task id="LOCAL-00001" summary="Cleanup">
       <created>1656969494518</created>
@@ -250,7 +579,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658313094180</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Added a template to generate the websocket APIs">
+      <created>1658313365272</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1658313365272</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,5 +616,20 @@
     <MESSAGE value="Something like this" />
     <MESSAGE value="Added a template to generate the websocket APIs" />
     <option name="LAST_COMMIT_MESSAGE" value="Added a template to generate the websocket APIs" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>false</integration-enabled>
+    <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/java/src/main/java/com/ziqni/member/sdk/streaming/WsClient.java</url>
+          <line>176</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

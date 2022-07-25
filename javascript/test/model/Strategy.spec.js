@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.Strategy();
+    instance = new ZiqniTechGamificationApiClient.Strategy();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,25 +50,25 @@
   describe('Strategy', function() {
     it('should create an instance of Strategy', function() {
       // uncomment below and update the code to test Strategy
-      //var instance = new @ZiqniTechGamificationApiClient.Strategy();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.Strategy);
+      //var instance = new ZiqniTechGamificationApiClient.Strategy();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.Strategy);
     });
 
     it('should have the property strategyType (base name: "strategyType")', function() {
       // uncomment below and update the code to test the property strategyType
-      //var instance = new @ZiqniTechGamificationApiClient.Strategy();
+      //var instance = new ZiqniTechGamificationApiClient.Strategy();
       //expect(instance).to.be();
     });
 
     it('should have the property rankingStrategy (base name: "rankingStrategy")', function() {
       // uncomment below and update the code to test the property rankingStrategy
-      //var instance = new @ZiqniTechGamificationApiClient.Strategy();
+      //var instance = new ZiqniTechGamificationApiClient.Strategy();
       //expect(instance).to.be();
     });
 
     it('should have the property scoringStrategy (base name: "scoringStrategy")', function() {
       // uncomment below and update the code to test the property scoringStrategy
-      //var instance = new @ZiqniTechGamificationApiClient.Strategy();
+      //var instance = new ZiqniTechGamificationApiClient.Strategy();
       //expect(instance).to.be();
     });
 

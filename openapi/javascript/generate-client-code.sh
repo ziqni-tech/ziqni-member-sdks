@@ -24,9 +24,9 @@ else
   exit
 fi
 
-  openapi-generator-cli generate -g  javascript -i $SPEC_FILE -c $CONF_FILE -o ./generated -t ./templates
+openapi-generator-cli generate -g  javascript -i $SPEC_FILE -c $CONF_FILE -o ./generated -t ./templates
 
-  cd ../../javascript || exit
+cd ../../javascript || exit
 
 #  rm -rf ./*
 #  cp -rf ../openapi/javascript/generated/* ./

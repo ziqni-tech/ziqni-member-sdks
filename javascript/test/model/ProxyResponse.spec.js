@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.ProxyResponse();
+    instance = new ZiqniTechGamificationApiClient.ProxyResponse();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,25 +50,25 @@
   describe('ProxyResponse', function() {
     it('should create an instance of ProxyResponse', function() {
       // uncomment below and update the code to test ProxyResponse
-      //var instance = new @ZiqniTechGamificationApiClient.ProxyResponse();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.ProxyResponse);
+      //var instance = new ZiqniTechGamificationApiClient.ProxyResponse();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.ProxyResponse);
     });
 
     it('should have the property meta (base name: "meta")', function() {
       // uncomment below and update the code to test the property meta
-      //var instance = new @ZiqniTechGamificationApiClient.ProxyResponse();
+      //var instance = new ZiqniTechGamificationApiClient.ProxyResponse();
       //expect(instance).to.be();
     });
 
     it('should have the property data (base name: "data")', function() {
       // uncomment below and update the code to test the property data
-      //var instance = new @ZiqniTechGamificationApiClient.ProxyResponse();
+      //var instance = new ZiqniTechGamificationApiClient.ProxyResponse();
       //expect(instance).to.be();
     });
 
     it('should have the property errors (base name: "errors")', function() {
       // uncomment below and update the code to test the property errors
-      //var instance = new @ZiqniTechGamificationApiClient.ProxyResponse();
+      //var instance = new ZiqniTechGamificationApiClient.ProxyResponse();
       //expect(instance).to.be();
     });
 

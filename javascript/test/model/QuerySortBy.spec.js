@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.QuerySortBy();
+    instance = new ZiqniTechGamificationApiClient.QuerySortBy();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,19 +50,19 @@
   describe('QuerySortBy', function() {
     it('should create an instance of QuerySortBy', function() {
       // uncomment below and update the code to test QuerySortBy
-      //var instance = new @ZiqniTechGamificationApiClient.QuerySortBy();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.QuerySortBy);
+      //var instance = new ZiqniTechGamificationApiClient.QuerySortBy();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.QuerySortBy);
     });
 
     it('should have the property queryField (base name: "queryField")', function() {
       // uncomment below and update the code to test the property queryField
-      //var instance = new @ZiqniTechGamificationApiClient.QuerySortBy();
+      //var instance = new ZiqniTechGamificationApiClient.QuerySortBy();
       //expect(instance).to.be();
     });
 
     it('should have the property order (base name: "order")', function() {
       // uncomment below and update the code to test the property order
-      //var instance = new @ZiqniTechGamificationApiClient.QuerySortBy();
+      //var instance = new ZiqniTechGamificationApiClient.QuerySortBy();
       //expect(instance).to.be();
     });
 

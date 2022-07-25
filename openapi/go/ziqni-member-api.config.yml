@@ -1,0 +1,9 @@
+hideGenerationTimestamp: true
+#files:
+#  api-stomp.mustache:
+#    templateType: API
+#    destinationFilename: Ws.js
+#  ApiClientFactoryWs.mustache:
+#    folder: src/main/java/com/ziqni/member/sdk
+#    templateType: SupportingFiles
+#    destinationFilename: ApiClientFactoryWs.java

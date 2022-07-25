@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.RuleExpression();
+    instance = new ZiqniTechGamificationApiClient.RuleExpression();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,67 +50,67 @@
   describe('RuleExpression', function() {
     it('should create an instance of RuleExpression', function() {
       // uncomment below and update the code to test RuleExpression
-      //var instance = new @ZiqniTechGamificationApiClient.RuleExpression();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.RuleExpression);
+      //var instance = new ZiqniTechGamificationApiClient.RuleExpression();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.RuleExpression);
     });
 
     it('should have the property type (base name: "type")', function() {
       // uncomment below and update the code to test the property type
-      //var instance = new @ZiqniTechGamificationApiClient.RuleExpression();
+      //var instance = new ZiqniTechGamificationApiClient.RuleExpression();
       //expect(instance).to.be();
     });
 
     it('should have the property mustMatchAll (base name: "mustMatchAll")', function() {
       // uncomment below and update the code to test the property mustMatchAll
-      //var instance = new @ZiqniTechGamificationApiClient.RuleExpression();
+      //var instance = new ZiqniTechGamificationApiClient.RuleExpression();
       //expect(instance).to.be();
     });
 
     it('should have the property mustEvaluateTo (base name: "mustEvaluateTo")', function() {
       // uncomment below and update the code to test the property mustEvaluateTo
-      //var instance = new @ZiqniTechGamificationApiClient.RuleExpression();
+      //var instance = new ZiqniTechGamificationApiClient.RuleExpression();
       //expect(instance).to.be();
     });
 
     it('should have the property scope (base name: "scope")', function() {
       // uncomment below and update the code to test the property scope
-      //var instance = new @ZiqniTechGamificationApiClient.RuleExpression();
+      //var instance = new ZiqniTechGamificationApiClient.RuleExpression();
       //expect(instance).to.be();
     });
 
     it('should have the property operand (base name: "operand")', function() {
       // uncomment below and update the code to test the property operand
-      //var instance = new @ZiqniTechGamificationApiClient.RuleExpression();
+      //var instance = new ZiqniTechGamificationApiClient.RuleExpression();
       //expect(instance).to.be();
     });
 
     it('should have the property operator (base name: "operator")', function() {
       // uncomment below and update the code to test the property operator
-      //var instance = new @ZiqniTechGamificationApiClient.RuleExpression();
+      //var instance = new ZiqniTechGamificationApiClient.RuleExpression();
       //expect(instance).to.be();
     });
 
     it('should have the property value (base name: "value")', function() {
       // uncomment below and update the code to test the property value
-      //var instance = new @ZiqniTechGamificationApiClient.RuleExpression();
+      //var instance = new ZiqniTechGamificationApiClient.RuleExpression();
       //expect(instance).to.be();
     });
 
     it('should have the property rules (base name: "rules")', function() {
       // uncomment below and update the code to test the property rules
-      //var instance = new @ZiqniTechGamificationApiClient.RuleExpression();
+      //var instance = new ZiqniTechGamificationApiClient.RuleExpression();
       //expect(instance).to.be();
     });
 
     it('should have the property then (base name: "then")', function() {
       // uncomment below and update the code to test the property then
-      //var instance = new @ZiqniTechGamificationApiClient.RuleExpression();
+      //var instance = new ZiqniTechGamificationApiClient.RuleExpression();
       //expect(instance).to.be();
     });
 
     it('should have the property lineNumber (base name: "lineNumber")', function() {
       // uncomment below and update the code to test the property lineNumber
-      //var instance = new @ZiqniTechGamificationApiClient.RuleExpression();
+      //var instance = new ZiqniTechGamificationApiClient.RuleExpression();
       //expect(instance).to.be();
     });
 

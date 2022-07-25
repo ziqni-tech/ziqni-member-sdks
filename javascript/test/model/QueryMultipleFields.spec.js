@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.QueryMultipleFields();
+    instance = new ZiqniTechGamificationApiClient.QueryMultipleFields();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,19 +50,19 @@
   describe('QueryMultipleFields', function() {
     it('should create an instance of QueryMultipleFields', function() {
       // uncomment below and update the code to test QueryMultipleFields
-      //var instance = new @ZiqniTechGamificationApiClient.QueryMultipleFields();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.QueryMultipleFields);
+      //var instance = new ZiqniTechGamificationApiClient.QueryMultipleFields();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.QueryMultipleFields);
     });
 
     it('should have the property queryFields (base name: "queryFields")', function() {
       // uncomment below and update the code to test the property queryFields
-      //var instance = new @ZiqniTechGamificationApiClient.QueryMultipleFields();
+      //var instance = new ZiqniTechGamificationApiClient.QueryMultipleFields();
       //expect(instance).to.be();
     });
 
     it('should have the property queryValue (base name: "queryValue")', function() {
       // uncomment below and update the code to test the property queryValue
-      //var instance = new @ZiqniTechGamificationApiClient.QueryMultipleFields();
+      //var instance = new ZiqniTechGamificationApiClient.QueryMultipleFields();
       //expect(instance).to.be();
     });
 

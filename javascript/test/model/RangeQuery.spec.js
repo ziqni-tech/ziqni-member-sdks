@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.RangeQuery();
+    instance = new ZiqniTechGamificationApiClient.RangeQuery();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,25 +50,25 @@
   describe('RangeQuery', function() {
     it('should create an instance of RangeQuery', function() {
       // uncomment below and update the code to test RangeQuery
-      //var instance = new @ZiqniTechGamificationApiClient.RangeQuery();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.RangeQuery);
+      //var instance = new ZiqniTechGamificationApiClient.RangeQuery();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.RangeQuery);
     });
 
     it('should have the property gt (base name: "gt")', function() {
       // uncomment below and update the code to test the property gt
-      //var instance = new @ZiqniTechGamificationApiClient.RangeQuery();
+      //var instance = new ZiqniTechGamificationApiClient.RangeQuery();
       //expect(instance).to.be();
     });
 
     it('should have the property lt (base name: "lt")', function() {
       // uncomment below and update the code to test the property lt
-      //var instance = new @ZiqniTechGamificationApiClient.RangeQuery();
+      //var instance = new ZiqniTechGamificationApiClient.RangeQuery();
       //expect(instance).to.be();
     });
 
     it('should have the property constraints (base name: "constraints")', function() {
       // uncomment below and update the code to test the property constraints
-      //var instance = new @ZiqniTechGamificationApiClient.RangeQuery();
+      //var instance = new ZiqniTechGamificationApiClient.RangeQuery();
       //expect(instance).to.be();
     });
 

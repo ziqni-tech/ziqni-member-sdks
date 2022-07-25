@@ -177,7 +177,9 @@ class ApiClientStomp {
         // called when the client receives a STOMP message from the server
         if (message.body) {
             // Get the messageId then
-            //this.rpcCallBacks.get(messageId)(message.body)
+            let c = this.rpcCallBacks.get(messageId)
+            c(message.body)
+            this.rpcCallBacks.delete(messageId)
             alert("got message with body " + message.body)
         } else {
             alert("got empty message");

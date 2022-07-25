@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.RuleRequest();
+    instance = new ZiqniTechGamificationApiClient.RuleRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,13 +50,13 @@
   describe('RuleRequest', function() {
     it('should create an instance of RuleRequest', function() {
       // uncomment below and update the code to test RuleRequest
-      //var instance = new @ZiqniTechGamificationApiClient.RuleRequest();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.RuleRequest);
+      //var instance = new ZiqniTechGamificationApiClient.RuleRequest();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.RuleRequest);
     });
 
     it('should have the property entityId (base name: "entityId")', function() {
       // uncomment below and update the code to test the property entityId
-      //var instance = new @ZiqniTechGamificationApiClient.RuleRequest();
+      //var instance = new ZiqniTechGamificationApiClient.RuleRequest();
       //expect(instance).to.be();
     });
 

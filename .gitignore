@@ -46,3 +46,6 @@ build/
 /logs/
 /.idea/
 /javascript/dist/*
+/openapi/go/generated/
+/openapi/go/openapitools.json
+/javascript/dist/

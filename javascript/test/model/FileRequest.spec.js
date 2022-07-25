@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.FileRequest();
+    instance = new ZiqniTechGamificationApiClient.FileRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,13 +50,13 @@
   describe('FileRequest', function() {
     it('should create an instance of FileRequest', function() {
       // uncomment below and update the code to test FileRequest
-      //var instance = new @ZiqniTechGamificationApiClient.FileRequest();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.FileRequest);
+      //var instance = new ZiqniTechGamificationApiClient.FileRequest();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.FileRequest);
     });
 
     it('should have the property memberRefId (base name: "memberRefId")', function() {
       // uncomment below and update the code to test the property memberRefId
-      //var instance = new @ZiqniTechGamificationApiClient.FileRequest();
+      //var instance = new ZiqniTechGamificationApiClient.FileRequest();
       //expect(instance).to.be();
     });
 

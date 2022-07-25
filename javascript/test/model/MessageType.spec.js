@@ -20,9 +20,9 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
@@ -49,8 +49,8 @@
   describe('MessageType', function() {
     it('should create an instance of MessageType', function() {
       // uncomment below and update the code to test MessageType
-      //var instance = new @ZiqniTechGamificationApiClient.MessageType();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.MessageType);
+      //var instance = new ZiqniTechGamificationApiClient.MessageType();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.MessageType);
     });
 
   });

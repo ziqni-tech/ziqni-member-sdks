@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.TranslationEntry();
+    instance = new ZiqniTechGamificationApiClient.TranslationEntry();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,19 +50,19 @@
   describe('TranslationEntry', function() {
     it('should create an instance of TranslationEntry', function() {
       // uncomment below and update the code to test TranslationEntry
-      //var instance = new @ZiqniTechGamificationApiClient.TranslationEntry();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.TranslationEntry);
+      //var instance = new ZiqniTechGamificationApiClient.TranslationEntry();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.TranslationEntry);
     });
 
     it('should have the property fieldName (base name: "fieldName")', function() {
       // uncomment below and update the code to test the property fieldName
-      //var instance = new @ZiqniTechGamificationApiClient.TranslationEntry();
+      //var instance = new ZiqniTechGamificationApiClient.TranslationEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property text (base name: "text")', function() {
       // uncomment below and update the code to test the property text
-      //var instance = new @ZiqniTechGamificationApiClient.TranslationEntry();
+      //var instance = new ZiqniTechGamificationApiClient.TranslationEntry();
       //expect(instance).to.be();
     });
 

@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.RankingStrategy();
+    instance = new ZiqniTechGamificationApiClient.RankingStrategy();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,13 +50,13 @@
   describe('RankingStrategy', function() {
     it('should create an instance of RankingStrategy', function() {
       // uncomment below and update the code to test RankingStrategy
-      //var instance = new @ZiqniTechGamificationApiClient.RankingStrategy();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.RankingStrategy);
+      //var instance = new ZiqniTechGamificationApiClient.RankingStrategy();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.RankingStrategy);
     });
 
     it('should have the property constraints (base name: "constraints")', function() {
       // uncomment below and update the code to test the property constraints
-      //var instance = new @ZiqniTechGamificationApiClient.RankingStrategy();
+      //var instance = new ZiqniTechGamificationApiClient.RankingStrategy();
       //expect(instance).to.be();
     });
 

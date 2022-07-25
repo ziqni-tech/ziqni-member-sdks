@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.EntityChanged();
+    instance = new ZiqniTechGamificationApiClient.EntityChanged();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,73 +50,73 @@
   describe('EntityChanged', function() {
     it('should create an instance of EntityChanged', function() {
       // uncomment below and update the code to test EntityChanged
-      //var instance = new @ZiqniTechGamificationApiClient.EntityChanged();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.EntityChanged);
+      //var instance = new ZiqniTechGamificationApiClient.EntityChanged();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.EntityChanged);
     });
 
     it('should have the property entityId (base name: "entityId")', function() {
       // uncomment below and update the code to test the property entityId
-      //var instance = new @ZiqniTechGamificationApiClient.EntityChanged();
+      //var instance = new ZiqniTechGamificationApiClient.EntityChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property entityType (base name: "entityType")', function() {
       // uncomment below and update the code to test the property entityType
-      //var instance = new @ZiqniTechGamificationApiClient.EntityChanged();
+      //var instance = new ZiqniTechGamificationApiClient.EntityChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property changedAt (base name: "changedAt")', function() {
       // uncomment below and update the code to test the property changedAt
-      //var instance = new @ZiqniTechGamificationApiClient.EntityChanged();
+      //var instance = new ZiqniTechGamificationApiClient.EntityChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property changedBy (base name: "changedBy")', function() {
       // uncomment below and update the code to test the property changedBy
-      //var instance = new @ZiqniTechGamificationApiClient.EntityChanged();
+      //var instance = new ZiqniTechGamificationApiClient.EntityChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property typeOffChange (base name: "typeOffChange")', function() {
       // uncomment below and update the code to test the property typeOffChange
-      //var instance = new @ZiqniTechGamificationApiClient.EntityChanged();
+      //var instance = new ZiqniTechGamificationApiClient.EntityChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property displayName (base name: "displayName")', function() {
       // uncomment below and update the code to test the property displayName
-      //var instance = new @ZiqniTechGamificationApiClient.EntityChanged();
+      //var instance = new ZiqniTechGamificationApiClient.EntityChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property accountId (base name: "accountId")', function() {
       // uncomment below and update the code to test the property accountId
-      //var instance = new @ZiqniTechGamificationApiClient.EntityChanged();
+      //var instance = new ZiqniTechGamificationApiClient.EntityChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property sequenceNumber (base name: "sequenceNumber")', function() {
       // uncomment below and update the code to test the property sequenceNumber
-      //var instance = new @ZiqniTechGamificationApiClient.EntityChanged();
+      //var instance = new ZiqniTechGamificationApiClient.EntityChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property entityRefId (base name: "entityRefId")', function() {
       // uncomment below and update the code to test the property entityRefId
-      //var instance = new @ZiqniTechGamificationApiClient.EntityChanged();
+      //var instance = new ZiqniTechGamificationApiClient.EntityChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property entityParentId (base name: "entityParentId")', function() {
       // uncomment below and update the code to test the property entityParentId
-      //var instance = new @ZiqniTechGamificationApiClient.EntityChanged();
+      //var instance = new ZiqniTechGamificationApiClient.EntityChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property metadata (base name: "metadata")', function() {
       // uncomment below and update the code to test the property metadata
-      //var instance = new @ZiqniTechGamificationApiClient.EntityChanged();
+      //var instance = new ZiqniTechGamificationApiClient.EntityChanged();
       //expect(instance).to.be();
     });
 

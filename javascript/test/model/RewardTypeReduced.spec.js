@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.RewardTypeReduced();
+    instance = new ZiqniTechGamificationApiClient.RewardTypeReduced();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,13 +50,13 @@
   describe('RewardTypeReduced', function() {
     it('should create an instance of RewardTypeReduced', function() {
       // uncomment below and update the code to test RewardTypeReduced
-      //var instance = new @ZiqniTechGamificationApiClient.RewardTypeReduced();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.RewardTypeReduced);
+      //var instance = new ZiqniTechGamificationApiClient.RewardTypeReduced();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.RewardTypeReduced);
     });
 
     it('should have the property key (base name: "key")', function() {
       // uncomment below and update the code to test the property key
-      //var instance = new @ZiqniTechGamificationApiClient.RewardTypeReduced();
+      //var instance = new ZiqniTechGamificationApiClient.RewardTypeReduced();
       //expect(instance).to.be();
     });
 

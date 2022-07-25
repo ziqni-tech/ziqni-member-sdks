@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.Dependancy();
+    instance = new ZiqniTechGamificationApiClient.Dependancy();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,19 +50,19 @@
   describe('Dependancy', function() {
     it('should create an instance of Dependancy', function() {
       // uncomment below and update the code to test Dependancy
-      //var instance = new @ZiqniTechGamificationApiClient.Dependancy();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.Dependancy);
+      //var instance = new ZiqniTechGamificationApiClient.Dependancy();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.Dependancy);
     });
 
     it('should have the property entityType (base name: "entityType")', function() {
       // uncomment below and update the code to test the property entityType
-      //var instance = new @ZiqniTechGamificationApiClient.Dependancy();
+      //var instance = new ZiqniTechGamificationApiClient.Dependancy();
       //expect(instance).to.be();
     });
 
     it('should have the property dependantOn (base name: "dependantOn")', function() {
       // uncomment below and update the code to test the property dependantOn
-      //var instance = new @ZiqniTechGamificationApiClient.Dependancy();
+      //var instance = new ZiqniTechGamificationApiClient.Dependancy();
       //expect(instance).to.be();
     });
 

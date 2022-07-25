@@ -20,9 +20,9 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
@@ -49,8 +49,8 @@
   describe('CompetitionStatus', function() {
     it('should create an instance of CompetitionStatus', function() {
       // uncomment below and update the code to test CompetitionStatus
-      //var instance = new @ZiqniTechGamificationApiClient.CompetitionStatus();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.CompetitionStatus);
+      //var instance = new ZiqniTechGamificationApiClient.CompetitionStatus();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.CompetitionStatus);
     });
 
   });

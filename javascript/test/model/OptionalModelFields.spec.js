@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.OptionalModelFields();
+    instance = new ZiqniTechGamificationApiClient.OptionalModelFields();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,25 +50,25 @@
   describe('OptionalModelFields', function() {
     it('should create an instance of OptionalModelFields', function() {
       // uncomment below and update the code to test OptionalModelFields
-      //var instance = new @ZiqniTechGamificationApiClient.OptionalModelFields();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.OptionalModelFields);
+      //var instance = new ZiqniTechGamificationApiClient.OptionalModelFields();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.OptionalModelFields);
     });
 
     it('should have the property customFields (base name: "customFields")', function() {
       // uncomment below and update the code to test the property customFields
-      //var instance = new @ZiqniTechGamificationApiClient.OptionalModelFields();
+      //var instance = new ZiqniTechGamificationApiClient.OptionalModelFields();
       //expect(instance).to.be();
     });
 
     it('should have the property tags (base name: "tags")', function() {
       // uncomment below and update the code to test the property tags
-      //var instance = new @ZiqniTechGamificationApiClient.OptionalModelFields();
+      //var instance = new ZiqniTechGamificationApiClient.OptionalModelFields();
       //expect(instance).to.be();
     });
 
     it('should have the property metadata (base name: "metadata")', function() {
       // uncomment below and update the code to test the property metadata
-      //var instance = new @ZiqniTechGamificationApiClient.OptionalModelFields();
+      //var instance = new ZiqniTechGamificationApiClient.OptionalModelFields();
       //expect(instance).to.be();
     });
 

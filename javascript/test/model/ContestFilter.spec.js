@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.ContestFilter();
+    instance = new ZiqniTechGamificationApiClient.ContestFilter();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,67 +50,67 @@
   describe('ContestFilter', function() {
     it('should create an instance of ContestFilter', function() {
       // uncomment below and update the code to test ContestFilter
-      //var instance = new @ZiqniTechGamificationApiClient.ContestFilter();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.ContestFilter);
+      //var instance = new ZiqniTechGamificationApiClient.ContestFilter();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.ContestFilter);
     });
 
     it('should have the property productIds (base name: "productIds")', function() {
       // uncomment below and update the code to test the property productIds
-      //var instance = new @ZiqniTechGamificationApiClient.ContestFilter();
+      //var instance = new ZiqniTechGamificationApiClient.ContestFilter();
       //expect(instance).to.be();
     });
 
     it('should have the property tags (base name: "tags")', function() {
       // uncomment below and update the code to test the property tags
-      //var instance = new @ZiqniTechGamificationApiClient.ContestFilter();
+      //var instance = new ZiqniTechGamificationApiClient.ContestFilter();
       //expect(instance).to.be();
     });
 
     it('should have the property startDate (base name: "startDate")', function() {
       // uncomment below and update the code to test the property startDate
-      //var instance = new @ZiqniTechGamificationApiClient.ContestFilter();
+      //var instance = new ZiqniTechGamificationApiClient.ContestFilter();
       //expect(instance).to.be();
     });
 
     it('should have the property endDate (base name: "endDate")', function() {
       // uncomment below and update the code to test the property endDate
-      //var instance = new @ZiqniTechGamificationApiClient.ContestFilter();
+      //var instance = new ZiqniTechGamificationApiClient.ContestFilter();
       //expect(instance).to.be();
     });
 
     it('should have the property sortBy (base name: "sortBy")', function() {
       // uncomment below and update the code to test the property sortBy
-      //var instance = new @ZiqniTechGamificationApiClient.ContestFilter();
+      //var instance = new ZiqniTechGamificationApiClient.ContestFilter();
       //expect(instance).to.be();
     });
 
     it('should have the property competitionIds (base name: "competitionIds")', function() {
       // uncomment below and update the code to test the property competitionIds
-      //var instance = new @ZiqniTechGamificationApiClient.ContestFilter();
+      //var instance = new ZiqniTechGamificationApiClient.ContestFilter();
       //expect(instance).to.be();
     });
 
     it('should have the property status (base name: "status")', function() {
       // uncomment below and update the code to test the property status
-      //var instance = new @ZiqniTechGamificationApiClient.ContestFilter();
+      //var instance = new ZiqniTechGamificationApiClient.ContestFilter();
       //expect(instance).to.be();
     });
 
     it('should have the property skip (base name: "skip")', function() {
       // uncomment below and update the code to test the property skip
-      //var instance = new @ZiqniTechGamificationApiClient.ContestFilter();
+      //var instance = new ZiqniTechGamificationApiClient.ContestFilter();
       //expect(instance).to.be();
     });
 
     it('should have the property limit (base name: "limit")', function() {
       // uncomment below and update the code to test the property limit
-      //var instance = new @ZiqniTechGamificationApiClient.ContestFilter();
+      //var instance = new ZiqniTechGamificationApiClient.ContestFilter();
       //expect(instance).to.be();
     });
 
     it('should have the property constraints (base name: "constraints")', function() {
       // uncomment below and update the code to test the property constraints
-      //var instance = new @ZiqniTechGamificationApiClient.ContestFilter();
+      //var instance = new ZiqniTechGamificationApiClient.ContestFilter();
       //expect(instance).to.be();
     });
 

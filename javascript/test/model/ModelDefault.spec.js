@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.ModelDefault();
+    instance = new ZiqniTechGamificationApiClient.ModelDefault();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,25 +50,25 @@
   describe('ModelDefault', function() {
     it('should create an instance of ModelDefault', function() {
       // uncomment below and update the code to test ModelDefault
-      //var instance = new @ZiqniTechGamificationApiClient.ModelDefault();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.ModelDefault);
+      //var instance = new ZiqniTechGamificationApiClient.ModelDefault();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.ModelDefault);
     });
 
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
-      //var instance = new @ZiqniTechGamificationApiClient.ModelDefault();
+      //var instance = new ZiqniTechGamificationApiClient.ModelDefault();
       //expect(instance).to.be();
     });
 
     it('should have the property spaceName (base name: "spaceName")', function() {
       // uncomment below and update the code to test the property spaceName
-      //var instance = new @ZiqniTechGamificationApiClient.ModelDefault();
+      //var instance = new ZiqniTechGamificationApiClient.ModelDefault();
       //expect(instance).to.be();
     });
 
     it('should have the property created (base name: "created")', function() {
       // uncomment below and update the code to test the property created
-      //var instance = new @ZiqniTechGamificationApiClient.ModelDefault();
+      //var instance = new ZiqniTechGamificationApiClient.ModelDefault();
       //expect(instance).to.be();
     });
 
