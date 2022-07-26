@@ -15,6 +15,9 @@
 import superagent from "superagent";
 import querystring from "querystring";
 
+const StompJs = require('@stomp/stompjs');
+const SockJS = require('sockjs-client');
+
 /**
 * @module ApiClient
 * @version 0.0.1
@@ -28,6 +31,11 @@ import querystring from "querystring";
 * @class
 */
 class ApiClientStomp {
+    /**
+     * @type CompatClient
+     */
+    client
+
     /**
      * The base URL against which to resolve every API call's (relative) path.
      * Overrides the default value set in spec file if present
@@ -100,19 +108,11 @@ class ApiClientStomp {
 
         this.rpcCallBacks = new Map();
 
-    }
-
-    /**
-    * Returns a string representation for an actual parameter.
-    * @param param The actual parameter.
-    * @returns {String} The string representation of <code>param</code>.
-    */
-    connect(param) {
-        const client = new StompJs.Client({
-            brokerURL: 'wss://member-api.ziqni.com/ws',
+        this.client = new StompJs.Client({
+            brokerURL: this.basePath,
             connectHeaders: {
                 login: 'Bearer',
-                passcode: 'eyJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5X2lkIjoicXhtcXFZRUJUZVV0U0VzNEVJLWgiLCJtZW1iZXJfcmVmZXJlbmNlX2lkIjoiMTAwMDI1NDE5IiwiYWNjb3VudF9pZCI6IkY3bThkSHdCc3ctT0gzTUVvVzIzIiwic3BhY2VfbmFtZSI6ImZpcnN0LXNwYWNlIiwibmFtZSI6Im5hbWUxIiwibWVtYmVyX3R5cGUiOiJJbmRpdmlkdWFsIiwibWVtYmVyX2lkIjoiX01XRmtJRUJaNUNYN2RXbnFhR0kiLCJyZXNvdXJjZV9hY2Nlc3MiOnsiemlxbmktZ2FwaSI6eyJyb2xlcyI6WyJQdWJsaWMiLCJNZW1iZXIiLCJWaWV3QWNoaWV2ZW1lbnRzIiwiVmlld0F3YXJkcyIsIkNsYWltQXdhcmRzIiwiVmlld0NvbXBldGl0aW9ucyIsIlZpZXdDb250ZXN0cyIsIlZpZXdGaWxlcyIsIlZpZXdNZW1iZXJzIiwiTWVtYmVyc09wdGluIiwiVmlld01lc3NhZ2VzIiwiQ29ubmVjdFByb3h5IiwiVmlld1Jld2FyZHMiLCJWaWV3UnVsZXMiXX19LCJzdWIiOiJfTVdGa0lFQlo1Q1g3ZFducWFHSSIsImp0aSI6ImEyMmM3N2RmLWMzMTEtNGNiYS1iOWQ2LTBjNTU5YzE4Mjc2ZiIsImlhdCI6MTY1NzAwNjA5MywiZXhwIjoyMzI1NzAwNjA5M30.FB-c9I2im-dQWZ-ggUmOELj259rUfgAWJDWccXmZEiQ', // 'JWT token you get from https://api.ziqni.com/swagger-ui/#/member-token/createMemberToken',
+                passcode: 'eyJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5X2lkIjoicXhtcXFZRUJUZVV0U0VzNEVJLWgiLCJtZW1iZXJfcmVmZXJlbmNlX2lkIjoiVGVzdF9rZXktMDYwNzg0NGYtMjU1Yy00ZDE5LTg1YTAtYzQzNmMxZDRmNTVlIiwiYWNjb3VudF9pZCI6IkY3bThkSHdCc3ctT0gzTUVvVzIzIiwic3BhY2VfbmFtZSI6ImZpcnN0LXNwYWNlIiwibmFtZSI6IlRlc3RfbmFtZS0zYWE1YzRlZS1jY2VlLTRiZWMtYjU5My1kYTdiMzAwZWU4OTAiLCJtZW1iZXJfdHlwZSI6IkluZGl2aWR1YWwiLCJtZW1iZXJfaWQiOiJ3LVVlSElJQnVwTjhDRjN6YzBoeiIsInJlc291cmNlX2FjY2VzcyI6eyJ6aXFuaS1nYXBpIjp7InJvbGVzIjpbIlB1YmxpYyIsIk1lbWJlciIsIlZpZXdBY2hpZXZlbWVudHMiLCJWaWV3QXdhcmRzIiwiQ2xhaW1Bd2FyZHMiLCJWaWV3Q29tcGV0aXRpb25zIiwiVmlld0NvbnRlc3RzIiwiVmlld0ZpbGVzIiwiVmlld01lbWJlcnMiLCJNZW1iZXJzT3B0aW4iLCJWaWV3TWVzc2FnZXMiLCJDb25uZWN0UHJveHkiLCJWaWV3UmV3YXJkcyIsIlZpZXdSdWxlcyJdfX0sInN1YiI6InctVWVISUlCdXBOOENGM3pjMGh6IiwianRpIjoiNjlkZjQzODEtZDE3YS00ZWQ0LWJjY2UtZjRkZTA5NTEwYTc3IiwiaWF0IjoxNjU4NzM5MDIwLCJleHAiOjE2NjA4OTkwMjB9.j4RCenIJAsH513CJgEWvLA9xn8Q1uVVNY-aZfKKo3a0', // 'JWT token you get from https://api.ziqni.com/swagger-ui/#/member-token/createMemberToken',
             },
             debug: function (str) {
                 console.log(str);
@@ -122,22 +122,22 @@ class ApiClientStomp {
             heartbeatOutgoing: 4000,
         });
 
-        // Fallback code
-        if (typeof WebSocket !== 'function') {
-            // For SockJS you need to set a factory that creates a new SockJS instance
-            // to be used for each (re)connect
-            client.webSocketFactory = function () {
-                // Note that the URL is different from the WebSocket URL
-                return new SockJS('https://api.ziqni.com/ws/info');
-            };
-        }
+        this.client.webSocketFactory = function () {
+            return new SockJS('https://member-api.ziqni.com/ws');
+        };
 
-        client.onConnect = function (frame) {
+        this.client.onConnect =  (frame) => {
+            if (frame.command === 'CONNECTED') {
+                const rpcCallbackSubscription = this.client.subscribe("/user/queue/rpc-results", this.handleRpcCallback);
+                console.log('rpcCallbackSubscription', rpcCallbackSubscription);
+                const sysCallbackSubscription = this.client.subscribe("/user/queue/callbacks", this.handleSysCallback);
+                console.log('sysCallbackSubscription', sysCallbackSubscription);
+            }
             // Do something, all subscribes must be done is this callback
             // This is needed because this will be executed after a (re)connect
         };
 
-        client.onStompError = function (frame) {
+        this.client.onStompError = function (frame) {
             // Will be invoked in case of error encountered at Broker
             // Bad login/passcode typically will cause an error
             // Complaint brokers will set `message` header with a brief message. Body may contain details.
@@ -146,25 +146,15 @@ class ApiClientStomp {
             console.log('Additional details: ' + frame.body);
         };
 
-        client.activate();
+    }
 
-        let rpcCallbackSubscription = client.subscribe("/user/queue/rpc-results", handleRpcCallback);
-        let sysCallbackSubscription = client.subscribe("/user/queue/callbacks", handleSysCallback);
-
-        // We need to subscribe to:
-        // topic ==> /user/queue/callbacks
-        // and
-        // topic ==> /user/queue/rpc-results
-
-        // We send messages to /gapi/getMember
-        // We always prefix with /gapi/<Operation-ID> like getMessages, getRewards etc will be /gapi/getMessages /gapi/getRewards
-        //
-        //  messageHeaders.setMessageId(nextSeq) ==> nextSeq is added to the callback so we can correlate the response to the request
-        //
-        // message = { data: MemberRequest }
-        //
-        //
-        // client.send('/gapi/getMember', messageHeaders, JSON.stringify(message));
+    /**
+    * Returns a string representation for an actual parameter.
+    * @param param The actual parameter.
+    * @returns {String} The string representation of <code>param</code>.
+    */
+    connect(param) {
+        this.client.activate();
     }
 
     uuidv4() {
@@ -173,39 +163,43 @@ class ApiClientStomp {
         );
     }
 
-    handleRpcCallback = function(message) {
+    handleRpcCallback = (message) => {
+        if (message.body) {
+            const  messageId = message.headers['message-id'];
+            const callback = this.rpcCallBacks && this.rpcCallBacks.get(messageId)
+
+            if(callback) {
+                callback(JSON.parse(message.body));
+                this.rpcCallBacks.delete(messageId);
+            }
+            // ToDo: Handle messages with unknown message id
+
+        } else {
+            console.log('message with empty body', message)
+            // ToDo: Handle message with empty body
+        }
+    };
+
+    handleSysCallback = (message) => {
+        // ToDo: Handle system messages
         // called when the client receives a STOMP message from the server
         if (message.body) {
-            // Get the messageId then
-            //this.rpcCallBacks.get(messageId)(message.body)
             alert("got message with body " + message.body)
         } else {
             alert("got empty message");
         }
     };
 
-    handleSysCallback = function(message) {
-        // called when the client receives a STOMP message from the server
-        if (message.body) {
-            alert("got message with body " + message.body)
-        } else {
-            alert("got empty message");
-        }
-    };
-
-    sendRpc(destination, callback, pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody, returnType){
+    sendRpc(destination, message, callback){
         // private Map<String, Object> query;
         // private Map<String, Object> path;
         // private T body;
-        let messageId = apiClientStomp.uuidv4();
-        let messageHeaders = messageHeaders.setMessageId(messageId);
-        let messageContainer = {
-            query: queryParams,
-            path: pathParams,
-            body: postBody
-        };
-        apiClientStomp.send('/gapi/getMember', messageHeaders, JSON.stringify(messageContainer));
-        this.rpcCallBacks.set(messageId, callback)
+
+        const messageId = this.uuidv4();
+        const messageHeaders = { 'message-id': messageId };
+
+        this.client.publish({destination, headers: messageHeaders, body: JSON.stringify(message)});
+        this.rpcCallBacks.set(messageId, callback);
     }
 }
 
