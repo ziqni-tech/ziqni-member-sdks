@@ -32,7 +32,7 @@ const SockJS = require('sockjs-client');
 */
 class ApiClientStomp {
     /**
-     * @type CompatClient
+     * @type StompJs.Client
      */
     client
 
@@ -73,21 +73,6 @@ class ApiClientStomp {
          */
         this.timeout = 60000;
 
-        /**
-         * If set to false an additional timestamp parameter is added to all API GET calls to
-         * prevent browser caching
-         * @type {Boolean}
-         * @default true
-         */
-        this.cache = true;
-
-        /**
-         * If set to true, the client will save the cookies from each server
-         * response, and return them in the next request.
-         * @default false
-         */
-        this.enableCookies = false;
-
         /*
          * Used to save and return cookies in a node.js (non-browser) setting,
          * if this.enableCookies is set to true.
@@ -96,15 +81,7 @@ class ApiClientStomp {
           this.agent = new superagent.agent();
         }
 
-        /*
-         * Allow user to override superagent agent
-         */
-         this.requestAgent = null;
-
-        /*
-         * Allow user to add superagent plugins
-         */
-        this.plugins = null;
+        this.publicToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5X2lkIjoicXhtcXFZRUJUZVV0U0VzNEVJLWgiLCJtZW1iZXJfcmVmZXJlbmNlX2lkIjoiVGVzdF9rZXktMDYwNzg0NGYtMjU1Yy00ZDE5LTg1YTAtYzQzNmMxZDRmNTVlIiwiYWNjb3VudF9pZCI6IkY3bThkSHdCc3ctT0gzTUVvVzIzIiwic3BhY2VfbmFtZSI6ImZpcnN0LXNwYWNlIiwibmFtZSI6IlRlc3RfbmFtZS0zYWE1YzRlZS1jY2VlLTRiZWMtYjU5My1kYTdiMzAwZWU4OTAiLCJtZW1iZXJfdHlwZSI6IkluZGl2aWR1YWwiLCJtZW1iZXJfaWQiOiJ3LVVlSElJQnVwTjhDRjN6YzBoeiIsInJlc291cmNlX2FjY2VzcyI6eyJ6aXFuaS1nYXBpIjp7InJvbGVzIjpbIlB1YmxpYyIsIk1lbWJlciIsIlZpZXdBY2hpZXZlbWVudHMiLCJWaWV3QXdhcmRzIiwiQ2xhaW1Bd2FyZHMiLCJWaWV3Q29tcGV0aXRpb25zIiwiVmlld0NvbnRlc3RzIiwiVmlld0ZpbGVzIiwiVmlld01lbWJlcnMiLCJNZW1iZXJzT3B0aW4iLCJWaWV3TWVzc2FnZXMiLCJDb25uZWN0UHJveHkiLCJWaWV3UmV3YXJkcyIsIlZpZXdSdWxlcyJdfX0sInN1YiI6InctVWVISUlCdXBOOENGM3pjMGh6IiwianRpIjoiNjlkZjQzODEtZDE3YS00ZWQ0LWJjY2UtZjRkZTA5NTEwYTc3IiwiaWF0IjoxNjU4NzM5MDIwLCJleHAiOjE2NjA4OTkwMjB9.j4RCenIJAsH513CJgEWvLA9xn8Q1uVVNY-aZfKKo3a0';
 
         this.rpcCallBacks = new Map();
 
@@ -112,7 +89,7 @@ class ApiClientStomp {
             brokerURL: this.basePath,
             connectHeaders: {
                 login: 'Bearer',
-                passcode: 'eyJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5X2lkIjoicXhtcXFZRUJUZVV0U0VzNEVJLWgiLCJtZW1iZXJfcmVmZXJlbmNlX2lkIjoiVGVzdF9rZXktMDYwNzg0NGYtMjU1Yy00ZDE5LTg1YTAtYzQzNmMxZDRmNTVlIiwiYWNjb3VudF9pZCI6IkY3bThkSHdCc3ctT0gzTUVvVzIzIiwic3BhY2VfbmFtZSI6ImZpcnN0LXNwYWNlIiwibmFtZSI6IlRlc3RfbmFtZS0zYWE1YzRlZS1jY2VlLTRiZWMtYjU5My1kYTdiMzAwZWU4OTAiLCJtZW1iZXJfdHlwZSI6IkluZGl2aWR1YWwiLCJtZW1iZXJfaWQiOiJ3LVVlSElJQnVwTjhDRjN6YzBoeiIsInJlc291cmNlX2FjY2VzcyI6eyJ6aXFuaS1nYXBpIjp7InJvbGVzIjpbIlB1YmxpYyIsIk1lbWJlciIsIlZpZXdBY2hpZXZlbWVudHMiLCJWaWV3QXdhcmRzIiwiQ2xhaW1Bd2FyZHMiLCJWaWV3Q29tcGV0aXRpb25zIiwiVmlld0NvbnRlc3RzIiwiVmlld0ZpbGVzIiwiVmlld01lbWJlcnMiLCJNZW1iZXJzT3B0aW4iLCJWaWV3TWVzc2FnZXMiLCJDb25uZWN0UHJveHkiLCJWaWV3UmV3YXJkcyIsIlZpZXdSdWxlcyJdfX0sInN1YiI6InctVWVISUlCdXBOOENGM3pjMGh6IiwianRpIjoiNjlkZjQzODEtZDE3YS00ZWQ0LWJjY2UtZjRkZTA5NTEwYTc3IiwiaWF0IjoxNjU4NzM5MDIwLCJleHAiOjE2NjA4OTkwMjB9.j4RCenIJAsH513CJgEWvLA9xn8Q1uVVNY-aZfKKo3a0', // 'JWT token you get from https://api.ziqni.com/swagger-ui/#/member-token/createMemberToken',
+                passcode: this.publicToken, // 'JWT token you get from https://api.ziqni.com/swagger-ui/#/member-token/createMemberToken',
             },
             debug: function (str) {
                 console.log(str);
@@ -125,27 +102,6 @@ class ApiClientStomp {
         this.client.webSocketFactory = function () {
             return new SockJS('https://member-api.ziqni.com/ws');
         };
-
-        this.client.onConnect =  (frame) => {
-            if (frame.command === 'CONNECTED') {
-                const rpcCallbackSubscription = this.client.subscribe("/user/queue/rpc-results", this.handleRpcCallback);
-                console.log('rpcCallbackSubscription', rpcCallbackSubscription);
-                const sysCallbackSubscription = this.client.subscribe("/user/queue/callbacks", this.handleSysCallback);
-                console.log('sysCallbackSubscription', sysCallbackSubscription);
-            }
-            // Do something, all subscribes must be done is this callback
-            // This is needed because this will be executed after a (re)connect
-        };
-
-        this.client.onStompError = function (frame) {
-            // Will be invoked in case of error encountered at Broker
-            // Bad login/passcode typically will cause an error
-            // Complaint brokers will set `message` header with a brief message. Body may contain details.
-            // Compliant brokers will terminate the connection after any error
-            console.log('Broker reported error: ' + frame.headers['message']);
-            console.log('Additional details: ' + frame.body);
-        };
-
     }
 
     /**
@@ -153,9 +109,46 @@ class ApiClientStomp {
     * @param param The actual parameter.
     * @returns {String} The string representation of <code>param</code>.
     */
-    connect(param) {
+    connect = async (param) => new Promise((resolve, reject) => {
+        this.client.beforeConnect =  () => {
+            if (param && param.token){
+                this.client.connectHeaders = {
+                    login: 'Bearer',
+                    passcode: param.token, // 'JWT token you get from https://api.ziqni.com/swagger-ui/#/member-token/createMemberToken',
+                }
+            }
+        };
+
+        this.client.onConnect =  (frame) => {
+            if (frame.command === 'CONNECTED') {
+                const rpcCallbackSubscription = this.client.subscribe("/user/queue/rpc-results", this.handleRpcCallback);
+                const sysCallbackSubscription = this.client.subscribe("/user/queue/callbacks", this.handleSysCallback);
+
+                resolve()
+            }
+            // Do something, all subscribes must be done is this callback
+            // This is needed because this will be executed after a (re)connect
+        };
+
+        this.client.onStompError = (frame) => {
+            // Will be invoked in case of error encountered at Broker
+            // Bad login/passcode typically will cause an error
+            // Complaint brokers will set `message` header with a brief message. Body may contain details.
+            // Compliant brokers will terminate the connection after any error
+            //Todo: check if we really need to deactivate client
+            console.log('Broker reported error: ' + frame.headers['message']);
+            console.log('Additional details: ' + frame.body);
+            this.client.deactivate()
+            reject({
+                error: {
+                    message: frame.headers['message'],
+                    body: frame.body
+                }
+            })
+        };
+
         this.client.activate();
-    }
+    })
 
     uuidv4() {
         return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
@@ -165,15 +158,15 @@ class ApiClientStomp {
 
     handleRpcCallback = (message) => {
         if (message.body) {
-            const  messageId = message.headers['message-id'];
-            const callback = this.rpcCallBacks && this.rpcCallBacks.get(messageId)
+            const messageId = message.headers['message-id'];
+            const callback = this.rpcCallBacks && this.rpcCallBacks.get(messageId);
 
             if(callback) {
                 callback(JSON.parse(message.body));
                 this.rpcCallBacks.delete(messageId);
             }
             // ToDo: Handle messages with unknown message id
-
+            console.log("Got Message With Body " + message.body)
         } else {
             console.log('message with empty body', message)
             // ToDo: Handle message with empty body
@@ -190,11 +183,7 @@ class ApiClientStomp {
         }
     };
 
-    sendRpc(destination, message, callback){
-        // private Map<String, Object> query;
-        // private Map<String, Object> path;
-        // private T body;
-
+    sendRpc(destination, message, callback) {
         const messageId = this.uuidv4();
         const messageHeaders = { 'message-id': messageId };
 
