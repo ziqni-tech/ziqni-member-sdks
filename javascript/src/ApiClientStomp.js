@@ -81,7 +81,7 @@ class ApiClientStomp {
           this.agent = new superagent.agent();
         }
 
-        this.publicToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5X2lkIjoicXhtcXFZRUJUZVV0U0VzNEVJLWgiLCJtZW1iZXJfcmVmZXJlbmNlX2lkIjoiVGVzdF9rZXktMDYwNzg0NGYtMjU1Yy00ZDE5LTg1YTAtYzQzNmMxZDRmNTVlIiwiYWNjb3VudF9pZCI6IkY3bThkSHdCc3ctT0gzTUVvVzIzIiwic3BhY2VfbmFtZSI6ImZpcnN0LXNwYWNlIiwibmFtZSI6IlRlc3RfbmFtZS0zYWE1YzRlZS1jY2VlLTRiZWMtYjU5My1kYTdiMzAwZWU4OTAiLCJtZW1iZXJfdHlwZSI6IkluZGl2aWR1YWwiLCJtZW1iZXJfaWQiOiJ3LVVlSElJQnVwTjhDRjN6YzBoeiIsInJlc291cmNlX2FjY2VzcyI6eyJ6aXFuaS1nYXBpIjp7InJvbGVzIjpbIlB1YmxpYyIsIk1lbWJlciIsIlZpZXdBY2hpZXZlbWVudHMiLCJWaWV3QXdhcmRzIiwiQ2xhaW1Bd2FyZHMiLCJWaWV3Q29tcGV0aXRpb25zIiwiVmlld0NvbnRlc3RzIiwiVmlld0ZpbGVzIiwiVmlld01lbWJlcnMiLCJNZW1iZXJzT3B0aW4iLCJWaWV3TWVzc2FnZXMiLCJDb25uZWN0UHJveHkiLCJWaWV3UmV3YXJkcyIsIlZpZXdSdWxlcyJdfX0sInN1YiI6InctVWVISUlCdXBOOENGM3pjMGh6IiwianRpIjoiNjlkZjQzODEtZDE3YS00ZWQ0LWJjY2UtZjRkZTA5NTEwYTc3IiwiaWF0IjoxNjU4NzM5MDIwLCJleHAiOjE2NjA4OTkwMjB9.j4RCenIJAsH513CJgEWvLA9xn8Q1uVVNY-aZfKKo3a0';
+        this.publicToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5X2lkIjoicXhtcXFZRUJUZVV0U0VzNEVJLWgiLCJtZW1iZXJfcmVmZXJlbmNlX2lkIjoiVGVzdF9rZXktMDYwNzg0NGYtMjU1Yy00ZDE5LTg1YTAtYzQzNmMxZDRmNTVlIiwiYWNjb3VudF9pZCI6IkY3bThkSHdCc3ctT0gzTUVvVzIzIiwic3BhY2VfbmFtZSI6ImZpcnN0LXNwYWNlIiwibmFtZSI6IlRlc3RfbmFtZS0zYWE1YzRlZS1jY2VlLTRiZWMtYjU5My1kYTdiMzAwZWU4OTAiLCJtZW1iZXJfdHlwZSI6IkluZGl2aWR1YWwiLCJtZW1iZXJfaWQiOiJ3LVVlSElJQnVwTjhDRjN6YzBoeiIsInJlc291cmNlX2FjY2VzcyI6eyJ6aXFuaS1nYXBpIjp7InJvbGVzIjpbIlB1YmxpYyIsIk1lbWJlciIsIlZpZXdBY2hpZXZlbWVudHMiLCJWaWV3QXdhcmRzIiwiQ2xhaW1Bd2FyZHMiLCJWaWV3Q29tcGV0aXRpb25zIiwiVmlld0NvbnRlc3RzIiwiVmlld0ZpbGVzIiwiVmlld01lbWJlcnMiLCJNZW1iZXJzT3B0aW4iLCJWaWV3TWVzc2FnZXMiLCJDb25uZWN0UHJveHkiLCJWaWV3UmV3YXJkcyIsIlZpZXdSdWxlcyJdfX0sInN1YiI6InctVWVISUlCdXBOOENGM3pjMGh6IiwianRpIjoiM2JkZjFhMmQtOTg1NS00NTJiLWEyZDctYTFmY2ZiNTUyMzZmIiwiaWF0IjoxNjU5MDk4Mjk3LCJleHAiOjE2NjEyNTgyOTd9.xurnAsrRccborCMqEhLYDkhpYLmvSWn9U3qP550H3fg';
 
         this.rpcCallBacks = new Map();
 
@@ -163,7 +163,6 @@ class ApiClientStomp {
 
             if(callback) {
                 callback(JSON.parse(message.body));
-                this.rpcCallBacks.delete(messageId);
             }
             // ToDo: Handle messages with unknown message id
             console.log("Got Message With Body " + message.body)

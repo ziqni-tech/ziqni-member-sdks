@@ -113,6 +113,8 @@ import NotificationsApi from './api/NotificationsApi';
 import ProxyApi from './api/ProxyApi';
 import RewardsApi from './api/RewardsApi';
 import RulesApi from './api/RulesApi';
+import ApiClientStomp from './ApiClientStomp';
+import MembersApiWs from './api/MembersApiWs';
 
 
 /**
@@ -751,5 +753,17 @@ export {
     * The RulesApi service constructor.
     * @property {module:api/RulesApi}
     */
-    RulesApi
+    RulesApi,
+
+    /**
+     * The ApiClientStomp service instance.
+     * @property {module:ApiClientStomp}
+     */
+    ApiClientStomp,
+
+    /**
+     * The MembersApiWs service constructor.
+     * @property {module:api/MembersApi}
+     */
+    MembersApiWs,
 };
