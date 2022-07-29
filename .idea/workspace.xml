@@ -5,8 +5,111 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="Added a template to generate the websocket APIs">
-      <change afterPath="$PROJECT_DIR$/javascript/src/api/CompetitionsApiWs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/src/ApiClientStomp.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/src/ApiClientStomp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/src/api/AchievementsApiWs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/src/api/AwardsApiWs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/src/api/ContestsApiWs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/src/api/EntityChangesApiWs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/src/api/FilesApiWs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/src/api/MessagesApiWs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/src/api/RewardsApiWs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/src/api/RulesApiWs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/ApiClient.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/AchievementsApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/AwardsApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/CompetitionsApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/ContestsApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/FilesApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/MembersApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/MessagesApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/ProxyApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/RewardsApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/api/RulesApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Achievement.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/AchievementAllOf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/AchievementFilter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/AchievementRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/AchievementResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Award.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/AwardFilter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/AwardRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/AwardResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Competition.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/CompetitionAllOf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/CompetitionFilter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/CompetitionRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/CompetitionResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/CompetitionStatus.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/CompetitionType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Contest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ContestAllOf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ContestFilter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ContestReduced.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ContestRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ContestResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ContestStatus.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Dependancy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/DependantOn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/EntityType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Error.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/EventRefType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/FieldType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/File.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/FileRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/FileResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Member.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MemberAllOf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MemberOptinRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MemberRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MemberResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MemberSessionRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MemberSessionResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MemberType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Message.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MessageAllOf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MessageRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MessageResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MessageStatus.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/MessageType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ModelDefault.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/OptinAction.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/OptionalModelFields.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ProductReduced.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Proxy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ProxyRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ProxyResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/QueryMultipleFields.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/QuerySortBy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RangeQuery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RankingStrategy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ResponseMeta.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Reward.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RewardReduced.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RewardRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RewardResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RewardTypeReduced.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RoundType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Rule.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RuleArgument.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RuleExpression.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RuleRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RuleResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/RuleRoutine.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ScheduleType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Scheduling.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/ScoringStrategy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/SortOrder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Strategy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/StrategyType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/Translation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/TranslationEntry.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/TranslationRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/dist/model/TranslationResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/node_modules/@ziqni-tech/gamification-api-client/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +127,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -50,22 +158,23 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "corretto-11",
-    "last_opened_file_path": "/home/carel/IdeaProjects/ziqniio/ziqni-member-sdks/javascript/src/api",
-    "nodejs_interpreter_path": "node",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
-    "spring.configuration.checksum": "2c9ffb5e55c2ba758de9562a18656c79",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-11&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/carelvosloo/IdeaProjects/ziqni-member-sdks/javascript/src/api&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;2c9ffb5e55c2ba758de9562a18656c79&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/javascript/src/api" />
