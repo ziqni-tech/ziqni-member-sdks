@@ -46,3 +46,4 @@ build/
 /logs/
 /.idea/
 /javascript/dist/*
+/javascript/node_modules/
