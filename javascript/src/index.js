@@ -115,6 +115,8 @@ import RewardsApi from './api/RewardsApi';
 import RulesApi from './api/RulesApi';
 import ApiClientStomp from './ApiClientStomp';
 import MembersApiWs from './api/MembersApiWs';
+import CompetitionsApiWs from './api/CompetitionsApiWs';
+
 
 
 /**
@@ -766,4 +768,10 @@ export {
      * @property {module:api/MembersApi}
      */
     MembersApiWs,
+
+    /**
+     * The MembersApiWs service constructor.
+     * @property {module:api/CompetitionsApiWs}
+     */
+    CompetitionsApiWs,
 };
