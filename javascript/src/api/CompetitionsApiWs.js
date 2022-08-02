@@ -17,5 +17,4 @@ export default class CompetitionsApiWs {
     apiClientStomp.instance.sendRpc('/gapi/getCompetitions', message, callback);
 
   }
-
 }
