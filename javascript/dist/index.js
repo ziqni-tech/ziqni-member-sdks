@@ -111,6 +111,9 @@ import NotificationsApi from './api/NotificationsApi';
 import ProxyApi from './api/ProxyApi';
 import RewardsApi from './api/RewardsApi';
 import RulesApi from './api/RulesApi';
+import ApiClientStomp from './ApiClientStomp';
+import MembersApiWs from './api/MembersApiWs';
+import CompetitionsApiWs from './api/CompetitionsApiWs';
 /**
 * Client library for Ziqni Gamification API.<br>
 * The <code>index</code> module provides access to constructors for all the classes which comprise the public API.
@@ -648,4 +651,19 @@ RewardsApi,
 * The RulesApi service constructor.
 * @property {module:api/RulesApi}
 */
-RulesApi };
+RulesApi,
+/**
+ * The ApiClientStomp service instance.
+ * @property {module:ApiClientStomp}
+ */
+ApiClientStomp,
+/**
+ * The MembersApiWs service constructor.
+ * @property {module:api/MembersApi}
+ */
+MembersApiWs,
+/**
+ * The MembersApiWs service constructor.
+ * @property {module:api/CompetitionsApiWs}
+ */
+CompetitionsApiWs };

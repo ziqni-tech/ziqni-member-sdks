@@ -66,6 +66,15 @@ class CompetitionFilter {
             if (data.hasOwnProperty('status')) {
                 obj['status'] = ApiClient.convertToType(data['status'], [CompetitionStatus]);
             }
+            if (data.hasOwnProperty('statusCode')) {
+                obj['statusCode'] = {};
+                if (data['statusCode']['moreThan']) {
+                    obj['statusCode']['moreThan'] = ApiClient.convertToType(data['statusCode']['moreThan'], 'Number');
+                }
+                if (data['statusCode']['lessThan']) {
+                    obj['statusCode']['lessThan'] = ApiClient.convertToType(data['statusCode']['lessThan'], 'Number');
+                }
+            }
             if (data.hasOwnProperty('competitionType')) {
                 obj['competitionType'] = ApiClient.convertToType(data['competitionType'], [CompetitionType]);
             }
