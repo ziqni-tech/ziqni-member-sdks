@@ -102,20 +102,17 @@ import TranslationEntry from './model/TranslationEntry';
 import TranslationRequest from './model/TranslationRequest';
 import TranslationResponse from './model/TranslationResponse';
 import UnsubscribeRequest from './model/UnsubscribeRequest';
-import AchievementsApi from './api/AchievementsApi';
-import AwardsApi from './api/AwardsApi';
-import CompetitionsApi from './api/CompetitionsApi';
-import ContestsApi from './api/ContestsApi';
-import FilesApi from './api/FilesApi';
-import MembersApi from './api/MembersApi';
-import MessagesApi from './api/MessagesApi';
-import NotificationsApi from './api/NotificationsApi';
-import ProxyApi from './api/ProxyApi';
-import RewardsApi from './api/RewardsApi';
-import RulesApi from './api/RulesApi';
-import ApiClientStomp from './ApiClientStomp';
-import MembersApiWs from './api/MembersApiWs';
+import AchievementsApiWs from './api/AchievementsApiWs';
+import AwardsApiWs from './api/AwardsApiWs';
 import CompetitionsApiWs from './api/CompetitionsApiWs';
+import ContestsApiWs from './api/ContestsApiWs';
+import FilesApiWs from './api/FilesApiWs';
+import MembersApiWs from './api/MembersApiWs';
+import MessagesApiWs from './api/MessagesApiWs';
+import RewardsApiWs from './api/RewardsApiWs';
+import RulesApiWs from './api/RulesApiWs';
+import ApiClientStomp from './ApiClientStomp';
+import EntityRequest from './model/EntityRequest'
 
 
 
@@ -695,67 +692,49 @@ export {
     * The AchievementsApi service constructor.
     * @property {module:api/AchievementsApi}
     */
-    AchievementsApi,
+    AchievementsApiWs,
 
     /**
     * The AwardsApi service constructor.
     * @property {module:api/AwardsApi}
     */
-    AwardsApi,
-
-    /**
-    * The CompetitionsApi service constructor.
-    * @property {module:api/CompetitionsApi}
-    */
-    CompetitionsApi,
+    AwardsApiWs,
 
     /**
     * The ContestsApi service constructor.
     * @property {module:api/ContestsApi}
     */
-    ContestsApi,
+    ContestsApiWs,
 
     /**
     * The FilesApi service constructor.
     * @property {module:api/FilesApi}
     */
-    FilesApi,
+    FilesApiWs,
 
     /**
-    * The MembersApi service constructor.
-    * @property {module:api/MembersApi}
+    * The MembersApiWs service constructor.
+    * @property {module:api/MembersApiWs}
     */
-    MembersApi,
+    MembersApiWs,
 
     /**
-    * The MessagesApi service constructor.
-    * @property {module:api/MessagesApi}
+    * The MessagesApiWs service constructor.
+    * @property {module:api/MessagesApiWs}
     */
-    MessagesApi,
+    MessagesApiWs,
 
     /**
-    * The NotificationsApi service constructor.
-    * @property {module:api/NotificationsApi}
+    * The RewardsApiWs service constructor.
+    * @property {module:api/RewardsApiWs}
     */
-    NotificationsApi,
+     RewardsApiWs,
 
     /**
-    * The ProxyApi service constructor.
-    * @property {module:api/ProxyApi}
+    * The RulesApiWs service constructor.
+    * @property {module:api/RulesApiWs}
     */
-    ProxyApi,
-
-    /**
-    * The RewardsApi service constructor.
-    * @property {module:api/RewardsApi}
-    */
-    RewardsApi,
-
-    /**
-    * The RulesApi service constructor.
-    * @property {module:api/RulesApi}
-    */
-    RulesApi,
+    RulesApiWs,
 
     /**
      * The ApiClientStomp service instance.
@@ -765,13 +744,13 @@ export {
 
     /**
      * The MembersApiWs service constructor.
-     * @property {module:api/MembersApi}
-     */
-    MembersApiWs,
-
-    /**
-     * The MembersApiWs service constructor.
      * @property {module:api/CompetitionsApiWs}
      */
     CompetitionsApiWs,
+
+    /**
+     * The MembersApiWs service constructor.
+     * @property {module:model/EntityRequest}
+     */
+    EntityRequest
 };
