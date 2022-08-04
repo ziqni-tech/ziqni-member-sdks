@@ -4,14 +4,14 @@ All URIs are relative to *https://gamification-api.ziqni.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**subscribeToEntityChanges**](EntityChangesApi.md#subscribeToEntityChanges) | **POST** /entity-changes |  |
-| [**subscribeToEntityChangesWithHttpInfo**](EntityChangesApi.md#subscribeToEntityChangesWithHttpInfo) | **POST** /entity-changes |  |
+| [**manageEntityChangeSubscription**](EntityChangesApi.md#manageEntityChangeSubscription) | **POST** /entity-changes |  |
+| [**manageEntityChangeSubscriptionWithHttpInfo**](EntityChangesApi.md#manageEntityChangeSubscriptionWithHttpInfo) | **POST** /entity-changes |  |
 
 
 
-## subscribeToEntityChanges
+## manageEntityChangeSubscription
 
-> CompletableFuture<EntityChangeSubscriptionResponse> subscribeToEntityChanges(entityChangeSubscriptionRequest)
+> CompletableFuture<EntityChangeSubscriptionResponse> manageEntityChangeSubscription(entityChangeSubscriptionRequest)
 
 
 
@@ -36,10 +36,10 @@ public class Example {
         EntityChangesApi apiInstance = new EntityChangesApi(defaultClient);
         EntityChangeSubscriptionRequest entityChangeSubscriptionRequest = new EntityChangeSubscriptionRequest(); // EntityChangeSubscriptionRequest | subscription payload
         try {
-            CompletableFuture<EntityChangeSubscriptionResponse> result = apiInstance.subscribeToEntityChanges(entityChangeSubscriptionRequest);
+            CompletableFuture<EntityChangeSubscriptionResponse> result = apiInstance.manageEntityChangeSubscription(entityChangeSubscriptionRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling EntityChangesApi#subscribeToEntityChanges");
+            System.err.println("Exception when calling EntityChangesApi#manageEntityChangeSubscription");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -77,9 +77,9 @@ No authorization required
 | **400** |  |  -  |
 | **500** |  |  -  |
 
-## subscribeToEntityChangesWithHttpInfo
+## manageEntityChangeSubscriptionWithHttpInfo
 
-> CompletableFuture<ApiResponse<EntityChangeSubscriptionResponse>> subscribeToEntityChanges subscribeToEntityChangesWithHttpInfo(entityChangeSubscriptionRequest)
+> CompletableFuture<ApiResponse<EntityChangeSubscriptionResponse>> manageEntityChangeSubscription manageEntityChangeSubscriptionWithHttpInfo(entityChangeSubscriptionRequest)
 
 
 
@@ -105,19 +105,19 @@ public class Example {
         EntityChangesApi apiInstance = new EntityChangesApi(defaultClient);
         EntityChangeSubscriptionRequest entityChangeSubscriptionRequest = new EntityChangeSubscriptionRequest(); // EntityChangeSubscriptionRequest | subscription payload
         try {
-            CompletableFuture<ApiResponse<EntityChangeSubscriptionResponse>> response = apiInstance.subscribeToEntityChangesWithHttpInfo(entityChangeSubscriptionRequest);
+            CompletableFuture<ApiResponse<EntityChangeSubscriptionResponse>> response = apiInstance.manageEntityChangeSubscriptionWithHttpInfo(entityChangeSubscriptionRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling EntityChangesApi#subscribeToEntityChanges");
+            System.err.println("Exception when calling EntityChangesApi#manageEntityChangeSubscription");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling EntityChangesApi#subscribeToEntityChanges");
+            System.err.println("Exception when calling EntityChangesApi#manageEntityChangeSubscription");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
