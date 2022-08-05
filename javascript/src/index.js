@@ -113,6 +113,7 @@ import RewardsApiWs from './api/RewardsApiWs';
 import RulesApiWs from './api/RulesApiWs';
 import ApiClientStomp from './ApiClientStomp';
 import EntityRequest from './model/EntityRequest'
+import EntityChangesApiWs from './api/EntityChangesApiWs'
 
 
 
@@ -752,5 +753,11 @@ export {
      * The MembersApiWs service constructor.
      * @property {module:model/EntityRequest}
      */
-    EntityRequest
+    EntityRequest,
+
+    /**
+     * The EntityChangesApiWs service constructor.
+     * @property {module:api/EntityChangesApiWs}
+     */
+    EntityChangesApiWs
 };

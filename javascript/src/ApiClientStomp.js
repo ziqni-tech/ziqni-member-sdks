@@ -84,6 +84,7 @@ class ApiClientStomp {
         this.publicToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5X2lkIjoicXhtcXFZRUJUZVV0U0VzNEVJLWgiLCJtZW1iZXJfcmVmZXJlbmNlX2lkIjoiVGVzdF9rZXktMDYwNzg0NGYtMjU1Yy00ZDE5LTg1YTAtYzQzNmMxZDRmNTVlIiwiYWNjb3VudF9pZCI6IkY3bThkSHdCc3ctT0gzTUVvVzIzIiwic3BhY2VfbmFtZSI6ImZpcnN0LXNwYWNlIiwibmFtZSI6IlRlc3RfbmFtZS0zYWE1YzRlZS1jY2VlLTRiZWMtYjU5My1kYTdiMzAwZWU4OTAiLCJtZW1iZXJfdHlwZSI6IkluZGl2aWR1YWwiLCJtZW1iZXJfaWQiOiJ3LVVlSElJQnVwTjhDRjN6YzBoeiIsInJlc291cmNlX2FjY2VzcyI6eyJ6aXFuaS1nYXBpIjp7InJvbGVzIjpbIlB1YmxpYyIsIk1lbWJlciIsIlZpZXdBY2hpZXZlbWVudHMiLCJWaWV3QXdhcmRzIiwiQ2xhaW1Bd2FyZHMiLCJWaWV3Q29tcGV0aXRpb25zIiwiVmlld0NvbnRlc3RzIiwiVmlld0ZpbGVzIiwiVmlld01lbWJlcnMiLCJNZW1iZXJzT3B0aW4iLCJWaWV3TWVzc2FnZXMiLCJDb25uZWN0UHJveHkiLCJWaWV3UmV3YXJkcyIsIlZpZXdSdWxlcyJdfX0sInN1YiI6InctVWVISUlCdXBOOENGM3pjMGh6IiwianRpIjoiM2JkZjFhMmQtOTg1NS00NTJiLWEyZDctYTFmY2ZiNTUyMzZmIiwiaWF0IjoxNjU5MDk4Mjk3LCJleHAiOjE2NjEyNTgyOTd9.xurnAsrRccborCMqEhLYDkhpYLmvSWn9U3qP550H3fg';
 
         this.rpcCallBacks = new Map();
+        this.sysCallBacks = new Map();
 
         this.client = new StompJs.Client({
             brokerURL: this.basePath,
@@ -165,20 +166,24 @@ class ApiClientStomp {
                 callback(JSON.parse(message.body));
             }
             // ToDo: Handle messages with unknown message id
-            console.log("Got Message With Body " + message.body)
+            console.log("Got Message With Body " + message.body);
         } else {
-            console.log('message with empty body', message)
+            console.log('message with empty body', message);
             // ToDo: Handle message with empty body
         }
     };
 
     handleSysCallback = (message) => {
-        // ToDo: Handle system messages
-        // called when the client receives a STOMP message from the server
         if (message.body) {
-            alert("got message with body " + message.body)
+            const messageId = message.headers['message-id'];
+            const callback = this.sysCallBacks && this.sysCallBacks.get(messageId);
+
+            if(callback) {
+                callback(JSON.parse(message.body));
+            }
+            console.log("Got Sys Message With Body " + message.body);
         } else {
-            alert("got empty message");
+            console.log('message with empty body', message);
         }
     };
 
@@ -188,6 +193,14 @@ class ApiClientStomp {
 
         this.client.publish({destination, headers: messageHeaders, body: JSON.stringify(message)});
         this.rpcCallBacks.set(messageId, callback);
+    }
+
+    sendSys(destination, message, callback) {
+        const messageId = this.uuidv4();
+        const messageHeaders = { 'message-id': messageId };
+
+        this.client.publish({destination, headers: messageHeaders, body: JSON.stringify(message)});
+        this.sysCallBacks.set(messageId, callback);
     }
 }
 

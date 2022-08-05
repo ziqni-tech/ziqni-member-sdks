@@ -9,7 +9,6 @@ export default class EntityChangesApiWs {
 
 
   subscribeToEntityChanges(entityChangeSubscriptionRequest,  callback) {
-
     
     if (entityChangeSubscriptionRequest === undefined || entityChangeSubscriptionRequest === null) {
       throw new Error("Missing the required parameter 'entityChangeSubscriptionRequest' when calling subscribeToEntityChanges");
@@ -17,7 +16,7 @@ export default class EntityChangesApiWs {
     
     const message = { body: entityChangeSubscriptionRequest };
 
-    apiClientStomp.instance.sendRpc('/gapi/subscribeToEntityChanges', message, callback);
+    apiClientStomp.instance.sendSys('/gapi/manageEntityChangeSubscription', message, callback);
 
   }
 
