@@ -1,5 +1,6 @@
 import ApiClient from '../ApiClient';
 import QuerySortBy from './QuerySortBy';
+import EntityFilter from './EntityFilter';
 
 class EntityRequest {
     /**
@@ -33,7 +34,7 @@ class EntityRequest {
             obj = obj || new EntityRequest();
 
             if (data.hasOwnProperty('entityFilter')) {
-                obj['entityFilter'] = data['entityFilter'];
+                obj['entityFilter'] = EntityFilter.constructFromObject(data['entityFilter']);
             }
 
             if (data.hasOwnProperty('sortBy')) {
