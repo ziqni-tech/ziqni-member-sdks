@@ -72,6 +72,9 @@ class ContestFilter {
             if (data.hasOwnProperty('status')) {
                 obj['status'] = ApiClient.convertToType(data['status'], [ContestStatus]);
             }
+            if (data.hasOwnProperty('ids')) {
+                obj['ids'] = ApiClient.convertToType(data['ids'], ['String']);
+            }
             if (data.hasOwnProperty('skip')) {
                 obj['skip'] = ApiClient.convertToType(data['skip'], 'Number');
             }
