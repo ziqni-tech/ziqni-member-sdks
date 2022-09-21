@@ -19,6 +19,7 @@
 | Name | Value |
 |---- | -----|
 | SUBSCRIBE | &quot;Subscribe&quot; |
+| UNSUBSCRIBE | &quot;Unsubscribe&quot; |
 
 
 

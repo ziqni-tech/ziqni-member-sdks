@@ -12,10 +12,10 @@
 |**messageType** | **MessageType** |  |  [optional] |
 |**subject** | **String** | The title of the message |  [optional] |
 |**body** | **String** | The context of the message |  [optional] |
-|**prize** | **String** | Unique system identifier of an Award |  [optional] [readonly] |
 |**status** | **MessageStatus** |  |  [optional] |
 |**expiry** | **OffsetDateTime** | The time that the message will disappear after. ISO8601 timestamp |  [optional] |
-|**memberId** | **List&lt;String&gt;** | The reference ID of the event object |  [optional] |
+|**memberIds** | **List&lt;String&gt;** | The reference ID of the event object |  [optional] |
+|**memberTags** | **List&lt;String&gt;** |  |  [optional] |
 |**id** | **String** |  |  |
 
 

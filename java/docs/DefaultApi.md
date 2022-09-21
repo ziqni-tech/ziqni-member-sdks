@@ -1,11 +1,13 @@
 # DefaultApi
 
-All URIs are relative to *https://member-api.ziqni.com*
+All URIs are relative to *https://gamification-api.ziqni.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**subscribeToLeaderboard**](DefaultApi.md#subscribeToLeaderboard) | **POST** /leaderboard |  |
 | [**subscribeToLeaderboardWithHttpInfo**](DefaultApi.md#subscribeToLeaderboardWithHttpInfo) | **POST** /leaderboard |  |
+| [**unsubscribeFromEntityChanges**](DefaultApi.md#unsubscribeFromEntityChanges) | **DELETE** /entity-changes |  |
+| [**unsubscribeFromEntityChangesWithHttpInfo**](DefaultApi.md#unsubscribeFromEntityChangesWithHttpInfo) | **DELETE** /entity-changes |  |
 
 
 
@@ -29,7 +31,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://member-api.ziqni.com");
+        defaultClient.setBasePath("https://gamification-api.ziqni.com");
 
         DefaultApi apiInstance = new DefaultApi(defaultClient);
         LeaderboardSubscriptionRequest leaderboardSubscriptionRequest = new LeaderboardSubscriptionRequest(); // LeaderboardSubscriptionRequest | 
@@ -93,7 +95,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://member-api.ziqni.com");
+        defaultClient.setBasePath("https://gamification-api.ziqni.com");
 
         DefaultApi apiInstance = new DefaultApi(defaultClient);
         LeaderboardSubscriptionRequest leaderboardSubscriptionRequest = new LeaderboardSubscriptionRequest(); // LeaderboardSubscriptionRequest | 
@@ -144,4 +146,141 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** |  |  -  |
+
+
+## unsubscribeFromEntityChanges
+
+> CompletableFuture<Void> unsubscribeFromEntityChanges(subscriptionId)
+
+
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.member.sdk.ApiClient;
+import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.DefaultApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://gamification-api.ziqni.com");
+
+        DefaultApi apiInstance = new DefaultApi(defaultClient);
+        String subscriptionId = "subscriptionId_example"; // String | 
+        try {
+            CompletableFuture<Void> result = apiInstance.unsubscribeFromEntityChanges(subscriptionId);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#unsubscribeFromEntityChanges");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**|  | [optional] |
+
+### Return type
+
+
+CompletableFuture<void> (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Onsuccess |  -  |
+
+## unsubscribeFromEntityChangesWithHttpInfo
+
+> CompletableFuture<ApiResponse<Void>> unsubscribeFromEntityChanges unsubscribeFromEntityChangesWithHttpInfo(subscriptionId)
+
+
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.member.sdk.ApiClient;
+import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.ApiResponse;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.DefaultApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://gamification-api.ziqni.com");
+
+        DefaultApi apiInstance = new DefaultApi(defaultClient);
+        String subscriptionId = "subscriptionId_example"; // String | 
+        try {
+            CompletableFuture<ApiResponse<Void>> response = apiInstance.unsubscribeFromEntityChangesWithHttpInfo(subscriptionId);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling DefaultApi#unsubscribeFromEntityChanges");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#unsubscribeFromEntityChanges");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**|  | [optional] |
+
+### Return type
+
+
+CompletableFuture<ApiResponse<Void>>
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Onsuccess |  -  |
 

@@ -20,6 +20,7 @@
 |**delay** | **Integer** | Delay of issuing a reward in minutes |  [optional] |
 |**pointInTime** | **OffsetDateTime** | ISO8601 timestamp for when a Reward is available until a specific point in time. All records are stored in UTC time zone |  [optional] |
 |**period** | **Integer** | Reward available for a period of time from issuing in minutes |  [optional] |
+|**id** | **String** | Unique system identifier of a Main Rule |  [optional] [readonly] |
 |**constraints** | **List&lt;String&gt;** | Additional constraints |  [optional] |
 
 

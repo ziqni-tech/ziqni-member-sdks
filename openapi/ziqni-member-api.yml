@@ -8,7 +8,7 @@ info:
     system is decribed using OpenApi schema for convenience.
 servers:
   -
-    url: 'https://member-api.ziqni.com'
+    url: 'https://gamification-api.ziqni.com'
     description: Live
 paths:
   /member-info:
@@ -277,33 +277,6 @@ paths:
       summary: Get member optin information
       description: Returns a list of member optin information
       x-ws-only: true
-  /leaderboard:
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/LeaderboardSubscriptionRequest'
-      callbacks:
-        leaderboardUpdate:
-          '{$request.body#/id}':
-            post:
-              requestBody:
-                description: New message
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/Message'
-              responses:
-                '202':
-                  description: >
-                    Your implementation should only return return this HTTP status code if
-                    it is using the http protocol and only if the data was received
-                    successfully
-      responses:
-        '200':
-          $ref: '#/components/responses/LeaderboardResponseBody'
-      operationId: subscribeToLeaderboard
   /messages:
     summary: Member messages operation
     description: This endpoint supports member's messages operation.
@@ -410,8 +383,48 @@ paths:
           $ref: '#/components/responses/EntityChangeSubscriptionResponseBody'
         '500':
           $ref: '#/components/responses/EntityChangeSubscriptionResponseBody'
-      operationId: subscribeToEntityChanges
+      operationId: manageEntityChangeSubscription
       description: subscribes a client to receive out-of-band data
+    delete:
+      parameters:
+        -
+          name: subscriptionId
+          description: ''
+          schema:
+            type: string
+          in: query
+      responses:
+        '200':
+          content:
+            application/json: {}
+          description: Onsuccess
+      operationId: unsubscribeFromEntityChanges
+  /leaderboard:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaderboardSubscriptionRequest'
+      callbacks:
+        leaderboardUpdate:
+          '{$request.body#/id}':
+            post:
+              requestBody:
+                description: New message
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Message'
+              responses:
+                '202':
+                  description: >
+                    Your implementation should only return this HTTP status code if it is
+                    using the http protocol and only if the data was received successfully
+      responses:
+        '200':
+          $ref: '#/components/responses/LeaderboardResponseBody'
+      operationId: subscribeToLeaderboard
 components:
   schemas:
     ResponseMeta:
@@ -1031,11 +1044,6 @@ components:
           type: array
           items:
             type: string
-        status:
-          description: Achievement status
-          type: array
-          items:
-            type: string
         sortBy:
           description: ''
           type: array
@@ -1052,6 +1060,7 @@ components:
         statusCode:
           $ref: '#/components/schemas/NumberRange'
           description: Achievement status code
+          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
         constraints:
           description: Specify the constraints that need to be applied to the filter.
           type: array
@@ -1379,17 +1388,6 @@ components:
           description: A unique id of the Reward Type
           type: string
           example: Dc4swmQBVd51K6gPQqFx
-    ContestStatus:
-      description: The status of contest
-      enum:
-        - Deleted
-        - NotStarted
-        - Active
-        - Finished
-        - Finalised
-        - Cancelled
-      type: string
-      readOnly: true
     MemberType:
       description: Determines a member type
       enum:
@@ -1677,84 +1675,6 @@ components:
         - TimeBound
         - TargetBased
       type: string
-    Reward:
-      description: ''
-      type: object
-      properties:
-        entityType:
-          $ref: '#/components/schemas/EntityType'
-        entityId:
-          description: A unique identifier of an achievement or contest. Dependant on entityType
-          type: string
-          example: Dc4swmQBVd51K6gPQqFx
-        name:
-          description: The name of a reward
-          type: string
-          example: Welcome badge
-        description:
-          description: The description of a Reward
-          type: string
-          example: A badge to welcome a new player
-        rewardRank:
-          description: If used in the context of contest this will associate with the rank of the leaderboard
-          type: string
-          example: '1,2 3 ...10'
-        rewardValue:
-          format: double
-          description: Numerical value of the reward that will be issued based on the reward type
-          type: number
-          example: '1'
-        rewardType:
-          $ref: '#/components/schemas/RewardTypeReduced'
-        icon:
-          description: An Icon id that has been pre uploaded to the system to display for reward
-          type: string
-          example: Dc4swmQBVd51K6gPQqFx
-        issueLimit:
-          format: int32
-          description: how many of thsese rewards are
-          type: integer
-          example: '2'
-        delay:
-          format: int32
-          description: Delay of issuing a reward in minutes
-          type: integer
-          example: '2'
-        pointInTime:
-          format: date-time
-          description: >-
-            ISO8601 timestamp for when a Reward is available until a specific point in time. All
-            records are stored in UTC time zone
-          type: string
-          example: '2019-09-25T15:47:00.000+0000'
-        period:
-          format: int32
-          description: Reward available for a period of time from issuing in minutes
-          type: integer
-          example: '2'
-        constraints:
-          description: Additional constraints
-          type: array
-          items:
-            type: string
-          example: '- notifyMember - isMemberAcknowledgmentRequired'
-      example:
-        entityType: FileObject
-        entityId: some text
-        name: some text
-        description: some text
-        rewardRank: some text
-        rewardValue: 7.85
-        rewardType:
-          key: some text
-        icon: some text
-        issueLimit: 60
-        delay: 19
-        pointInTime: '2018-02-10T09:30Z'
-        period: 32
-        constraints:
-          - some text
-          - some text
     EntityType:
       description: Entity the item is associated to.
       enum:
@@ -2087,7 +2007,15 @@ components:
           items:
             type: string
       example:
-        includeFields: ALL
+        includeFields:
+          - some text
+          - some text
+        includeCustomFields:
+          - some text
+          - some text
+        includeMetaDataFields:
+          - some text
+          - some text
     MemberResponse:
       description: '        '
       required: []
@@ -2699,65 +2627,12 @@ components:
               example: |-
                 - memberAcknowledgmentRequired
                 - claimed
-            claimedTimestamp:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when an Award is claimed. All records are stored in UTC
-                time zone. *
-              type: string
+            claimed:
+              description: ' Award is claimed.'
+              type: boolean
               example: '2019-09-25T15:47:00.000+0000'
         -
           $ref: '#/components/schemas/ModelDefault'
-    Message:
-      description: ''
-      type: object
-      allOf:
-        -
-          required:
-            - id
-          type: object
-          properties:
-            eventRefType:
-              $ref: '#/components/schemas/EventRefType'
-            eventRefId:
-              description: The reference ID of the event object
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            messageType:
-              $ref: '#/components/schemas/MessageType'
-            subject:
-              description: The title of the message
-              type: string
-              example: Hello and welcome
-            body:
-              description: The context of the message
-              type: string
-              example: Here is a message to welcome you on board!
-            prize:
-              description: Unique system identifier of an Award
-              type: string
-              readOnly: true
-              example: Dc4swmQBVd51K6gPQqFx
-            status:
-              $ref: '#/components/schemas/MessageStatus'
-            expiry:
-              format: date-time
-              description: The time that the message will disappear after. ISO8601 timestamp
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            memberId:
-              description: The reference ID of the event object
-              type: array
-              items:
-                type: string
-              example: '- Dc4swmQBVd51K6gPQqFx'
-            id:
-              description: ''
-              type: string
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptionalModelFields'
     OptinAction:
       description: ''
       enum:
@@ -2797,44 +2672,6 @@ components:
           $ref: '#/components/schemas/ModelDefault'
         -
           $ref: '#/components/schemas/OptionalModelFields'
-    EntityChanged:
-      description: ''
-      required: []
-      type: object
-      properties:
-        entityId:
-          description: ''
-          type: string
-        entityType:
-          description: ''
-          type: string
-        changedAt:
-          format: date-time
-          description: ''
-          type: string
-        typeOffChange:
-          format: int32
-          description: ''
-          type: integer
-        displayName:
-          description: ''
-          type: string
-        accountId:
-          description: ''
-          type: string
-        sequenceNumber:
-          format: int64
-          description: ''
-          type: integer
-        entityRefId:
-          description: ''
-          type: string
-        entityParentId:
-          description: ''
-          type: string
-        metadata:
-          type: object
-          additionalProperties: true
     UnsubscribeRequest:
       description: ''
       required:
@@ -2844,53 +2681,6 @@ components:
         sunscriptionId:
           description: ''
           type: string
-    EntityStateChanged:
-      description: ''
-      required:
-        - state
-      type: object
-      properties:
-        entityId:
-          description: ''
-          type: string
-        entityType:
-          description: ''
-          type: string
-        changedAt:
-          format: date-time
-          description: ''
-          type: string
-        typeOffChange:
-          format: int32
-          description: ''
-          type: integer
-        displayName:
-          description: ''
-          type: string
-        accountId:
-          description: ''
-          type: string
-        sequenceNumber:
-          format: int64
-          description: ''
-          type: integer
-        entityRefId:
-          description: ''
-          type: string
-        entityParentId:
-          description: ''
-          type: string
-        metadata:
-          type: object
-          additionalProperties: true
-        previousState:
-          format: int32
-          description: ''
-          type: integer
-        currentState:
-          format: int32
-          description: ''
-          type: integer
     ManageOptinRequest:
       description: ''
       type: object
@@ -2965,7 +2755,7 @@ components:
       type: object
       properties:
         meta:
-          $ref: '#/components/schemas/ResponseMeta'
+          $ref: '#/components/schemas/MetaBasic'
           description: ''
         data:
           description: ''
@@ -2995,6 +2785,8 @@ components:
           description: Either subscribe or unsubscribe from the data feed
           enum:
             - Subscribe
+            - Unsubscribe
+          type: string
     LeaderboardFilter:
       description: ''
       required:
@@ -3003,7 +2795,9 @@ components:
       properties:
         topRanksToInclude:
           format: int32
-          description: 'Include rank from one [1] to the rank specified here. The maximum allowed is 50'
+          description: >-
+            Include rank from zero [0] none, then one [1] to the rank specified here. The maximum
+            allowed is 50
           maximum: 50
           minimum: 1
           type: integer
@@ -3092,11 +2886,6 @@ components:
           type: array
           items:
             type: string
-        status:
-          description: ''
-          type: array
-          items:
-            type: string
         skip:
           format: int32
           description: ''
@@ -3108,6 +2897,7 @@ components:
         statusCode:
           $ref: '#/components/schemas/NumberRange'
           description: Contest status code
+          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
         constraints:
           description: Specify the constraints that need to be applied to the filter.
           type: array
@@ -3168,11 +2958,7 @@ components:
         statusCode:
           $ref: '#/components/schemas/NumberRange'
           description: Competition status code
-        status:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/CompetitionStatus'
+          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
         sortBy:
           description: ''
           type: array
@@ -3609,7 +3395,6 @@ components:
             office
           type: string
       example:
-        memberRefId: some text
         achievementFilter:
           productIds:
             - some text
@@ -3618,17 +3403,11 @@ components:
             - some text
             - some text
           startDate:
-            gt: some text
-            lt: some text
-            constraints:
-              - some text
-              - some text
+            before: '2018-02-10T09:30Z'
+            after: '2018-02-10T09:30Z'
           endDate:
-            gt: some text
-            lt: some text
-            constraints:
-              - some text
-              - some text
+            before: '2018-02-10T09:30Z'
+            after: '2018-02-10T09:30Z'
           ids:
             - some text
             - some text
@@ -3638,15 +3417,19 @@ components:
           sortBy:
             -
               queryField: some text
-              order: Desc
+              order: Asc
             -
               queryField: some text
-              order: Desc
-          skip: 11
-          limit: 75
+              order: Asc
+          skip: 3
+          limit: 58
           statusCode:
-            - 54
-            - 63
+            moreThan: 12
+            lessThan: 54
+          constraints:
+            - some text
+            - some text
+        languageKey: some text
     AwardRequest:
       description: ''
       type: object
@@ -3727,32 +3510,26 @@ components:
           $ref: '#/components/schemas/CompetitionFilter'
           description: ''
       example:
-        memberRefId: some text
+        languageKey: some text
         competitionFilter:
           tags:
             - some text
             - some text
           startDate:
-            gt: some text
-            lt: some text
-            constraints:
-              - some text
-              - some text
+            before: '2018-02-10T09:30Z'
+            after: '2018-02-10T09:30Z'
           endDate:
-            gt: some text
-            lt: some text
-            constraints:
-              - some text
-              - some text
+            before: '2018-02-10T09:30Z'
+            after: '2018-02-10T09:30Z'
           productIds:
             - some text
             - some text
+          statusCode:
+            moreThan: 89
+            lessThan: 49
           status:
-            - Deleting
-            - Finishing
-          competitionType:
-            - Leaderboard
-            - Leaderboard
+            - Active
+            - Active
           sortBy:
             -
               queryField: some text
@@ -3763,8 +3540,11 @@ components:
           ids:
             - some text
             - some text
-          skip: 9
-          limit: 26
+          skip: 94
+          limit: 89
+          constraints:
+            - some text
+            - some text
     ContestRequest:
       description: This is a request to get Contest
       type: object
@@ -3778,8 +3558,8 @@ components:
           $ref: '#/components/schemas/ContestFilter'
           description: ''
       example:
-        memberRefId: some text
-        achievementFilter:
+        languageKey: some text
+        contestFilter:
           productIds:
             - some text
             - some text
@@ -3787,25 +3567,35 @@ components:
             - some text
             - some text
           startDate:
-            gt: some text
-            lt: some text
-            constraints:
-              - some text
-              - some text
+            before: '2018-02-10T09:30Z'
+            after: '2018-02-10T09:30Z'
           endDate:
-            gt: some text
-            lt: some text
-            constraints:
-              - some text
-              - some text
+            before: '2018-02-10T09:30Z'
+            after: '2018-02-10T09:30Z'
           sortBy:
-            queryField: some text
-            order: Asc
+            -
+              queryField: some text
+              order: Desc
+            -
+              queryField: some text
+              order: Desc
+          ids:
+            - some text
+            - some text
           competitionIds:
             - some text
             - some text
-          skip: 61
-          limit: 92
+          status:
+            - some text
+            - some text
+          skip: 94
+          limit: 27
+          statusCode:
+            moreThan: 73
+            lessThan: 46
+          constraints:
+            - some text
+            - some text
     MessageRequest:
       description: ''
       type: object
@@ -3863,6 +3653,307 @@ components:
           format: int32
           description: ''
           type: integer
+      example:
+        languageKey: some text
+        entityFilter:
+          -
+            entityType: some text
+            entityIds:
+              - some text
+              - some text
+          -
+            entityType: some text
+            entityIds:
+              - some text
+              - some text
+        sortBy:
+          -
+            queryField: some text
+            order: Asc
+          -
+            queryField: some text
+            order: Desc
+        skip: 29
+        limit: 3
+    Product:
+      description: ''
+      type: object
+    Transformer:
+      description: ''
+      type: object
+    Connection:
+      description: ''
+      type: object
+    EntityChanged:
+      description: ''
+      required: []
+      type: object
+      properties:
+        entityId:
+          description: ''
+          type: string
+        entityType:
+          description: ''
+          type: string
+        changedAt:
+          format: date-time
+          description: ''
+          type: string
+        typeOffChange:
+          format: int32
+          description: ''
+          type: integer
+        changedBy:
+          description: ''
+          type: string
+        displayName:
+          description: ''
+          type: string
+        accountId:
+          description: ''
+          type: string
+        sequenceNumber:
+          format: int64
+          description: ''
+          type: integer
+        entityRefId:
+          description: ''
+          type: string
+        entityParentId:
+          description: ''
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true
+    EntityStateChanged:
+      description: ''
+      required:
+        - state
+      type: object
+      properties:
+        entityId:
+          description: ''
+          type: string
+        entityType:
+          description: ''
+          type: string
+        changedAt:
+          format: date-time
+          description: ''
+          type: string
+        changedBy:
+          description: ''
+          type: string
+        typeOffChange:
+          format: int32
+          description: ''
+          type: integer
+        displayName:
+          description: ''
+          type: string
+        accountId:
+          description: ''
+          type: string
+        sequenceNumber:
+          format: int64
+          description: ''
+          type: integer
+        entityRefId:
+          description: ''
+          type: string
+        entityParentId:
+          description: ''
+          type: string
+        metadata:
+          type: object
+        previousState:
+          format: int32
+          description: ''
+          type: integer
+        currentState:
+          format: int32
+          description: ''
+          type: integer
+    MetaInfo:
+      required:
+        - objectType
+        - resultCount
+        - errorCount
+      type: object
+      properties:
+        objectType:
+          type: string
+        totalRecords:
+          description: The count of all results
+          type: integer
+          example: '10'
+        resultCount:
+          description: The count of successful results
+          type: integer
+          example: '10'
+        errorCount:
+          description: The count of errors
+          type: integer
+          example: '1'
+      example:
+        objectType: some text
+        totalRecords: 26
+        resultCount: 3
+        errorCount: 2
+    MetaBasic:
+      allOf:
+        -
+          $ref: '#/components/schemas/MetaInfo'
+    ContestStatus:
+      description: ''
+      enum:
+        - Unknown
+        - Deleting
+        - Deleted
+        - Draft
+        - Template
+        - Preparing
+        - Ready
+        - Starting
+        - Active
+        - Finishing
+        - Finished
+        - Cancelling
+        - Cancelled
+      type: string
+    Reward:
+      description: ''
+      type: object
+      properties:
+        entityType:
+          $ref: '#/components/schemas/EntityType'
+        entityId:
+          description: A unique identifier of an achievement or contest. Dependant on entityType
+          type: string
+          example: Dc4swmQBVd51K6gPQqFx
+        name:
+          description: The name of a reward
+          type: string
+          example: Welcome badge
+        description:
+          description: The description of a Reward
+          type: string
+          example: A badge to welcome a new player
+        rewardRank:
+          description: If used in the context of contest this will associate with the rank of the leaderboard
+          type: string
+          example: '1,2 3 ...10'
+        rewardValue:
+          format: double
+          description: Numerical value of the reward that will be issued based on the reward type
+          type: number
+          example: '1'
+        rewardType:
+          $ref: '#/components/schemas/RewardTypeReduced'
+        icon:
+          description: An Icon id that has been pre uploaded to the system to display for reward
+          type: string
+          example: Dc4swmQBVd51K6gPQqFx
+        issueLimit:
+          format: int32
+          description: how many of thsese rewards are
+          type: integer
+          example: '2'
+        delay:
+          format: int32
+          description: Delay of issuing a reward in minutes
+          type: integer
+          example: '2'
+        pointInTime:
+          format: date-time
+          description: >-
+            ISO8601 timestamp for when a Reward is available until a specific point in time. All
+            records are stored in UTC time zone
+          type: string
+          example: '2019-09-25T15:47:00.000+0000'
+        period:
+          format: int32
+          description: Reward available for a period of time from issuing in minutes
+          type: integer
+          example: '2'
+        id:
+          description: Unique system identifier of a Main Rule
+          type: string
+          readOnly: true
+          example: Dc4swmQBVd51K6gPQqFx
+        constraints:
+          description: Additional constraints
+          type: array
+          items:
+            type: string
+          example: '- notifyMember - isMemberAcknowledgmentRequired'
+      example:
+        entityType: FileObject
+        entityId: some text
+        name: some text
+        description: some text
+        rewardRank: some text
+        rewardValue: 7.85
+        rewardType:
+          key: some text
+        icon: some text
+        issueLimit: 60
+        delay: 19
+        pointInTime: '2018-02-10T09:30Z'
+        period: 32
+        constraints:
+          - some text
+          - some text
+    Message:
+      description: ''
+      type: object
+      allOf:
+        -
+          required:
+            - id
+          type: object
+          properties:
+            eventRefType:
+              $ref: '#/components/schemas/EventRefType'
+            eventRefId:
+              description: The reference ID of the event object
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            messageType:
+              $ref: '#/components/schemas/MessageType'
+            subject:
+              description: The title of the message
+              type: string
+              example: Hello and welcome
+            body:
+              description: The context of the message
+              type: string
+              example: Here is a message to welcome you on board!
+            status:
+              $ref: '#/components/schemas/MessageStatus'
+            expiry:
+              format: date-time
+              description: The time that the message will disappear after. ISO8601 timestamp
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            memberIds:
+              description: The reference ID of the event object
+              type: array
+              items:
+                type: string
+              example: '- Dc4swmQBVd51K6gPQqFx'
+            memberTags:
+              description: ''
+              type: array
+              items:
+                type: string
+            id:
+              description: ''
+              type: string
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
   responses:
     AchievementResponseBody:
       content:
