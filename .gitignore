@@ -12,7 +12,9 @@ target/
 *.iws
 *.iml
 *.ipr
-
+.idea
+/.idea/
+.idea/workspace.xml
 
 ### Eclipse ###
 .apt_generated
@@ -46,6 +48,4 @@ build/
 /logs/
 /.idea/
 /javascript/dist/*
-/openapi/go/generated/
-/openapi/go/openapitools.json
-/javascript/dist/
+/javascript/node_modules/
