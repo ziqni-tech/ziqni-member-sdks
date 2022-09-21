@@ -55,16 +55,14 @@ export default class MembersApiWs {
      * data is of type: {@link module:model/MemberResponse}
      */
     getMember(memberRequest, callback) {
-      let postBody = memberRequest;
-      // verify the required parameter 'memberRequest' is set
+
       if (memberRequest === undefined || memberRequest === null) {
         throw new Error("Missing the required parameter 'memberRequest' when calling getMember");
       }
 
-      let messageHeaders = messageHeaders.setMessageId(apiClientStomp.uuidv4());
-      let message = { body: MemberRequest };
+      const message = { body: memberRequest };
 
-      apiClientStomp.sendRpc('/gapi/getMember', message, callback);
+      apiClientStomp.instance.sendRpc('/gapi/getMember', message, callback);
 
     }
 

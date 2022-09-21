@@ -64,13 +64,16 @@ class ContestFilter {
                 obj['endDate'] = RangeQuery.constructFromObject(data['endDate']);
             }
             if (data.hasOwnProperty('sortBy')) {
-                obj['sortBy'] = QuerySortBy.constructFromObject(data['sortBy']);
+                obj['sortBy'] = ApiClient.convertToType(data['sortBy'], [QuerySortBy]);
             }
             if (data.hasOwnProperty('competitionIds')) {
                 obj['competitionIds'] = ApiClient.convertToType(data['competitionIds'], ['String']);
             }
             if (data.hasOwnProperty('status')) {
                 obj['status'] = ApiClient.convertToType(data['status'], [ContestStatus]);
+            }
+            if (data.hasOwnProperty('ids')) {
+                obj['ids'] = ApiClient.convertToType(data['ids'], ['String']);
             }
             if (data.hasOwnProperty('skip')) {
                 obj['skip'] = ApiClient.convertToType(data['skip'], 'Number');
