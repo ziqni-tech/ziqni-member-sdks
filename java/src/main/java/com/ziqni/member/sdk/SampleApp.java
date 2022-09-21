@@ -56,11 +56,11 @@ public class SampleApp {
                                 logger.info(error.toString());
                             }
                     );
-            ApiClientFactoryWs.getEntityChangesApi().subscribeToEntityChanges(
-                    new EntityChangeSubscriptionRequest().callback(EntityChangesApiWs.subscribeToEntityChangesCallBacks.ENTITYCHANGED).entityType("Member")
+            ApiClientFactoryWs.getEntityChangesApi().manageEntityChangeSubscription(
+                    new EntityChangeSubscriptionRequest().callback(EntityChangesApiWs.manageEntityChangeSubscriptionCallBacks.ENTITYCHANGED).entityType("Member")
             );
-            ApiClientFactoryWs.getEntityChangesApi().subscribeToEntityChanges(
-                    new EntityChangeSubscriptionRequest().callback(EntityChangesApiWs.subscribeToEntityChangesCallBacks.ENTITYSTATECHANGED).entityType("Member")
+            ApiClientFactoryWs.getEntityChangesApi().manageEntityChangeSubscription(
+                    new EntityChangeSubscriptionRequest().callback(EntityChangesApiWs.manageEntityChangeSubscriptionCallBacks.ENTITYSTATECHANGED).entityType("Member")
             );
         });
     }

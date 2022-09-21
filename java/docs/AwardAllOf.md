@@ -20,7 +20,7 @@
 |**tags** | **List&lt;String&gt;** | A list of Strings of groups that the reward belongs to. |  [optional] |
 |**metadata** | **Map&lt;String, String&gt;** | The metadata associated with this award |  [optional] |
 |**constraints** | **List&lt;String&gt;** | Additional constraints, if the value is present it means the |  [optional] |
-|**claimedTimestamp** | **OffsetDateTime** | ISO8601 timestamp for when an Award is claimed. All records are stored in UTC time zone. * |  [optional] |
+|**claimed** | **Boolean** |  Award is claimed. |  [optional] |
 
 
 

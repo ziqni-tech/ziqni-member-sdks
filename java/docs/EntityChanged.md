@@ -12,6 +12,7 @@
 |**entityType** | **String** |  |  [optional] |
 |**changedAt** | **OffsetDateTime** |  |  [optional] |
 |**typeOffChange** | **Integer** |  |  [optional] |
+|**changedBy** | **String** |  |  [optional] |
 |**displayName** | **String** |  |  [optional] |
 |**accountId** | **String** |  |  [optional] |
 |**sequenceNumber** | **Long** |  |  [optional] |

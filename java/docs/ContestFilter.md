@@ -15,7 +15,6 @@ Filter to trim results from list of Contets
 |**sortBy** | [**List&lt;QuerySortBy&gt;**](QuerySortBy.md) |  |  [optional] |
 |**ids** | **List&lt;String&gt;** |  |  [optional] |
 |**competitionIds** | **List&lt;String&gt;** |  |  [optional] |
-|**status** | **List&lt;String&gt;** |  |  [optional] |
 |**skip** | **Integer** |  |  [optional] |
 |**limit** | **Integer** |  |  [optional] |
 |**statusCode** | [**NumberRange**](NumberRange.md) |  |  [optional] |

@@ -13,7 +13,6 @@
 |**startDate** | [**DateRange**](DateRange.md) |  |  [optional] |
 |**endDate** | [**DateRange**](DateRange.md) |  |  [optional] |
 |**ids** | **List&lt;String&gt;** |  |  [optional] |
-|**status** | **List&lt;String&gt;** | Achievement status |  [optional] |
 |**sortBy** | [**List&lt;QuerySortBy&gt;**](QuerySortBy.md) |  |  [optional] |
 |**skip** | **Integer** |  |  [optional] |
 |**limit** | **Integer** |  |  [optional] |
