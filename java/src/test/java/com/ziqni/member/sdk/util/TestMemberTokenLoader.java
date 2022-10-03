@@ -1,10 +1,10 @@
 package com.ziqni.member.sdk.util;
 
-import com.ziqni.admin.client.ApiException;
-import com.ziqni.admin.client.api.MemberTokenApi;
-import com.ziqni.admin.client.configuration.AdminApiClientConfig;
-import com.ziqni.admin.client.configuration.ApiRestClientFactory;
-import com.ziqni.admin.client.model.MemberTokenRequest;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.api.MemberTokenApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfig;
+import com.ziqni.admin.sdk.model.MemberTokenRequest;
 import com.ziqni.member.sdk.security.IdentityAuthorisationException;
 import com.ziqni.member.sdk.security.IdentityAuthorization;
 
@@ -20,10 +20,10 @@ public class TestMemberTokenLoader implements IdentityAuthorization {
 
     public MemberTokenRequest memberTokenRequest;
 
-    public MemberTokenApi memberTokenApi;
+    public MemberTokenApiWs memberTokenApi;
 
     public TestMemberTokenLoader() {
-        this.memberTokenApi = new MemberTokenApi(ApiRestClientFactory.getApiClient());
+        this.memberTokenApi = ZiqniAdminApiFactory.getMemberTokenApi();
     }
 
     @Override
@@ -63,14 +63,12 @@ public class TestMemberTokenLoader implements IdentityAuthorization {
 
     public java.util.concurrent.CompletableFuture<String> getToken(MemberTokenRequest memberTokenRequest) throws IdentityAuthorisationException {
         AdminApiClientConfig.load();
-        try {
-            return this.memberTokenApi.createMemberToken(memberTokenRequest).thenApply(tokenResponse -> {
+
+        return this.memberTokenApi.createMemberToken(memberTokenRequest).thenApply(tokenResponse -> {
                 if (tokenResponse.getMeta().getErrorCount() != null && tokenResponse.getMeta().getErrorCount() > 0)
                     throw new RuntimeException("Failed to get a member token. " + Objects.requireNonNull(tokenResponse.getErrors()));
                 return tokenResponse.getData().getJwtToken();
             });
-        } catch (ApiException e) {
-            throw new IdentityAuthorisationException(e);
-        }
+
     }
 }

@@ -13,8 +13,8 @@
 
 package com.ziqni.member.sdk.api;
 
-import com.ziqni.admin.client.model.EntityType;
-import com.ziqni.admin.client.model.MemberTokenRequest;
+import com.ziqni.admin.sdk.model.EntityType;
+import com.ziqni.admin.sdk.model.MemberTokenRequest;
 import com.ziqni.member.sdk.ApiClientFactoryWs;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.configuration.ApiClientConfig;

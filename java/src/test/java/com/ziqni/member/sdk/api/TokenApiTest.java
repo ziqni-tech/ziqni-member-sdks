@@ -15,7 +15,8 @@ package com.ziqni.member.sdk.api;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.ziqni.admin.client.model.MemberTokenRequest;
+import com.ziqni.admin.sdk.model.MemberTokenRequest;
+import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import com.ziqni.member.sdk.util.TestMemberTokenLoader;
 import org.junit.jupiter.api.*;
 
