@@ -3,12 +3,11 @@
 # MemberSessionRequest
 
 
-
 ## Properties
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**id** | **Object** |  |  [optional] |
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | **Object** |  |  [optional]
 
 
 

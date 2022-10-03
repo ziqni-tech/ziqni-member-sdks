@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://gamification-api.ziqni.com*
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**getFiles**](FilesApi.md#getFiles) | **POST** /files | Get files. |
-| [**getFilesWithHttpInfo**](FilesApi.md#getFilesWithHttpInfo) | **POST** /files | Get files. |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getFiles**](FilesApi.md#getFiles) | **POST** /files | Get files.
+[**getFilesWithHttpInfo**](FilesApi.md#getFilesWithHttpInfo) | **POST** /files | Get files.
 
 
 
@@ -52,9 +52,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **fileRequest** | [**FileRequest**](FileRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fileRequest** | [**FileRequest**](FileRequest.md)|  |
 
 ### Return type
 
@@ -130,9 +130,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **fileRequest** | [**FileRequest**](FileRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fileRequest** | [**FileRequest**](FileRequest.md)|  |
 
 ### Return type
 

@@ -3,14 +3,13 @@
 # Error
 
 
-
 ## Properties
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**message** | **String** |  |  [optional] |
-|**code** | **Integer** |  |  [optional] |
-|**status** | **Integer** |  |  |
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**message** | **String** |  |  [optional]
+**code** | **Integer** |  |  [optional]
+**status** | **Integer** |  | 
 
 
 

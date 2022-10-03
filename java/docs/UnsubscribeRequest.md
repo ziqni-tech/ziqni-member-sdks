@@ -3,12 +3,11 @@
 # UnsubscribeRequest
 
 
-
 ## Properties
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**sunscriptionId** | **String** |  |  |
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**sunscriptionId** | **String** |  | 
 
 
 

@@ -2,12 +2,12 @@
 
 All URIs are relative to *https://gamification-api.ziqni.com*
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**getMember**](MembersApi.md#getMember) | **POST** /member-info | Get member information by member reference id |
-| [**getMemberWithHttpInfo**](MembersApi.md#getMemberWithHttpInfo) | **POST** /member-info | Get member information by member reference id |
-| [**manageOptin**](MembersApi.md#manageOptin) | **POST** /manage-optin | Get member optin information |
-| [**manageOptinWithHttpInfo**](MembersApi.md#manageOptinWithHttpInfo) | **POST** /manage-optin | Get member optin information |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getMember**](MembersApi.md#getMember) | **POST** /member-info | Get member information by member reference id
+[**getMemberWithHttpInfo**](MembersApi.md#getMemberWithHttpInfo) | **POST** /member-info | Get member information by member reference id
+[**manageOptin**](MembersApi.md#manageOptin) | **POST** /manage-optin | Get member optin information
+[**manageOptinWithHttpInfo**](MembersApi.md#manageOptinWithHttpInfo) | **POST** /manage-optin | Get member optin information
 
 
 
@@ -59,9 +59,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **memberRequest** | [**MemberRequest**](MemberRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **memberRequest** | [**MemberRequest**](MemberRequest.md)|  |
 
 ### Return type
 
@@ -142,9 +142,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **memberRequest** | [**MemberRequest**](MemberRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **memberRequest** | [**MemberRequest**](MemberRequest.md)|  |
 
 ### Return type
 
@@ -216,9 +216,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **manageOptinRequest** | [**ManageOptinRequest**](ManageOptinRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **manageOptinRequest** | [**ManageOptinRequest**](ManageOptinRequest.md)|  |
 
 ### Return type
 
@@ -299,9 +299,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **manageOptinRequest** | [**ManageOptinRequest**](ManageOptinRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **manageOptinRequest** | [**ManageOptinRequest**](ManageOptinRequest.md)|  |
 
 ### Return type
 

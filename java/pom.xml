@@ -69,7 +69,7 @@
         <jupiter.version>5.7.0</jupiter.version>
         <jsonwebtoken.version>0.11.1</jsonwebtoken.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
-        <ziqni-admin-api.version>1.0-SNAPSHOT</ziqni-admin-api.version>
+        <ziqni-admin-api.version>1.0.5</ziqni-admin-api.version>
     </properties>
 
     <dependencies>
@@ -231,7 +231,7 @@
 
         <dependency>
             <groupId>com.ziqni</groupId>
-            <artifactId>ziqni-admin-api</artifactId>
+            <artifactId>ziqni-admin-sdk</artifactId>
             <version>${ziqni-admin-api.version}</version>
             <scope>test</scope>
         </dependency>
@@ -242,7 +242,7 @@
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.7</version>
+                <version>1.6.13</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
