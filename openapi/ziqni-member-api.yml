@@ -1,14 +1,14 @@
----
 openapi: 3.0.2
 info:
   title: ZIQNI Member API
   version: 1.0.0
-  description: "The ZIQNI Member-API is the primary resource used to build services\
-    \ and widgets for your members [customers, players, patients, etc]. The service\
-    \ is Stomp websokets with SOCK.js even though the system is decribed using OpenApi\
-    \ schema for convenience."
+  description: >-
+    The ZIQNI Member-API is the primary resource used to build services and widgets for your members
+    [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
+    system is decribed using OpenApi schema for convenience.
 servers:
-  - url: https://gamification-api.ziqni.com
+  -
+    url: 'https://member-api.ziqni.com'
     description: Live
 paths:
   /member-info:
@@ -24,14 +24,15 @@ paths:
       tags:
         - members
       responses:
-        "200":
+        '200':
           $ref: '#/components/responses/MemberResponseBody'
-        "400":
+        '400':
           $ref: '#/components/responses/MemberResponseBody'
-        "500":
+        '500':
           $ref: '#/components/responses/MemberResponseBody'
       security:
-        - OAuth2:
+        -
+          OAuth2:
             - ViewMembers
       operationId: getMember
       summary: Get member information by member reference id
@@ -50,14 +51,15 @@ paths:
       tags:
         - rewards
       responses:
-        "200":
+        '200':
           $ref: '#/components/responses/RewardResponseBody'
-        "400":
+        '400':
           $ref: '#/components/responses/RewardResponseBody'
-        "500":
+        '500':
           $ref: '#/components/responses/RewardResponseBody'
       security:
-        - OAuth2:
+        -
+          OAuth2:
             - ViewRewards
       operationId: getRewards
       summary: Get rewards
@@ -76,14 +78,15 @@ paths:
       tags:
         - rules
       responses:
-        "200":
+        '200':
           $ref: '#/components/responses/RuleResponseBody'
-        "400":
+        '400':
           $ref: '#/components/responses/RuleResponseBody'
-        "500":
+        '500':
           $ref: '#/components/responses/RuleResponseBody'
       security:
-        - OAuth2:
+        -
+          OAuth2:
             - ViewRules
       operationId: getRules
       summary: Get rules
@@ -102,19 +105,19 @@ paths:
       tags:
         - achievements
       responses:
-        "200":
+        '200':
           $ref: '#/components/responses/AchievementResponseBody'
-        "400":
+        '400':
           $ref: '#/components/responses/AchievementResponseBody'
-        "500":
+        '500':
           $ref: '#/components/responses/AchievementResponseBody'
       security:
-        - OAuth2:
+        -
+          OAuth2:
             - ViewAchievements
       operationId: getAchievements
       summary: Get achievements by member reference id
-      description: Returns a list of achievements for the provided member ref id and
-        applied filters.
+      description: Returns a list of achievements for the provided member ref id and applied filters.
       x-ws-only: true
   /awards:
     summary: Award operations
@@ -129,14 +132,15 @@ paths:
       tags:
         - awards
       responses:
-        "200":
+        '200':
           $ref: '#/components/responses/AwardResponseBody'
-        "400":
+        '400':
           $ref: '#/components/responses/AwardResponseBody'
-        "500":
+        '500':
           $ref: '#/components/responses/AwardResponseBody'
       security:
-        - OAuth2:
+        -
+          OAuth2:
             - ViewAwards
       operationId: getAwards
       summary: Get awards.
@@ -155,14 +159,15 @@ paths:
       tags:
         - awards
       responses:
-        "200":
+        '200':
           $ref: '#/components/responses/AwardResponseBody'
-        "400":
+        '400':
           $ref: '#/components/responses/AwardResponseBody'
-        "500":
+        '500':
           $ref: '#/components/responses/AwardResponseBody'
       security:
-        - OAuth2:
+        -
+          OAuth2:
             - ClaimAwards
       operationId: claimAwards
       summary: Claim awards.
@@ -181,19 +186,19 @@ paths:
       tags:
         - competitions
       responses:
-        "200":
+        '200':
           $ref: '#/components/responses/CompetitionResponseBody'
-        "400":
+        '400':
           $ref: '#/components/responses/CompetitionResponseBody'
-        "500":
+        '500':
           $ref: '#/components/responses/CompetitionResponseBody'
       security:
-        - OAuth2:
+        -
+          OAuth2:
             - ViewCompetitions
       operationId: getCompetitions
       summary: Get competitions by member reference id
-      description: Returns a list of competitions for the provided member ref id and
-        applied filters.
+      description: Returns a list of competitions for the provided member ref id and applied filters.
       x-ws-only: true
   /contests:
     summary: Member contests operation
@@ -208,19 +213,19 @@ paths:
       tags:
         - contests
       responses:
-        "200":
+        '200':
           $ref: '#/components/responses/ContestResponseBody'
-        "400":
+        '400':
           $ref: '#/components/responses/ContestResponseBody'
-        "500":
+        '500':
           $ref: '#/components/responses/ContestResponseBody'
       security:
-        - OAuth2:
+        -
+          OAuth2:
             - ViewContests
       operationId: getContests
       summary: Get contests by member reference Id
-      description: Returns a list of contests for the provided member ref id and applied
-        filters.
+      description: Returns a list of contests for the provided member ref id and applied filters.
       x-ws-only: true
   /files:
     summary: Files operations
@@ -235,16 +240,15 @@ paths:
       tags:
         - files
       responses:
-        "200":
+        '200':
           $ref: '#/components/responses/FileResponseBody'
-        "400":
+        '400':
           $ref: '#/components/responses/FileResponseBody'
-        "500":
+        '500':
           $ref: '#/components/responses/FileResponseBody'
       operationId: getFiles
       summary: Get files.
-      description: This operation supports retrieval of file objects for one or many
-        entities.
+      description: This operation supports retrieval of file objects for one or many entities.
       x-ws-only: true
   /manage-optin:
     summary: Member optin operation
@@ -259,44 +263,20 @@ paths:
       tags:
         - members
       responses:
-        "200":
+        '200':
           $ref: '#/components/responses/MemberResponseBody'
-        "400":
+        '400':
           $ref: '#/components/responses/MemberResponseBody'
-        "500":
+        '500':
           $ref: '#/components/responses/MemberResponseBody'
       security:
-        - OAuth2:
+        -
+          OAuth2:
             - ViewMembers
       operationId: manageOptin
       summary: Get member optin information
       description: Returns a list of member optin information
       x-ws-only: true
-  /leaderboard:
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/LeaderboardSubscriptionRequest'
-      callbacks:
-        leaderboardUpdate:
-          '{$request.body#/id}':
-            post:
-              requestBody:
-                description: New message
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/Message'
-              responses:
-                "202":
-                  description: |
-                    Your implementation should only return return this HTTP status code if it is using the http protocol and only if the data was received successfully
-      responses:
-        "200":
-          $ref: '#/components/responses/LeaderboardResponseBody'
-      operationId: subscribeToLeaderboard
   /messages:
     summary: Member messages operation
     description: This endpoint supports member's messages operation.
@@ -318,26 +298,56 @@ paths:
                     schema:
                       $ref: '#/components/schemas/Message'
               responses:
-                "200":
-                  description: |
-                    Your implementation should only return return this HTTP status code if it is using the http protocol and only if the data was received successfully
+                '200':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the http protocol and only if the data was received
+                    successfully
       tags:
         - messages
       responses:
-        "200":
+        '200':
           $ref: '#/components/responses/MessageResponseBody'
-        "400":
+        '400':
           $ref: '#/components/responses/MessageResponseBody'
-        "500":
+        '500':
           $ref: '#/components/responses/MessageResponseBody'
       security:
-        - OAuth2:
+        -
+          OAuth2:
             - ViewMessages
       operationId: getMessages
       summary: Get messages by member reference id
-      description: Returns a list of messages for the provided member ref id and applied
-        filters.
+      description: Returns a list of messages for the provided member ref id and applied filters.
       x-ws-only: true
+  /leaderboard:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaderboardSubscriptionRequest'
+      callbacks:
+        leaderboardUpdate:
+          '{$request.body#/id}':
+            post:
+              requestBody:
+                description: New message
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Message'
+              responses:
+                '202':
+                  description: >
+                    Your implementation should only return this HTTP status code if it is
+                    using the http protocol and only if the data was received successfully
+      tags:
+        - leaderboard
+      responses:
+        '200':
+          $ref: '#/components/responses/LeaderboardResponseBody'
+      operationId: subscribeToLeaderboard
   /entity-changes:
     post:
       requestBody:
@@ -358,16 +368,18 @@ paths:
                     schema:
                       $ref: '#/components/schemas/EntityChanged'
               responses:
-                "202":
-                  description: |
-                    Your server implementation should return this HTTP status code if the data was received successfully
-                "204":
+                '202':
+                  description: >
+                    Your server implementation should return this HTTP status code if the
+                    data was received successfully
+                '204':
                   content:
                     application/json:
                       schema:
                         $ref: '#/components/schemas/UnsubscribeRequest'
-                  description: |
-                    Your server should return this HTTP status code if no longer interested in further updates
+                  description: >
+                    Your server should return this HTTP status code if no longer
+                    interested in further updates
         entityStateChanged:
           '{$request.body#/entityType}':
             post:
@@ -378,40 +390,29 @@ paths:
                     schema:
                       $ref: '#/components/schemas/EntityStateChanged'
               responses:
-                "200":
-                  description: |
-                    Your server implementation can optionally return this HTTP status code if the data was received successfully
-                "204":
+                '200':
+                  description: >
+                    Your server implementation can optionally return this HTTP status code
+                    if the data was received successfully
+                '204':
                   content:
                     application/json:
                       schema:
                         $ref: '#/components/schemas/UnsubscribeRequest'
-                  description: |
-                    Your server should return this HTTP status code if no longer interested in further updates
+                  description: >
+                    Your server should return this HTTP status code if no longer
+                    interested in further updates
       tags:
         - entity-changes
       responses:
-        "202":
+        '202':
           $ref: '#/components/responses/EntityChangeSubscriptionResponseBody'
-        "400":
+        '400':
           $ref: '#/components/responses/EntityChangeSubscriptionResponseBody'
-        "500":
+        '500':
           $ref: '#/components/responses/EntityChangeSubscriptionResponseBody'
       operationId: manageEntityChangeSubscription
       description: subscribes a client to receive out-of-band data
-    delete:
-      parameters:
-        - name: subscriptionId
-          description: ""
-          schema:
-            type: string
-          in: query
-      responses:
-        "200":
-          content:
-            application/json: {}
-          description: Onsuccess
-      operationId: unsubscribeFromEntityChanges
 components:
   schemas:
     ResponseMeta:
@@ -424,18 +425,18 @@ components:
       properties:
         totalRecordsFound:
           format: int32
-          description: ""
+          description: ''
           type: integer
         skip:
           format: int32
-          description: ""
+          description: ''
           type: integer
         limit:
           format: int32
-          description: ""
+          description: ''
           type: integer
         objectType:
-          description: ""
+          description: ''
           type: string
       example:
         totalRecordsFound: 70
@@ -443,28 +444,28 @@ components:
         limit: 8
         objectType: some text
     Error:
-      description: ""
+      description: ''
       required:
         - status
       type: object
       properties:
         message:
-          description: ""
+          description: ''
           type: string
         code:
           format: int32
-          description: ""
+          description: ''
           type: integer
         status:
           format: int32
-          description: ""
+          description: ''
           type: integer
       example:
-        message: "No account found for space name - [test]"
+        message: 'No account found for space name - [test]'
         code: 1007
         status: 404
     QueryMultipleFields:
-      description: ""
+      description: ''
       type: object
       properties:
         queryFields:
@@ -481,7 +482,7 @@ components:
           - description
         queryValue: ziqni
     RangeQuery:
-      description: ""
+      description: ''
       type: object
       properties:
         gt:
@@ -496,8 +497,8 @@ components:
           items:
             type: string
       example:
-        gt: "1.0"
-        lt: "3"
+        gt: '1.0'
+        lt: '3'
         constraints:
           - includeBounds
     QuerySortBy:
@@ -525,14 +526,14 @@ components:
       properties:
         meta:
           $ref: '#/components/schemas/ResponseMeta'
-          description: ""
+          description: ''
         data:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Achievement'
         errors:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Error'
@@ -541,9 +542,10 @@ components:
           totalRecordsFound: 74
           skip: 7
           limit: 2
-          time: 2018-02-10T09:30Z
+          time: '2018-02-10T09:30Z'
         data:
-          - id: ziqniId
+          -
+            id: ziqniId
             name: some text
             description: some text
             termsAndConditions: some text
@@ -557,8 +559,8 @@ components:
               every:
                 - 96
                 - 80
-              startDate: 2018-02-10T09:30Z
-              endDate: 2018-02-10T09:30Z
+              startDate: '2018-02-10T09:30Z'
+              endDate: '2018-02-10T09:30Z'
               constraints:
                 - some text
                 - some text
@@ -577,7 +579,8 @@ components:
                 shouldMatchAtLeast: 4
             status: some text
             statusCode: 23
-          - id: ziqniId
+          -
+            id: ziqniId
             name: some text
             description: some text
             termsAndConditions: some text
@@ -591,8 +594,8 @@ components:
               every:
                 - 11
                 - 38
-              startDate: 2018-02-10T09:30Z
-              endDate: 2018-02-10T09:30Z
+              startDate: '2018-02-10T09:30Z'
+              endDate: '2018-02-10T09:30Z'
               constraints:
                 - some text
                 - some text
@@ -612,10 +615,12 @@ components:
             status: some text
             statusCode: 39
         errors:
-          - message: some text
+          -
+            message: some text
             code: 1
             status: 92
-          - message: some text
+          -
+            message: some text
             code: 0
             status: 28
     CompetitionResponse:
@@ -625,14 +630,14 @@ components:
       properties:
         meta:
           $ref: '#/components/schemas/ResponseMeta'
-          description: ""
+          description: ''
         data:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Competition'
         errors:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Error'
@@ -641,9 +646,10 @@ components:
           totalRecordsFound: 11
           skip: 77
           limit: 58
-          time: 2018-02-10T09:30Z
+          time: '2018-02-10T09:30Z'
         data:
-          - id: ziqniId
+          -
+            id: ziqniId
             competitionType: Leaderboard
             numberOfRounds: 95
             numberOfGroupStages: 46
@@ -667,14 +673,15 @@ components:
                   - some text
                   - some text
                 shouldMatchAtLeast: 6
-            scheduledStartDate: 2018-02-10T09:30Z
-            scheduledEndDate: 2018-02-10T09:30Z
-            actualStartDate: 2018-02-10T09:30Z
-            actualEndDate: 2018-02-10T09:30Z
+            scheduledStartDate: '2018-02-10T09:30Z'
+            scheduledEndDate: '2018-02-10T09:30Z'
+            actualStartDate: '2018-02-10T09:30Z'
+            actualEndDate: '2018-02-10T09:30Z'
             status: Starting
             statusCode: 91
             contests:
-              - competitionId: some text
+              -
+                competitionId: some text
                 row: 56
                 name: some text
                 round: 89
@@ -684,25 +691,28 @@ components:
                   - some text
                 status: Deleted
                 statusCode: 72
-                scheduledStartDate: 2018-02-10T09:30Z
-                scheduledEndDate: 2018-02-10T09:30Z
-                actualStartDate: 2018-02-10T09:30Z
-                actualEndDate: 2018-02-10T09:30Z
+                scheduledStartDate: '2018-02-10T09:30Z'
+                scheduledEndDate: '2018-02-10T09:30Z'
+                actualStartDate: '2018-02-10T09:30Z'
+                actualEndDate: '2018-02-10T09:30Z'
                 tags:
                   - some text
                   - some text
                 rewards:
-                  - rewardRank: some text
+                  -
+                    rewardRank: some text
                     name: some text
                     rewardValue: 60.22
                     rewardType: some text
                     rewardTypeId: some text
-                  - rewardRank: some text
+                  -
+                    rewardRank: some text
                     name: some text
                     rewardValue: 84.71
                     rewardType: some text
                     rewardTypeId: some text
-              - competitionId: some text
+              -
+                competitionId: some text
                 row: 84
                 name: some text
                 round: 73
@@ -712,20 +722,22 @@ components:
                   - some text
                 status: Finalised
                 statusCode: 33
-                scheduledStartDate: 2018-02-10T09:30Z
-                scheduledEndDate: 2018-02-10T09:30Z
-                actualStartDate: 2018-02-10T09:30Z
-                actualEndDate: 2018-02-10T09:30Z
+                scheduledStartDate: '2018-02-10T09:30Z'
+                scheduledEndDate: '2018-02-10T09:30Z'
+                actualStartDate: '2018-02-10T09:30Z'
+                actualEndDate: '2018-02-10T09:30Z'
                 tags:
                   - some text
                   - some text
                 rewards:
-                  - rewardRank: some text
+                  -
+                    rewardRank: some text
                     name: some text
                     rewardValue: 24.39
                     rewardType: some text
                     rewardTypeId: some text
-                  - rewardRank: some text
+                  -
+                    rewardRank: some text
                     name: some text
                     rewardValue: 61.73
                     rewardType: some text
@@ -734,17 +746,20 @@ components:
               - some text
               - some text
             products:
-              - name: some text
+              -
+                name: some text
                 productRefId: some text
                 tags:
                   - some text
                   - some text
-              - name: some text
+              -
+                name: some text
                 productRefId: some text
                 tags:
                   - some text
                   - some text
-          - id: ziqniId
+          -
+            id: ziqniId
             competitionType: Leaderboard
             numberOfRounds: 96
             numberOfGroupStages: 57
@@ -768,14 +783,15 @@ components:
                   - some text
                   - some text
                 shouldMatchAtLeast: 63
-            scheduledStartDate: 2018-02-10T09:30Z
-            scheduledEndDate: 2018-02-10T09:30Z
-            actualStartDate: 2018-02-10T09:30Z
-            actualEndDate: 2018-02-10T09:30Z
+            scheduledStartDate: '2018-02-10T09:30Z'
+            scheduledEndDate: '2018-02-10T09:30Z'
+            actualStartDate: '2018-02-10T09:30Z'
+            actualEndDate: '2018-02-10T09:30Z'
             status: Starting
             statusCode: 91
             contests:
-              - competitionId: some text
+              -
+                competitionId: some text
                 row: 65
                 name: some text
                 round: 54
@@ -785,25 +801,28 @@ components:
                   - some text
                 status: Active
                 statusCode: 98
-                scheduledStartDate: 2018-02-10T09:30Z
-                scheduledEndDate: 2018-02-10T09:30Z
-                actualStartDate: 2018-02-10T09:30Z
-                actualEndDate: 2018-02-10T09:30Z
+                scheduledStartDate: '2018-02-10T09:30Z'
+                scheduledEndDate: '2018-02-10T09:30Z'
+                actualStartDate: '2018-02-10T09:30Z'
+                actualEndDate: '2018-02-10T09:30Z'
                 tags:
                   - some text
                   - some text
                 rewards:
-                  - rewardRank: some text
+                  -
+                    rewardRank: some text
                     name: some text
                     rewardValue: 49.18
                     rewardType: some text
                     rewardTypeId: some text
-                  - rewardRank: some text
+                  -
+                    rewardRank: some text
                     name: some text
                     rewardValue: 78.24
                     rewardType: some text
                     rewardTypeId: some text
-              - competitionId: some text
+              -
+                competitionId: some text
                 row: 0
                 name: some text
                 round: 57
@@ -813,20 +832,22 @@ components:
                   - some text
                 status: Deleted
                 statusCode: 65
-                scheduledStartDate: 2018-02-10T09:30Z
-                scheduledEndDate: 2018-02-10T09:30Z
-                actualStartDate: 2018-02-10T09:30Z
-                actualEndDate: 2018-02-10T09:30Z
+                scheduledStartDate: '2018-02-10T09:30Z'
+                scheduledEndDate: '2018-02-10T09:30Z'
+                actualStartDate: '2018-02-10T09:30Z'
+                actualEndDate: '2018-02-10T09:30Z'
                 tags:
                   - some text
                   - some text
                 rewards:
-                  - rewardRank: some text
+                  -
+                    rewardRank: some text
                     name: some text
                     rewardValue: 56.72
                     rewardType: some text
                     rewardTypeId: some text
-                  - rewardRank: some text
+                  -
+                    rewardRank: some text
                     name: some text
                     rewardValue: 0.58
                     rewardType: some text
@@ -835,25 +856,29 @@ components:
               - some text
               - some text
             products:
-              - name: some text
+              -
+                name: some text
                 productRefId: some text
                 tags:
                   - some text
                   - some text
-              - name: some text
+              -
+                name: some text
                 productRefId: some text
                 tags:
                   - some text
                   - some text
         errors:
-          - message: some text
+          -
+            message: some text
             code: 41
             status: 18
-          - message: some text
+          -
+            message: some text
             code: 25
             status: 98
     CompetitionStatus:
-      description: ""
+      description: ''
       enum:
         - Unknown
         - Deleting
@@ -870,7 +895,7 @@ components:
         - Cancelled
       type: string
     CompetitionType:
-      description: ""
+      description: ''
       enum:
         - Leaderboard
       type: string
@@ -881,14 +906,14 @@ components:
       properties:
         meta:
           $ref: '#/components/schemas/ResponseMeta'
-          description: ""
+          description: ''
         data:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Contest'
         errors:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Error'
@@ -897,9 +922,10 @@ components:
           totalRecordsFound: 22
           skip: 15
           limit: 93
-          time: 2018-02-10T09:30Z
+          time: '2018-02-10T09:30Z'
         data:
-          - id: ziqniId
+          -
+            id: ziqniId
             jsonClass: some text
             name: some text
             description: some text
@@ -915,10 +941,10 @@ components:
               - some text
             maxNumberOfEntrants: 40
             minNumberOfEntrants: 8
-            scheduledStartDate: 2018-02-10T09:30Z
-            scheduledEndDate: 2018-02-10T09:30Z
-            actualStartDate: 2018-02-10T09:30Z
-            actualEndDate: 2018-02-10T09:30Z
+            scheduledStartDate: '2018-02-10T09:30Z'
+            scheduledEndDate: '2018-02-10T09:30Z'
+            actualStartDate: '2018-02-10T09:30Z'
+            actualEndDate: '2018-02-10T09:30Z'
             strategies:
               strategyType: SumBest
               rankingStrategy:
@@ -935,7 +961,8 @@ components:
             constraints:
               - some text
               - some text
-          - id: ziqniId
+          -
+            id: ziqniId
             jsonClass: some text
             name: some text
             description: some text
@@ -951,10 +978,10 @@ components:
               - some text
             maxNumberOfEntrants: 81
             minNumberOfEntrants: 83
-            scheduledStartDate: 2018-02-10T09:30Z
-            scheduledEndDate: 2018-02-10T09:30Z
-            actualStartDate: 2018-02-10T09:30Z
-            actualEndDate: 2018-02-10T09:30Z
+            scheduledStartDate: '2018-02-10T09:30Z'
+            scheduledEndDate: '2018-02-10T09:30Z'
+            actualStartDate: '2018-02-10T09:30Z'
+            actualEndDate: '2018-02-10T09:30Z'
             strategies:
               strategyType: SumBest
               rankingStrategy:
@@ -972,23 +999,25 @@ components:
               - some text
               - some text
         errors:
-          - message: some text
+          -
+            message: some text
             code: 56
             status: 84
-          - message: some text
+          -
+            message: some text
             code: 13
             status: 6
     AchievementFilter:
-      description: ""
+      description: ''
       type: object
       properties:
         productIds:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
         tags:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
@@ -997,31 +1026,29 @@ components:
           description: startDate
         endDate:
           $ref: '#/components/schemas/DateRange'
-          description: ""
+          description: ''
         ids:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
         sortBy:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/QuerySortBy'
         skip:
           format: int32
-          description: ""
+          description: ''
           type: integer
         limit:
           format: int32
-          description: ""
+          description: ''
           type: integer
         statusCode:
           $ref: '#/components/schemas/NumberRange'
           description: Achievement status code
-          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting
-            = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling
-            = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
+          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
         constraints:
           description: Specify the constraints that need to be applied to the filter.
           type: array
@@ -1058,9 +1085,11 @@ components:
           - some text
           - some text
         sortBy:
-          - queryField: some text
+          -
+            queryField: some text
             order: Asc
-          - queryField: some text
+          -
+            queryField: some text
             order: Desc
         skip: 0
         limit: 72
@@ -1082,24 +1111,26 @@ components:
           format: int32
           description: A value indicating how many times it will be issued
           type: integer
-          example: "1"
+          example: '1'
         every:
           type: array
           items:
             format: int32
-            description: |
-              A value for the parameter of the scheduleType that indicates the Daily, Weekly, Monthly repetition exampleDaily: "Range = 1 to 7" exampleWeekly: "Range = 1 to 52" exampleMonthly: "Range = 1 to 12"
+            description: >
+              A value for the parameter of the scheduleType that indicates the Daily, Weekly,
+              Monthly repetition exampleDaily: "Range = 1 to 7" exampleWeekly: "Range = 1 to 52"
+              exampleMonthly: "Range = 1 to 12"
             type: integer
         startDate:
           format: date-time
           description: The start date and time of a schedule. ISO8601 timestamp
           type: string
-          example: 2019-09-25T15:47:00.000+0000
+          example: '2019-09-25T15:47:00.000+0000'
         endDate:
           format: date-time
           description: The end date and time of a schedule. ISO8601 timestamp
           type: string
-          example: 2019-09-25T15:47:00.000+0000
+          example: '2019-09-25T15:47:00.000+0000'
         constraints:
           description: Additional constraints
           type: array
@@ -1141,36 +1172,36 @@ components:
       type: object
       properties:
         must:
-          description: A rule indicating that it has to be included. Players that
-            are in the EU group with a MUST rule - that means only players that have
-            that group can participate
+          description: >-
+            A rule indicating that it has to be included. Players that are in the EU group with a
+            MUST rule - that means only players that have that group can participate
           type: array
           items:
             type: string
           example: '- EU - DE'
         mustNot:
-          description: A rule indicating that it will not be included. Players that
-            are in the EU group with a MUST-NOT rule - that means that players that
-            have that group can NOT participate
+          description: >-
+            A rule indicating that it will not be included. Players that are in the EU group with
+            a MUST-NOT rule - that means that players that have that group can NOT participate
           type: array
           items:
             type: string
           example: '- CH'
         should:
-          description: A rule indicating that some of them have to be included. Dependancy
-            on shouldMatchAtLeast parameter. Players that are in the EU and DE groups
-            with a SHOULD rule and a shouldMatchAtLeast with a value of 1 - that means
-            that players that have 1 of the groups can participate
+          description: >-
+            A rule indicating that some of them have to be included. Dependancy on
+            shouldMatchAtLeast parameter. Players that are in the EU and DE groups with a SHOULD
+            rule and a shouldMatchAtLeast with a value of 1 - that means that players that have 1
+            of the groups can participate
           type: array
           items:
             type: string
           example: '- FR - UK'
         shouldMatchAtLeast:
           format: int32
-          description: Dependant on should. Triggered when 2 or more should parameters
-            selected
+          description: Dependant on should. Triggered when 2 or more should parameters selected
           type: integer
-          example: "1"
+          example: '1'
       example:
         must:
           - some text
@@ -1183,7 +1214,7 @@ components:
           - some text
         shouldMatchAtLeast: 10
     ProductReduced:
-      description: ""
+      description: ''
       type: object
       properties:
         name:
@@ -1191,8 +1222,9 @@ components:
           type: string
           example: Hockey madness
         productRefId:
-          description: The reference to this product in your system. The reference
-            identifier can not be changed after the product has been created
+          description: >-
+            The reference to this product in your system. The reference identifier can not be
+            changed after the product has been created
           type: string
           example: hockey-madness
         tags:
@@ -1207,7 +1239,7 @@ components:
           - some text
           - some text
     ContestReduced:
-      description: ""
+      description: ''
       type: object
       properties:
         competitionId:
@@ -1218,7 +1250,7 @@ components:
           format: int32
           description: The row number for displaying the Contest in a table
           type: integer
-          example: "2"
+          example: '2'
         name:
           description: A name for the Contest. Can be translated
           type: string
@@ -1227,18 +1259,19 @@ components:
           format: int32
           description: To what round does the contest belong
           type: integer
-          example: "2"
+          example: '2'
         groupStage:
           format: int32
-          description: Is used for more complex Competitions e.g. multi round competitions
-            where round 1 group stage matched round 2
+          description: >-
+            Is used for more complex Competitions e.g. multi round competitions where round 1
+            group stage matched round 2
           type: integer
-          example: "2"
+          example: '2'
         entrantsFromContest:
-          description: A list of Ziqni contest identifiers to allow contests chaining.
-            When a Progression competition is active and you have a 2 round competition
-            the first round has to reference the second round then this parameter
-            becomes mandatory instead of Optional.
+          description: >-
+            A list of Ziqni contest identifiers to allow contests chaining. When a Progression
+            competition is active and you have a 2 round competition the first round has to
+            reference the second round then this parameter becomes mandatory instead of Optional.
           type: array
           items:
             type: string
@@ -1249,33 +1282,33 @@ components:
           description: The code of the contest
           type: integer
           readOnly: true
-          example: "3"
+          example: '3'
         scheduledStartDate:
           format: date-time
-          description: ISO8601 timestamp for when a Contest should start. All records
-            are stored in UTC time zone
+          description: >-
+            ISO8601 timestamp for when a Contest should start. All records are stored in UTC time
+            zone
           type: string
-          example: 2019-09-25T15:47:00.000+0000
+          example: '2019-09-25T15:47:00.000+0000'
         scheduledEndDate:
           format: date-time
-          description: ISO8601 timestamp for when a Contest should end. All records
-            are stored in UTC time zone
+          description: >-
+            ISO8601 timestamp for when a Contest should end. All records are stored in UTC time
+            zone
           type: string
-          example: 2019-09-25T15:47:00.000+0000
+          example: '2019-09-25T15:47:00.000+0000'
         actualStartDate:
           format: date-time
-          description: ISO8601 timestamp for when a Contest started. All records are
-            stored in UTC time zone
+          description: ISO8601 timestamp for when a Contest started. All records are stored in UTC time zone
           type: string
           readOnly: true
-          example: 2019-09-25T15:47:00.000+0000
+          example: '2019-09-25T15:47:00.000+0000'
         actualEndDate:
           format: date-time
-          description: ISO8601 timestamp for when a Contest ended. All records are
-            stored in UTC time zone
+          description: ISO8601 timestamp for when a Contest ended. All records are stored in UTC time zone
           type: string
           readOnly: true
-          example: 2019-09-25T15:47:00.000+0000
+          example: '2019-09-25T15:47:00.000+0000'
         tags:
           description: A list of id's used to tag
           type: array
@@ -1283,7 +1316,7 @@ components:
             type: string
           example: '- Dc4swmQBVd51K6gPQqFx - Dc4swmQBVd51K6gPQqF2'
         rewards:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/RewardReduced'
@@ -1298,43 +1331,43 @@ components:
           - some text
         status: NotStarted
         statusCode: 82
-        scheduledStartDate: 2018-02-10T09:30Z
-        scheduledEndDate: 2018-02-10T09:30Z
-        actualStartDate: 2018-02-10T09:30Z
-        actualEndDate: 2018-02-10T09:30Z
+        scheduledStartDate: '2018-02-10T09:30Z'
+        scheduledEndDate: '2018-02-10T09:30Z'
+        actualStartDate: '2018-02-10T09:30Z'
+        actualEndDate: '2018-02-10T09:30Z'
         tags:
           - some text
           - some text
         rewards:
-          - rewardRank: some text
+          -
+            rewardRank: some text
             name: some text
             rewardValue: 51.26
             rewardType: some text
             rewardTypeId: some text
-          - rewardRank: some text
+          -
+            rewardRank: some text
             name: some text
             rewardValue: 13.92
             rewardType: some text
             rewardTypeId: some text
     RewardReduced:
-      description: ""
+      description: ''
       type: object
       properties:
         rewardRank:
-          description: If used in the context of contest this will associate with
-            the rank of the leaderboard
+          description: If used in the context of contest this will associate with the rank of the leaderboard
           type: string
-          example: "1"
+          example: '1'
         name:
           description: The name of a reward
           type: string
           example: Welcome badge
         rewardValue:
           format: double
-          description: Numerical value of the reward that will be issued based on
-            the reward type
+          description: Numerical value of the reward that will be issued based on the reward type
           type: number
-          example: "1"
+          example: '1'
         rewardType:
           description: Reward Type key
           type: string
@@ -1355,14 +1388,14 @@ components:
       properties:
         meta:
           $ref: '#/components/schemas/ResponseMeta'
-          description: ""
+          description: ''
         data:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Reward'
         errors:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Error'
@@ -1371,9 +1404,10 @@ components:
           totalRecordsFound: 59
           skip: 93
           limit: 53
-          time: 2018-02-10T09:30Z
+          time: '2018-02-10T09:30Z'
         data:
-          - icon: some text
+          -
+            icon: some text
             jsonClass: some text
             name: some text
             description: some text
@@ -1389,8 +1423,8 @@ components:
               every:
                 - 2
                 - 29
-              startDate: 2018-02-10T09:30Z
-              endDate: 2018-02-10T09:30Z
+              startDate: '2018-02-10T09:30Z'
+              endDate: '2018-02-10T09:30Z'
               constraints:
                 - some text
                 - some text
@@ -1407,7 +1441,8 @@ components:
                   - some text
                   - some text
                 shouldMatchAtLeast: 8
-          - icon: some text
+          -
+            icon: some text
             jsonClass: some text
             name: some text
             description: some text
@@ -1423,8 +1458,8 @@ components:
               every:
                 - 36
                 - 65
-              startDate: 2018-02-10T09:30Z
-              endDate: 2018-02-10T09:30Z
+              startDate: '2018-02-10T09:30Z'
+              endDate: '2018-02-10T09:30Z'
               constraints:
                 - some text
                 - some text
@@ -1442,10 +1477,12 @@ components:
                   - some text
                 shouldMatchAtLeast: 18
         errors:
-          - message: some text
+          -
+            message: some text
             code: 61
             status: 75
-          - message: some text
+          -
+            message: some text
             code: 88
             status: 70
     MessageResponse:
@@ -1455,14 +1492,14 @@ components:
       properties:
         meta:
           $ref: '#/components/schemas/ResponseMeta'
-          description: ""
+          description: ''
         data:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Message'
         errors:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Error'
@@ -1471,9 +1508,10 @@ components:
           totalRecordsFound: 56
           skip: 59
           limit: 22
-          time: 2018-02-10T09:30Z
+          time: '2018-02-10T09:30Z'
         data:
-          - id: ziqniId
+          -
+            id: ziqniId
             icon: some text
             jsonClass: some text
             name: some text
@@ -1489,8 +1527,8 @@ components:
               every:
                 - 5
                 - 21
-              startDate: 2018-02-10T09:30Z
-              endDate: 2018-02-10T09:30Z
+              startDate: '2018-02-10T09:30Z'
+              endDate: '2018-02-10T09:30Z'
               constraints:
                 - some text
                 - some text
@@ -1507,7 +1545,8 @@ components:
                   - some text
                   - some text
                 shouldMatchAtLeast: 30
-          - id: ziqniId
+          -
+            id: ziqniId
             icon: some text
             jsonClass: some text
             name: some text
@@ -1523,8 +1562,8 @@ components:
               every:
                 - 71
                 - 96
-              startDate: 2018-02-10T09:30Z
-              endDate: 2018-02-10T09:30Z
+              startDate: '2018-02-10T09:30Z'
+              endDate: '2018-02-10T09:30Z'
               constraints:
                 - some text
                 - some text
@@ -1542,14 +1581,16 @@ components:
                   - some text
                 shouldMatchAtLeast: 9
         errors:
-          - message: some text
+          -
+            message: some text
             code: 39
             status: 20
-          - message: some text
+          -
+            message: some text
             code: 24
             status: 48
     Strategy:
-      description: ""
+      description: ''
       type: object
       properties:
         strategyType:
@@ -1559,8 +1600,14 @@ components:
         scoringStrategy:
           $ref: '#/components/schemas/ScoringStrategy'
     StrategyType:
-      description: |
-        The scoring strategy type. SUMMARY: * "TotalCumulative": The basic strategy where all the points sum up and are shown in the Leaderboard. Depending on the Rules, all the points are Cumulative. * "SumBest": This strategy requires a value to indicate how many highest points will be calculated and shown on the leaderboard * "LimitedTo": This strategy requires a value to indicate how many events will be summed up and shown in the leaderboard. * "FirstTo": This strategy requires a value to indicate how many points have to be received to complete the mission.
+      description: >
+        The scoring strategy type. SUMMARY: * "TotalCumulative": The basic strategy where all the
+        points sum up and are shown in the Leaderboard. Depending on the Rules, all the points are
+        Cumulative. * "SumBest": This strategy requires a value to indicate how many highest points
+        will be calculated and shown on the leaderboard * "LimitedTo": This strategy requires a value
+        to indicate how many events will be summed up and shown in the leaderboard. * "FirstTo": This
+        strategy requires a value to indicate how many points have to be received to complete the
+        mission.
       enum:
         - TotalCumulative
         - SumBest
@@ -1568,43 +1615,48 @@ components:
         - FirstTo
       type: string
     RankingStrategy:
-      description: ""
+      description: ''
       type: object
       properties:
         constraints:
-          description: scoreDesc - The Ranking that can be Ascending or Descending
-            based on timeDesc. timeDesc - The Ranking that can be Ascending or Descending
-            based on scoreDesc. scoreFirst - The Ranking that can be score first or
-            time first ignoreTime - The Ranking when time is ignored ignoreScore -
-            The Ranking when score is ignored
+          description: >-
+            scoreDesc - The Ranking that can be Ascending or Descending based on timeDesc.
+            timeDesc - The Ranking that can be Ascending or Descending based on scoreDesc.
+            scoreFirst - The Ranking that can be score first or time first ignoreTime - The
+            Ranking when time is ignored ignoreScore - The Ranking when score is ignored
           type: array
           items:
             type: string
-          example: "- scoreDesc \n- timeDesc\n- scoreFirst\n- ignoreTime\n- ignoreScore"
+          example: |-
+            - scoreDesc 
+            - timeDesc
+            - scoreFirst
+            - ignoreTime
+            - ignoreScore
     ScoringStrategy:
-      description: ""
+      description: ''
       type: object
       properties:
         limitUpdatesTo:
           format: int32
           description: The scoring strategies types "SumBest" value
           type: integer
-          example: "2"
+          example: '2'
         sumBestXOf:
           format: int32
           description: The scoring strategies types "LimitedTo" value
           type: integer
-          example: "5"
+          example: '5'
         lastUpdateTimeStamp:
           format: int64
           description: The scoring strategies types "FirstTo" value
           type: integer
-          example: "1000"
+          example: '1000'
         recordTimeWhenSumReaches:
           format: double
           description: Not supported at the moment
           type: number
-          example: "1"
+          example: '1'
     RoundType:
       description: The type of rounds in a contest
       enum:
@@ -1639,7 +1691,7 @@ components:
         - RuleSet
       type: string
     RewardTypeReduced:
-      description: ""
+      description: ''
       type: object
       properties:
         key:
@@ -1647,8 +1699,9 @@ components:
           type: string
           example: free-spin-reward
     RuleExpression:
-      description: "A conditional expressions is an element that declares either a\
-        \ rule expression, condition or routine to be evaluated or executed"
+      description: >-
+        A conditional expressions is an element that declares either a rule expression, condition or
+        routine to be evaluated or executed
       required:
         - type
       type: object
@@ -1657,12 +1710,10 @@ components:
           description: condition or expression or routine
           type: string
         mustMatchAll:
-          description: All expressions in the condition must either evaluate to TRUE
-            or FALSE if set to TRUE
+          description: All expressions in the condition must either evaluate to TRUE or FALSE if set to TRUE
           type: boolean
         mustEvaluateTo:
-          description: All the expressions of this condition must either evaluate
-            to TRUE or FALSE
+          description: All the expressions of this condition must either evaluate to TRUE or FALSE
           type: boolean
         scope:
           description: The scope of the operand used in the expression
@@ -1671,33 +1722,33 @@ components:
           description: The order the rules have to be executed in.
           type: string
         operator:
-          description: "[ *.* ] or [ .* ] or [ == ] or [ > ] or [ >= ] or [ <=]  or\
-            \ [ < ] or [ <> ]"
+          description: '[ *.* ] or [ .* ] or [ == ] or [ > ] or [ >= ] or [ <=]  or [ < ] or [ <> ]'
           type: string
         value:
           description: The value associated with the expression
           type: string
         rules:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/RuleExpression'
         then:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/RuleRoutine'
         lineNumber:
           format: int32
-          description: ""
+          description: ''
           type: integer
     RuleRoutine:
-      description: ""
+      description: ''
       type: object
       properties:
         routine:
-          description: A routine to execute if the conditional expressions in the
-            matching group evaluted to true
+          description: >-
+            A routine to execute if the conditional expressions in the matching group evaluted to
+            true
           type: string
         arguments:
           description: The arguments of the routine.
@@ -1706,43 +1757,42 @@ components:
             $ref: '#/components/schemas/RuleArgument'
         lineNumber:
           format: int32
-          description: ""
+          description: ''
           type: integer
     RuleArgument:
-      description: ""
+      description: ''
       required:
         - argument
       type: object
       properties:
         argument:
-          description: ""
+          description: ''
           type: string
           x-es-type: Keyword
         value:
-          description: ""
+          description: ''
           type: string
           x-es-type: Keyword
         type:
-          description: ""
+          description: ''
           type: string
           x-es-type: Keyword
         order:
           format: int32
-          description: ""
+          description: ''
           type: integer
     Rule:
-      description: ""
+      description: ''
       type: object
       properties:
         entityId:
           description: The id of the context object this rule refers to
           type: string
         action:
-          description: "The action this rule describes, like start.contest, or points.awarded"
+          description: 'The action this rule describes, like start.contest, or points.awarded'
           type: string
         context:
-          description: "The context of this rule like achievement, competition, or\
-            \ contest "
+          description: 'The context of this rule like achievement, competition, or contest '
           type: string
         rules:
           $ref: '#/components/schemas/RuleExpression'
@@ -1753,16 +1803,16 @@ components:
           readOnly: true
           example: Dc4swmQBVd51K6gPQqFx
         entityType:
-          description: ""
+          description: ''
           type: string
     RuleRequest:
-      description: ""
+      description: ''
       required:
         - entityIds
       type: object
       properties:
         entityIds:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
@@ -1773,14 +1823,14 @@ components:
       properties:
         meta:
           $ref: '#/components/schemas/ResponseMeta'
-          description: ""
+          description: ''
         data:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Rule'
         errors:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Error'
@@ -1789,9 +1839,10 @@ components:
           totalRecordsFound: 59
           skip: 93
           limit: 53
-          time: 2018-02-10T09:30Z
+          time: '2018-02-10T09:30Z'
         data:
-          - icon: some text
+          -
+            icon: some text
             jsonClass: some text
             name: some text
             description: some text
@@ -1807,8 +1858,8 @@ components:
               every:
                 - 2
                 - 29
-              startDate: 2018-02-10T09:30Z
-              endDate: 2018-02-10T09:30Z
+              startDate: '2018-02-10T09:30Z'
+              endDate: '2018-02-10T09:30Z'
               constraints:
                 - some text
                 - some text
@@ -1825,7 +1876,8 @@ components:
                   - some text
                   - some text
                 shouldMatchAtLeast: 8
-          - icon: some text
+          -
+            icon: some text
             jsonClass: some text
             name: some text
             description: some text
@@ -1841,8 +1893,8 @@ components:
               every:
                 - 36
                 - 65
-              startDate: 2018-02-10T09:30Z
-              endDate: 2018-02-10T09:30Z
+              startDate: '2018-02-10T09:30Z'
+              endDate: '2018-02-10T09:30Z'
               constraints:
                 - some text
                 - some text
@@ -1860,27 +1912,29 @@ components:
                   - some text
                 shouldMatchAtLeast: 18
         errors:
-          - message: some text
+          -
+            message: some text
             code: 61
             status: 75
-          - message: some text
+          -
+            message: some text
             code: 88
             status: 70
     Proxy:
-      description: ""
+      description: ''
       type: object
       properties:
         name:
-          description: ""
+          description: ''
           type: string
       example:
         name: some text
     ProxyRequest:
-      description: ""
+      description: ''
       type: object
       properties:
         id:
-          description: ""
+          description: ''
           type: string
     ProxyResponse:
       description: '        '
@@ -1889,20 +1943,20 @@ components:
       properties:
         meta:
           $ref: '#/components/schemas/ResponseMeta'
-          description: ""
+          description: ''
         data:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Proxy'
         errors:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Error'
       example:
         meta:
-          time: 2021-10-03T19:13:41.171Z
+          time: '2021-10-03T19:13:41.171Z'
         data:
           jsonClass: Competition
           accountId: <account-id>
@@ -1912,21 +1966,21 @@ components:
           groups:
             - group1
             - group2
-          created: 2021-09-08T15:39:53.891+0000
+          created: '2021-09-08T15:39:53.891+0000'
           id: <member-id>
         errors:
-          - message: "No account found for space name - [test]"
+          -
+            message: 'No account found for space name - [test]'
             code: 1007
             status: 404
     MemberRequest:
-      description: ""
+      description: ''
       required:
         - includeCustomFields
       type: object
       properties:
         includeFields:
-          description: "ALL, or else the name of the top level fields you want to\
-            \ include"
+          description: 'ALL, or else the name of the top level fields you want to include'
           type: array
           items:
             type: string
@@ -1957,18 +2011,18 @@ components:
       properties:
         meta:
           $ref: '#/components/schemas/ResponseMeta'
-          description: ""
+          description: ''
         data:
           $ref: '#/components/schemas/Member'
-          description: ""
+          description: ''
         errors:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Error'
       example:
         meta:
-          time: 2021-10-03T19:13:41.171Z
+          time: '2021-10-03T19:13:41.171Z'
         data:
           jsonClass: Player
           accountId: <account-id>
@@ -1978,14 +2032,15 @@ components:
           groups:
             - group1
             - group2
-          created: 2021-09-08T15:39:53.891+0000
+          created: '2021-09-08T15:39:53.891+0000'
           id: <member-id>
         errors:
-          - message: "No account found for space name - [test]"
+          -
+            message: 'No account found for space name - [test]'
             code: 1007
             status: 404
     MemberSession:
-      description: ""
+      description: ''
       type: object
     MemberSessionResponse:
       description: '        '
@@ -1994,14 +2049,14 @@ components:
       properties:
         meta:
           $ref: '#/components/schemas/ResponseMeta'
-          description: ""
+          description: ''
         data:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/MemberSession'
         errors:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Error'
@@ -2010,9 +2065,10 @@ components:
           totalRecordsFound: 56
           skip: 59
           limit: 22
-          time: 2018-02-10T09:30Z
+          time: '2018-02-10T09:30Z'
         data:
-          - id: ziqniId
+          -
+            id: ziqniId
             icon: some text
             jsonClass: some text
             name: some text
@@ -2028,8 +2084,8 @@ components:
               every:
                 - 5
                 - 21
-              startDate: 2018-02-10T09:30Z
-              endDate: 2018-02-10T09:30Z
+              startDate: '2018-02-10T09:30Z'
+              endDate: '2018-02-10T09:30Z'
               constraints:
                 - some text
                 - some text
@@ -2046,7 +2102,8 @@ components:
                   - some text
                   - some text
                 shouldMatchAtLeast: 30
-          - id: ziqniId
+          -
+            id: ziqniId
             icon: some text
             jsonClass: some text
             name: some text
@@ -2062,8 +2119,8 @@ components:
               every:
                 - 71
                 - 96
-              startDate: 2018-02-10T09:30Z
-              endDate: 2018-02-10T09:30Z
+              startDate: '2018-02-10T09:30Z'
+              endDate: '2018-02-10T09:30Z'
               constraints:
                 - some text
                 - some text
@@ -2081,22 +2138,24 @@ components:
                   - some text
                 shouldMatchAtLeast: 9
         errors:
-          - message: some text
+          -
+            message: some text
             code: 39
             status: 20
-          - message: some text
+          -
+            message: some text
             code: 24
             status: 48
     MemberSessionRequest:
-      description: ""
+      description: ''
       type: object
       properties:
         id:
-          description: ""
+          description: ''
       example:
         memberRefId: some text
     OptionalModelFields:
-      description: ""
+      description: ''
       type: object
       properties:
         customFields:
@@ -2122,16 +2181,16 @@ components:
           m1: v1
           m2: 1
     AwardFilter:
-      description: ""
+      description: ''
       type: object
       properties:
         productIds:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
         tags:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
@@ -2140,38 +2199,34 @@ components:
           description: startDate
         endDate:
           $ref: '#/components/schemas/RangeQuery'
-          description: ""
+          description: ''
         ids:
-          description: ""
-          type: array
-          items:
-            type: string
-        status:
-          description: Achievement status
+          description: ''
           type: array
           items:
             type: string
         sortBy:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/QuerySortBy'
         skip:
           format: int32
-          description: ""
+          description: ''
           type: integer
         limit:
           format: int32
-          description: ""
+          description: ''
           type: integer
         statusCode:
-          description: Achievement status code
+          description: Status codes
           type: array
           items:
             format: int32
             type: integer
+          example: ''
         constraints:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
@@ -2201,9 +2256,11 @@ components:
           - some text
           - some text
         sortBy:
-          - queryField: some text
+          -
+            queryField: some text
             order: Asc
-          - queryField: some text
+          -
+            queryField: some text
             order: Desc
         skip: 0
         limit: 72
@@ -2211,22 +2268,23 @@ components:
           - 60
           - 45
     Achievement:
-      description: ""
+      description: ''
       type: object
       allOf:
-        - type: object
+        -
+          type: object
           properties:
             name:
-              description: ""
+              description: ''
               type: string
             description:
-              description: ""
+              description: ''
               type: string
             termsAndConditions:
-              description: ""
+              description: ''
               type: string
             constraints:
-              description: "Additional constraints, if set means true"
+              description: 'Additional constraints, if set means true'
               type: array
               items:
                 type: string
@@ -2249,13 +2307,15 @@ components:
               type: string
             statusCode:
               format: int32
-              description: ""
+              description: ''
               type: integer
             memberTagsFilter:
               $ref: '#/components/schemas/DependantOn'
-              description: ""
-        - $ref: '#/components/schemas/ModelDefault'
-        - $ref: '#/components/schemas/OptionalModelFields'
+              description: ''
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
       example:
         id: ziqniId
         name: some text
@@ -2271,8 +2331,8 @@ components:
           every:
             - 73
             - 79
-          startDate: 2018-02-10T09:30Z
-          endDate: 2018-02-10T09:30Z
+          startDate: '2018-02-10T09:30Z'
+          endDate: '2018-02-10T09:30Z'
           constraints:
             - some text
             - some text
@@ -2330,14 +2390,14 @@ components:
       properties:
         meta:
           $ref: '#/components/schemas/ResponseMeta'
-          description: ""
+          description: ''
         data:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Award'
         errors:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Error'
@@ -2351,20 +2411,22 @@ components:
           - {}
           - {}
         errors:
-          - message: some text
+          -
+            message: some text
             code: 15
             status: 69
-          - message: some text
+          -
+            message: some text
             code: 61
             status: 67
     FileRequest:
-      description: ""
+      description: ''
       required:
         - memberRefId
       type: object
       properties:
         memberRefId:
-          description: ""
+          description: ''
           type: string
     FileResponse:
       description: '        '
@@ -2373,14 +2435,14 @@ components:
       properties:
         meta:
           $ref: '#/components/schemas/ResponseMeta'
-          description: ""
+          description: ''
         data:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/File'
         errors:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Error'
@@ -2394,17 +2456,21 @@ components:
           - {}
           - {}
         errors:
-          - message: some text
+          -
+            message: some text
             code: 19
             status: 14
-          - message: some text
+          -
+            message: some text
             code: 72
             status: 71
     File:
       description: This is the File model
       allOf:
-        - $ref: '#/components/schemas/ModelDefault'
-        - $ref: '#/components/schemas/OptionalModelFields'
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
           type: object
           properties:
             eventRefType:
@@ -2434,7 +2500,7 @@ components:
               format: date-time
               description: The time that the message will disappear after. ISO8601 timestamp
               type: string
-              example: 2019-09-25T15:47:00.000+0000
+              example: '2019-09-25T15:47:00.000+0000'
             memberId:
               description: The reference ID of the event object
               type: array
@@ -2449,7 +2515,7 @@ components:
               readOnly: true
               example: '- subject - body'
     ModelDefault:
-      description: ""
+      description: ''
       required:
         - id
       type: object
@@ -2462,16 +2528,18 @@ components:
           type: string
         created:
           format: date-time
-          description: ISO8601 timestamp for when a Model was created. All records
-            are stored in UTC time zone
+          description: >-
+            ISO8601 timestamp for when a Model was created. All records are stored in UTC time
+            zone
           type: string
       example:
         id: some text
     Award:
-      description: ""
+      description: ''
       type: object
       allOf:
-        - type: object
+        -
+          type: object
           properties:
             memberId:
               description: A unique identifier of a Member
@@ -2485,44 +2553,46 @@ components:
               $ref: '#/components/schemas/RewardTypeReduced'
               description: The type of reward issued
             rewardRank:
-              description: If used in the context of contest this will associate with
-                the rank of the leaderboard
+              description: >-
+                If used in the context of contest this will associate with the rank of the
+                leaderboard
               type: string
-              example: "1"
+              example: '1'
             rewardValue:
               format: double
-              description: Numerical value of the reward that will be issued based on
-                the reward type
+              description: Numerical value of the reward that will be issued based on the reward type
               type: number
-              example: "1"
+              example: '1'
             delay:
               format: int32
               description: Delay of issuing a reward in minutes
               type: integer
-              example: "2"
+              example: '2'
             entityType:
               $ref: '#/components/schemas/EntityType'
-              description: "Competition, Contest, or Achievement"
+              description: 'Competition, Contest, or Achievement'
             entityId:
-              description: The Id of the contest or achievement related to this Award.
-                Dependant on entityType
+              description: >-
+                The Id of the contest or achievement related to this Award. Dependant on
+                entityType
               type: string
               example: Dc4swmQBVd51K6gPQqFx
             pointInTime:
               format: date-time
-              description: ISO8601 timestamp for when an Award is available until a
-                specific point in time. All records are stored in UTC time zone. * There
-                can only be one time definition used for claim period either "pointInTime"
-                or "period"
+              description: >-
+                ISO8601 timestamp for when an Award is available until a specific point in
+                time. All records are stored in UTC time zone. * There can only be one time
+                definition used for claim period either "pointInTime" or "period"
               type: string
-              example: 2019-09-25T15:47:00.000+0000
+              example: '2019-09-25T15:47:00.000+0000'
             period:
               format: int32
-              description: "Claimable duration in minutes, this value will set the controls\
-              \ until when the award is claimable. * There can only be one time definition\
-              \ used for claim period either \"pointInTime\" or \"period\""
+              description: >-
+                Claimable duration in minutes, this value will set the controls until when the
+                award is claimable. * There can only be one time definition used for claim
+                period either "pointInTime" or "period"
               type: integer
-              example: "2"
+              example: '2'
             tags:
               description: A list of Strings of groups that the reward belongs to.
               type: array
@@ -2534,8 +2604,7 @@ components:
               additionalProperties:
                 type: string
             constraints:
-              description: "Additional constraints, if the value is present it means\
-              \ the"
+              description: 'Additional constraints, if the value is present it means the'
               type: array
               items:
                 type: string
@@ -2545,10 +2614,11 @@ components:
             claimed:
               description: ' Award is claimed.'
               type: boolean
-              example: 2019-09-25T15:47:00.000+0000
-        - $ref: '#/components/schemas/ModelDefault'
+              example: '2019-09-25T15:47:00.000+0000'
+        -
+          $ref: '#/components/schemas/ModelDefault'
     OptinAction:
-      description: ""
+      description: ''
       enum:
         - opt-in
         - opt-out
@@ -2556,11 +2626,11 @@ components:
     Member:
       description: This is the Member model
       allOf:
-        - type: object
+        -
+          type: object
           properties:
             name:
-              description: The name of the member that is used on leader boards and
-                public displays
+              description: The name of the member that is used on leader boards and public displays
               type: string
               example: Player 1
             memberRefId:
@@ -2582,29 +2652,31 @@ components:
             timeZoneOffset:
               description: To what time zone teh emmber belongs to
               type: string
-        - $ref: '#/components/schemas/ModelDefault'
-        - $ref: '#/components/schemas/OptionalModelFields'
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
     UnsubscribeRequest:
-      description: ""
+      description: ''
       required:
         - sunscriptionId
       type: object
       properties:
         sunscriptionId:
-          description: ""
+          description: ''
           type: string
     ManageOptinRequest:
-      description: ""
+      description: ''
       type: object
       properties:
         entityId:
-          description: ""
+          description: ''
           type: string
         entityType:
-          description: ""
+          description: ''
           type: string
         action:
-          description: ""
+          description: ''
           type: string
       example:
         memberRefId: some text
@@ -2612,7 +2684,7 @@ components:
         entityType: some text
         action: some text
     EntityChangeSubscriptionRequest:
-      description: ""
+      description: ''
       required:
         - entityType
         - callback
@@ -2620,8 +2692,7 @@ components:
       type: object
       properties:
         entityType:
-          description: "What you are subscribing to, like Competition, Contest, Member,\
-            \ Award etc."
+          description: 'What you are subscribing to, like Competition, Contest, Member, Award etc.'
           type: string
         constraints:
           description: Constraints of this subscription.
@@ -2629,8 +2700,9 @@ components:
           items:
             type: string
         callback:
-          description: The callback operation you are subscribing too. Like entityChanged
-            or entityStateChanged
+          description: >-
+            The callback operation you are subscribing too. Like entityChanged or
+            entityStateChanged
           type: string
         action:
           description: Either subscribe or unsubscribe from the data feed
@@ -2647,10 +2719,10 @@ components:
       type: object
       properties:
         entityType:
-          description: ""
+          description: ''
           type: string
         subscriptionId:
-          description: ""
+          description: ''
           type: string
         constraints:
           description: Constraints of this subscription like gauranteedDelivery
@@ -2661,27 +2733,27 @@ components:
           description: /user/queue/callbacks
           type: string
     EntityChangeSubscriptionResponse:
-      description: ""
+      description: ''
       required:
         - subscriptions
       type: object
       properties:
         meta:
           $ref: '#/components/schemas/MetaBasic'
-          description: ""
+          description: ''
         data:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/EntityChangeSubscription'
         errors:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/Error'
       example: 2531329f-fb09-4ef7-887e-84e648214436
     LeaderboardSubscriptionRequest:
-      description: ""
+      description: ''
       required:
         - entityId
         - action
@@ -2691,7 +2763,7 @@ components:
           $ref: '#/components/schemas/LeaderboardFilter'
           description: Used when subscribing to a leaderboard feed
         entityId:
-          description: "Either the competition, contest, tournament or match identifier"
+          description: 'Either the competition, contest, tournament or match identifier'
           type: string
         action:
           description: Either subscribe or unsubscribe from the data feed
@@ -2700,55 +2772,54 @@ components:
             - Unsubscribe
           type: string
     LeaderboardFilter:
-      description: ""
+      description: ''
       required:
         - topRanksToInclude
       type: object
       properties:
         topRanksToInclude:
           format: int32
-          description: "Include rank from zero [0] none, then one [1] to the rank\
-            \ specified here. The maximum allowed is 50"
+          description: >-
+            Include rank from zero [0] none, then one [1] to the rank specified here. The maximum
+            allowed is 50
           maximum: 50
           minimum: 1
           type: integer
         ranksAboveToInclude:
           format: int32
-          description: Include ranks above member position. The maximum allowed is
-            20
+          description: Include ranks above member position. The maximum allowed is 20
           maximum: 20
           minimum: 0
           type: integer
         ranksBelowToInclude:
           format: int32
-          description: Include ranks below member position. The maximum allowed is
-            20
+          description: Include ranks below member position. The maximum allowed is 20
           maximum: 20
           minimum: 0
           type: integer
     DateRange:
-      description: ""
+      description: ''
       type: object
       properties:
         before:
           format: date-time
-          description: ""
+          description: ''
           type: string
         after:
           format: date-time
-          description: ""
+          description: ''
           type: string
     NumberRange:
-      description: ""
+      description: ''
       type: object
       properties:
         moreThan:
           format: int64
-          description: ""
+          description: ''
           type: integer
         lessThan:
           format: int64
-          description: ""
+          description: ''
           type: integer
     FieldType:
       description: The data type of custom field
@@ -2769,12 +2840,12 @@ components:
       type: object
       properties:
         productIds:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
         tags:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
@@ -2783,36 +2854,34 @@ components:
           description: startDate
         endDate:
           $ref: '#/components/schemas/DateRange'
-          description: ""
+          description: ''
         sortBy:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/QuerySortBy'
         ids:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
         competitionIds:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
         skip:
           format: int32
-          description: ""
+          description: ''
           type: integer
         limit:
           format: int32
-          description: ""
+          description: ''
           type: integer
         statusCode:
           $ref: '#/components/schemas/NumberRange'
           description: Contest status code
-          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting
-            = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling
-            = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
+          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
         constraints:
           description: Specify the constraints that need to be applied to the filter.
           type: array
@@ -2851,11 +2920,11 @@ components:
         skip: 55
         limit: 61
     CompetitionFilter:
-      description: ""
+      description: ''
       type: object
       properties:
         tags:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
@@ -2864,35 +2933,33 @@ components:
           description: startDate
         endDate:
           $ref: '#/components/schemas/DateRange'
-          description: ""
+          description: ''
         productIds:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
         statusCode:
           $ref: '#/components/schemas/NumberRange'
           description: Competition status code
-          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting
-            = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling
-            = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
+          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
         sortBy:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/QuerySortBy'
         ids:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
         skip:
           format: int32
-          description: ""
+          description: ''
           type: integer
         limit:
           format: int32
-          description: ""
+          description: ''
           type: integer
         constraints:
           description: Specify the constraints that need to be applied to the filter.
@@ -2930,9 +2997,11 @@ components:
           - Leaderboard
           - Leaderboard
         sortBy:
-          - queryField: some text
+          -
+            queryField: some text
             order: Asc
-          - queryField: some text
+          -
+            queryField: some text
             order: Desc
         ids:
           - some text
@@ -2940,10 +3009,11 @@ components:
         skip: 81
         limit: 79
     Competition:
-      description: ""
+      description: ''
       type: object
       allOf:
-        - type: object
+        -
+          type: object
           properties:
             competitionType:
               $ref: '#/components/schemas/CompetitionType'
@@ -2958,56 +3028,60 @@ components:
               format: int32
               description: Maximum number of partiipants allowed in a competition
               type: integer
-              example: "9999"
+              example: '9999'
             minNumberOfEntrants:
               format: int32
               description: Maximum number of partiipants allowed in a competition
               type: integer
-              example: "0"
+              example: '0'
             name:
-              description: ""
+              description: ''
               type: string
             description:
-              description: ""
+              description: ''
               type: string
             termsAndConditions:
-              description: ""
+              description: ''
               type: string
             entrantMemberType:
               type: string
             scheduledStartDate:
               format: date-time
-              description: ISO8601 timestamp for when a Competition should start. All
-                records are stored in UTC time zone
+              description: >-
+                ISO8601 timestamp for when a Competition should start. All records are stored
+                in UTC time zone
               type: string
-              example: 2019-09-25T15:47:00.000+0000
+              example: '2019-09-25T15:47:00.000+0000'
             scheduledEndDate:
               format: date-time
-              description: ISO8601 timestamp for when a Competition should end. All
-                records are stored in UTC time zone
+              description: >-
+                ISO8601 timestamp for when a Competition should end. All records are stored in
+                UTC time zone
               type: string
-              example: 2019-09-25T15:47:00.000+0000
+              example: '2019-09-25T15:47:00.000+0000'
             actualStartDate:
               format: date-time
-              description: ISO8601 timestamp for when a Competition started. All records
-                are stored in UTC time zone
+              description: >-
+                ISO8601 timestamp for when a Competition started. All records are stored in
+                UTC time zone
               type: string
               readOnly: true
-              example: 2019-09-25T15:47:00.000+0000
+              example: '2019-09-25T15:47:00.000+0000'
             actualEndDate:
               format: date-time
-              description: ISO8601 timestamp for when a Competition ended. All records
-                are stored in UTC time zone
+              description: >-
+                ISO8601 timestamp for when a Competition ended. All records are stored in UTC
+                time zone
               type: string
               readOnly: true
-              example: 2019-09-25T15:47:00.000+0000
+              example: '2019-09-25T15:47:00.000+0000'
             status:
               $ref: '#/components/schemas/CompetitionStatus'
             statusCode:
               description: The code of the competition
               type: integer
               readOnly: true
-              example: "5"
+              example: '5'
             constraints:
               description: Additional constraints
               uniqueItems: true
@@ -3020,15 +3094,17 @@ components:
                 - isPublic
                 - optinRequiredForEntrants
             products:
-              description: ""
+              description: ''
               type: array
               items:
                 $ref: '#/components/schemas/ProductReduced'
             memberTagsFilter:
               $ref: '#/components/schemas/DependantOn'
-              description: ""
-        - $ref: '#/components/schemas/ModelDefault'
-        - $ref: '#/components/schemas/OptionalModelFields'
+              description: ''
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
       example:
         id: ziqniId
         competitionType: Leaderboard
@@ -3054,14 +3130,15 @@ components:
               - some text
               - some text
             shouldMatchAtLeast: 8
-        scheduledStartDate: 2018-02-10T09:30Z
-        scheduledEndDate: 2018-02-10T09:30Z
-        actualStartDate: 2018-02-10T09:30Z
-        actualEndDate: 2018-02-10T09:30Z
+        scheduledStartDate: '2018-02-10T09:30Z'
+        scheduledEndDate: '2018-02-10T09:30Z'
+        actualStartDate: '2018-02-10T09:30Z'
+        actualEndDate: '2018-02-10T09:30Z'
         status: Ready
         statusCode: 22
         contests:
-          - competitionId: some text
+          -
+            competitionId: some text
             row: 80
             name: some text
             round: 63
@@ -3071,25 +3148,28 @@ components:
               - some text
             status: Cancelled
             statusCode: 11
-            scheduledStartDate: 2018-02-10T09:30Z
-            scheduledEndDate: 2018-02-10T09:30Z
-            actualStartDate: 2018-02-10T09:30Z
-            actualEndDate: 2018-02-10T09:30Z
+            scheduledStartDate: '2018-02-10T09:30Z'
+            scheduledEndDate: '2018-02-10T09:30Z'
+            actualStartDate: '2018-02-10T09:30Z'
+            actualEndDate: '2018-02-10T09:30Z'
             tags:
               - some text
               - some text
             rewards:
-              - rewardRank: some text
+              -
+                rewardRank: some text
                 name: some text
                 rewardValue: 16.29
                 rewardType: some text
                 rewardTypeId: some text
-              - rewardRank: some text
+              -
+                rewardRank: some text
                 name: some text
                 rewardValue: 63.01
                 rewardType: some text
                 rewardTypeId: some text
-          - competitionId: some text
+          -
+            competitionId: some text
             row: 5
             name: some text
             round: 62
@@ -3099,20 +3179,22 @@ components:
               - some text
             status: Finished
             statusCode: 8
-            scheduledStartDate: 2018-02-10T09:30Z
-            scheduledEndDate: 2018-02-10T09:30Z
-            actualStartDate: 2018-02-10T09:30Z
-            actualEndDate: 2018-02-10T09:30Z
+            scheduledStartDate: '2018-02-10T09:30Z'
+            scheduledEndDate: '2018-02-10T09:30Z'
+            actualStartDate: '2018-02-10T09:30Z'
+            actualEndDate: '2018-02-10T09:30Z'
             tags:
               - some text
               - some text
             rewards:
-              - rewardRank: some text
+              -
+                rewardRank: some text
                 name: some text
                 rewardValue: 94.38
                 rewardType: some text
                 rewardTypeId: some text
-              - rewardRank: some text
+              -
+                rewardRank: some text
                 name: some text
                 rewardValue: 4.66
                 rewardType: some text
@@ -3121,12 +3203,14 @@ components:
           - some text
           - some text
         products:
-          - name: some text
+          -
+            name: some text
             productRefId: some text
             tags:
               - some text
               - some text
-          - name: some text
+          -
+            name: some text
             productRefId: some text
             tags:
               - some text
@@ -3135,16 +3219,17 @@ components:
       description: This is a contest model
       type: object
       allOf:
-        - type: object
+        -
+          type: object
           properties:
             name:
-              description: ""
+              description: ''
               type: string
             description:
-              description: ""
+              description: ''
               type: string
             termsAndConditions:
-              description: ""
+              description: ''
               type: string
             competitionId:
               description: A unique identifier of a Competition
@@ -3154,15 +3239,16 @@ components:
               format: int32
               description: To what round does the contest belong
               type: integer
-              example: "2"
+              example: '2'
             roundType:
               $ref: '#/components/schemas/RoundType'
             groupStage:
               format: int32
-              description: Is used for more complex Competitions e.g. multi round competitions
-                where round 1 group stage matched round 2
+              description: >-
+                Is used for more complex Competitions e.g. multi round competitions where
+                round 1 group stage matched round 2
               type: integer
-              example: "2"
+              example: '2'
             groupStageLabel:
               description: The name of the group stages
               type: string
@@ -3171,38 +3257,42 @@ components:
               format: int32
               description: Maximum number of entrants for the contest
               type: integer
-              example: "9999"
+              example: '9999'
             minNumberOfEntrants:
               format: int32
               description: Minimum number of entrants for the contest
               type: integer
-              example: "0"
+              example: '0'
             scheduledStartDate:
               format: date-time
-              description: ISO8601 timestamp for when a Contest should start. All records
-                are stored in UTC time zone
+              description: >-
+                ISO8601 timestamp for when a Contest should start. All records are stored in
+                UTC time zone
               type: string
-              example: 2019-09-25T15:47:00.000+0000
+              example: '2019-09-25T15:47:00.000+0000'
             scheduledEndDate:
               format: date-time
-              description: ISO8601 timestamp for when a Contest should end. All records
-                are stored in UTC time zone
+              description: >-
+                ISO8601 timestamp for when a Contest should end. All records are stored in UTC
+                time zone
               type: string
-              example: 2019-09-25T15:47:00.000+0000
+              example: '2019-09-25T15:47:00.000+0000'
             actualStartDate:
               format: date-time
-              description: ISO8601 timestamp for when a Competition started. All records
-                are stored in UTC time zone
+              description: >-
+                ISO8601 timestamp for when a Competition started. All records are stored in
+                UTC time zone
               type: string
               readOnly: true
-              example: 2019-09-25T15:47:00.000+0000
+              example: '2019-09-25T15:47:00.000+0000'
             actualEndDate:
               format: date-time
-              description: ISO8601 timestamp for when a Competition ended. All records
-                are stored in UTC time zone
+              description: >-
+                ISO8601 timestamp for when a Competition ended. All records are stored in UTC
+                time zone
               type: string
               readOnly: true
-              example: 2019-09-25T15:47:00.000+0000
+              example: '2019-09-25T15:47:00.000+0000'
             strategies:
               $ref: '#/components/schemas/Strategy'
             status:
@@ -3211,10 +3301,10 @@ components:
               description: The code of the contest
               type: integer
               readOnly: true
-              example: "3"
+              example: '3'
             memberTagsFilter:
               $ref: '#/components/schemas/DependantOn'
-              description: ""
+              description: ''
             constraints:
               description: Additional constraints
               type: array
@@ -3224,8 +3314,10 @@ components:
                 - hasTranslations
                 - hasRewards
                 - hasRules
-        - $ref: '#/components/schemas/ModelDefault'
-        - $ref: '#/components/schemas/OptionalModelFields'
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
       example:
         jsonClass: some text
         name: some text
@@ -3242,10 +3334,10 @@ components:
           - some text
         maxNumberOfEntrants: 25
         minNumberOfEntrants: 91
-        scheduledStartDate: 2018-02-10T09:30Z
-        scheduledEndDate: 2018-02-10T09:30Z
-        actualStartDate: 2018-02-10T09:30Z
-        actualEndDate: 2018-02-10T09:30Z
+        scheduledStartDate: '2018-02-10T09:30Z'
+        scheduledEndDate: '2018-02-10T09:30Z'
+        actualStartDate: '2018-02-10T09:30Z'
+        actualEndDate: '2018-02-10T09:30Z'
         strategies:
           strategyType: SumBest
           rankingStrategy:
@@ -3263,27 +3355,28 @@ components:
           - some text
           - some text
     EntityFilter:
-      description: ""
+      description: ''
       type: object
       properties:
         entityType:
-          description: ""
+          description: ''
           type: string
         entityIds:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
     AchievementRequest:
-      description: ""
+      description: ''
       type: object
       properties:
         achievementFilter:
           $ref: '#/components/schemas/AchievementFilter'
-          description: ""
+          description: ''
         languageKey:
-          description: The language codes can be found in the settings/transalations
-            section of the back office
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
           type: string
       example:
         achievementFilter:
@@ -3294,11 +3387,11 @@ components:
             - some text
             - some text
           startDate:
-            before: 2018-02-10T09:30Z
-            after: 2018-02-10T09:30Z
+            before: '2018-02-10T09:30Z'
+            after: '2018-02-10T09:30Z'
           endDate:
-            before: 2018-02-10T09:30Z
-            after: 2018-02-10T09:30Z
+            before: '2018-02-10T09:30Z'
+            after: '2018-02-10T09:30Z'
           ids:
             - some text
             - some text
@@ -3306,9 +3399,11 @@ components:
             - some text
             - some text
           sortBy:
-            - queryField: some text
+            -
+              queryField: some text
               order: Asc
-            - queryField: some text
+            -
+              queryField: some text
               order: Asc
           skip: 3
           limit: 58
@@ -3320,15 +3415,16 @@ components:
             - some text
         languageKey: some text
     AwardRequest:
-      description: ""
+      description: ''
       type: object
       properties:
         awardFilter:
           $ref: '#/components/schemas/AwardFilter'
-          description: ""
+          description: ''
         languageKey:
-          description: The language codes can be found in the settings/transalations
-            section of the back office
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
           type: string
       example:
         memberRefId: some text
@@ -3358,9 +3454,11 @@ components:
             - some text
             - some text
           sortBy:
-            - queryField: some text
+            -
+              queryField: some text
               order: Desc
-            - queryField: some text
+            -
+              queryField: some text
               order: Desc
           skip: 24
           limit: 67
@@ -3368,31 +3466,33 @@ components:
             - 11
             - 9
     ClaimAwardRequest:
-      description: ""
+      description: ''
       required:
         - awardId
       type: object
       properties:
         languageKey:
-          description: The language codes can be found in the settings/transalations
-            section of the back office
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
           type: string
         awardIds:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
     CompetitionRequest:
-      description: ""
+      description: ''
       type: object
       properties:
         languageKey:
-          description: The language codes can be found in the settings/transalations
-            section of the back office
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
           type: string
         competitionFilter:
           $ref: '#/components/schemas/CompetitionFilter'
-          description: ""
+          description: ''
       example:
         languageKey: some text
         competitionFilter:
@@ -3400,11 +3500,11 @@ components:
             - some text
             - some text
           startDate:
-            before: 2018-02-10T09:30Z
-            after: 2018-02-10T09:30Z
+            before: '2018-02-10T09:30Z'
+            after: '2018-02-10T09:30Z'
           endDate:
-            before: 2018-02-10T09:30Z
-            after: 2018-02-10T09:30Z
+            before: '2018-02-10T09:30Z'
+            after: '2018-02-10T09:30Z'
           productIds:
             - some text
             - some text
@@ -3415,9 +3515,11 @@ components:
             - Active
             - Active
           sortBy:
-            - queryField: some text
+            -
+              queryField: some text
               order: Asc
-            - queryField: some text
+            -
+              queryField: some text
               order: Asc
           ids:
             - some text
@@ -3432,12 +3534,13 @@ components:
       type: object
       properties:
         languageKey:
-          description: The language codes can be found in the settings/transalations
-            section of the back office
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
           type: string
         contestFilter:
           $ref: '#/components/schemas/ContestFilter'
-          description: ""
+          description: ''
       example:
         languageKey: some text
         contestFilter:
@@ -3448,15 +3551,17 @@ components:
             - some text
             - some text
           startDate:
-            before: 2018-02-10T09:30Z
-            after: 2018-02-10T09:30Z
+            before: '2018-02-10T09:30Z'
+            after: '2018-02-10T09:30Z'
           endDate:
-            before: 2018-02-10T09:30Z
-            after: 2018-02-10T09:30Z
+            before: '2018-02-10T09:30Z'
+            after: '2018-02-10T09:30Z'
           sortBy:
-            - queryField: some text
+            -
+              queryField: some text
               order: Desc
-            - queryField: some text
+            -
+              queryField: some text
               order: Desc
           ids:
             - some text
@@ -3476,175 +3581,182 @@ components:
             - some text
             - some text
     MessageRequest:
-      description: ""
+      description: ''
       type: object
       properties:
         languageKey:
-          description: The language codes can be found in the settings/transalations
-            section of the back office
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
           type: string
         id:
-          description: ""
+          description: ''
           type: string
       example:
         memberRefId: some text
     RewardRequest:
-      description: ""
+      description: ''
       required:
         - entityIds
       type: object
       properties:
         entityIds:
-          description: ""
+          description: ''
           type: array
           items:
             type: string
         languageKey:
-          description: The language codes can be found in the settings/transalations
-            section of the back office
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
           type: string
     EntityRequest:
-      description: ""
+      description: ''
       type: object
       properties:
         languageKey:
-          description: The language codes can be found in the settings/transalations
-            section of the back office
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
           type: string
         entityFilter:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/EntityFilter'
         sortBy:
-          description: ""
+          description: ''
           type: array
           items:
             $ref: '#/components/schemas/QuerySortBy'
         skip:
           format: int32
-          description: ""
+          description: ''
           type: integer
         limit:
           format: int32
-          description: ""
+          description: ''
           type: integer
       example:
         languageKey: some text
         entityFilter:
-          - entityType: some text
+          -
+            entityType: some text
             entityIds:
               - some text
               - some text
-          - entityType: some text
+          -
+            entityType: some text
             entityIds:
               - some text
               - some text
         sortBy:
-          - queryField: some text
+          -
+            queryField: some text
             order: Asc
-          - queryField: some text
+          -
+            queryField: some text
             order: Desc
         skip: 29
         limit: 3
     Product:
-      description: ""
+      description: ''
       type: object
     Transformer:
-      description: ""
+      description: ''
       type: object
     Connection:
-      description: ""
+      description: ''
       type: object
     EntityChanged:
-      description: ""
+      description: ''
       required: []
       type: object
       properties:
         entityId:
-          description: ""
+          description: ''
           type: string
         entityType:
-          description: ""
+          description: ''
           type: string
         changedAt:
           format: date-time
-          description: ""
+          description: ''
           type: string
         typeOffChange:
           format: int32
-          description: ""
+          description: ''
           type: integer
         changedBy:
-          description: ""
+          description: ''
           type: string
         displayName:
-          description: ""
+          description: ''
           type: string
         accountId:
-          description: ""
+          description: ''
           type: string
         sequenceNumber:
           format: int64
-          description: ""
+          description: ''
           type: integer
         entityRefId:
-          description: ""
+          description: ''
           type: string
         entityParentId:
-          description: ""
+          description: ''
           type: string
         metadata:
           type: object
           additionalProperties: true
     EntityStateChanged:
-      description: ""
+      description: ''
       required:
         - state
       type: object
       properties:
         entityId:
-          description: ""
+          description: ''
           type: string
         entityType:
-          description: ""
+          description: ''
           type: string
         changedAt:
           format: date-time
-          description: ""
+          description: ''
           type: string
         changedBy:
-          description: ""
+          description: ''
           type: string
         typeOffChange:
           format: int32
-          description: ""
+          description: ''
           type: integer
         displayName:
-          description: ""
+          description: ''
           type: string
         accountId:
-          description: ""
+          description: ''
           type: string
         sequenceNumber:
           format: int64
-          description: ""
+          description: ''
           type: integer
         entityRefId:
-          description: ""
+          description: ''
           type: string
         entityParentId:
-          description: ""
+          description: ''
           type: string
         metadata:
           type: object
         previousState:
           format: int32
-          description: ""
+          description: ''
           type: integer
         currentState:
           format: int32
-          description: ""
+          description: ''
           type: integer
     MetaInfo:
       required:
@@ -3658,15 +3770,15 @@ components:
         totalRecords:
           description: The count of all results
           type: integer
-          example: "10"
+          example: '10'
         resultCount:
           description: The count of successful results
           type: integer
-          example: "10"
+          example: '10'
         errorCount:
           description: The count of errors
           type: integer
-          example: "1"
+          example: '1'
       example:
         objectType: some text
         totalRecords: 26
@@ -3674,9 +3786,10 @@ components:
         errorCount: 2
     MetaBasic:
       allOf:
-        - $ref: '#/components/schemas/MetaInfo'
+        -
+          $ref: '#/components/schemas/MetaInfo'
     ContestStatus:
-      description: ""
+      description: ''
       enum:
         - Unknown
         - Deleting
@@ -3693,14 +3806,13 @@ components:
         - Cancelled
       type: string
     Reward:
-      description: ""
+      description: ''
       type: object
       properties:
         entityType:
           $ref: '#/components/schemas/EntityType'
         entityId:
-          description: A unique identifier of an achievement or contest. Dependant
-            on entityType
+          description: A unique identifier of an achievement or contest. Dependant on entityType
           type: string
           example: Dc4swmQBVd51K6gPQqFx
         name:
@@ -3712,44 +3824,42 @@ components:
           type: string
           example: A badge to welcome a new player
         rewardRank:
-          description: If used in the context of contest this will associate with
-            the rank of the leaderboard
+          description: If used in the context of contest this will associate with the rank of the leaderboard
           type: string
-          example: "1,2 3 ...10"
+          example: '1,2 3 ...10'
         rewardValue:
           format: double
-          description: Numerical value of the reward that will be issued based on
-            the reward type
+          description: Numerical value of the reward that will be issued based on the reward type
           type: number
-          example: "1"
+          example: '1'
         rewardType:
           $ref: '#/components/schemas/RewardTypeReduced'
         icon:
-          description: An Icon id that has been pre uploaded to the system to display
-            for reward
+          description: An Icon id that has been pre uploaded to the system to display for reward
           type: string
           example: Dc4swmQBVd51K6gPQqFx
         issueLimit:
           format: int32
           description: how many of thsese rewards are
           type: integer
-          example: "2"
+          example: '2'
         delay:
           format: int32
           description: Delay of issuing a reward in minutes
           type: integer
-          example: "2"
+          example: '2'
         pointInTime:
           format: date-time
-          description: ISO8601 timestamp for when a Reward is available until a specific
-            point in time. All records are stored in UTC time zone
+          description: >-
+            ISO8601 timestamp for when a Reward is available until a specific point in time. All
+            records are stored in UTC time zone
           type: string
-          example: 2019-09-25T15:47:00.000+0000
+          example: '2019-09-25T15:47:00.000+0000'
         period:
           format: int32
           description: Reward available for a period of time from issuing in minutes
           type: integer
-          example: "2"
+          example: '2'
         id:
           description: Unique system identifier of a Main Rule
           type: string
@@ -3773,16 +3883,17 @@ components:
         icon: some text
         issueLimit: 60
         delay: 19
-        pointInTime: 2018-02-10T09:30Z
+        pointInTime: '2018-02-10T09:30Z'
         period: 32
         constraints:
           - some text
           - some text
     Message:
-      description: ""
+      description: ''
       type: object
       allOf:
-        - required:
+        -
+          required:
             - id
           type: object
           properties:
@@ -3808,7 +3919,7 @@ components:
               format: date-time
               description: The time that the message will disappear after. ISO8601 timestamp
               type: string
-              example: 2019-09-25T15:47:00.000+0000
+              example: '2019-09-25T15:47:00.000+0000'
             memberIds:
               description: The reference ID of the event object
               type: array
@@ -3816,28 +3927,30 @@ components:
                 type: string
               example: '- Dc4swmQBVd51K6gPQqFx'
             memberTags:
-              description: ""
+              description: ''
               type: array
               items:
                 type: string
             id:
-              description: ""
+              description: ''
               type: string
-        - $ref: '#/components/schemas/ModelDefault'
-        - $ref: '#/components/schemas/OptionalModelFields'
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
   responses:
     AchievementResponseBody:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/AchievementResponse'
-      description: ""
+      description: ''
     CompetitionResponseBody:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/CompetitionResponse'
-      description: ""
+      description: ''
     ContestResponseBody:
       content:
         application/json:
@@ -3850,9 +3963,10 @@ components:
                   totalRecordsFound: 22
                   skip: 15
                   limit: 93
-                  time: 2018-02-10T09:30Z
+                  time: '2018-02-10T09:30Z'
                 data:
-                  - id: ziqniId
+                  -
+                    id: ziqniId
                     jsonClass: some text
                     name: some text
                     description: some text
@@ -3868,10 +3982,10 @@ components:
                       - some text
                     maxNumberOfEntrants: 40
                     minNumberOfEntrants: 8
-                    scheduledStartDate: 2018-02-10T09:30Z
-                    scheduledEndDate: 2018-02-10T09:30Z
-                    actualStartDate: 2018-02-10T09:30Z
-                    actualEndDate: 2018-02-10T09:30Z
+                    scheduledStartDate: '2018-02-10T09:30Z'
+                    scheduledEndDate: '2018-02-10T09:30Z'
+                    actualStartDate: '2018-02-10T09:30Z'
+                    actualEndDate: '2018-02-10T09:30Z'
                     strategies:
                       strategyType: SumBest
                       rankingStrategy:
@@ -3888,7 +4002,8 @@ components:
                     constraints:
                       - some text
                       - some text
-                  - id: ziqniId
+                  -
+                    id: ziqniId
                     jsonClass: some text
                     name: some text
                     description: some text
@@ -3904,10 +4019,10 @@ components:
                       - some text
                     maxNumberOfEntrants: 81
                     minNumberOfEntrants: 83
-                    scheduledStartDate: 2018-02-10T09:30Z
-                    scheduledEndDate: 2018-02-10T09:30Z
-                    actualStartDate: 2018-02-10T09:30Z
-                    actualEndDate: 2018-02-10T09:30Z
+                    scheduledStartDate: '2018-02-10T09:30Z'
+                    scheduledEndDate: '2018-02-10T09:30Z'
+                    actualStartDate: '2018-02-10T09:30Z'
+                    actualEndDate: '2018-02-10T09:30Z'
                     strategies:
                       strategyType: SumBest
                       rankingStrategy:
@@ -3925,65 +4040,67 @@ components:
                       - some text
                       - some text
                 errors:
-                  - message: some text
+                  -
+                    message: some text
                     code: 56
                     status: 84
-                  - message: some text
+                  -
+                    message: some text
                     code: 13
                     status: 6
-      description: ""
+      description: ''
     RewardResponseBody:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/RewardResponse'
-      description: ""
+      description: ''
     MessageResponseBody:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/MessageResponse'
-      description: ""
+      description: ''
     RuleResponseBody:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/RuleResponse'
-      description: ""
+      description: ''
     MemberResponseBody:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/MemberResponse'
-      description: ""
+      description: ''
     AwardResponseBody:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/AwardResponse'
-      description: ""
+      description: ''
     FileResponseBody:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/FileResponse'
-      description: ""
+      description: ''
     EntityChangeSubscriptionResponseBody:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/EntityChangeSubscriptionResponse'
-      description: ""
+      description: ''
     LeaderboardResponseBody:
       content:
         application/json: {}
-      description: ""
+      description: ''
   securitySchemes:
     OAuth2:
       flows:
         authorizationCode:
-          authorizationUrl: https://iam.ziqni.io/oauth/authorize
-          tokenUrl: https://iam.ziqni.io/oauth/token
+          authorizationUrl: 'https://iam.ziqni.io/oauth/authorize'
+          tokenUrl: 'https://iam.ziqni.io/oauth/token'
           scopes:
             ViewContests: Grants read access
             ViewCompetitions: Grants read access
@@ -3995,23 +4112,33 @@ components:
             ViewMembers: Grants read access
       type: oauth2
 tags:
-  - name: competitions
+  -
+    name: competitions
     description: Perform POST operations on Competitions
-  - name: achievements
+  -
+    name: achievements
     description: Perform POST operations on Achievements
-  - name: contests
+  -
+    name: contests
     description: Perform POST operations on Contests
-  - name: messages
+  -
+    name: messages
     description: Perform POST operations on Messages
-  - name: rewards
+  -
+    name: rewards
     description: Perform POST operations on Rewards
-  - name: rules
+  -
+    name: rules
     description: Perform POST operations on Rules
-  - name: proxy
+  -
+    name: proxy
     description: Perform POST operations on Proxy
-  - name: members
+  -
+    name: members
     description: Perform POST operations on Members
-  - name: awards
+  -
+    name: awards
     description: Perform POST operations on Awards
-  - name: files
+  -
+    name: files
     description: Perform POST operations on Files

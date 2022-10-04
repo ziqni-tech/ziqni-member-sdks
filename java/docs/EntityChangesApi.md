@@ -1,6 +1,6 @@
 # EntityChangesApi
 
-All URIs are relative to *https://gamification-api.ziqni.com*
+All URIs are relative to *https://member-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -31,7 +31,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://gamification-api.ziqni.com");
+        defaultClient.setBasePath("https://member-api.ziqni.com");
 
         EntityChangesApi apiInstance = new EntityChangesApi(defaultClient);
         EntityChangeSubscriptionRequest entityChangeSubscriptionRequest = new EntityChangeSubscriptionRequest(); // EntityChangeSubscriptionRequest | subscription payload
@@ -100,7 +100,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://gamification-api.ziqni.com");
+        defaultClient.setBasePath("https://member-api.ziqni.com");
 
         EntityChangesApi apiInstance = new EntityChangesApi(defaultClient);
         EntityChangeSubscriptionRequest entityChangeSubscriptionRequest = new EntityChangeSubscriptionRequest(); // EntityChangeSubscriptionRequest | subscription payload
