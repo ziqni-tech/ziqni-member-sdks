@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://gamification-api.ziqni.com*
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**getAchievements**](AchievementsApi.md#getAchievements) | **POST** /achievements | Get achievements by member reference id |
-| [**getAchievementsWithHttpInfo**](AchievementsApi.md#getAchievementsWithHttpInfo) | **POST** /achievements | Get achievements by member reference id |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getAchievements**](AchievementsApi.md#getAchievements) | **POST** /achievements | Get achievements by member reference id
+[**getAchievementsWithHttpInfo**](AchievementsApi.md#getAchievementsWithHttpInfo) | **POST** /achievements | Get achievements by member reference id
 
 
 
@@ -57,9 +57,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **achievementRequest** | [**AchievementRequest**](AchievementRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **achievementRequest** | [**AchievementRequest**](AchievementRequest.md)|  |
 
 ### Return type
 
@@ -140,9 +140,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **achievementRequest** | [**AchievementRequest**](AchievementRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **achievementRequest** | [**AchievementRequest**](AchievementRequest.md)|  |
 
 ### Return type
 

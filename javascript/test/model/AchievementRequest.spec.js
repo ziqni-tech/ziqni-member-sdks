@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.AchievementRequest();
+    instance = new ZiqniTechGamificationApiClient.AchievementRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,13 +50,13 @@
   describe('AchievementRequest', function() {
     it('should create an instance of AchievementRequest', function() {
       // uncomment below and update the code to test AchievementRequest
-      //var instance = new @ZiqniTechGamificationApiClient.AchievementRequest();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.AchievementRequest);
+      //var instance = new ZiqniTechGamificationApiClient.AchievementRequest();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.AchievementRequest);
     });
 
     it('should have the property achievementFilter (base name: "achievementFilter")', function() {
       // uncomment below and update the code to test the property achievementFilter
-      //var instance = new @ZiqniTechGamificationApiClient.AchievementRequest();
+      //var instance = new ZiqniTechGamificationApiClient.AchievementRequest();
       //expect(instance).to.be();
     });
 

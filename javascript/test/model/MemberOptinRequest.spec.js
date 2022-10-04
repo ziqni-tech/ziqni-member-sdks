@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.MemberOptinRequest();
+    instance = new ZiqniTechGamificationApiClient.MemberOptinRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,25 +50,25 @@
   describe('MemberOptinRequest', function() {
     it('should create an instance of MemberOptinRequest', function() {
       // uncomment below and update the code to test MemberOptinRequest
-      //var instance = new @ZiqniTechGamificationApiClient.MemberOptinRequest();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.MemberOptinRequest);
+      //var instance = new ZiqniTechGamificationApiClient.MemberOptinRequest();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.MemberOptinRequest);
     });
 
     it('should have the property entityId (base name: "entityId")', function() {
       // uncomment below and update the code to test the property entityId
-      //var instance = new @ZiqniTechGamificationApiClient.MemberOptinRequest();
+      //var instance = new ZiqniTechGamificationApiClient.MemberOptinRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property entityType (base name: "entityType")', function() {
       // uncomment below and update the code to test the property entityType
-      //var instance = new @ZiqniTechGamificationApiClient.MemberOptinRequest();
+      //var instance = new ZiqniTechGamificationApiClient.MemberOptinRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property action (base name: "action")', function() {
       // uncomment below and update the code to test the property action
-      //var instance = new @ZiqniTechGamificationApiClient.MemberOptinRequest();
+      //var instance = new ZiqniTechGamificationApiClient.MemberOptinRequest();
       //expect(instance).to.be();
     });
 

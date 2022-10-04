@@ -20,9 +20,9 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
@@ -49,8 +49,8 @@
   describe('CompetitionType', function() {
     it('should create an instance of CompetitionType', function() {
       // uncomment below and update the code to test CompetitionType
-      //var instance = new @ZiqniTechGamificationApiClient.CompetitionType();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.CompetitionType);
+      //var instance = new ZiqniTechGamificationApiClient.CompetitionType();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.CompetitionType);
     });
 
   });

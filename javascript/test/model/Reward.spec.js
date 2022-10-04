@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.Reward();
+    instance = new ZiqniTechGamificationApiClient.Reward();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,85 +50,85 @@
   describe('Reward', function() {
     it('should create an instance of Reward', function() {
       // uncomment below and update the code to test Reward
-      //var instance = new @ZiqniTechGamificationApiClient.Reward();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.Reward);
+      //var instance = new ZiqniTechGamificationApiClient.Reward();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.Reward);
     });
 
     it('should have the property entityType (base name: "entityType")', function() {
       // uncomment below and update the code to test the property entityType
-      //var instance = new @ZiqniTechGamificationApiClient.Reward();
+      //var instance = new ZiqniTechGamificationApiClient.Reward();
       //expect(instance).to.be();
     });
 
     it('should have the property entityId (base name: "entityId")', function() {
       // uncomment below and update the code to test the property entityId
-      //var instance = new @ZiqniTechGamificationApiClient.Reward();
+      //var instance = new ZiqniTechGamificationApiClient.Reward();
       //expect(instance).to.be();
     });
 
     it('should have the property name (base name: "name")', function() {
       // uncomment below and update the code to test the property name
-      //var instance = new @ZiqniTechGamificationApiClient.Reward();
+      //var instance = new ZiqniTechGamificationApiClient.Reward();
       //expect(instance).to.be();
     });
 
     it('should have the property description (base name: "description")', function() {
       // uncomment below and update the code to test the property description
-      //var instance = new @ZiqniTechGamificationApiClient.Reward();
+      //var instance = new ZiqniTechGamificationApiClient.Reward();
       //expect(instance).to.be();
     });
 
     it('should have the property rewardRank (base name: "rewardRank")', function() {
       // uncomment below and update the code to test the property rewardRank
-      //var instance = new @ZiqniTechGamificationApiClient.Reward();
+      //var instance = new ZiqniTechGamificationApiClient.Reward();
       //expect(instance).to.be();
     });
 
     it('should have the property rewardValue (base name: "rewardValue")', function() {
       // uncomment below and update the code to test the property rewardValue
-      //var instance = new @ZiqniTechGamificationApiClient.Reward();
+      //var instance = new ZiqniTechGamificationApiClient.Reward();
       //expect(instance).to.be();
     });
 
     it('should have the property rewardType (base name: "rewardType")', function() {
       // uncomment below and update the code to test the property rewardType
-      //var instance = new @ZiqniTechGamificationApiClient.Reward();
+      //var instance = new ZiqniTechGamificationApiClient.Reward();
       //expect(instance).to.be();
     });
 
     it('should have the property icon (base name: "icon")', function() {
       // uncomment below and update the code to test the property icon
-      //var instance = new @ZiqniTechGamificationApiClient.Reward();
+      //var instance = new ZiqniTechGamificationApiClient.Reward();
       //expect(instance).to.be();
     });
 
     it('should have the property issueLimit (base name: "issueLimit")', function() {
       // uncomment below and update the code to test the property issueLimit
-      //var instance = new @ZiqniTechGamificationApiClient.Reward();
+      //var instance = new ZiqniTechGamificationApiClient.Reward();
       //expect(instance).to.be();
     });
 
     it('should have the property delay (base name: "delay")', function() {
       // uncomment below and update the code to test the property delay
-      //var instance = new @ZiqniTechGamificationApiClient.Reward();
+      //var instance = new ZiqniTechGamificationApiClient.Reward();
       //expect(instance).to.be();
     });
 
     it('should have the property pointInTime (base name: "pointInTime")', function() {
       // uncomment below and update the code to test the property pointInTime
-      //var instance = new @ZiqniTechGamificationApiClient.Reward();
+      //var instance = new ZiqniTechGamificationApiClient.Reward();
       //expect(instance).to.be();
     });
 
     it('should have the property period (base name: "period")', function() {
       // uncomment below and update the code to test the property period
-      //var instance = new @ZiqniTechGamificationApiClient.Reward();
+      //var instance = new ZiqniTechGamificationApiClient.Reward();
       //expect(instance).to.be();
     });
 
     it('should have the property constraints (base name: "constraints")', function() {
       // uncomment below and update the code to test the property constraints
-      //var instance = new @ZiqniTechGamificationApiClient.Reward();
+      //var instance = new ZiqniTechGamificationApiClient.Reward();
       //expect(instance).to.be();
     });
 

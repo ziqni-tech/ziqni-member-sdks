@@ -2,12 +2,12 @@
 
 All URIs are relative to *https://gamification-api.ziqni.com*
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**subscribeToLeaderboard**](DefaultApi.md#subscribeToLeaderboard) | **POST** /leaderboard |  |
-| [**subscribeToLeaderboardWithHttpInfo**](DefaultApi.md#subscribeToLeaderboardWithHttpInfo) | **POST** /leaderboard |  |
-| [**unsubscribeFromEntityChanges**](DefaultApi.md#unsubscribeFromEntityChanges) | **DELETE** /entity-changes |  |
-| [**unsubscribeFromEntityChangesWithHttpInfo**](DefaultApi.md#unsubscribeFromEntityChangesWithHttpInfo) | **DELETE** /entity-changes |  |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**subscribeToLeaderboard**](DefaultApi.md#subscribeToLeaderboard) | **POST** /leaderboard | 
+[**subscribeToLeaderboardWithHttpInfo**](DefaultApi.md#subscribeToLeaderboardWithHttpInfo) | **POST** /leaderboard | 
+[**unsubscribeFromEntityChanges**](DefaultApi.md#unsubscribeFromEntityChanges) | **DELETE** /entity-changes | 
+[**unsubscribeFromEntityChangesWithHttpInfo**](DefaultApi.md#unsubscribeFromEntityChangesWithHttpInfo) | **DELETE** /entity-changes | 
 
 
 
@@ -51,9 +51,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **leaderboardSubscriptionRequest** | [**LeaderboardSubscriptionRequest**](LeaderboardSubscriptionRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **leaderboardSubscriptionRequest** | [**LeaderboardSubscriptionRequest**](LeaderboardSubscriptionRequest.md)|  | [optional]
 
 ### Return type
 
@@ -124,9 +124,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **leaderboardSubscriptionRequest** | [**LeaderboardSubscriptionRequest**](LeaderboardSubscriptionRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **leaderboardSubscriptionRequest** | [**LeaderboardSubscriptionRequest**](LeaderboardSubscriptionRequest.md)|  | [optional]
 
 ### Return type
 
@@ -188,9 +188,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **subscriptionId** | **String**|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subscriptionId** | **String**|  | [optional]
 
 ### Return type
 
@@ -261,9 +261,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **subscriptionId** | **String**|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subscriptionId** | **String**|  | [optional]
 
 ### Return type
 

@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.LeaderboardFilter();
+    instance = new ZiqniTechGamificationApiClient.LeaderboardFilter();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,43 +50,43 @@
   describe('LeaderboardFilter', function() {
     it('should create an instance of LeaderboardFilter', function() {
       // uncomment below and update the code to test LeaderboardFilter
-      //var instance = new @ZiqniTechGamificationApiClient.LeaderboardFilter();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.LeaderboardFilter);
+      //var instance = new ZiqniTechGamificationApiClient.LeaderboardFilter();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.LeaderboardFilter);
     });
 
     it('should have the property tags (base name: "tags")', function() {
       // uncomment below and update the code to test the property tags
-      //var instance = new @ZiqniTechGamificationApiClient.LeaderboardFilter();
+      //var instance = new ZiqniTechGamificationApiClient.LeaderboardFilter();
       //expect(instance).to.be();
     });
 
     it('should have the property sortBy (base name: "sortBy")', function() {
       // uncomment below and update the code to test the property sortBy
-      //var instance = new @ZiqniTechGamificationApiClient.LeaderboardFilter();
+      //var instance = new ZiqniTechGamificationApiClient.LeaderboardFilter();
       //expect(instance).to.be();
     });
 
     it('should have the property skip (base name: "skip")', function() {
       // uncomment below and update the code to test the property skip
-      //var instance = new @ZiqniTechGamificationApiClient.LeaderboardFilter();
+      //var instance = new ZiqniTechGamificationApiClient.LeaderboardFilter();
       //expect(instance).to.be();
     });
 
     it('should have the property limit (base name: "limit")', function() {
       // uncomment below and update the code to test the property limit
-      //var instance = new @ZiqniTechGamificationApiClient.LeaderboardFilter();
+      //var instance = new ZiqniTechGamificationApiClient.LeaderboardFilter();
       //expect(instance).to.be();
     });
 
     it('should have the property statusCode (base name: "statusCode")', function() {
       // uncomment below and update the code to test the property statusCode
-      //var instance = new @ZiqniTechGamificationApiClient.LeaderboardFilter();
+      //var instance = new ZiqniTechGamificationApiClient.LeaderboardFilter();
       //expect(instance).to.be();
     });
 
     it('should have the property constraints (base name: "constraints")', function() {
       // uncomment below and update the code to test the property constraints
-      //var instance = new @ZiqniTechGamificationApiClient.LeaderboardFilter();
+      //var instance = new ZiqniTechGamificationApiClient.LeaderboardFilter();
       //expect(instance).to.be();
     });
 

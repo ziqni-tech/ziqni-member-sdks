@@ -1,6 +1,6 @@
 # @ZiqniTechGamificationApiClient.FilesApi
 
-All URIs are relative to *https://gamification-api.ziqni.com*
+All URIs are relative to *https://member-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -19,7 +19,7 @@ This operation supports retrieval of file objects for one or many entities.
 ### Example
 
 ```javascript
-import @ZiqniTechGamificationApiClient from '@ziqni-tech/gamification-api-client';
+import @ZiqniTechGamificationApiClient from '@ziqni-tech/member-api-client';
 
 let apiInstance = new @ZiqniTechGamificationApiClient.FilesApi();
 let fileRequest = new @ZiqniTechGamificationApiClient.FileRequest(); // FileRequest | 

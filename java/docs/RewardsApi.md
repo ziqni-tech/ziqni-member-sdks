@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://gamification-api.ziqni.com*
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**getRewards**](RewardsApi.md#getRewards) | **POST** /rewards | Get rewards |
-| [**getRewardsWithHttpInfo**](RewardsApi.md#getRewardsWithHttpInfo) | **POST** /rewards | Get rewards |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getRewards**](RewardsApi.md#getRewards) | **POST** /rewards | Get rewards
+[**getRewardsWithHttpInfo**](RewardsApi.md#getRewardsWithHttpInfo) | **POST** /rewards | Get rewards
 
 
 
@@ -57,9 +57,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **entityRequest** | [**EntityRequest**](EntityRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entityRequest** | [**EntityRequest**](EntityRequest.md)|  |
 
 ### Return type
 
@@ -140,9 +140,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **entityRequest** | [**EntityRequest**](EntityRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entityRequest** | [**EntityRequest**](EntityRequest.md)|  |
 
 ### Return type
 

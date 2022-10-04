@@ -77,7 +77,13 @@ class AchievementFilter {
                 obj['limit'] = ApiClient.convertToType(data['limit'], 'Number');
             }
             if (data.hasOwnProperty('statusCode')) {
-                obj['statusCode'] = ApiClient.convertToType(data['statusCode'], ['Number']);
+                obj['statusCode'] = {};
+                if (data['statusCode']['moreThan']) {
+                    obj['statusCode']['moreThan'] = ApiClient.convertToType(data['statusCode']['moreThan'], 'Number');
+                }
+                if (data['statusCode']['lessThan']) {
+                    obj['statusCode']['lessThan'] = ApiClient.convertToType(data['statusCode']['lessThan'], 'Number');
+                }
             }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);

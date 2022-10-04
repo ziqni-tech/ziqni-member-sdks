@@ -1,6 +1,6 @@
 # @ZiqniTechGamificationApiClient.ContestsApi
 
-All URIs are relative to *https://gamification-api.ziqni.com*
+All URIs are relative to *https://member-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -19,7 +19,7 @@ Returns a list of contests for the provided member ref id and applied filters.
 ### Example
 
 ```javascript
-import @ZiqniTechGamificationApiClient from '@ziqni-tech/gamification-api-client';
+import @ZiqniTechGamificationApiClient from '@ziqni-tech/member-api-client';
 let defaultClient = @ZiqniTechGamificationApiClient.ApiClient.instance;
 // Configure OAuth2 access token for authorization: OAuth2
 let OAuth2 = defaultClient.authentications['OAuth2'];

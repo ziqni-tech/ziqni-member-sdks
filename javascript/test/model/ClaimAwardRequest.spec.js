@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.ClaimAwardRequest();
+    instance = new ZiqniTechGamificationApiClient.ClaimAwardRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,13 +50,13 @@
   describe('ClaimAwardRequest', function() {
     it('should create an instance of ClaimAwardRequest', function() {
       // uncomment below and update the code to test ClaimAwardRequest
-      //var instance = new @ZiqniTechGamificationApiClient.ClaimAwardRequest();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.ClaimAwardRequest);
+      //var instance = new ZiqniTechGamificationApiClient.ClaimAwardRequest();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.ClaimAwardRequest);
     });
 
     it('should have the property awardIds (base name: "awardIds")', function() {
       // uncomment below and update the code to test the property awardIds
-      //var instance = new @ZiqniTechGamificationApiClient.ClaimAwardRequest();
+      //var instance = new ZiqniTechGamificationApiClient.ClaimAwardRequest();
       //expect(instance).to.be();
     });
 

@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.CompetitionRequest();
+    instance = new ZiqniTechGamificationApiClient.CompetitionRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,13 +50,13 @@
   describe('CompetitionRequest', function() {
     it('should create an instance of CompetitionRequest', function() {
       // uncomment below and update the code to test CompetitionRequest
-      //var instance = new @ZiqniTechGamificationApiClient.CompetitionRequest();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.CompetitionRequest);
+      //var instance = new ZiqniTechGamificationApiClient.CompetitionRequest();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.CompetitionRequest);
     });
 
     it('should have the property competitionFilter (base name: "competitionFilter")', function() {
       // uncomment below and update the code to test the property competitionFilter
-      //var instance = new @ZiqniTechGamificationApiClient.CompetitionRequest();
+      //var instance = new ZiqniTechGamificationApiClient.CompetitionRequest();
       //expect(instance).to.be();
     });
 

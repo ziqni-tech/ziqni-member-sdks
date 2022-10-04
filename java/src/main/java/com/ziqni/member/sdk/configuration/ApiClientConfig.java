@@ -25,7 +25,7 @@ public abstract class ApiClientConfig {
     public static void load() {
         if (loaded) return;
 
-        memberClientServerHost = ConfigurationLoader.getParameter("member.server.host").orElse("gamification-api.ziqni.com");
+        memberClientServerHost = ConfigurationLoader.getParameter("member.server.host").orElse("member-api.ziqni.com");
         memberClientServerPort = Integer.valueOf(ConfigurationLoader.getParameter("member.server.port").orElse("443"));
         memberClientServerScheme = ConfigurationLoader.getParameter("member.server.scheme").orElse("wss");
 

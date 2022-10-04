@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.RuleRoutine();
+    instance = new ZiqniTechGamificationApiClient.RuleRoutine();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,25 +50,25 @@
   describe('RuleRoutine', function() {
     it('should create an instance of RuleRoutine', function() {
       // uncomment below and update the code to test RuleRoutine
-      //var instance = new @ZiqniTechGamificationApiClient.RuleRoutine();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.RuleRoutine);
+      //var instance = new ZiqniTechGamificationApiClient.RuleRoutine();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.RuleRoutine);
     });
 
     it('should have the property routine (base name: "routine")', function() {
       // uncomment below and update the code to test the property routine
-      //var instance = new @ZiqniTechGamificationApiClient.RuleRoutine();
+      //var instance = new ZiqniTechGamificationApiClient.RuleRoutine();
       //expect(instance).to.be();
     });
 
     it('should have the property _arguments (base name: "arguments")', function() {
       // uncomment below and update the code to test the property _arguments
-      //var instance = new @ZiqniTechGamificationApiClient.RuleRoutine();
+      //var instance = new ZiqniTechGamificationApiClient.RuleRoutine();
       //expect(instance).to.be();
     });
 
     it('should have the property lineNumber (base name: "lineNumber")', function() {
       // uncomment below and update the code to test the property lineNumber
-      //var instance = new @ZiqniTechGamificationApiClient.RuleRoutine();
+      //var instance = new ZiqniTechGamificationApiClient.RuleRoutine();
       //expect(instance).to.be();
     });
 

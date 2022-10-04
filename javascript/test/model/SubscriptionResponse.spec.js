@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.SubscriptionResponse();
+    instance = new ZiqniTechGamificationApiClient.SubscriptionResponse();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,13 +50,13 @@
   describe('SubscriptionResponse', function() {
     it('should create an instance of SubscriptionResponse', function() {
       // uncomment below and update the code to test SubscriptionResponse
-      //var instance = new @ZiqniTechGamificationApiClient.SubscriptionResponse();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.SubscriptionResponse);
+      //var instance = new ZiqniTechGamificationApiClient.SubscriptionResponse();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.SubscriptionResponse);
     });
 
     it('should have the property subscriptions (base name: "subscriptions")', function() {
       // uncomment below and update the code to test the property subscriptions
-      //var instance = new @ZiqniTechGamificationApiClient.SubscriptionResponse();
+      //var instance = new ZiqniTechGamificationApiClient.SubscriptionResponse();
       //expect(instance).to.be();
     });
 

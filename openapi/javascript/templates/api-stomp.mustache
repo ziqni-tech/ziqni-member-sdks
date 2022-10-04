@@ -1,0 +1,24 @@
+
+import apiClientStomp from "../ApiClientStomp";
+
+export default class {{classname}}Ws {
+
+  constructor(apiClientStomp) {
+    this.apiClientStomp = apiClientStomp || ApiClientStomp.instance;
+  }
+
+{{#operations}}{{#operation}}
+  {{operationId}}({{#hasBodyParam}}{{#bodyParams}}{{paramName}}, {{/bodyParams}}{{/hasBodyParam}} callback) {
+
+    {{#hasBodyParam}}{{#bodyParams}}
+    if ({{paramName}} === undefined || {{paramName}} === null) {
+      throw new Error("Missing the required parameter '{{paramName}}' when calling {{operationId}}");
+    }
+    {{/bodyParams}}{{/hasBodyParam}}
+    const message = { body: {{#hasBodyParam}}{{#bodyParams}}{{paramName}}{{/bodyParams}}{{/hasBodyParam}}{{^hasBodyParam}}{}{{/hasBodyParam}} };
+
+    apiClientStomp.instance.sendRpc('/gapi/{{operationId}}', message, callback);
+
+  }
+{{/operation}}{{/operations}}
+}

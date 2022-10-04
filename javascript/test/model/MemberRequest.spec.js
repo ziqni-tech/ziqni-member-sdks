@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.MemberRequest();
+    instance = new ZiqniTechGamificationApiClient.MemberRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,25 +50,25 @@
   describe('MemberRequest', function() {
     it('should create an instance of MemberRequest', function() {
       // uncomment below and update the code to test MemberRequest
-      //var instance = new @ZiqniTechGamificationApiClient.MemberRequest();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.MemberRequest);
+      //var instance = new ZiqniTechGamificationApiClient.MemberRequest();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.MemberRequest);
     });
 
     it('should have the property includeFields (base name: "includeFields")', function() {
       // uncomment below and update the code to test the property includeFields
-      //var instance = new @ZiqniTechGamificationApiClient.MemberRequest();
+      //var instance = new ZiqniTechGamificationApiClient.MemberRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property includeCustomFields (base name: "includeCustomFields")', function() {
       // uncomment below and update the code to test the property includeCustomFields
-      //var instance = new @ZiqniTechGamificationApiClient.MemberRequest();
+      //var instance = new ZiqniTechGamificationApiClient.MemberRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property includeMetaDataFields (base name: "includeMetaDataFields")', function() {
       // uncomment below and update the code to test the property includeMetaDataFields
-      //var instance = new @ZiqniTechGamificationApiClient.MemberRequest();
+      //var instance = new ZiqniTechGamificationApiClient.MemberRequest();
       //expect(instance).to.be();
     });
 

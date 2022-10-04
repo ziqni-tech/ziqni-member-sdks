@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.AchievementAllOf();
+    instance = new ZiqniTechGamificationApiClient.AchievementAllOf();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,61 +50,61 @@
   describe('AchievementAllOf', function() {
     it('should create an instance of AchievementAllOf', function() {
       // uncomment below and update the code to test AchievementAllOf
-      //var instance = new @ZiqniTechGamificationApiClient.AchievementAllOf();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.AchievementAllOf);
+      //var instance = new ZiqniTechGamificationApiClient.AchievementAllOf();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.AchievementAllOf);
     });
 
     it('should have the property name (base name: "name")', function() {
       // uncomment below and update the code to test the property name
-      //var instance = new @ZiqniTechGamificationApiClient.AchievementAllOf();
+      //var instance = new ZiqniTechGamificationApiClient.AchievementAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property description (base name: "description")', function() {
       // uncomment below and update the code to test the property description
-      //var instance = new @ZiqniTechGamificationApiClient.AchievementAllOf();
+      //var instance = new ZiqniTechGamificationApiClient.AchievementAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property termsAndConditions (base name: "termsAndConditions")', function() {
       // uncomment below and update the code to test the property termsAndConditions
-      //var instance = new @ZiqniTechGamificationApiClient.AchievementAllOf();
+      //var instance = new ZiqniTechGamificationApiClient.AchievementAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property constraints (base name: "constraints")', function() {
       // uncomment below and update the code to test the property constraints
-      //var instance = new @ZiqniTechGamificationApiClient.AchievementAllOf();
+      //var instance = new ZiqniTechGamificationApiClient.AchievementAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property maxNumberOfIssues (base name: "maxNumberOfIssues")', function() {
       // uncomment below and update the code to test the property maxNumberOfIssues
-      //var instance = new @ZiqniTechGamificationApiClient.AchievementAllOf();
+      //var instance = new ZiqniTechGamificationApiClient.AchievementAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property scheduling (base name: "scheduling")', function() {
       // uncomment below and update the code to test the property scheduling
-      //var instance = new @ZiqniTechGamificationApiClient.AchievementAllOf();
+      //var instance = new ZiqniTechGamificationApiClient.AchievementAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property dependantOn (base name: "dependantOn")', function() {
       // uncomment below and update the code to test the property dependantOn
-      //var instance = new @ZiqniTechGamificationApiClient.AchievementAllOf();
+      //var instance = new ZiqniTechGamificationApiClient.AchievementAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property status (base name: "status")', function() {
       // uncomment below and update the code to test the property status
-      //var instance = new @ZiqniTechGamificationApiClient.AchievementAllOf();
+      //var instance = new ZiqniTechGamificationApiClient.AchievementAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property statusCode (base name: "statusCode")', function() {
       // uncomment below and update the code to test the property statusCode
-      //var instance = new @ZiqniTechGamificationApiClient.AchievementAllOf();
+      //var instance = new ZiqniTechGamificationApiClient.AchievementAllOf();
       //expect(instance).to.be();
     });
 

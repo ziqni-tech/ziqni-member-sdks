@@ -12,9 +12,9 @@ import java.util.Objects;
 
 public class TestMemberTokenLoader implements IdentityAuthorization {
 
-    public String apiKey = "4ad48941a7c4aa4586abc31a5958a35a";
+    public String apiKey = "c306a519a4038a4495a9a73a3bb17f9c";
 //    public static final String TEST_API_TOKEN = "2c90c068a8319a4503a9fc0addc48501";
-    public static final String TEST_MEMBER_TOKEN = "100015619";
+    public static final String TEST_MEMBER_TOKEN = "sbi99kwhltksc46hq6t6";
 
     public String accessToken = null;
 

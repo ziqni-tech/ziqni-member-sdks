@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.ContestReduced();
+    instance = new ZiqniTechGamificationApiClient.ContestReduced();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,91 +50,91 @@
   describe('ContestReduced', function() {
     it('should create an instance of ContestReduced', function() {
       // uncomment below and update the code to test ContestReduced
-      //var instance = new @ZiqniTechGamificationApiClient.ContestReduced();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.ContestReduced);
+      //var instance = new ZiqniTechGamificationApiClient.ContestReduced();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.ContestReduced);
     });
 
     it('should have the property competitionId (base name: "competitionId")', function() {
       // uncomment below and update the code to test the property competitionId
-      //var instance = new @ZiqniTechGamificationApiClient.ContestReduced();
+      //var instance = new ZiqniTechGamificationApiClient.ContestReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property row (base name: "row")', function() {
       // uncomment below and update the code to test the property row
-      //var instance = new @ZiqniTechGamificationApiClient.ContestReduced();
+      //var instance = new ZiqniTechGamificationApiClient.ContestReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property name (base name: "name")', function() {
       // uncomment below and update the code to test the property name
-      //var instance = new @ZiqniTechGamificationApiClient.ContestReduced();
+      //var instance = new ZiqniTechGamificationApiClient.ContestReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property round (base name: "round")', function() {
       // uncomment below and update the code to test the property round
-      //var instance = new @ZiqniTechGamificationApiClient.ContestReduced();
+      //var instance = new ZiqniTechGamificationApiClient.ContestReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property groupStage (base name: "groupStage")', function() {
       // uncomment below and update the code to test the property groupStage
-      //var instance = new @ZiqniTechGamificationApiClient.ContestReduced();
+      //var instance = new ZiqniTechGamificationApiClient.ContestReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property entrantsFromContest (base name: "entrantsFromContest")', function() {
       // uncomment below and update the code to test the property entrantsFromContest
-      //var instance = new @ZiqniTechGamificationApiClient.ContestReduced();
+      //var instance = new ZiqniTechGamificationApiClient.ContestReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property status (base name: "status")', function() {
       // uncomment below and update the code to test the property status
-      //var instance = new @ZiqniTechGamificationApiClient.ContestReduced();
+      //var instance = new ZiqniTechGamificationApiClient.ContestReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property statusCode (base name: "statusCode")', function() {
       // uncomment below and update the code to test the property statusCode
-      //var instance = new @ZiqniTechGamificationApiClient.ContestReduced();
+      //var instance = new ZiqniTechGamificationApiClient.ContestReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property scheduledStartDate (base name: "scheduledStartDate")', function() {
       // uncomment below and update the code to test the property scheduledStartDate
-      //var instance = new @ZiqniTechGamificationApiClient.ContestReduced();
+      //var instance = new ZiqniTechGamificationApiClient.ContestReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property scheduledEndDate (base name: "scheduledEndDate")', function() {
       // uncomment below and update the code to test the property scheduledEndDate
-      //var instance = new @ZiqniTechGamificationApiClient.ContestReduced();
+      //var instance = new ZiqniTechGamificationApiClient.ContestReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property actualStartDate (base name: "actualStartDate")', function() {
       // uncomment below and update the code to test the property actualStartDate
-      //var instance = new @ZiqniTechGamificationApiClient.ContestReduced();
+      //var instance = new ZiqniTechGamificationApiClient.ContestReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property actualEndDate (base name: "actualEndDate")', function() {
       // uncomment below and update the code to test the property actualEndDate
-      //var instance = new @ZiqniTechGamificationApiClient.ContestReduced();
+      //var instance = new ZiqniTechGamificationApiClient.ContestReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property tags (base name: "tags")', function() {
       // uncomment below and update the code to test the property tags
-      //var instance = new @ZiqniTechGamificationApiClient.ContestReduced();
+      //var instance = new ZiqniTechGamificationApiClient.ContestReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property rewards (base name: "rewards")', function() {
       // uncomment below and update the code to test the property rewards
-      //var instance = new @ZiqniTechGamificationApiClient.ContestReduced();
+      //var instance = new ZiqniTechGamificationApiClient.ContestReduced();
       //expect(instance).to.be();
     });
 

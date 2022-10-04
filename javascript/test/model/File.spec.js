@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.File();
+    instance = new ZiqniTechGamificationApiClient.File();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,43 +50,43 @@
   describe('File', function() {
     it('should create an instance of File', function() {
       // uncomment below and update the code to test File
-      //var instance = new @ZiqniTechGamificationApiClient.File();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.File);
+      //var instance = new ZiqniTechGamificationApiClient.File();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.File);
     });
 
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
-      //var instance = new @ZiqniTechGamificationApiClient.File();
+      //var instance = new ZiqniTechGamificationApiClient.File();
       //expect(instance).to.be();
     });
 
     it('should have the property spaceName (base name: "spaceName")', function() {
       // uncomment below and update the code to test the property spaceName
-      //var instance = new @ZiqniTechGamificationApiClient.File();
+      //var instance = new ZiqniTechGamificationApiClient.File();
       //expect(instance).to.be();
     });
 
     it('should have the property created (base name: "created")', function() {
       // uncomment below and update the code to test the property created
-      //var instance = new @ZiqniTechGamificationApiClient.File();
+      //var instance = new ZiqniTechGamificationApiClient.File();
       //expect(instance).to.be();
     });
 
     it('should have the property customFields (base name: "customFields")', function() {
       // uncomment below and update the code to test the property customFields
-      //var instance = new @ZiqniTechGamificationApiClient.File();
+      //var instance = new ZiqniTechGamificationApiClient.File();
       //expect(instance).to.be();
     });
 
     it('should have the property tags (base name: "tags")', function() {
       // uncomment below and update the code to test the property tags
-      //var instance = new @ZiqniTechGamificationApiClient.File();
+      //var instance = new ZiqniTechGamificationApiClient.File();
       //expect(instance).to.be();
     });
 
     it('should have the property metadata (base name: "metadata")', function() {
       // uncomment below and update the code to test the property metadata
-      //var instance = new @ZiqniTechGamificationApiClient.File();
+      //var instance = new ZiqniTechGamificationApiClient.File();
       //expect(instance).to.be();
     });
 

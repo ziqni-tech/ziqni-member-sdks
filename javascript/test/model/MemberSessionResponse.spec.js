@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.MemberSessionResponse();
+    instance = new ZiqniTechGamificationApiClient.MemberSessionResponse();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,25 +50,25 @@
   describe('MemberSessionResponse', function() {
     it('should create an instance of MemberSessionResponse', function() {
       // uncomment below and update the code to test MemberSessionResponse
-      //var instance = new @ZiqniTechGamificationApiClient.MemberSessionResponse();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.MemberSessionResponse);
+      //var instance = new ZiqniTechGamificationApiClient.MemberSessionResponse();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.MemberSessionResponse);
     });
 
     it('should have the property meta (base name: "meta")', function() {
       // uncomment below and update the code to test the property meta
-      //var instance = new @ZiqniTechGamificationApiClient.MemberSessionResponse();
+      //var instance = new ZiqniTechGamificationApiClient.MemberSessionResponse();
       //expect(instance).to.be();
     });
 
     it('should have the property data (base name: "data")', function() {
       // uncomment below and update the code to test the property data
-      //var instance = new @ZiqniTechGamificationApiClient.MemberSessionResponse();
+      //var instance = new ZiqniTechGamificationApiClient.MemberSessionResponse();
       //expect(instance).to.be();
     });
 
     it('should have the property errors (base name: "errors")', function() {
       // uncomment below and update the code to test the property errors
-      //var instance = new @ZiqniTechGamificationApiClient.MemberSessionResponse();
+      //var instance = new ZiqniTechGamificationApiClient.MemberSessionResponse();
       //expect(instance).to.be();
     });
 

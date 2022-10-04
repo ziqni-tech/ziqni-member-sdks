@@ -1,6 +1,6 @@
 # @ZiqniTechGamificationApiClient.NotificationsApi
 
-All URIs are relative to *https://gamification-api.ziqni.com*
+All URIs are relative to *https://member-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -19,7 +19,7 @@ subscribes a client to receive out-of-band data
 ### Example
 
 ```javascript
-import @ZiqniTechGamificationApiClient from '@ziqni-tech/gamification-api-client';
+import @ZiqniTechGamificationApiClient from '@ziqni-tech/member-api-client';
 
 let apiInstance = new @ZiqniTechGamificationApiClient.NotificationsApi();
 let subscriptionRequest = new @ZiqniTechGamificationApiClient.SubscriptionRequest(); // SubscriptionRequest | subscription payload

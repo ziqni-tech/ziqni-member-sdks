@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.SubscriptionRequest();
+    instance = new ZiqniTechGamificationApiClient.SubscriptionRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,25 +50,25 @@
   describe('SubscriptionRequest', function() {
     it('should create an instance of SubscriptionRequest', function() {
       // uncomment below and update the code to test SubscriptionRequest
-      //var instance = new @ZiqniTechGamificationApiClient.SubscriptionRequest();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.SubscriptionRequest);
+      //var instance = new ZiqniTechGamificationApiClient.SubscriptionRequest();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.SubscriptionRequest);
     });
 
     it('should have the property entityType (base name: "entityType")', function() {
       // uncomment below and update the code to test the property entityType
-      //var instance = new @ZiqniTechGamificationApiClient.SubscriptionRequest();
+      //var instance = new ZiqniTechGamificationApiClient.SubscriptionRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property constraints (base name: "constraints")', function() {
       // uncomment below and update the code to test the property constraints
-      //var instance = new @ZiqniTechGamificationApiClient.SubscriptionRequest();
+      //var instance = new ZiqniTechGamificationApiClient.SubscriptionRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property operation (base name: "operation")', function() {
       // uncomment below and update the code to test the property operation
-      //var instance = new @ZiqniTechGamificationApiClient.SubscriptionRequest();
+      //var instance = new ZiqniTechGamificationApiClient.SubscriptionRequest();
       //expect(instance).to.be();
     });
 

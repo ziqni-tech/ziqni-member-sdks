@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.Subscription();
+    instance = new ZiqniTechGamificationApiClient.Subscription();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,25 +50,25 @@
   describe('Subscription', function() {
     it('should create an instance of Subscription', function() {
       // uncomment below and update the code to test Subscription
-      //var instance = new @ZiqniTechGamificationApiClient.Subscription();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.Subscription);
+      //var instance = new ZiqniTechGamificationApiClient.Subscription();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.Subscription);
     });
 
     it('should have the property entityType (base name: "entityType")', function() {
       // uncomment below and update the code to test the property entityType
-      //var instance = new @ZiqniTechGamificationApiClient.Subscription();
+      //var instance = new ZiqniTechGamificationApiClient.Subscription();
       //expect(instance).to.be();
     });
 
     it('should have the property subscriptionId (base name: "subscriptionId")', function() {
       // uncomment below and update the code to test the property subscriptionId
-      //var instance = new @ZiqniTechGamificationApiClient.Subscription();
+      //var instance = new ZiqniTechGamificationApiClient.Subscription();
       //expect(instance).to.be();
     });
 
     it('should have the property constraints (base name: "constraints")', function() {
       // uncomment below and update the code to test the property constraints
-      //var instance = new @ZiqniTechGamificationApiClient.Subscription();
+      //var instance = new ZiqniTechGamificationApiClient.Subscription();
       //expect(instance).to.be();
     });
 

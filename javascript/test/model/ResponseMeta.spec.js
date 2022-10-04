@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.ResponseMeta();
+    instance = new ZiqniTechGamificationApiClient.ResponseMeta();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,31 +50,31 @@
   describe('ResponseMeta', function() {
     it('should create an instance of ResponseMeta', function() {
       // uncomment below and update the code to test ResponseMeta
-      //var instance = new @ZiqniTechGamificationApiClient.ResponseMeta();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.ResponseMeta);
+      //var instance = new ZiqniTechGamificationApiClient.ResponseMeta();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.ResponseMeta);
     });
 
     it('should have the property totalRecordsFound (base name: "totalRecordsFound")', function() {
       // uncomment below and update the code to test the property totalRecordsFound
-      //var instance = new @ZiqniTechGamificationApiClient.ResponseMeta();
+      //var instance = new ZiqniTechGamificationApiClient.ResponseMeta();
       //expect(instance).to.be();
     });
 
     it('should have the property skip (base name: "skip")', function() {
       // uncomment below and update the code to test the property skip
-      //var instance = new @ZiqniTechGamificationApiClient.ResponseMeta();
+      //var instance = new ZiqniTechGamificationApiClient.ResponseMeta();
       //expect(instance).to.be();
     });
 
     it('should have the property limit (base name: "limit")', function() {
       // uncomment below and update the code to test the property limit
-      //var instance = new @ZiqniTechGamificationApiClient.ResponseMeta();
+      //var instance = new ZiqniTechGamificationApiClient.ResponseMeta();
       //expect(instance).to.be();
     });
 
     it('should have the property objectType (base name: "objectType")', function() {
       // uncomment below and update the code to test the property objectType
-      //var instance = new @ZiqniTechGamificationApiClient.ResponseMeta();
+      //var instance = new ZiqniTechGamificationApiClient.ResponseMeta();
       //expect(instance).to.be();
     });
 

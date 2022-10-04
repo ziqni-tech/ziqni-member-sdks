@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.Message();
+    instance = new ZiqniTechGamificationApiClient.Message();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,109 +50,109 @@
   describe('Message', function() {
     it('should create an instance of Message', function() {
       // uncomment below and update the code to test Message
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.Message);
+      //var instance = new ZiqniTechGamificationApiClient.Message();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.Message);
     });
 
     it('should have the property eventRefType (base name: "eventRefType")', function() {
       // uncomment below and update the code to test the property eventRefType
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 
     it('should have the property eventRefId (base name: "eventRefId")', function() {
       // uncomment below and update the code to test the property eventRefId
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 
     it('should have the property messageType (base name: "messageType")', function() {
       // uncomment below and update the code to test the property messageType
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 
     it('should have the property subject (base name: "subject")', function() {
       // uncomment below and update the code to test the property subject
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 
     it('should have the property body (base name: "body")', function() {
       // uncomment below and update the code to test the property body
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 
     it('should have the property prize (base name: "prize")', function() {
       // uncomment below and update the code to test the property prize
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 
     it('should have the property status (base name: "status")', function() {
       // uncomment below and update the code to test the property status
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 
     it('should have the property expiry (base name: "expiry")', function() {
       // uncomment below and update the code to test the property expiry
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 
     it('should have the property memberId (base name: "memberId")', function() {
       // uncomment below and update the code to test the property memberId
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 
     it('should have the property translations (base name: "translations")', function() {
       // uncomment below and update the code to test the property translations
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 
     it('should have the property translatableFields (base name: "translatableFields")', function() {
       // uncomment below and update the code to test the property translatableFields
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 
     it('should have the property spaceName (base name: "spaceName")', function() {
       // uncomment below and update the code to test the property spaceName
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 
     it('should have the property created (base name: "created")', function() {
       // uncomment below and update the code to test the property created
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 
     it('should have the property customFields (base name: "customFields")', function() {
       // uncomment below and update the code to test the property customFields
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 
     it('should have the property tags (base name: "tags")', function() {
       // uncomment below and update the code to test the property tags
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 
     it('should have the property metadata (base name: "metadata")', function() {
       // uncomment below and update the code to test the property metadata
-      //var instance = new @ZiqniTechGamificationApiClient.Message();
+      //var instance = new ZiqniTechGamificationApiClient.Message();
       //expect(instance).to.be();
     });
 

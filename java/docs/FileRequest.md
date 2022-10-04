@@ -3,12 +3,11 @@
 # FileRequest
 
 
-
 ## Properties
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**memberRefId** | **String** |  |  |
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**memberRefId** | **String** |  | 
 
 
 

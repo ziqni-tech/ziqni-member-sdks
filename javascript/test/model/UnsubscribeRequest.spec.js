@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechGamificationApiClient.UnsubscribeRequest();
+    instance = new ZiqniTechGamificationApiClient.UnsubscribeRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,13 +50,13 @@
   describe('UnsubscribeRequest', function() {
     it('should create an instance of UnsubscribeRequest', function() {
       // uncomment below and update the code to test UnsubscribeRequest
-      //var instance = new @ZiqniTechGamificationApiClient.UnsubscribeRequest();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.UnsubscribeRequest);
+      //var instance = new ZiqniTechGamificationApiClient.UnsubscribeRequest();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.UnsubscribeRequest);
     });
 
     it('should have the property sunscriptionId (base name: "sunscriptionId")', function() {
       // uncomment below and update the code to test the property sunscriptionId
-      //var instance = new @ZiqniTechGamificationApiClient.UnsubscribeRequest();
+      //var instance = new ZiqniTechGamificationApiClient.UnsubscribeRequest();
       //expect(instance).to.be();
     });
 

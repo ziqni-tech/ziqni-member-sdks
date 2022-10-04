@@ -1,6 +1,6 @@
 # @ZiqniTechGamificationApiClient.ProxyApi
 
-All URIs are relative to *https://gamification-api.ziqni.com*
+All URIs are relative to *https://member-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -19,7 +19,7 @@ Perform proxy operations.
 ### Example
 
 ```javascript
-import @ZiqniTechGamificationApiClient from '@ziqni-tech/gamification-api-client';
+import @ZiqniTechGamificationApiClient from '@ziqni-tech/member-api-client';
 
 let apiInstance = new @ZiqniTechGamificationApiClient.ProxyApi();
 let proxyRequest = new @ZiqniTechGamificationApiClient.ProxyRequest(); // ProxyRequest | 

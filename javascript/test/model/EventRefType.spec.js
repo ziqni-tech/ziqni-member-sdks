@@ -20,9 +20,9 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.@ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniTechGamificationApiClient);
   }
-}(this, function(expect, @ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniTechGamificationApiClient) {
   'use strict';
 
   var instance;
@@ -49,8 +49,8 @@
   describe('EventRefType', function() {
     it('should create an instance of EventRefType', function() {
       // uncomment below and update the code to test EventRefType
-      //var instance = new @ZiqniTechGamificationApiClient.EventRefType();
-      //expect(instance).to.be.a(@ZiqniTechGamificationApiClient.EventRefType);
+      //var instance = new ZiqniTechGamificationApiClient.EventRefType();
+      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.EventRefType);
     });
 
   });

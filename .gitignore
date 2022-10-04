@@ -12,7 +12,9 @@ target/
 *.iws
 *.iml
 *.ipr
-
+.idea
+/.idea/
+.idea/workspace.xml
 
 ### Eclipse ###
 .apt_generated
@@ -39,9 +41,11 @@ build/
 ### Mac OS ###
 .DS_Store
 /admin-api-java/openapi/generated/
-/gamification-api-java/openapi/generated/
+/member-api-java/openapi/generated/
 /gateway-api-java/openapi/generated/
 /openapi/javascript/generated/
 /java/logs/
 /logs/
 /.idea/
+/javascript/dist/*
+/javascript/node_modules/
