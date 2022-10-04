@@ -4,22 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="rules ,rewards and achievement tests">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RewardsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/RewardsApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/RulesApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/RulesApi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/api/AchievementsApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/api/AchievementsApiTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/api/AwardsApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/api/AwardsApiTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/api/RewardsApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/api/RewardsApiTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/api/RulesApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/api/RulesApiTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/data/LoadRewardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/data/LoadRewardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/data/LoadRulesData.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/data/LoadRulesData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/test/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/test/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/openapi/ziqni-member-api.yml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/ziqni-member-api.yml" afterDir="false" />
+    <list default="true" id="1a134ac1-1dc2-4155-86d3-fe49311c0de5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/java/docs/MetaBasic.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/docs/MetaInfo.md" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,11 +37,12 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/data" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/java/src/test/java/com/ziqni/member/sdk/data" />
@@ -61,18 +50,6 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/java" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="JUnit.RulesApiTest.getRulesTest">
     <configuration name="SampleApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -134,7 +111,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -212,20 +189,22 @@
       <option name="project" value="LOCAL" />
       <updated>1657957137478</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="rules ,rewards and achievement tests">
+      <created>1664881413328</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1664881413329</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -238,7 +217,8 @@
     <MESSAGE value="Updated the config for convenience" />
     <MESSAGE value="Domain changed to member-api.ziqni.com" />
     <MESSAGE value="Updated schema and generated sources location" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated schema and generated sources location" />
+    <MESSAGE value="rules ,rewards and achievement tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="rules ,rewards and achievement tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
