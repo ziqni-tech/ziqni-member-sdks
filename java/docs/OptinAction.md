@@ -5,9 +5,9 @@
 ## Enum
 
 
-* `IN` (value: `"opt-in"`)
+* `JOIN` (value: `"join"`)
 
-* `OUT` (value: `"opt-out"`)
+* `LEAVE` (value: `"leave"`)
 
 
 

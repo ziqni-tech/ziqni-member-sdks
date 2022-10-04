@@ -7,9 +7,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entityId** | **String** |  |  [optional]
-**entityType** | **String** |  |  [optional]
-**action** | **String** |  |  [optional]
+**entityId** | **String** | The system identifier for the entity |  [optional]
+**entityType** | **String** | Achievement, Competition, or Contest  |  [optional]
+**action** | **OptinAction** |  | 
 
 
 
