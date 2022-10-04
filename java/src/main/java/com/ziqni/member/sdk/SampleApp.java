@@ -2,13 +2,14 @@ package com.ziqni.member.sdk;
 
 import com.ziqni.member.sdk.api.EntityChangesApiWs;
 import com.ziqni.member.sdk.model.*;
+import com.ziqni.member.sdk.model.Error;
 import com.ziqni.member.sdk.streaming.StreamingClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class SampleApp {
     private static final Logger logger = LoggerFactory.getLogger(SampleApp.class);
@@ -42,7 +43,7 @@ public class SampleApp {
 
     private void optIntoAchievement(Achievement achievement){
         ApiClientFactoryWs.getOptInApi().manageOptin(new ManageOptinRequest()
-                .action("join")
+                .action(OptinAction.JOIN)
                 .entityId(achievement.getId())
                 .entityType(Achievement.class.getSimpleName())
         ).thenAccept(memberResponse -> {
@@ -131,20 +132,28 @@ public class SampleApp {
                 new EntityChangeSubscriptionRequest()
                         .callback(EntityChangesApiWs.manageEntityChangeSubscriptionCallBacks.ENTITYCHANGED)
                         .action(EntityChangeSubscriptionRequest.ActionEnum.SUBSCRIBE)
-                        .entityType(entityType)
-        ).exceptionally(throwable -> {
-            logger.error("Failed to subscribe to entity changes for  {}", entityType,throwable);
-            return null;
-        });
+                        .entityType(entityType))
+                .thenAccept(in -> onErrors(in.getErrors(),in.toString()))
+                .exceptionally(throwable -> {
+                    logger.error("Failed to subscribe to entity changes for  {}", entityType,throwable);
+                    return null;
+                });
 
         ApiClientFactoryWs.getEntityChangesApi().manageEntityChangeSubscription(
                 new EntityChangeSubscriptionRequest()
                         .callback(EntityChangesApiWs.manageEntityChangeSubscriptionCallBacks.ENTITYSTATECHANGED)
                         .action(EntityChangeSubscriptionRequest.ActionEnum.SUBSCRIBE)
-                        .entityType(entityType)
-        ).exceptionally(throwable -> {
-            logger.error("Failed to subscribe to entity state changes for  {}", entityType,throwable);
-            return null;
-        });
+                        .entityType(entityType))
+                .thenAccept(in -> onErrors(in.getErrors(),in.toString()))
+                .exceptionally(throwable -> {
+                    logger.error("Failed to subscribe to entity state changes for  {}", entityType,throwable);
+                    return null;
+                });
+    }
+
+    private static void onErrors(List<Error> errors, String message) {
+        if(errors != null && !errors.isEmpty()) {
+            logger.error(message);
+        }
     }
 }
