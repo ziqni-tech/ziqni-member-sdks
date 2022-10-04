@@ -28,7 +28,29 @@ public class SampleApp {
     }
 
     private static void handleResponse(AchievementResponse achievementResponse){
+
+        if(achievementResponse.getData() != null){
+            achievementResponse.getData().forEach(achievement -> {
+                if(achievement.getConstraints().contains("optinRequiredForEntrants")){
+
+                }
+            });
+        }
+
         System.out.println(achievementResponse);
+    }
+
+    private void optIntoAchievement(Achievement achievement){
+        ApiClientFactoryWs.getOptInApi().manageOptin(new ManageOptinRequest()
+                .action("join")
+                .entityId(achievement.getId())
+                .entityType(Achievement.class.getSimpleName())
+        ).thenAccept(memberResponse -> {
+            logger.info(memberResponse.getData().toString());
+        }).exceptionally(throwable -> {
+            logger.error("Failed to subscribe to entity changes for  {}", Achievement.class.getSimpleName(), throwable);
+            return null;
+        });
     }
 
     private static void onStart(StreamingClient streamingClient) {
@@ -62,17 +84,23 @@ public class SampleApp {
     private static void subscribeToEntityChanges(){
 
         ApiClientFactoryWs.getEntityChangesApi().entityChangedHandler(
-                        ((stompHeaders, entityChanged) ->
-                            logger.info(entityChanged.toString())
-                        ),
+                        ((stompHeaders, entityChanged) -> {
+                            logger.info(entityChanged.toString());
+                            if(entityChanged.getEntityType().equals("Score")){
+                                logger.warn("woop woop");
+                            }
+                        }),
                         (stompHeaders, error) ->
                             logger.info(error.toString())
         );
 
         ApiClientFactoryWs.getEntityChangesApi().entityStateChangedHandler(
-                        ((stompHeaders, entityStateChanged) ->
-                            logger.info(entityStateChanged.toString())
-                        ),
+                        ((stompHeaders, entityStateChanged) ->{
+                            logger.info(entityStateChanged.toString());
+                            if(entityStateChanged.getEntityType().equals("Score")){
+                                logger.warn("woop woop");
+                            }
+                        }),
                         (stompHeaders, error) ->
                             logger.info(error.toString())
         );
@@ -91,6 +119,9 @@ public class SampleApp {
 
         // Award
         subscribe(Award.class.getSimpleName());
+
+        // Score
+        subscribe("Score");
 
     }
 

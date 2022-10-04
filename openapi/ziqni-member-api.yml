@@ -250,33 +250,6 @@ paths:
       summary: Get files.
       description: This operation supports retrieval of file objects for one or many entities.
       x-ws-only: true
-  /manage-optin:
-    summary: Member optin operation
-    description: This endpoint supports member's optin operation.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ManageOptinRequest'
-        required: true
-      tags:
-        - members
-      responses:
-        '200':
-          $ref: '#/components/responses/MemberResponseBody'
-        '400':
-          $ref: '#/components/responses/MemberResponseBody'
-        '500':
-          $ref: '#/components/responses/MemberResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewMembers
-      operationId: manageOptin
-      summary: Get member optin information
-      description: Returns a list of member optin information
-      x-ws-only: true
   /messages:
     summary: Member messages operation
     description: This endpoint supports member's messages operation.
@@ -413,6 +386,33 @@ paths:
           $ref: '#/components/responses/EntityChangeSubscriptionResponseBody'
       operationId: manageEntityChangeSubscription
       description: subscribes a client to receive out-of-band data
+  /manage-optin:
+    summary: Member optin operation
+    description: This endpoint supports member's optin operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManageOptinRequest'
+        required: true
+      tags:
+        - opt-in
+      responses:
+        '200':
+          $ref: '#/components/responses/OptInResponseBody'
+        '400':
+          $ref: '#/components/responses/OptInResponseBody'
+        '500':
+          $ref: '#/components/responses/OptInResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewMembers
+      operationId: manageOptin
+      summary: Get member optin information
+      description: Returns a list of member optin information
+      x-ws-only: true
 components:
   schemas:
     ResponseMeta:
@@ -2284,7 +2284,9 @@ components:
               description: ''
               type: string
             constraints:
-              description: 'Additional constraints, if set means true'
+              description: >-
+                Additional constraints, if set means true [optinRequiredForEntrants, hasRules,
+                hasRewards]
               type: array
               items:
                 type: string
@@ -2620,8 +2622,8 @@ components:
     OptinAction:
       description: ''
       enum:
-        - opt-in
-        - opt-out
+        - join
+        - leave
       type: string
     Member:
       description: This is the Member model
@@ -2667,17 +2669,20 @@ components:
           type: string
     ManageOptinRequest:
       description: ''
+      required:
+        - action
       type: object
       properties:
         entityId:
-          description: ''
+          description: The system identifier for the entity
           type: string
         entityType:
-          description: ''
+          description: 'Achievement, Competition, or Contest '
           type: string
+          example: rx62ooMBNpSnvvK2PMr7
         action:
-          description: ''
-          type: string
+          $ref: '#/components/schemas/OptinAction'
+          description: 'join, or leave'
       example:
         memberRefId: some text
         entityId: some text
@@ -3938,6 +3943,46 @@ components:
           $ref: '#/components/schemas/ModelDefault'
         -
           $ref: '#/components/schemas/OptionalModelFields'
+    OptInRequestStatus:
+      description: ''
+      required:
+        - entityType
+        - statusCode
+        - status
+      type: object
+      properties:
+        entityType:
+          description: ''
+          type: string
+        entityId:
+          description: ''
+          type: string
+        statusCode:
+          description: >-
+            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15, Preparing = 20, Running =
+            25, Completing = 30, Completed = 35
+          type: integer
+        status:
+          description: >-
+            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15, Preparing = 20, Running =
+            25, Completing = 30, Completed = 35
+          type: string
+    OptInResponse:
+      description: '        '
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          $ref: '#/components/schemas/OptInRequestStatus'
+          description: ''
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
   responses:
     AchievementResponseBody:
       content:
@@ -4094,6 +4139,12 @@ components:
     LeaderboardResponseBody:
       content:
         application/json: {}
+      description: ''
+    OptInResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OptInResponse'
       description: ''
   securitySchemes:
     OAuth2:
