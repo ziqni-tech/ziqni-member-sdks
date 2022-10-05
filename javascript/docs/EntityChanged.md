@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.EntityChanged
+# ZiqniMemberApi.EntityChanged
 
 ## Properties
 
@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **entityId** | **String** |  | [optional] 
 **entityType** | **String** |  | [optional] 
 **changedAt** | **Date** |  | [optional] 
-**changedBy** | **String** |  | [optional] 
 **typeOffChange** | **Number** |  | [optional] 
+**changedBy** | **String** |  | [optional] 
 **displayName** | **String** |  | [optional] 
 **accountId** | **String** |  | [optional] 
 **sequenceNumber** | **Number** |  | [optional] 

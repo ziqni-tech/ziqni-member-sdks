@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -16,17 +16,17 @@ import ApiClient from '../ApiClient';
 /**
  * The RewardRequest model module.
  * @module model/RewardRequest
- * @version 0.0.1
+ * @version 1.0.0
  */
 class RewardRequest {
     /**
      * Constructs a new <code>RewardRequest</code>.
      * @alias module:model/RewardRequest
-     * @param entityId {String} 
+     * @param entityIds {Array.<String>} 
      */
-    constructor(entityId) { 
+    constructor(entityIds) { 
         
-        RewardRequest.initialize(this, entityId);
+        RewardRequest.initialize(this, entityIds);
     }
 
     /**
@@ -34,8 +34,8 @@ class RewardRequest {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, entityId) { 
-        obj['entityId'] = entityId;
+    static initialize(obj, entityIds) { 
+        obj['entityIds'] = entityIds;
     }
 
     /**
@@ -49,8 +49,11 @@ class RewardRequest {
         if (data) {
             obj = obj || new RewardRequest();
 
-            if (data.hasOwnProperty('entityId')) {
-                obj['entityId'] = ApiClient.convertToType(data['entityId'], 'String');
+            if (data.hasOwnProperty('entityIds')) {
+                obj['entityIds'] = ApiClient.convertToType(data['entityIds'], ['String']);
+            }
+            if (data.hasOwnProperty('languageKey')) {
+                obj['languageKey'] = ApiClient.convertToType(data['languageKey'], 'String');
             }
         }
         return obj;
@@ -60,9 +63,15 @@ class RewardRequest {
 }
 
 /**
- * @member {String} entityId
+ * @member {Array.<String>} entityIds
  */
-RewardRequest.prototype['entityId'] = undefined;
+RewardRequest.prototype['entityIds'] = undefined;
+
+/**
+ * The language codes can be found in the settings/transalations section of the back office
+ * @member {String} languageKey
+ */
+RewardRequest.prototype['languageKey'] = undefined;
 
 
 

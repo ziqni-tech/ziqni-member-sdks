@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniMemberApi);
   }
-}(this, function(expect, ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniMemberApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ZiqniTechGamificationApiClient.MessageAllOf();
+    instance = new ZiqniMemberApi.MessageAllOf();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,73 +50,67 @@
   describe('MessageAllOf', function() {
     it('should create an instance of MessageAllOf', function() {
       // uncomment below and update the code to test MessageAllOf
-      //var instance = new ZiqniTechGamificationApiClient.MessageAllOf();
-      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.MessageAllOf);
+      //var instance = new ZiqniMemberApi.MessageAllOf();
+      //expect(instance).to.be.a(ZiqniMemberApi.MessageAllOf);
     });
 
     it('should have the property eventRefType (base name: "eventRefType")', function() {
       // uncomment below and update the code to test the property eventRefType
-      //var instance = new ZiqniTechGamificationApiClient.MessageAllOf();
+      //var instance = new ZiqniMemberApi.MessageAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property eventRefId (base name: "eventRefId")', function() {
       // uncomment below and update the code to test the property eventRefId
-      //var instance = new ZiqniTechGamificationApiClient.MessageAllOf();
+      //var instance = new ZiqniMemberApi.MessageAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property messageType (base name: "messageType")', function() {
       // uncomment below and update the code to test the property messageType
-      //var instance = new ZiqniTechGamificationApiClient.MessageAllOf();
+      //var instance = new ZiqniMemberApi.MessageAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property subject (base name: "subject")', function() {
       // uncomment below and update the code to test the property subject
-      //var instance = new ZiqniTechGamificationApiClient.MessageAllOf();
+      //var instance = new ZiqniMemberApi.MessageAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property body (base name: "body")', function() {
       // uncomment below and update the code to test the property body
-      //var instance = new ZiqniTechGamificationApiClient.MessageAllOf();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property prize (base name: "prize")', function() {
-      // uncomment below and update the code to test the property prize
-      //var instance = new ZiqniTechGamificationApiClient.MessageAllOf();
+      //var instance = new ZiqniMemberApi.MessageAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property status (base name: "status")', function() {
       // uncomment below and update the code to test the property status
-      //var instance = new ZiqniTechGamificationApiClient.MessageAllOf();
+      //var instance = new ZiqniMemberApi.MessageAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property expiry (base name: "expiry")', function() {
       // uncomment below and update the code to test the property expiry
-      //var instance = new ZiqniTechGamificationApiClient.MessageAllOf();
+      //var instance = new ZiqniMemberApi.MessageAllOf();
       //expect(instance).to.be();
     });
 
-    it('should have the property memberId (base name: "memberId")', function() {
-      // uncomment below and update the code to test the property memberId
-      //var instance = new ZiqniTechGamificationApiClient.MessageAllOf();
+    it('should have the property memberIds (base name: "memberIds")', function() {
+      // uncomment below and update the code to test the property memberIds
+      //var instance = new ZiqniMemberApi.MessageAllOf();
       //expect(instance).to.be();
     });
 
-    it('should have the property translations (base name: "translations")', function() {
-      // uncomment below and update the code to test the property translations
-      //var instance = new ZiqniTechGamificationApiClient.MessageAllOf();
+    it('should have the property memberTags (base name: "memberTags")', function() {
+      // uncomment below and update the code to test the property memberTags
+      //var instance = new ZiqniMemberApi.MessageAllOf();
       //expect(instance).to.be();
     });
 
-    it('should have the property translatableFields (base name: "translatableFields")', function() {
-      // uncomment below and update the code to test the property translatableFields
-      //var instance = new ZiqniTechGamificationApiClient.MessageAllOf();
+    it('should have the property id (base name: "id")', function() {
+      // uncomment below and update the code to test the property id
+      //var instance = new ZiqniMemberApi.MessageAllOf();
       //expect(instance).to.be();
     });
 

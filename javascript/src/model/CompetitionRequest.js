@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -17,7 +17,7 @@ import CompetitionFilter from './CompetitionFilter';
 /**
  * The CompetitionRequest model module.
  * @module model/CompetitionRequest
- * @version 0.0.1
+ * @version 1.0.0
  */
 class CompetitionRequest {
     /**
@@ -48,6 +48,9 @@ class CompetitionRequest {
         if (data) {
             obj = obj || new CompetitionRequest();
 
+            if (data.hasOwnProperty('languageKey')) {
+                obj['languageKey'] = ApiClient.convertToType(data['languageKey'], 'String');
+            }
             if (data.hasOwnProperty('competitionFilter')) {
                 obj['competitionFilter'] = CompetitionFilter.constructFromObject(data['competitionFilter']);
             }
@@ -57,6 +60,12 @@ class CompetitionRequest {
 
 
 }
+
+/**
+ * The language codes can be found in the settings/transalations section of the back office
+ * @member {String} languageKey
+ */
+CompetitionRequest.prototype['languageKey'] = undefined;
 
 /**
  * @member {module:model/CompetitionFilter} competitionFilter

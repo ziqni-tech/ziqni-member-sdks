@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -15,6 +15,7 @@ import ApiClient from '../ApiClient';
 import CompetitionAllOf from './CompetitionAllOf';
 import CompetitionStatus from './CompetitionStatus';
 import CompetitionType from './CompetitionType';
+import DependantOn from './DependantOn';
 import ModelDefault from './ModelDefault';
 import OptionalModelFields from './OptionalModelFields';
 import ProductReduced from './ProductReduced';
@@ -22,7 +23,7 @@ import ProductReduced from './ProductReduced';
 /**
  * The Competition model module.
  * @module model/Competition
- * @version 0.0.1
+ * @version 1.0.0
  */
 class Competition {
     /**
@@ -111,6 +112,9 @@ class Competition {
             }
             if (data.hasOwnProperty('products')) {
                 obj['products'] = ApiClient.convertToType(data['products'], [ProductReduced]);
+            }
+            if (data.hasOwnProperty('memberTagsFilter')) {
+                obj['memberTagsFilter'] = DependantOn.constructFromObject(data['memberTagsFilter']);
             }
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
@@ -233,6 +237,11 @@ Competition.prototype['constraints'] = undefined;
 Competition.prototype['products'] = undefined;
 
 /**
+ * @member {module:model/DependantOn} memberTagsFilter
+ */
+Competition.prototype['memberTagsFilter'] = undefined;
+
+/**
  * Ziqni id of the model
  * @member {String} id
  */
@@ -346,6 +355,10 @@ CompetitionAllOf.prototype['constraints'] = undefined;
  * @member {Array.<module:model/ProductReduced>} products
  */
 CompetitionAllOf.prototype['products'] = undefined;
+/**
+ * @member {module:model/DependantOn} memberTagsFilter
+ */
+CompetitionAllOf.prototype['memberTagsFilter'] = undefined;
 // Implement ModelDefault interface:
 /**
  * Ziqni id of the model

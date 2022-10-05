@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -14,6 +14,7 @@
 import ApiClient from '../ApiClient';
 import ContestAllOf from './ContestAllOf';
 import ContestStatus from './ContestStatus';
+import DependantOn from './DependantOn';
 import ModelDefault from './ModelDefault';
 import OptionalModelFields from './OptionalModelFields';
 import RoundType from './RoundType';
@@ -22,7 +23,7 @@ import Strategy from './Strategy';
 /**
  * The Contest model module.
  * @module model/Contest
- * @version 0.0.1
+ * @version 1.0.0
  */
 class Contest {
     /**
@@ -112,6 +113,9 @@ class Contest {
             }
             if (data.hasOwnProperty('statusCode')) {
                 obj['statusCode'] = ApiClient.convertToType(data['statusCode'], 'Number');
+            }
+            if (data.hasOwnProperty('memberTagsFilter')) {
+                obj['memberTagsFilter'] = DependantOn.constructFromObject(data['memberTagsFilter']);
             }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
@@ -238,6 +242,11 @@ Contest.prototype['status'] = undefined;
 Contest.prototype['statusCode'] = undefined;
 
 /**
+ * @member {module:model/DependantOn} memberTagsFilter
+ */
+Contest.prototype['memberTagsFilter'] = undefined;
+
+/**
  * Additional constraints
  * @member {Array.<String>} constraints
  */
@@ -358,6 +367,10 @@ ContestAllOf.prototype['status'] = undefined;
  * @member {Number} statusCode
  */
 ContestAllOf.prototype['statusCode'] = undefined;
+/**
+ * @member {module:model/DependantOn} memberTagsFilter
+ */
+ContestAllOf.prototype['memberTagsFilter'] = undefined;
 /**
  * Additional constraints
  * @member {Array.<String>} constraints

@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.RulesApi
+# ZiqniMemberApi.RulesApi
 
 All URIs are relative to *https://member-api.ziqni.com*
 
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## getRules
 
-> RuleResponse getRules(ruleRequest)
+> RuleResponse getRules(entityRequest)
 
 Get rules
 
@@ -19,15 +19,15 @@ This operation support retrieval of rules for one or many entities.
 ### Example
 
 ```javascript
-import @ZiqniTechGamificationApiClient from '@ziqni-tech/member-api-client';
-let defaultClient = @ZiqniTechGamificationApiClient.ApiClient.instance;
+import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 // Configure OAuth2 access token for authorization: OAuth2
 let OAuth2 = defaultClient.authentications['OAuth2'];
 OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
-let apiInstance = new @ZiqniTechGamificationApiClient.RulesApi();
-let ruleRequest = new @ZiqniTechGamificationApiClient.RuleRequest(); // RuleRequest | 
-apiInstance.getRules(ruleRequest, (error, data, response) => {
+let apiInstance = new ZiqniMemberApi.RulesApi();
+let entityRequest = new ZiqniMemberApi.EntityRequest(); // EntityRequest | 
+apiInstance.getRules(entityRequest, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -41,7 +41,7 @@ apiInstance.getRules(ruleRequest, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ruleRequest** | [**RuleRequest**](RuleRequest.md)|  | 
+ **entityRequest** | [**EntityRequest**](EntityRequest.md)|  | 
 
 ### Return type
 

@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.CompetitionType
+# ZiqniMemberApi.CompetitionType
 
 ## Enum
 

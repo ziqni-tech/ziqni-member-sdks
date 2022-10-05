@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.Contest
+# ZiqniMemberApi.Contest
 
 ## Properties
 
@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **strategies** | [**Strategy**](Strategy.md) |  | [optional] 
 **status** | [**ContestStatus**](ContestStatus.md) |  | [optional] 
 **statusCode** | **Number** | The code of the contest | [optional] [readonly] 
+**memberTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **constraints** | **[String]** | Additional constraints | [optional] 
 **id** | **String** | Ziqni id of the model | 
 **spaceName** | **String** | This is the space name which is linked to the account | [optional] 

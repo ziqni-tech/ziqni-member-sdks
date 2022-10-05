@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.RewardsApi
+# ZiqniMemberApi.RewardsApi
 
 All URIs are relative to *https://member-api.ziqni.com*
 
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## getRewards
 
-> RewardResponse getRewards(rewardRequest)
+> RewardResponse getRewards(entityRequest)
 
 Get rewards
 
@@ -19,15 +19,15 @@ This operation support retrieval of rewards for one or many entitites.
 ### Example
 
 ```javascript
-import @ZiqniTechGamificationApiClient from '@ziqni-tech/member-api-client';
-let defaultClient = @ZiqniTechGamificationApiClient.ApiClient.instance;
+import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 // Configure OAuth2 access token for authorization: OAuth2
 let OAuth2 = defaultClient.authentications['OAuth2'];
 OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
-let apiInstance = new @ZiqniTechGamificationApiClient.RewardsApi();
-let rewardRequest = new @ZiqniTechGamificationApiClient.RewardRequest(); // RewardRequest | 
-apiInstance.getRewards(rewardRequest, (error, data, response) => {
+let apiInstance = new ZiqniMemberApi.RewardsApi();
+let entityRequest = new ZiqniMemberApi.EntityRequest(); // EntityRequest | 
+apiInstance.getRewards(entityRequest, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -41,7 +41,7 @@ apiInstance.getRewards(rewardRequest, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rewardRequest** | [**RewardRequest**](RewardRequest.md)|  | 
+ **entityRequest** | [**EntityRequest**](EntityRequest.md)|  | 
 
 ### Return type
 

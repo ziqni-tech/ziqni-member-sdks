@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniMemberApi);
   }
-}(this, function(expect, ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniMemberApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ZiqniTechGamificationApiClient.RewardReduced();
+    instance = new ZiqniMemberApi.RewardReduced();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,37 +50,37 @@
   describe('RewardReduced', function() {
     it('should create an instance of RewardReduced', function() {
       // uncomment below and update the code to test RewardReduced
-      //var instance = new ZiqniTechGamificationApiClient.RewardReduced();
-      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.RewardReduced);
+      //var instance = new ZiqniMemberApi.RewardReduced();
+      //expect(instance).to.be.a(ZiqniMemberApi.RewardReduced);
     });
 
     it('should have the property rewardRank (base name: "rewardRank")', function() {
       // uncomment below and update the code to test the property rewardRank
-      //var instance = new ZiqniTechGamificationApiClient.RewardReduced();
+      //var instance = new ZiqniMemberApi.RewardReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property name (base name: "name")', function() {
       // uncomment below and update the code to test the property name
-      //var instance = new ZiqniTechGamificationApiClient.RewardReduced();
+      //var instance = new ZiqniMemberApi.RewardReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property rewardValue (base name: "rewardValue")', function() {
       // uncomment below and update the code to test the property rewardValue
-      //var instance = new ZiqniTechGamificationApiClient.RewardReduced();
+      //var instance = new ZiqniMemberApi.RewardReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property rewardType (base name: "rewardType")', function() {
       // uncomment below and update the code to test the property rewardType
-      //var instance = new ZiqniTechGamificationApiClient.RewardReduced();
+      //var instance = new ZiqniMemberApi.RewardReduced();
       //expect(instance).to.be();
     });
 
     it('should have the property rewardTypeId (base name: "rewardTypeId")', function() {
       // uncomment below and update the code to test the property rewardTypeId
-      //var instance = new ZiqniTechGamificationApiClient.RewardReduced();
+      //var instance = new ZiqniMemberApi.RewardReduced();
       //expect(instance).to.be();
     });
 

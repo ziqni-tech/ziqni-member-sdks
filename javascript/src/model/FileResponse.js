@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -18,7 +18,7 @@ import ResponseMeta from './ResponseMeta';
 /**
  * The FileResponse model module.
  * @module model/FileResponse
- * @version 0.0.1
+ * @version 1.0.0
  */
 class FileResponse {
     /**

@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.FieldType
+# ZiqniMemberApi.FieldType
 
 ## Enum
 

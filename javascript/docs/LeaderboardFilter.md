@@ -1,14 +1,11 @@
-# @ZiqniTechGamificationApiClient.LeaderboardFilter
+# ZiqniMemberApi.LeaderboardFilter
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tags** | **[String]** |  | [optional] 
-**sortBy** | [**[QuerySortBy]**](QuerySortBy.md) |  | [optional] 
-**skip** | **Number** |  | [optional] 
-**limit** | **Number** |  | [optional] 
-**statusCode** | **[Number]** | Achievement status code | [optional] 
-**constraints** | **[String]** | Specify the constraints that need to be applied to the filter. | [optional] 
+**topRanksToInclude** | **Number** | Include rank from zero [0] none, then one [1] to the rank specified here. The maximum allowed is 50 | 
+**ranksAboveToInclude** | **Number** | Include ranks above member position. The maximum allowed is 20 | [optional] 
+**ranksBelowToInclude** | **Number** | Include ranks below member position. The maximum allowed is 20 | [optional] 
 
 

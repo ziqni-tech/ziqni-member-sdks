@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.Dependancy
+# ZiqniMemberApi.Dependancy
 
 ## Properties
 

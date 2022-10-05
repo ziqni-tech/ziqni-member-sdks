@@ -1,10 +1,10 @@
-# @ZiqniTechGamificationApiClient.OptinAction
+# ZiqniMemberApi.OptinAction
 
 ## Enum
 
 
-* `in` (value: `"opt-in"`)
+* `join` (value: `"join"`)
 
-* `out` (value: `"opt-out"`)
+* `leave` (value: `"leave"`)
 
 

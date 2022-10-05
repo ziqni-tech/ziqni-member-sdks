@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.Scheduling
+# ZiqniMemberApi.Scheduling
 
 ## Properties
 

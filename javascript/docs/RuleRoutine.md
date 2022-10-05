@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.RuleRoutine
+# ZiqniMemberApi.RuleRoutine
 
 ## Properties
 

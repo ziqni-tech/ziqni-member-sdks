@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -18,7 +18,7 @@ import RangeQuery from './RangeQuery';
 /**
  * The AwardFilter model module.
  * @module model/AwardFilter
- * @version 0.0.1
+ * @version 1.0.0
  */
 class AwardFilter {
     /**
@@ -63,9 +63,6 @@ class AwardFilter {
             }
             if (data.hasOwnProperty('ids')) {
                 obj['ids'] = ApiClient.convertToType(data['ids'], ['String']);
-            }
-            if (data.hasOwnProperty('status')) {
-                obj['status'] = ApiClient.convertToType(data['status'], ['String']);
             }
             if (data.hasOwnProperty('sortBy')) {
                 obj['sortBy'] = ApiClient.convertToType(data['sortBy'], [QuerySortBy]);
@@ -115,12 +112,6 @@ AwardFilter.prototype['endDate'] = undefined;
 AwardFilter.prototype['ids'] = undefined;
 
 /**
- * Achievement status
- * @member {Array.<String>} status
- */
-AwardFilter.prototype['status'] = undefined;
-
-/**
  * @member {Array.<module:model/QuerySortBy>} sortBy
  */
 AwardFilter.prototype['sortBy'] = undefined;
@@ -136,7 +127,7 @@ AwardFilter.prototype['skip'] = undefined;
 AwardFilter.prototype['limit'] = undefined;
 
 /**
- * Achievement status code
+ * Status codes
  * @member {Array.<Number>} statusCode
  */
 AwardFilter.prototype['statusCode'] = undefined;

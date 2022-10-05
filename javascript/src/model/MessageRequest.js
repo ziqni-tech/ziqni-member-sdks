@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The MessageRequest model module.
  * @module model/MessageRequest
- * @version 0.0.1
+ * @version 1.0.0
  */
 class MessageRequest {
     /**
@@ -47,6 +47,9 @@ class MessageRequest {
         if (data) {
             obj = obj || new MessageRequest();
 
+            if (data.hasOwnProperty('languageKey')) {
+                obj['languageKey'] = ApiClient.convertToType(data['languageKey'], 'String');
+            }
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
@@ -56,6 +59,12 @@ class MessageRequest {
 
 
 }
+
+/**
+ * The language codes can be found in the settings/transalations section of the back office
+ * @member {String} languageKey
+ */
+MessageRequest.prototype['languageKey'] = undefined;
 
 /**
  * @member {String} id

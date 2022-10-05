@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -18,12 +18,11 @@ import MessageStatus from './MessageStatus';
 import MessageType from './MessageType';
 import ModelDefault from './ModelDefault';
 import OptionalModelFields from './OptionalModelFields';
-import Translation from './Translation';
 
 /**
  * The Message model module.
  * @module model/Message
- * @version 0.0.1
+ * @version 1.0.0
  */
 class Message {
     /**
@@ -35,7 +34,7 @@ class Message {
      * @param id {String} Ziqni id of the model
      */
     constructor(id) { 
-        MessageAllOf.initialize(this);ModelDefault.initialize(this, id);OptionalModelFields.initialize(this);
+        MessageAllOf.initialize(this, id);ModelDefault.initialize(this, id);OptionalModelFields.initialize(this);
         Message.initialize(this, id);
     }
 
@@ -77,23 +76,17 @@ class Message {
             if (data.hasOwnProperty('body')) {
                 obj['body'] = ApiClient.convertToType(data['body'], 'String');
             }
-            if (data.hasOwnProperty('prize')) {
-                obj['prize'] = ApiClient.convertToType(data['prize'], 'String');
-            }
             if (data.hasOwnProperty('status')) {
                 obj['status'] = MessageStatus.constructFromObject(data['status']);
             }
             if (data.hasOwnProperty('expiry')) {
                 obj['expiry'] = ApiClient.convertToType(data['expiry'], 'Date');
             }
-            if (data.hasOwnProperty('memberId')) {
-                obj['memberId'] = ApiClient.convertToType(data['memberId'], ['String']);
+            if (data.hasOwnProperty('memberIds')) {
+                obj['memberIds'] = ApiClient.convertToType(data['memberIds'], ['String']);
             }
-            if (data.hasOwnProperty('translations')) {
-                obj['translations'] = ApiClient.convertToType(data['translations'], [Translation]);
-            }
-            if (data.hasOwnProperty('translatableFields')) {
-                obj['translatableFields'] = ApiClient.convertToType(data['translatableFields'], ['String']);
+            if (data.hasOwnProperty('memberTags')) {
+                obj['memberTags'] = ApiClient.convertToType(data['memberTags'], ['String']);
             }
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
@@ -149,12 +142,6 @@ Message.prototype['subject'] = undefined;
 Message.prototype['body'] = undefined;
 
 /**
- * Unique system identifier of an Award
- * @member {String} prize
- */
-Message.prototype['prize'] = undefined;
-
-/**
  * @member {module:model/MessageStatus} status
  */
 Message.prototype['status'] = undefined;
@@ -167,20 +154,14 @@ Message.prototype['expiry'] = undefined;
 
 /**
  * The reference ID of the event object
- * @member {Array.<String>} memberId
+ * @member {Array.<String>} memberIds
  */
-Message.prototype['memberId'] = undefined;
+Message.prototype['memberIds'] = undefined;
 
 /**
- * @member {Array.<module:model/Translation>} translations
+ * @member {Array.<String>} memberTags
  */
-Message.prototype['translations'] = undefined;
-
-/**
- * Message translatable fields
- * @member {Array.<String>} translatableFields
- */
-Message.prototype['translatableFields'] = undefined;
+Message.prototype['memberTags'] = undefined;
 
 /**
  * Ziqni id of the model
@@ -242,11 +223,6 @@ MessageAllOf.prototype['subject'] = undefined;
  */
 MessageAllOf.prototype['body'] = undefined;
 /**
- * Unique system identifier of an Award
- * @member {String} prize
- */
-MessageAllOf.prototype['prize'] = undefined;
-/**
  * @member {module:model/MessageStatus} status
  */
 MessageAllOf.prototype['status'] = undefined;
@@ -257,18 +233,17 @@ MessageAllOf.prototype['status'] = undefined;
 MessageAllOf.prototype['expiry'] = undefined;
 /**
  * The reference ID of the event object
- * @member {Array.<String>} memberId
+ * @member {Array.<String>} memberIds
  */
-MessageAllOf.prototype['memberId'] = undefined;
+MessageAllOf.prototype['memberIds'] = undefined;
 /**
- * @member {Array.<module:model/Translation>} translations
+ * @member {Array.<String>} memberTags
  */
-MessageAllOf.prototype['translations'] = undefined;
+MessageAllOf.prototype['memberTags'] = undefined;
 /**
- * Message translatable fields
- * @member {Array.<String>} translatableFields
+ * @member {String} id
  */
-MessageAllOf.prototype['translatableFields'] = undefined;
+MessageAllOf.prototype['id'] = undefined;
 // Implement ModelDefault interface:
 /**
  * Ziqni id of the model

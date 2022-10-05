@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniMemberApi);
   }
-}(this, function(expect, ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniMemberApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ZiqniTechGamificationApiClient.Scheduling();
+    instance = new ZiqniMemberApi.Scheduling();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,43 +50,43 @@
   describe('Scheduling', function() {
     it('should create an instance of Scheduling', function() {
       // uncomment below and update the code to test Scheduling
-      //var instance = new ZiqniTechGamificationApiClient.Scheduling();
-      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.Scheduling);
+      //var instance = new ZiqniMemberApi.Scheduling();
+      //expect(instance).to.be.a(ZiqniMemberApi.Scheduling);
     });
 
     it('should have the property scheduleType (base name: "scheduleType")', function() {
       // uncomment below and update the code to test the property scheduleType
-      //var instance = new ZiqniTechGamificationApiClient.Scheduling();
+      //var instance = new ZiqniMemberApi.Scheduling();
       //expect(instance).to.be();
     });
 
     it('should have the property scheduleOccurrencesLimit (base name: "scheduleOccurrencesLimit")', function() {
       // uncomment below and update the code to test the property scheduleOccurrencesLimit
-      //var instance = new ZiqniTechGamificationApiClient.Scheduling();
+      //var instance = new ZiqniMemberApi.Scheduling();
       //expect(instance).to.be();
     });
 
     it('should have the property every (base name: "every")', function() {
       // uncomment below and update the code to test the property every
-      //var instance = new ZiqniTechGamificationApiClient.Scheduling();
+      //var instance = new ZiqniMemberApi.Scheduling();
       //expect(instance).to.be();
     });
 
     it('should have the property startDate (base name: "startDate")', function() {
       // uncomment below and update the code to test the property startDate
-      //var instance = new ZiqniTechGamificationApiClient.Scheduling();
+      //var instance = new ZiqniMemberApi.Scheduling();
       //expect(instance).to.be();
     });
 
     it('should have the property endDate (base name: "endDate")', function() {
       // uncomment below and update the code to test the property endDate
-      //var instance = new ZiqniTechGamificationApiClient.Scheduling();
+      //var instance = new ZiqniMemberApi.Scheduling();
       //expect(instance).to.be();
     });
 
     it('should have the property constraints (base name: "constraints")', function() {
       // uncomment below and update the code to test the property constraints
-      //var instance = new ZiqniTechGamificationApiClient.Scheduling();
+      //var instance = new ZiqniMemberApi.Scheduling();
       //expect(instance).to.be();
     });
 

@@ -1,9 +1,10 @@
-# @ZiqniTechGamificationApiClient.RewardRequest
+# ZiqniMemberApi.RewardRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entityId** | **String** |  | 
+**entityIds** | **[String]** |  | 
+**languageKey** | **String** | The language codes can be found in the settings/transalations section of the back office | [optional] 
 
 

@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.ScoringStrategy
+# ZiqniMemberApi.ScoringStrategy
 
 ## Properties
 
