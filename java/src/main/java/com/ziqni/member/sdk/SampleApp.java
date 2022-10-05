@@ -148,7 +148,7 @@ public class SampleApp {
                 new EntityChangeSubscriptionRequest()
                         .callback(EntityChangesApiWs.manageEntityChangeSubscriptionCallBacks.ENTITYCHANGED)
                         .action(EntityChangeSubscriptionRequest.ActionEnum.SUBSCRIBE)
-                        .entityType(entityType))
+                        .entityType("Score"))
                 .thenAccept(in -> onErrors(in.getErrors(),in.toString()))
                 .exceptionally(throwable -> {
                     logger.error("Failed to subscribe to entity changes for  {}", entityType,throwable);
