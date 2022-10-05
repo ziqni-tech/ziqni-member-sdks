@@ -34,6 +34,19 @@ public class SampleApp {
             achievementResponse.getData().forEach(achievement -> {
                 if(achievement.getConstraints().contains("optinRequiredForEntrants")){
                     optIntoAchievement(achievement);
+                    optIntoAchievement(achievement);
+                    optIntoAchievement(achievement);
+                    optIntoAchievement(achievement);
+                    optIntoAchievement(achievement);
+                    optIntoAchievement(achievement);
+                    optIntoAchievement(achievement);
+                    optIntoAchievement(achievement);
+                    optIntoAchievement(achievement);
+                    optIntoAchievement(achievement);
+                    optIntoAchievement(achievement);
+                    optIntoAchievement(achievement);
+                    optIntoAchievement(achievement);
+                    optIntoAchievement(achievement);
                 }
             });
         }
