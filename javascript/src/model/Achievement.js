@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -14,6 +14,7 @@
 import ApiClient from '../ApiClient';
 import AchievementAllOf from './AchievementAllOf';
 import Dependancy from './Dependancy';
+import DependantOn from './DependantOn';
 import ModelDefault from './ModelDefault';
 import OptionalModelFields from './OptionalModelFields';
 import Scheduling from './Scheduling';
@@ -21,7 +22,7 @@ import Scheduling from './Scheduling';
 /**
  * The Achievement model module.
  * @module model/Achievement
- * @version 0.0.1
+ * @version 1.0.0
  */
 class Achievement {
     /**
@@ -87,6 +88,9 @@ class Achievement {
             if (data.hasOwnProperty('statusCode')) {
                 obj['statusCode'] = ApiClient.convertToType(data['statusCode'], 'Number');
             }
+            if (data.hasOwnProperty('memberTagsFilter')) {
+                obj['memberTagsFilter'] = DependantOn.constructFromObject(data['memberTagsFilter']);
+            }
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
@@ -128,7 +132,7 @@ Achievement.prototype['description'] = undefined;
 Achievement.prototype['termsAndConditions'] = undefined;
 
 /**
- * Additional constraints, if set means true
+ * Additional constraints, if set means true [optinRequiredForEntrants, hasRules, hasRewards]
  * @member {Array.<String>} constraints
  */
 Achievement.prototype['constraints'] = undefined;
@@ -159,6 +163,11 @@ Achievement.prototype['status'] = undefined;
  * @member {Number} statusCode
  */
 Achievement.prototype['statusCode'] = undefined;
+
+/**
+ * @member {module:model/DependantOn} memberTagsFilter
+ */
+Achievement.prototype['memberTagsFilter'] = undefined;
 
 /**
  * Ziqni id of the model
@@ -209,7 +218,7 @@ AchievementAllOf.prototype['description'] = undefined;
  */
 AchievementAllOf.prototype['termsAndConditions'] = undefined;
 /**
- * Additional constraints, if set means true
+ * Additional constraints, if set means true [optinRequiredForEntrants, hasRules, hasRewards]
  * @member {Array.<String>} constraints
  */
 AchievementAllOf.prototype['constraints'] = undefined;
@@ -235,6 +244,10 @@ AchievementAllOf.prototype['status'] = undefined;
  * @member {Number} statusCode
  */
 AchievementAllOf.prototype['statusCode'] = undefined;
+/**
+ * @member {module:model/DependantOn} memberTagsFilter
+ */
+AchievementAllOf.prototype['memberTagsFilter'] = undefined;
 // Implement ModelDefault interface:
 /**
  * Ziqni id of the model

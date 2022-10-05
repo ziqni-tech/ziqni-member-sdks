@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniMemberApi);
   }
-}(this, function(expect, ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniMemberApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ZiqniTechGamificationApiClient.MemberAllOf();
+    instance = new ZiqniMemberApi.MemberAllOf();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,43 +50,43 @@
   describe('MemberAllOf', function() {
     it('should create an instance of MemberAllOf', function() {
       // uncomment below and update the code to test MemberAllOf
-      //var instance = new ZiqniTechGamificationApiClient.MemberAllOf();
-      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.MemberAllOf);
+      //var instance = new ZiqniMemberApi.MemberAllOf();
+      //expect(instance).to.be.a(ZiqniMemberApi.MemberAllOf);
     });
 
     it('should have the property name (base name: "name")', function() {
       // uncomment below and update the code to test the property name
-      //var instance = new ZiqniTechGamificationApiClient.MemberAllOf();
+      //var instance = new ZiqniMemberApi.MemberAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property memberRefId (base name: "memberRefId")', function() {
       // uncomment below and update the code to test the property memberRefId
-      //var instance = new ZiqniTechGamificationApiClient.MemberAllOf();
+      //var instance = new ZiqniMemberApi.MemberAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property memberType (base name: "memberType")', function() {
       // uncomment below and update the code to test the property memberType
-      //var instance = new ZiqniTechGamificationApiClient.MemberAllOf();
+      //var instance = new ZiqniMemberApi.MemberAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property teamMembers (base name: "teamMembers")', function() {
       // uncomment below and update the code to test the property teamMembers
-      //var instance = new ZiqniTechGamificationApiClient.MemberAllOf();
+      //var instance = new ZiqniMemberApi.MemberAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property constraints (base name: "constraints")', function() {
       // uncomment below and update the code to test the property constraints
-      //var instance = new ZiqniTechGamificationApiClient.MemberAllOf();
+      //var instance = new ZiqniMemberApi.MemberAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property timeZoneOffset (base name: "timeZoneOffset")', function() {
       // uncomment below and update the code to test the property timeZoneOffset
-      //var instance = new ZiqniTechGamificationApiClient.MemberAllOf();
+      //var instance = new ZiqniMemberApi.MemberAllOf();
       //expect(instance).to.be();
     });
 

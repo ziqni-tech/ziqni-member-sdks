@@ -1,17 +1,31 @@
-# @ZiqniTechGamificationApiClient.ContestStatus
+# ZiqniMemberApi.ContestStatus
 
 ## Enum
 
 
+* `Unknown` (value: `"Unknown"`)
+
+* `Deleting` (value: `"Deleting"`)
+
 * `Deleted` (value: `"Deleted"`)
 
-* `NotStarted` (value: `"NotStarted"`)
+* `Draft` (value: `"Draft"`)
+
+* `Template` (value: `"Template"`)
+
+* `Preparing` (value: `"Preparing"`)
+
+* `Ready` (value: `"Ready"`)
+
+* `Starting` (value: `"Starting"`)
 
 * `Active` (value: `"Active"`)
 
+* `Finishing` (value: `"Finishing"`)
+
 * `Finished` (value: `"Finished"`)
 
-* `Finalised` (value: `"Finalised"`)
+* `Cancelling` (value: `"Cancelling"`)
 
 * `Cancelled` (value: `"Cancelled"`)
 

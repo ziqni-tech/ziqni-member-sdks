@@ -1,6 +1,6 @@
 {
   "name": "@ziqni-tech/member-api-client",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Client library for Ziqni Gamification API",
   "license": "Ziqni Commercial License",
   "main": "dist/index.js",

@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.StrategyType
+# ZiqniMemberApi.StrategyType
 
 ## Enum
 

@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniMemberApi);
   }
-}(this, function(expect, ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniMemberApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ZiqniTechGamificationApiClient.MembersApi();
+    instance = new ZiqniMemberApi.MembersApi();
   });
 
   var getProperty = function(object, getter, property) {
@@ -52,26 +52,6 @@
       it('should call getMember successfully', function(done) {
         //uncomment below and update the code to test getMember
         //instance.getMember(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('getMemberOptinInfo', function() {
-      it('should call getMemberOptinInfo successfully', function(done) {
-        //uncomment below and update the code to test getMemberOptinInfo
-        //instance.getMemberOptinInfo(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('getMemberSession', function() {
-      it('should call getMemberSession successfully', function(done) {
-        //uncomment below and update the code to test getMemberSession
-        //instance.getMemberSession(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

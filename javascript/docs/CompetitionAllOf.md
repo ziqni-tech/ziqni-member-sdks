@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.CompetitionAllOf
+# ZiqniMemberApi.CompetitionAllOf
 
 ## Properties
 
@@ -21,5 +21,6 @@ Name | Type | Description | Notes
 **statusCode** | **Number** | The code of the competition | [optional] [readonly] 
 **constraints** | **[String]** | Additional constraints | [optional] 
 **products** | [**[ProductReduced]**](ProductReduced.md) |  | [optional] 
+**memberTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 
 

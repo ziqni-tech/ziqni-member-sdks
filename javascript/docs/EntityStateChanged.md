@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.EntityStateChanged
+# ZiqniMemberApi.EntityStateChanged
 
 ## Properties
 

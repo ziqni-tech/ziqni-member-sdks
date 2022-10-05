@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.ModelDefault
+# ZiqniMemberApi.ModelDefault
 
 ## Properties
 

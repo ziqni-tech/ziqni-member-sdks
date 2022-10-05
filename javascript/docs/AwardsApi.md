@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.AwardsApi
+# ZiqniMemberApi.AwardsApi
 
 All URIs are relative to *https://member-api.ziqni.com*
 
@@ -20,14 +20,14 @@ This operation enables a member to claim awards.
 ### Example
 
 ```javascript
-import @ZiqniTechGamificationApiClient from '@ziqni-tech/member-api-client';
-let defaultClient = @ZiqniTechGamificationApiClient.ApiClient.instance;
+import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 // Configure OAuth2 access token for authorization: OAuth2
 let OAuth2 = defaultClient.authentications['OAuth2'];
 OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
-let apiInstance = new @ZiqniTechGamificationApiClient.AwardsApi();
-let claimAwardRequest = new @ZiqniTechGamificationApiClient.ClaimAwardRequest(); // ClaimAwardRequest | 
+let apiInstance = new ZiqniMemberApi.AwardsApi();
+let claimAwardRequest = new ZiqniMemberApi.ClaimAwardRequest(); // ClaimAwardRequest | 
 apiInstance.claimAwards(claimAwardRequest, (error, data, response) => {
   if (error) {
     console.error(error);
@@ -69,14 +69,14 @@ This operation supports retrieval of awards for one or many entities.
 ### Example
 
 ```javascript
-import @ZiqniTechGamificationApiClient from '@ziqni-tech/member-api-client';
-let defaultClient = @ZiqniTechGamificationApiClient.ApiClient.instance;
+import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 // Configure OAuth2 access token for authorization: OAuth2
 let OAuth2 = defaultClient.authentications['OAuth2'];
 OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
-let apiInstance = new @ZiqniTechGamificationApiClient.AwardsApi();
-let awardRequest = new @ZiqniTechGamificationApiClient.AwardRequest(); // AwardRequest | 
+let apiInstance = new ZiqniMemberApi.AwardsApi();
+let awardRequest = new ZiqniMemberApi.AwardRequest(); // AwardRequest | 
 apiInstance.getAwards(awardRequest, (error, data, response) => {
   if (error) {
     console.error(error);

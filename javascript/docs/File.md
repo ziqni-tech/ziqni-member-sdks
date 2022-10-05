@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.File
+# ZiqniMemberApi.File
 
 ## Properties
 

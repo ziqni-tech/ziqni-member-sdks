@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.Competition
+# ZiqniMemberApi.Competition
 
 ## Properties
 
@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **statusCode** | **Number** | The code of the competition | [optional] [readonly] 
 **constraints** | **[String]** | Additional constraints | [optional] 
 **products** | [**[ProductReduced]**](ProductReduced.md) |  | [optional] 
+**memberTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **id** | **String** | Ziqni id of the model | 
 **spaceName** | **String** | This is the space name which is linked to the account | [optional] 
 **created** | **Date** | ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone | [optional] 

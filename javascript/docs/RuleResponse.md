@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.RuleResponse
+# ZiqniMemberApi.RuleResponse
 
 ## Properties
 

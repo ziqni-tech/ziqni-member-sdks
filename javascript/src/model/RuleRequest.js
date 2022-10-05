@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -16,17 +16,17 @@ import ApiClient from '../ApiClient';
 /**
  * The RuleRequest model module.
  * @module model/RuleRequest
- * @version 0.0.1
+ * @version 1.0.0
  */
 class RuleRequest {
     /**
      * Constructs a new <code>RuleRequest</code>.
      * @alias module:model/RuleRequest
-     * @param entityId {String} 
+     * @param entityIds {Array.<String>} 
      */
-    constructor(entityId) { 
+    constructor(entityIds) { 
         
-        RuleRequest.initialize(this, entityId);
+        RuleRequest.initialize(this, entityIds);
     }
 
     /**
@@ -34,8 +34,8 @@ class RuleRequest {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, entityId) { 
-        obj['entityId'] = entityId;
+    static initialize(obj, entityIds) { 
+        obj['entityIds'] = entityIds;
     }
 
     /**
@@ -49,8 +49,8 @@ class RuleRequest {
         if (data) {
             obj = obj || new RuleRequest();
 
-            if (data.hasOwnProperty('entityId')) {
-                obj['entityId'] = ApiClient.convertToType(data['entityId'], 'String');
+            if (data.hasOwnProperty('entityIds')) {
+                obj['entityIds'] = ApiClient.convertToType(data['entityIds'], ['String']);
             }
         }
         return obj;
@@ -60,9 +60,9 @@ class RuleRequest {
 }
 
 /**
- * @member {String} entityId
+ * @member {Array.<String>} entityIds
  */
-RuleRequest.prototype['entityId'] = undefined;
+RuleRequest.prototype['entityIds'] = undefined;
 
 
 

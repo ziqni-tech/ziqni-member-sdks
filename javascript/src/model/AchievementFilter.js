@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -12,13 +12,14 @@
  */
 
 import ApiClient from '../ApiClient';
+import DateRange from './DateRange';
+import NumberRange from './NumberRange';
 import QuerySortBy from './QuerySortBy';
-import RangeQuery from './RangeQuery';
 
 /**
  * The AchievementFilter model module.
  * @module model/AchievementFilter
- * @version 0.0.1
+ * @version 1.0.0
  */
 class AchievementFilter {
     /**
@@ -56,16 +57,13 @@ class AchievementFilter {
                 obj['tags'] = ApiClient.convertToType(data['tags'], ['String']);
             }
             if (data.hasOwnProperty('startDate')) {
-                obj['startDate'] = RangeQuery.constructFromObject(data['startDate']);
+                obj['startDate'] = DateRange.constructFromObject(data['startDate']);
             }
             if (data.hasOwnProperty('endDate')) {
-                obj['endDate'] = RangeQuery.constructFromObject(data['endDate']);
+                obj['endDate'] = DateRange.constructFromObject(data['endDate']);
             }
             if (data.hasOwnProperty('ids')) {
                 obj['ids'] = ApiClient.convertToType(data['ids'], ['String']);
-            }
-            if (data.hasOwnProperty('status')) {
-                obj['status'] = ApiClient.convertToType(data['status'], ['String']);
             }
             if (data.hasOwnProperty('sortBy')) {
                 obj['sortBy'] = ApiClient.convertToType(data['sortBy'], [QuerySortBy]);
@@ -77,13 +75,7 @@ class AchievementFilter {
                 obj['limit'] = ApiClient.convertToType(data['limit'], 'Number');
             }
             if (data.hasOwnProperty('statusCode')) {
-                obj['statusCode'] = {};
-                if (data['statusCode']['moreThan']) {
-                    obj['statusCode']['moreThan'] = ApiClient.convertToType(data['statusCode']['moreThan'], 'Number');
-                }
-                if (data['statusCode']['lessThan']) {
-                    obj['statusCode']['lessThan'] = ApiClient.convertToType(data['statusCode']['lessThan'], 'Number');
-                }
+                obj['statusCode'] = NumberRange.constructFromObject(data['statusCode']);
             }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
@@ -106,12 +98,12 @@ AchievementFilter.prototype['productIds'] = undefined;
 AchievementFilter.prototype['tags'] = undefined;
 
 /**
- * @member {module:model/RangeQuery} startDate
+ * @member {module:model/DateRange} startDate
  */
 AchievementFilter.prototype['startDate'] = undefined;
 
 /**
- * @member {module:model/RangeQuery} endDate
+ * @member {module:model/DateRange} endDate
  */
 AchievementFilter.prototype['endDate'] = undefined;
 
@@ -119,12 +111,6 @@ AchievementFilter.prototype['endDate'] = undefined;
  * @member {Array.<String>} ids
  */
 AchievementFilter.prototype['ids'] = undefined;
-
-/**
- * Achievement status
- * @member {Array.<String>} status
- */
-AchievementFilter.prototype['status'] = undefined;
 
 /**
  * @member {Array.<module:model/QuerySortBy>} sortBy
@@ -142,8 +128,7 @@ AchievementFilter.prototype['skip'] = undefined;
 AchievementFilter.prototype['limit'] = undefined;
 
 /**
- * Achievement status code
- * @member {Array.<Number>} statusCode
+ * @member {module:model/NumberRange} statusCode
  */
 AchievementFilter.prototype['statusCode'] = undefined;
 

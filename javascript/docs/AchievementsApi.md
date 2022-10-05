@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.AchievementsApi
+# ZiqniMemberApi.AchievementsApi
 
 All URIs are relative to *https://member-api.ziqni.com*
 
@@ -19,14 +19,14 @@ Returns a list of achievements for the provided member ref id and applied filter
 ### Example
 
 ```javascript
-import @ZiqniTechGamificationApiClient from '@ziqni-tech/member-api-client';
-let defaultClient = @ZiqniTechGamificationApiClient.ApiClient.instance;
+import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 // Configure OAuth2 access token for authorization: OAuth2
 let OAuth2 = defaultClient.authentications['OAuth2'];
 OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
-let apiInstance = new @ZiqniTechGamificationApiClient.AchievementsApi();
-let achievementRequest = new @ZiqniTechGamificationApiClient.AchievementRequest(); // AchievementRequest | 
+let apiInstance = new ZiqniMemberApi.AchievementsApi();
+let achievementRequest = new ZiqniMemberApi.AchievementRequest(); // AchievementRequest | 
 apiInstance.getAchievements(achievementRequest, (error, data, response) => {
   if (error) {
     console.error(error);

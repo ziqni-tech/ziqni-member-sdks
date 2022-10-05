@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.FilesApi
+# ZiqniMemberApi.FilesApi
 
 All URIs are relative to *https://member-api.ziqni.com*
 
@@ -19,10 +19,10 @@ This operation supports retrieval of file objects for one or many entities.
 ### Example
 
 ```javascript
-import @ZiqniTechGamificationApiClient from '@ziqni-tech/member-api-client';
+import ZiqniMemberApi from 'ziqni_member_api';
 
-let apiInstance = new @ZiqniTechGamificationApiClient.FilesApi();
-let fileRequest = new @ZiqniTechGamificationApiClient.FileRequest(); // FileRequest | 
+let apiInstance = new ZiqniMemberApi.FilesApi();
+let fileRequest = new ZiqniMemberApi.FileRequest(); // FileRequest | 
 apiInstance.getFiles(fileRequest, (error, data, response) => {
   if (error) {
     console.error(error);

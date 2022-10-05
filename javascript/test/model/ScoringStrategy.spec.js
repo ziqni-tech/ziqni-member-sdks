@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniMemberApi);
   }
-}(this, function(expect, ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniMemberApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ZiqniTechGamificationApiClient.ScoringStrategy();
+    instance = new ZiqniMemberApi.ScoringStrategy();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,31 +50,31 @@
   describe('ScoringStrategy', function() {
     it('should create an instance of ScoringStrategy', function() {
       // uncomment below and update the code to test ScoringStrategy
-      //var instance = new ZiqniTechGamificationApiClient.ScoringStrategy();
-      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.ScoringStrategy);
+      //var instance = new ZiqniMemberApi.ScoringStrategy();
+      //expect(instance).to.be.a(ZiqniMemberApi.ScoringStrategy);
     });
 
     it('should have the property limitUpdatesTo (base name: "limitUpdatesTo")', function() {
       // uncomment below and update the code to test the property limitUpdatesTo
-      //var instance = new ZiqniTechGamificationApiClient.ScoringStrategy();
+      //var instance = new ZiqniMemberApi.ScoringStrategy();
       //expect(instance).to.be();
     });
 
     it('should have the property sumBestXOf (base name: "sumBestXOf")', function() {
       // uncomment below and update the code to test the property sumBestXOf
-      //var instance = new ZiqniTechGamificationApiClient.ScoringStrategy();
+      //var instance = new ZiqniMemberApi.ScoringStrategy();
       //expect(instance).to.be();
     });
 
     it('should have the property lastUpdateTimeStamp (base name: "lastUpdateTimeStamp")', function() {
       // uncomment below and update the code to test the property lastUpdateTimeStamp
-      //var instance = new ZiqniTechGamificationApiClient.ScoringStrategy();
+      //var instance = new ZiqniMemberApi.ScoringStrategy();
       //expect(instance).to.be();
     });
 
     it('should have the property recordTimeWhenSumReaches (base name: "recordTimeWhenSumReaches")', function() {
       // uncomment below and update the code to test the property recordTimeWhenSumReaches
-      //var instance = new ZiqniTechGamificationApiClient.ScoringStrategy();
+      //var instance = new ZiqniMemberApi.ScoringStrategy();
       //expect(instance).to.be();
     });
 
