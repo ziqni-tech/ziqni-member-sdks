@@ -71,13 +71,13 @@ public class MembersApiTest implements tests.utils.CompleteableFutureTestWrapper
      * @throws ApiException
      *          if the Api call fails
      */
-    @Test
-    public void getMemberOptinInfoTest() throws ApiException {
-        ManageOptinRequest memberOptinRequest = null;
-        CompletableFuture<MemberResponse> response =
-        api.manageOptin(memberOptinRequest);
-        
-        // TODO: test validations
-    }
+//    @Test
+//    public void getMemberOptinInfoTest() throws ApiException {
+//        ManageOptinRequest memberOptinRequest = null;
+//        CompletableFuture<MemberResponse> response =
+//        api.manageOptin(memberOptinRequest);
+//
+//        // TODO: test validations
+//    }
     
 }
