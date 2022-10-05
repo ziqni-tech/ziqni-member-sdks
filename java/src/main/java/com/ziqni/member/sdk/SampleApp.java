@@ -33,7 +33,7 @@ public class SampleApp {
         if(achievementResponse.getData() != null){
             achievementResponse.getData().forEach(achievement -> {
                 if(achievement.getConstraints().contains("optinRequiredForEntrants")){
-
+                    optIntoAchievement(achievement);
                 }
             });
         }
@@ -41,7 +41,7 @@ public class SampleApp {
         System.out.println(achievementResponse);
     }
 
-    private void optIntoAchievement(Achievement achievement){
+    private static void optIntoAchievement(Achievement achievement){
         ApiClientFactoryWs.getOptInApi().manageOptin(new ManageOptinRequest()
                 .action(OptinAction.JOIN)
                 .entityId(achievement.getId())
@@ -120,6 +120,9 @@ public class SampleApp {
 
         // Award
         subscribe(Award.class.getSimpleName());
+
+        // Award
+        subscribe("Product");
 
         // Score
         subscribe("Score");
