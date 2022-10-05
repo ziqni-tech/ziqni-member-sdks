@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -18,7 +18,7 @@ import RewardTypeReduced from './RewardTypeReduced';
 /**
  * The AwardAllOf model module.
  * @module model/AwardAllOf
- * @version 0.0.1
+ * @version 1.0.0
  */
 class AwardAllOf {
     /**
@@ -88,8 +88,8 @@ class AwardAllOf {
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
             }
-            if (data.hasOwnProperty('claimedTimestamp')) {
-                obj['claimedTimestamp'] = ApiClient.convertToType(data['claimedTimestamp'], 'Date');
+            if (data.hasOwnProperty('claimed')) {
+                obj['claimed'] = ApiClient.convertToType(data['claimed'], 'Boolean');
             }
         }
         return obj;
@@ -163,6 +163,7 @@ AwardAllOf.prototype['period'] = undefined;
 AwardAllOf.prototype['tags'] = undefined;
 
 /**
+ * The metadata associated with this award
  * @member {Object.<String, String>} metadata
  */
 AwardAllOf.prototype['metadata'] = undefined;
@@ -174,10 +175,10 @@ AwardAllOf.prototype['metadata'] = undefined;
 AwardAllOf.prototype['constraints'] = undefined;
 
 /**
- * ISO8601 timestamp for when an Award is claimed. All records are stored in UTC time zone. *
- * @member {Date} claimedTimestamp
+ *  Award is claimed.
+ * @member {Boolean} claimed
  */
-AwardAllOf.prototype['claimedTimestamp'] = undefined;
+AwardAllOf.prototype['claimed'] = undefined;
 
 
 

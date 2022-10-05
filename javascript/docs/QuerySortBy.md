@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.QuerySortBy
+# ZiqniMemberApi.QuerySortBy
 
 ## Properties
 

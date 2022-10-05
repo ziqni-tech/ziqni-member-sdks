@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The EntityChanged model module.
  * @module model/EntityChanged
- * @version 0.0.1
+ * @version 1.0.0
  */
 class EntityChanged {
     /**
@@ -56,11 +56,11 @@ class EntityChanged {
             if (data.hasOwnProperty('changedAt')) {
                 obj['changedAt'] = ApiClient.convertToType(data['changedAt'], 'Date');
             }
-            if (data.hasOwnProperty('changedBy')) {
-                obj['changedBy'] = ApiClient.convertToType(data['changedBy'], 'String');
-            }
             if (data.hasOwnProperty('typeOffChange')) {
                 obj['typeOffChange'] = ApiClient.convertToType(data['typeOffChange'], 'Number');
+            }
+            if (data.hasOwnProperty('changedBy')) {
+                obj['changedBy'] = ApiClient.convertToType(data['changedBy'], 'String');
             }
             if (data.hasOwnProperty('displayName')) {
                 obj['displayName'] = ApiClient.convertToType(data['displayName'], 'String');
@@ -103,14 +103,14 @@ EntityChanged.prototype['entityType'] = undefined;
 EntityChanged.prototype['changedAt'] = undefined;
 
 /**
- * @member {String} changedBy
- */
-EntityChanged.prototype['changedBy'] = undefined;
-
-/**
  * @member {Number} typeOffChange
  */
 EntityChanged.prototype['typeOffChange'] = undefined;
+
+/**
+ * @member {String} changedBy
+ */
+EntityChanged.prototype['changedBy'] = undefined;
 
 /**
  * @member {String} displayName

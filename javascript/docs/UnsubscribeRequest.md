@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.UnsubscribeRequest
+# ZiqniMemberApi.UnsubscribeRequest
 
 ## Properties
 

@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -18,7 +18,7 @@ import RewardTypeReduced from './RewardTypeReduced';
 /**
  * The Reward model module.
  * @module model/Reward
- * @version 0.0.1
+ * @version 1.0.0
  */
 class Reward {
     /**
@@ -84,6 +84,9 @@ class Reward {
             }
             if (data.hasOwnProperty('period')) {
                 obj['period'] = ApiClient.convertToType(data['period'], 'Number');
+            }
+            if (data.hasOwnProperty('id')) {
+                obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
@@ -164,6 +167,12 @@ Reward.prototype['pointInTime'] = undefined;
  * @member {Number} period
  */
 Reward.prototype['period'] = undefined;
+
+/**
+ * Unique system identifier of a Main Rule
+ * @member {String} id
+ */
+Reward.prototype['id'] = undefined;
 
 /**
  * Additional constraints

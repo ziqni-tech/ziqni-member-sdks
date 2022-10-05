@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -15,21 +15,21 @@ import ApiClient from '../ApiClient';
 import EventRefType from './EventRefType';
 import MessageStatus from './MessageStatus';
 import MessageType from './MessageType';
-import Translation from './Translation';
 
 /**
  * The MessageAllOf model module.
  * @module model/MessageAllOf
- * @version 0.0.1
+ * @version 1.0.0
  */
 class MessageAllOf {
     /**
      * Constructs a new <code>MessageAllOf</code>.
      * @alias module:model/MessageAllOf
+     * @param id {String} 
      */
-    constructor() { 
+    constructor(id) { 
         
-        MessageAllOf.initialize(this);
+        MessageAllOf.initialize(this, id);
     }
 
     /**
@@ -37,7 +37,8 @@ class MessageAllOf {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, id) { 
+        obj['id'] = id;
     }
 
     /**
@@ -66,23 +67,20 @@ class MessageAllOf {
             if (data.hasOwnProperty('body')) {
                 obj['body'] = ApiClient.convertToType(data['body'], 'String');
             }
-            if (data.hasOwnProperty('prize')) {
-                obj['prize'] = ApiClient.convertToType(data['prize'], 'String');
-            }
             if (data.hasOwnProperty('status')) {
                 obj['status'] = MessageStatus.constructFromObject(data['status']);
             }
             if (data.hasOwnProperty('expiry')) {
                 obj['expiry'] = ApiClient.convertToType(data['expiry'], 'Date');
             }
-            if (data.hasOwnProperty('memberId')) {
-                obj['memberId'] = ApiClient.convertToType(data['memberId'], ['String']);
+            if (data.hasOwnProperty('memberIds')) {
+                obj['memberIds'] = ApiClient.convertToType(data['memberIds'], ['String']);
             }
-            if (data.hasOwnProperty('translations')) {
-                obj['translations'] = ApiClient.convertToType(data['translations'], [Translation]);
+            if (data.hasOwnProperty('memberTags')) {
+                obj['memberTags'] = ApiClient.convertToType(data['memberTags'], ['String']);
             }
-            if (data.hasOwnProperty('translatableFields')) {
-                obj['translatableFields'] = ApiClient.convertToType(data['translatableFields'], ['String']);
+            if (data.hasOwnProperty('id')) {
+                obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
         }
         return obj;
@@ -120,12 +118,6 @@ MessageAllOf.prototype['subject'] = undefined;
 MessageAllOf.prototype['body'] = undefined;
 
 /**
- * Unique system identifier of an Award
- * @member {String} prize
- */
-MessageAllOf.prototype['prize'] = undefined;
-
-/**
  * @member {module:model/MessageStatus} status
  */
 MessageAllOf.prototype['status'] = undefined;
@@ -138,20 +130,19 @@ MessageAllOf.prototype['expiry'] = undefined;
 
 /**
  * The reference ID of the event object
- * @member {Array.<String>} memberId
+ * @member {Array.<String>} memberIds
  */
-MessageAllOf.prototype['memberId'] = undefined;
+MessageAllOf.prototype['memberIds'] = undefined;
 
 /**
- * @member {Array.<module:model/Translation>} translations
+ * @member {Array.<String>} memberTags
  */
-MessageAllOf.prototype['translations'] = undefined;
+MessageAllOf.prototype['memberTags'] = undefined;
 
 /**
- * Message translatable fields
- * @member {Array.<String>} translatableFields
+ * @member {String} id
  */
-MessageAllOf.prototype['translatableFields'] = undefined;
+MessageAllOf.prototype['id'] = undefined;
 
 
 

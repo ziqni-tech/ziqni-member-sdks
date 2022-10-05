@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.MemberSessionResponse
+# ZiqniMemberApi.MemberSessionResponse
 
 ## Properties
 

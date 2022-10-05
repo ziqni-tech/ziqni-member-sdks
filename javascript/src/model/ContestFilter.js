@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -12,14 +12,14 @@
  */
 
 import ApiClient from '../ApiClient';
-import ContestStatus from './ContestStatus';
+import DateRange from './DateRange';
+import NumberRange from './NumberRange';
 import QuerySortBy from './QuerySortBy';
-import RangeQuery from './RangeQuery';
 
 /**
  * The ContestFilter model module.
  * @module model/ContestFilter
- * @version 0.0.1
+ * @version 1.0.0
  */
 class ContestFilter {
     /**
@@ -58,28 +58,28 @@ class ContestFilter {
                 obj['tags'] = ApiClient.convertToType(data['tags'], ['String']);
             }
             if (data.hasOwnProperty('startDate')) {
-                obj['startDate'] = RangeQuery.constructFromObject(data['startDate']);
+                obj['startDate'] = DateRange.constructFromObject(data['startDate']);
             }
             if (data.hasOwnProperty('endDate')) {
-                obj['endDate'] = RangeQuery.constructFromObject(data['endDate']);
+                obj['endDate'] = DateRange.constructFromObject(data['endDate']);
             }
             if (data.hasOwnProperty('sortBy')) {
                 obj['sortBy'] = ApiClient.convertToType(data['sortBy'], [QuerySortBy]);
             }
-            if (data.hasOwnProperty('competitionIds')) {
-                obj['competitionIds'] = ApiClient.convertToType(data['competitionIds'], ['String']);
-            }
-            if (data.hasOwnProperty('status')) {
-                obj['status'] = ApiClient.convertToType(data['status'], [ContestStatus]);
-            }
             if (data.hasOwnProperty('ids')) {
                 obj['ids'] = ApiClient.convertToType(data['ids'], ['String']);
+            }
+            if (data.hasOwnProperty('competitionIds')) {
+                obj['competitionIds'] = ApiClient.convertToType(data['competitionIds'], ['String']);
             }
             if (data.hasOwnProperty('skip')) {
                 obj['skip'] = ApiClient.convertToType(data['skip'], 'Number');
             }
             if (data.hasOwnProperty('limit')) {
                 obj['limit'] = ApiClient.convertToType(data['limit'], 'Number');
+            }
+            if (data.hasOwnProperty('statusCode')) {
+                obj['statusCode'] = NumberRange.constructFromObject(data['statusCode']);
             }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
@@ -102,29 +102,29 @@ ContestFilter.prototype['productIds'] = undefined;
 ContestFilter.prototype['tags'] = undefined;
 
 /**
- * @member {module:model/RangeQuery} startDate
+ * @member {module:model/DateRange} startDate
  */
 ContestFilter.prototype['startDate'] = undefined;
 
 /**
- * @member {module:model/RangeQuery} endDate
+ * @member {module:model/DateRange} endDate
  */
 ContestFilter.prototype['endDate'] = undefined;
 
 /**
- * @member {module:model/QuerySortBy} sortBy
+ * @member {Array.<module:model/QuerySortBy>} sortBy
  */
 ContestFilter.prototype['sortBy'] = undefined;
+
+/**
+ * @member {Array.<String>} ids
+ */
+ContestFilter.prototype['ids'] = undefined;
 
 /**
  * @member {Array.<String>} competitionIds
  */
 ContestFilter.prototype['competitionIds'] = undefined;
-
-/**
- * @member {Array.<module:model/ContestStatus>} status
- */
-ContestFilter.prototype['status'] = undefined;
 
 /**
  * @member {Number} skip
@@ -135,6 +135,11 @@ ContestFilter.prototype['skip'] = undefined;
  * @member {Number} limit
  */
 ContestFilter.prototype['limit'] = undefined;
+
+/**
+ * @member {module:model/NumberRange} statusCode
+ */
+ContestFilter.prototype['statusCode'] = undefined;
 
 /**
  * Specify the constraints that need to be applied to the filter.

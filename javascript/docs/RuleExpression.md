@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.RuleExpression
+# ZiqniMemberApi.RuleExpression
 
 ## Properties
 

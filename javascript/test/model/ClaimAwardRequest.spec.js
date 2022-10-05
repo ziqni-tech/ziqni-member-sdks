@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniMemberApi);
   }
-}(this, function(expect, ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniMemberApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ZiqniTechGamificationApiClient.ClaimAwardRequest();
+    instance = new ZiqniMemberApi.ClaimAwardRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,13 +50,19 @@
   describe('ClaimAwardRequest', function() {
     it('should create an instance of ClaimAwardRequest', function() {
       // uncomment below and update the code to test ClaimAwardRequest
-      //var instance = new ZiqniTechGamificationApiClient.ClaimAwardRequest();
-      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.ClaimAwardRequest);
+      //var instance = new ZiqniMemberApi.ClaimAwardRequest();
+      //expect(instance).to.be.a(ZiqniMemberApi.ClaimAwardRequest);
+    });
+
+    it('should have the property languageKey (base name: "languageKey")', function() {
+      // uncomment below and update the code to test the property languageKey
+      //var instance = new ZiqniMemberApi.ClaimAwardRequest();
+      //expect(instance).to.be();
     });
 
     it('should have the property awardIds (base name: "awardIds")', function() {
       // uncomment below and update the code to test the property awardIds
-      //var instance = new ZiqniTechGamificationApiClient.ClaimAwardRequest();
+      //var instance = new ZiqniMemberApi.ClaimAwardRequest();
       //expect(instance).to.be();
     });
 

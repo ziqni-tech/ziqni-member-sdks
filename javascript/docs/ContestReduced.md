@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.ContestReduced
+# ZiqniMemberApi.ContestReduced
 
 ## Properties
 

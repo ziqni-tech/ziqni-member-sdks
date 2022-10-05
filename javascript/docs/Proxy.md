@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.Proxy
+# ZiqniMemberApi.Proxy
 
 ## Properties
 

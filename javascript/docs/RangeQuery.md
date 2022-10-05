@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.RangeQuery
+# ZiqniMemberApi.RangeQuery
 
 ## Properties
 

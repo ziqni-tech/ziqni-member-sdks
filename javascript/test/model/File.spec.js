@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniMemberApi);
   }
-}(this, function(expect, ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniMemberApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ZiqniTechGamificationApiClient.File();
+    instance = new ZiqniMemberApi.File();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,43 +50,43 @@
   describe('File', function() {
     it('should create an instance of File', function() {
       // uncomment below and update the code to test File
-      //var instance = new ZiqniTechGamificationApiClient.File();
-      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.File);
+      //var instance = new ZiqniMemberApi.File();
+      //expect(instance).to.be.a(ZiqniMemberApi.File);
     });
 
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
-      //var instance = new ZiqniTechGamificationApiClient.File();
+      //var instance = new ZiqniMemberApi.File();
       //expect(instance).to.be();
     });
 
     it('should have the property spaceName (base name: "spaceName")', function() {
       // uncomment below and update the code to test the property spaceName
-      //var instance = new ZiqniTechGamificationApiClient.File();
+      //var instance = new ZiqniMemberApi.File();
       //expect(instance).to.be();
     });
 
     it('should have the property created (base name: "created")', function() {
       // uncomment below and update the code to test the property created
-      //var instance = new ZiqniTechGamificationApiClient.File();
+      //var instance = new ZiqniMemberApi.File();
       //expect(instance).to.be();
     });
 
     it('should have the property customFields (base name: "customFields")', function() {
       // uncomment below and update the code to test the property customFields
-      //var instance = new ZiqniTechGamificationApiClient.File();
+      //var instance = new ZiqniMemberApi.File();
       //expect(instance).to.be();
     });
 
     it('should have the property tags (base name: "tags")', function() {
       // uncomment below and update the code to test the property tags
-      //var instance = new ZiqniTechGamificationApiClient.File();
+      //var instance = new ZiqniMemberApi.File();
       //expect(instance).to.be();
     });
 
     it('should have the property metadata (base name: "metadata")', function() {
       // uncomment below and update the code to test the property metadata
-      //var instance = new ZiqniTechGamificationApiClient.File();
+      //var instance = new ZiqniMemberApi.File();
       //expect(instance).to.be();
     });
 

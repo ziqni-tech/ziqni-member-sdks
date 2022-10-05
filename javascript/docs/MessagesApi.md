@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.MessagesApi
+# ZiqniMemberApi.MessagesApi
 
 All URIs are relative to *https://member-api.ziqni.com*
 
@@ -19,14 +19,14 @@ Returns a list of messages for the provided member ref id and applied filters.
 ### Example
 
 ```javascript
-import @ZiqniTechGamificationApiClient from '@ziqni-tech/member-api-client';
-let defaultClient = @ZiqniTechGamificationApiClient.ApiClient.instance;
+import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 // Configure OAuth2 access token for authorization: OAuth2
 let OAuth2 = defaultClient.authentications['OAuth2'];
 OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
-let apiInstance = new @ZiqniTechGamificationApiClient.MessagesApi();
-let messageRequest = new @ZiqniTechGamificationApiClient.MessageRequest(); // MessageRequest | 
+let apiInstance = new ZiqniMemberApi.MessagesApi();
+let messageRequest = new ZiqniMemberApi.MessageRequest(); // MessageRequest | 
 apiInstance.getMessages(messageRequest, (error, data, response) => {
   if (error) {
     console.error(error);

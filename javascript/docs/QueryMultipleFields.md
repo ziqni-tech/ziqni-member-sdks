@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.QueryMultipleFields
+# ZiqniMemberApi.QueryMultipleFields
 
 ## Properties
 

@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -13,12 +13,13 @@
 
 import ApiClient from '../ApiClient';
 import Dependancy from './Dependancy';
+import DependantOn from './DependantOn';
 import Scheduling from './Scheduling';
 
 /**
  * The AchievementAllOf model module.
  * @module model/AchievementAllOf
- * @version 0.0.1
+ * @version 1.0.0
  */
 class AchievementAllOf {
     /**
@@ -76,6 +77,9 @@ class AchievementAllOf {
             if (data.hasOwnProperty('statusCode')) {
                 obj['statusCode'] = ApiClient.convertToType(data['statusCode'], 'Number');
             }
+            if (data.hasOwnProperty('memberTagsFilter')) {
+                obj['memberTagsFilter'] = DependantOn.constructFromObject(data['memberTagsFilter']);
+            }
         }
         return obj;
     }
@@ -99,7 +103,7 @@ AchievementAllOf.prototype['description'] = undefined;
 AchievementAllOf.prototype['termsAndConditions'] = undefined;
 
 /**
- * Additional constraints, if set means true
+ * Additional constraints, if set means true [optinRequiredForEntrants, hasRules, hasRewards]
  * @member {Array.<String>} constraints
  */
 AchievementAllOf.prototype['constraints'] = undefined;
@@ -130,6 +134,11 @@ AchievementAllOf.prototype['status'] = undefined;
  * @member {Number} statusCode
  */
 AchievementAllOf.prototype['statusCode'] = undefined;
+
+/**
+ * @member {module:model/DependantOn} memberTagsFilter
+ */
+AchievementAllOf.prototype['memberTagsFilter'] = undefined;
 
 
 

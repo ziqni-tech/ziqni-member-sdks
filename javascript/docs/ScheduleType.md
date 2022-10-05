@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.ScheduleType
+# ZiqniMemberApi.ScheduleType
 
 ## Enum
 

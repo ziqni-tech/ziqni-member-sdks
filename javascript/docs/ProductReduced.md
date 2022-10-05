@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.ProductReduced
+# ZiqniMemberApi.ProductReduced
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.CompetitionStatus
+# ZiqniMemberApi.CompetitionStatus
 
 ## Enum
 

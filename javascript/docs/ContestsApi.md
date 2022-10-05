@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.ContestsApi
+# ZiqniMemberApi.ContestsApi
 
 All URIs are relative to *https://member-api.ziqni.com*
 
@@ -19,14 +19,14 @@ Returns a list of contests for the provided member ref id and applied filters.
 ### Example
 
 ```javascript
-import @ZiqniTechGamificationApiClient from '@ziqni-tech/member-api-client';
-let defaultClient = @ZiqniTechGamificationApiClient.ApiClient.instance;
+import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 // Configure OAuth2 access token for authorization: OAuth2
 let OAuth2 = defaultClient.authentications['OAuth2'];
 OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
-let apiInstance = new @ZiqniTechGamificationApiClient.ContestsApi();
-let contestRequest = new @ZiqniTechGamificationApiClient.ContestRequest(); // ContestRequest | 
+let apiInstance = new ZiqniMemberApi.ContestsApi();
+let contestRequest = new ZiqniMemberApi.ContestRequest(); // ContestRequest | 
 apiInstance.getContests(contestRequest, (error, data, response) => {
   if (error) {
     console.error(error);

@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -12,21 +12,21 @@
  */
 
 import ApiClient from '../ApiClient';
-import QuerySortBy from './QuerySortBy';
 
 /**
  * The LeaderboardFilter model module.
  * @module model/LeaderboardFilter
- * @version 0.0.1
+ * @version 1.0.0
  */
 class LeaderboardFilter {
     /**
      * Constructs a new <code>LeaderboardFilter</code>.
      * @alias module:model/LeaderboardFilter
+     * @param topRanksToInclude {Number} Include rank from zero [0] none, then one [1] to the rank specified here. The maximum allowed is 50
      */
-    constructor() { 
+    constructor(topRanksToInclude) { 
         
-        LeaderboardFilter.initialize(this);
+        LeaderboardFilter.initialize(this, topRanksToInclude);
     }
 
     /**
@@ -34,7 +34,8 @@ class LeaderboardFilter {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, topRanksToInclude) { 
+        obj['topRanksToInclude'] = topRanksToInclude;
     }
 
     /**
@@ -48,23 +49,14 @@ class LeaderboardFilter {
         if (data) {
             obj = obj || new LeaderboardFilter();
 
-            if (data.hasOwnProperty('tags')) {
-                obj['tags'] = ApiClient.convertToType(data['tags'], ['String']);
+            if (data.hasOwnProperty('topRanksToInclude')) {
+                obj['topRanksToInclude'] = ApiClient.convertToType(data['topRanksToInclude'], 'Number');
             }
-            if (data.hasOwnProperty('sortBy')) {
-                obj['sortBy'] = ApiClient.convertToType(data['sortBy'], [QuerySortBy]);
+            if (data.hasOwnProperty('ranksAboveToInclude')) {
+                obj['ranksAboveToInclude'] = ApiClient.convertToType(data['ranksAboveToInclude'], 'Number');
             }
-            if (data.hasOwnProperty('skip')) {
-                obj['skip'] = ApiClient.convertToType(data['skip'], 'Number');
-            }
-            if (data.hasOwnProperty('limit')) {
-                obj['limit'] = ApiClient.convertToType(data['limit'], 'Number');
-            }
-            if (data.hasOwnProperty('statusCode')) {
-                obj['statusCode'] = ApiClient.convertToType(data['statusCode'], ['Number']);
-            }
-            if (data.hasOwnProperty('constraints')) {
-                obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
+            if (data.hasOwnProperty('ranksBelowToInclude')) {
+                obj['ranksBelowToInclude'] = ApiClient.convertToType(data['ranksBelowToInclude'], 'Number');
             }
         }
         return obj;
@@ -74,36 +66,22 @@ class LeaderboardFilter {
 }
 
 /**
- * @member {Array.<String>} tags
+ * Include rank from zero [0] none, then one [1] to the rank specified here. The maximum allowed is 50
+ * @member {Number} topRanksToInclude
  */
-LeaderboardFilter.prototype['tags'] = undefined;
+LeaderboardFilter.prototype['topRanksToInclude'] = undefined;
 
 /**
- * @member {Array.<module:model/QuerySortBy>} sortBy
+ * Include ranks above member position. The maximum allowed is 20
+ * @member {Number} ranksAboveToInclude
  */
-LeaderboardFilter.prototype['sortBy'] = undefined;
+LeaderboardFilter.prototype['ranksAboveToInclude'] = undefined;
 
 /**
- * @member {Number} skip
+ * Include ranks below member position. The maximum allowed is 20
+ * @member {Number} ranksBelowToInclude
  */
-LeaderboardFilter.prototype['skip'] = undefined;
-
-/**
- * @member {Number} limit
- */
-LeaderboardFilter.prototype['limit'] = undefined;
-
-/**
- * Achievement status code
- * @member {Array.<Number>} statusCode
- */
-LeaderboardFilter.prototype['statusCode'] = undefined;
-
-/**
- * Specify the constraints that need to be applied to the filter.
- * @member {Array.<String>} constraints
- */
-LeaderboardFilter.prototype['constraints'] = undefined;
+LeaderboardFilter.prototype['ranksBelowToInclude'] = undefined;
 
 
 

@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.FileRequest
+# ZiqniMemberApi.FileRequest
 
 ## Properties
 

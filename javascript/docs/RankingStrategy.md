@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.RankingStrategy
+# ZiqniMemberApi.RankingStrategy
 
 ## Properties
 

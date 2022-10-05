@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.OptionalModelFields
+# ZiqniMemberApi.OptionalModelFields
 
 ## Properties
 
