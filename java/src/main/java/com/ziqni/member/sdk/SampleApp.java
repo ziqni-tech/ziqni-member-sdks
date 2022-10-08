@@ -34,19 +34,6 @@ public class SampleApp {
             achievementResponse.getData().forEach(achievement -> {
                 if(achievement.getConstraints().contains("optinRequiredForEntrants")){
                     optIntoAchievement(achievement);
-                    optIntoAchievement(achievement);
-                    optIntoAchievement(achievement);
-                    optIntoAchievement(achievement);
-                    optIntoAchievement(achievement);
-                    optIntoAchievement(achievement);
-                    optIntoAchievement(achievement);
-                    optIntoAchievement(achievement);
-                    optIntoAchievement(achievement);
-                    optIntoAchievement(achievement);
-                    optIntoAchievement(achievement);
-                    optIntoAchievement(achievement);
-                    optIntoAchievement(achievement);
-                    optIntoAchievement(achievement);
                 }
             });
         }
@@ -100,9 +87,6 @@ public class SampleApp {
         ApiClientFactoryWs.getEntityChangesApi().entityChangedHandler(
                         ((stompHeaders, entityChanged) -> {
                             logger.info(entityChanged.toString());
-                            if(entityChanged.getEntityType().equals("Score")){
-                                logger.warn("woop woop");
-                            }
                         }),
                         (stompHeaders, error) ->
                             logger.info(error.toString())
@@ -111,65 +95,67 @@ public class SampleApp {
         ApiClientFactoryWs.getEntityChangesApi().entityStateChangedHandler(
                         ((stompHeaders, entityStateChanged) ->{
                             logger.info(entityStateChanged.toString());
-                            if(entityStateChanged.getEntityType().equals("Score")){
-                                logger.warn("woop woop");
-                            }
                         }),
                         (stompHeaders, error) ->
                             logger.info(error.toString())
         );
 
         // Member
-        subscribe(Member.class.getSimpleName());
+        subscribe(Member.class.getSimpleName(), false);
 
         // Achievement
-        subscribe(Achievement.class.getSimpleName());
+        subscribe(Achievement.class.getSimpleName(), true);
 
         // Competition
-        subscribe(Competition.class.getSimpleName());
+        subscribe(Competition.class.getSimpleName(), true);
 
         // Contest
-        subscribe(Contest.class.getSimpleName());
+        subscribe(Contest.class.getSimpleName(), true);
 
         // Award
-        subscribe(Award.class.getSimpleName());
+        subscribe(Award.class.getSimpleName(), false);
 
         // Award
-        subscribe("Product");
+        subscribe("Product", false);
 
         // Score
-        subscribe("Score");
+        subscribe("Score", true);
 
     }
 
-    private static void subscribe(String entityType){
+    private static void subscribe(String entityType, boolean includeState){
 
         ApiClientFactoryWs.getEntityChangesApi().manageEntityChangeSubscription(
                 new EntityChangeSubscriptionRequest()
                         .callback(EntityChangesApiWs.manageEntityChangeSubscriptionCallBacks.ENTITYCHANGED)
                         .action(EntityChangeSubscriptionRequest.ActionEnum.SUBSCRIBE)
-                        .entityType("Score"))
-                .thenAccept(in -> onErrors(in.getErrors(),in.toString()))
-                .exceptionally(throwable -> {
-                    logger.error("Failed to subscribe to entity changes for  {}", entityType,throwable);
-                    return null;
-                });
-
-        ApiClientFactoryWs.getEntityChangesApi().manageEntityChangeSubscription(
-                new EntityChangeSubscriptionRequest()
-                        .callback(EntityChangesApiWs.manageEntityChangeSubscriptionCallBacks.ENTITYSTATECHANGED)
-                        .action(EntityChangeSubscriptionRequest.ActionEnum.SUBSCRIBE)
                         .entityType(entityType))
-                .thenAccept(in -> onErrors(in.getErrors(),in.toString()))
+                .thenAccept(in -> {
+                    if(in.getErrors().isEmpty())
+                        logger.info("Subscribed - " + entityType);
+                    else
+                        logger.info(in.getErrors().toString());
+                })
                 .exceptionally(throwable -> {
-                    logger.error("Failed to subscribe to entity state changes for  {}", entityType,throwable);
+                    logger.error("Failed to subscribe to {} changes for  {}", entityType, entityType,throwable);
                     return null;
                 });
-    }
 
-    private static void onErrors(List<Error> errors, String message) {
-        if(errors != null && !errors.isEmpty()) {
-            logger.error(message);
-        }
+        if(includeState)
+            ApiClientFactoryWs.getEntityChangesApi().manageEntityChangeSubscription(
+                    new EntityChangeSubscriptionRequest()
+                            .callback(EntityChangesApiWs.manageEntityChangeSubscriptionCallBacks.ENTITYSTATECHANGED)
+                            .action(EntityChangeSubscriptionRequest.ActionEnum.SUBSCRIBE)
+                            .entityType(entityType))
+                    .thenAccept(in -> {
+                        if(in.getErrors().isEmpty())
+                            logger.info("Subscribed - " + entityType);
+                        else
+                            logger.info(in.getErrors().toString());
+                    })
+                    .exceptionally(throwable -> {
+                        logger.error("Failed to subscribe to {} changes for  {}", entityType, entityType,throwable);
+                        return null;
+                    });
     }
 }
