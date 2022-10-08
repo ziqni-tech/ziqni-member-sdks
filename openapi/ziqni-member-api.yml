@@ -413,6 +413,33 @@ paths:
       summary: Get member optin information
       description: Returns a list of member optin information
       x-ws-only: true
+  /manage-optin/state:
+    summary: Member optin operation
+    description: This endpoint supports member's optin operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OptInRequestStatus'
+        required: true
+      tags:
+        - opt-in
+      responses:
+        '200':
+          $ref: '#/components/responses/OptInResponseBody'
+        '400':
+          $ref: '#/components/responses/OptInResponseBody'
+        '500':
+          $ref: '#/components/responses/OptInResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewMembers
+      operationId: optInRequestStatus
+      summary: Get member optin status information
+      description: Returns a list of member optin status information
+      x-ws-only: true
 components:
   schemas:
     ResponseMeta:
@@ -438,11 +465,16 @@ components:
         objectType:
           description: ''
           type: string
+        resultCount:
+          format: int32
+          description: ''
+          type: integer
       example:
-        totalRecordsFound: 70
-        skip: 45
-        limit: 8
+        totalRecordsFound: 82
+        skip: 22
+        limit: 12
         objectType: some text
+        resultCount: 12
     Error:
       description: ''
       required:
@@ -3364,7 +3396,7 @@ components:
       type: object
       properties:
         entityType:
-          description: ''
+          description: 'Achievement, Contest or Competition'
           type: string
         entityIds:
           description: ''
@@ -3983,6 +4015,50 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Error'
+    EntityStateChangedFilter:
+      description: ''
+      required:
+        - state
+      type: object
+      properties:
+        entityId:
+          description: ''
+          type: string
+        entityType:
+          description: ''
+          type: string
+        changedBy:
+          description: ''
+          type: array
+          items:
+            type: string
+        typeOffChange:
+          format: int32
+          description: ''
+          type: integer
+        displayName:
+          description: ''
+          type: string
+        sequenceNumber:
+          format: int64
+          description: ''
+          type: integer
+        entityRefId:
+          description: ''
+          type: string
+        entityParentId:
+          description: ''
+          type: string
+        metadata:
+          type: object
+        previousState:
+          format: int32
+          description: ''
+          type: integer
+        currentState:
+          format: int32
+          description: ''
+          type: integer
   responses:
     AchievementResponseBody:
       content:

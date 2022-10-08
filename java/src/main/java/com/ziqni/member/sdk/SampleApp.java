@@ -20,11 +20,13 @@ public class SampleApp {
 
         ApiClientFactoryWs
                 .initialise(() -> {
-                    ApiClientFactoryWs.getStreamingClient().addOnStartHandler("work", SampleApp::onStart);
+                    ApiClientFactoryWs.getStreamingClient().addOnStartHandler("work", streamingClient -> logger.info(streamingClient.toString()));
                     return ApiClientFactoryWs.getStreamingClient().start();})
                 .thenAccept(started -> {
-                    if(started)
+                    if(started) {
+                        onStart();
                         subscribeToEntityChanges();
+                    }
                 });
     }
 
@@ -54,21 +56,13 @@ public class SampleApp {
         });
     }
 
-    private static void onStart(StreamingClient streamingClient) {
+    private static void onStart() {
 
         if(!ApiClientFactoryWs.getStreamingClient().isConnected()) {
             ApiClientFactoryWs.getStreamingClient().stop();
             timer.shutdown();
             throw new RuntimeException("Not connected");
         }
-
-        ApiClientFactoryWs.getAchievementsApi()
-                .getAchievements(new AchievementRequest().achievementFilter(new AchievementFilter()))
-                .thenAccept(SampleApp::handleResponse)
-                .exceptionally(throwable -> {
-                    throwable.printStackTrace();
-                    return null;
-                });
 
         ApiClientFactoryWs.getMembersApi()
                 .getMember(new MemberRequest().addIncludeFieldsItem(Member.JSON_PROPERTY_MEMBER_REF_ID))
@@ -77,7 +71,23 @@ public class SampleApp {
                     return memberResponse;
                 })
                 .exceptionally(throwable -> {
-                    throwable.printStackTrace();
+                    logger.error("Fail",throwable);
+                    return null;
+                });
+
+        ApiClientFactoryWs.getAwardsApi()
+                .getAwards(new AwardRequest().awardFilter(new AwardFilter()))
+                .thenAccept(awardResponse -> logger.info(awardResponse.toString()))
+                .exceptionally(throwable -> {
+                    logger.error("Fail",throwable);
+                    return null;
+                });
+
+        ApiClientFactoryWs.getAchievementsApi()
+                .getAchievements(new AchievementRequest().achievementFilter(new AchievementFilter()))
+                .thenAccept(SampleApp::handleResponse)
+                .exceptionally(throwable -> {
+                    logger.error("Fail",throwable);
                     return null;
                 });
     }
@@ -132,7 +142,9 @@ public class SampleApp {
                         .entityType(entityType))
                 .thenAccept(in -> {
                     if(in.getErrors().isEmpty())
-                        logger.info("Subscribed - " + entityType);
+                        in.getData().forEach(i ->
+                                logger.info("Subscribed [{}] - {} {}", i.getSubscriptionId(), entityType, EntityChangesApiWs.manageEntityChangeSubscriptionCallBacks.ENTITYCHANGED)
+                        );
                     else
                         logger.info(in.getErrors().toString());
                 })
@@ -149,7 +161,9 @@ public class SampleApp {
                             .entityType(entityType))
                     .thenAccept(in -> {
                         if(in.getErrors().isEmpty())
-                            logger.info("Subscribed - " + entityType);
+                            in.getData().forEach(i ->
+                                    logger.info("Subscribed [{}] - {} {}", i.getSubscriptionId(), entityType, EntityChangesApiWs.manageEntityChangeSubscriptionCallBacks.ENTITYSTATECHANGED)
+                            );
                         else
                             logger.info(in.getErrors().toString());
                     })
