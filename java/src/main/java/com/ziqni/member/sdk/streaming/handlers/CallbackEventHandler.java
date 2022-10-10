@@ -84,7 +84,7 @@ public class CallbackEventHandler extends EventHandler<String> {
                     .orElse(false);
 
             if(consumer.isEmpty()){
-                logger.error(" ++++ ERROR ERROR ERROR No callback consumer registered for {}", callback);
+                logger.warn(" ++++ WARNING No callback consumer registered for {}", callback);
             }
             else if(failed)
                 onApiExceptionCallBack(headers,response, consumer);

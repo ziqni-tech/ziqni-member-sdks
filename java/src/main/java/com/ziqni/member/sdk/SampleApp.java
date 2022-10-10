@@ -23,10 +23,8 @@ public class SampleApp {
                     ApiClientFactoryWs.getStreamingClient().addOnStartHandler("work", streamingClient -> logger.info(streamingClient.toString()));
                     return ApiClientFactoryWs.getStreamingClient().start();})
                 .thenAccept(started -> {
-                    if(started) {
+                    if(started)
                         onStart();
-                        subscribeToEntityChanges();
-                    }
                 });
     }
 
@@ -58,6 +56,8 @@ public class SampleApp {
 
     private static void onStart() {
 
+        subscribeToCallbacks();
+
         if(!ApiClientFactoryWs.getStreamingClient().isConnected()) {
             ApiClientFactoryWs.getStreamingClient().stop();
             timer.shutdown();
@@ -76,7 +76,7 @@ public class SampleApp {
                 });
 
         ApiClientFactoryWs.getAwardsApi()
-                .getAwards(new AwardRequest().awardFilter(new AwardFilter()))
+                .getAwards(new AwardRequest().awardFilter(new AwardFilter().limit(2)))
                 .thenAccept(awardResponse -> logger.info(awardResponse.toString()))
                 .exceptionally(throwable -> {
                     logger.error("Fail",throwable);
@@ -92,9 +92,9 @@ public class SampleApp {
                 });
     }
 
-    private static void subscribeToEntityChanges(){
+    private static void subscribeToCallbacks(){
 
-        ApiClientFactoryWs.getEntityChangesApi().entityChangedHandler(
+        ApiClientFactoryWs.getCallbacksApi().entityChangedHandler(
                         ((stompHeaders, entityChanged) -> {
                             logger.info(entityChanged.toString());
                         }),
@@ -102,7 +102,7 @@ public class SampleApp {
                             logger.info(error.toString())
         );
 
-        ApiClientFactoryWs.getEntityChangesApi().entityStateChangedHandler(
+        ApiClientFactoryWs.getCallbacksApi().entityStateChangedHandler(
                         ((stompHeaders, entityStateChanged) ->{
                             logger.info(entityStateChanged.toString());
                         }),
@@ -110,66 +110,26 @@ public class SampleApp {
                             logger.info(error.toString())
         );
 
-        // Member
-        subscribe(Member.class.getSimpleName(), false);
+//        // Member
+//        subscribe(Member.class.getSimpleName(), false);
+//
+//        // Achievement
+//        subscribe(Achievement.class.getSimpleName(), true);
+//
+//        // Competition
+//        subscribe(Competition.class.getSimpleName(), true);
+//
+//        // Contest
+//        subscribe(Contest.class.getSimpleName(), true);
+//
+//        // Award
+//        subscribe(Award.class.getSimpleName(), false);
+//
+//        // Award
+//        subscribe("Product", false);
+//
+//        // Score
+//        subscribe("Score", true);
 
-        // Achievement
-        subscribe(Achievement.class.getSimpleName(), true);
-
-        // Competition
-        subscribe(Competition.class.getSimpleName(), true);
-
-        // Contest
-        subscribe(Contest.class.getSimpleName(), true);
-
-        // Award
-        subscribe(Award.class.getSimpleName(), false);
-
-        // Award
-        subscribe("Product", false);
-
-        // Score
-        subscribe("Score", true);
-
-    }
-
-    private static void subscribe(String entityType, boolean includeState){
-
-        ApiClientFactoryWs.getEntityChangesApi().manageEntityChangeSubscription(
-                new EntityChangeSubscriptionRequest()
-                        .callback(EntityChangesApiWs.manageEntityChangeSubscriptionCallBacks.ENTITYCHANGED)
-                        .action(EntityChangeSubscriptionRequest.ActionEnum.SUBSCRIBE)
-                        .entityType(entityType))
-                .thenAccept(in -> {
-                    if(in.getErrors().isEmpty())
-                        in.getData().forEach(i ->
-                                logger.info("Subscribed [{}] - {} {}", i.getSubscriptionId(), entityType, EntityChangesApiWs.manageEntityChangeSubscriptionCallBacks.ENTITYCHANGED)
-                        );
-                    else
-                        logger.info(in.getErrors().toString());
-                })
-                .exceptionally(throwable -> {
-                    logger.error("Failed to subscribe to {} changes for  {}", entityType, entityType,throwable);
-                    return null;
-                });
-
-        if(includeState)
-            ApiClientFactoryWs.getEntityChangesApi().manageEntityChangeSubscription(
-                    new EntityChangeSubscriptionRequest()
-                            .callback(EntityChangesApiWs.manageEntityChangeSubscriptionCallBacks.ENTITYSTATECHANGED)
-                            .action(EntityChangeSubscriptionRequest.ActionEnum.SUBSCRIBE)
-                            .entityType(entityType))
-                    .thenAccept(in -> {
-                        if(in.getErrors().isEmpty())
-                            in.getData().forEach(i ->
-                                    logger.info("Subscribed [{}] - {} {}", i.getSubscriptionId(), entityType, EntityChangesApiWs.manageEntityChangeSubscriptionCallBacks.ENTITYSTATECHANGED)
-                            );
-                        else
-                            logger.info(in.getErrors().toString());
-                    })
-                    .exceptionally(throwable -> {
-                        logger.error("Failed to subscribe to {} changes for  {}", entityType, entityType,throwable);
-                        return null;
-                    });
     }
 }
