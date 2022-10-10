@@ -345,6 +345,7 @@ paths:
       description: Returns a list of messages for the provided member ref id and applied filters.
       x-ws-only: true
   /callbacks:
+    description: For websockets use this queue "/queue/callbacks" to receive push messages.
     get:
       callbacks:
         entityChanged:
@@ -4083,7 +4084,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/OptInResponse'
+            $ref: '#/components/schemas/CallbacksResponse'
       description: ''
     CallbacksResponseBody:
       description: ''

@@ -64,6 +64,17 @@ public class SampleApp {
             throw new RuntimeException("Not connected");
         }
 
+        ApiClientFactoryWs.getCallbacksApi()
+                .listCallbacks()
+                .thenApply(response -> {
+                    logger.info(response.toString());
+                    return response;
+                })
+                .exceptionally(throwable -> {
+                    logger.error("Fail",throwable);
+                    return null;
+                });
+
         ApiClientFactoryWs.getMembersApi()
                 .getMember(new MemberRequest().addIncludeFieldsItem(Member.JSON_PROPERTY_MEMBER_REF_ID))
                 .thenApply(memberResponse -> {
