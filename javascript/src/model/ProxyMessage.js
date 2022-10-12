@@ -12,20 +12,21 @@
  */
 
 import ApiClient from '../ApiClient';
+import ResponseMeta from './ResponseMeta';
 
 /**
- * The EntityFilter model module.
- * @module model/EntityFilter
+ * The ProxyMessage model module.
+ * @module model/ProxyMessage
  * @version 1.0.0
  */
-class EntityFilter {
+class ProxyMessage {
     /**
-     * Constructs a new <code>EntityFilter</code>.
-     * @alias module:model/EntityFilter
+     * Constructs a new <code>ProxyMessage</code>.
+     * @alias module:model/ProxyMessage
      */
     constructor() { 
         
-        EntityFilter.initialize(this);
+        ProxyMessage.initialize(this);
     }
 
     /**
@@ -37,21 +38,21 @@ class EntityFilter {
     }
 
     /**
-     * Constructs a <code>EntityFilter</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>ProxyMessage</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/EntityFilter} obj Optional instance to populate.
-     * @return {module:model/EntityFilter} The populated <code>EntityFilter</code> instance.
+     * @param {module:model/ProxyMessage} obj Optional instance to populate.
+     * @return {module:model/ProxyMessage} The populated <code>ProxyMessage</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new EntityFilter();
+            obj = obj || new ProxyMessage();
 
-            if (data.hasOwnProperty('entityType')) {
-                obj['entityType'] = ApiClient.convertToType(data['entityType'], 'String');
+            if (data.hasOwnProperty('meta')) {
+                obj['meta'] = ResponseMeta.constructFromObject(data['meta']);
             }
-            if (data.hasOwnProperty('entityIds')) {
-                obj['entityIds'] = ApiClient.convertToType(data['entityIds'], ['String']);
+            if (data.hasOwnProperty('data')) {
+                obj['data'] = ApiClient.convertToType(data['data'], Object);
             }
         }
         return obj;
@@ -61,20 +62,19 @@ class EntityFilter {
 }
 
 /**
- * Achievement, Contest or Competition
- * @member {String} entityType
+ * @member {module:model/ResponseMeta} meta
  */
-EntityFilter.prototype['entityType'] = undefined;
+ProxyMessage.prototype['meta'] = undefined;
 
 /**
- * @member {Array.<String>} entityIds
+ * @member {Object} data
  */
-EntityFilter.prototype['entityIds'] = undefined;
+ProxyMessage.prototype['data'] = undefined;
 
 
 
 
 
 
-export default EntityFilter;
+export default ProxyMessage;
 

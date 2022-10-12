@@ -23,6 +23,8 @@ import AwardAllOf from './model/AwardAllOf';
 import AwardFilter from './model/AwardFilter';
 import AwardRequest from './model/AwardRequest';
 import AwardResponse from './model/AwardResponse';
+import CallbackEntry from './model/CallbackEntry';
+import CallbacksResponse from './model/CallbacksResponse';
 import ClaimAwardRequest from './model/ClaimAwardRequest';
 import Competition from './model/Competition';
 import CompetitionAllOf from './model/CompetitionAllOf';
@@ -41,9 +43,6 @@ import ContestStatus from './model/ContestStatus';
 import DateRange from './model/DateRange';
 import Dependancy from './model/Dependancy';
 import DependantOn from './model/DependantOn';
-import EntityChangeSubscription from './model/EntityChangeSubscription';
-import EntityChangeSubscriptionRequest from './model/EntityChangeSubscriptionRequest';
-import EntityChangeSubscriptionResponse from './model/EntityChangeSubscriptionResponse';
 import EntityChanged from './model/EntityChanged';
 import EntityFilter from './model/EntityFilter';
 import EntityRequest from './model/EntityRequest';
@@ -80,9 +79,7 @@ import OptInResponse from './model/OptInResponse';
 import OptinAction from './model/OptinAction';
 import OptionalModelFields from './model/OptionalModelFields';
 import ProductReduced from './model/ProductReduced';
-import Proxy from './model/Proxy';
-import ProxyRequest from './model/ProxyRequest';
-import ProxyResponse from './model/ProxyResponse';
+import ProxyMessage from './model/ProxyMessage';
 import QueryMultipleFields from './model/QueryMultipleFields';
 import QuerySortBy from './model/QuerySortBy';
 import RangeQuery from './model/RangeQuery';
@@ -119,6 +116,7 @@ import MessagesApiWs from './api/MessagesApiWs';
 import OptInApiWs from './api/OptInApiWs';
 import RewardsApiWs from './api/RewardsApiWs';
 import RulesApiWs from './api/RulesApiWs';
+import CallbacksApiWs from "./api/CallbacksApiWs";
 import ApiClientStomp from './ApiClientStomp';
 
 
@@ -219,6 +217,18 @@ export {
      * @property {module:model/AwardResponse}
      */
     AwardResponse,
+
+    /**
+     * The CallbackEntry model constructor.
+     * @property {module:model/CallbackEntry}
+     */
+    CallbackEntry,
+
+    /**
+     * The CallbacksResponse model constructor.
+     * @property {module:model/CallbacksResponse}
+     */
+    CallbacksResponse,
 
     /**
      * The ClaimAwardRequest model constructor.
@@ -327,24 +337,6 @@ export {
      * @property {module:model/DependantOn}
      */
     DependantOn,
-
-    /**
-     * The EntityChangeSubscription model constructor.
-     * @property {module:model/EntityChangeSubscription}
-     */
-    EntityChangeSubscription,
-
-    /**
-     * The EntityChangeSubscriptionRequest model constructor.
-     * @property {module:model/EntityChangeSubscriptionRequest}
-     */
-    EntityChangeSubscriptionRequest,
-
-    /**
-     * The EntityChangeSubscriptionResponse model constructor.
-     * @property {module:model/EntityChangeSubscriptionResponse}
-     */
-    EntityChangeSubscriptionResponse,
 
     /**
      * The EntityChanged model constructor.
@@ -563,22 +555,10 @@ export {
     ProductReduced,
 
     /**
-     * The Proxy model constructor.
-     * @property {module:model/Proxy}
+     * The ProxyMessage model constructor.
+     * @property {module:model/ProxyMessage}
      */
-    Proxy,
-
-    /**
-     * The ProxyRequest model constructor.
-     * @property {module:model/ProxyRequest}
-     */
-    ProxyRequest,
-
-    /**
-     * The ProxyResponse model constructor.
-     * @property {module:model/ProxyResponse}
-     */
-    ProxyResponse,
+    ProxyMessage,
 
     /**
      * The QueryMultipleFields model constructor.
@@ -797,8 +777,14 @@ export {
     RulesApiWs,
 
     /**
-     * The ApiClientStomp service instance.
-     * @property {module:ApiClient}
-     */
-      ApiClientStomp,
+    * The CallbacksApi service constructor.
+    * @property {module:api/CallbacksApi}
+    */
+    CallbacksApiWs,
+
+    /**
+    * The ApiClientStomp service instance.
+    * @property {module:ApiClient}
+    */
+    ApiClientStomp,
 };

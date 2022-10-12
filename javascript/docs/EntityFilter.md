@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entityType** | **String** |  | [optional] 
+**entityType** | **String** | Achievement, Contest or Competition | [optional] 
 **entityIds** | **[String]** |  | [optional] 
 
 
