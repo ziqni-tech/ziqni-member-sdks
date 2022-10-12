@@ -21,4 +21,17 @@ export default class OptInApiWs {
 
   }
 
+  optInRequestStatus(optInRequestStatus,  callback) {
+
+    
+    if (optInRequestStatus === undefined || optInRequestStatus === null) {
+      throw new Error("Missing the required parameter 'optInRequestStatus' when calling optInRequestStatus");
+    }
+    
+    const message = { body: optInRequestStatus };
+
+    apiClientStomp.instance.sendRpc('/gapi/optInRequestStatus', message, callback);
+
+  }
+
 }

@@ -12,20 +12,22 @@
  */
 
 import ApiClient from '../ApiClient';
+import CallbackEntry from './CallbackEntry';
 
 /**
- * The EntityFilter model module.
- * @module model/EntityFilter
+ * The CallbacksResponse model module.
+ * @module model/CallbacksResponse
  * @version 1.0.0
  */
-class EntityFilter {
+class CallbacksResponse {
     /**
-     * Constructs a new <code>EntityFilter</code>.
-     * @alias module:model/EntityFilter
+     * Constructs a new <code>CallbacksResponse</code>.
+     * @alias module:model/CallbacksResponse
+     * @param callback {Array.<module:model/CallbackEntry>} 
      */
-    constructor() { 
+    constructor(callback) { 
         
-        EntityFilter.initialize(this);
+        CallbacksResponse.initialize(this, callback);
     }
 
     /**
@@ -33,25 +35,23 @@ class EntityFilter {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, callback) { 
+        obj['callback'] = callback;
     }
 
     /**
-     * Constructs a <code>EntityFilter</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>CallbacksResponse</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/EntityFilter} obj Optional instance to populate.
-     * @return {module:model/EntityFilter} The populated <code>EntityFilter</code> instance.
+     * @param {module:model/CallbacksResponse} obj Optional instance to populate.
+     * @return {module:model/CallbacksResponse} The populated <code>CallbacksResponse</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new EntityFilter();
+            obj = obj || new CallbacksResponse();
 
-            if (data.hasOwnProperty('entityType')) {
-                obj['entityType'] = ApiClient.convertToType(data['entityType'], 'String');
-            }
-            if (data.hasOwnProperty('entityIds')) {
-                obj['entityIds'] = ApiClient.convertToType(data['entityIds'], ['String']);
+            if (data.hasOwnProperty('callback')) {
+                obj['callback'] = ApiClient.convertToType(data['callback'], [CallbackEntry]);
             }
         }
         return obj;
@@ -61,20 +61,14 @@ class EntityFilter {
 }
 
 /**
- * Achievement, Contest or Competition
- * @member {String} entityType
+ * @member {Array.<module:model/CallbackEntry>} callback
  */
-EntityFilter.prototype['entityType'] = undefined;
-
-/**
- * @member {Array.<String>} entityIds
- */
-EntityFilter.prototype['entityIds'] = undefined;
+CallbacksResponse.prototype['callback'] = undefined;
 
 
 
 
 
 
-export default EntityFilter;
+export default CallbacksResponse;
 

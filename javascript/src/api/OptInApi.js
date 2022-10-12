@@ -14,6 +14,7 @@
 
 import ApiClient from "../ApiClient";
 import ManageOptinRequest from '../model/ManageOptinRequest';
+import OptInRequestStatus from '../model/OptInRequestStatus';
 import OptInResponse from '../model/OptInResponse';
 
 /**
@@ -72,6 +73,48 @@ export default class OptInApi {
       let returnType = OptInResponse;
       return this.apiClient.callApi(
         '/manage-optin', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the optInRequestStatus operation.
+     * @callback module:api/OptInApi~optInRequestStatusCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/OptInResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get member optin status information
+     * Returns a list of member optin status information
+     * @param {module:model/OptInRequestStatus} optInRequestStatus 
+     * @param {module:api/OptInApi~optInRequestStatusCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/OptInResponse}
+     */
+    optInRequestStatus(optInRequestStatus, callback) {
+      let postBody = optInRequestStatus;
+      // verify the required parameter 'optInRequestStatus' is set
+      if (optInRequestStatus === undefined || optInRequestStatus === null) {
+        throw new Error("Missing the required parameter 'optInRequestStatus' when calling optInRequestStatus");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = OptInResponse;
+      return this.apiClient.callApi(
+        '/manage-optin/state', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

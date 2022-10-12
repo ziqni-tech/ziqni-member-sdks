@@ -66,6 +66,9 @@ class ResponseMeta {
             if (data.hasOwnProperty('objectType')) {
                 obj['objectType'] = ApiClient.convertToType(data['objectType'], 'String');
             }
+            if (data.hasOwnProperty('resultCount')) {
+                obj['resultCount'] = ApiClient.convertToType(data['resultCount'], 'Number');
+            }
         }
         return obj;
     }
@@ -92,6 +95,11 @@ ResponseMeta.prototype['limit'] = undefined;
  * @member {String} objectType
  */
 ResponseMeta.prototype['objectType'] = undefined;
+
+/**
+ * @member {Number} resultCount
+ */
+ResponseMeta.prototype['resultCount'] = undefined;
 
 
 
