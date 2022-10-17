@@ -6,8 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**manageOptin**](OptInApi.md#manageOptin) | **POST** /manage-optin | Get member optin information
 [**manageOptinWithHttpInfo**](OptInApi.md#manageOptinWithHttpInfo) | **POST** /manage-optin | Get member optin information
-[**optInRequestStatus**](OptInApi.md#optInRequestStatus) | **POST** /manage-optin/state | Get member optin status information
-[**optInRequestStatusWithHttpInfo**](OptInApi.md#optInRequestStatusWithHttpInfo) | **POST** /manage-optin/state | Get member optin status information
+[**optInStates**](OptInApi.md#optInStates) | **POST** /optin-states | Get member optin status information
+[**optInStatesWithHttpInfo**](OptInApi.md#optInStatesWithHttpInfo) | **POST** /optin-states | Get member optin status information
 
 
 
@@ -168,9 +168,9 @@ CompletableFuture<ApiResponse<[**OptInResponse**](OptInResponse.md)>>
 | **500** |  |  -  |
 
 
-## optInRequestStatus
+## optInStates
 
-> CompletableFuture<OptInResponse> optInRequestStatus(optInRequestStatus)
+> CompletableFuture<OptInResponse> optInStates(optInStatesRequest)
 
 Get member optin status information
 
@@ -198,12 +198,12 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         OptInApi apiInstance = new OptInApi(defaultClient);
-        OptInRequestStatus optInRequestStatus = new OptInRequestStatus(); // OptInRequestStatus | 
+        OptInStatesRequest optInStatesRequest = new OptInStatesRequest(); // OptInStatesRequest | 
         try {
-            CompletableFuture<OptInResponse> result = apiInstance.optInRequestStatus(optInRequestStatus);
+            CompletableFuture<OptInResponse> result = apiInstance.optInStates(optInStatesRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling OptInApi#optInRequestStatus");
+            System.err.println("Exception when calling OptInApi#optInStates");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -218,7 +218,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **optInRequestStatus** | [**OptInRequestStatus**](OptInRequestStatus.md)|  |
+ **optInStatesRequest** | [**OptInStatesRequest**](OptInStatesRequest.md)|  |
 
 ### Return type
 
@@ -241,9 +241,9 @@ CompletableFuture<[**OptInResponse**](OptInResponse.md)>
 | **400** |  |  -  |
 | **500** |  |  -  |
 
-## optInRequestStatusWithHttpInfo
+## optInStatesWithHttpInfo
 
-> CompletableFuture<ApiResponse<OptInResponse>> optInRequestStatus optInRequestStatusWithHttpInfo(optInRequestStatus)
+> CompletableFuture<ApiResponse<OptInResponse>> optInStates optInStatesWithHttpInfo(optInStatesRequest)
 
 Get member optin status information
 
@@ -272,21 +272,21 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         OptInApi apiInstance = new OptInApi(defaultClient);
-        OptInRequestStatus optInRequestStatus = new OptInRequestStatus(); // OptInRequestStatus | 
+        OptInStatesRequest optInStatesRequest = new OptInStatesRequest(); // OptInStatesRequest | 
         try {
-            CompletableFuture<ApiResponse<OptInResponse>> response = apiInstance.optInRequestStatusWithHttpInfo(optInRequestStatus);
+            CompletableFuture<ApiResponse<OptInResponse>> response = apiInstance.optInStatesWithHttpInfo(optInStatesRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling OptInApi#optInRequestStatus");
+            System.err.println("Exception when calling OptInApi#optInStates");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling OptInApi#optInRequestStatus");
+            System.err.println("Exception when calling OptInApi#optInStates");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -301,7 +301,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **optInRequestStatus** | [**OptInRequestStatus**](OptInRequestStatus.md)|  |
+ **optInStatesRequest** | [**OptInStatesRequest**](OptInStatesRequest.md)|  |
 
 ### Return type
 

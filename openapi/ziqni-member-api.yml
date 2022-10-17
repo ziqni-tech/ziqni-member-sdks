@@ -277,33 +277,6 @@ paths:
       summary: Get member optin information
       description: Returns a list of member optin information
       x-ws-only: true
-  /manage-optin/state:
-    summary: Member optin operation
-    description: This endpoint supports member's optin operation.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OptInRequestStatus'
-        required: true
-      tags:
-        - opt-in
-      responses:
-        '200':
-          $ref: '#/components/responses/OptInResponseBody'
-        '400':
-          $ref: '#/components/responses/OptInResponseBody'
-        '500':
-          $ref: '#/components/responses/OptInResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewMembers
-      operationId: optInRequestStatus
-      summary: Get member optin status information
-      description: Returns a list of member optin status information
-      x-ws-only: true
   /leaderboard:
     post:
       requestBody:
@@ -415,6 +388,33 @@ paths:
       operationId: listCallbacks
       summary: Describe the system callbacks and there constraints
       description: subscribes a client to receive out-of-band data
+  /optin-states:
+    summary: Member optin operation
+    description: This endpoint supports member's optin operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OptInStatesRequest'
+        required: true
+      tags:
+        - opt-in
+      responses:
+        '200':
+          $ref: '#/components/responses/OptInResponseBody'
+        '400':
+          $ref: '#/components/responses/OptInResponseBody'
+        '500':
+          $ref: '#/components/responses/OptInResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewMembers
+      operationId: optInStates
+      summary: Get member optin status information
+      description: Returns a list of member optin status information
+      x-ws-only: true
 components:
   schemas:
     ResponseMeta:
@@ -884,23 +884,6 @@ components:
             message: some text
             code: 25
             status: 98
-    CompetitionStatus:
-      description: ''
-      enum:
-        - Unknown
-        - Deleting
-        - Deleted
-        - Draft
-        - Template
-        - Preparing
-        - Ready
-        - Starting
-        - Active
-        - Finishing
-        - Finished
-        - Cancelling
-        - Cancelled
-      type: string
     CompetitionType:
       description: ''
       enum:
@@ -3828,30 +3811,6 @@ components:
           $ref: '#/components/schemas/ModelDefault'
         -
           $ref: '#/components/schemas/OptionalModelFields'
-    OptInRequestStatus:
-      description: ''
-      required:
-        - entityType
-        - statusCode
-        - status
-      type: object
-      properties:
-        entityType:
-          description: ''
-          type: string
-        entityId:
-          description: ''
-          type: string
-        statusCode:
-          description: >-
-            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15, Preparing = 20, Running =
-            25, Completing = 30, Completed = 35
-          type: integer
-        status:
-          description: >-
-            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15, Preparing = 20, Running =
-            25, Completing = 30, Completed = 35
-          type: string
     OptInResponse:
       description: '        '
       required: []
@@ -3861,8 +3820,10 @@ components:
           $ref: '#/components/schemas/ResponseMeta'
           description: ''
         data:
-          $ref: '#/components/schemas/OptInRequestStatus'
           description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/OptinStatus'
         errors:
           description: ''
           type: array
@@ -3923,6 +3884,93 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CallbackEntry'
+    CompetitionStatus:
+      description: The status of competition
+      enum:
+        - Unknown
+        - Deleting
+        - Deleted
+        - Draft
+        - Template
+        - Preparing
+        - Ready
+        - Starting
+        - Active
+        - Finishing
+        - Finished
+        - Cancelling
+        - Cancelled
+        - Finalising
+        - Finalised
+      type: string
+      readOnly: true
+    OptinStatus:
+      description: ''
+      required:
+        - entityType
+        - statusCode
+        - status
+        - entityType
+        - entityId
+        - statusCode
+        - status
+      type: object
+      properties:
+        entityType:
+          description: ''
+          type: string
+        entityId:
+          description: ''
+          type: string
+        statusCode:
+          description: >-
+            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15, Preparing = 20, Running =
+            25, Completing = 30, Completed = 35
+          type: integer
+        status:
+          description: |-
+            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15,\
+                        \ Preparing = 20, Running = 25, Completing = 30, Completed = 35
+          type: string
+    OptInStatesRequest:
+      description: ''
+      required:
+        - optinStatesFilter
+      type: object
+      properties:
+        optinStatesFilter:
+          $ref: '#/components/schemas/OptinStatesFilter'
+          description: ''
+    OptinStatesFilter:
+      description: ''
+      required: []
+      type: object
+      properties:
+        entityTypes:
+          description: >-
+            Optionally provide entity types to filer by. Valid options are Achievement,
+            Competition, or Contest
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityType'
+        ids:
+          description: >-
+            Optionally provide a list of identifiers for either Achievements, Competitions, or
+            Contest
+          type: array
+          items:
+            type: string
+        statusCodes:
+          $ref: '#/components/schemas/RangeQuery'
+          description: Optionally provide a range of status codes to return
+        skip:
+          format: int32
+          description: 'The number of records to skip. Zero [0] is the defualt value'
+          type: integer
+        limit:
+          format: int32
+          description: Limit t6he results. The default is 20 if left empty
+          type: integer
   responses:
     AchievementResponseBody:
       content:

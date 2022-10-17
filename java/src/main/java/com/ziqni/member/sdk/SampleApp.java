@@ -95,7 +95,7 @@ public class SampleApp {
                 });
 
         ApiClientFactoryWs.getAchievementsApi()
-                .getAchievements(new AchievementRequest().achievementFilter(new AchievementFilter()).languageKey("ab"))
+                .getAchievements(new AchievementRequest().achievementFilter(new AchievementFilter()))
                 .thenAccept(SampleApp::handleResponse)
                 .exceptionally(throwable -> {
                     logger.error("Fail",throwable);
