@@ -117,7 +117,8 @@ import MessagesApiWs from './api/MessagesApiWs';
 import OptInApiWs from './api/OptInApiWs';
 import RewardsApiWs from './api/RewardsApiWs';
 import RulesApiWs from './api/RulesApiWs';
-import CallbacksApiWs from "./api/CallbacksApiWs";
+import CallbacksApiWs from './api/CallbacksApiWs';
+import EntityChangesApiWs from './api/EntityChangesApiWs';
 import ApiClientStomp from './ApiClientStomp';
 
 /**
@@ -787,6 +788,12 @@ export {
     * @property {module:api/CallbacksApi}
     */
     CallbacksApiWs,
+
+    /**
+    * The CallbacksApi service constructor.
+    * @property {module:api/EntityChangesApi}
+    */
+    EntityChangesApiWs,
 
     /**
     * The ApiClientStomp service instance.
