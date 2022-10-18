@@ -5,7 +5,7 @@ All URIs are relative to *https://member-api.ziqni.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**manageOptin**](OptInApi.md#manageOptin) | **POST** /manage-optin | Get member optin information
-[**optInRequestStatus**](OptInApi.md#optInRequestStatus) | **POST** /manage-optin/state | Get member optin status information
+[**optInStates**](OptInApi.md#optInStates) | **POST** /optin-states | Get member optin status information
 
 
 
@@ -58,9 +58,9 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
-## optInRequestStatus
+## optInStates
 
-> OptInResponse optInRequestStatus(optInRequestStatus)
+> OptInResponse optInStates(optInStatesRequest)
 
 Get member optin status information
 
@@ -76,8 +76,8 @@ let OAuth2 = defaultClient.authentications['OAuth2'];
 OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new ZiqniMemberApi.OptInApi();
-let optInRequestStatus = new ZiqniMemberApi.OptInRequestStatus(); // OptInRequestStatus | 
-apiInstance.optInRequestStatus(optInRequestStatus, (error, data, response) => {
+let optInStatesRequest = new ZiqniMemberApi.OptInStatesRequest(); // OptInStatesRequest | 
+apiInstance.optInStates(optInStatesRequest, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -91,7 +91,7 @@ apiInstance.optInRequestStatus(optInRequestStatus, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **optInRequestStatus** | [**OptInRequestStatus**](OptInRequestStatus.md)|  | 
+ **optInStatesRequest** | [**OptInStatesRequest**](OptInStatesRequest.md)|  | 
 
 ### Return type
 
