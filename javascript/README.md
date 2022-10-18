@@ -135,7 +135,7 @@ Class | Method | HTTP request | Description
 *ZiqniMemberApi.MembersApi* | [**getMember**](docs/MembersApi.md#getMember) | **POST** /member-info | Get member information by member reference id
 *ZiqniMemberApi.MessagesApi* | [**getMessages**](docs/MessagesApi.md#getMessages) | **POST** /messages | Get messages by member reference id
 *ZiqniMemberApi.OptInApi* | [**manageOptin**](docs/OptInApi.md#manageOptin) | **POST** /manage-optin | Get member optin information
-*ZiqniMemberApi.OptInApi* | [**optInRequestStatus**](docs/OptInApi.md#optInRequestStatus) | **POST** /manage-optin/state | Get member optin status information
+*ZiqniMemberApi.OptInApi* | [**optInStates**](docs/OptInApi.md#optInStates) | **POST** /optin-states | Get member optin status information
 *ZiqniMemberApi.RewardsApi* | [**getRewards**](docs/RewardsApi.md#getRewards) | **POST** /rewards | Get rewards
 *ZiqniMemberApi.RulesApi* | [**getRules**](docs/RulesApi.md#getRules) | **POST** /rules | Get rules
 
@@ -203,9 +203,11 @@ Class | Method | HTTP request | Description
  - [ZiqniMemberApi.MetaInfo](docs/MetaInfo.md)
  - [ZiqniMemberApi.ModelDefault](docs/ModelDefault.md)
  - [ZiqniMemberApi.NumberRange](docs/NumberRange.md)
- - [ZiqniMemberApi.OptInRequestStatus](docs/OptInRequestStatus.md)
  - [ZiqniMemberApi.OptInResponse](docs/OptInResponse.md)
+ - [ZiqniMemberApi.OptInStatesRequest](docs/OptInStatesRequest.md)
  - [ZiqniMemberApi.OptinAction](docs/OptinAction.md)
+ - [ZiqniMemberApi.OptinStatesFilter](docs/OptinStatesFilter.md)
+ - [ZiqniMemberApi.OptinStatus](docs/OptinStatus.md)
  - [ZiqniMemberApi.OptionalModelFields](docs/OptionalModelFields.md)
  - [ZiqniMemberApi.ProductReduced](docs/ProductReduced.md)
  - [ZiqniMemberApi.ProxyMessage](docs/ProxyMessage.md)

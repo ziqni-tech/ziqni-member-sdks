@@ -110,6 +110,20 @@ export default class CompetitionStatus {
         "Cancelled" = "Cancelled";
 
     
+        /**
+         * value: "Finalising"
+         * @const
+         */
+        "Finalising" = "Finalising";
+
+    
+        /**
+         * value: "Finalised"
+         * @const
+         */
+        "Finalised" = "Finalised";
+
+    
 
     /**
     * Returns a <code>CompetitionStatus</code> enum value from a Javascript object name.

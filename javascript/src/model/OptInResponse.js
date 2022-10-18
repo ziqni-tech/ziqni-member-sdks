@@ -13,7 +13,7 @@
 
 import ApiClient from '../ApiClient';
 import Error from './Error';
-import OptInRequestStatus from './OptInRequestStatus';
+import OptinStatus from './OptinStatus';
 import ResponseMeta from './ResponseMeta';
 
 /**
@@ -54,7 +54,7 @@ class OptInResponse {
                 obj['meta'] = ResponseMeta.constructFromObject(data['meta']);
             }
             if (data.hasOwnProperty('data')) {
-                obj['data'] = OptInRequestStatus.constructFromObject(data['data']);
+                obj['data'] = ApiClient.convertToType(data['data'], [OptinStatus]);
             }
             if (data.hasOwnProperty('errors')) {
                 obj['errors'] = ApiClient.convertToType(data['errors'], [Error]);
@@ -72,7 +72,7 @@ class OptInResponse {
 OptInResponse.prototype['meta'] = undefined;
 
 /**
- * @member {module:model/OptInRequestStatus} data
+ * @member {Array.<module:model/OptinStatus>} data
  */
 OptInResponse.prototype['data'] = undefined;
 

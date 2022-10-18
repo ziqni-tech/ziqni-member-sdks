@@ -29,4 +29,8 @@
 
 * `Cancelled` (value: `"Cancelled"`)
 
+* `Finalising` (value: `"Finalising"`)
+
+* `Finalised` (value: `"Finalised"`)
+
 

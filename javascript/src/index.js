@@ -74,9 +74,11 @@ import MetaBasic from './model/MetaBasic';
 import MetaInfo from './model/MetaInfo';
 import ModelDefault from './model/ModelDefault';
 import NumberRange from './model/NumberRange';
-import OptInRequestStatus from './model/OptInRequestStatus';
 import OptInResponse from './model/OptInResponse';
+import OptInStatesRequest from './model/OptInStatesRequest';
 import OptinAction from './model/OptinAction';
+import OptinStatesFilter from './model/OptinStatesFilter';
+import OptinStatus from './model/OptinStatus';
 import OptionalModelFields from './model/OptionalModelFields';
 import ProductReduced from './model/ProductReduced';
 import ProxyMessage from './model/ProxyMessage';
@@ -108,7 +110,6 @@ import AchievementsApiWs from './api/AchievementsApiWs';
 import AwardsApiWs from './api/AwardsApiWs';
 import CompetitionsApiWs from './api/CompetitionsApiWs';
 import ContestsApiWs from './api/ContestsApiWs';
-import EntityChangesApiWs from './api/EntityChangesApiWs';
 import FilesApiWs from './api/FilesApiWs';
 import LeaderboardApiWs from './api/LeaderboardApiWs';
 import MembersApiWs from './api/MembersApiWs';
@@ -118,7 +119,6 @@ import RewardsApiWs from './api/RewardsApiWs';
 import RulesApiWs from './api/RulesApiWs';
 import CallbacksApiWs from "./api/CallbacksApiWs";
 import ApiClientStomp from './ApiClientStomp';
-
 
 /**
 * The_ZIQNI_Member_API_is_the_primary_resource_used_to_build_services_and_widgets_for_your_members__customers_players_patients_etc__The_service_is_Stomp_websokets_with_SOCK_js_even_though_the_system_is_decribed_using_OpenApi_schema_for_convenience_.<br>
@@ -525,22 +525,34 @@ export {
     NumberRange,
 
     /**
-     * The OptInRequestStatus model constructor.
-     * @property {module:model/OptInRequestStatus}
-     */
-    OptInRequestStatus,
-
-    /**
      * The OptInResponse model constructor.
      * @property {module:model/OptInResponse}
      */
     OptInResponse,
 
     /**
+     * The OptInStatesRequest model constructor.
+     * @property {module:model/OptInStatesRequest}
+     */
+    OptInStatesRequest,
+
+    /**
      * The OptinAction model constructor.
      * @property {module:model/OptinAction}
      */
     OptinAction,
+
+    /**
+     * The OptinStatesFilter model constructor.
+     * @property {module:model/OptinStatesFilter}
+     */
+    OptinStatesFilter,
+
+    /**
+     * The OptinStatus model constructor.
+     * @property {module:model/OptinStatus}
+     */
+    OptinStatus,
 
     /**
      * The OptionalModelFields model constructor.
@@ -727,12 +739,6 @@ export {
     * @property {module:api/ContestsApi}
     */
     ContestsApiWs,
-
-    /**
-    * The EntityChangesApi service constructor.
-    * @property {module:api/EntityChangesApi}
-    */
-    EntityChangesApiWs,
 
     /**
     * The FilesApi service constructor.
