@@ -4119,7 +4119,7 @@ components:
           description: This is the space name which is linked to the account
           type: string
           example: Your_account_id
-    LeaderboardsResponse:
+    LeaderboardResponse:
       description: ''
       required:
         - data
@@ -4135,10 +4135,8 @@ components:
           items:
             $ref: '#/components/schemas/Error'
         data:
+          $ref: '#/components/schemas/Leaderboard'
           description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/Leaderboard'
   responses:
     AchievementResponseBody:
       content:
@@ -4290,7 +4288,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/LeaderboardsResponse'
+            $ref: '#/components/schemas/LeaderboardResponse'
       description: ''
     OptInResponseBody:
       content:
@@ -4310,7 +4308,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/LeaderboardsResponse'
+            $ref: '#/components/schemas/LeaderboardResponse'
       description: ''
   securitySchemes:
     OAuth2:

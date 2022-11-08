@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## subscribeToLeaderboard
 
-> CompletableFuture<LeaderboardsResponse> subscribeToLeaderboard(leaderboardSubscriptionRequest)
+> CompletableFuture<LeaderboardResponse> subscribeToLeaderboard(leaderboardSubscriptionRequest)
 
 
 
@@ -34,7 +34,7 @@ public class Example {
         LeaderboardApi apiInstance = new LeaderboardApi(defaultClient);
         LeaderboardSubscriptionRequest leaderboardSubscriptionRequest = new LeaderboardSubscriptionRequest(); // LeaderboardSubscriptionRequest | 
         try {
-            CompletableFuture<LeaderboardsResponse> result = apiInstance.subscribeToLeaderboard(leaderboardSubscriptionRequest);
+            CompletableFuture<LeaderboardResponse> result = apiInstance.subscribeToLeaderboard(leaderboardSubscriptionRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling LeaderboardApi#subscribeToLeaderboard");
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-CompletableFuture<[**LeaderboardsResponse**](LeaderboardsResponse.md)>
+CompletableFuture<[**LeaderboardResponse**](LeaderboardResponse.md)>
 
 
 ### Authorization
@@ -75,7 +75,7 @@ No authorization required
 
 ## subscribeToLeaderboardWithHttpInfo
 
-> CompletableFuture<ApiResponse<LeaderboardsResponse>> subscribeToLeaderboard subscribeToLeaderboardWithHttpInfo(leaderboardSubscriptionRequest)
+> CompletableFuture<ApiResponse<LeaderboardResponse>> subscribeToLeaderboard subscribeToLeaderboardWithHttpInfo(leaderboardSubscriptionRequest)
 
 
 
@@ -99,7 +99,7 @@ public class Example {
         LeaderboardApi apiInstance = new LeaderboardApi(defaultClient);
         LeaderboardSubscriptionRequest leaderboardSubscriptionRequest = new LeaderboardSubscriptionRequest(); // LeaderboardSubscriptionRequest | 
         try {
-            CompletableFuture<ApiResponse<LeaderboardsResponse>> response = apiInstance.subscribeToLeaderboardWithHttpInfo(leaderboardSubscriptionRequest);
+            CompletableFuture<ApiResponse<LeaderboardResponse>> response = apiInstance.subscribeToLeaderboardWithHttpInfo(leaderboardSubscriptionRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
@@ -130,7 +130,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-CompletableFuture<ApiResponse<[**LeaderboardsResponse**](LeaderboardsResponse.md)>>
+CompletableFuture<ApiResponse<[**LeaderboardResponse**](LeaderboardResponse.md)>>
 
 
 ### Authorization
