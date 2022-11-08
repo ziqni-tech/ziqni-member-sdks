@@ -79,7 +79,7 @@ public class SampleApp {
                 .action(LeaderboardSubscriptionRequest.ActionEnum.SUBSCRIBE)
                 .entityId(contest.getId())
         ).thenAccept(leaderboardsResponse -> {
-            logger.info(leaderboardsResponse.getResults().toString());
+            logger.info(leaderboardsResponse.getData().toString());
         }).exceptionally(throwable -> {
             logger.error("Failed to subscribe to entity changes for  {}", Achievement.class.getSimpleName(), throwable);
             return null;
