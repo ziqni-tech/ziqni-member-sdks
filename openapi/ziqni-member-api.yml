@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Member API
-  version: 1.0.0
+  version: 1.0.1
   description: >-
     The ZIQNI Member-API is the primary resource used to build services and widgets for your members
     [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
@@ -317,77 +317,6 @@ paths:
       summary: Get messages by member reference id
       description: Returns a list of messages for the provided member ref id and applied filters.
       x-ws-only: true
-  /callbacks:
-    description: For websockets use this queue "/queue/callbacks" to receive push messages.
-    get:
-      callbacks:
-        entityChanged:
-          '{$request.body#/entityType}':
-            post:
-              requestBody:
-                description: subscription payload
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/EntityChanged'
-              responses:
-                '202':
-                  description: >
-                    Your server implementation should return this HTTP status code if the
-                    data was received successfully
-        entityStateChanged:
-          '{$request.body#/entityType}':
-            post:
-              requestBody:
-                description: subscription payload
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/EntityStateChanged'
-              responses:
-                '200':
-                  description: >
-                    Your server implementation can optionally return this HTTP status code
-                    if the data was received successfully
-        proxy:
-          '{$request.body#/entityType}':
-            post:
-              requestBody:
-                description: A message proxied to this consumer
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/ProxyMessage'
-              responses:
-                '200':
-                  description: >
-                    Your server implementation can optionally return this HTTP status code
-                    if the data was received successfully
-        notification:
-          '{$request.body#/id}':
-            post:
-              requestBody:
-                description: New notification
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/Message'
-              responses:
-                '200':
-                  description: >
-                    Your implementation should only return return this HTTP status code if
-                    it is using the http protocol and only if the data was received
-                    successfully
-      tags:
-        - callbacks
-      responses:
-        '202':
-          $ref: '#/components/responses/CallbackResponseBody'
-        '500':
-          $ref: '#/components/responses/CallbackResponseBody'
-      operationId: listCallbacks
-      summary: Describe the system callbacks and there constraints
-      description: subscribes a client to receive out-of-band data
   /optin-states:
     summary: Member optin operation
     description: This endpoint supports member's optin operation.
@@ -415,6 +344,116 @@ paths:
       summary: Get member optin status information
       description: Returns a list of member optin status information
       x-ws-only: true
+  /heartbeat:
+    post:
+      callbacks:
+        heartbeatCallback:
+          '{$request.body#/entityType}':
+            post:
+              requestBody:
+                description: subscription payload
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Heartbeat'
+              responses:
+                '202':
+                  description: >
+                    Your server implementation should return this HTTP status code if the
+                    data was received successfully
+      responses:
+        '200':
+          description: On receipt
+      operationId: heartbeat
+  /callbacks:
+    description: For websockets use this queue "/queue/callbacks" to receive push messages.
+    get:
+      callbacks:
+        entityChanged:
+          '{$request.body#/entityType}':
+            post:
+              requestBody:
+                description: subscription payload
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/EntityChanged'
+              responses:
+                '202':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the HTTP protocol and only if the data was received
+                    successfully
+        entityStateChanged:
+          '{$request.body#/entityType}':
+            post:
+              requestBody:
+                description: subscription payload
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/EntityStateChanged'
+              responses:
+                '200':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the HTTP protocol and only if the data was received
+                    successfully
+        proxy:
+          '{$request.body#/entityType}':
+            post:
+              requestBody:
+                description: A message proxied to this consumer
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/ProxyMessage'
+              responses:
+                '200':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the HTTP protocol and only if the data was received
+                    successfully
+        notification:
+          '{$request.body#/id}':
+            post:
+              requestBody:
+                description: New notification
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Message'
+              responses:
+                '200':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the HTTP protocol and only if the data was received
+                    successfully
+        leaderboardUpdate:
+          '{$request.body#/id}':
+            post:
+              requestBody:
+                description: Receive updates to the subscribed leaderboards
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/LeaderboardEntry'
+              responses:
+                '200':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the HTTP protocol and only if the data was received
+                    successfully
+      tags:
+        - callbacks
+      responses:
+        '202':
+          $ref: '#/components/responses/CallbackResponseBody'
+        '500':
+          $ref: '#/components/responses/CallbackResponseBody'
+      operationId: listCallbacks
+      summary: Describe the system callbacks and there constraints
+      description: subscribes a client to receive out-of-band data
 components:
   schemas:
     ResponseMeta:
@@ -3661,23 +3700,6 @@ components:
       allOf:
         -
           $ref: '#/components/schemas/MetaInfo'
-    ContestStatus:
-      description: ''
-      enum:
-        - Unknown
-        - Deleting
-        - Deleted
-        - Draft
-        - Template
-        - Preparing
-        - Ready
-        - Starting
-        - Active
-        - Finishing
-        - Finished
-        - Cancelling
-        - Cancelled
-      type: string
     Reward:
       description: ''
       type: object
@@ -3971,6 +3993,152 @@ components:
           format: int32
           description: Limit t6he results. The default is 20 if left empty
           type: integer
+    Heartbeat:
+      description: ''
+      type: object
+    ContestStatus:
+      description: The status of contest
+      enum:
+        - Unknown
+        - Deleting
+        - Deleted
+        - Draft
+        - Template
+        - Preparing
+        - Ready
+        - Starting
+        - Active
+        - Finishing
+        - Finished
+        - Cancelling
+        - Cancelled
+        - Finalising
+        - Finalised
+      type: string
+      readOnly: true
+    LeaderboardEntry:
+      required:
+        - name
+        - rank
+        - points
+        - memberId
+        - memberRefId
+        - members
+      type: object
+      properties:
+        rank:
+          description: The rank of the player
+          type: integer
+          example: '1'
+        score:
+          format: double
+          description: >-
+            The multiplier to apply to source values received for this product action helper
+            events
+          type: number
+          example: '100'
+        bestScores:
+          description: >-
+            The multiplier to apply to source values received for this product action helper
+            events
+          type: array
+          items:
+            format: double
+            type: number
+          example: '100'
+        members:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/LeaderboardMember'
+    LeaderboardMember:
+      required:
+        - name
+        - rank
+        - points
+        - memberId
+        - memberRefId
+      type: object
+      properties:
+        name:
+          description: The name of the player
+          type: string
+          example: Player 1
+        memberId:
+          description: Unique system identifier of a Member
+          type: string
+          example: Dc4swmQBVd51K6gPQqFx
+        memberRefId:
+          description: The reference to this member in your system
+          type: string
+          example: Player-1
+        rankChangeFrom:
+          format: int32
+          description: 'Previous rank held, null if no changes are recorded'
+          type: integer
+        rankChangeType:
+          format: int32
+          description: '[-1] for rank-down, like 5 to 8. [0] for no change, [1] for rank-up like 9 to 3'
+          type: integer
+    Leaderboard:
+      required:
+        - memberId
+        - memberRefId
+        - name
+        - points
+        - rank
+        - constraints
+        - timestamp
+      properties:
+        leaderboardEntries:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeaderboardEntry'
+        constraints:
+          description: Additional constraints
+          type: array
+          items:
+            type: string
+          example: '- goalReached'
+        sequence:
+          description: how many changes were made to the leaderboard
+          type: integer
+          example: '1'
+        id:
+          description: A unique system generated identifier
+          type: string
+          example: sc1samQmVr61KgaPQq7x
+        created:
+          format: date-time
+          description: >-
+            ISO8601 timestamp for when a Model was created. All records are stored in UTC time
+            zone
+          type: string
+          example: '2019-09-25T15:47:00.000+0000'
+        accountId:
+          description: This is the space name which is linked to the account
+          type: string
+          example: Your_account_id
+    LeaderboardsResponse:
+      description: ''
+      required:
+        - data
+        - meta
+        - errors
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        data:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Leaderboard'
   responses:
     AchievementResponseBody:
       content:
@@ -4120,7 +4288,9 @@ components:
       description: ''
     LeaderboardResponseBody:
       content:
-        application/json: {}
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LeaderboardsResponse'
       description: ''
     OptInResponseBody:
       content:
@@ -4135,6 +4305,12 @@ components:
             $ref: '#/components/schemas/CallbacksResponse'
       description: ''
     CallbacksResponseBody:
+      description: ''
+    LeaderboardsResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LeaderboardsResponse'
       description: ''
   securitySchemes:
     OAuth2:
