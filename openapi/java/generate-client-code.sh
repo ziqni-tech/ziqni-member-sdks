@@ -41,7 +41,7 @@ cp -rf ./generated/src/main/java/com/ziqni/member/sdk/api/*Ws.java $GEN_DIR/api/
 # Copy the new sources - openapi/java/generated/src/main/java/com/ziqni/member/sdk/model
 cp -rf ./generated/src/main/java/com/ziqni/member/sdk/model $GEN_DIR
 
-cp -rf ./generated/src/main/java/com/ziqni/member/sdk/ApiClientFactoryWs.java $GEN_DIR
+cp -rf ./generated/src/main/java/com/ziqni/member/sdk/ZiqniMemberApiFactory.java $GEN_DIR
 cp -rf ./generated/src/main/java/com/ziqni/member/sdk/ApiException.java $GEN_DIR
 cp -rf ./generated/src/main/java/com/ziqni/member/sdk/JSON.java $GEN_DIR
 cp -rf ./generated/src/main/java/com/ziqni/member/sdk/RFC3339DateFormat.java $GEN_DIR

@@ -3,22 +3,22 @@
  */
 package com.ziqni.member.sdk.streaming;
 
-import com.ziqni.member.sdk.configuration.ApiClientConfig;
+import com.ziqni.member.sdk.configuration.MemberApiClientConfiguration;
 
 public class WsAddress {
 
     final String address;
 
-    public WsAddress(){
+    public WsAddress(MemberApiClientConfiguration configuration){
         StringBuilder stringBuilder = new StringBuilder()
-                .append(ApiClientConfig.isSecure() ? "wss" : "ws")
+                .append(configuration.isSecure() ? "wss" : "ws")
                 .append("://")
-                .append(ApiClientConfig.getMemberClientServerHost());
+                .append(configuration.getMemberClientServerHost());
 
-        final var standardPort = ApiClientConfig.getMemberClientServerPort() == 80 || ApiClientConfig.getMemberClientServerPort() == 443;
+        final var standardPort = configuration.getMemberClientServerPort() == 80 || configuration.getMemberClientServerPort() == 443;
 
-        if(ApiClientConfig.getMemberClientServerPort() != null && !standardPort)
-            stringBuilder.append(":").append(ApiClientConfig.getMemberClientServerPort());
+        if(configuration.getMemberClientServerPort() != null && !standardPort)
+            stringBuilder.append(":").append(configuration.getMemberClientServerPort());
 
         this.address = stringBuilder.append("/ws").toString();
     }

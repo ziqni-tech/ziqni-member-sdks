@@ -13,9 +13,10 @@
 
 package com.ziqni.member.sdk.api;
 
-import com.ziqni.member.sdk.ApiClientFactoryWs;
+import com.ziqni.member.sdk.ZiqniMemberApiFactory;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.data.LoadAwardsData;
+import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
 
 import java.util.List;
@@ -31,8 +32,8 @@ public class AwardsApiTest  implements tests.utils.CompleteableFutureTestWrapper
     private final AwardsApiWs api ;
     private final LoadAwardsData loadAwardsData;
 
-    public AwardsApiTest() {
-        this.api = ApiClientFactoryWs.getAwardsApi();
+    public AwardsApiTest() throws Exception {
+        this.api = ApiClientFactoryUtil.initApiClientFactory().getAwardsApi();
         this.loadAwardsData=new LoadAwardsData();
     }
 

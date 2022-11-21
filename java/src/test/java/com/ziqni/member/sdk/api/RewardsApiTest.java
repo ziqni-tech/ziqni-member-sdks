@@ -14,11 +14,10 @@ package com.ziqni.member.sdk.api;
 
 import com.ziqni.admin.sdk.model.EntityType;
 import com.ziqni.admin.sdk.model.MemberTokenRequest;
-import com.ziqni.member.sdk.ApiClientFactoryWs;
+import com.ziqni.member.sdk.ZiqniMemberApiFactory;
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.member.sdk.configuration.ApiClientConfig;
+import com.ziqni.member.sdk.configuration.MemberApiClientConfiguration;
 import com.ziqni.member.sdk.data.LoadRewardsData;
-import com.ziqni.member.sdk.data.LoadRulesData;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import com.ziqni.member.sdk.util.TestMemberTokenLoader;
 import org.junit.jupiter.api.*;
@@ -46,16 +45,16 @@ public class RewardsApiTest implements tests.utils.CompleteableFutureTestWrapper
                 .member(TEST_MEMBER_TOKEN)
                 .resource("ziqni-gapi");
 
-        // ApiClientConfig.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
-        ApiClientConfig.setIdentityAuthorization(null);
-        this.api = ApiClientFactoryWs.getRewardsApi();
+        // MemberApiClientConfiguration.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
+        //MemberApiClientConfiguration.setIdentityAuthorization(null);
+        this.api = ApiClientFactoryUtil.initApiClientFactory().getRewardsApi();
         this.loadRewardsData = new LoadRewardsData();
-        ApiClientFactoryUtil.initApiClientFactory();
+        
     }
 
     @AfterAll
     public  void stop(){
-        ApiClientFactoryWs.getStreamingClient().stop();
+        ApiClientFactoryUtil.stop();
     }
 
 

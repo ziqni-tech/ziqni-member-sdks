@@ -13,7 +13,7 @@
 //
 //package com.ziqni.member.sdk.api;
 //
-//import com.ziqni.member.sdk.ApiClientFactoryWs;
+//import com.ziqni.member.sdk.ZiqniMemberApiFactory;
 //import com.ziqni.member.sdk.ApiException;
 //import com.ziqni.member.sdk.model.*;
 //import com.ziqni.member.sdk.model.FileRequest;
@@ -31,7 +31,7 @@
 //    private final FilesApiWs api;
 //
 //    public FilesApiTest() {
-//        this.api = ApiClientFactoryWs.getFilesApi();
+//        this.api = ApiClientFactoryUtil.initApiClientFactory().getFilesApi();
 //    }
 //
 //    /**

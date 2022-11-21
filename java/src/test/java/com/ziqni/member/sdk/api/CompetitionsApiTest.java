@@ -14,11 +14,10 @@
 package com.ziqni.member.sdk.api;
 
 import com.ziqni.admin.sdk.model.MemberTokenRequest;
-import com.ziqni.member.sdk.ApiClientFactoryWs;
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.member.sdk.configuration.ApiClientConfig;
+import com.ziqni.member.sdk.ZiqniMemberApiFactory;
+import com.ziqni.member.sdk.configuration.MemberApiClientConfigBuilder;
 import com.ziqni.member.sdk.data.LoadCompetitionsData;
-import com.ziqni.member.sdk.data.LoadRewardsData;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import com.ziqni.member.sdk.util.TestMemberTokenLoader;
 import org.junit.jupiter.api.*;
@@ -48,10 +47,10 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
                 .member(TEST_MEMBER_TOKEN)
                 .resource("ziqni-gapi");
 
-        // ApiClientConfig.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
-        ApiClientConfig.setIdentityAuthorization(null);
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ApiClientFactoryWs.getCompetitionsApi();
+        // MemberApiClientConfiguration.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
+        ////MemberApiClientConfiguration.setIdentityAuthorization(null);
+        
+        this.api = new ZiqniMemberApiFactory(MemberApiClientConfigBuilder.build()).getCompetitionsApi();
         this.loadCompetitionsData = new LoadCompetitionsData();
     }
 

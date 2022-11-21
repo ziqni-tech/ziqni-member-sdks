@@ -14,17 +14,15 @@
 package com.ziqni.member.sdk.api;
 
 import com.ziqni.admin.sdk.model.MemberTokenRequest;
-import com.ziqni.member.sdk.ApiClientFactoryWs;
+import com.ziqni.member.sdk.ZiqniMemberApiFactory;
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.member.sdk.configuration.ApiClientConfig;
+import com.ziqni.member.sdk.configuration.MemberApiClientConfiguration;
 import com.ziqni.member.sdk.data.LoadAchievementsData;
-import com.ziqni.member.sdk.model.Achievement;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import com.ziqni.member.sdk.util.TestMemberTokenLoader;
 import org.junit.jupiter.api.*;
 
 import java.util.Objects;
-import java.util.stream.Stream;
 
 import static com.ziqni.member.sdk.util.TestMemberTokenLoader.TEST_MEMBER_TOKEN;
 import static java.util.stream.Collectors.toList;
@@ -50,16 +48,16 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
                 .member(TEST_MEMBER_TOKEN)
                 .resource("ziqni-gapi");
 
-       // ApiClientConfig.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
-        ApiClientConfig.setIdentityAuthorization(null);
-        this.api = ApiClientFactoryWs.getAchievementsApi();
+       // MemberApiClientConfiguration.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
+        //MemberApiClientConfiguration.setIdentityAuthorization(null);
+        this.api = ApiClientFactoryUtil.initApiClientFactory().getAchievementsApi();
         this.loadAchievementsData = new LoadAchievementsData();
-        ApiClientFactoryUtil.initApiClientFactory();
+        
     }
 
     @AfterAll
     public  void stop(){
-        ApiClientFactoryWs.getStreamingClient().stop();
+        ApiClientFactoryUtil.stop();
     }
 
     /**

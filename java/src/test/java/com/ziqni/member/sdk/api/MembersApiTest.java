@@ -13,13 +13,14 @@
 
 package com.ziqni.member.sdk.api;
 
-import com.ziqni.member.sdk.ApiClientFactoryWs;
+import com.ziqni.member.sdk.ZiqniMemberApiFactory;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.data.LoadMemberData;
 import com.ziqni.member.sdk.model.ManageOptinRequest;
 import com.ziqni.member.sdk.model.MemberResponse;
 import com.ziqni.member.sdk.model.MemberSessionRequest;
 import com.ziqni.member.sdk.model.MemberSessionResponse;
+import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
 
 import java.util.concurrent.CompletableFuture;
@@ -36,8 +37,8 @@ public class MembersApiTest implements tests.utils.CompleteableFutureTestWrapper
     private final MembersApiWs api;
     private final LoadMemberData loadMemberData;
 
-    public MembersApiTest(){
-        this.api = ApiClientFactoryWs.getMembersApi();
+    public MembersApiTest() throws Exception {
+        this.api = ApiClientFactoryUtil.initApiClientFactory().getMembersApi();
         this.loadMemberData = new LoadMemberData();
     }
     /**

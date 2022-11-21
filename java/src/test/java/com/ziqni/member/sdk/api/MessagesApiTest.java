@@ -14,10 +14,9 @@
 package com.ziqni.member.sdk.api;
 
 import com.ziqni.admin.sdk.model.MemberTokenRequest;
-import com.ziqni.member.sdk.ApiClientFactoryWs;
+import com.ziqni.member.sdk.ZiqniMemberApiFactory;
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.member.sdk.configuration.ApiClientConfig;
-import com.ziqni.member.sdk.data.LoadCompetitionsData;
+import com.ziqni.member.sdk.configuration.MemberApiClientConfiguration;
 import com.ziqni.member.sdk.data.LoadMessageData;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import com.ziqni.member.sdk.util.TestMemberTokenLoader;
@@ -44,10 +43,10 @@ public class MessagesApiTest implements tests.utils.CompleteableFutureTestWrappe
                 .member(TEST_MEMBER_TOKEN)
                 .resource("ziqni-gapi");
 
-        // ApiClientConfig.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
-        ApiClientConfig.setIdentityAuthorization(null);
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ApiClientFactoryWs.getMessagesApi();
+        // MemberApiClientConfiguration.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
+        //MemberApiClientConfiguration.setIdentityAuthorization(null);
+        
+        this.api = ApiClientFactoryUtil.initApiClientFactory().getMessagesApi();
         this.loadMessageData=new LoadMessageData();
     }
 

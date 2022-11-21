@@ -1,6 +1,6 @@
 package com.ziqni.member.sdk.util;
 
-import com.ziqni.member.sdk.ApiClientFactoryWs;
+import com.ziqni.member.sdk.ZiqniMemberApiFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,21 +8,35 @@ public class ApiClientFactoryUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(ApiClientFactoryUtil.class);
 
-    public static void initApiClientFactory() throws Exception {
-        ApiClientFactoryWs.initialise();
+    private static ZiqniMemberApiFactory ziqniMemberApiFactory;
 
-        while (ApiClientFactoryWs.getStreamingClient() == null) {
+    public static ZiqniMemberApiFactory initApiClientFactory() throws Exception {
+        if(ziqniMemberApiFactory != null)
+            return ziqniMemberApiFactory;
+
+        ziqniMemberApiFactory = new ZiqniMemberApiFactory(com.ziqni.member.sdk.configuration.MemberApiClientConfigBuilder.build());
+
+        ziqniMemberApiFactory.initialise();
+
+        while (ziqniMemberApiFactory.getStreamingClient() == null) {
             Thread.sleep(500);
             logger.info("Waiting for the streaming client to initialize");
         }
 
-        final var started = ApiClientFactoryWs.getStreamingClient().start();
-        while (!ApiClientFactoryWs.getStreamingClient().isConnected()) {
+        final var started = ziqniMemberApiFactory.getStreamingClient().start();
+        while (!ziqniMemberApiFactory.getStreamingClient().isConnected()) {
             Thread.sleep(500);
             logger.info("Waiting for the streaming client start");
-            if(ApiClientFactoryWs.getStreamingClient().isFailure())
+            if(ziqniMemberApiFactory.getStreamingClient().isFailure())
                 throw new RuntimeException("Streaming client dead");
         }
+        return ziqniMemberApiFactory;
     }
 
+    public static void stop(){
+        if(ziqniMemberApiFactory == null || ziqniMemberApiFactory.getStreamingClient().isNotConnected())
+            return;
+
+        ziqniMemberApiFactory.getStreamingClient().stop();
+    }
 }

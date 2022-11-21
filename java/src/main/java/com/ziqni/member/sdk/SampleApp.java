@@ -1,9 +1,13 @@
 package com.ziqni.member.sdk;
 
-import com.ziqni.member.sdk.api.EntityChangesApiWs;
+import com.google.common.eventbus.Subscribe;
+import com.ziqni.member.sdk.configuration.MemberApiClientConfigBuilder;
+import com.ziqni.member.sdk.context.WSClientConnected;
+import com.ziqni.member.sdk.context.WSClientConnecting;
+import com.ziqni.member.sdk.context.WSClientDisconnected;
+import com.ziqni.member.sdk.context.WSClientSevereFailure;
 import com.ziqni.member.sdk.model.*;
-import com.ziqni.member.sdk.model.Error;
-import com.ziqni.member.sdk.streaming.StreamingClient;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,21 +20,55 @@ public class SampleApp {
     private static final Logger logger = LoggerFactory.getLogger(SampleApp.class);
 
     private static final ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor();
+    
+    private static ZiqniMemberApiFactory factory;
 
     public static void main(String[] args) throws Exception {
 
-        ApiClientFactoryWs
-                .initialise(() -> {
-                    ApiClientFactoryWs.getStreamingClient().addOnStartHandler("work", streamingClient -> logger.info(streamingClient.toString()));
-                    return ApiClientFactoryWs.getStreamingClient().start();
+        factory = new ZiqniMemberApiFactory(MemberApiClientConfigBuilder.build());
+
+        factory.initialise(() -> {
+                    factory.getZiqniAdminEventBus().register(new SampleApp());
+                    try {
+                        return factory.getStreamingClient().start();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .exceptionally(throwable -> {
+                    logger.error("Failed to connect", throwable);
+                    return null;
                 })
                 .thenAccept(started -> {
-                    if(started)
-                        onStart();
+                    logger.error("Connection is {}", started == null || !started ? "NOT_STARTED" : "RUNNING");
                 });
     }
 
-    private static void handleResponse(AchievementResponse achievementResponse){
+    //////// ADMIN API CLIENT EVENTBUS ////////
+    @Subscribe
+    public void onWSClientConnected(WSClientConnected change) {
+        if(change.getConnectedHeaders() == null)
+            return;
+        logger.info("WSClientConnected {}", change);
+        this.onStart();
+    }
+
+    @Subscribe
+    public void onWSClientConnecting(WSClientConnecting change) {
+        logger.info("WSClientConnecting {}", change);
+    }
+
+    @Subscribe
+    public void onWSClientDisconnected(WSClientDisconnected change){
+        logger.info("WSClientDisconnected {}", change);
+    }
+
+    @Subscribe
+    public void onWSClientSevereFailure(WSClientSevereFailure change){
+        logger.info("WSClientSevereFailure {}", change);
+    }
+
+    private void handleResponse(AchievementResponse achievementResponse){
 
         if(achievementResponse.getData() != null){
             achievementResponse.getData().forEach(achievement -> {
@@ -43,11 +81,14 @@ public class SampleApp {
         System.out.println(achievementResponse);
     }
 
-    private static void handleResponse(CompetitionResponse competitionResponse){
+    private void handleResponse(CompetitionResponse competitionResponse){
 
         if(competitionResponse.getData() != null){
             competitionResponse.getData().forEach(competition -> {
                 if(Objects.nonNull(competition.getConstraints()) && competition.getConstraints().contains("optinRequiredForEntrants")){
+
+                }
+                else {
 
                 }
             });
@@ -55,22 +96,22 @@ public class SampleApp {
 
         System.out.println(competitionResponse);
 
-        competitionResponse.getData().stream().findFirst().ifPresent(SampleApp::getContests);
+        competitionResponse.getData().stream().findFirst().ifPresent(this::getContests);
     }
 
-    private static void getContests(Competition competition){
-        ApiClientFactoryWs.getContestsApi().getContests(new ContestRequest().contestFilter(new ContestFilter().competitionIds(List.of(competition.getId()))))
+    private void getContests(Competition competition){
+        factory.getContestsApi().getContests(new ContestRequest().contestFilter(new ContestFilter().competitionIds(List.of(competition.getId()))))
                 .thenAccept(contestResponse -> {
                     logger.info(contestResponse.getData().toString());
-                    contestResponse.getData().stream().findFirst().ifPresent(SampleApp::subscribeToLeaderboard);
+                    contestResponse.getData().stream().findFirst().ifPresent(this::subscribeToLeaderboard);
                 }).exceptionally(throwable -> {
                     logger.error("Failed to get contests for competition {}", competition, throwable);
                     return null;
                 });
     }
 
-    private static void subscribeToLeaderboard(Contest contest){
-        ApiClientFactoryWs.getLeaderboardApi().subscribeToLeaderboard(new LeaderboardSubscriptionRequest()
+    private void subscribeToLeaderboard(Contest contest){
+        factory.getLeaderboardApi().subscribeToLeaderboard(new LeaderboardSubscriptionRequest()
                 .leaderboardFilter(new LeaderboardFilter()
                         .ranksBelowToInclude(5)
                         .ranksAboveToInclude(5)
@@ -79,15 +120,15 @@ public class SampleApp {
                 .action(LeaderboardSubscriptionRequest.ActionEnum.SUBSCRIBE)
                 .entityId(contest.getId())
         ).thenAccept(leaderboardsResponse -> {
-            logger.info(leaderboardsResponse.getData().toString());
+            logger.info(leaderboardsResponse.toString());
         }).exceptionally(throwable -> {
             logger.error("Failed to subscribe to entity changes for  {}", Achievement.class.getSimpleName(), throwable);
             return null;
         });;
     }
 
-    private static void optIntoAchievement(Achievement achievement){
-        ApiClientFactoryWs.getOptInApi().manageOptin(new ManageOptinRequest()
+    private void optIntoAchievement(Achievement achievement){
+        factory.getOptInApi().manageOptin(new ManageOptinRequest()
                 .action(OptinAction.JOIN)
                 .entityId(achievement.getId())
                 .entityType(Achievement.class.getSimpleName())
@@ -99,17 +140,17 @@ public class SampleApp {
         });
     }
 
-    private static void onStart() {
+    private void onStart() {
 
         subscribeToCallbacks();
 
-        if(!ApiClientFactoryWs.getStreamingClient().isConnected()) {
-            ApiClientFactoryWs.getStreamingClient().stop();
+        if(!factory.getStreamingClient().isConnected()) {
+            factory.getStreamingClient().stop();
             timer.shutdown();
             throw new RuntimeException("Not connected");
         }
 
-        ApiClientFactoryWs.getCallbacksApi()
+        factory.getCallbacksApi()
                 .listCallbacks()
                 .thenApply(response -> {
                     logger.info(response.toString());
@@ -120,7 +161,7 @@ public class SampleApp {
                     return null;
                 });
 
-        ApiClientFactoryWs.getMembersApi()
+        factory.getMembersApi()
                 .getMember(new MemberRequest().addIncludeFieldsItem(Member.JSON_PROPERTY_MEMBER_REF_ID))
                 .thenApply(memberResponse -> {
                     logger.info(memberResponse.toString());
@@ -131,7 +172,7 @@ public class SampleApp {
                     return null;
                 });
 
-        ApiClientFactoryWs.getAwardsApi()
+        factory.getAwardsApi()
                 .getAwards(new AwardRequest().awardFilter(new AwardFilter().limit(2)))
                 .thenAccept(awardResponse -> logger.info(awardResponse.toString()))
                 .exceptionally(throwable -> {
@@ -139,26 +180,38 @@ public class SampleApp {
                     return null;
                 });
 
-        ApiClientFactoryWs.getAchievementsApi()
+        factory.getAchievementsApi()
                 .getAchievements(new AchievementRequest().achievementFilter(new AchievementFilter().statusCode(new NumberRange().moreThan(20L).lessThan(30L))))
-                .thenAccept(SampleApp::handleResponse)
+                .thenAccept(this::handleResponse)
                 .exceptionally(throwable -> {
                     logger.error("Fail",throwable);
                     return null;
                 });
 
-        ApiClientFactoryWs.getCompetitionsApi()
+        factory.getCompetitionsApi()
                 .getCompetitions(new CompetitionRequest().competitionFilter(new CompetitionFilter().statusCode(new NumberRange().moreThan(20L).lessThan(30L))))
-                .thenAccept(SampleApp::handleResponse)
+                .thenAccept(this::handleResponse)
+                .exceptionally(throwable -> {
+                    logger.error("Fail",throwable);
+                    return null;
+                });
+
+        factory.getOptInApi()
+                .optInStates(new OptInStatesRequest().optinStatesFilter(
+                        new OptinStatesFilter().addEntityTypesItem(EntityType.ACHIEVEMENT))
+                )
+                .thenAccept(response -> {
+                    logger.info(response.toString());
+                })
                 .exceptionally(throwable -> {
                     logger.error("Fail",throwable);
                     return null;
                 });
     }
 
-    private static void subscribeToCallbacks(){
+    private void subscribeToCallbacks(){
 
-        ApiClientFactoryWs.getCallbacksApi().entityChangedHandler(
+        factory.getCallbacksApi().entityChangedHandler(
                         ((stompHeaders, entityChanged) -> {
                             logger.info(entityChanged.toString());
                         }),
@@ -166,7 +219,7 @@ public class SampleApp {
                             logger.info(error.toString())
         );
 
-        ApiClientFactoryWs.getCallbacksApi().entityStateChangedHandler(
+        factory.getCallbacksApi().entityStateChangedHandler(
                         ((stompHeaders, entityStateChanged) ->{
                             logger.info(entityStateChanged.toString());
                         }),
