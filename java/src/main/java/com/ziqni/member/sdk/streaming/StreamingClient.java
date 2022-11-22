@@ -78,8 +78,8 @@ public class StreamingClient {
         if(this.reconnectCount.get() < 0) // Shutdown in progress
             return;
 
-        this.reconnectCount.incrementAndGet();
         this.nextReconnect.set(OffsetDateTime.now().plusSeconds(10));
+        this.reconnectCount.incrementAndGet();
 
         taskScheduler.schedule(
                 this::attemptReconnect,
@@ -101,13 +101,17 @@ public class StreamingClient {
                         scheduleReconnect();
                     }
                 } catch (Throwable throwable) {
+                    logger.warn("Reconnect failed with: {}", throwable.getMessage());
                     scheduleReconnect();
-                    logger.error("Reconnect failed", throwable);
                 }
+            }).exceptionally(throwable -> {
+                logger.warn("Reconnect failed with: {}", throwable.getMessage());
+                scheduleReconnect();
+                return null;
             });
         } catch (Throwable throwable) {
+            logger.warn("Reconnect failed with: {}", throwable.getMessage());
             scheduleReconnect();
-            logger.error("Reconnect failed", throwable);
         }
     }
 
