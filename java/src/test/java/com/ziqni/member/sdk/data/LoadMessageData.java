@@ -5,9 +5,9 @@ import tests.utils.CompleteableFutureTestWrapper;
 
 public class LoadMessageData implements CompleteableFutureTestWrapper {
 
-    public MessageRequest getRequest(String id) {
-        return new MessageRequest()
-                .id(id);
+    public MessageRequest getRequest() {
+        return new MessageRequest();
+//                .id(id);
 
     }
 

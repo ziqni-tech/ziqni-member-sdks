@@ -13,20 +13,13 @@
 
 package com.ziqni.member.sdk.api;
 
-import com.ziqni.admin.sdk.model.MemberTokenRequest;
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.member.sdk.ZiqniMemberApiFactory;
-import com.ziqni.member.sdk.configuration.MemberApiClientConfigBuilder;
 import com.ziqni.member.sdk.data.LoadCompetitionsData;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.member.sdk.util.TestMemberTokenLoader;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import java.util.Objects;
-
-import static com.ziqni.member.sdk.util.TestMemberTokenLoader.TEST_MEMBER_TOKEN;
-import static java.util.stream.Collectors.toList;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * API tests for CompetitionsApi
@@ -39,18 +32,7 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
 
 
     public CompetitionsApiTest() throws Exception {
-        TestMemberTokenLoader testMemberTokenLoader = new TestMemberTokenLoader();
-        MemberTokenRequest tokenRequest = new MemberTokenRequest()
-                .apiKey(testMemberTokenLoader.getApiKey())
-                .expires(6000)
-                .isReferenceId(true)
-                .member(TEST_MEMBER_TOKEN)
-                .resource("ziqni-gapi");
-
-        // MemberApiClientConfiguration.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
-        ////MemberApiClientConfiguration.setIdentityAuthorization(null);
-        
-        this.api = new ZiqniMemberApiFactory(MemberApiClientConfigBuilder.build()).getCompetitionsApi();
+        this.api = ApiClientFactoryUtil.initApiClientFactory().getCompetitionsApi();
         this.loadCompetitionsData = new LoadCompetitionsData();
     }
 
@@ -64,13 +46,10 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
      */
     @Test
     public void getMemberCompetitionsTest() throws ApiException {
-        var response = api.getCompetitions(loadCompetitionsData.getRequest()).join();
+        var response = $(api.getCompetitions(loadCompetitionsData.getRequest()));
 
         assertNotNull(response);
         assertNotNull(response.getData());
-        final var actual = response.getData().stream().filter(competition -> Objects.nonNull(competition.getMemberTagsFilter())).collect(toList());
-
-        assertTrue( actual.size()>0);
         assertNotNull(response.getErrors());
         Assertions.assertTrue(response.getErrors().isEmpty(), "Should have no errors");
         Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
@@ -79,8 +58,7 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
 
     @Test
     public void getPublicCompetitionsTest() throws Exception {
-
-        var response = api.getCompetitions(loadCompetitionsData.getRequest()).join();
+        var response = $(api.getCompetitions(loadCompetitionsData.getRequest()));
 
         assertNotNull(response);
         assertNotNull(response.getData());
