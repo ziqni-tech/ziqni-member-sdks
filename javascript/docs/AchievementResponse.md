@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.AchievementResponse
+# ZiqniMemberApi.AchievementResponse
 
 ## Properties
 

@@ -13,22 +13,12 @@
 
 package com.ziqni.member.sdk.api;
 
-import com.ziqni.admin.client.model.MemberTokenRequest;
-import com.ziqni.member.sdk.ApiClientFactoryWs;
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.member.sdk.configuration.ApiClientConfig;
 import com.ziqni.member.sdk.data.LoadAchievementsData;
-import com.ziqni.member.sdk.model.Achievement;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.member.sdk.util.TestMemberTokenLoader;
 import org.junit.jupiter.api.*;
 
-import java.util.Objects;
-import java.util.stream.Stream;
-
-import static com.ziqni.member.sdk.util.TestMemberTokenLoader.TEST_MEMBER_TOKEN;
-import static java.util.stream.Collectors.toList;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * API tests for AchievementsApi
@@ -42,24 +32,14 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
 
     @BeforeAll
     public void start() throws Exception {
-        TestMemberTokenLoader testMemberTokenLoader = new TestMemberTokenLoader();
-        MemberTokenRequest tokenRequest = new MemberTokenRequest()
-                .apiKey(testMemberTokenLoader.getApiKey())
-                .expires(6000)
-                .isReferenceId(true)
-                .member(TEST_MEMBER_TOKEN)
-                .resource("ziqni-gapi");
-
-       // ApiClientConfig.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
-        ApiClientConfig.setIdentityAuthorization(null);
-        this.api = ApiClientFactoryWs.getAchievementsApi();
+        this.api = ApiClientFactoryUtil.initApiClientFactory().getAchievementsApi();
         this.loadAchievementsData = new LoadAchievementsData();
-        ApiClientFactoryUtil.initApiClientFactory();
+        
     }
 
     @AfterAll
     public  void stop(){
-        ApiClientFactoryWs.getStreamingClient().stop();
+        ApiClientFactoryUtil.stop();
     }
 
     /**
@@ -72,22 +52,19 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
      */
     @Test
     public void getMemberAchievementsTest() throws Exception {
-
-        var response = api.getAchievements(loadAchievementsData.getRequest()).join();
+        var response = $(api.getAchievements(loadAchievementsData.getRequest()));
 
         assertNotNull(response);
         assertNotNull(response.getData());
-        final var actual = response.getData().stream().filter(achievement -> Objects.nonNull(achievement.getMemberTagsFilter())).collect(toList());
-
-        assertTrue( actual.size()>0);
         assertNotNull(response.getErrors());
         Assertions.assertTrue(response.getErrors().isEmpty(), "Should have no errors");
         Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
     }
+
     @Test
     public void getPublicAchievementsTest() throws Exception {
 
-        var response = api.getAchievements(loadAchievementsData.getRequest()).join();
+        var response = $(api.getAchievements(loadAchievementsData.getRequest()));
 
         assertNotNull(response);
         assertNotNull(response.getData());

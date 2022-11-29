@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniMemberApi);
   }
-}(this, function(expect, ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniMemberApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ZiqniTechGamificationApiClient.ContestResponse();
+    instance = new ZiqniMemberApi.ContestResponse();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,25 +50,25 @@
   describe('ContestResponse', function() {
     it('should create an instance of ContestResponse', function() {
       // uncomment below and update the code to test ContestResponse
-      //var instance = new ZiqniTechGamificationApiClient.ContestResponse();
-      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.ContestResponse);
+      //var instance = new ZiqniMemberApi.ContestResponse();
+      //expect(instance).to.be.a(ZiqniMemberApi.ContestResponse);
     });
 
     it('should have the property meta (base name: "meta")', function() {
       // uncomment below and update the code to test the property meta
-      //var instance = new ZiqniTechGamificationApiClient.ContestResponse();
+      //var instance = new ZiqniMemberApi.ContestResponse();
       //expect(instance).to.be();
     });
 
     it('should have the property data (base name: "data")', function() {
       // uncomment below and update the code to test the property data
-      //var instance = new ZiqniTechGamificationApiClient.ContestResponse();
+      //var instance = new ZiqniMemberApi.ContestResponse();
       //expect(instance).to.be();
     });
 
     it('should have the property errors (base name: "errors")', function() {
       // uncomment below and update the code to test the property errors
-      //var instance = new ZiqniTechGamificationApiClient.ContestResponse();
+      //var instance = new ZiqniMemberApi.ContestResponse();
       //expect(instance).to.be();
     });
 

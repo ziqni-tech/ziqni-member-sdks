@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.AwardAllOf
+# ZiqniMemberApi.AwardAllOf
 
 ## Properties
 
@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 **pointInTime** | **Date** | ISO8601 timestamp for when an Award is available until a specific point in time. All records are stored in UTC time zone. * There can only be one time definition used for claim period either \&quot;pointInTime\&quot; or \&quot;period\&quot; | [optional] 
 **period** | **Number** | Claimable duration in minutes, this value will set the controls until when the award is claimable. * There can only be one time definition used for claim period either \&quot;pointInTime\&quot; or \&quot;period\&quot; | [optional] 
 **tags** | **[String]** | A list of Strings of groups that the reward belongs to. | [optional] 
-**metadata** | **{String: String}** |  | [optional] 
+**metadata** | **{String: String}** | The metadata associated with this award | [optional] 
 **constraints** | **[String]** | Additional constraints, if the value is present it means the | [optional] 
-**claimedTimestamp** | **Date** | ISO8601 timestamp for when an Award is claimed. All records are stored in UTC time zone. * | [optional] 
+**claimed** | **Boolean** |  Award is claimed. | [optional] 
 
 

@@ -13,18 +13,12 @@
 
 package com.ziqni.member.sdk.api;
 
-import com.ziqni.member.sdk.ApiClientFactoryWs;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.data.LoadMemberData;
-import com.ziqni.member.sdk.model.ManageOptinRequest;
-import com.ziqni.member.sdk.model.MemberResponse;
-import com.ziqni.member.sdk.model.MemberSessionRequest;
-import com.ziqni.member.sdk.model.MemberSessionResponse;
+import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
 
-import java.util.concurrent.CompletableFuture;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * API tests for MembersApi
@@ -36,8 +30,8 @@ public class MembersApiTest implements tests.utils.CompleteableFutureTestWrapper
     private final MembersApiWs api;
     private final LoadMemberData loadMemberData;
 
-    public MembersApiTest(){
-        this.api = ApiClientFactoryWs.getMembersApi();
+    public MembersApiTest() throws Exception {
+        this.api = ApiClientFactoryUtil.initApiClientFactory().getMembersApi();
         this.loadMemberData = new LoadMemberData();
     }
     /**
@@ -50,17 +44,12 @@ public class MembersApiTest implements tests.utils.CompleteableFutureTestWrapper
      */
     @Test
     public void getMemberTest() throws ApiException {
-        //already created member and get the memberRefId
-        var expected="Test_key-9a1f3fce-f8dc-456a-9eeb-3ee4d8116596";
-        var response = $(api.getMember(loadMemberData.getRequest(expected)));
+        var response = $(api.getMember(loadMemberData.getRequest()));
 
         assertNotNull(response);
-        final var data = response.getData();
-        assertNotNull(data);
-        final var actual = data.getMemberRefId();
+        assertNotNull(response.getData());
         assertNotNull(response.getErrors());
         Assertions.assertTrue(response.getErrors().isEmpty(), "Should have no errors");
-        assertEquals(expected,actual, "Should have results");
     }
     
     /**
@@ -71,13 +60,13 @@ public class MembersApiTest implements tests.utils.CompleteableFutureTestWrapper
      * @throws ApiException
      *          if the Api call fails
      */
-    @Test
-    public void getMemberOptinInfoTest() throws ApiException {
-        ManageOptinRequest memberOptinRequest = null;
-        CompletableFuture<MemberResponse> response =
-        api.manageOptin(memberOptinRequest);
-        
-        // TODO: test validations
-    }
+//    @Test
+//    public void getMemberOptinInfoTest() throws ApiException {
+//        ManageOptinRequest memberOptinRequest = null;
+//        CompletableFuture<MemberResponse> response =
+//        api.manageOptin(memberOptinRequest);
+//
+//        // TODO: test validations
+//    }
     
 }

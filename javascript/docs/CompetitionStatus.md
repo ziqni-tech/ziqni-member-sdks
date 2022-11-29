@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.CompetitionStatus
+# ZiqniMemberApi.CompetitionStatus
 
 ## Enum
 
@@ -28,5 +28,9 @@
 * `Cancelling` (value: `"Cancelling"`)
 
 * `Cancelled` (value: `"Cancelled"`)
+
+* `Finalising` (value: `"Finalising"`)
+
+* `Finalised` (value: `"Finalised"`)
 
 

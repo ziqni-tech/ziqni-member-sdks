@@ -31,5 +31,9 @@
 
 * `CANCELLED` (value: `"Cancelled"`)
 
+* `FINALISING` (value: `"Finalising"`)
+
+* `FINALISED` (value: `"Finalised"`)
+
 
 

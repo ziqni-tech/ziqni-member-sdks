@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniMemberApi);
   }
-}(this, function(expect, ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniMemberApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ZiqniTechGamificationApiClient.RuleArgument();
+    instance = new ZiqniMemberApi.RuleArgument();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,31 +50,31 @@
   describe('RuleArgument', function() {
     it('should create an instance of RuleArgument', function() {
       // uncomment below and update the code to test RuleArgument
-      //var instance = new ZiqniTechGamificationApiClient.RuleArgument();
-      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.RuleArgument);
+      //var instance = new ZiqniMemberApi.RuleArgument();
+      //expect(instance).to.be.a(ZiqniMemberApi.RuleArgument);
     });
 
     it('should have the property argument (base name: "argument")', function() {
       // uncomment below and update the code to test the property argument
-      //var instance = new ZiqniTechGamificationApiClient.RuleArgument();
+      //var instance = new ZiqniMemberApi.RuleArgument();
       //expect(instance).to.be();
     });
 
     it('should have the property value (base name: "value")', function() {
       // uncomment below and update the code to test the property value
-      //var instance = new ZiqniTechGamificationApiClient.RuleArgument();
+      //var instance = new ZiqniMemberApi.RuleArgument();
       //expect(instance).to.be();
     });
 
     it('should have the property type (base name: "type")', function() {
       // uncomment below and update the code to test the property type
-      //var instance = new ZiqniTechGamificationApiClient.RuleArgument();
+      //var instance = new ZiqniMemberApi.RuleArgument();
       //expect(instance).to.be();
     });
 
     it('should have the property order (base name: "order")', function() {
       // uncomment below and update the code to test the property order
-      //var instance = new ZiqniTechGamificationApiClient.RuleArgument();
+      //var instance = new ZiqniMemberApi.RuleArgument();
       //expect(instance).to.be();
     });
 

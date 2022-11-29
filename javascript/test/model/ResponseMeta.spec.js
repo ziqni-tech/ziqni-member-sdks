@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniMemberApi);
   }
-}(this, function(expect, ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniMemberApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ZiqniTechGamificationApiClient.ResponseMeta();
+    instance = new ZiqniMemberApi.ResponseMeta();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,31 +50,31 @@
   describe('ResponseMeta', function() {
     it('should create an instance of ResponseMeta', function() {
       // uncomment below and update the code to test ResponseMeta
-      //var instance = new ZiqniTechGamificationApiClient.ResponseMeta();
-      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.ResponseMeta);
+      //var instance = new ZiqniMemberApi.ResponseMeta();
+      //expect(instance).to.be.a(ZiqniMemberApi.ResponseMeta);
     });
 
     it('should have the property totalRecordsFound (base name: "totalRecordsFound")', function() {
       // uncomment below and update the code to test the property totalRecordsFound
-      //var instance = new ZiqniTechGamificationApiClient.ResponseMeta();
+      //var instance = new ZiqniMemberApi.ResponseMeta();
       //expect(instance).to.be();
     });
 
     it('should have the property skip (base name: "skip")', function() {
       // uncomment below and update the code to test the property skip
-      //var instance = new ZiqniTechGamificationApiClient.ResponseMeta();
+      //var instance = new ZiqniMemberApi.ResponseMeta();
       //expect(instance).to.be();
     });
 
     it('should have the property limit (base name: "limit")', function() {
       // uncomment below and update the code to test the property limit
-      //var instance = new ZiqniTechGamificationApiClient.ResponseMeta();
+      //var instance = new ZiqniMemberApi.ResponseMeta();
       //expect(instance).to.be();
     });
 
     it('should have the property objectType (base name: "objectType")', function() {
       // uncomment below and update the code to test the property objectType
-      //var instance = new ZiqniTechGamificationApiClient.ResponseMeta();
+      //var instance = new ZiqniMemberApi.ResponseMeta();
       //expect(instance).to.be();
     });
 

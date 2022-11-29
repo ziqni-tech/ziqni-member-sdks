@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Member API
-  version: 1.0.0
+  version: 1.0.1
   description: >-
     The ZIQNI Member-API is the primary resource used to build services and widgets for your members
     [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
@@ -250,142 +250,6 @@ paths:
       summary: Get files.
       description: This operation supports retrieval of file objects for one or many entities.
       x-ws-only: true
-  /messages:
-    summary: Member messages operation
-    description: This endpoint supports member's messages operation.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MessageRequest'
-        required: true
-      callbacks:
-        newMessage:
-          '{$request.body#/id}':
-            post:
-              requestBody:
-                description: New message
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/Message'
-              responses:
-                '200':
-                  description: >
-                    Your implementation should only return return this HTTP status code if
-                    it is using the http protocol and only if the data was received
-                    successfully
-      tags:
-        - messages
-      responses:
-        '200':
-          $ref: '#/components/responses/MessageResponseBody'
-        '400':
-          $ref: '#/components/responses/MessageResponseBody'
-        '500':
-          $ref: '#/components/responses/MessageResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewMessages
-      operationId: getMessages
-      summary: Get messages by member reference id
-      description: Returns a list of messages for the provided member ref id and applied filters.
-      x-ws-only: true
-  /leaderboard:
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/LeaderboardSubscriptionRequest'
-      callbacks:
-        leaderboardUpdate:
-          '{$request.body#/id}':
-            post:
-              requestBody:
-                description: New message
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/Message'
-              responses:
-                '202':
-                  description: >
-                    Your implementation should only return this HTTP status code if it is
-                    using the http protocol and only if the data was received successfully
-      tags:
-        - leaderboard
-      responses:
-        '200':
-          $ref: '#/components/responses/LeaderboardResponseBody'
-      operationId: subscribeToLeaderboard
-  /entity-changes:
-    post:
-      requestBody:
-        description: subscription payload
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EntityChangeSubscriptionRequest'
-        required: true
-      callbacks:
-        entityChanged:
-          '{$request.body#/entityType}':
-            post:
-              requestBody:
-                description: subscription payload
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/EntityChanged'
-              responses:
-                '202':
-                  description: >
-                    Your server implementation should return this HTTP status code if the
-                    data was received successfully
-                '204':
-                  content:
-                    application/json:
-                      schema:
-                        $ref: '#/components/schemas/UnsubscribeRequest'
-                  description: >
-                    Your server should return this HTTP status code if no longer
-                    interested in further updates
-        entityStateChanged:
-          '{$request.body#/entityType}':
-            post:
-              requestBody:
-                description: subscription payload
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/EntityStateChanged'
-              responses:
-                '200':
-                  description: >
-                    Your server implementation can optionally return this HTTP status code
-                    if the data was received successfully
-                '204':
-                  content:
-                    application/json:
-                      schema:
-                        $ref: '#/components/schemas/UnsubscribeRequest'
-                  description: >
-                    Your server should return this HTTP status code if no longer
-                    interested in further updates
-      tags:
-        - entity-changes
-      responses:
-        '202':
-          $ref: '#/components/responses/EntityChangeSubscriptionResponseBody'
-        '400':
-          $ref: '#/components/responses/EntityChangeSubscriptionResponseBody'
-        '500':
-          $ref: '#/components/responses/EntityChangeSubscriptionResponseBody'
-      operationId: manageEntityChangeSubscription
-      description: subscribes a client to receive out-of-band data
   /manage-optin:
     summary: Member optin operation
     description: This endpoint supports member's optin operation.
@@ -413,6 +277,183 @@ paths:
       summary: Get member optin information
       description: Returns a list of member optin information
       x-ws-only: true
+  /leaderboard:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaderboardSubscriptionRequest'
+      tags:
+        - leaderboard
+      responses:
+        '200':
+          $ref: '#/components/responses/LeaderboardResponseBody'
+      operationId: subscribeToLeaderboard
+  /messages:
+    summary: Member messages operation
+    description: This endpoint supports member's messages operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageRequest'
+        required: true
+      tags:
+        - messages
+      responses:
+        '200':
+          $ref: '#/components/responses/MessageResponseBody'
+        '400':
+          $ref: '#/components/responses/MessageResponseBody'
+        '500':
+          $ref: '#/components/responses/MessageResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewMessages
+      operationId: getMessages
+      summary: Get messages by member reference id
+      description: Returns a list of messages for the provided member ref id and applied filters.
+      x-ws-only: true
+  /optin-states:
+    summary: Member optin operation
+    description: This endpoint supports member's optin operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OptInStatesRequest'
+        required: true
+      tags:
+        - opt-in
+      responses:
+        '200':
+          $ref: '#/components/responses/OptInResponseBody'
+        '400':
+          $ref: '#/components/responses/OptInResponseBody'
+        '500':
+          $ref: '#/components/responses/OptInResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewMembers
+      operationId: optInStates
+      summary: Get member optin status information
+      description: Returns a list of member optin status information
+      x-ws-only: true
+  /heartbeat:
+    post:
+      callbacks:
+        heartbeatCallback:
+          '{$request.body#/entityType}':
+            post:
+              requestBody:
+                description: subscription payload
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Heartbeat'
+              responses:
+                '202':
+                  description: >
+                    Your server implementation should return this HTTP status code if the
+                    data was received successfully
+      responses:
+        '200':
+          description: On receipt
+      operationId: heartbeat
+  /callbacks:
+    description: For websockets use this queue "/queue/callbacks" to receive push messages.
+    get:
+      callbacks:
+        entityChanged:
+          '{$request.body#/entityType}':
+            post:
+              requestBody:
+                description: subscription payload
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/EntityChanged'
+              responses:
+                '202':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the HTTP protocol and only if the data was received
+                    successfully
+        entityStateChanged:
+          '{$request.body#/entityType}':
+            post:
+              requestBody:
+                description: subscription payload
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/EntityStateChanged'
+              responses:
+                '200':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the HTTP protocol and only if the data was received
+                    successfully
+        proxy:
+          '{$request.body#/entityType}':
+            post:
+              requestBody:
+                description: A message proxied to this consumer
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/ProxyMessage'
+              responses:
+                '200':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the HTTP protocol and only if the data was received
+                    successfully
+        notification:
+          '{$request.body#/id}':
+            post:
+              requestBody:
+                description: New notification
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Message'
+              responses:
+                '200':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the HTTP protocol and only if the data was received
+                    successfully
+        leaderboardUpdate:
+          '{$request.body#/id}':
+            post:
+              requestBody:
+                description: Receive updates to the subscribed leaderboards
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/LeaderboardEntry'
+              responses:
+                '200':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the HTTP protocol and only if the data was received
+                    successfully
+      tags:
+        - callbacks
+      responses:
+        '202':
+          $ref: '#/components/responses/CallbackResponseBody'
+        '500':
+          $ref: '#/components/responses/CallbackResponseBody'
+      operationId: listCallbacks
+      summary: Describe the system callbacks and there constraints
+      description: subscribes a client to receive out-of-band data
 components:
   schemas:
     ResponseMeta:
@@ -438,11 +479,16 @@ components:
         objectType:
           description: ''
           type: string
+        resultCount:
+          format: int32
+          description: ''
+          type: integer
       example:
-        totalRecordsFound: 70
-        skip: 45
-        limit: 8
+        totalRecordsFound: 82
+        skip: 22
+        limit: 12
         objectType: some text
+        resultCount: 12
     Error:
       description: ''
       required:
@@ -877,23 +923,6 @@ components:
             message: some text
             code: 25
             status: 98
-    CompetitionStatus:
-      description: ''
-      enum:
-        - Unknown
-        - Deleting
-        - Deleted
-        - Draft
-        - Template
-        - Preparing
-        - Ready
-        - Starting
-        - Active
-        - Finishing
-        - Finished
-        - Cancelling
-        - Cancelled
-      type: string
     CompetitionType:
       description: ''
       enum:
@@ -1920,59 +1949,6 @@ components:
             message: some text
             code: 88
             status: 70
-    Proxy:
-      description: ''
-      type: object
-      properties:
-        name:
-          description: ''
-          type: string
-      example:
-        name: some text
-    ProxyRequest:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
-          type: string
-    ProxyResponse:
-      description: '        '
-      required: []
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-          description: ''
-        data:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/Proxy'
-        errors:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-      example:
-        meta:
-          time: '2021-10-03T19:13:41.171Z'
-        data:
-          jsonClass: Competition
-          accountId: <account-id>
-          memberType: Individual
-          name: my first name
-          memberRefId: my-first-member-ref-id
-          groups:
-            - group1
-            - group2
-          created: '2021-09-08T15:39:53.891+0000'
-          id: <member-id>
-        errors:
-          -
-            message: 'No account found for space name - [test]'
-            code: 1007
-            status: 404
     MemberRequest:
       description: ''
       required:
@@ -2688,75 +2664,6 @@ components:
         entityId: some text
         entityType: some text
         action: some text
-    EntityChangeSubscriptionRequest:
-      description: ''
-      required:
-        - entityType
-        - callback
-        - action
-      type: object
-      properties:
-        entityType:
-          description: 'What you are subscribing to, like Competition, Contest, Member, Award etc.'
-          type: string
-        constraints:
-          description: Constraints of this subscription.
-          type: array
-          items:
-            type: string
-        callback:
-          description: >-
-            The callback operation you are subscribing too. Like entityChanged or
-            entityStateChanged
-          type: string
-        action:
-          description: Either subscribe or unsubscribe from the data feed
-          enum:
-            - Subscribe
-            - Unsubscribe
-          type: string
-    EntityChangeSubscription:
-      description: Subscribes a client to receive out-of-band data
-      required:
-        - entityTypes
-        - subscriptionId
-        - entityType
-      type: object
-      properties:
-        entityType:
-          description: ''
-          type: string
-        subscriptionId:
-          description: ''
-          type: string
-        constraints:
-          description: Constraints of this subscription like gauranteedDelivery
-          type: array
-          items:
-            type: string
-        topic:
-          description: /user/queue/callbacks
-          type: string
-    EntityChangeSubscriptionResponse:
-      description: ''
-      required:
-        - subscriptions
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/MetaBasic'
-          description: ''
-        data:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityChangeSubscription'
-        errors:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-      example: 2531329f-fb09-4ef7-887e-84e648214436
     LeaderboardSubscriptionRequest:
       description: ''
       required:
@@ -3364,7 +3271,7 @@ components:
       type: object
       properties:
         entityType:
-          description: ''
+          description: 'Achievement, Contest or Competition'
           type: string
         entityIds:
           description: ''
@@ -3793,23 +3700,6 @@ components:
       allOf:
         -
           $ref: '#/components/schemas/MetaInfo'
-    ContestStatus:
-      description: ''
-      enum:
-        - Unknown
-        - Deleting
-        - Deleted
-        - Draft
-        - Template
-        - Preparing
-        - Ready
-        - Starting
-        - Active
-        - Finishing
-        - Finished
-        - Cancelling
-        - Cancelled
-      type: string
     Reward:
       description: ''
       type: object
@@ -3943,10 +3833,107 @@ components:
           $ref: '#/components/schemas/ModelDefault'
         -
           $ref: '#/components/schemas/OptionalModelFields'
-    OptInRequestStatus:
+    OptInResponse:
+      description: '        '
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/OptinStatus'
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    ProxyMessage:
+      description: '        '
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          type: object
+      example:
+        meta:
+          time: '2021-10-03T19:13:41.171Z'
+        data:
+          jsonClass: Competition
+          accountId: <account-id>
+          memberType: Individual
+          name: my first name
+          memberRefId: my-first-member-ref-id
+          groups:
+            - group1
+            - group2
+          created: '2021-09-08T15:39:53.891+0000'
+          id: <member-id>
+        errors:
+          -
+            message: 'No account found for space name - [test]'
+            code: 1007
+            status: 404
+    CallbackEntry:
+      description: ''
+      required:
+        - name
+        - constraints
+      type: object
+      properties:
+        name:
+          description: ''
+          type: string
+        constraints:
+          description: ''
+          type: array
+          items:
+            type: string
+    CallbacksResponse:
+      description: ''
+      required:
+        - callback
+      type: object
+      properties:
+        callback:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/CallbackEntry'
+    CompetitionStatus:
+      description: The status of competition
+      enum:
+        - Unknown
+        - Deleting
+        - Deleted
+        - Draft
+        - Template
+        - Preparing
+        - Ready
+        - Starting
+        - Active
+        - Finishing
+        - Finished
+        - Cancelling
+        - Cancelled
+        - Finalising
+        - Finalised
+      type: string
+      readOnly: true
+    OptinStatus:
       description: ''
       required:
         - entityType
+        - statusCode
+        - status
+        - entityType
+        - entityId
         - statusCode
         - status
       type: object
@@ -3963,26 +3950,193 @@ components:
             25, Completing = 30, Completed = 35
           type: integer
         status:
-          description: >-
-            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15, Preparing = 20, Running =
-            25, Completing = 30, Completed = 35
+          description: |-
+            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15,\
+                        \ Preparing = 20, Running = 25, Completing = 30, Completed = 35
           type: string
-    OptInResponse:
-      description: '        '
+    OptInStatesRequest:
+      description: ''
+      required:
+        - optinStatesFilter
+      type: object
+      properties:
+        optinStatesFilter:
+          $ref: '#/components/schemas/OptinStatesFilter'
+          description: ''
+    OptinStatesFilter:
+      description: ''
       required: []
+      type: object
+      properties:
+        entityTypes:
+          description: >-
+            Optionally provide entity types to filer by. Valid options are Achievement,
+            Competition, or Contest
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityType'
+        ids:
+          description: >-
+            Optionally provide a list of identifiers for either Achievements, Competitions, or
+            Contest
+          type: array
+          items:
+            type: string
+        statusCodes:
+          $ref: '#/components/schemas/RangeQuery'
+          description: Optionally provide a range of status codes to return
+        skip:
+          format: int32
+          description: 'The number of records to skip. Zero [0] is the defualt value'
+          type: integer
+        limit:
+          format: int32
+          description: Limit t6he results. The default is 20 if left empty
+          type: integer
+    Heartbeat:
+      description: ''
+      type: object
+    ContestStatus:
+      description: The status of contest
+      enum:
+        - Unknown
+        - Deleting
+        - Deleted
+        - Draft
+        - Template
+        - Preparing
+        - Ready
+        - Starting
+        - Active
+        - Finishing
+        - Finished
+        - Cancelling
+        - Cancelled
+        - Finalising
+        - Finalised
+      type: string
+      readOnly: true
+    LeaderboardEntry:
+      required:
+        - name
+        - rank
+        - points
+        - memberId
+        - memberRefId
+        - members
+      type: object
+      properties:
+        rank:
+          description: The rank of the player
+          type: integer
+          example: '1'
+        score:
+          format: double
+          description: >-
+            The multiplier to apply to source values received for this product action helper
+            events
+          type: number
+          example: '100'
+        bestScores:
+          description: >-
+            The multiplier to apply to source values received for this product action helper
+            events
+          type: array
+          items:
+            format: double
+            type: number
+          example: '100'
+        members:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/LeaderboardMember'
+    LeaderboardMember:
+      required:
+        - name
+        - rank
+        - points
+        - memberId
+        - memberRefId
+      type: object
+      properties:
+        name:
+          description: The name of the player
+          type: string
+          example: Player 1
+        memberId:
+          description: Unique system identifier of a Member
+          type: string
+          example: Dc4swmQBVd51K6gPQqFx
+        memberRefId:
+          description: The reference to this member in your system
+          type: string
+          example: Player-1
+        rankChangeFrom:
+          format: int32
+          description: 'Previous rank held, null if no changes are recorded'
+          type: integer
+        rankChangeType:
+          format: int32
+          description: '[-1] for rank-down, like 5 to 8. [0] for no change, [1] for rank-up like 9 to 3'
+          type: integer
+    Leaderboard:
+      required:
+        - memberId
+        - memberRefId
+        - name
+        - points
+        - rank
+        - constraints
+        - timestamp
+      properties:
+        leaderboardEntries:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeaderboardEntry'
+        constraints:
+          description: Additional constraints
+          type: array
+          items:
+            type: string
+          example: '- goalReached'
+        sequence:
+          description: how many changes were made to the leaderboard
+          type: integer
+          example: '1'
+        id:
+          description: A unique system generated identifier
+          type: string
+          example: sc1samQmVr61KgaPQq7x
+        created:
+          format: date-time
+          description: >-
+            ISO8601 timestamp for when a Model was created. All records are stored in UTC time
+            zone
+          type: string
+          example: '2019-09-25T15:47:00.000+0000'
+        accountId:
+          description: This is the space name which is linked to the account
+          type: string
+          example: Your_account_id
+    LeaderboardResponse:
+      description: ''
+      required:
+        - data
+        - meta
+        - errors
       type: object
       properties:
         meta:
           $ref: '#/components/schemas/ResponseMeta'
-          description: ''
-        data:
-          $ref: '#/components/schemas/OptInRequestStatus'
-          description: ''
         errors:
           description: ''
           type: array
           items:
             $ref: '#/components/schemas/Error'
+        data:
+          $ref: '#/components/schemas/Leaderboard'
+          description: ''
   responses:
     AchievementResponseBody:
       content:
@@ -4130,21 +4284,31 @@ components:
           schema:
             $ref: '#/components/schemas/FileResponse'
       description: ''
-    EntityChangeSubscriptionResponseBody:
+    LeaderboardResponseBody:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/EntityChangeSubscriptionResponse'
-      description: ''
-    LeaderboardResponseBody:
-      content:
-        application/json: {}
+            $ref: '#/components/schemas/LeaderboardResponse'
       description: ''
     OptInResponseBody:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/OptInResponse'
+      description: ''
+    CallbackResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CallbacksResponse'
+      description: ''
+    CallbacksResponseBody:
+      description: ''
+    LeaderboardsResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LeaderboardResponse'
       description: ''
   securitySchemes:
     OAuth2:

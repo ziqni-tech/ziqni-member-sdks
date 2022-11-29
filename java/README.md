@@ -2,7 +2,7 @@
 
 Ziqni Member Cloud API
 
-- API version: 1.0.0
+- API version: 1.0.2
 
 This is the Member cloud for Ziqni
 

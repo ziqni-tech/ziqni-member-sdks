@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniMemberApi);
   }
-}(this, function(expect, ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniMemberApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ZiqniTechGamificationApiClient.ProxyRequest();
+    instance = new ZiqniMemberApi.ProxyRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,13 +50,13 @@
   describe('ProxyRequest', function() {
     it('should create an instance of ProxyRequest', function() {
       // uncomment below and update the code to test ProxyRequest
-      //var instance = new ZiqniTechGamificationApiClient.ProxyRequest();
-      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.ProxyRequest);
+      //var instance = new ZiqniMemberApi.ProxyRequest();
+      //expect(instance).to.be.a(ZiqniMemberApi.ProxyRequest);
     });
 
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
-      //var instance = new ZiqniTechGamificationApiClient.ProxyRequest();
+      //var instance = new ZiqniMemberApi.ProxyRequest();
       //expect(instance).to.be();
     });
 

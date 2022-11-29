@@ -10,11 +10,13 @@ import java.util.List;
 
 public class LoadRulesData implements CompleteableFutureTestWrapper {
 
-    public EntityRequest getRequest(String entityId,String entityType) {
-        EntityFilter entityFilter=new EntityFilter();
-        //entityFilter.entityIds();
-        entityFilter.setEntityType(entityType);
-        return new EntityRequest().addEntityFilterItem(entityFilter);
+    public EntityRequest getRequest() {
+//        final var entityFilter
+//                = new EntityFilter()
+//                .entityIds(List.of())
+//                .entityType(entityType);
+
+        return new EntityRequest();
     }
 
 }

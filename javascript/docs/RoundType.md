@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.RoundType
+# ZiqniMemberApi.RoundType
 
 ## Enum
 

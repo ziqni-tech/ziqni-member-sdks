@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.EventRefType
+# ZiqniMemberApi.EventRefType
 
 ## Enum
 

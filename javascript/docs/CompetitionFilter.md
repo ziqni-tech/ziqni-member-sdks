@@ -1,15 +1,14 @@
-# @ZiqniTechGamificationApiClient.CompetitionFilter
+# ZiqniMemberApi.CompetitionFilter
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tags** | **[String]** |  | [optional] 
-**startDate** | [**RangeQuery**](RangeQuery.md) |  | [optional] 
-**endDate** | [**RangeQuery**](RangeQuery.md) |  | [optional] 
+**startDate** | [**DateRange**](DateRange.md) |  | [optional] 
+**endDate** | [**DateRange**](DateRange.md) |  | [optional] 
 **productIds** | **[String]** |  | [optional] 
-**status** | [**[CompetitionStatus]**](CompetitionStatus.md) |  | [optional] 
-**competitionType** | [**[CompetitionType]**](CompetitionType.md) |  | [optional] 
+**statusCode** | [**NumberRange**](NumberRange.md) |  | [optional] 
 **sortBy** | [**[QuerySortBy]**](QuerySortBy.md) |  | [optional] 
 **ids** | **[String]** |  | [optional] 
 **skip** | **Number** |  | [optional] 

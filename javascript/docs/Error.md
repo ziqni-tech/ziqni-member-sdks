@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.Error
+# ZiqniMemberApi.Error
 
 ## Properties
 

@@ -21,7 +21,7 @@ public class LoadAchievementsData implements CompleteableFutureTestWrapper {
         rangeQuery.setLt("");
 
         var querySortBy = new QuerySortBy();
-        querySortBy.setQueryField("id");
+        querySortBy.setQueryField("created");
         querySortBy.setOrder(SortOrder.ASC);
 
         var achievementFilter = new AchievementFilter();

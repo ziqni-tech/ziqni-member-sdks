@@ -13,17 +13,11 @@
 
 package com.ziqni.member.sdk.api;
 
-import com.ziqni.admin.client.model.MemberTokenRequest;
-import com.ziqni.member.sdk.ApiClientFactoryWs;
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.member.sdk.configuration.ApiClientConfig;
-import com.ziqni.member.sdk.data.LoadCompetitionsData;
 import com.ziqni.member.sdk.data.LoadMessageData;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.member.sdk.util.TestMemberTokenLoader;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 
-import static com.ziqni.member.sdk.util.TestMemberTokenLoader.TEST_MEMBER_TOKEN;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -36,18 +30,7 @@ public class MessagesApiTest implements tests.utils.CompleteableFutureTestWrappe
     private  final LoadMessageData loadMessageData;
 
     public MessagesApiTest() throws Exception {
-        TestMemberTokenLoader testMemberTokenLoader = new TestMemberTokenLoader();
-        MemberTokenRequest tokenRequest = new MemberTokenRequest()
-                .apiKey(testMemberTokenLoader.getApiKey())
-                .expires(6000)
-                .isReferenceId(true)
-                .member(TEST_MEMBER_TOKEN)
-                .resource("ziqni-gapi");
-
-        // ApiClientConfig.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
-        ApiClientConfig.setIdentityAuthorization(null);
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ApiClientFactoryWs.getMessagesApi();
+        this.api = ApiClientFactoryUtil.initApiClientFactory().getMessagesApi();
         this.loadMessageData=new LoadMessageData();
     }
 
@@ -61,17 +44,12 @@ public class MessagesApiTest implements tests.utils.CompleteableFutureTestWrappe
      */
     @Test
     public void getMessagesTest() throws ApiException {
-        //already created member and get the memberRefId
-        var expected="4QJkJoIBXDlJ4yEc0KlC";
-        var response = $(api.getMessages(loadMessageData.getRequest(expected)));
+        var response = $(api.getMessages(loadMessageData.getRequest()));
 
         assertNotNull(response);
-        final var data = response.getData();
-        assertNotNull(data);
-        final var actual = data.get(0).getId();
+        assertNotNull(response.getData());
         assertNotNull(response.getErrors());
         assertTrue(response.getErrors().isEmpty(), "Should have no errors");
-        assertEquals(expected,actual, "Should have results");
 
     }
     

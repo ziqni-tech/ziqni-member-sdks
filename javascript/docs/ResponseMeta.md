@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.ResponseMeta
+# ZiqniMemberApi.ResponseMeta
 
 ## Properties
 
@@ -8,5 +8,6 @@ Name | Type | Description | Notes
 **skip** | **Number** |  | 
 **limit** | **Number** |  | 
 **objectType** | **String** |  | [optional] 
+**resultCount** | **Number** |  | [optional] 
 
 

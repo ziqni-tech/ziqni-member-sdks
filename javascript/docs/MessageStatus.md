@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.MessageStatus
+# ZiqniMemberApi.MessageStatus
 
 ## Enum
 

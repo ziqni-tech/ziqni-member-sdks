@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.SortOrder
+# ZiqniMemberApi.SortOrder
 
 ## Enum
 

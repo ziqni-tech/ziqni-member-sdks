@@ -1,4 +1,4 @@
-# @ZiqniTechGamificationApiClient.AwardFilter
+# ZiqniMemberApi.AwardFilter
 
 ## Properties
 
@@ -9,11 +9,10 @@ Name | Type | Description | Notes
 **startDate** | [**RangeQuery**](RangeQuery.md) |  | [optional] 
 **endDate** | [**RangeQuery**](RangeQuery.md) |  | [optional] 
 **ids** | **[String]** |  | [optional] 
-**status** | **[String]** | Achievement status | [optional] 
 **sortBy** | [**[QuerySortBy]**](QuerySortBy.md) |  | [optional] 
 **skip** | **Number** |  | [optional] 
 **limit** | **Number** |  | [optional] 
-**statusCode** | **[Number]** | Achievement status code | [optional] 
+**statusCode** | **[Number]** | Status codes | [optional] 
 **constraints** | **[String]** |  | [optional] 
 
 

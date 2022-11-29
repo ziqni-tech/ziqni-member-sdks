@@ -10,7 +10,7 @@ files:
   ApiClientFactoryWs.mustache:
     folder: src/main/java/com/ziqni/member/sdk
     templateType: SupportingFiles
-    destinationFilename: ApiClientFactoryWs.java
+    destinationFilename: ZiqniMemberApiFactory.java
   ApiWs.mustache:
     templateType: API
     destinationFilename: Ws.java

@@ -25,23 +25,23 @@ public class CallbackConsumer<T> {
         this.onApiException = onApiException;
     }
 
-    public JavaType getJavaType() {
+    public final JavaType getJavaType() {
         return javaType;
     }
 
-    public String getCallback() {
+    public final String getCallback() {
         return callback;
     }
 
-    public Class<T> gettClass() {
+    public final Class<T> getMessageClass() {
         return tClass;
     }
 
-    public void consumeCallback(StompHeaders headers, Object response) {
+    public final void consumeCallback(StompHeaders headers, Object response) {
         onCallback.accept(headers, (T) response);
     }
 
-    public void consumeApiExceptionCallBack(StompHeaders headers, ApiException response) {
+    public final void consumeApiExceptionCallBack(StompHeaders headers, ApiException response) {
         onApiException.accept(headers, response);
     }
 }

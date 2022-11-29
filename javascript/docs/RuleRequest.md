@@ -1,9 +1,9 @@
-# @ZiqniTechGamificationApiClient.RuleRequest
+# ZiqniMemberApi.RuleRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entityId** | **String** |  | 
+**entityIds** | **[String]** |  | 
 
 

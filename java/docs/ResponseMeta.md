@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **skip** | **Integer** |  | 
 **limit** | **Integer** |  | 
 **objectType** | **String** |  |  [optional]
+**resultCount** | **Integer** |  |  [optional]
 
 
 

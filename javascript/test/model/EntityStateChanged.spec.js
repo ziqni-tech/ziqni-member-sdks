@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniMemberApi);
   }
-}(this, function(expect, ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniMemberApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ZiqniTechGamificationApiClient.EntityStateChanged();
+    instance = new ZiqniMemberApi.EntityStateChanged();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,85 +50,85 @@
   describe('EntityStateChanged', function() {
     it('should create an instance of EntityStateChanged', function() {
       // uncomment below and update the code to test EntityStateChanged
-      //var instance = new ZiqniTechGamificationApiClient.EntityStateChanged();
-      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.EntityStateChanged);
+      //var instance = new ZiqniMemberApi.EntityStateChanged();
+      //expect(instance).to.be.a(ZiqniMemberApi.EntityStateChanged);
     });
 
     it('should have the property entityId (base name: "entityId")', function() {
       // uncomment below and update the code to test the property entityId
-      //var instance = new ZiqniTechGamificationApiClient.EntityStateChanged();
+      //var instance = new ZiqniMemberApi.EntityStateChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property entityType (base name: "entityType")', function() {
       // uncomment below and update the code to test the property entityType
-      //var instance = new ZiqniTechGamificationApiClient.EntityStateChanged();
+      //var instance = new ZiqniMemberApi.EntityStateChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property changedAt (base name: "changedAt")', function() {
       // uncomment below and update the code to test the property changedAt
-      //var instance = new ZiqniTechGamificationApiClient.EntityStateChanged();
+      //var instance = new ZiqniMemberApi.EntityStateChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property changedBy (base name: "changedBy")', function() {
       // uncomment below and update the code to test the property changedBy
-      //var instance = new ZiqniTechGamificationApiClient.EntityStateChanged();
+      //var instance = new ZiqniMemberApi.EntityStateChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property typeOffChange (base name: "typeOffChange")', function() {
       // uncomment below and update the code to test the property typeOffChange
-      //var instance = new ZiqniTechGamificationApiClient.EntityStateChanged();
+      //var instance = new ZiqniMemberApi.EntityStateChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property displayName (base name: "displayName")', function() {
       // uncomment below and update the code to test the property displayName
-      //var instance = new ZiqniTechGamificationApiClient.EntityStateChanged();
+      //var instance = new ZiqniMemberApi.EntityStateChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property accountId (base name: "accountId")', function() {
       // uncomment below and update the code to test the property accountId
-      //var instance = new ZiqniTechGamificationApiClient.EntityStateChanged();
+      //var instance = new ZiqniMemberApi.EntityStateChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property sequenceNumber (base name: "sequenceNumber")', function() {
       // uncomment below and update the code to test the property sequenceNumber
-      //var instance = new ZiqniTechGamificationApiClient.EntityStateChanged();
+      //var instance = new ZiqniMemberApi.EntityStateChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property entityRefId (base name: "entityRefId")', function() {
       // uncomment below and update the code to test the property entityRefId
-      //var instance = new ZiqniTechGamificationApiClient.EntityStateChanged();
+      //var instance = new ZiqniMemberApi.EntityStateChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property entityParentId (base name: "entityParentId")', function() {
       // uncomment below and update the code to test the property entityParentId
-      //var instance = new ZiqniTechGamificationApiClient.EntityStateChanged();
+      //var instance = new ZiqniMemberApi.EntityStateChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property metadata (base name: "metadata")', function() {
       // uncomment below and update the code to test the property metadata
-      //var instance = new ZiqniTechGamificationApiClient.EntityStateChanged();
+      //var instance = new ZiqniMemberApi.EntityStateChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property previousState (base name: "previousState")', function() {
       // uncomment below and update the code to test the property previousState
-      //var instance = new ZiqniTechGamificationApiClient.EntityStateChanged();
+      //var instance = new ZiqniMemberApi.EntityStateChanged();
       //expect(instance).to.be();
     });
 
     it('should have the property currentState (base name: "currentState")', function() {
       // uncomment below and update the code to test the property currentState
-      //var instance = new ZiqniTechGamificationApiClient.EntityStateChanged();
+      //var instance = new ZiqniMemberApi.EntityStateChanged();
       //expect(instance).to.be();
     });
 

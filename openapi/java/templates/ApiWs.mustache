@@ -63,7 +63,7 @@ import java.util.function.BiConsumer;
         {{#returnType}}
             * @return {{#asyncNative}}CompletableFuture&lt;{{/asyncNative}}{{returnType}}{{#asyncNative}}&gt;{{/asyncNative}}
         {{/returnType}}
-        * @throws ApiException if fails to make API call
+
         {{#isDeprecated}}
             * @deprecated
         {{/isDeprecated}}

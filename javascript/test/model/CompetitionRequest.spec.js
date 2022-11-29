@@ -1,6 +1,6 @@
 /**
- * Ziqni Gamification Cloud API
- * This is the gamification cloud for Ziqni
+ * ZIQNI Member API
+ * The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ZiqniTechGamificationApiClient);
+    factory(root.expect, root.ZiqniMemberApi);
   }
-}(this, function(expect, ZiqniTechGamificationApiClient) {
+}(this, function(expect, ZiqniMemberApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ZiqniTechGamificationApiClient.CompetitionRequest();
+    instance = new ZiqniMemberApi.CompetitionRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,13 +50,19 @@
   describe('CompetitionRequest', function() {
     it('should create an instance of CompetitionRequest', function() {
       // uncomment below and update the code to test CompetitionRequest
-      //var instance = new ZiqniTechGamificationApiClient.CompetitionRequest();
-      //expect(instance).to.be.a(ZiqniTechGamificationApiClient.CompetitionRequest);
+      //var instance = new ZiqniMemberApi.CompetitionRequest();
+      //expect(instance).to.be.a(ZiqniMemberApi.CompetitionRequest);
+    });
+
+    it('should have the property languageKey (base name: "languageKey")', function() {
+      // uncomment below and update the code to test the property languageKey
+      //var instance = new ZiqniMemberApi.CompetitionRequest();
+      //expect(instance).to.be();
     });
 
     it('should have the property competitionFilter (base name: "competitionFilter")', function() {
       // uncomment below and update the code to test the property competitionFilter
-      //var instance = new ZiqniTechGamificationApiClient.CompetitionRequest();
+      //var instance = new ZiqniMemberApi.CompetitionRequest();
       //expect(instance).to.be();
     });
 

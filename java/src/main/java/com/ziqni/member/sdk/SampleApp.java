@@ -1,13 +1,18 @@
 package com.ziqni.member.sdk;
 
-import com.ziqni.member.sdk.api.EntityChangesApiWs;
+import com.google.common.eventbus.Subscribe;
+import com.ziqni.member.sdk.configuration.MemberApiClientConfigBuilder;
+import com.ziqni.member.sdk.context.WSClientConnected;
+import com.ziqni.member.sdk.context.WSClientConnecting;
+import com.ziqni.member.sdk.context.WSClientDisconnected;
+import com.ziqni.member.sdk.context.WSClientSevereFailure;
 import com.ziqni.member.sdk.model.*;
-import com.ziqni.member.sdk.model.Error;
-import com.ziqni.member.sdk.streaming.StreamingClient;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -15,25 +20,60 @@ public class SampleApp {
     private static final Logger logger = LoggerFactory.getLogger(SampleApp.class);
 
     private static final ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor();
+    
+    private static ZiqniMemberApiFactory factory;
 
     public static void main(String[] args) throws Exception {
 
-        ApiClientFactoryWs
-                .initialise(() -> {
-                    ApiClientFactoryWs.getStreamingClient().addOnStartHandler("work", SampleApp::onStart);
-                    return ApiClientFactoryWs.getStreamingClient().start();})
+        factory = new ZiqniMemberApiFactory(MemberApiClientConfigBuilder.build());
+
+        factory.initialise(() -> {
+                    factory.getZiqniAdminEventBus().register(new SampleApp());
+                    try {
+                        return factory.getStreamingClient().start();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .exceptionally(throwable -> {
+                    logger.error("Failed to connect", throwable);
+                    return null;
+                })
                 .thenAccept(started -> {
-                    if(started)
-                        subscribeToEntityChanges();
+                    logger.error("Connection is {}", started == null || !started ? "NOT_STARTED" : "RUNNING");
                 });
     }
 
-    private static void handleResponse(AchievementResponse achievementResponse){
+    //////// ADMIN API CLIENT EVENTBUS ////////
+    @Subscribe
+    public void onWSClientConnected(WSClientConnected change) {
+        if(change.getConnectedHeaders() == null)
+            return;
+        logger.info("WSClientConnected {}", change);
+        this.onStart();
+    }
+
+    @Subscribe
+    public void onWSClientConnecting(WSClientConnecting change) {
+        logger.info("WSClientConnecting {}", change);
+    }
+
+    @Subscribe
+    public void onWSClientDisconnected(WSClientDisconnected change){
+        logger.info("WSClientDisconnected {}", change);
+    }
+
+    @Subscribe
+    public void onWSClientSevereFailure(WSClientSevereFailure change){
+        logger.info("WSClientSevereFailure {}", change);
+    }
+
+    private void handleResponse(AchievementResponse achievementResponse){
 
         if(achievementResponse.getData() != null){
             achievementResponse.getData().forEach(achievement -> {
                 if(achievement.getConstraints().contains("optinRequiredForEntrants")){
-
+                    optIntoAchievement(achievement);
                 }
             });
         }
@@ -41,8 +81,54 @@ public class SampleApp {
         System.out.println(achievementResponse);
     }
 
+    private void handleResponse(CompetitionResponse competitionResponse){
+
+        if(competitionResponse.getData() != null){
+            competitionResponse.getData().forEach(competition -> {
+                if(Objects.nonNull(competition.getConstraints()) && competition.getConstraints().contains("optinRequiredForEntrants")){
+
+                }
+                else {
+
+                }
+            });
+        }
+
+        System.out.println(competitionResponse);
+
+        competitionResponse.getData().stream().findFirst().ifPresent(this::getContests);
+    }
+
+    private void getContests(Competition competition){
+        factory.getContestsApi().getContests(new ContestRequest().contestFilter(new ContestFilter().competitionIds(List.of(competition.getId()))))
+                .thenAccept(contestResponse -> {
+                    logger.info(contestResponse.getData().toString());
+                    contestResponse.getData().stream().findFirst().ifPresent(this::subscribeToLeaderboard);
+                }).exceptionally(throwable -> {
+                    logger.error("Failed to get contests for competition {}", competition, throwable);
+                    return null;
+                });
+    }
+
+    private void subscribeToLeaderboard(Contest contest){
+        factory.getLeaderboardApi().subscribeToLeaderboard(new LeaderboardSubscriptionRequest()
+                .leaderboardFilter(new LeaderboardFilter()
+                        .ranksBelowToInclude(5)
+                        .ranksAboveToInclude(5)
+                        .topRanksToInclude(10)
+                )
+                .action(LeaderboardSubscriptionRequest.ActionEnum.SUBSCRIBE)
+                .entityId(contest.getId())
+        ).thenAccept(leaderboardsResponse -> {
+            logger.info(leaderboardsResponse.toString());
+        }).exceptionally(throwable -> {
+            logger.error("Failed to subscribe to entity changes for  {}", Achievement.class.getSimpleName(), throwable);
+            return null;
+        });;
+    }
+
     private void optIntoAchievement(Achievement achievement){
-        ApiClientFactoryWs.getOptInApi().manageOptin(new ManageOptinRequest()
+        factory.getOptInApi().manageOptin(new ManageOptinRequest()
                 .action(OptinAction.JOIN)
                 .entityId(achievement.getId())
                 .entityType(Achievement.class.getSimpleName())
@@ -54,106 +140,91 @@ public class SampleApp {
         });
     }
 
-    private static void onStart(StreamingClient streamingClient) {
+    private void onStart() {
 
-        if(!ApiClientFactoryWs.getStreamingClient().isConnected()) {
-            ApiClientFactoryWs.getStreamingClient().stop();
+        subscribeToCallbacks();
+
+        if(!factory.getStreamingClient().isConnected()) {
+            factory.getStreamingClient().stop();
             timer.shutdown();
             throw new RuntimeException("Not connected");
         }
 
-        ApiClientFactoryWs.getAchievementsApi()
-                .getAchievements(new AchievementRequest().achievementFilter(new AchievementFilter()))
-                .thenAccept(SampleApp::handleResponse)
+        factory.getCallbacksApi()
+                .listCallbacks()
+                .thenApply(response -> {
+                    logger.info(response.toString());
+                    return response;
+                })
                 .exceptionally(throwable -> {
-                    throwable.printStackTrace();
+                    logger.error("Fail",throwable);
                     return null;
                 });
 
-        ApiClientFactoryWs.getMembersApi()
+        factory.getMembersApi()
                 .getMember(new MemberRequest().addIncludeFieldsItem(Member.JSON_PROPERTY_MEMBER_REF_ID))
                 .thenApply(memberResponse -> {
                     logger.info(memberResponse.toString());
                     return memberResponse;
                 })
                 .exceptionally(throwable -> {
-                    throwable.printStackTrace();
+                    logger.error("Fail",throwable);
+                    return null;
+                });
+
+        factory.getAwardsApi()
+                .getAwards(new AwardRequest().awardFilter(new AwardFilter().limit(2)))
+                .thenAccept(awardResponse -> logger.info(awardResponse.toString()))
+                .exceptionally(throwable -> {
+                    logger.error("Fail",throwable);
+                    return null;
+                });
+
+        factory.getAchievementsApi()
+                .getAchievements(new AchievementRequest().achievementFilter(new AchievementFilter().statusCode(new NumberRange().moreThan(20L).lessThan(30L))))
+                .thenAccept(this::handleResponse)
+                .exceptionally(throwable -> {
+                    logger.error("Fail",throwable);
+                    return null;
+                });
+
+        factory.getCompetitionsApi()
+                .getCompetitions(new CompetitionRequest().competitionFilter(new CompetitionFilter().statusCode(new NumberRange().moreThan(20L).lessThan(30L))))
+                .thenAccept(this::handleResponse)
+                .exceptionally(throwable -> {
+                    logger.error("Fail",throwable);
+                    return null;
+                });
+
+        factory.getOptInApi()
+                .optInStates(new OptInStatesRequest().optinStatesFilter(
+                        new OptinStatesFilter().addEntityTypesItem(EntityType.ACHIEVEMENT))
+                )
+                .thenAccept(response -> {
+                    logger.info(response.toString());
+                })
+                .exceptionally(throwable -> {
+                    logger.error("Fail",throwable);
                     return null;
                 });
     }
 
-    private static void subscribeToEntityChanges(){
+    private void subscribeToCallbacks(){
 
-        ApiClientFactoryWs.getEntityChangesApi().entityChangedHandler(
+        factory.getCallbacksApi().entityChangedHandler(
                         ((stompHeaders, entityChanged) -> {
                             logger.info(entityChanged.toString());
-                            if(entityChanged.getEntityType().equals("Score")){
-                                logger.warn("woop woop");
-                            }
                         }),
                         (stompHeaders, error) ->
                             logger.info(error.toString())
         );
 
-        ApiClientFactoryWs.getEntityChangesApi().entityStateChangedHandler(
+        factory.getCallbacksApi().entityStateChangedHandler(
                         ((stompHeaders, entityStateChanged) ->{
                             logger.info(entityStateChanged.toString());
-                            if(entityStateChanged.getEntityType().equals("Score")){
-                                logger.warn("woop woop");
-                            }
                         }),
                         (stompHeaders, error) ->
                             logger.info(error.toString())
         );
-
-        // Member
-        subscribe(Member.class.getSimpleName());
-
-        // Achievement
-        subscribe(Achievement.class.getSimpleName());
-
-        // Competition
-        subscribe(Competition.class.getSimpleName());
-
-        // Contest
-        subscribe(Contest.class.getSimpleName());
-
-        // Award
-        subscribe(Award.class.getSimpleName());
-
-        // Score
-        subscribe("Score");
-
-    }
-
-    private static void subscribe(String entityType){
-
-        ApiClientFactoryWs.getEntityChangesApi().manageEntityChangeSubscription(
-                new EntityChangeSubscriptionRequest()
-                        .callback(EntityChangesApiWs.manageEntityChangeSubscriptionCallBacks.ENTITYCHANGED)
-                        .action(EntityChangeSubscriptionRequest.ActionEnum.SUBSCRIBE)
-                        .entityType(entityType))
-                .thenAccept(in -> onErrors(in.getErrors(),in.toString()))
-                .exceptionally(throwable -> {
-                    logger.error("Failed to subscribe to entity changes for  {}", entityType,throwable);
-                    return null;
-                });
-
-        ApiClientFactoryWs.getEntityChangesApi().manageEntityChangeSubscription(
-                new EntityChangeSubscriptionRequest()
-                        .callback(EntityChangesApiWs.manageEntityChangeSubscriptionCallBacks.ENTITYSTATECHANGED)
-                        .action(EntityChangeSubscriptionRequest.ActionEnum.SUBSCRIBE)
-                        .entityType(entityType))
-                .thenAccept(in -> onErrors(in.getErrors(),in.toString()))
-                .exceptionally(throwable -> {
-                    logger.error("Failed to subscribe to entity state changes for  {}", entityType,throwable);
-                    return null;
-                });
-    }
-
-    private static void onErrors(List<Error> errors, String message) {
-        if(errors != null && !errors.isEmpty()) {
-            logger.error(message);
-        }
     }
 }
