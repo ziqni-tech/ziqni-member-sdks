@@ -15,9 +15,9 @@ public class LoadAwardsData implements CompleteableFutureTestWrapper {
 
     }
     public ClaimAwardRequest getClaimAwardRequest(String memberRefId, List<String> awardIds) {
-        return new ClaimAwardRequest();
+        return new ClaimAwardRequest()
 //                .memberRefId(memberRefId)
-//                .awardIds(awardIds)
+                .awardIds(awardIds);
 
 
     }
