@@ -62,5 +62,30 @@ public class LeaderboardsApiTest implements tests.utils.CompleteableFutureTestWr
         Assertions.assertTrue(response.getErrors().isEmpty(), "Should have no errors");
     }
 
+    /**
+     * subscribe to Leaderboard
+     *
+     * Returns leaderboard information for the provided contest id
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void subscribeToLeaderBoardWidgetTest() throws ApiException {
+        final var contestId = "RNYzl4QBABBLGqYCxKYk";
+        final var leaderboardSubscriptionRequest = new LeaderboardSubscriptionRequest()
+                .action(LeaderboardSubscriptionRequest.ActionEnum.SUBSCRIBE)
+                .entityId(contestId)
+                .leaderboardFilter(new LeaderboardFilter()
+                        .topRanksToInclude(10)
+                );
+
+        final var response = $(api.subscribeToLeaderboard(leaderboardSubscriptionRequest));
+
+        assertNotNull(response);
+        assertNotNull(response.getData());
+        assertNotNull(response.getErrors());
+        Assertions.assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+    }
     
 }
