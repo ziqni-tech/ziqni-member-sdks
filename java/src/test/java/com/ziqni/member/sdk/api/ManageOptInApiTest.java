@@ -13,8 +13,10 @@
 
 package com.ziqni.member.sdk.api;
 
-import com.ziqni.member.sdk.ApiException;
-import com.ziqni.member.sdk.data.LoadAchievementsData;
+import com.ziqni.member.sdk.model.ManageOptinRequest;
+import com.ziqni.member.sdk.model.OptInStatesRequest;
+import com.ziqni.member.sdk.model.OptinAction;
+import com.ziqni.member.sdk.model.OptinStatesFilter;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
 
@@ -25,15 +27,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWrapper{
+public class ManageOptInApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
-    private AchievementsApiWs api;
-    private LoadAchievementsData loadAchievementsData;
+    private OptInApiWs api;
 
     @BeforeAll
     public void start() throws Exception {
-        this.api = ApiClientFactoryUtil.initApiClientFactory().getAchievementsApi();
-        this.loadAchievementsData = new LoadAchievementsData();
+        this.api = ApiClientFactoryUtil.initApiClientFactory().getOptInApi();
         
     }
 
@@ -42,17 +42,18 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
         ApiClientFactoryUtil.stop();
     }
 
-    /**
-     * Get achievements by member reference id
-     *
-     * Returns a list of achievements for the provided member ref id and applied filters.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
+
     @Test
-    public void getMemberAchievementsTest() throws Exception {
-        var response = $(api.getAchievements(loadAchievementsData.getRequest()));
+    public void manageOptInStatesTest() throws Exception {
+        final var entityId = "yYSOUoQBSPM0WYwF7N_S";
+        final var entityType = "Achievement";
+
+        final var manageOptInRequest = new ManageOptinRequest()
+                .entityId(entityId)
+                .entityType(entityType)
+                .action(OptinAction.JOIN);
+
+        final var response = $(api.manageOptin(manageOptInRequest));
 
         assertNotNull(response);
         assertNotNull(response.getData());
@@ -62,9 +63,12 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
     }
 
     @Test
-    public void getPublicAchievementsTest() throws Exception {
-
-        var response = $(api.getAchievements(loadAchievementsData.getRequest()));
+    public void optInStatesTest() throws Exception {
+        final var optInStatesRequest = new OptInStatesRequest()
+                .optinStatesFilter(new OptinStatesFilter()
+                        .limit(20)
+                        .skip(0));
+        final var response = $(api.optInStates(optInStatesRequest));
 
         assertNotNull(response);
         assertNotNull(response.getData());

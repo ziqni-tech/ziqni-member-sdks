@@ -12,17 +12,11 @@
 
 package com.ziqni.member.sdk.api;
 
-import com.ziqni.admin.sdk.model.EntityType;
-import com.ziqni.admin.sdk.model.MemberTokenRequest;
-import com.ziqni.member.sdk.ZiqniMemberApiFactory;
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.member.sdk.configuration.MemberApiClientConfiguration;
 import com.ziqni.member.sdk.data.LoadRewardsData;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.member.sdk.util.TestMemberTokenLoader;
 import org.junit.jupiter.api.*;
 
-import static com.ziqni.member.sdk.util.TestMemberTokenLoader.TEST_MEMBER_TOKEN;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -37,16 +31,6 @@ public class RewardsApiTest implements tests.utils.CompleteableFutureTestWrapper
 
     @BeforeAll
     public void start() throws Exception {
-        TestMemberTokenLoader testMemberTokenLoader = new TestMemberTokenLoader();
-        MemberTokenRequest tokenRequest = new MemberTokenRequest()
-                .apiKey(testMemberTokenLoader.getApiKey())
-                .expires(6000)
-                .isReferenceId(true)
-                .member(TEST_MEMBER_TOKEN)
-                .resource("ziqni-gapi");
-
-        // MemberApiClientConfiguration.setIdentityAuthorization(testMemberTokenLoader.setMemberTokenRequest(tokenRequest));
-        //MemberApiClientConfiguration.setIdentityAuthorization(null);
         this.api = ApiClientFactoryUtil.initApiClientFactory().getRewardsApi();
         this.loadRewardsData = new LoadRewardsData();
         
@@ -69,8 +53,7 @@ public class RewardsApiTest implements tests.utils.CompleteableFutureTestWrapper
      */
     @Test
     public void getRewardsTest() throws ApiException {
-        String achievementId = "bMLMv34B99ZI0UTU5MKP";
-        var response = api.getRewards(loadRewardsData.getRequest(achievementId, EntityType.ACHIEVEMENT.getValue())).join();
+        var response = $(api.getRewards(loadRewardsData.getRequest()));
 
         assertNotNull(response);
         assertNotNull(response.getData());

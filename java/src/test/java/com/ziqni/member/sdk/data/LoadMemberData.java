@@ -5,7 +5,7 @@ import tests.utils.CompleteableFutureTestWrapper;
 
 public class LoadMemberData implements CompleteableFutureTestWrapper {
 
-    public MemberRequest getRequest(String memberRefId) {
+    public MemberRequest getRequest() {
         return new MemberRequest();
 //                .memberRefId(memberRefId);
 
