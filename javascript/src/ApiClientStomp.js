@@ -151,6 +151,10 @@ class ApiClientStomp {
         this.client.activate();
     })
 
+    disconnect = () => {
+        this.client.deactivate();
+    }
+
     uuidv4() {
         return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
             (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
@@ -175,8 +179,11 @@ class ApiClientStomp {
 
     handleSysCallback = (message) => {
         if (message.body) {
-            this.sysCallBack(JSON.parse(message.body))
-            console.log("Got Sys Message With Body " + message.body);
+            if (this.sysCallBack) {
+                this.sysCallBack(JSON.parse(message.body), message.headers)
+            } else {
+                console.log("SysCallBack is empty. Message: " + message.body);
+            }
         } else {
             console.log('message with empty body', message);
         }
