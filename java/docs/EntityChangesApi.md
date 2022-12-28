@@ -1,11 +1,11 @@
 # EntityChangesApi
 
-All URIs are relative to *https://member-api.ziqni.com*
+All URIs are relative to *https://gamification-api.ziqni.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**manageEntityChangeSubscription**](EntityChangesApi.md#manageEntityChangeSubscription) | **POST** /entity-changes | 
-[**manageEntityChangeSubscriptionWithHttpInfo**](EntityChangesApi.md#manageEntityChangeSubscriptionWithHttpInfo) | **POST** /entity-changes | 
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**manageEntityChangeSubscription**](EntityChangesApi.md#manageEntityChangeSubscription) | **POST** /entity-changes |  |
+| [**manageEntityChangeSubscriptionWithHttpInfo**](EntityChangesApi.md#manageEntityChangeSubscriptionWithHttpInfo) | **POST** /entity-changes |  |
 
 
 
@@ -31,7 +31,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://member-api.ziqni.com");
+        defaultClient.setBasePath("https://gamification-api.ziqni.com");
 
         EntityChangesApi apiInstance = new EntityChangesApi(defaultClient);
         EntityChangeSubscriptionRequest entityChangeSubscriptionRequest = new EntityChangeSubscriptionRequest(); // EntityChangeSubscriptionRequest | subscription payload
@@ -52,9 +52,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **entityChangeSubscriptionRequest** | [**EntityChangeSubscriptionRequest**](EntityChangeSubscriptionRequest.md)| subscription payload |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **entityChangeSubscriptionRequest** | [**EntityChangeSubscriptionRequest**](EntityChangeSubscriptionRequest.md)| subscription payload | |
 
 ### Return type
 
@@ -100,7 +100,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://member-api.ziqni.com");
+        defaultClient.setBasePath("https://gamification-api.ziqni.com");
 
         EntityChangesApi apiInstance = new EntityChangesApi(defaultClient);
         EntityChangeSubscriptionRequest entityChangeSubscriptionRequest = new EntityChangeSubscriptionRequest(); // EntityChangeSubscriptionRequest | subscription payload
@@ -130,9 +130,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **entityChangeSubscriptionRequest** | [**EntityChangeSubscriptionRequest**](EntityChangeSubscriptionRequest.md)| subscription payload |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **entityChangeSubscriptionRequest** | [**EntityChangeSubscriptionRequest**](EntityChangeSubscriptionRequest.md)| subscription payload | |
 
 ### Return type
 
