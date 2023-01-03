@@ -2156,85 +2156,6 @@ components:
                 metadata:
                     m1: v1
                     m2: 1
-        AwardFilter:
-            description: ''
-            type: object
-            properties:
-                productIds:
-                    description: ''
-                    type: array
-                    items:
-                        type: string
-                tags:
-                    description: ''
-                    type: array
-                    items:
-                        type: string
-                ids:
-                    description: ''
-                    type: array
-                    items:
-                        type: string
-                sortBy:
-                    description: ''
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/QuerySortBy'
-                skip:
-                    format: int32
-                    description: ''
-                    type: integer
-                limit:
-                    format: int32
-                    description: ''
-                    type: integer
-                constraints:
-                    description: ''
-                    type: array
-                    items:
-                        type: string
-                entityIds:
-                    description: 'Achievement, Contest or Competition'
-                    type: array
-                    items:
-                        type: string
-            example:
-                productIds:
-                    - some text
-                    - some text
-                tags:
-                    - some text
-                    - some text
-                startDate:
-                    gt: some text
-                    lt: some text
-                    constraints:
-                        - some text
-                        - some text
-                endDate:
-                    gt: some text
-                    lt: some text
-                    constraints:
-                        - some text
-                        - some text
-                ids:
-                    - some text
-                    - some text
-                status:
-                    - some text
-                    - some text
-                sortBy:
-                    -
-                        queryField: some text
-                        order: Asc
-                    -
-                        queryField: some text
-                        order: Desc
-                skip: 0
-                limit: 72
-                statusCode:
-                    - 60
-                    - 45
         Achievement:
             description: ''
             type: object
@@ -4279,7 +4200,7 @@ components:
                                 10=Preparing
                                 15=NotClaimed
                                 35=Claimed
-                                115=Expired
+                                115=Expired 
                         constraints:
                             description: 'Additional constraints, if the value is present it means the'
                             type: array
@@ -4292,8 +4213,115 @@ components:
                             description: ' Award is claimed.'
                             type: boolean
                             example: '2019-09-25T15:47:00.000+0000'
+                        status:
+                            $ref: '#/components/schemas/AwardStatus'
+                            description: ''
+                            example: |-
+                                0=Unknown 
+                                10=Preparing
+                                15=NotClaimed
+                                35=Claimed
+                                115=Expired 
                 -
                     $ref: '#/components/schemas/ModelDefault'
+        AwardStatus:
+            description: The status of award
+            enum:
+                - Unknown
+                - Preparing
+                - NotClaimed
+                - Claimed
+                - Expired
+            type: string
+            readOnly: true
+        AwardFilter:
+            description: ''
+            type: object
+            properties:
+                productIds:
+                    description: ''
+                    type: array
+                    items:
+                        type: string
+                tags:
+                    description: ''
+                    type: array
+                    items:
+                        type: string
+                ids:
+                    description: ''
+                    type: array
+                    items:
+                        type: string
+                statusCode:
+                    $ref: '#/components/schemas/NumberRange'
+                    description: Award status code
+                    example: |-
+                        0=Unknown 
+                        10=Preparing
+                        15=NotClaimed
+                        35=Claimed
+                        115=Expired
+                sortBy:
+                    description: ''
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/QuerySortBy'
+                skip:
+                    format: int32
+                    description: ''
+                    type: integer
+                limit:
+                    format: int32
+                    description: ''
+                    type: integer
+                constraints:
+                    description: ''
+                    type: array
+                    items:
+                        type: string
+                entityIds:
+                    description: 'Achievement, Contest or Competition'
+                    type: array
+                    items:
+                        type: string
+            example:
+                productIds:
+                    - some text
+                    - some text
+                tags:
+                    - some text
+                    - some text
+                startDate:
+                    gt: some text
+                    lt: some text
+                    constraints:
+                        - some text
+                        - some text
+                endDate:
+                    gt: some text
+                    lt: some text
+                    constraints:
+                        - some text
+                        - some text
+                ids:
+                    - some text
+                    - some text
+                status:
+                    - some text
+                    - some text
+                sortBy:
+                    -
+                        queryField: some text
+                        order: Asc
+                    -
+                        queryField: some text
+                        order: Desc
+                skip: 0
+                limit: 72
+                statusCode:
+                    - 60
+                    - 45
     responses:
         AchievementResponseBody:
             content:

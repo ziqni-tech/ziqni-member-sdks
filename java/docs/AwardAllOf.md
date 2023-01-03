@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **statusCode** | **Integer** | The code of the award |  [optional] [readonly]
 **constraints** | **List&lt;String&gt;** | Additional constraints, if the value is present it means the |  [optional]
 **claimed** | **Boolean** |  Award is claimed. |  [optional]
+**status** | **AwardStatus** |  |  [optional]
 
 
 
