@@ -23,6 +23,8 @@ Name | Type | Description | Notes
 **constraints** | **List&lt;String&gt;** | Additional constraints, if the value is present it means the |  [optional]
 **claimed** | **Boolean** |  Award is claimed. |  [optional]
 **status** | **AwardStatus** |  |  [optional]
+**name** | **String** | name from reward |  [optional]
+**description** | **String** |  |  [optional]
 
 
 

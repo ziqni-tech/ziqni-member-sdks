@@ -4222,6 +4222,12 @@ components:
                                 15=NotClaimed
                                 35=Claimed
                                 115=Expired 
+                        name:
+                            description: name from reward
+                            type: string
+                        description:
+                            description: ''
+                            type: string
                 -
                     $ref: '#/components/schemas/ModelDefault'
         AwardStatus:
