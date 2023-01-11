@@ -437,7 +437,7 @@ paths:
                                 content:
                                     application/json:
                                         schema:
-                                            $ref: '#/components/schemas/LeaderboardEntry'
+                                            $ref: '#/components/schemas/Leaderboard'
                             responses:
                                 '200':
                                     description: >
@@ -3935,7 +3935,9 @@ components:
                     type: integer
                     example: '1'
                 id:
-                    description: A unique system generated identifier
+                    description: >-
+                        A unique system generated identifier of the competition or contest this leaderboard
+                        relates to
                     type: string
                     example: sc1samQmVr61KgaPQq7x
                 created:
@@ -4200,7 +4202,7 @@ components:
                                 10=Preparing
                                 15=NotClaimed
                                 35=Claimed
-                                115=Expired 
+                                115=Expired
                         constraints:
                             description: 'Additional constraints, if the value is present it means the'
                             type: array
@@ -4221,11 +4223,14 @@ components:
                                 10=Preparing
                                 15=NotClaimed
                                 35=Claimed
-                                115=Expired 
+                                115=Expired
                         name:
                             description: name from reward
                             type: string
                         description:
+                            description: ''
+                            type: string
+                        memberRefId:
                             description: ''
                             type: string
                 -
