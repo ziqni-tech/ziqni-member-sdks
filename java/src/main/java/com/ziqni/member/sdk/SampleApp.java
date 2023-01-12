@@ -72,7 +72,7 @@ public class SampleApp {
 
         if(achievementResponse.getData() != null){
             achievementResponse.getData().forEach(achievement -> {
-                if(achievement.getConstraints().contains("optinRequiredForEntrants")){
+                if(Objects.nonNull(achievement.getConstraints()) && achievement.getConstraints().contains("optinRequiredForEntrants")){
                     optIntoAchievement(achievement);
                 }
             });
@@ -225,6 +225,22 @@ public class SampleApp {
                         }),
                         (stompHeaders, error) ->
                             logger.info(error.toString())
+        );
+
+        factory.getCallbacksApi().notificationHandler(
+                ((stompHeaders, message) -> {
+                    logger.info(message.toString());
+                }),
+                (stompHeaders, error) ->
+                        logger.info(error.toString())
+        );
+
+        factory.getCallbacksApi().leaderboardUpdateHandler(
+                ((stompHeaders, message) -> {
+                    logger.info(message.toString());
+                }),
+                (stompHeaders, error) ->
+                        logger.info(error.toString())
         );
     }
 }
