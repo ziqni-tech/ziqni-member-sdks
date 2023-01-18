@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## subscribeToLeaderboard
 
-> subscribeToLeaderboard(opts)
+> LeaderboardResponse subscribeToLeaderboard(opts)
 
 
 
@@ -27,7 +27,7 @@ apiInstance.subscribeToLeaderboard(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 });
 ```
@@ -41,7 +41,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**LeaderboardResponse**](LeaderboardResponse.md)
 
 ### Authorization
 
