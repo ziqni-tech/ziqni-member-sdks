@@ -1,17 +1,14 @@
-# ZiqniMemberApi.AwardFilter
+# ZiqniMemberApi.MessageFilter
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**productIds** | **[String]** |  | [optional] 
 **tags** | **[String]** |  | [optional] 
 **ids** | **[String]** |  | [optional] 
-**statusCode** | [**NumberRange**](NumberRange.md) |  | [optional] 
 **sortBy** | [**[QuerySortBy]**](QuerySortBy.md) |  | [optional] 
 **skip** | **Number** |  | [optional] 
 **limit** | **Number** |  | [optional] 
-**constraints** | **[String]** |  | [optional] 
-**entityIds** | **[String]** | Achievement, Contest or Competition | [optional] 
+**messageType** | [**MessageType**](MessageType.md) |  | [optional] 
 
 
