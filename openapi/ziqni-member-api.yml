@@ -437,7 +437,7 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/LeaderboardEntry'
+                      $ref: '#/components/schemas/Leaderboard'
               responses:
                 '200':
                   description: >
@@ -2156,93 +2156,6 @@ components:
         metadata:
           m1: v1
           m2: 1
-    AwardFilter:
-      description: ''
-      type: object
-      properties:
-        productIds:
-          description: ''
-          type: array
-          items:
-            type: string
-        tags:
-          description: ''
-          type: array
-          items:
-            type: string
-        startDate:
-          $ref: '#/components/schemas/RangeQuery'
-          description: startDate
-        endDate:
-          $ref: '#/components/schemas/RangeQuery'
-          description: ''
-        ids:
-          description: ''
-          type: array
-          items:
-            type: string
-        sortBy:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/QuerySortBy'
-        skip:
-          format: int32
-          description: ''
-          type: integer
-        limit:
-          format: int32
-          description: ''
-          type: integer
-        statusCode:
-          description: Status codes
-          type: array
-          items:
-            format: int32
-            type: integer
-          example: ''
-        constraints:
-          description: ''
-          type: array
-          items:
-            type: string
-      example:
-        productIds:
-          - some text
-          - some text
-        tags:
-          - some text
-          - some text
-        startDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        endDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        ids:
-          - some text
-          - some text
-        status:
-          - some text
-          - some text
-        sortBy:
-          -
-            queryField: some text
-            order: Asc
-          -
-            queryField: some text
-            order: Desc
-        skip: 0
-        limit: 72
-        statusCode:
-          - 60
-          - 45
     Achievement:
       description: ''
       type: object
@@ -2512,89 +2425,6 @@ components:
           type: string
       example:
         id: some text
-    Award:
-      description: ''
-      type: object
-      allOf:
-        -
-          type: object
-          properties:
-            memberId:
-              description: A unique identifier of a Member
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            rewardId:
-              description: A unique identifier of a Reward
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            rewardType:
-              $ref: '#/components/schemas/RewardTypeReduced'
-              description: The type of reward issued
-            rewardRank:
-              description: >-
-                If used in the context of contest this will associate with the rank of the
-                leaderboard
-              type: string
-              example: '1'
-            rewardValue:
-              format: double
-              description: Numerical value of the reward that will be issued based on the reward type
-              type: number
-              example: '1'
-            delay:
-              format: int32
-              description: Delay of issuing a reward in minutes
-              type: integer
-              example: '2'
-            entityType:
-              $ref: '#/components/schemas/EntityType'
-              description: 'Competition, Contest, or Achievement'
-            entityId:
-              description: >-
-                The Id of the contest or achievement related to this Award. Dependant on
-                entityType
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            pointInTime:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when an Award is available until a specific point in
-                time. All records are stored in UTC time zone. * There can only be one time
-                definition used for claim period either "pointInTime" or "period"
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            period:
-              format: int32
-              description: >-
-                Claimable duration in minutes, this value will set the controls until when the
-                award is claimable. * There can only be one time definition used for claim
-                period either "pointInTime" or "period"
-              type: integer
-              example: '2'
-            tags:
-              description: A list of Strings of groups that the reward belongs to.
-              type: array
-              items:
-                type: string
-            metadata:
-              description: The metadata associated with this award
-              type: object
-              additionalProperties:
-                type: string
-            constraints:
-              description: 'Additional constraints, if the value is present it means the'
-              type: array
-              items:
-                type: string
-              example: |-
-                - memberAcknowledgmentRequired
-                - claimed
-            claimed:
-              description: ' Award is claimed.'
-              type: boolean
-              example: '2019-09-25T15:47:00.000+0000'
-        -
-          $ref: '#/components/schemas/ModelDefault'
     OptinAction:
       description: ''
       enum:
@@ -3501,9 +3331,9 @@ components:
             The language codes can be found in the settings/transalations section of the back
             office
           type: string
-        id:
+        messageFilter:
+          $ref: '#/components/schemas/MessageFilter'
           description: ''
-          type: string
       example:
         memberRefId: some text
     RewardRequest:
@@ -4051,35 +3881,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LeaderboardMember'
-    LeaderboardMember:
-      required:
-        - name
-        - rank
-        - points
-        - memberId
-        - memberRefId
-      type: object
-      properties:
-        name:
-          description: The name of the player
-          type: string
-          example: Player 1
-        memberId:
-          description: Unique system identifier of a Member
-          type: string
-          example: Dc4swmQBVd51K6gPQqFx
-        memberRefId:
-          description: The reference to this member in your system
-          type: string
-          example: Player-1
-        rankChangeFrom:
-          format: int32
-          description: 'Previous rank held, null if no changes are recorded'
-          type: integer
-        rankChangeType:
-          format: int32
-          description: '[-1] for rank-down, like 5 to 8. [0] for no change, [1] for rank-up like 9 to 3'
-          type: integer
     Leaderboard:
       required:
         - memberId
@@ -4105,7 +3906,9 @@ components:
           type: integer
           example: '1'
         id:
-          description: A unique system generated identifier
+          description: >-
+            A unique system generated identifier of the competition or contest this leaderboard
+            relates to
           type: string
           example: sc1samQmVr61KgaPQq7x
         created:
@@ -4137,6 +3940,404 @@ components:
         data:
           $ref: '#/components/schemas/Leaderboard'
           description: ''
+    MissionEntry:
+      description: ''
+      required:
+        - ordering
+        - hasNext
+        - hasRewards
+        - isCompleted
+        - optInStatus
+      type: object
+      properties:
+        achieventId:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        hasNext:
+          description: ''
+          type: boolean
+        antecendantId:
+          description: ''
+          type: string
+        decendantId:
+          description: ''
+          type: string
+        hasRewards:
+          description: ''
+          type: boolean
+        isCompleted:
+          description: ''
+          type: boolean
+        optInStatus:
+          $ref: '#/components/schemas/OptinStatus'
+          description: ''
+        ordering:
+          description: ''
+          type: integer
+    Mission:
+      description: |-
+        Mission is a specialised view of connected achievements.
+        The first achievement is the container, every dependant achievement is a chained dependency
+      required:
+        - entries
+        - id
+        - availableFrom
+        - isCompleted
+        - optInStatus
+      type: object
+      properties:
+        entries:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/MissionEntry'
+        id:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        description:
+          description: ''
+          type: string
+        termsAndConditions:
+          description: ''
+          type: string
+        availableFrom:
+          format: date-time
+          description: ''
+          type: string
+        availableUntil:
+          format: date-time
+          description: ''
+          type: string
+        isCompleted:
+          description: ''
+          type: boolean
+        optInStatus:
+          $ref: '#/components/schemas/OptinStatus'
+          description: ''
+    MessageFilter:
+      description: ''
+      type: object
+      properties:
+        tags:
+          description: ''
+          type: array
+          items:
+            type: string
+        ids:
+          description: ''
+          type: array
+          items:
+            type: string
+        sortBy:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
+        messageType:
+          $ref: '#/components/schemas/MessageType'
+          description: ''
+          example: |4-
+                  - Achievement
+                  - Ticket
+                  - Reward
+                  - Text
+                  - Notification
+                  - InboxItem
+                  - NotificationInboxItem
+      example:
+        productIds:
+          - some text
+          - some text
+        tags:
+          - some text
+          - some text
+        startDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        endDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        ids:
+          - some text
+          - some text
+        status:
+          - some text
+          - some text
+        sortBy:
+          -
+            queryField: some text
+            order: Asc
+          -
+            queryField: some text
+            order: Desc
+        skip: 0
+        limit: 72
+        statusCode:
+          - 60
+          - 45
+    Award:
+      description: ''
+      type: object
+      allOf:
+        -
+          type: object
+          properties:
+            memberId:
+              description: A unique identifier of a Member
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            rewardId:
+              description: A unique identifier of a Reward
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            rewardType:
+              $ref: '#/components/schemas/RewardTypeReduced'
+              description: The type of reward issued
+            rewardRank:
+              description: >-
+                If used in the context of contest this will associate with the rank of the
+                leaderboard
+              type: string
+              example: '1'
+            rewardValue:
+              format: double
+              description: Numerical value of the reward that will be issued based on the reward type
+              type: number
+              example: '1'
+            delay:
+              format: int32
+              description: Delay of issuing a reward in minutes
+              type: integer
+              example: '2'
+            entityType:
+              $ref: '#/components/schemas/EntityType'
+              description: 'Competition, Contest, or Achievement'
+            entityId:
+              description: >-
+                The Id of the contest or achievement related to this Award. Dependant on
+                entityType
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            pointInTime:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when an Award is available until a specific point in
+                time. All records are stored in UTC time zone. * There can only be one time
+                definition used for claim period either "pointInTime" or "period"
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            period:
+              format: int32
+              description: >-
+                Claimable duration in minutes, this value will set the controls until when the
+                award is claimable. * There can only be one time definition used for claim
+                period either "pointInTime" or "period"
+              type: integer
+              example: '2'
+            tags:
+              description: A list of Strings of groups that the reward belongs to.
+              type: array
+              items:
+                type: string
+            metadata:
+              description: The metadata associated with this award
+              type: object
+              additionalProperties:
+                type: string
+            statusCode:
+              description: The code of the award
+              type: integer
+              readOnly: true
+              example: |-
+                0=Unknown 
+                10=Preparing
+                15=NotClaimed
+                35=Claimed
+                115=Expired
+            constraints:
+              description: 'Additional constraints, if the value is present it means the'
+              type: array
+              items:
+                type: string
+              example: |-
+                - memberAcknowledgmentRequired
+                - claimed
+            claimed:
+              description: ' Award is claimed.'
+              type: boolean
+              example: '2019-09-25T15:47:00.000+0000'
+            status:
+              $ref: '#/components/schemas/AwardStatus'
+              description: ''
+              example: |-
+                0=Unknown 
+                10=Preparing
+                15=NotClaimed
+                35=Claimed
+                115=Expired
+            name:
+              description: name from reward
+              type: string
+            description:
+              description: ''
+              type: string
+            memberRefId:
+              description: ''
+              type: string
+        -
+          $ref: '#/components/schemas/ModelDefault'
+    AwardStatus:
+      description: The status of award
+      enum:
+        - Unknown
+        - Preparing
+        - NotClaimed
+        - Claimed
+        - Expired
+      type: string
+      readOnly: true
+    AwardFilter:
+      description: ''
+      type: object
+      properties:
+        productIds:
+          description: ''
+          type: array
+          items:
+            type: string
+        tags:
+          description: ''
+          type: array
+          items:
+            type: string
+        ids:
+          description: ''
+          type: array
+          items:
+            type: string
+        statusCode:
+          $ref: '#/components/schemas/NumberRange'
+          description: Award status code
+          example: |-
+            0=Unknown 
+            10=Preparing
+            15=NotClaimed
+            35=Claimed
+            115=Expired
+        sortBy:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
+        constraints:
+          description: ''
+          type: array
+          items:
+            type: string
+        entityIds:
+          description: 'Achievement, Contest or Competition'
+          type: array
+          items:
+            type: string
+      example:
+        productIds:
+          - some text
+          - some text
+        tags:
+          - some text
+          - some text
+        startDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        endDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        ids:
+          - some text
+          - some text
+        status:
+          - some text
+          - some text
+        sortBy:
+          -
+            queryField: some text
+            order: Asc
+          -
+            queryField: some text
+            order: Desc
+        skip: 0
+        limit: 72
+        statusCode:
+          - 60
+          - 45
+    LeaderboardMember:
+      required:
+        - name
+        - rank
+        - points
+        - memberId
+        - memberRefId
+      type: object
+      properties:
+        name:
+          description: The name of the player
+          type: string
+          example: Player 1
+        memberId:
+          description: Unique system identifier of a Member
+          type: string
+          example: Dc4swmQBVd51K6gPQqFx
+        memberRefId:
+          description: The reference to this member in your system
+          type: string
+          example: Player-1
+        rankChangeFrom:
+          format: int32
+          description: 'Previous rank held, null if no changes are recorded'
+          type: integer
+        rankChangeType:
+          format: int32
+          description: '[-1] for rank-down, like 5 to 8. [0] for no change, [1] for rank-up like 9 to 3'
+          type: integer
+        params:
+          description: The user defined values used in the rules builder
+          type: object
+          additionalProperties:
+            type: number
   responses:
     AchievementResponseBody:
       content:
