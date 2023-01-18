@@ -139,13 +139,13 @@ class ApiClientStomp {
             //Todo: check if we really need to deactivate client
             console.log('Broker reported error: ' + frame.headers['message']);
             console.log('Additional details: ' + frame.body);
-            this.client.deactivate()
-            reject({
-                error: {
-                    message: frame.headers['message'],
-                    body: frame.body
-                }
-            })
+            // this.client.deactivate()
+            // reject({
+            //     error: {
+            //         message: frame.headers['message'],
+            //         body: frame.body
+            //     }
+            // })
         };
 
         this.client.activate();
