@@ -50,8 +50,13 @@ public class RpcResultsResponse<TIN, TOUT> {
             if(failed)
                 return onApiExceptionCallBack(headers,response);
             else {
-                final var result = (TOUT)response;
-                return () -> getCompletableFuture().complete(result);
+                try {
+                    final var result = (TOUT)response;
+                    return () -> getCompletableFuture().complete(result);
+                }
+                catch (ClassCastException classCastException){
+                    return () -> getCompletableFuture().completeExceptionally(new RpcResultError(classCastException,response));
+                }
             }
         }
         catch (Throwable throwable){

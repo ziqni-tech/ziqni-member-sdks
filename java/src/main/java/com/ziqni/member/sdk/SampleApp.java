@@ -122,7 +122,7 @@ public class SampleApp {
         ).thenAccept(leaderboardsResponse -> {
             logger.info(leaderboardsResponse.toString());
         }).exceptionally(throwable -> {
-            logger.error("Failed to subscribe to entity changes for  {}", Achievement.class.getSimpleName(), throwable);
+            logger.error("Failed to subscribe to entity changes for  {}", LeaderboardSubscriptionRequest.class.getSimpleName(), throwable);
             return null;
         });;
     }
@@ -132,10 +132,10 @@ public class SampleApp {
                 .action(OptinAction.JOIN)
                 .entityId(achievement.getId())
                 .entityType(Achievement.class.getSimpleName())
-        ).thenAccept(memberResponse -> {
-            logger.info(memberResponse.getData().toString());
+        ).thenAccept(optInResponse -> {
+            logger.info(optInResponse.getData().toString());
         }).exceptionally(throwable -> {
-            logger.error("Failed to subscribe to entity changes for  {}", Achievement.class.getSimpleName(), throwable);
+            logger.error("{} Failed to opt-in to {} [{}]", Achievement.class.getSimpleName(), achievement.getId(), achievement.getName(), throwable);
             return null;
         });
     }
