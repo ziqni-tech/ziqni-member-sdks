@@ -150,10 +150,9 @@ class ApiClientStomp {
 
         this.client.activate();
     })
-
-    disconnect = () => {
-        this.client.deactivate();
-    }
+    disconnect = async () => new Promise((resolve, reject) => {
+        this.client.deactivate().then(() => resolve()).catch(() => reject());
+    });
 
     uuidv4() {
         return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
