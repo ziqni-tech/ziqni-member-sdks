@@ -4338,6 +4338,9 @@ components:
           type: object
           additionalProperties:
             type: number
+        goalReached:
+          description: Has the player met the minimum requirements to qualify for a ranked position
+          type: boolean
   responses:
     AchievementResponseBody:
       content:

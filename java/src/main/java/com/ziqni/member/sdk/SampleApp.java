@@ -8,6 +8,7 @@ import com.ziqni.member.sdk.context.WSClientDisconnected;
 import com.ziqni.member.sdk.context.WSClientSevereFailure;
 import com.ziqni.member.sdk.model.*;
 
+import com.ziqni.member.sdk.streaming.handlers.CallbackConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,6 +28,28 @@ public class SampleApp {
 
         factory = new ZiqniMemberApiFactory(MemberApiClientConfigBuilder.build());
 
+//        factory.getCallbacksApi().leaderboardUpdateHandler(
+//                (stompHeaders, leaderboard) -> {
+//                    logger.info("Leaderboard {} - ", leaderboard.getId());
+//                    if(leaderboard.getLeaderboardEntries().size() > 0){
+//                        leaderboard.getLeaderboardEntries().stream()
+//                                .sorted((o1, o2) -> o1.getRank().compareTo(o2.getRank()))
+//                                .forEach(leaderboardEntry -> logger.info("-{}- {}",leaderboardEntry.getRank(),leaderboardEntry.getMembers()));
+//                    }
+//                },
+//                (stompHeaders, e) -> {}
+//        );
+//        factory.getStreamingClient().getCallbackEventHandler().registerCallbackHandler(new CallbackConsumer<Leaderboard>(
+//                (stompHeaders, leaderboard) -> {
+//                    logger.info("Leaderboard {} - ", leaderboard.getId());
+//                    if(leaderboard.getLeaderboardEntries().size() > 0){
+//                        leaderboard.getLeaderboardEntries().stream()
+//                                .sorted((o1, o2) -> o1.getRank().compareTo(o2.getRank()))
+//                                .forEach(leaderboardEntry -> logger.info("-{}- {}",leaderboardEntry.getRank(),leaderboardEntry.getMembers()));
+//                    }
+//                },
+//                (stompHeaders, e) -> {}
+//        ));
         factory.initialise(() -> {
                     factory.getZiqniAdminEventBus().register(new SampleApp());
                     try {
@@ -100,7 +123,7 @@ public class SampleApp {
     }
 
     private void getContests(Competition competition){
-        factory.getContestsApi().getContests(new ContestRequest().contestFilter(new ContestFilter().competitionIds(List.of(competition.getId()))))
+        factory.getContestsApi().getContests(new ContestRequest() )//.contestFilter(new ContestFilter().competitionIds(List.of("9_gpx4UBVvqeSvI0ovX7"))))
                 .thenAccept(contestResponse -> {
                     logger.info(contestResponse.getData().toString());
                     contestResponse.getData().stream().findFirst().ifPresent(this::subscribeToLeaderboard);
