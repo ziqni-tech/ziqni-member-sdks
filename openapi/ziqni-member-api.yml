@@ -454,6 +454,33 @@ paths:
       operationId: listCallbacks
       summary: Describe the system callbacks and there constraints
       description: subscribes a client to receive out-of-band data
+  /missions:
+    summary: Member missions operation
+    description: This endpoint supports member's missions operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MissionRequest'
+        required: true
+      tags:
+        - achievements
+      responses:
+        '200':
+          $ref: '#/components/responses/MissionResponseBody'
+        '400':
+          $ref: '#/components/responses/MissionResponseBody'
+        '500':
+          $ref: '#/components/responses/MissionResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewMissions
+      operationId: getMissions
+      summary: Get achievements by member reference id
+      description: Returns a list of achievements for the provided member ref id and applied filters.
+      x-ws-only: true
 components:
   schemas:
     ResponseMeta:
@@ -3756,34 +3783,6 @@ components:
         - Finalised
       type: string
       readOnly: true
-    OptinStatus:
-      description: ''
-      required:
-        - entityType
-        - statusCode
-        - status
-        - entityType
-        - entityId
-        - statusCode
-        - status
-      type: object
-      properties:
-        entityType:
-          description: ''
-          type: string
-        entityId:
-          description: ''
-          type: string
-        statusCode:
-          description: >-
-            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15, Preparing = 20, Running =
-            25, Completing = 30, Completed = 35
-          type: integer
-        status:
-          description: |-
-            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15,\
-                        \ Preparing = 20, Running = 25, Completing = 30, Completed = 35
-          type: string
     OptInStatesRequest:
       description: ''
       required:
@@ -3939,86 +3938,6 @@ components:
             $ref: '#/components/schemas/Error'
         data:
           $ref: '#/components/schemas/Leaderboard'
-          description: ''
-    MissionEntry:
-      description: ''
-      required:
-        - ordering
-        - hasNext
-        - hasRewards
-        - isCompleted
-        - optInStatus
-      type: object
-      properties:
-        achieventId:
-          description: ''
-          type: string
-        name:
-          description: ''
-          type: string
-        hasNext:
-          description: ''
-          type: boolean
-        antecendantId:
-          description: ''
-          type: string
-        decendantId:
-          description: ''
-          type: string
-        hasRewards:
-          description: ''
-          type: boolean
-        isCompleted:
-          description: ''
-          type: boolean
-        optInStatus:
-          $ref: '#/components/schemas/OptinStatus'
-          description: ''
-        ordering:
-          description: ''
-          type: integer
-    Mission:
-      description: |-
-        Mission is a specialised view of connected achievements.
-        The first achievement is the container, every dependant achievement is a chained dependency
-      required:
-        - entries
-        - id
-        - availableFrom
-        - isCompleted
-        - optInStatus
-      type: object
-      properties:
-        entries:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/MissionEntry'
-        id:
-          description: ''
-          type: string
-        name:
-          description: ''
-          type: string
-        description:
-          description: ''
-          type: string
-        termsAndConditions:
-          description: ''
-          type: string
-        availableFrom:
-          format: date-time
-          description: ''
-          type: string
-        availableUntil:
-          format: date-time
-          description: ''
-          type: string
-        isCompleted:
-          description: ''
-          type: boolean
-        optInStatus:
-          $ref: '#/components/schemas/OptinStatus'
           description: ''
     MessageFilter:
       description: ''
@@ -4341,6 +4260,347 @@ components:
         goalReached:
           description: Has the player met the minimum requirements to qualify for a ranked position
           type: boolean
+    MissionStep:
+      description: ''
+      required:
+        - ordering
+        - optInStatus
+      type: object
+      properties:
+        achievementId:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        antecendantId:
+          description: ''
+          type: string
+        decendantId:
+          description: ''
+          type: string
+        optInStatus:
+          $ref: '#/components/schemas/OptinStatus'
+          description: ''
+        ordering:
+          description: ''
+          type: integer
+        constraints:
+          description: 'hasNext, hasRewards, isCompleted'
+          type: array
+          items:
+            type: string
+    Mission:
+      description: |-
+        Mission is a specialised view of connected achievements.
+        The first achievement is the container, every dependant achievement is a chained dependency
+      required:
+        - entries
+        - id
+        - availableFrom
+        - optInStatus
+      type: object
+      properties:
+        steps:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/MissionStep'
+        id:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        description:
+          description: ''
+          type: string
+        termsAndConditions:
+          description: ''
+          type: string
+        availableFrom:
+          format: date-time
+          description: ''
+          type: string
+        availableUntil:
+          format: date-time
+          description: ''
+          type: string
+        optInStatus:
+          $ref: '#/components/schemas/OptinStatus'
+          description: ''
+        constraints:
+          description: 'isCompleted, etc'
+          type: array
+          items:
+            type: string
+    MissionFilter:
+      description: ''
+      type: object
+      properties:
+        tags:
+          description: ''
+          type: array
+          items:
+            type: string
+        startDate:
+          $ref: '#/components/schemas/DateRange'
+          description: startDate
+        endDate:
+          $ref: '#/components/schemas/DateRange'
+          description: ''
+        ids:
+          description: ''
+          type: array
+          items:
+            type: string
+        sortBy:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
+        statusCode:
+          $ref: '#/components/schemas/NumberRange'
+          description: Achievement status code
+          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
+        constraints:
+          description: Specify the constraints that need to be applied to the filter.
+          type: array
+          items:
+            type: string
+          example: |-
+            - hasTranslations
+            - hasRewards
+            - hasRules
+            - optinRequired
+      example:
+        productIds:
+          - some text
+          - some text
+        tags:
+          - some text
+          - some text
+        startDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        endDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        ids:
+          - some text
+          - some text
+        status:
+          - some text
+          - some text
+        sortBy:
+          -
+            queryField: some text
+            order: Asc
+          -
+            queryField: some text
+            order: Desc
+        skip: 0
+        limit: 72
+        statusCode:
+          - 60
+          - 45
+    MissionRequest:
+      description: ''
+      type: object
+      properties:
+        missionFilter:
+          $ref: '#/components/schemas/MissionFilter'
+          description: ''
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+      example:
+        missionFilter:
+          productIds:
+            - some text
+            - some text
+          tags:
+            - some text
+            - some text
+          startDate:
+            before: '2018-02-10T09:30Z'
+            after: '2018-02-10T09:30Z'
+          endDate:
+            before: '2018-02-10T09:30Z'
+            after: '2018-02-10T09:30Z'
+          ids:
+            - some text
+            - some text
+          status:
+            - some text
+            - some text
+          sortBy:
+            -
+              queryField: some text
+              order: Asc
+            -
+              queryField: some text
+              order: Asc
+          skip: 3
+          limit: 58
+          statusCode:
+            moreThan: 12
+            lessThan: 54
+          constraints:
+            - some text
+            - some text
+        languageKey: some text
+    MissionResponse:
+      description: '        '
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Achievement'
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      example:
+        meta:
+          totalRecordsFound: 74
+          skip: 7
+          limit: 2
+          time: '2018-02-10T09:30Z'
+        data:
+          -
+            id: ziqniId
+            name: some text
+            description: some text
+            termsAndConditions: some text
+            constraints:
+              - some text
+              - some text
+            maxNumberOfIssues: 20
+            scheduling:
+              scheduleType: Weekly
+              scheduleOccurrencesLimit: 54
+              every:
+                - 96
+                - 80
+              startDate: '2018-02-10T09:30Z'
+              endDate: '2018-02-10T09:30Z'
+              constraints:
+                - some text
+                - some text
+            dependantOn:
+              entityType: some text
+              dependantOn:
+                must:
+                  - some text
+                  - some text
+                mustNot:
+                  - some text
+                  - some text
+                should:
+                  - some text
+                  - some text
+                shouldMatchAtLeast: 4
+            status: some text
+            statusCode: 23
+          -
+            id: ziqniId
+            name: some text
+            description: some text
+            termsAndConditions: some text
+            constraints:
+              - some text
+              - some text
+            maxNumberOfIssues: 24
+            scheduling:
+              scheduleType: Once
+              scheduleOccurrencesLimit: 76
+              every:
+                - 11
+                - 38
+              startDate: '2018-02-10T09:30Z'
+              endDate: '2018-02-10T09:30Z'
+              constraints:
+                - some text
+                - some text
+            dependantOn:
+              entityType: some text
+              dependantOn:
+                must:
+                  - some text
+                  - some text
+                mustNot:
+                  - some text
+                  - some text
+                should:
+                  - some text
+                  - some text
+                shouldMatchAtLeast: 65
+            status: some text
+            statusCode: 39
+        errors:
+          -
+            message: some text
+            code: 1
+            status: 92
+          -
+            message: some text
+            code: 0
+            status: 28
+    OptinStatus:
+      description: ''
+      required:
+        - entityType
+        - statusCode
+        - status
+        - entityType
+        - entityId
+        - statusCode
+        - status
+      type: object
+      properties:
+        entityType:
+          description: ''
+          type: string
+        entityId:
+          description: ''
+          type: string
+        statusCode:
+          description: >-
+            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15, Preparing = 20, Running =
+            25, Completing = 30, Completed = 35
+          type: integer
+        status:
+          description: |-
+            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15,\
+                        \ Preparing = 20, Running = 25, Completing = 30, Completed = 35
+          type: string
+        percentageComplete:
+          description: 'What percentage has been completed so far, this is a number between 0 and 100'
+          type: number
   responses:
     AchievementResponseBody:
       content:
@@ -4513,6 +4773,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/LeaderboardResponse'
+      description: ''
+    MissionResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MissionResponse'
       description: ''
   securitySchemes:
     OAuth2:
