@@ -465,7 +465,7 @@ paths:
               $ref: '#/components/schemas/MissionRequest'
         required: true
       tags:
-        - achievements
+        - missions
       responses:
         '200':
           $ref: '#/components/responses/MissionResponseBody'
@@ -4478,7 +4478,7 @@ components:
           description: ''
           type: array
           items:
-            $ref: '#/components/schemas/Achievement'
+            $ref: '#/components/schemas/Mission'
         errors:
           description: ''
           type: array
