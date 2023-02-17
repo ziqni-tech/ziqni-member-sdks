@@ -454,30 +454,35 @@ paths:
       operationId: listCallbacks
       summary: Describe the system callbacks and there constraints
       description: subscribes a client to receive out-of-band data
-  /missions:
-    summary: Member missions operation
-    description: This endpoint supports member's missions operation.
+  /achievements-graph:
+    summary: Structures the achievements connections data as a graph.
+    description: >-
+      The ZIQNI graph data structure consists of a finite (and possibly mutable) set of vertices (also
+      called nodes or points), together with a set of ordered pairs for a directed graph. These pairs
+      are known as edges (also called links or lines), and for a directed graph are also known as edges
+      but also sometimes arrows or arcs whicj are joined using the dependant on must or should within
+      achievements.
     post:
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MissionRequest'
+              $ref: '#/components/schemas/EntityGraphRequest'
         required: true
       tags:
-        - missions
+        - graphs
       responses:
         '200':
-          $ref: '#/components/responses/MissionResponseBody'
+          $ref: '#/components/responses/EntityGraphResponseBody'
         '400':
-          $ref: '#/components/responses/MissionResponseBody'
+          $ref: '#/components/responses/EntityGraphResponseBody'
         '500':
-          $ref: '#/components/responses/MissionResponseBody'
+          $ref: '#/components/responses/EntityGraphResponseBody'
       security:
         -
           OAuth2:
             - ViewMissions
-      operationId: getMissions
+      operationId: getAchievementsGraph
       summary: Get achievements by member reference id
       description: Returns a list of achievements for the provided member ref id and applied filters.
       x-ws-only: true
@@ -4260,316 +4265,6 @@ components:
         goalReached:
           description: Has the player met the minimum requirements to qualify for a ranked position
           type: boolean
-    MissionStep:
-      description: ''
-      required:
-        - ordering
-        - optInStatus
-      type: object
-      properties:
-        achievementId:
-          description: ''
-          type: string
-        name:
-          description: ''
-          type: string
-        antecendantId:
-          description: ''
-          type: string
-        decendantId:
-          description: ''
-          type: string
-        optInStatus:
-          $ref: '#/components/schemas/OptinStatus'
-          description: ''
-        ordering:
-          description: ''
-          type: integer
-        constraints:
-          description: 'hasNext, hasRewards, isCompleted'
-          type: array
-          items:
-            type: string
-    Mission:
-      description: |-
-        Mission is a specialised view of connected achievements.
-        The first achievement is the container, every dependant achievement is a chained dependency
-      required:
-        - entries
-        - id
-        - availableFrom
-        - optInStatus
-      type: object
-      properties:
-        steps:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/MissionStep'
-        id:
-          description: ''
-          type: string
-        name:
-          description: ''
-          type: string
-        description:
-          description: ''
-          type: string
-        termsAndConditions:
-          description: ''
-          type: string
-        availableFrom:
-          format: date-time
-          description: ''
-          type: string
-        availableUntil:
-          format: date-time
-          description: ''
-          type: string
-        optInStatus:
-          $ref: '#/components/schemas/OptinStatus'
-          description: ''
-        constraints:
-          description: 'isCompleted, etc'
-          type: array
-          items:
-            type: string
-    MissionFilter:
-      description: ''
-      type: object
-      properties:
-        tags:
-          description: ''
-          type: array
-          items:
-            type: string
-        startDate:
-          $ref: '#/components/schemas/DateRange'
-          description: startDate
-        endDate:
-          $ref: '#/components/schemas/DateRange'
-          description: ''
-        ids:
-          description: ''
-          type: array
-          items:
-            type: string
-        sortBy:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/QuerySortBy'
-        skip:
-          format: int32
-          description: ''
-          type: integer
-        limit:
-          format: int32
-          description: ''
-          type: integer
-        statusCode:
-          $ref: '#/components/schemas/NumberRange'
-          description: Achievement status code
-          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
-        constraints:
-          description: Specify the constraints that need to be applied to the filter.
-          type: array
-          items:
-            type: string
-          example: |-
-            - hasTranslations
-            - hasRewards
-            - hasRules
-            - optinRequired
-      example:
-        productIds:
-          - some text
-          - some text
-        tags:
-          - some text
-          - some text
-        startDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        endDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        ids:
-          - some text
-          - some text
-        status:
-          - some text
-          - some text
-        sortBy:
-          -
-            queryField: some text
-            order: Asc
-          -
-            queryField: some text
-            order: Desc
-        skip: 0
-        limit: 72
-        statusCode:
-          - 60
-          - 45
-    MissionRequest:
-      description: ''
-      type: object
-      properties:
-        missionFilter:
-          $ref: '#/components/schemas/MissionFilter'
-          description: ''
-        languageKey:
-          description: >-
-            The language codes can be found in the settings/transalations section of the back
-            office
-          type: string
-      example:
-        missionFilter:
-          productIds:
-            - some text
-            - some text
-          tags:
-            - some text
-            - some text
-          startDate:
-            before: '2018-02-10T09:30Z'
-            after: '2018-02-10T09:30Z'
-          endDate:
-            before: '2018-02-10T09:30Z'
-            after: '2018-02-10T09:30Z'
-          ids:
-            - some text
-            - some text
-          status:
-            - some text
-            - some text
-          sortBy:
-            -
-              queryField: some text
-              order: Asc
-            -
-              queryField: some text
-              order: Asc
-          skip: 3
-          limit: 58
-          statusCode:
-            moreThan: 12
-            lessThan: 54
-          constraints:
-            - some text
-            - some text
-        languageKey: some text
-    MissionResponse:
-      description: '        '
-      required: []
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-          description: ''
-        data:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/Mission'
-        errors:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-      example:
-        meta:
-          totalRecordsFound: 74
-          skip: 7
-          limit: 2
-          time: '2018-02-10T09:30Z'
-        data:
-          -
-            id: ziqniId
-            name: some text
-            description: some text
-            termsAndConditions: some text
-            constraints:
-              - some text
-              - some text
-            maxNumberOfIssues: 20
-            scheduling:
-              scheduleType: Weekly
-              scheduleOccurrencesLimit: 54
-              every:
-                - 96
-                - 80
-              startDate: '2018-02-10T09:30Z'
-              endDate: '2018-02-10T09:30Z'
-              constraints:
-                - some text
-                - some text
-            dependantOn:
-              entityType: some text
-              dependantOn:
-                must:
-                  - some text
-                  - some text
-                mustNot:
-                  - some text
-                  - some text
-                should:
-                  - some text
-                  - some text
-                shouldMatchAtLeast: 4
-            status: some text
-            statusCode: 23
-          -
-            id: ziqniId
-            name: some text
-            description: some text
-            termsAndConditions: some text
-            constraints:
-              - some text
-              - some text
-            maxNumberOfIssues: 24
-            scheduling:
-              scheduleType: Once
-              scheduleOccurrencesLimit: 76
-              every:
-                - 11
-                - 38
-              startDate: '2018-02-10T09:30Z'
-              endDate: '2018-02-10T09:30Z'
-              constraints:
-                - some text
-                - some text
-            dependantOn:
-              entityType: some text
-              dependantOn:
-                must:
-                  - some text
-                  - some text
-                mustNot:
-                  - some text
-                  - some text
-                should:
-                  - some text
-                  - some text
-                shouldMatchAtLeast: 65
-            status: some text
-            statusCode: 39
-        errors:
-          -
-            message: some text
-            code: 1
-            status: 92
-          -
-            message: some text
-            code: 0
-            status: 28
     OptinStatus:
       description: ''
       required:
@@ -4601,6 +4296,166 @@ components:
         percentageComplete:
           description: 'What percentage has been completed so far, this is a number between 0 and 100'
           type: number
+    EntityGraphResponse:
+      description: '        '
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          $ref: '#/components/schemas/EntityGraphResult'
+          description: ''
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    EntityGraphLinkType:
+      description: The status of competition
+      enum:
+        - ROOT
+        - MUST
+        - SHOULD
+        - MUST_NOT
+        - UNKNOWN
+        - BROKEN
+      type: string
+      readOnly: true
+    EntityGraphLink:
+      description: ''
+      required:
+        - ordering
+      type: object
+      properties:
+        ordering:
+          description: ''
+          type: integer
+        constraints:
+          description: ''
+          type: array
+          items:
+            type: string
+        tailEntityId:
+          description: 'X the tail of the edge '
+          type: string
+        headEntityId:
+          description: Y the head of the edge.
+          type: string
+        entityGraphLinkType:
+          $ref: '#/components/schemas/EntityGraphLinkType'
+          description: ''
+    EntityGraphNode:
+      description: |-
+        Mission is a specialised view of connected achievements.
+        The first achievement is the container, every dependant achievement is a chained dependency
+      required:
+        - entries
+        - entityId
+        - optInStatus
+      type: object
+      properties:
+        name:
+          description: ''
+          type: string
+        optInStatus:
+          $ref: '#/components/schemas/OptinStatus'
+          description: ''
+        constraints:
+          description: 'isCompleted, etc'
+          type: array
+          items:
+            type: string
+        entityType:
+          description: ''
+          type: string
+        entityId:
+          description: ''
+          type: string
+        entityStatusCode:
+          description: ''
+          type: integer
+        entityStatus:
+          description: ''
+          type: string
+        includes:
+          description: ''
+          type: object
+          additionalProperties:
+            type: object
+    EntityGraphTraversal:
+      description: The status of award
+      enum:
+        - DEPTH_FIRST
+        - BREADTH_FIRST
+      type: string
+      readOnly: true
+    EntityGraph:
+      description: ''
+      required:
+        - links
+      type: object
+      properties:
+        links:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityGraphLink'
+    EntityGraphResult:
+      description: ''
+      required:
+        - nodes
+        - links
+      type: object
+      properties:
+        nodes:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityGraphNode'
+        graphs:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityGraph'
+    EntityGraphRequest:
+      description: ''
+      required:
+        - ids
+      type: object
+      properties:
+        ids:
+          description: The identifier of the node to create a connected graph for
+          type: array
+          items:
+            type: string
+        constraints:
+          description: Specify the constraints that need to be applied to the filter.
+          type: array
+          items:
+            type: string
+        traversal:
+          $ref: '#/components/schemas/EntityGraphTraversal'
+          description: >-
+            Depth first [DFT] or breadth first [BFT] traversal. is a traversal technique in which
+            all the nodes of the same level are explored first, and then we move to the next
+            level. DFS is also a traversal technique in which traversal is started from the root
+            node and explore the nodes as far as possible until we reach the node that has no
+            unvisited adjacent nodes.
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        includes:
+          description: >-
+            What objects to include from the entity in this response. For achievement the
+            following can be included; description, memberTagsFilter, scheduling, and
+            termsAndConditions
+          type: array
+          items:
+            type: string
   responses:
     AchievementResponseBody:
       content:
@@ -4774,11 +4629,11 @@ components:
           schema:
             $ref: '#/components/schemas/LeaderboardResponse'
       description: ''
-    MissionResponseBody:
+    EntityGraphResponseBody:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/MissionResponse'
+            $ref: '#/components/schemas/EntityGraphResponse'
       description: ''
   securitySchemes:
     OAuth2:
