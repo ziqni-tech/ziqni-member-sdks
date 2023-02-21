@@ -22,5 +22,6 @@ Name | Type | Description | Notes
 **status** | [**AwardStatus**](AwardStatus.md) |  | [optional] 
 **name** | **String** | name from reward | [optional] 
 **description** | **String** |  | [optional] 
+**memberRefId** | **String** |  | [optional] 
 
 
