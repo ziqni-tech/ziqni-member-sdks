@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **traversal** | **EntityGraphTraversal** |  |  [optional]
 **languageKey** | **String** | The language codes can be found in the settings/transalations section of the back office |  [optional]
 **includes** | **List&lt;String&gt;** | What objects to include from the entity in this response. For achievement the following can be included; description, memberTagsFilter, scheduling, and termsAndConditions |  [optional]
+**entityType** | **EntityType** |  | 
 
 
 

@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**links** | [**List&lt;EntityGraphLink&gt;**](EntityGraphLink.md) |  | 
+**edges** | [**List&lt;EntityGraphEdge&gt;**](EntityGraphEdge.md) |  |  [optional]
 
 
 

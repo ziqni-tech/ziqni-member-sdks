@@ -4,18 +4,18 @@ All URIs are relative to *https://member-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getAchievementsGraph**](GraphsApi.md#getAchievementsGraph) | **POST** /achievements-graph | Get achievements by member reference id
-[**getAchievementsGraphWithHttpInfo**](GraphsApi.md#getAchievementsGraphWithHttpInfo) | **POST** /achievements-graph | Get achievements by member reference id
+[**getGraph**](GraphsApi.md#getGraph) | **POST** /graphs | Get achievements by member reference id
+[**getGraphWithHttpInfo**](GraphsApi.md#getGraphWithHttpInfo) | **POST** /graphs | Get achievements by member reference id
 
 
 
-## getAchievementsGraph
+## getGraph
 
-> CompletableFuture<EntityGraphResponse> getAchievementsGraph(entityGraphRequest)
+> CompletableFuture<EntityGraphResponse> getGraph(entityGraphRequest)
 
 Get achievements by member reference id
 
-Returns a list of achievements for the provided member ref id and applied filters.
+Returns a list of graphs based on the entity type.
 
 ### Example
 
@@ -41,10 +41,10 @@ public class Example {
         GraphsApi apiInstance = new GraphsApi(defaultClient);
         EntityGraphRequest entityGraphRequest = new EntityGraphRequest(); // EntityGraphRequest | 
         try {
-            CompletableFuture<EntityGraphResponse> result = apiInstance.getAchievementsGraph(entityGraphRequest);
+            CompletableFuture<EntityGraphResponse> result = apiInstance.getGraph(entityGraphRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling GraphsApi#getAchievementsGraph");
+            System.err.println("Exception when calling GraphsApi#getGraph");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -82,13 +82,13 @@ CompletableFuture<[**EntityGraphResponse**](EntityGraphResponse.md)>
 | **400** |  |  -  |
 | **500** |  |  -  |
 
-## getAchievementsGraphWithHttpInfo
+## getGraphWithHttpInfo
 
-> CompletableFuture<ApiResponse<EntityGraphResponse>> getAchievementsGraph getAchievementsGraphWithHttpInfo(entityGraphRequest)
+> CompletableFuture<ApiResponse<EntityGraphResponse>> getGraph getGraphWithHttpInfo(entityGraphRequest)
 
 Get achievements by member reference id
 
-Returns a list of achievements for the provided member ref id and applied filters.
+Returns a list of graphs based on the entity type.
 
 ### Example
 
@@ -115,19 +115,19 @@ public class Example {
         GraphsApi apiInstance = new GraphsApi(defaultClient);
         EntityGraphRequest entityGraphRequest = new EntityGraphRequest(); // EntityGraphRequest | 
         try {
-            CompletableFuture<ApiResponse<EntityGraphResponse>> response = apiInstance.getAchievementsGraphWithHttpInfo(entityGraphRequest);
+            CompletableFuture<ApiResponse<EntityGraphResponse>> response = apiInstance.getGraphWithHttpInfo(entityGraphRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling GraphsApi#getAchievementsGraph");
+            System.err.println("Exception when calling GraphsApi#getGraph");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling GraphsApi#getAchievementsGraph");
+            System.err.println("Exception when calling GraphsApi#getGraph");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());

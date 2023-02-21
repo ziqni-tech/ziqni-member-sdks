@@ -361,6 +361,8 @@ paths:
                   description: >
                     Your server implementation should return this HTTP status code if the
                     data was received successfully
+      tags:
+        - heartbeat
       responses:
         '200':
           description: On receipt
@@ -454,8 +456,8 @@ paths:
       operationId: listCallbacks
       summary: Describe the system callbacks and there constraints
       description: subscribes a client to receive out-of-band data
-  /achievements-graph:
-    summary: Structures the achievements connections data as a graph.
+  /graphs:
+    summary: Structures the connections data as a graph.
     description: >-
       The ZIQNI graph data structure consists of a finite (and possibly mutable) set of vertices (also
       called nodes or points), together with a set of ordered pairs for a directed graph. These pairs
@@ -482,9 +484,9 @@ paths:
         -
           OAuth2:
             - ViewMissions
-      operationId: getAchievementsGraph
+      operationId: getGraph
       summary: Get achievements by member reference id
-      description: Returns a list of achievements for the provided member ref id and applied filters.
+      description: Returns a list of graphs based on the entity type.
       x-ws-only: true
 components:
   schemas:
@@ -4312,40 +4314,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Error'
-    EntityGraphLinkType:
-      description: The status of competition
-      enum:
-        - ROOT
-        - MUST
-        - SHOULD
-        - MUST_NOT
-        - UNKNOWN
-        - BROKEN
-      type: string
-      readOnly: true
-    EntityGraphLink:
-      description: ''
-      required:
-        - ordering
-      type: object
-      properties:
-        ordering:
-          description: ''
-          type: integer
-        constraints:
-          description: ''
-          type: array
-          items:
-            type: string
-        tailEntityId:
-          description: 'X the tail of the edge '
-          type: string
-        headEntityId:
-          description: Y the head of the edge.
-          type: string
-        entityGraphLinkType:
-          $ref: '#/components/schemas/EntityGraphLinkType'
-          description: ''
     EntityGraphNode:
       description: |-
         Mission is a specialised view of connected achievements.
@@ -4391,17 +4359,6 @@ components:
         - BREADTH_FIRST
       type: string
       readOnly: true
-    EntityGraph:
-      description: ''
-      required:
-        - links
-      type: object
-      properties:
-        links:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityGraphLink'
     EntityGraphResult:
       description: ''
       required:
@@ -4423,6 +4380,7 @@ components:
       description: ''
       required:
         - ids
+        - entityType
       type: object
       properties:
         ids:
@@ -4456,6 +4414,58 @@ components:
           type: array
           items:
             type: string
+        entityType:
+          $ref: '#/components/schemas/EntityType'
+          description: ''
+    EntityGraphEdgeType:
+      description: The type of link
+      enum:
+        - ROOT
+        - MUST
+        - SHOULD
+        - MUST_NOT
+        - UNKNOWN
+        - BROKEN
+      type: string
+      readOnly: true
+    EntityGraphEdge:
+      description: ''
+      required:
+        - ordering
+      type: object
+      properties:
+        ordering:
+          description: ''
+          type: integer
+        constraints:
+          description: ''
+          type: array
+          items:
+            type: string
+        tailEntityId:
+          description: 'X the tail of the edge '
+          type: string
+        headEntityId:
+          description: Y the head of the edge.
+          type: string
+        graphEdgeType:
+          $ref: '#/components/schemas/EntityGraphEdgeType'
+          description: ''
+    EntityGraph:
+      description: ''
+      required:
+        - links
+      type: object
+      properties:
+        edges:
+          description: Pairs of nodes that specify a line joining these two nodes are said to form an edge
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityGraphEdge'
+        nodesInCompletedState:
+          format: int32
+          description: Nodes in this graph that are in state greater than 35
+          type: integer
   responses:
     AchievementResponseBody:
       content:
