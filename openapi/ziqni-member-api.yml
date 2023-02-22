@@ -1115,7 +1115,7 @@ components:
                 constraints:
                     description: |-
                         Specify the constraints that need to be applied to the filter like; 
-                        - hasNoDependancies (Only returntresults that have no must or should dependancies)
+                        - hasNoDependancies (Only returnt results that have no must or should dependancies)
                     type: array
                     items:
                         type: string
