@@ -485,7 +485,7 @@ paths:
                     OAuth2:
                         - ViewMissions
             operationId: getGraph
-            summary: Get a mathematical graph representation using the entities ID
+            summary: Get achievements by member reference id
             description: Returns a list of graphs based on the entity type.
             x-ws-only: true
 components:
@@ -1113,9 +1113,7 @@ components:
                     description: Achievement status code
                     example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
                 constraints:
-                    description: |-
-                        Specify the constraints that need to be applied to the filter like; 
-                        - hasNoDependancies (Only returnt results that have no must or should dependancies)
+                    description: Specify the constraints that need to be applied to the filter.
                     type: array
                     items:
                         type: string
@@ -2227,8 +2225,6 @@ components:
                             type: integer
                         scheduling:
                             $ref: '#/components/schemas/Scheduling'
-                        dependantOn:
-                            $ref: '#/components/schemas/Dependancy'
                         status:
                             description: Achievement status
                             type: string
@@ -2239,6 +2235,8 @@ components:
                         memberTagsFilter:
                             $ref: '#/components/schemas/DependantOn'
                             description: ''
+                        achievementDependencies:
+                            $ref: '#/components/schemas/Dependancy'
                 -
                     $ref: '#/components/schemas/ModelDefault'
                 -
@@ -4418,7 +4416,7 @@ components:
                         type: string
                 entityType:
                     $ref: '#/components/schemas/EntityType'
-                    description: Valid entity types are Achievement and Contest. More may be added in future
+                    description: ''
         EntityGraphEdgeType:
             description: The type of link
             enum:

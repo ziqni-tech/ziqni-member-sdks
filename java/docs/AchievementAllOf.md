@@ -13,10 +13,10 @@ Name | Type | Description | Notes
 **constraints** | **List&lt;String&gt;** | Additional constraints, if set means true [optinRequiredForEntrants, hasRules, hasRewards] |  [optional]
 **maxNumberOfIssues** | **Integer** | Maximum number of issued achievements |  [optional]
 **scheduling** | [**Scheduling**](Scheduling.md) |  |  [optional]
-**dependantOn** | [**Dependancy**](Dependancy.md) |  |  [optional]
 **status** | **String** | Achievement status |  [optional]
 **statusCode** | **Integer** |  |  [optional]
 **memberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
+**achievementDependencies** | [**Dependancy**](Dependancy.md) |  |  [optional]
 
 
 
