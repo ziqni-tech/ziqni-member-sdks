@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **status** | **String** | Achievement status |  [optional]
 **statusCode** | **Integer** |  |  [optional]
 **memberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
-**achievementDependencies** | [**Dependancy**](Dependancy.md) |  |  [optional]
+**achievementDependencies** | [**DependantOn**](DependantOn.md) |  |  [optional]
 
 
 

@@ -2236,7 +2236,7 @@ components:
                             $ref: '#/components/schemas/DependantOn'
                             description: ''
                         achievementDependencies:
-                            $ref: '#/components/schemas/Dependancy'
+                            $ref: '#/components/schemas/DependantOn'
                 -
                     $ref: '#/components/schemas/ModelDefault'
                 -
