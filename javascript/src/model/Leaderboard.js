@@ -93,7 +93,7 @@ Leaderboard.prototype['constraints'] = undefined;
 Leaderboard.prototype['sequence'] = undefined;
 
 /**
- * A unique system generated identifier
+ * A unique system generated identifier of the competition or contest this leaderboard relates to
  * @member {String} id
  */
 Leaderboard.prototype['id'] = undefined;

@@ -67,6 +67,9 @@ class OptinStatus {
             if (data.hasOwnProperty('status')) {
                 obj['status'] = ApiClient.convertToType(data['status'], 'String');
             }
+            if (data.hasOwnProperty('percentageComplete')) {
+                obj['percentageComplete'] = ApiClient.convertToType(data['percentageComplete'], 'Number');
+            }
         }
         return obj;
     }
@@ -95,6 +98,12 @@ OptinStatus.prototype['statusCode'] = undefined;
  * @member {String} status
  */
 OptinStatus.prototype['status'] = undefined;
+
+/**
+ * What percentage has been completed so far, this is a number between 0 and 100
+ * @member {Number} percentageComplete
+ */
+OptinStatus.prototype['percentageComplete'] = undefined;
 
 
 

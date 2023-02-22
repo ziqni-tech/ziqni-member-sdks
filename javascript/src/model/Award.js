@@ -112,6 +112,9 @@ class Award {
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
+            if (data.hasOwnProperty('memberRefId')) {
+                obj['memberRefId'] = ApiClient.convertToType(data['memberRefId'], 'String');
+            }
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
@@ -233,6 +236,11 @@ Award.prototype['name'] = undefined;
 Award.prototype['description'] = undefined;
 
 /**
+ * @member {String} memberRefId
+ */
+Award.prototype['memberRefId'] = undefined;
+
+/**
  * Ziqni id of the model
  * @member {String} id
  */
@@ -338,6 +346,10 @@ AwardAllOf.prototype['name'] = undefined;
  * @member {String} description
  */
 AwardAllOf.prototype['description'] = undefined;
+/**
+ * @member {String} memberRefId
+ */
+AwardAllOf.prototype['memberRefId'] = undefined;
 // Implement ModelDefault interface:
 /**
  * Ziqni id of the model
