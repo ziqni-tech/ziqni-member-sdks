@@ -361,6 +361,8 @@ paths:
                   description: >
                     Your server implementation should return this HTTP status code if the
                     data was received successfully
+      tags:
+        - heartbeat
       responses:
         '200':
           description: On receipt
@@ -454,6 +456,38 @@ paths:
       operationId: listCallbacks
       summary: Describe the system callbacks and there constraints
       description: subscribes a client to receive out-of-band data
+  /graphs:
+    summary: Structures the connections data as a graph.
+    description: >-
+      The ZIQNI graph data structure consists of a finite (and possibly mutable) set of vertices (also
+      called nodes or points), together with a set of ordered pairs for a directed graph. These pairs
+      are known as edges (also called links or lines), and for a directed graph are also known as edges
+      but also sometimes arrows or arcs whicj are joined using the dependant on must or should within
+      achievements.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityGraphRequest'
+        required: true
+      tags:
+        - graphs
+      responses:
+        '200':
+          $ref: '#/components/responses/EntityGraphResponseBody'
+        '400':
+          $ref: '#/components/responses/EntityGraphResponseBody'
+        '500':
+          $ref: '#/components/responses/EntityGraphResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewMissions
+      operationId: getGraph
+      summary: Get achievements by member reference id
+      description: Returns a list of graphs based on the entity type.
+      x-ws-only: true
 components:
   schemas:
     ResponseMeta:
@@ -2191,8 +2225,6 @@ components:
               type: integer
             scheduling:
               $ref: '#/components/schemas/Scheduling'
-            dependantOn:
-              $ref: '#/components/schemas/Dependancy'
             status:
               description: Achievement status
               type: string
@@ -2203,6 +2235,8 @@ components:
             memberTagsFilter:
               $ref: '#/components/schemas/DependantOn'
               description: ''
+            achievementDependencies:
+              $ref: '#/components/schemas/Dependancy'
         -
           $ref: '#/components/schemas/ModelDefault'
         -
@@ -3756,34 +3790,6 @@ components:
         - Finalised
       type: string
       readOnly: true
-    OptinStatus:
-      description: ''
-      required:
-        - entityType
-        - statusCode
-        - status
-        - entityType
-        - entityId
-        - statusCode
-        - status
-      type: object
-      properties:
-        entityType:
-          description: ''
-          type: string
-        entityId:
-          description: ''
-          type: string
-        statusCode:
-          description: >-
-            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15, Preparing = 20, Running =
-            25, Completing = 30, Completed = 35
-          type: integer
-        status:
-          description: |-
-            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15,\
-                        \ Preparing = 20, Running = 25, Completing = 30, Completed = 35
-          type: string
     OptInStatesRequest:
       description: ''
       required:
@@ -3939,86 +3945,6 @@ components:
             $ref: '#/components/schemas/Error'
         data:
           $ref: '#/components/schemas/Leaderboard'
-          description: ''
-    MissionEntry:
-      description: ''
-      required:
-        - ordering
-        - hasNext
-        - hasRewards
-        - isCompleted
-        - optInStatus
-      type: object
-      properties:
-        achieventId:
-          description: ''
-          type: string
-        name:
-          description: ''
-          type: string
-        hasNext:
-          description: ''
-          type: boolean
-        antecendantId:
-          description: ''
-          type: string
-        decendantId:
-          description: ''
-          type: string
-        hasRewards:
-          description: ''
-          type: boolean
-        isCompleted:
-          description: ''
-          type: boolean
-        optInStatus:
-          $ref: '#/components/schemas/OptinStatus'
-          description: ''
-        ordering:
-          description: ''
-          type: integer
-    Mission:
-      description: |-
-        Mission is a specialised view of connected achievements.
-        The first achievement is the container, every dependant achievement is a chained dependency
-      required:
-        - entries
-        - id
-        - availableFrom
-        - isCompleted
-        - optInStatus
-      type: object
-      properties:
-        entries:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/MissionEntry'
-        id:
-          description: ''
-          type: string
-        name:
-          description: ''
-          type: string
-        description:
-          description: ''
-          type: string
-        termsAndConditions:
-          description: ''
-          type: string
-        availableFrom:
-          format: date-time
-          description: ''
-          type: string
-        availableUntil:
-          format: date-time
-          description: ''
-          type: string
-        isCompleted:
-          description: ''
-          type: boolean
-        optInStatus:
-          $ref: '#/components/schemas/OptinStatus'
           description: ''
     MessageFilter:
       description: ''
@@ -4341,6 +4267,205 @@ components:
         goalReached:
           description: Has the player met the minimum requirements to qualify for a ranked position
           type: boolean
+    OptinStatus:
+      description: ''
+      required:
+        - entityType
+        - statusCode
+        - status
+        - entityType
+        - entityId
+        - statusCode
+        - status
+      type: object
+      properties:
+        entityType:
+          description: ''
+          type: string
+        entityId:
+          description: ''
+          type: string
+        statusCode:
+          description: >-
+            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15, Preparing = 20, Running =
+            25, Completing = 30, Completed = 35
+          type: integer
+        status:
+          description: |-
+            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15,\
+                        \ Preparing = 20, Running = 25, Completing = 30, Completed = 35
+          type: string
+        percentageComplete:
+          description: 'What percentage has been completed so far, this is a number between 0 and 100'
+          type: number
+    EntityGraphResponse:
+      description: '        '
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          $ref: '#/components/schemas/EntityGraphResult'
+          description: ''
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    EntityGraphNode:
+      description: |-
+        Mission is a specialised view of connected achievements.
+        The first achievement is the container, every dependant achievement is a chained dependency
+      required:
+        - entries
+        - entityId
+        - optInStatus
+      type: object
+      properties:
+        name:
+          description: ''
+          type: string
+        optInStatus:
+          $ref: '#/components/schemas/OptinStatus'
+          description: ''
+        constraints:
+          description: 'isCompleted, etc'
+          type: array
+          items:
+            type: string
+        entityType:
+          description: ''
+          type: string
+        entityId:
+          description: ''
+          type: string
+        entityStatusCode:
+          description: ''
+          type: integer
+        entityStatus:
+          description: ''
+          type: string
+        includes:
+          description: ''
+          type: object
+          additionalProperties:
+            type: object
+    EntityGraphTraversal:
+      description: The status of award
+      enum:
+        - DEPTH_FIRST
+        - BREADTH_FIRST
+      type: string
+      readOnly: true
+    EntityGraphResult:
+      description: ''
+      required:
+        - nodes
+        - links
+      type: object
+      properties:
+        nodes:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityGraphNode'
+        graphs:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityGraph'
+    EntityGraphRequest:
+      description: ''
+      required:
+        - ids
+        - entityType
+      type: object
+      properties:
+        ids:
+          description: The identifier of the node to create a connected graph for
+          type: array
+          items:
+            type: string
+        constraints:
+          description: Specify the constraints that need to be applied to the filter.
+          type: array
+          items:
+            type: string
+        traversal:
+          $ref: '#/components/schemas/EntityGraphTraversal'
+          description: >-
+            Depth first [DFT] or breadth first [BFT] traversal. is a traversal technique in which
+            all the nodes of the same level are explored first, and then we move to the next
+            level. DFS is also a traversal technique in which traversal is started from the root
+            node and explore the nodes as far as possible until we reach the node that has no
+            unvisited adjacent nodes.
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        includes:
+          description: >-
+            What objects to include from the entity in this response. For achievement the
+            following can be included; description, memberTagsFilter, scheduling, and
+            termsAndConditions
+          type: array
+          items:
+            type: string
+        entityType:
+          $ref: '#/components/schemas/EntityType'
+          description: ''
+    EntityGraphEdgeType:
+      description: The type of link
+      enum:
+        - ROOT
+        - MUST
+        - SHOULD
+        - MUST_NOT
+        - UNKNOWN
+        - BROKEN
+      type: string
+      readOnly: true
+    EntityGraphEdge:
+      description: ''
+      required:
+        - ordering
+      type: object
+      properties:
+        ordering:
+          description: ''
+          type: integer
+        constraints:
+          description: ''
+          type: array
+          items:
+            type: string
+        tailEntityId:
+          description: 'X the tail of the edge '
+          type: string
+        headEntityId:
+          description: Y the head of the edge.
+          type: string
+        graphEdgeType:
+          $ref: '#/components/schemas/EntityGraphEdgeType'
+          description: ''
+    EntityGraph:
+      description: ''
+      required:
+        - links
+      type: object
+      properties:
+        edges:
+          description: Pairs of nodes that specify a line joining these two nodes are said to form an edge
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityGraphEdge'
+        nodesInCompletedState:
+          format: int32
+          description: Nodes in this graph that are in state greater than 35
+          type: integer
   responses:
     AchievementResponseBody:
       content:
@@ -4513,6 +4638,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/LeaderboardResponse'
+      description: ''
+    EntityGraphResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EntityGraphResponse'
       description: ''
   securitySchemes:
     OAuth2:
