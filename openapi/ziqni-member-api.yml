@@ -1113,7 +1113,9 @@ components:
           description: Achievement status code
           example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
         constraints:
-          description: Specify the constraints that need to be applied to the filter.
+          description: |-
+            Specify the constraints that need to be applied to the filter like; 
+            - hasNoDependancies (Only returntresults that have no must or should dependancies)
           type: array
           items:
             type: string
@@ -4416,7 +4418,7 @@ components:
             type: string
         entityType:
           $ref: '#/components/schemas/EntityType'
-          description: ''
+          description: Valid entity types are Achievement and Contest. More may be added in future
     EntityGraphEdgeType:
       description: The type of link
       enum:

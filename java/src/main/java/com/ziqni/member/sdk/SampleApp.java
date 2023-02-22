@@ -234,11 +234,11 @@ public class SampleApp {
         factory.getGraphsApi()
                 .getGraph(
                         new EntityGraphRequest()
-                                .addIdsItem("oLOWY4YBF0c3Crf1gj7J")
-                                .addIdsItem("wr47SoYB4W1yU_TfNeYL")
                                 .entityType(EntityType.ACHIEVEMENT)
-                                .addIncludesItem("description")
-                                .addIncludesItem("scheduling")
+                                .addIdsItem("wr47SoYB4W1yU_TfNeYL")
+//                                .addIdsItem("oLOWY4YBF0c3Crf1gj7J")
+//                                .addIncludesItem("description")
+//                                .addIncludesItem("scheduling")
                 )
                 .thenAccept(response -> {
                     logger.info(response.toString());

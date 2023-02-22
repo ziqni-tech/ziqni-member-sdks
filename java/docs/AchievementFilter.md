@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **skip** | **Integer** |  |  [optional]
 **limit** | **Integer** |  |  [optional]
 **statusCode** | [**NumberRange**](NumberRange.md) |  |  [optional]
-**constraints** | **List&lt;String&gt;** | Specify the constraints that need to be applied to the filter. |  [optional]
+**constraints** | **List&lt;String&gt;** | Specify the constraints that need to be applied to the filter like;  - hasNoDependancies (Only returntresults that have no must or should dependancies) |  [optional]
 
 
 
