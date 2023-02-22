@@ -104,6 +104,9 @@ class AwardAllOf {
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
+            if (data.hasOwnProperty('memberRefId')) {
+                obj['memberRefId'] = ApiClient.convertToType(data['memberRefId'], 'String');
+            }
         }
         return obj;
     }
@@ -214,6 +217,11 @@ AwardAllOf.prototype['name'] = undefined;
  * @member {String} description
  */
 AwardAllOf.prototype['description'] = undefined;
+
+/**
+ * @member {String} memberRefId
+ */
+AwardAllOf.prototype['memberRefId'] = undefined;
 
 
 

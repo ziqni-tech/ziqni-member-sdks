@@ -46,6 +46,14 @@ import Dependancy from './model/Dependancy';
 import DependantOn from './model/DependantOn';
 import EntityChanged from './model/EntityChanged';
 import EntityFilter from './model/EntityFilter';
+import EntityGraph from './model/EntityGraph';
+import EntityGraphEdge from './model/EntityGraphEdge';
+import EntityGraphEdgeType from './model/EntityGraphEdgeType';
+import EntityGraphNode from './model/EntityGraphNode';
+import EntityGraphRequest from './model/EntityGraphRequest';
+import EntityGraphResponse from './model/EntityGraphResponse';
+import EntityGraphResult from './model/EntityGraphResult';
+import EntityGraphTraversal from './model/EntityGraphTraversal';
 import EntityRequest from './model/EntityRequest';
 import EntityStateChanged from './model/EntityStateChanged';
 import EntityType from './model/EntityType';
@@ -78,8 +86,6 @@ import MessageStatus from './model/MessageStatus';
 import MessageType from './model/MessageType';
 import MetaBasic from './model/MetaBasic';
 import MetaInfo from './model/MetaInfo';
-import Mission from './model/Mission';
-import MissionEntry from './model/MissionEntry';
 import ModelDefault from './model/ModelDefault';
 import NumberRange from './model/NumberRange';
 import OptInResponse from './model/OptInResponse';
@@ -128,6 +134,8 @@ import RulesApiWs from './api/RulesApiWs';
 import CallbacksApiWs from './api/CallbacksApiWs';
 import ApiClientStomp from './ApiClientStomp';
 import DefaultApiWs from './api/DefaultApiWs';
+import GraphsApiWs from './api/GraphsApiWs';
+import HeartbeatApiWs from './api/HeartbeatApiWs';
 
 /**
 * The_ZIQNI_Member_API_is_the_primary_resource_used_to_build_services_and_widgets_for_your_members__customers_players_patients_etc__The_service_is_Stomp_websokets_with_SOCK_js_even_though_the_system_is_decribed_using_OpenApi_schema_for_convenience_.<br>
@@ -366,6 +374,54 @@ export {
     EntityFilter,
 
     /**
+     * The EntityGraph model constructor.
+     * @property {module:model/EntityGraph}
+     */
+    EntityGraph,
+
+    /**
+     * The EntityGraphEdge model constructor.
+     * @property {module:model/EntityGraphEdge}
+     */
+    EntityGraphEdge,
+
+    /**
+     * The EntityGraphEdgeType model constructor.
+     * @property {module:model/EntityGraphEdgeType}
+     */
+    EntityGraphEdgeType,
+
+    /**
+     * The EntityGraphNode model constructor.
+     * @property {module:model/EntityGraphNode}
+     */
+    EntityGraphNode,
+
+    /**
+     * The EntityGraphRequest model constructor.
+     * @property {module:model/EntityGraphRequest}
+     */
+    EntityGraphRequest,
+
+    /**
+     * The EntityGraphResponse model constructor.
+     * @property {module:model/EntityGraphResponse}
+     */
+    EntityGraphResponse,
+
+    /**
+     * The EntityGraphResult model constructor.
+     * @property {module:model/EntityGraphResult}
+     */
+    EntityGraphResult,
+
+    /**
+     * The EntityGraphTraversal model constructor.
+     * @property {module:model/EntityGraphTraversal}
+     */
+    EntityGraphTraversal,
+
+    /**
      * The EntityRequest model constructor.
      * @property {module:model/EntityRequest}
      */
@@ -556,18 +612,6 @@ export {
      * @property {module:model/MetaInfo}
      */
     MetaInfo,
-
-    /**
-     * The Mission model constructor.
-     * @property {module:model/Mission}
-     */
-    Mission,
-
-    /**
-     * The MissionEntry model constructor.
-     * @property {module:model/MissionEntry}
-     */
-    MissionEntry,
 
     /**
      * The ModelDefault model constructor.
@@ -814,6 +858,18 @@ export {
     * @property {module:api/FilesApi}
     */
     FilesApiWs,
+
+    /**
+    * The GraphsApi service constructor.
+    * @property {module:api/GraphsApi}
+    */
+    GraphsApiWs,
+
+    /**
+    * The HeartbeatApi service constructor.
+    * @property {module:api/HeartbeatApi}
+    */
+    HeartbeatApiWs,
 
     /**
     * The LeaderboardApi service constructor.

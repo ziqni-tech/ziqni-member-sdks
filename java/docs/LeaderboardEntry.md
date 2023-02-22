@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **score** | **Double** | The multiplier to apply to source values received for this product action helper events |  [optional]
 **bestScores** | **List&lt;Double&gt;** | The multiplier to apply to source values received for this product action helper events |  [optional]
 **members** | [**List&lt;LeaderboardMember&gt;**](LeaderboardMember.md) |  | 
-**goalReached** | **Boolean** | Has the player met the minimum requirements to qualify for a ranked position |  [optional]
 
 
 
