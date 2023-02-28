@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **statusCode** | **Integer** |  |  [optional]
 **memberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
 **achievementDependencies** | [**DependantOn**](DependantOn.md) |  |  [optional]
+**productTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
 
 
 

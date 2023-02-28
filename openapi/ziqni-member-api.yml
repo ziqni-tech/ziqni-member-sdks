@@ -2190,92 +2190,6 @@ components:
                 metadata:
                     m1: v1
                     m2: 1
-        Achievement:
-            description: ''
-            type: object
-            allOf:
-                -
-                    type: object
-                    properties:
-                        name:
-                            description: ''
-                            type: string
-                        description:
-                            description: ''
-                            type: string
-                        termsAndConditions:
-                            description: ''
-                            type: string
-                        constraints:
-                            description: >-
-                                Additional constraints, if set means true [optinRequiredForEntrants, hasRules,
-                                hasRewards]
-                            type: array
-                            items:
-                                type: string
-                            example: |-
-                                - deprecated
-                                - notifyMember
-                                - isHidden
-                                - optinRequiredForEntrants
-                                - expired
-                        maxNumberOfIssues:
-                            format: int32
-                            description: Maximum number of issued achievements
-                            type: integer
-                        scheduling:
-                            $ref: '#/components/schemas/Scheduling'
-                        status:
-                            description: Achievement status
-                            type: string
-                        statusCode:
-                            format: int32
-                            description: ''
-                            type: integer
-                        memberTagsFilter:
-                            $ref: '#/components/schemas/DependantOn'
-                            description: ''
-                        achievementDependencies:
-                            $ref: '#/components/schemas/DependantOn'
-                -
-                    $ref: '#/components/schemas/ModelDefault'
-                -
-                    $ref: '#/components/schemas/OptionalModelFields'
-            example:
-                id: ziqniId
-                name: some text
-                description: some text
-                termsAndConditions: some text
-                constraints:
-                    - some text
-                    - some text
-                maxNumberOfIssues: 37
-                scheduling:
-                    scheduleType: Weekly
-                    scheduleOccurrencesLimit: 4
-                    every:
-                        - 73
-                        - 79
-                    startDate: '2018-02-10T09:30Z'
-                    endDate: '2018-02-10T09:30Z'
-                    constraints:
-                        - some text
-                        - some text
-                dependantOn:
-                    entityType: some text
-                    dependantOn:
-                        must:
-                            - some text
-                            - some text
-                        mustNot:
-                            - some text
-                            - some text
-                        should:
-                            - some text
-                            - some text
-                        shouldMatchAtLeast: 75
-                status: some text
-                statusCode: 80
         EventRefType:
             description: Defines an even type attached to the message
             enum:
@@ -4466,6 +4380,182 @@ components:
                     format: int32
                     description: Nodes in this graph that are in state greater than 35
                     type: integer
+        FileObjectResponse:
+            description: '        '
+            required: []
+            type: object
+            properties:
+                meta:
+                    $ref: '#/components/schemas/ResponseMeta'
+                    description: ''
+                data:
+                    description: ''
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/FileObject'
+                errors:
+                    description: ''
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Error'
+            example:
+                meta:
+                    totalRecordsFound: 75
+                    skip: 51
+                    limit: 0
+                    objectType: some text
+                data:
+                    - {}
+                    - {}
+                errors:
+                    -
+                        message: some text
+                        code: 19
+                        status: 14
+                    -
+                        message: some text
+                        code: 72
+                        status: 71
+        FileObject:
+            allOf:
+                -
+                    $ref: '#/components/schemas/ModelDefault'
+                -
+                    $ref: '#/components/schemas/OptionalModelFields'
+                -
+                    required:
+                        - repositoryId
+                        - name
+                        - mimeType
+                        - path
+                        - parentFolderPath
+                    type: object
+                    properties:
+                        repositoryId:
+                            description: The repository identifier this file belongs too
+                            type: string
+                            example: sample
+                        name:
+                            description: Name of the original file uploaded
+                            type: string
+                            example: First-upload-file-sample.png
+                        mimeType:
+                            description: >-
+                                Mime type of the file. Valid mime types - text/csv or
+                                application/vmd.ms-excelor or application/x-directory for directories
+                            type: string
+                            example: application/vnd.png
+                        path:
+                            description: The name of the attachment within the bucket
+                            type: string
+                            example: /achievement-icons/images.png
+                        parentFolderPath:
+                            description: The folder name containing the attachment within the bucket
+                            type: string
+                            example: /achievement-icons
+                        uri:
+                            description: The uniform resource identifier where the file can be viewed/downloaded
+                            type: string
+                            example: 'https://resource/location/file.ext'
+                        size:
+                            format: int64
+                            description: The size of the file
+                            type: integer
+                            example: '123456'
+                        constraints:
+                            description: 'Additional constraints, if the value is present it means the'
+                            type: array
+                            items:
+                                type: string
+        Achievement:
+            description: ''
+            type: object
+            allOf:
+                -
+                    type: object
+                    properties:
+                        name:
+                            description: ''
+                            type: string
+                        description:
+                            description: ''
+                            type: string
+                        termsAndConditions:
+                            description: ''
+                            type: string
+                        constraints:
+                            description: >-
+                                Additional constraints, if set means true [optinRequiredForEntrants, hasRules,
+                                hasRewards]
+                            type: array
+                            items:
+                                type: string
+                            example: |-
+                                - deprecated
+                                - notifyMember
+                                - isHidden
+                                - optinRequiredForEntrants
+                                - expired
+                        maxNumberOfIssues:
+                            format: int32
+                            description: Maximum number of issued achievements
+                            type: integer
+                        scheduling:
+                            $ref: '#/components/schemas/Scheduling'
+                        status:
+                            description: Achievement status
+                            type: string
+                        statusCode:
+                            format: int32
+                            description: ''
+                            type: integer
+                        memberTagsFilter:
+                            $ref: '#/components/schemas/DependantOn'
+                            description: ''
+                        achievementDependencies:
+                            $ref: '#/components/schemas/DependantOn'
+                        productTagsFilter:
+                            $ref: '#/components/schemas/DependantOn'
+                            description: ''
+                -
+                    $ref: '#/components/schemas/ModelDefault'
+                -
+                    $ref: '#/components/schemas/OptionalModelFields'
+            example:
+                id: ziqniId
+                name: some text
+                description: some text
+                termsAndConditions: some text
+                constraints:
+                    - some text
+                    - some text
+                maxNumberOfIssues: 37
+                scheduling:
+                    scheduleType: Weekly
+                    scheduleOccurrencesLimit: 4
+                    every:
+                        - 73
+                        - 79
+                    startDate: '2018-02-10T09:30Z'
+                    endDate: '2018-02-10T09:30Z'
+                    constraints:
+                        - some text
+                        - some text
+                dependantOn:
+                    entityType: some text
+                    dependantOn:
+                        must:
+                            - some text
+                            - some text
+                        mustNot:
+                            - some text
+                            - some text
+                        should:
+                            - some text
+                            - some text
+                        shouldMatchAtLeast: 75
+                status: some text
+                statusCode: 80
     responses:
         AchievementResponseBody:
             content:
@@ -4611,7 +4701,7 @@ components:
             content:
                 application/json:
                     schema:
-                        $ref: '#/components/schemas/FileResponse'
+                        $ref: '#/components/schemas/FileObjectResponse'
             description: ''
         LeaderboardResponseBody:
             content:
