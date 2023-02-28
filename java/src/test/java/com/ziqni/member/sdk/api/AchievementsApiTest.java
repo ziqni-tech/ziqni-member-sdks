@@ -63,7 +63,6 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
 
     @Test
     public void getPublicAchievementsTest() throws Exception {
-
         var response = $(api.getAchievements(loadAchievementsData.getRequest()));
 
         assertNotNull(response);

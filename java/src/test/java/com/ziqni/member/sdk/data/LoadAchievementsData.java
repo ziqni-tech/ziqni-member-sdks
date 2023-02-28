@@ -13,10 +13,11 @@ public class LoadAchievementsData implements CompleteableFutureTestWrapper {
         int skip = 0;
         String achievementId =null;
         List<String> productIds = new ArrayList<>();
+        productIds.add("Test_key-deef82e9-b34f-4636-a614-92fa3807ecsgdhfdhgfdhhbddnsdwgfu21");
         List<String> tags = List.of();
 
         var rangeQuery = new NumberRange();
-        rangeQuery.setMoreThan(10L);
+        rangeQuery.setMoreThan(20L);
         rangeQuery.setLessThan(30L);
 
         var querySortBy = new QuerySortBy();
@@ -24,7 +25,7 @@ public class LoadAchievementsData implements CompleteableFutureTestWrapper {
         querySortBy.setOrder(SortOrder.ASC);
 
         var achievementFilter = new AchievementFilter();
-       // achievementFilter.setIds(List.of(achievementId));
+//        achievementFilter.setIds(List.of("64fQmIYBka1zONlo1-8Q"));
         achievementFilter.setStartDate(null);
         achievementFilter.setEndDate(null);
         achievementFilter.setProductIds(productIds);
@@ -32,7 +33,8 @@ public class LoadAchievementsData implements CompleteableFutureTestWrapper {
         achievementFilter.setSortBy(List.of(querySortBy));
         achievementFilter.setLimit(limit);
         achievementFilter.setSkip(skip);
-//        achievementFilter.setStatusCode(rangeQuery);
+//        achievementFilter.addConstraintsItem("hasNoDependancies");
+        achievementFilter.setStatusCode(rangeQuery);
 
         var achievementRequest = new AchievementRequest();
         achievementRequest.setAchievementFilter(achievementFilter);
