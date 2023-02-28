@@ -2258,15 +2258,6 @@ components:
                         message: some text
                         code: 61
                         status: 67
-        FileRequest:
-            description: ''
-            required:
-                - memberRefId
-            type: object
-            properties:
-                memberRefId:
-                    description: ''
-                    type: string
         FileResponse:
             description: '        '
             required: []
@@ -4556,6 +4547,33 @@ components:
                         shouldMatchAtLeast: 75
                 status: some text
                 statusCode: 80
+        FileRequest:
+            description: ''
+            required:
+                - memberRefId
+            type: object
+            properties:
+                memberRefId:
+                    description: ''
+                    type: string
+                ids:
+                    description: ''
+                    type: array
+                    items:
+                        type: string
+                sortBy:
+                    description: ''
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/QuerySortBy'
+                skip:
+                    format: int32
+                    description: ''
+                    type: integer
+                limit:
+                    format: int32
+                    description: ''
+                    type: integer
     responses:
         AchievementResponseBody:
             content:

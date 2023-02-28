@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## getFiles
 
-> CompletableFuture<FileResponse> getFiles(fileRequest)
+> CompletableFuture<FileObjectResponse> getFiles(fileRequest)
 
 Get files.
 
@@ -36,7 +36,7 @@ public class Example {
         FilesApi apiInstance = new FilesApi(defaultClient);
         FileRequest fileRequest = new FileRequest(); // FileRequest | 
         try {
-            CompletableFuture<FileResponse> result = apiInstance.getFiles(fileRequest);
+            CompletableFuture<FileObjectResponse> result = apiInstance.getFiles(fileRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling FilesApi#getFiles");
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-CompletableFuture<[**FileResponse**](FileResponse.md)>
+CompletableFuture<[**FileObjectResponse**](FileObjectResponse.md)>
 
 
 ### Authorization
@@ -79,7 +79,7 @@ No authorization required
 
 ## getFilesWithHttpInfo
 
-> CompletableFuture<ApiResponse<FileResponse>> getFiles getFilesWithHttpInfo(fileRequest)
+> CompletableFuture<ApiResponse<FileObjectResponse>> getFiles getFilesWithHttpInfo(fileRequest)
 
 Get files.
 
@@ -105,7 +105,7 @@ public class Example {
         FilesApi apiInstance = new FilesApi(defaultClient);
         FileRequest fileRequest = new FileRequest(); // FileRequest | 
         try {
-            CompletableFuture<ApiResponse<FileResponse>> response = apiInstance.getFilesWithHttpInfo(fileRequest);
+            CompletableFuture<ApiResponse<FileObjectResponse>> response = apiInstance.getFilesWithHttpInfo(fileRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-CompletableFuture<ApiResponse<[**FileResponse**](FileResponse.md)>>
+CompletableFuture<ApiResponse<[**FileObjectResponse**](FileObjectResponse.md)>>
 
 
 ### Authorization
