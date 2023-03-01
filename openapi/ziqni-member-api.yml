@@ -1074,11 +1074,6 @@ components:
             description: ''
             type: object
             properties:
-                productIds:
-                    description: ''
-                    type: array
-                    items:
-                        type: string
                 tags:
                     description: ''
                     type: array
@@ -1122,6 +1117,11 @@ components:
                         - hasRewards
                         - hasRules
                         - optinRequired
+                productTags:
+                    description: ''
+                    type: array
+                    items:
+                        type: string
             example:
                 productIds:
                     - some text

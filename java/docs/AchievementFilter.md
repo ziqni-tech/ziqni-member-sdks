@@ -7,7 +7,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**productIds** | **List&lt;String&gt;** |  |  [optional]
 **tags** | **List&lt;String&gt;** |  |  [optional]
 **startDate** | [**DateRange**](DateRange.md) |  |  [optional]
 **endDate** | [**DateRange**](DateRange.md) |  |  [optional]
@@ -17,6 +16,7 @@ Name | Type | Description | Notes
 **limit** | **Integer** |  |  [optional]
 **statusCode** | [**NumberRange**](NumberRange.md) |  |  [optional]
 **constraints** | **List&lt;String&gt;** | Specify the constraints that need to be applied to the filter. |  [optional]
+**productTags** | **List&lt;String&gt;** |  |  [optional]
 
 
 
