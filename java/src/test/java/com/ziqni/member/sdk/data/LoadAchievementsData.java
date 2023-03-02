@@ -28,7 +28,7 @@ public class LoadAchievementsData implements CompleteableFutureTestWrapper {
 //        achievementFilter.setIds(List.of("64fQmIYBka1zONlo1-8Q"));
         achievementFilter.setStartDate(null);
         achievementFilter.setEndDate(null);
-        achievementFilter.setProductIds(productIds);
+        achievementFilter.setProductTags(productIds);
         achievementFilter.setTags(tags);
         achievementFilter.setSortBy(List.of(querySortBy));
         achievementFilter.setLimit(limit);
