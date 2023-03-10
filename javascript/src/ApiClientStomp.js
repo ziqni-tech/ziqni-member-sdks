@@ -178,7 +178,7 @@ class ApiClientStomp {
 
     handleSysCallback = (message) => {
         if (message.body) {
-            if (this.sysCallBack) {
+            if (typeof this.sysCallBack === 'function') {
                 this.sysCallBack(JSON.parse(message.body), message.headers)
             } else {
                 console.log("SysCallBack is empty. Message: " + message.body);
