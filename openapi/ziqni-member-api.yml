@@ -1070,95 +1070,6 @@ components:
                         message: some text
                         code: 13
                         status: 6
-        AchievementFilter:
-            description: ''
-            type: object
-            properties:
-                tags:
-                    description: ''
-                    type: array
-                    items:
-                        type: string
-                startDate:
-                    $ref: '#/components/schemas/DateRange'
-                    description: startDate
-                endDate:
-                    $ref: '#/components/schemas/DateRange'
-                    description: ''
-                ids:
-                    description: ''
-                    type: array
-                    items:
-                        type: string
-                sortBy:
-                    description: ''
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/QuerySortBy'
-                skip:
-                    format: int32
-                    description: ''
-                    type: integer
-                limit:
-                    format: int32
-                    description: ''
-                    type: integer
-                statusCode:
-                    $ref: '#/components/schemas/NumberRange'
-                    description: Achievement status code
-                    example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
-                constraints:
-                    description: Specify the constraints that need to be applied to the filter.
-                    type: array
-                    items:
-                        type: string
-                    example: |-
-                        - hasTranslations
-                        - hasRewards
-                        - hasRules
-                        - optinRequired
-                productTags:
-                    description: ''
-                    type: array
-                    items:
-                        type: string
-            example:
-                productIds:
-                    - some text
-                    - some text
-                tags:
-                    - some text
-                    - some text
-                startDate:
-                    gt: some text
-                    lt: some text
-                    constraints:
-                        - some text
-                        - some text
-                endDate:
-                    gt: some text
-                    lt: some text
-                    constraints:
-                        - some text
-                        - some text
-                ids:
-                    - some text
-                    - some text
-                status:
-                    - some text
-                    - some text
-                sortBy:
-                    -
-                        queryField: some text
-                        order: Asc
-                    -
-                        queryField: some text
-                        order: Desc
-                skip: 0
-                limit: 72
-                statusCode:
-                    - 60
-                    - 45
         Scheduling:
             required:
                 - scheduleType
@@ -4549,13 +4460,8 @@ components:
                 statusCode: 80
         FileRequest:
             description: ''
-            required:
-                - memberRefId
             type: object
             properties:
-                memberRefId:
-                    description: ''
-                    type: string
                 ids:
                     description: ''
                     type: array
@@ -4574,6 +4480,103 @@ components:
                     format: int32
                     description: ''
                     type: integer
+                repositoryId:
+                    description: ''
+                    type: string
+        AchievementFilter:
+            description: ''
+            type: object
+            properties:
+                tags:
+                    description: ''
+                    type: array
+                    items:
+                        type: string
+                startDate:
+                    $ref: '#/components/schemas/DateRange'
+                    description: startDate
+                endDate:
+                    $ref: '#/components/schemas/DateRange'
+                    description: ''
+                ids:
+                    description: ''
+                    type: array
+                    items:
+                        type: string
+                sortBy:
+                    description: ''
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/QuerySortBy'
+                skip:
+                    format: int32
+                    description: ''
+                    type: integer
+                limit:
+                    format: int32
+                    description: ''
+                    type: integer
+                statusCode:
+                    $ref: '#/components/schemas/NumberRange'
+                    description: Achievement status code
+                    example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
+                constraints:
+                    description: Specify the constraints that need to be applied to the filter.
+                    type: array
+                    items:
+                        type: string
+                    example: |-
+                        - hasTranslations
+                        - hasRewards
+                        - hasRules
+                        - optinRequired
+                productTags:
+                    description: ''
+                    type: array
+                    items:
+                        type: string
+                productIds:
+                    description: deprecated
+                    type: array
+                    items:
+                        type: string
+            example:
+                productIds:
+                    - some text
+                    - some text
+                tags:
+                    - some text
+                    - some text
+                startDate:
+                    gt: some text
+                    lt: some text
+                    constraints:
+                        - some text
+                        - some text
+                endDate:
+                    gt: some text
+                    lt: some text
+                    constraints:
+                        - some text
+                        - some text
+                ids:
+                    - some text
+                    - some text
+                status:
+                    - some text
+                    - some text
+                sortBy:
+                    -
+                        queryField: some text
+                        order: Asc
+                    -
+                        queryField: some text
+                        order: Desc
+                skip: 0
+                limit: 72
+                statusCode:
+                    - 60
+                    - 45
     responses:
         AchievementResponseBody:
             content:
