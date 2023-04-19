@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
     title: ZIQNI Member API
-    version: 1.0.1
+    version: 1.0.7
     description: >-
         The ZIQNI Member-API is the primary resource used to build services and widgets for your members
         [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
@@ -46,7 +46,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/EntityRequest'
+                            $ref: '#/components/schemas/RewardRequest'
                 required: true
             tags:
                 - rewards
@@ -1664,14 +1664,6 @@ components:
                 - Attachment
                 - RuleSet
             type: string
-        RewardTypeReduced:
-            description: ''
-            type: object
-            properties:
-                key:
-                    description: A unique key that represents the reward type
-                    type: string
-                    example: free-spin-reward
         RuleExpression:
             description: >-
                 A conditional expressions is an element that declares either a rule expression, condition or
@@ -3006,57 +2998,6 @@ components:
                         - some text
                         - some text
                 languageKey: some text
-        AwardRequest:
-            description: ''
-            type: object
-            properties:
-                awardFilter:
-                    $ref: '#/components/schemas/AwardFilter'
-                    description: ''
-                languageKey:
-                    description: >-
-                        The language codes can be found in the settings/transalations section of the back
-                        office
-                    type: string
-            example:
-                memberRefId: some text
-                awardFilter:
-                    productIds:
-                        - some text
-                        - some text
-                    tags:
-                        - some text
-                        - some text
-                    startDate:
-                        gt: some text
-                        lt: some text
-                        constraints:
-                            - some text
-                            - some text
-                    endDate:
-                        gt: some text
-                        lt: some text
-                        constraints:
-                            - some text
-                            - some text
-                    ids:
-                        - some text
-                        - some text
-                    status:
-                        - some text
-                        - some text
-                    sortBy:
-                        -
-                            queryField: some text
-                            order: Desc
-                        -
-                            queryField: some text
-                            order: Desc
-                    skip: 24
-                    limit: 67
-                    statusCode:
-                        - 11
-                        - 9
         ClaimAwardRequest:
             description: ''
             required:
@@ -3186,71 +3127,6 @@ components:
                     description: ''
             example:
                 memberRefId: some text
-        RewardRequest:
-            description: ''
-            required:
-                - entityIds
-            type: object
-            properties:
-                entityIds:
-                    description: ''
-                    type: array
-                    items:
-                        type: string
-                languageKey:
-                    description: >-
-                        The language codes can be found in the settings/transalations section of the back
-                        office
-                    type: string
-        EntityRequest:
-            description: ''
-            type: object
-            properties:
-                languageKey:
-                    description: >-
-                        The language codes can be found in the settings/transalations section of the back
-                        office
-                    type: string
-                entityFilter:
-                    description: ''
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/EntityFilter'
-                sortBy:
-                    description: ''
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/QuerySortBy'
-                skip:
-                    format: int32
-                    description: ''
-                    type: integer
-                limit:
-                    format: int32
-                    description: ''
-                    type: integer
-            example:
-                languageKey: some text
-                entityFilter:
-                    -
-                        entityType: some text
-                        entityIds:
-                            - some text
-                            - some text
-                    -
-                        entityType: some text
-                        entityIds:
-                            - some text
-                            - some text
-                sortBy:
-                    -
-                        queryField: some text
-                        order: Asc
-                    -
-                        queryField: some text
-                        order: Desc
-                skip: 29
-                limit: 3
         Product:
             description: ''
             type: object
@@ -3837,117 +3713,6 @@ components:
                 statusCode:
                     - 60
                     - 45
-        Award:
-            description: ''
-            type: object
-            allOf:
-                -
-                    type: object
-                    properties:
-                        memberId:
-                            description: A unique identifier of a Member
-                            type: string
-                            example: Dc4swmQBVd51K6gPQqFx
-                        rewardId:
-                            description: A unique identifier of a Reward
-                            type: string
-                            example: Dc4swmQBVd51K6gPQqFx
-                        rewardType:
-                            $ref: '#/components/schemas/RewardTypeReduced'
-                            description: The type of reward issued
-                        rewardRank:
-                            description: >-
-                                If used in the context of contest this will associate with the rank of the
-                                leaderboard
-                            type: string
-                            example: '1'
-                        rewardValue:
-                            format: double
-                            description: Numerical value of the reward that will be issued based on the reward type
-                            type: number
-                            example: '1'
-                        delay:
-                            format: int32
-                            description: Delay of issuing a reward in minutes
-                            type: integer
-                            example: '2'
-                        entityType:
-                            $ref: '#/components/schemas/EntityType'
-                            description: 'Competition, Contest, or Achievement'
-                        entityId:
-                            description: >-
-                                The Id of the contest or achievement related to this Award. Dependant on
-                                entityType
-                            type: string
-                            example: Dc4swmQBVd51K6gPQqFx
-                        pointInTime:
-                            format: date-time
-                            description: >-
-                                ISO8601 timestamp for when an Award is available until a specific point in
-                                time. All records are stored in UTC time zone. * There can only be one time
-                                definition used for claim period either "pointInTime" or "period"
-                            type: string
-                            example: '2019-09-25T15:47:00.000+0000'
-                        period:
-                            format: int32
-                            description: >-
-                                Claimable duration in minutes, this value will set the controls until when the
-                                award is claimable. * There can only be one time definition used for claim
-                                period either "pointInTime" or "period"
-                            type: integer
-                            example: '2'
-                        tags:
-                            description: A list of Strings of groups that the reward belongs to.
-                            type: array
-                            items:
-                                type: string
-                        metadata:
-                            description: The metadata associated with this award
-                            type: object
-                            additionalProperties:
-                                type: string
-                        statusCode:
-                            description: The code of the award
-                            type: integer
-                            readOnly: true
-                            example: |-
-                                0=Unknown 
-                                10=Preparing
-                                15=NotClaimed
-                                35=Claimed
-                                115=Expired
-                        constraints:
-                            description: 'Additional constraints, if the value is present it means the'
-                            type: array
-                            items:
-                                type: string
-                            example: |-
-                                - memberAcknowledgmentRequired
-                                - claimed
-                        claimed:
-                            description: ' Award is claimed.'
-                            type: boolean
-                            example: '2019-09-25T15:47:00.000+0000'
-                        status:
-                            $ref: '#/components/schemas/AwardStatus'
-                            description: ''
-                            example: |-
-                                0=Unknown 
-                                10=Preparing
-                                15=NotClaimed
-                                35=Claimed
-                                115=Expired
-                        name:
-                            description: name from reward
-                            type: string
-                        description:
-                            description: ''
-                            type: string
-                        memberRefId:
-                            description: ''
-                            type: string
-                -
-                    $ref: '#/components/schemas/ModelDefault'
         AwardStatus:
             description: The status of award
             enum:
@@ -4577,6 +4342,290 @@ components:
                 statusCode:
                     - 60
                     - 45
+        AwardRequest:
+            description: ''
+            type: object
+            properties:
+                awardFilter:
+                    $ref: '#/components/schemas/AwardFilter'
+                    description: ''
+                languageKey:
+                    description: >-
+                        The language codes can be found in the settings/transalations section of the back
+                        office
+                    type: string
+                currencyKey:
+                    description: >-
+                        The UoM currency key to normalise the vlaue to for presentation. Example; If the
+                        reward is in EUR and this value is set to USD then the value will be multiplied by
+                        1.09387699997429
+                    type: string
+            example:
+                memberRefId: some text
+                awardFilter:
+                    productIds:
+                        - some text
+                        - some text
+                    tags:
+                        - some text
+                        - some text
+                    startDate:
+                        gt: some text
+                        lt: some text
+                        constraints:
+                            - some text
+                            - some text
+                    endDate:
+                        gt: some text
+                        lt: some text
+                        constraints:
+                            - some text
+                            - some text
+                    ids:
+                        - some text
+                        - some text
+                    status:
+                        - some text
+                        - some text
+                    sortBy:
+                        -
+                            queryField: some text
+                            order: Desc
+                        -
+                            queryField: some text
+                            order: Desc
+                    skip: 24
+                    limit: 67
+                    statusCode:
+                        - 11
+                        - 9
+        EntityRequest:
+            description: ''
+            type: object
+            properties:
+                languageKey:
+                    description: >-
+                        The language codes can be found in the settings/transalations section of the back
+                        office
+                    type: string
+                entityFilter:
+                    description: ''
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/EntityFilter'
+                sortBy:
+                    description: ''
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/QuerySortBy'
+                skip:
+                    format: int32
+                    description: ''
+                    type: integer
+                limit:
+                    format: int32
+                    description: ''
+                    type: integer
+            example:
+                languageKey: some text
+                entityFilter:
+                    -
+                        entityType: some text
+                        entityIds:
+                            - some text
+                            - some text
+                    -
+                        entityType: some text
+                        entityIds:
+                            - some text
+                            - some text
+                sortBy:
+                    -
+                        queryField: some text
+                        order: Asc
+                    -
+                        queryField: some text
+                        order: Desc
+                skip: 29
+                limit: 3
+        RewardRequest:
+            description: ''
+            required:
+                - entityIds
+            type: object
+            properties:
+                entityFilter:
+                    description: ''
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/EntityFilter'
+                languageKey:
+                    description: >-
+                        The language codes can be found in the settings/transalations section of the back
+                        office
+                    type: string
+                sortBy:
+                    description: ''
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/QuerySortBy'
+                currencyKey:
+                    description: >-
+                        The UoM currency key to normalise the vlaue to for presentation. Example; If the
+                        reward is in EUR and this value is set to USD then the value will be multiplied by
+                        1.09387699997429
+                    type: string
+                skip:
+                    format: int32
+                    description: ''
+                    type: integer
+                limit:
+                    format: int32
+                    description: ''
+                    type: integer
+        RewardTypeReduced:
+            description: ''
+            type: object
+            properties:
+                key:
+                    description: A unique key that represents the reward type
+                    type: string
+                    example: free-spin-reward
+                uom:
+                    description: 'The key assigned to the unit of measure '
+                    type: string
+                    example: USD
+                uomIsoCode:
+                    description: The ISO code assigned to the unit of measure
+                    type: string
+                    example: USD
+                uomSymbol:
+                    description: The symbol assigned to the unit of measure
+                    type: string
+                    example: $
+        Award:
+            description: ''
+            type: object
+            allOf:
+                -
+                    type: object
+                    properties:
+                        memberId:
+                            description: A unique identifier of a Member
+                            type: string
+                            example: Dc4swmQBVd51K6gPQqFx
+                        rewardId:
+                            description: A unique identifier of a Reward
+                            type: string
+                            example: Dc4swmQBVd51K6gPQqFx
+                        rewardType:
+                            $ref: '#/components/schemas/RewardTypeReduced'
+                            description: The type of reward issued
+                        rewardRank:
+                            description: >-
+                                If used in the context of contest this will associate with the rank of the
+                                leaderboard
+                            type: string
+                            example: '1'
+                        rewardValue:
+                            format: double
+                            description: Numerical value of the reward that will be issued based on the reward type
+                            type: number
+                            example: '1'
+                        uom:
+                            description: 'The key assigned to the unit of measure '
+                            type: string
+                            example: USD
+                        uomIsoCode:
+                            description: The ISO code assigned to the unit of measure
+                            type: string
+                            example: USD
+                        uomSymbol:
+                            description: The symbol assigned to the unit of measure
+                            type: string
+                            example: $
+                        delay:
+                            format: int32
+                            description: Delay of issuing a reward in minutes
+                            type: integer
+                            example: '2'
+                        entityType:
+                            $ref: '#/components/schemas/EntityType'
+                            description: 'Competition, Contest, or Achievement'
+                        entityId:
+                            description: >-
+                                The Id of the contest or achievement related to this Award. Dependant on
+                                entityType
+                            type: string
+                            example: Dc4swmQBVd51K6gPQqFx
+                        pointInTime:
+                            format: date-time
+                            description: >-
+                                ISO8601 timestamp for when an Award is available until a specific point in
+                                time. All records are stored in UTC time zone. * There can only be one time
+                                definition used for claim period either "pointInTime" or "period"
+                            type: string
+                            example: '2019-09-25T15:47:00.000+0000'
+                        period:
+                            format: int32
+                            description: >-
+                                Claimable duration in minutes, this value will set the controls until when the
+                                award is claimable. * There can only be one time definition used for claim
+                                period either "pointInTime" or "period"
+                            type: integer
+                            example: '2'
+                        tags:
+                            description: A list of Strings of groups that the reward belongs to.
+                            type: array
+                            items:
+                                type: string
+                        metadata:
+                            description: The metadata associated with this award
+                            type: object
+                            additionalProperties:
+                                type: string
+                        statusCode:
+                            description: The code of the award
+                            type: integer
+                            readOnly: true
+                            example: |-
+                                0=Unknown 
+                                10=Preparing
+                                15=NotClaimed
+                                35=Claimed
+                                115=Expired
+                        constraints:
+                            description: 'Additional constraints, if the value is present it means the'
+                            type: array
+                            items:
+                                type: string
+                            example: |-
+                                - memberAcknowledgmentRequired
+                                - claimed
+                        claimed:
+                            description: ' Award is claimed.'
+                            type: boolean
+                            example: '2019-09-25T15:47:00.000+0000'
+                        status:
+                            $ref: '#/components/schemas/AwardStatus'
+                            description: ''
+                            example: |-
+                                0=Unknown 
+                                10=Preparing
+                                15=NotClaimed
+                                35=Claimed
+                                115=Expired
+                        name:
+                            description: name from reward
+                            type: string
+                        description:
+                            description: Text limited description
+                            type: string
+                        memberRefId:
+                            description: ''
+                            type: string
+                -
+                    $ref: '#/components/schemas/ModelDefault'
     responses:
         AchievementResponseBody:
             content:

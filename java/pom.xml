@@ -7,7 +7,7 @@
     <groupId>com.ziqni</groupId>
     <artifactId>ziqni-member-sdk</artifactId>
     <name>ZIQNI Member SDK</name>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
     <packaging>jar</packaging>
     <url>https://github.com/ziqni-tech/ziqni-member-sdks</url>
     <description>ZIQNI Member SDK Java Client</description>
@@ -185,11 +185,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-messaging</artifactId>
-            <version>${spring-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-websocket</artifactId>
             <version>${spring-version}</version>
         </dependency>
 

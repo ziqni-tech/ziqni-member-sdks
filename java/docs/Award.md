@@ -12,6 +12,9 @@ Name | Type | Description | Notes
 **rewardType** | [**RewardTypeReduced**](RewardTypeReduced.md) |  |  [optional]
 **rewardRank** | **String** | If used in the context of contest this will associate with the rank of the leaderboard |  [optional]
 **rewardValue** | **Double** | Numerical value of the reward that will be issued based on the reward type |  [optional]
+**uom** | **String** | The key assigned to the unit of measure  |  [optional]
+**uomIsoCode** | **String** | The ISO code assigned to the unit of measure |  [optional]
+**uomSymbol** | **String** | The symbol assigned to the unit of measure |  [optional]
 **delay** | **Integer** | Delay of issuing a reward in minutes |  [optional]
 **entityType** | **EntityType** |  |  [optional]
 **entityId** | **String** | The Id of the contest or achievement related to this Award. Dependant on entityType |  [optional]
@@ -24,7 +27,7 @@ Name | Type | Description | Notes
 **claimed** | **Boolean** |  Award is claimed. |  [optional]
 **status** | **AwardStatus** |  |  [optional]
 **name** | **String** | name from reward |  [optional]
-**description** | **String** |  |  [optional]
+**description** | **String** | Text limited description |  [optional]
 **memberRefId** | **String** |  |  [optional]
 **id** | **String** | Ziqni id of the model | 
 **spaceName** | **String** | This is the space name which is linked to the account |  [optional]

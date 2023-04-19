@@ -44,7 +44,6 @@ public class FilesApiTest implements tests.utils.CompleteableFutureTestWrapper {
     @Test
     public void getFilesTest() throws ApiException {
         var fileRequest = new FileRequest();
-        fileRequest.setMemberRefId("r8zqkYYBka1zONloYCO4");
         var response = $(api.getFiles(fileRequest));
 
         assertNotNull(response);
