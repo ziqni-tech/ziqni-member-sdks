@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **uom** | **String** | The key assigned to the unit of measure  |  [optional]
 **uomIsoCode** | **String** | The ISO code assigned to the unit of measure |  [optional]
 **uomSymbol** | **String** | The symbol assigned to the unit of measure |  [optional]
+**uomType** | **String** |  The type of UOM, either Other Currency Mass Time Temperature ElectricCurrent AmountOfSubstance LuminousIntensity Distance |  [optional]
 **delay** | **Integer** | Delay of issuing a reward in minutes |  [optional]
 **entityType** | **EntityType** |  |  [optional]
 **entityId** | **String** | The Id of the contest or achievement related to this Award. Dependant on entityType |  [optional]
