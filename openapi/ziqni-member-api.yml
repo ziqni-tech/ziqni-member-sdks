@@ -4503,6 +4503,9 @@ components:
                     description: The symbol assigned to the unit of measure
                     type: string
                     example: $
+                uomType:
+                    description: ' The type of UOM, either Other Currency Mass Time Temperature ElectricCurrent AmountOfSubstance LuminousIntensity Distance'
+                    type: string
         Award:
             description: ''
             type: object

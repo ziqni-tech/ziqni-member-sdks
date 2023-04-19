@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **uom** | **String** | The key assigned to the unit of measure  |  [optional]
 **uomIsoCode** | **String** | The ISO code assigned to the unit of measure |  [optional]
 **uomSymbol** | **String** | The symbol assigned to the unit of measure |  [optional]
+**uomType** | **String** |  The type of UOM, either Other Currency Mass Time Temperature ElectricCurrent AmountOfSubstance LuminousIntensity Distance |  [optional]
 
 
 
