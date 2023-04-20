@@ -2464,7 +2464,10 @@ components:
                     type: integer
                 statusCode:
                     $ref: '#/components/schemas/NumberRange'
-                    description: Contest status code
+                    description: >-
+                        Contest status code. Draft = 5, Preparing = 10, Ready = 15, Starting = 20, Active =
+                        25, Finishing = 30, Finished = 35, Finalising = 40, Finalised = 45, Cancelling = 110,
+                        Cancelled = 115, Deleting = 120, Deleted = 125
                     example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
                 constraints:
                     description: Specify the constraints that need to be applied to the filter.
@@ -2525,7 +2528,10 @@ components:
                         type: string
                 statusCode:
                     $ref: '#/components/schemas/NumberRange'
-                    description: Competition status code
+                    description: >-
+                        Competition status code. Draft = 5, Preparing = 10, Ready = 15, Starting = 20, Active
+                        = 25, Finishing = 30, Finished = 35, Finalising = 40, Finalised = 45, Cancelling =
+                        110, Cancelled = 115, Deleting = 120, Deleted = 125
                     example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
                 sortBy:
                     description: ''
@@ -4356,7 +4362,7 @@ components:
                     type: string
                 currencyKey:
                     description: >-
-                        The UoM currency key to normalise the vlaue to for presentation. Example; If the
+                        The UoM currency key to normalise the value to for presentation. Example; If the
                         reward is in EUR and this value is set to USD then the value will be multiplied by
                         1.09387699997429
                     type: string
@@ -4471,7 +4477,7 @@ components:
                         $ref: '#/components/schemas/QuerySortBy'
                 currencyKey:
                     description: >-
-                        The UoM currency key to normalise the vlaue to for presentation. Example; If the
+                        The UoM currency key to normalise the value to for presentation. Example; If the
                         reward is in EUR and this value is set to USD then the value will be multiplied by
                         1.09387699997429
                     type: string
