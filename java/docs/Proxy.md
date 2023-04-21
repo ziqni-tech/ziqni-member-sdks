@@ -1,13 +1,13 @@
 
 
-# UnsubscribeRequest
+# Proxy
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**sunscriptionId** | **String** |  | 
+**name** | **String** |  |  [optional]
 
 
 

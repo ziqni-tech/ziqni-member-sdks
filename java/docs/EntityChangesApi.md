@@ -1,21 +1,21 @@
-# MissionsApi
+# EntityChangesApi
 
 All URIs are relative to *https://member-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getMissions**](MissionsApi.md#getMissions) | **POST** /missions | Get achievements by member reference id
-[**getMissionsWithHttpInfo**](MissionsApi.md#getMissionsWithHttpInfo) | **POST** /missions | Get achievements by member reference id
+[**manageEntityChangeSubscription**](EntityChangesApi.md#manageEntityChangeSubscription) | **POST** /entity-changes | 
+[**manageEntityChangeSubscriptionWithHttpInfo**](EntityChangesApi.md#manageEntityChangeSubscriptionWithHttpInfo) | **POST** /entity-changes | 
 
 
 
-## getMissions
+## manageEntityChangeSubscription
 
-> CompletableFuture<MissionResponse> getMissions(missionRequest)
+> CompletableFuture<EntityChangeSubscriptionResponse> manageEntityChangeSubscription(entityChangeSubscriptionRequest)
 
-Get achievements by member reference id
 
-Returns a list of achievements for the provided member ref id and applied filters.
+
+subscribes a client to receive out-of-band data
 
 ### Example
 
@@ -24,27 +24,22 @@ Returns a list of achievements for the provided member ref id and applied filter
 import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
-import com.ziqni.member.sdk.api.MissionsApi;
+import com.ziqni.member.sdk.api.EntityChangesApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        MissionsApi apiInstance = new MissionsApi(defaultClient);
-        MissionRequest missionRequest = new MissionRequest(); // MissionRequest | 
+        EntityChangesApi apiInstance = new EntityChangesApi(defaultClient);
+        EntityChangeSubscriptionRequest entityChangeSubscriptionRequest = new EntityChangeSubscriptionRequest(); // EntityChangeSubscriptionRequest | subscription payload
         try {
-            CompletableFuture<MissionResponse> result = apiInstance.getMissions(missionRequest);
+            CompletableFuture<EntityChangeSubscriptionResponse> result = apiInstance.manageEntityChangeSubscription(entityChangeSubscriptionRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling MissionsApi#getMissions");
+            System.err.println("Exception when calling EntityChangesApi#manageEntityChangeSubscription");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -59,16 +54,16 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **missionRequest** | [**MissionRequest**](MissionRequest.md)|  |
+ **entityChangeSubscriptionRequest** | [**EntityChangeSubscriptionRequest**](EntityChangeSubscriptionRequest.md)| subscription payload |
 
 ### Return type
 
-CompletableFuture<[**MissionResponse**](MissionResponse.md)>
+CompletableFuture<[**EntityChangeSubscriptionResponse**](EntityChangeSubscriptionResponse.md)>
 
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -78,17 +73,17 @@ CompletableFuture<[**MissionResponse**](MissionResponse.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** |  |  -  |
+| **202** |  |  -  |
 | **400** |  |  -  |
 | **500** |  |  -  |
 
-## getMissionsWithHttpInfo
+## manageEntityChangeSubscriptionWithHttpInfo
 
-> CompletableFuture<ApiResponse<MissionResponse>> getMissions getMissionsWithHttpInfo(missionRequest)
+> CompletableFuture<ApiResponse<EntityChangeSubscriptionResponse>> manageEntityChangeSubscription manageEntityChangeSubscriptionWithHttpInfo(entityChangeSubscriptionRequest)
 
-Get achievements by member reference id
 
-Returns a list of achievements for the provided member ref id and applied filters.
+
+subscribes a client to receive out-of-band data
 
 ### Example
 
@@ -98,36 +93,31 @@ import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
-import com.ziqni.member.sdk.api.MissionsApi;
+import com.ziqni.member.sdk.api.EntityChangesApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        MissionsApi apiInstance = new MissionsApi(defaultClient);
-        MissionRequest missionRequest = new MissionRequest(); // MissionRequest | 
+        EntityChangesApi apiInstance = new EntityChangesApi(defaultClient);
+        EntityChangeSubscriptionRequest entityChangeSubscriptionRequest = new EntityChangeSubscriptionRequest(); // EntityChangeSubscriptionRequest | subscription payload
         try {
-            CompletableFuture<ApiResponse<MissionResponse>> response = apiInstance.getMissionsWithHttpInfo(missionRequest);
+            CompletableFuture<ApiResponse<EntityChangeSubscriptionResponse>> response = apiInstance.manageEntityChangeSubscriptionWithHttpInfo(entityChangeSubscriptionRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling MissionsApi#getMissions");
+            System.err.println("Exception when calling EntityChangesApi#manageEntityChangeSubscription");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling MissionsApi#getMissions");
+            System.err.println("Exception when calling EntityChangesApi#manageEntityChangeSubscription");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -142,16 +132,16 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **missionRequest** | [**MissionRequest**](MissionRequest.md)|  |
+ **entityChangeSubscriptionRequest** | [**EntityChangeSubscriptionRequest**](EntityChangeSubscriptionRequest.md)| subscription payload |
 
 ### Return type
 
-CompletableFuture<ApiResponse<[**MissionResponse**](MissionResponse.md)>>
+CompletableFuture<ApiResponse<[**EntityChangeSubscriptionResponse**](EntityChangeSubscriptionResponse.md)>>
 
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -161,7 +151,7 @@ CompletableFuture<ApiResponse<[**MissionResponse**](MissionResponse.md)>>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** |  |  -  |
+| **202** |  |  -  |
 | **400** |  |  -  |
 | **500** |  |  -  |
 
