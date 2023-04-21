@@ -8,11 +8,10 @@ import com.ziqni.member.sdk.context.WSClientDisconnected;
 import com.ziqni.member.sdk.context.WSClientSevereFailure;
 import com.ziqni.member.sdk.model.*;
 
-import com.ziqni.member.sdk.streaming.handlers.CallbackConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
+
 import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -126,9 +125,48 @@ public class SampleApp {
         factory.getContestsApi().getContests(new ContestRequest() )//.contestFilter(new ContestFilter().competitionIds(List.of("9_gpx4UBVvqeSvI0ovX7"))))
                 .thenAccept(contestResponse -> {
                     logger.info(contestResponse.getData().toString());
-                    contestResponse.getData().stream().findFirst().ifPresent(this::subscribeToLeaderboard);
+                    contestResponse.getData().stream().findFirst().ifPresent(contest -> {
+                        this.getRewards(contest);
+                        this.subscribeToLeaderboard(contest);
+                    });
                 }).exceptionally(throwable -> {
                     logger.error("Failed to get contests for competition {}", competition, throwable);
+                    return null;
+                });
+    }
+
+    private void getRewards(Contest contest) {
+        factory.getRewardsApi().getRewards(new RewardRequest()
+                        //.addSortByItem(new QuerySortBy().queryField("created").order(SortOrder.ASC))
+                        .skip(0)
+                        .limit(10)
+                        .currencyKey("GBP")
+                        .addEntityFilterItem(
+                                new EntityFilter()
+                                        .addEntityIdsItem(contest.getId())
+                                        .entityType(contest.getClass().getSimpleName())
+                        )
+                )
+                .thenAccept(rewardResponse ->
+                        logger.info(rewardResponse.getData().toString())
+                )
+                .exceptionally(throwable -> {
+                    logger.error("Failed to get rerwards for contest {}", contest, throwable);
+                    return null;
+                });
+    }
+
+    private void getAwards() {
+        factory.getAwardsApi().getAwards(new AwardRequest()
+                        //.addSortByItem(new QuerySortBy().queryField("created").order(SortOrder.ASC))
+                        .currencyKey("GBP")
+                        .awardFilter(new AwardFilter().skip(0).limit(10))
+                )
+                .thenAccept(rewardResponse ->
+                        logger.info(rewardResponse.getData().toString())
+                )
+                .exceptionally(throwable -> {
+                    logger.error("Failed to get awards for contest ", throwable);
                     return null;
                 });
     }
@@ -196,8 +234,15 @@ public class SampleApp {
                 });
 
         factory.getAwardsApi()
-                .getAwards(new AwardRequest().awardFilter(new AwardFilter().limit(2)))
-                .thenAccept(awardResponse -> logger.info(awardResponse.toString()))
+                .getAwards(new AwardRequest().currencyKey("GBP").awardFilter(
+                        new AwardFilter()
+                                .limit(10)
+                                .statusCode(new NumberRange().moreThan(16L).lessThan(60L))
+                        )
+                )
+                .thenAccept(awardResponse ->
+                        logger.info(awardResponse.toString())
+                )
                 .exceptionally(throwable -> {
                     logger.error("Fail",throwable);
                     return null;
