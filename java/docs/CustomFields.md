@@ -1,13 +1,13 @@
 
 
-# Proxy
+# CustomFields
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **String** |  |  [optional]
+**customFields** | **Map&lt;String, Object&gt;** |  |  [optional]
 
 
 
