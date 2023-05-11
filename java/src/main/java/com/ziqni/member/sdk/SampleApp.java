@@ -162,8 +162,8 @@ public class SampleApp {
                         .currencyKey("GBP")
                         .awardFilter(new AwardFilter().skip(0).limit(10))
                 )
-                .thenAccept(rewardResponse ->
-                        logger.info(rewardResponse.getData().toString())
+                .thenAccept(awardResponse ->
+                        logger.info(awardResponse.getData().toString())
                 )
                 .exceptionally(throwable -> {
                     logger.error("Failed to get awards for contest ", throwable);
@@ -236,7 +236,7 @@ public class SampleApp {
         factory.getAwardsApi()
                 .getAwards(new AwardRequest().currencyKey("GBP").awardFilter(
                         new AwardFilter()
-                                .limit(10)
+                                .limit(5)
                                 .statusCode(new NumberRange().moreThan(16L).lessThan(60L))
                         )
                 )

@@ -49,3 +49,4 @@ build/
 /.idea/
 /javascript/dist/*
 /javascript/node_modules/
+/openapi/swift5/generated/
