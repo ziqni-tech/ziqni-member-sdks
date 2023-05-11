@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "OpenAPIClient",
+    name: "ZiqniMemberSDK",
     platforms: [
         .iOS(.v9),
         .macOS(.v10_11),
@@ -13,21 +13,22 @@ let package = Package(
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
-            name: "OpenAPIClient",
-            targets: ["OpenAPIClient"]
+            name: "ZiqniMemberSDK",
+            targets: ["ZiqniMemberSDK"]
         ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/Flight-School/AnyCodable", from: "0.6.1"),
+        .package(url: "https://github.com/Romixery/SwiftStomp.git", .upToNextMajor(from: "1.1.1")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
-            name: "OpenAPIClient",
-            dependencies: ["AnyCodable", ],
-            path: "OpenAPIClient/Classes"
+            name: "ZiqniMemberSDK",
+            dependencies: ["AnyCodable", "SwiftStomp" ],
+            path: "ZiqniMemberSDK/Classes"
         ),
     ]
 )
