@@ -16,6 +16,11 @@ and provides methods for connecting, subscribing, sending messages, and disconne
 // }
 
 class StompWebSocketClient {
+
+    public static var basePath = URL("ws://member-api.ziqni.com/ws")
+    public static var rpcTopic = "/user/queue/rpc-results"
+    public static var callbacksTopic = "/user/queue/callbacks"
+
     private let stompClient: StompClient
 
     init(url: URL) {
