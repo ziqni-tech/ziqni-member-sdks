@@ -16,12 +16,13 @@ import SwiftStomp
 //     print("Connected to STOMP server")
 // }
 
-open class StompWebSocketClient {
-
+class StompWebSocketClient {
+    
+    public static let basePath = "wss://member-api.ziqni.com/ws/websocket"
+    public static let rpcTopic = "/user/queue/rpc-results"
+    public static let callbacksTopic = "/user/queue/callbacks"
+    
     let uuid = UUID()
-    let basePath = "wss://member-api.ziqni.com/ws/websocket"
-    let rpcTopic = "/user/queue/rpc-results"
-    let callbacksTopic = "/user/queue/callbacks"
     
     private let swiftStomp: SwiftStomp
 

@@ -30,5 +30,8 @@ let package = Package(
             dependencies: ["AnyCodable", "SwiftStomp" ],
             path: "ZiqniMemberSDK/Classes"
         ),
+        .testTarget(
+            name: "ZiqniMemberSDKTests",
+            dependencies: ["ZiqniMemberSDK"]),
     ]
 )
