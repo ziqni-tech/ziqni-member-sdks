@@ -312,6 +312,14 @@ public class SampleApp {
                             logger.info(error.toString())
         );
 
+        factory.getCallbacksApi().optinStatusHandler(
+                        ((stompHeaders, optinStatus) ->{
+                            logger.info(optinStatus.toString());
+                        }),
+                        (stompHeaders, error) ->
+                            logger.info(error.toString())
+        );
+
         factory.getCallbacksApi().notificationHandler(
                 ((stompHeaders, message) -> {
                     logger.info(message.toString());

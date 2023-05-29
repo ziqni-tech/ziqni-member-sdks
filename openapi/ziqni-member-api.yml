@@ -478,7 +478,7 @@ paths:
                     Your implementation should only return return this HTTP status code if
                     it is using the HTTP protocol and only if the data was received
                     successfully
-        optinStatusUpdate:
+        optinStatus:
           '{$request.body#/id}':
             post:
               requestBody:
