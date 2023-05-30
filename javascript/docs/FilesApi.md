@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## getFiles
 
-> FileResponse getFiles(fileRequest)
+> FileObjectResponse getFiles(fileRequest)
 
 Get files.
 
@@ -41,7 +41,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FileResponse**](FileResponse.md)
+[**FileObjectResponse**](FileObjectResponse.md)
 
 ### Authorization
 

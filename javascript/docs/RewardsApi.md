@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## getRewards
 
-> RewardResponse getRewards(entityRequest)
+> RewardResponse getRewards(rewardRequest)
 
 Get rewards
 
@@ -26,8 +26,8 @@ let OAuth2 = defaultClient.authentications['OAuth2'];
 OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new ZiqniMemberApi.RewardsApi();
-let entityRequest = new ZiqniMemberApi.EntityRequest(); // EntityRequest | 
-apiInstance.getRewards(entityRequest, (error, data, response) => {
+let rewardRequest = new ZiqniMemberApi.RewardRequest(); // RewardRequest | 
+apiInstance.getRewards(rewardRequest, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -41,7 +41,7 @@ apiInstance.getRewards(entityRequest, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **entityRequest** | [**EntityRequest**](EntityRequest.md)|  | 
+ **rewardRequest** | [**RewardRequest**](RewardRequest.md)|  | 
 
 ### Return type
 
