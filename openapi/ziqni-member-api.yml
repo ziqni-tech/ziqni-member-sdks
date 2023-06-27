@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Member API
-  version: 1.0.9
+  version: 1.0.10
   description: >-
     The ZIQNI Member-API is the primary resource used to build services and widgets for your members
     [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
@@ -503,6 +503,34 @@ paths:
       operationId: listCallbacks
       summary: Describe the system callbacks and there constraints
       description: subscribes a client to receive out-of-band data
+  /instant-wins:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstantWinRequest'
+        required: true
+      tags:
+        - instant-wins
+      responses:
+        '200':
+          $ref: '#/components/responses/InstantWinResponseBody'
+      operationId: listInstantWins
+  /instant-wins-play:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstantWinPlayRequest'
+        required: true
+      tags:
+        - instant-wins
+      responses:
+        '200':
+          $ref: '#/components/responses/InstantWinPlayResponseBody'
+      operationId: playInstantWin
 components:
   schemas:
     ResponseMeta:
@@ -3252,89 +3280,6 @@ components:
       allOf:
         -
           $ref: '#/components/schemas/MetaInfo'
-    Reward:
-      description: ''
-      type: object
-      properties:
-        entityType:
-          $ref: '#/components/schemas/EntityType'
-        entityId:
-          description: A unique identifier of an achievement or contest. Dependant on entityType
-          type: string
-          example: Dc4swmQBVd51K6gPQqFx
-        name:
-          description: The name of a reward
-          type: string
-          example: Welcome badge
-        description:
-          description: The description of a Reward
-          type: string
-          example: A badge to welcome a new player
-        rewardRank:
-          description: If used in the context of contest this will associate with the rank of the leaderboard
-          type: string
-          example: '1,2 3 ...10'
-        rewardValue:
-          format: double
-          description: Numerical value of the reward that will be issued based on the reward type
-          type: number
-          example: '1'
-        rewardType:
-          $ref: '#/components/schemas/RewardTypeReduced'
-        icon:
-          description: An Icon id that has been pre uploaded to the system to display for reward
-          type: string
-          example: Dc4swmQBVd51K6gPQqFx
-        issueLimit:
-          format: int32
-          description: how many of thsese rewards are
-          type: integer
-          example: '2'
-        delay:
-          format: int32
-          description: Delay of issuing a reward in minutes
-          type: integer
-          example: '2'
-        pointInTime:
-          format: date-time
-          description: >-
-            ISO8601 timestamp for when a Reward is available until a specific point in time. All
-            records are stored in UTC time zone
-          type: string
-          example: '2019-09-25T15:47:00.000+0000'
-        period:
-          format: int32
-          description: Reward available for a period of time from issuing in minutes
-          type: integer
-          example: '2'
-        id:
-          description: Unique system identifier of a Main Rule
-          type: string
-          readOnly: true
-          example: Dc4swmQBVd51K6gPQqFx
-        constraints:
-          description: Additional constraints
-          type: array
-          items:
-            type: string
-          example: '- notifyMember - isMemberAcknowledgmentRequired'
-      example:
-        entityType: FileObject
-        entityId: some text
-        name: some text
-        description: some text
-        rewardRank: some text
-        rewardValue: 7.85
-        rewardType:
-          key: some text
-        icon: some text
-        issueLimit: 60
-        delay: 19
-        pointInTime: '2018-02-10T09:30Z'
-        period: 32
-        constraints:
-          - some text
-          - some text
     Message:
       description: ''
       type: object
@@ -4130,95 +4075,6 @@ components:
               type: array
               items:
                 type: string
-    Achievement:
-      description: ''
-      type: object
-      allOf:
-        -
-          type: object
-          properties:
-            name:
-              description: ''
-              type: string
-            description:
-              description: ''
-              type: string
-            termsAndConditions:
-              description: ''
-              type: string
-            constraints:
-              description: >-
-                Additional constraints, if set means true [optinRequiredForEntrants, hasRules,
-                hasRewards]
-              type: array
-              items:
-                type: string
-              example: |-
-                - deprecated
-                - notifyMember
-                - isHidden
-                - optinRequiredForEntrants
-                - expired
-            maxNumberOfIssues:
-              format: int32
-              description: Maximum number of issued achievements
-              type: integer
-            scheduling:
-              $ref: '#/components/schemas/Scheduling'
-            status:
-              description: Achievement status
-              type: string
-            statusCode:
-              format: int32
-              description: ''
-              type: integer
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            achievementDependencies:
-              $ref: '#/components/schemas/DependantOn'
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptionalModelFields'
-      example:
-        id: ziqniId
-        name: some text
-        description: some text
-        termsAndConditions: some text
-        constraints:
-          - some text
-          - some text
-        maxNumberOfIssues: 37
-        scheduling:
-          scheduleType: Weekly
-          scheduleOccurrencesLimit: 4
-          every:
-            - 73
-            - 79
-          startDate: '2018-02-10T09:30Z'
-          endDate: '2018-02-10T09:30Z'
-          constraints:
-            - some text
-            - some text
-        dependantOn:
-          entityType: some text
-          dependantOn:
-            must:
-              - some text
-              - some text
-            mustNot:
-              - some text
-              - some text
-            should:
-              - some text
-              - some text
-            shouldMatchAtLeast: 75
-        status: some text
-        statusCode: 80
     FileRequest:
       description: ''
       type: object
@@ -4297,7 +4153,7 @@ components:
           items:
             type: string
         productIds:
-          description: deprecated
+          description: ''
           type: array
           items:
             type: string
@@ -4620,6 +4476,434 @@ components:
         customFields:
           type: object
           additionalProperties: true
+    InstantWin:
+      description: ''
+      type: object
+      allOf:
+        -
+          required:
+            - instantWinType
+            - tiles
+          type: object
+          properties:
+            name:
+              description: ''
+              type: string
+            description:
+              description: ''
+              type: string
+            termsAndConditions:
+              description: ''
+              type: string
+            constraints:
+              description: >-
+                Additional constraints, if set means true [optinRequiredForEntrants, hasRules,
+                hasRewards]
+              type: array
+              items:
+                type: string
+              example: |-
+                - deprecated
+                - notifyMember
+                - isHidden
+                - optinRequiredForEntrants
+                - expired
+            statusCode:
+              format: int32
+              description: ''
+              type: integer
+            instantWinType:
+              description: ''
+              type: integer
+            tiles:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/InstantWinTile'
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+    InstantWinFilter:
+      description: ''
+      type: object
+      properties:
+        tags:
+          description: ''
+          type: array
+          items:
+            type: string
+        ids:
+          description: ''
+          type: array
+          items:
+            type: string
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
+        constraints:
+          description: Specify the constraints that need to be applied to the filter.
+          type: array
+          items:
+            type: string
+          example: |-
+            - hasTranslations
+            - hasRewards
+            - hasRules
+            - optinRequired
+      example:
+        productIds:
+          - some text
+          - some text
+        tags:
+          - some text
+          - some text
+        startDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        endDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        ids:
+          - some text
+          - some text
+        status:
+          - some text
+          - some text
+        sortBy:
+          -
+            queryField: some text
+            order: Asc
+          -
+            queryField: some text
+            order: Desc
+        skip: 0
+        limit: 72
+        statusCode:
+          - 60
+          - 45
+    InstantWinPlayRequest:
+      description: ''
+      type: object
+      properties:
+        awardId:
+          description: The award identifier is required to claim this. This can only be made once.
+          type: string
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        currencyKey:
+          description: >-
+            The UoM currency key to normalise the value to for presentation. Example; If the
+            reward is in EUR and this value is set to USD then the value will be multiplied by
+            1.09387699997429
+          type: string
+    InstantWinResponse:
+      description: ''
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          $ref: '#/components/schemas/InstantWin'
+          description: ''
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    InstantWinRequest:
+      description: ''
+      required:
+        - instantWinId
+      type: object
+      properties:
+        instantWinFilter:
+          $ref: '#/components/schemas/InstantWinFilter'
+          description: The unique identifier for this instant win
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        currencyKey:
+          description: >-
+            The UoM currency key to normalise the value to for presentation. Example; If the
+            reward is in EUR and this value is set to USD then the value will be multiplied by
+            1.09387699997429
+          type: string
+    InstantWinPlayResponse:
+      description: ''
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Award'
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    InstantWinTile:
+      description: ''
+      required:
+        - orderNumber
+        - probability
+        - icon
+      type: object
+      properties:
+        indexNumber:
+          description: ''
+          type: integer
+        icon:
+          description: ''
+          type: string
+        text:
+          description: ''
+          type: string
+        contraints:
+          description: 'hasPrizes, glow'
+          type: array
+          items:
+            type: string
+        rewardId:
+          description: The reward associated with this tile
+          type: string
+    InstantWinResult:
+      description: ''
+      type: object
+      allOf:
+        -
+          required:
+            - instantWinType
+            - tiles
+          type: object
+          properties:
+            awards:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/Award'
+            tiles:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/InstantWinTile'
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+    Achievement:
+      description: ''
+      type: object
+      allOf:
+        -
+          type: object
+          properties:
+            name:
+              description: ''
+              type: string
+            description:
+              description: ''
+              type: string
+            termsAndConditions:
+              description: ''
+              type: string
+            constraints:
+              description: >-
+                Additional constraints, if set means true [optinRequiredForEntrants, hasRules,
+                hasRewards]
+              type: array
+              items:
+                type: string
+              example: |-
+                - deprecated
+                - notifyMember
+                - isHidden
+                - optinRequiredForEntrants
+                - expired
+            maxNumberOfIssues:
+              format: int32
+              description: Maximum number of issued achievements
+              type: integer
+            scheduling:
+              $ref: '#/components/schemas/Scheduling'
+            status:
+              description: Achievement status
+              type: string
+            statusCode:
+              format: int32
+              description: ''
+              type: integer
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            achievementDependencies:
+              $ref: '#/components/schemas/DependantOn'
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            products:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductReduced'
+            iconLink:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+      example:
+        id: ziqniId
+        name: some text
+        description: some text
+        termsAndConditions: some text
+        constraints:
+          - some text
+          - some text
+        maxNumberOfIssues: 37
+        scheduling:
+          scheduleType: Weekly
+          scheduleOccurrencesLimit: 4
+          every:
+            - 73
+            - 79
+          startDate: '2018-02-10T09:30Z'
+          endDate: '2018-02-10T09:30Z'
+          constraints:
+            - some text
+            - some text
+        dependantOn:
+          entityType: some text
+          dependantOn:
+            must:
+              - some text
+              - some text
+            mustNot:
+              - some text
+              - some text
+            should:
+              - some text
+              - some text
+            shouldMatchAtLeast: 75
+        status: some text
+        statusCode: 80
+    Reward:
+      description: ''
+      type: object
+      properties:
+        probability:
+          description: What is the probability of winning this reward
+          type: number
+        entityType:
+          $ref: '#/components/schemas/EntityType'
+        entityId:
+          description: A unique identifier of an achievement or contest. Dependant on entityType
+          type: string
+          example: Dc4swmQBVd51K6gPQqFx
+        name:
+          description: The name of a reward
+          type: string
+          example: Welcome badge
+        description:
+          description: The description of a Reward
+          type: string
+          example: A badge to welcome a new player
+        rewardRank:
+          description: If used in the context of contest this will associate with the rank of the leaderboard
+          type: string
+          example: '1,2 3 ...10'
+        rewardValue:
+          format: double
+          description: Numerical value of the reward that will be issued based on the reward type
+          type: number
+          example: '1'
+        rewardType:
+          $ref: '#/components/schemas/RewardTypeReduced'
+        iconLink:
+          description: Link to the icon
+          type: string
+          example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+        icon:
+          description: id the icon
+          type: string
+          example: DNBIOOONK
+        spaceName:
+          description: spaceName
+          type: string
+          example: example-space
+        issueLimit:
+          format: int32
+          description: how many of thsese rewards are
+          type: integer
+          example: '2'
+        delay:
+          format: int32
+          description: Delay of issuing a reward in minutes
+          type: integer
+          example: '2'
+        pointInTime:
+          format: date-time
+          description: >-
+            ISO8601 timestamp for when a Reward is available until a specific point in time. All
+            records are stored in UTC time zone
+          type: string
+          example: '2019-09-25T15:47:00.000+0000'
+        period:
+          format: int32
+          description: Reward available for a period of time from issuing in minutes
+          type: integer
+          example: '2'
+        id:
+          description: Unique system identifier of a Main Rule
+          type: string
+          readOnly: true
+          example: Dc4swmQBVd51K6gPQqFx
+        constraints:
+          description: Additional constraints
+          type: array
+          items:
+            type: string
+          example: '- notifyMember - isMemberAcknowledgmentRequired'
+      example:
+        entityType: FileObject
+        entityId: some text
+        name: some text
+        description: some text
+        rewardRank: some text
+        rewardValue: 7.85
+        rewardType:
+          key: some text
+        icon: some text
+        issueLimit: 60
+        delay: 19
+        pointInTime: '2018-02-10T09:30Z'
+        period: 32
+        constraints:
+          - some text
+          - some text
     ProductReduced:
       description: ''
       type: object
@@ -4636,6 +4920,14 @@ components:
                 be changed after the product has been created
               type: string
               example: hockey-madness
+            customFields:
+              type: object
+              additionalProperties: true
+            id:
+              description: Unique system identifier of a Main Rule
+              type: string
+              readOnly: true
+              example: Dc4swmQBVd51K6gPQqFx
           example:
             name: some text
             productRefId: some text
@@ -4822,6 +5114,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/EntityGraphResponse'
+      description: ''
+    InstantWinResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InstantWinResponse'
+      description: ''
+    InstantWinPlayResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InstantWinPlayResponse'
       description: ''
   securitySchemes:
     OAuth2:

@@ -1,6 +1,6 @@
 
 
-# Achievement
+# InstantWin
 
 
 ## Properties
@@ -11,15 +11,9 @@ Name | Type | Description | Notes
 **description** | **String** |  |  [optional]
 **termsAndConditions** | **String** |  |  [optional]
 **constraints** | **List&lt;String&gt;** | Additional constraints, if set means true [optinRequiredForEntrants, hasRules, hasRewards] |  [optional]
-**maxNumberOfIssues** | **Integer** | Maximum number of issued achievements |  [optional]
-**scheduling** | [**Scheduling**](Scheduling.md) |  |  [optional]
-**status** | **String** | Achievement status |  [optional]
 **statusCode** | **Integer** |  |  [optional]
-**memberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
-**achievementDependencies** | [**DependantOn**](DependantOn.md) |  |  [optional]
-**productTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
-**products** | [**List&lt;ProductReduced&gt;**](ProductReduced.md) |  |  [optional]
-**iconLink** | **String** | Link to the icon |  [optional]
+**instantWinType** | **Integer** |  | 
+**tiles** | [**List&lt;InstantWinTile&gt;**](InstantWinTile.md) |  | 
 **id** | **String** | Ziqni id of the model | 
 **spaceName** | **String** | This is the space name which is linked to the account |  [optional]
 **created** | **OffsetDateTime** | ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone |  [optional]
