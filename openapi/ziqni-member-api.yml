@@ -531,6 +531,33 @@ paths:
         '200':
           $ref: '#/components/responses/InstantWinPlayResponseBody'
       operationId: playInstantWin
+  /products:
+    summary: Member products operation
+    description: This endpoint supports member's products operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SimilarToProductRequest'
+        required: true
+      tags:
+        - products
+      responses:
+        '200':
+          $ref: '#/components/responses/ProductResponseBody'
+        '400':
+          $ref: '#/components/responses/ProductResponseBody'
+        '500':
+          $ref: '#/components/responses/ProductResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewProducts
+      operationId: getProductsSimilarTo
+      summary: Get recommended products by product Id
+      description: Returns a list of products recommended for a product with given id.
+      x-ws-only: true
 components:
   schemas:
     ResponseMeta:
@@ -3151,9 +3178,6 @@ components:
           description: ''
       example:
         memberRefId: some text
-    Product:
-      description: ''
-      type: object
     Transformer:
       description: ''
       type: object
@@ -4936,6 +4960,125 @@ components:
               - some text
         -
           $ref: '#/components/schemas/OptionalModelFields'
+    ProductResponse:
+      description: This is a Contest Response
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      example:
+        meta:
+          totalRecordsFound: 9
+          skip: 25
+          limit: 21
+          objectType: some text
+          resultCount: 46
+        data:
+          - {}
+          - {}
+        errors:
+          -
+            message: some text
+            code: 20
+            status: 19
+          -
+            message: some text
+            code: 99
+            status: 34
+    Product:
+      required:
+        - id
+        - spaceName
+        - created
+      type: object
+      properties:
+        id:
+          description: A unique system generated identifier
+          type: string
+          readOnly: false
+          example: sc1samQmVr61KgaPQq7x
+        spaceName:
+          description: This is the space name which is linked to the account
+          type: string
+          readOnly: false
+          example: Your_space_name
+        created:
+          format: date-time
+          description: >-
+            ISO8601 timestamp for when a Model was created. All records are stored in UTC time
+            zone
+          type: string
+          readOnly: false
+          example: '2019-09-25T15:47:00.000+0000'
+        name:
+          description: The name of the product
+          type: string
+          example: Hockey madness
+        description:
+          description: The description of the product for your reference
+          type: string
+          example: Spin the hockey wheal
+        adjustmentFactor:
+          format: double
+          description: The multiplier to apply to source values received for this product events
+          type: number
+        productRefId:
+          description: >-
+            The reference to this product in your system. The reference identifier can not be
+            changed after the product has been created
+          type: string
+          example: hockey-madness
+        productType:
+          description: The type to this product in your system.
+          type: string
+          example: hockey-madness
+        actionTypeAdjustmentFactors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+    ActionTypeAdjustmentFactor:
+      required:
+        - adjustmentFactor
+        - actionTypeId
+      type: object
+      properties:
+        adjustmentFactor:
+          format: double
+          description: The multiplier to apply to source values received for this product events
+          type: number
+          example: 1
+        actionTypeId:
+          description: A unique system generated identifier for Action Type
+          type: string
+          example: er5samHBdr48KgaPQq89asd
+      example: '"Deleted"'
+    SimilarToProductRequest:
+      description: ''
+      type: object
+      properties:
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
+        id:
+          description: ''
+          type: string
   responses:
     AchievementResponseBody:
       content:
@@ -5127,6 +5270,12 @@ components:
           schema:
             $ref: '#/components/schemas/InstantWinPlayResponse'
       description: ''
+    ProductResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProductResponse'
+      description: ''
   securitySchemes:
     OAuth2:
       flows:
@@ -5174,3 +5323,6 @@ tags:
   -
     name: files
     description: Perform POST operations on Files
+  -
+    name: products
+    description: Perform POST operations on Products
