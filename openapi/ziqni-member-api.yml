@@ -2318,39 +2318,6 @@ components:
         - join
         - leave
       type: string
-    Member:
-      description: This is the Member model
-      allOf:
-        -
-          type: object
-          properties:
-            name:
-              description: The name of the member that is used on leader boards and public displays
-              type: string
-              example: Player 1
-            memberRefId:
-              description: The reference to this member in your system
-              type: string
-              example: Player-1
-            memberType:
-              $ref: '#/components/schemas/MemberType'
-            teamMembers:
-              description: A social group like Guilds
-              type: array
-              items:
-                type: string
-            constraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-            timeZoneOffset:
-              description: To what time zone teh emmber belongs to
-              type: string
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptionalModelFields'
     UnsubscribeRequest:
       description: ''
       required:
@@ -4997,57 +4964,6 @@ components:
             message: some text
             code: 99
             status: 34
-    Product:
-      required:
-        - id
-        - spaceName
-        - created
-      type: object
-      properties:
-        id:
-          description: A unique system generated identifier
-          type: string
-          readOnly: false
-          example: sc1samQmVr61KgaPQq7x
-        spaceName:
-          description: This is the space name which is linked to the account
-          type: string
-          readOnly: false
-          example: Your_space_name
-        created:
-          format: date-time
-          description: >-
-            ISO8601 timestamp for when a Model was created. All records are stored in UTC time
-            zone
-          type: string
-          readOnly: false
-          example: '2019-09-25T15:47:00.000+0000'
-        name:
-          description: The name of the product
-          type: string
-          example: Hockey madness
-        description:
-          description: The description of the product for your reference
-          type: string
-          example: Spin the hockey wheal
-        adjustmentFactor:
-          format: double
-          description: The multiplier to apply to source values received for this product events
-          type: number
-        productRefId:
-          description: >-
-            The reference to this product in your system. The reference identifier can not be
-            changed after the product has been created
-          type: string
-          example: hockey-madness
-        productType:
-          description: The type to this product in your system.
-          type: string
-          example: hockey-madness
-        actionTypeAdjustmentFactors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
     ActionTypeAdjustmentFactor:
       required:
         - adjustmentFactor
@@ -5079,6 +4995,103 @@ components:
         id:
           description: ''
           type: string
+    Member:
+      description: This is the Member model
+      allOf:
+        -
+          type: object
+          properties:
+            name:
+              description: The name of the member that is used on leader boards and public displays
+              type: string
+              example: Player 1
+            memberRefId:
+              description: The reference to this member in your system
+              type: string
+              example: Player-1
+            memberType:
+              $ref: '#/components/schemas/MemberType'
+            teamMembers:
+              description: A social group like Guilds
+              type: array
+              items:
+                type: string
+            constraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+            iconLink:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            timeZoneOffset:
+              description: To what time zone teh emmber belongs to
+              type: string
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+    Product:
+      type: object
+      allOf:
+        -
+          required:
+            - id
+            - spaceName
+            - created
+          type: object
+          properties:
+            id:
+              description: A unique system generated identifier
+              type: string
+              readOnly: false
+              example: sc1samQmVr61KgaPQq7x
+            spaceName:
+              description: This is the space name which is linked to the account
+              type: string
+              readOnly: false
+              example: Your_space_name
+            created:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Model was created. All records are stored in UTC
+                time zone
+              type: string
+              readOnly: false
+              example: '2019-09-25T15:47:00.000+0000'
+            name:
+              description: The name of the product
+              type: string
+              example: Hockey madness
+            description:
+              description: The description of the product for your reference
+              type: string
+              example: Spin the hockey wheal
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+            productRefId:
+              description: >-
+                The reference to this product in your system. The reference identifier can not
+                be changed after the product has been created
+              type: string
+              example: hockey-madness
+            productType:
+              description: The type to this product in your system.
+              type: string
+              example: hockey-madness
+            iconLink:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            actionTypeAdjustmentFactors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
   responses:
     AchievementResponseBody:
       content:
