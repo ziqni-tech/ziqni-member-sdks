@@ -7,7 +7,7 @@
     <groupId>com.ziqni</groupId>
     <artifactId>ziqni-member-sdk</artifactId>
     <name>ZIQNI Member SDK</name>
-    <version>1.0.10</version>
+    <version>1.0.12</version>
     <packaging>jar</packaging>
     <url>https://github.com/ziqni-tech/ziqni-member-sdks</url>
     <description>ZIQNI Member SDK Java Client</description>
