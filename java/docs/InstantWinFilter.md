@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **skip** | **Integer** |  |  [optional]
 **limit** | **Integer** |  |  [optional]
 **constraints** | **List&lt;String&gt;** | Specify the constraints that need to be applied to the filter. |  [optional]
+**instantWinTypes** | **List&lt;Integer&gt;** |  |  [optional]
 
 
 

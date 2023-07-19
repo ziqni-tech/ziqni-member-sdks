@@ -4547,6 +4547,11 @@ components:
             - hasRewards
             - hasRules
             - optinRequired
+        instantWinTypes:
+          description: ''
+          type: array
+          items:
+            type: integer
       example:
         productIds:
           - some text
@@ -4610,8 +4615,10 @@ components:
           $ref: '#/components/schemas/ResponseMeta'
           description: ''
         data:
-          $ref: '#/components/schemas/InstantWin'
           description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/InstantWin'
         errors:
           description: ''
           type: array
@@ -4636,48 +4643,6 @@ components:
             The UoM currency key to normalise the value to for presentation. Example; If the
             reward is in EUR and this value is set to USD then the value will be multiplied by
             1.09387699997429
-          type: string
-    InstantWinPlayResponse:
-      description: ''
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-          description: ''
-        data:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/Award'
-        errors:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    InstantWinTile:
-      description: ''
-      required:
-        - orderNumber
-        - probability
-        - icon
-      type: object
-      properties:
-        indexNumber:
-          description: ''
-          type: integer
-        icon:
-          description: ''
-          type: string
-        text:
-          description: ''
-          type: string
-        contraints:
-          description: 'hasPrizes, glow'
-          type: array
-          items:
-            type: string
-        rewardId:
-          description: The reward associated with this tile
           type: string
     InstantWinResult:
       description: ''
@@ -5092,6 +5057,72 @@ components:
                 $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
         -
           $ref: '#/components/schemas/OptionalModelFields'
+    InstantWinPlayOutcome:
+      description: ''
+      type: object
+      properties:
+        awards:
+          description: The awards that the member unlocked
+          type: array
+          items:
+            $ref: '#/components/schemas/Award'
+        tiles:
+          description: >-
+            The tiles uncovered during the game session, for the wheel of fortune this will be the
+            slice the player landed on for a scratch card it would be the revealed tiles
+          type: array
+          items:
+            $ref: '#/components/schemas/InstantWinTile'
+    InstantWinPlayResponse:
+      description: ''
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/InstantWinPlayOutcome'
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    InstantWinTile:
+      description: ''
+      required:
+        - orderNumber
+        - probability
+        - icon
+        - horizontalPosition
+        - verticalPosition
+      type: object
+      properties:
+        icon:
+          description: The id to the image file
+          type: string
+        iconLink:
+          description: The uri to this image
+          type: string
+        text:
+          description: ''
+          type: string
+        contraints:
+          description: 'hasPrizes, glow'
+          type: array
+          items:
+            type: string
+        reward:
+          $ref: '#/components/schemas/RewardReduced'
+          description: The reward associated with this tile
+        horizontalPosition:
+          description: The horizontal position of the tile
+          type: integer
+        verticalPosition:
+          description: The vertical position of the tile
+          type: integer
   responses:
     AchievementResponseBody:
       content:
