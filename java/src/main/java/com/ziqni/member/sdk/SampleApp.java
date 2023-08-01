@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 
 import java.util.Objects;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -122,7 +123,7 @@ public class SampleApp {
     }
 
     private void getContests(Competition competition){
-        factory.getContestsApi().getContests(new ContestRequest() )//.contestFilter(new ContestFilter().competitionIds(List.of("9_gpx4UBVvqeSvI0ovX7"))))
+        factory.getContestsApi().getContests(new ContestRequest().contestFilter(new ContestFilter().competitionIds(List.of("V-UJyIcB2XLhi587MUz1"))))
                 .thenAccept(contestResponse -> {
                     logger.info(contestResponse.getData().toString());
                     contestResponse.getData().stream().findFirst().ifPresent(contest -> {
@@ -179,7 +180,7 @@ public class SampleApp {
                         .topRanksToInclude(10)
                 )
                 .action(LeaderboardSubscriptionRequest.ActionEnum.SUBSCRIBE)
-                .entityId(contest.getId())
+                .entityId("WOUJyIcB2XLhi587MUz6")
         ).thenAccept(leaderboardsResponse -> {
             logger.info(leaderboardsResponse.toString());
         }).exceptionally(throwable -> {
@@ -276,22 +277,22 @@ public class SampleApp {
                     return null;
                 });
 
-        factory.getGraphsApi()
-                .getGraph(
-                        new EntityGraphRequest()
-                                .entityType(EntityType.ACHIEVEMENT)
-                                .addIdsItem("wr47SoYB4W1yU_TfNeYL")
-//                                .addIdsItem("oLOWY4YBF0c3Crf1gj7J")
-//                                .addIncludesItem("description")
-//                                .addIncludesItem("scheduling")
-                )
-                .thenAccept(response -> {
-                    logger.info(response.toString());
-                })
-                .exceptionally(throwable -> {
-                    logger.error("Fail",throwable);
-                    return null;
-                });
+//        factory.getGraphsApi()
+//                .getGraph(
+//                        new EntityGraphRequest()
+//                                .entityType(EntityType.ACHIEVEMENT)
+//                                .addIdsItem("wr47SoYB4W1yU_TfNeYL")
+////                                .addIdsItem("oLOWY4YBF0c3Crf1gj7J")
+////                                .addIncludesItem("description")
+////                                .addIncludesItem("scheduling")
+//                )
+//                .thenAccept(response -> {
+//                    logger.info(response.toString());
+//                })
+//                .exceptionally(throwable -> {
+//                    logger.error("Fail",throwable);
+//                    return null;
+//                });
     }
 
     private void subscribeToCallbacks(){
