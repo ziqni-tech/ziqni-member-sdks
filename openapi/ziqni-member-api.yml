@@ -2817,145 +2817,6 @@ components:
             tags:
               - some text
               - some text
-    Contest:
-      description: This is a contest model
-      type: object
-      allOf:
-        -
-          type: object
-          properties:
-            name:
-              description: ''
-              type: string
-            description:
-              description: ''
-              type: string
-            termsAndConditions:
-              description: ''
-              type: string
-            competitionId:
-              description: A unique identifier of a Competition
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            round:
-              format: int32
-              description: To what round does the contest belong
-              type: integer
-              example: '2'
-            roundType:
-              $ref: '#/components/schemas/RoundType'
-            groupStage:
-              format: int32
-              description: >-
-                Is used for more complex Competitions e.g. multi round competitions where
-                round 1 group stage matched round 2
-              type: integer
-              example: '2'
-            groupStageLabel:
-              description: The name of the group stages
-              type: string
-              example: Semi-finals
-            maxNumberOfEntrants:
-              format: int32
-              description: Maximum number of entrants for the contest
-              type: integer
-              example: '9999'
-            minNumberOfEntrants:
-              format: int32
-              description: Minimum number of entrants for the contest
-              type: integer
-              example: '0'
-            scheduledStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Contest should start. All records are stored in
-                UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            scheduledEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Contest should end. All records are stored in UTC
-                time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            actualStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition started. All records are stored in
-                UTC time zone
-              type: string
-              readOnly: true
-              example: '2019-09-25T15:47:00.000+0000'
-            actualEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition ended. All records are stored in UTC
-                time zone
-              type: string
-              readOnly: true
-              example: '2019-09-25T15:47:00.000+0000'
-            strategies:
-              $ref: '#/components/schemas/Strategy'
-            status:
-              $ref: '#/components/schemas/ContestStatus'
-            statusCode:
-              description: The code of the contest
-              type: integer
-              readOnly: true
-              example: '3'
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            constraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: |-
-                - hasTranslations
-                - hasRewards
-                - hasRules
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptionalModelFields'
-      example:
-        jsonClass: some text
-        name: some text
-        description: some text
-        termsAndConditions: some text
-        competitionId: some text
-        row: 6
-        round: 11
-        roundType: TargetBased
-        groupStage: 90
-        groupStageLabel: some text
-        entrantsFromContest:
-          - some text
-          - some text
-        maxNumberOfEntrants: 25
-        minNumberOfEntrants: 91
-        scheduledStartDate: '2018-02-10T09:30Z'
-        scheduledEndDate: '2018-02-10T09:30Z'
-        actualStartDate: '2018-02-10T09:30Z'
-        actualEndDate: '2018-02-10T09:30Z'
-        strategies:
-          strategyType: SumBest
-          rankingStrategy:
-            constraints:
-              - some text
-              - some text
-          scoringStrategy:
-            limitUpdatesTo: 83
-            sumBestXOf: 0
-            lastUpdateTimeStamp: 7
-            recordTimeWhenSumReaches: 9.61
-        status: Finalised
-        statusCode: 46
-        constraints:
-          - some text
-          - some text
     EntityFilter:
       description: ''
       type: object
@@ -5128,6 +4989,155 @@ components:
         verticalPosition:
           description: The vertical position of the tile
           type: integer
+    Contest:
+      description: This is a contest model
+      type: object
+      allOf:
+        -
+          type: object
+          properties:
+            name:
+              description: ''
+              type: string
+            description:
+              description: ''
+              type: string
+            termsAndConditions:
+              description: ''
+              type: string
+            competitionId:
+              description: A unique identifier of a Competition
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            round:
+              format: int32
+              description: To what round does the contest belong
+              type: integer
+              example: '2'
+            roundType:
+              $ref: '#/components/schemas/RoundType'
+            groupStage:
+              format: int32
+              description: >-
+                Is used for more complex Competitions e.g. multi round competitions where
+                round 1 group stage matched round 2
+              type: integer
+              example: '2'
+            entrantsFromContest:
+              description: >-
+                A list of Ziqni contest identifiers to allow contests chaining. When a
+                Progression competition is active and you have a 2 round competition the first
+                round has to reference the second round then this parameter becomes mandatory
+                instead of Optional.
+              type: array
+              items:
+                type: string
+              example: '- Dc4swmQBVd51K6gPQqFx - sc3jsrfLewVdt6KugPqFx'
+            groupStageLabel:
+              description: The name of the group stages
+              type: string
+              example: Semi-finals
+            maxNumberOfEntrants:
+              format: int32
+              description: Maximum number of entrants for the contest
+              type: integer
+              example: '9999'
+            minNumberOfEntrants:
+              format: int32
+              description: Minimum number of entrants for the contest
+              type: integer
+              example: '0'
+            scheduledStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Contest should start. All records are stored in
+                UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            scheduledEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Contest should end. All records are stored in UTC
+                time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            actualStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition started. All records are stored in
+                UTC time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+            actualEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition ended. All records are stored in UTC
+                time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+            strategies:
+              $ref: '#/components/schemas/Strategy'
+            status:
+              $ref: '#/components/schemas/ContestStatus'
+            statusCode:
+              description: The code of the contest
+              type: integer
+              readOnly: true
+              example: '3'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            constraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: |-
+                - hasTranslations
+                - hasRewards
+                - hasRules
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+      example:
+        jsonClass: some text
+        name: some text
+        description: some text
+        termsAndConditions: some text
+        competitionId: some text
+        row: 6
+        round: 11
+        roundType: TargetBased
+        groupStage: 90
+        groupStageLabel: some text
+        entrantsFromContest:
+          - some text
+          - some text
+        maxNumberOfEntrants: 25
+        minNumberOfEntrants: 91
+        scheduledStartDate: '2018-02-10T09:30Z'
+        scheduledEndDate: '2018-02-10T09:30Z'
+        actualStartDate: '2018-02-10T09:30Z'
+        actualEndDate: '2018-02-10T09:30Z'
+        strategies:
+          strategyType: SumBest
+          rankingStrategy:
+            constraints:
+              - some text
+              - some text
+          scoringStrategy:
+            limitUpdatesTo: 83
+            sumBestXOf: 0
+            lastUpdateTimeStamp: 7
+            recordTimeWhenSumReaches: 9.61
+        status: Finalised
+        statusCode: 46
+        constraints:
+          - some text
+          - some text
   responses:
     AchievementResponseBody:
       content:
