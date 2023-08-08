@@ -8,14 +8,14 @@ export default class RewardsApiWs {
   }
 
 
-  getRewards(entityRequest,  callback) {
+  getRewards(rewardRequest,  callback) {
 
     
-    if (entityRequest === undefined || entityRequest === null) {
-      throw new Error("Missing the required parameter 'entityRequest' when calling getRewards");
+    if (rewardRequest === undefined || rewardRequest === null) {
+      throw new Error("Missing the required parameter 'rewardRequest' when calling getRewards");
     }
     
-    const message = { body: entityRequest };
+    const message = { body: rewardRequest };
 
     apiClientStomp.instance.sendRpc('/gapi/getRewards', message, callback);
 

@@ -4,6 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**memberRefId** | **String** |  | 
+**ids** | **[String]** |  | [optional] 
+**sortBy** | [**[QuerySortBy]**](QuerySortBy.md) |  | [optional] 
+**skip** | **Number** |  | [optional] 
+**limit** | **Number** |  | [optional] 
+**repositoryId** | **String** |  | [optional] 
 
 
