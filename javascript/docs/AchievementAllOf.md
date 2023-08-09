@@ -15,5 +15,7 @@ Name | Type | Description | Notes
 **memberTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **achievementDependencies** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **productTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
+**products** | [**[ProductReduced]**](ProductReduced.md) |  | [optional] 
+**iconLink** | **String** | Link to the icon | [optional] 
 
 
