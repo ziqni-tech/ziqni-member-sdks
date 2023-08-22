@@ -399,110 +399,6 @@ paths:
       summary: Get achievements by member reference id
       description: Returns a list of graphs based on the entity type.
       x-ws-only: true
-  /callbacks:
-    description: For websockets use this queue "/queue/callbacks" to receive push messages.
-    get:
-      callbacks:
-        entityChanged:
-          '{$request.body#/entityType}':
-            post:
-              requestBody:
-                description: subscription payload
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/EntityChanged'
-              responses:
-                '202':
-                  description: >
-                    Your implementation should only return return this HTTP status code if
-                    it is using the HTTP protocol and only if the data was received
-                    successfully
-        entityStateChanged:
-          '{$request.body#/entityType}':
-            post:
-              requestBody:
-                description: subscription payload
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/EntityStateChanged'
-              responses:
-                '200':
-                  description: >
-                    Your implementation should only return return this HTTP status code if
-                    it is using the HTTP protocol and only if the data was received
-                    successfully
-        proxy:
-          '{$request.body#/entityType}':
-            post:
-              requestBody:
-                description: A message proxied to this consumer
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/ProxyMessage'
-              responses:
-                '200':
-                  description: >
-                    Your implementation should only return return this HTTP status code if
-                    it is using the HTTP protocol and only if the data was received
-                    successfully
-        notification:
-          '{$request.body#/id}':
-            post:
-              requestBody:
-                description: New notification
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/Message'
-              responses:
-                '200':
-                  description: >
-                    Your implementation should only return return this HTTP status code if
-                    it is using the HTTP protocol and only if the data was received
-                    successfully
-        leaderboardUpdate:
-          '{$request.body#/id}':
-            post:
-              requestBody:
-                description: Receive updates to the subscribed leaderboards
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/Leaderboard'
-              responses:
-                '200':
-                  description: >
-                    Your implementation should only return return this HTTP status code if
-                    it is using the HTTP protocol and only if the data was received
-                    successfully
-        optinStatus:
-          '{$request.body#/id}':
-            post:
-              requestBody:
-                description: Receive updates for opt-in status changes
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/OptinStatus'
-              responses:
-                '200':
-                  description: >
-                    Your implementation should only return return this HTTP status code if
-                    it is using the HTTP protocol and only if the data was received
-                    successfully
-      tags:
-        - callbacks
-      responses:
-        '202':
-          $ref: '#/components/responses/CallbackResponseBody'
-        '500':
-          $ref: '#/components/responses/CallbackResponseBody'
-      operationId: listCallbacks
-      summary: Describe the system callbacks and there constraints
-      description: subscribes a client to receive out-of-band data
   /instant-wins:
     post:
       requestBody:
@@ -558,6 +454,116 @@ paths:
       summary: Get recommended products by product Id
       description: Returns a list of products recommended for a product with given id.
       x-ws-only: true
+  /callbacks:
+    description: For websockets use this queue "/queue/callbacks" to receive push messages.
+    get:
+      callbacks:
+        entityChanged:
+          '{$request.body#/entityType}':
+            post:
+              requestBody:
+                description: subscription payload
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/EntityChanged'
+              responses:
+                '202':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the HTTP protocol and only if the data was received
+                    successfully
+              operationId: entityChanged
+        entityStateChanged:
+          '{$request.body#/entityType}':
+            post:
+              requestBody:
+                description: subscription payload
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/EntityStateChanged'
+              responses:
+                '200':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the HTTP protocol and only if the data was received
+                    successfully
+              operationId: entityStateChanged
+        proxy:
+          '{$request.body#/entityType}':
+            post:
+              requestBody:
+                description: A message proxied to this consumer
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/ProxyMessage'
+              responses:
+                '200':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the HTTP protocol and only if the data was received
+                    successfully
+              operationId: proxy
+        notification:
+          '{$request.body#/id}':
+            post:
+              requestBody:
+                description: New notification
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Message'
+              responses:
+                '200':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the HTTP protocol and only if the data was received
+                    successfully
+              operationId: notification
+        leaderboardUpdate:
+          '{$request.body#/id}':
+            post:
+              requestBody:
+                description: Receive updates to the subscribed leaderboards
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Leaderboard'
+              responses:
+                '200':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the HTTP protocol and only if the data was received
+                    successfully
+              operationId: leaderboardUpdate
+        optinStatus:
+          '{$request.body#/id}':
+            post:
+              requestBody:
+                description: Receive updates for opt-in status changes
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/OptinStatus'
+              responses:
+                '200':
+                  description: >
+                    Your implementation should only return return this HTTP status code if
+                    it is using the HTTP protocol and only if the data was received
+                    successfully
+              operationId: optinStatus
+      tags:
+        - callbacks
+      responses:
+        '202':
+          $ref: '#/components/responses/CallbackResponseBody'
+        '500':
+          $ref: '#/components/responses/CallbackResponseBody'
+      operationId: listCallbacks
+      summary: Describe the system callbacks and there constraints
+      description: subscribes a client to receive out-of-band data
 components:
   schemas:
     ResponseMeta:
@@ -3957,100 +3963,6 @@ components:
         repositoryId:
           description: ''
           type: string
-    AchievementFilter:
-      description: ''
-      type: object
-      properties:
-        tags:
-          description: ''
-          type: array
-          items:
-            type: string
-        startDate:
-          $ref: '#/components/schemas/DateRange'
-          description: startDate
-        endDate:
-          $ref: '#/components/schemas/DateRange'
-          description: ''
-        ids:
-          description: ''
-          type: array
-          items:
-            type: string
-        sortBy:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/QuerySortBy'
-        skip:
-          format: int32
-          description: ''
-          type: integer
-        limit:
-          format: int32
-          description: ''
-          type: integer
-        statusCode:
-          $ref: '#/components/schemas/NumberRange'
-          description: Achievement status code
-          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
-        constraints:
-          description: Specify the constraints that need to be applied to the filter.
-          type: array
-          items:
-            type: string
-          example: |-
-            - hasTranslations
-            - hasRewards
-            - hasRules
-            - optinRequired
-        productTags:
-          description: ''
-          type: array
-          items:
-            type: string
-        productIds:
-          description: ''
-          type: array
-          items:
-            type: string
-      example:
-        productIds:
-          - some text
-          - some text
-        tags:
-          - some text
-          - some text
-        startDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        endDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        ids:
-          - some text
-          - some text
-        status:
-          - some text
-          - some text
-        sortBy:
-          -
-            queryField: some text
-            order: Asc
-          -
-            queryField: some text
-            order: Desc
-        skip: 0
-        limit: 72
-        statusCode:
-          - 60
-          - 45
     AwardRequest:
       description: ''
       type: object
@@ -5138,6 +5050,105 @@ components:
         constraints:
           - some text
           - some text
+    AchievementFilter:
+      description: ''
+      type: object
+      properties:
+        tags:
+          description: ''
+          type: array
+          items:
+            type: string
+        startDate:
+          $ref: '#/components/schemas/DateRange'
+          description: startDate
+        endDate:
+          $ref: '#/components/schemas/DateRange'
+          description: ''
+        ids:
+          description: ''
+          type: array
+          items:
+            type: string
+        sortBy:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
+        statusCode:
+          $ref: '#/components/schemas/NumberRange'
+          description: Achievement status code
+          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
+        constraints:
+          description: Specify the constraints that need to be applied to the filter.
+          type: array
+          items:
+            type: string
+          example: |-
+            - hasTranslations
+            - hasRewards
+            - hasRules
+            - optinRequired
+        productTags:
+          description: ''
+          type: array
+          items:
+            type: string
+        productIds:
+          description: ''
+          type: array
+          items:
+            type: string
+        scheduleTypes:
+          description: ''
+          type: array
+          items:
+            type: string
+      example:
+        productIds:
+          - some text
+          - some text
+        tags:
+          - some text
+          - some text
+        startDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        endDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        ids:
+          - some text
+          - some text
+        status:
+          - some text
+          - some text
+        sortBy:
+          -
+            queryField: some text
+            order: Asc
+          -
+            queryField: some text
+            order: Desc
+        skip: 0
+        limit: 72
+        statusCode:
+          - 60
+          - 45
   responses:
     AchievementResponseBody:
       content:
