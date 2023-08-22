@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **memberType** | [**MemberType**](MemberType.md) |  | [optional] 
 **teamMembers** | **[String]** | A social group like Guilds | [optional] 
 **constraints** | **[String]** | Additional constraints | [optional] 
+**iconLink** | **String** | Link to the icon | [optional] 
 **timeZoneOffset** | **String** | To what time zone teh emmber belongs to | [optional] 
 **id** | **String** | Ziqni id of the model | 
 **spaceName** | **String** | This is the space name which is linked to the account | [optional] 
