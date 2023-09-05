@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **text** | **String** |  |  [optional]
 **contraints** | **List&lt;String&gt;** | hasPrizes, glow |  [optional]
 **reward** | [**RewardReduced**](RewardReduced.md) |  |  [optional]
-**horizontalPosition** | **Integer** | The horizontal position of the tile | 
-**verticalPosition** | **Integer** | The vertical position of the tile | 
+**probability** | **Double** |  | 
+**location** | [**GridLocation**](GridLocation.md) |  | 
 
 
 

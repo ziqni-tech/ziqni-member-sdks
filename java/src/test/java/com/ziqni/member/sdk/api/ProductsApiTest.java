@@ -15,6 +15,8 @@ package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.data.LoadRulesData;
+import com.ziqni.member.sdk.model.ProductFilter;
+import com.ziqni.member.sdk.model.ProductRequest;
 import com.ziqni.member.sdk.model.SimilarToProductRequest;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
@@ -51,12 +53,13 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
      */
     @Test
     public void getProductsSimilarToTest() throws ApiException {
-        final var similarToProductRequest = new SimilarToProductRequest()
-                .id("")
-                .skip(0)
-                .limit(20);
+        final var productRequest = new ProductRequest()
+                .productFilter(new ProductFilter()
+                        .addConstraintsItem("similarTo")
+                        .limit(20)
+                        .skip(0));
 
-        var response = $(api.getProductsSimilarTo(similarToProductRequest));
+        var response = $(api.getProducts(productRequest));
 
         assertNotNull(response);
         assertNotNull(response.getData());

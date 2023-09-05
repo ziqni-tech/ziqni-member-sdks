@@ -4,14 +4,14 @@ All URIs are relative to *https://member-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getProductsSimilarTo**](ProductsApi.md#getProductsSimilarTo) | **POST** /products | Get recommended products by product Id
-[**getProductsSimilarToWithHttpInfo**](ProductsApi.md#getProductsSimilarToWithHttpInfo) | **POST** /products | Get recommended products by product Id
+[**getProducts**](ProductsApi.md#getProducts) | **POST** /products | Get recommended products by product Id
+[**getProductsWithHttpInfo**](ProductsApi.md#getProductsWithHttpInfo) | **POST** /products | Get recommended products by product Id
 
 
 
-## getProductsSimilarTo
+## getProducts
 
-> CompletableFuture<ProductResponse> getProductsSimilarTo(similarToProductRequest)
+> CompletableFuture<ProductResponse> getProducts(productRequest)
 
 Get recommended products by product Id
 
@@ -39,12 +39,12 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         ProductsApi apiInstance = new ProductsApi(defaultClient);
-        SimilarToProductRequest similarToProductRequest = new SimilarToProductRequest(); // SimilarToProductRequest | 
+        ProductRequest productRequest = new ProductRequest(); // ProductRequest | 
         try {
-            CompletableFuture<ProductResponse> result = apiInstance.getProductsSimilarTo(similarToProductRequest);
+            CompletableFuture<ProductResponse> result = apiInstance.getProducts(productRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling ProductsApi#getProductsSimilarTo");
+            System.err.println("Exception when calling ProductsApi#getProducts");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -59,7 +59,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **similarToProductRequest** | [**SimilarToProductRequest**](SimilarToProductRequest.md)|  |
+ **productRequest** | [**ProductRequest**](ProductRequest.md)|  |
 
 ### Return type
 
@@ -82,9 +82,9 @@ CompletableFuture<[**ProductResponse**](ProductResponse.md)>
 | **400** |  |  -  |
 | **500** |  |  -  |
 
-## getProductsSimilarToWithHttpInfo
+## getProductsWithHttpInfo
 
-> CompletableFuture<ApiResponse<ProductResponse>> getProductsSimilarTo getProductsSimilarToWithHttpInfo(similarToProductRequest)
+> CompletableFuture<ApiResponse<ProductResponse>> getProducts getProductsWithHttpInfo(productRequest)
 
 Get recommended products by product Id
 
@@ -113,21 +113,21 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         ProductsApi apiInstance = new ProductsApi(defaultClient);
-        SimilarToProductRequest similarToProductRequest = new SimilarToProductRequest(); // SimilarToProductRequest | 
+        ProductRequest productRequest = new ProductRequest(); // ProductRequest | 
         try {
-            CompletableFuture<ApiResponse<ProductResponse>> response = apiInstance.getProductsSimilarToWithHttpInfo(similarToProductRequest);
+            CompletableFuture<ApiResponse<ProductResponse>> response = apiInstance.getProductsWithHttpInfo(productRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling ProductsApi#getProductsSimilarTo");
+            System.err.println("Exception when calling ProductsApi#getProducts");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling ProductsApi#getProductsSimilarTo");
+            System.err.println("Exception when calling ProductsApi#getProducts");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -142,7 +142,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **similarToProductRequest** | [**SimilarToProductRequest**](SimilarToProductRequest.md)|  |
+ **productRequest** | [**ProductRequest**](ProductRequest.md)|  |
 
 ### Return type
 

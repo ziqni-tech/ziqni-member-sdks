@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Member API
-  version: 1.0.10
+  version: 1.0.11
   description: >-
     The ZIQNI Member-API is the primary resource used to build services and widgets for your members
     [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
@@ -435,7 +435,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SimilarToProductRequest'
+              $ref: '#/components/schemas/ProductRequest'
         required: true
       tags:
         - products
@@ -450,7 +450,7 @@ paths:
         -
           OAuth2:
             - ViewProducts
-      operationId: getProductsSimilarTo
+      operationId: getProducts
       summary: Get recommended products by product Id
       description: Returns a list of products recommended for a product with given id.
       x-ws-only: true
@@ -2702,13 +2702,19 @@ components:
                 - isPublic
                 - optinRequiredForEntrants
             products:
-              description: ''
+              description: >-
+                If individual product were selected then they will be listed here. If the
+                proproduct tags filter was used then this field will be empty and the
+                productTagsFilter will be populated.
               type: array
               items:
                 $ref: '#/components/schemas/ProductReduced'
             memberTagsFilter:
               $ref: '#/components/schemas/DependantOn'
               description: ''
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: The filter that is used to restrict the prodcuts eligible for this competition
         -
           $ref: '#/components/schemas/ModelDefault'
         -
@@ -4495,7 +4501,7 @@ components:
               $ref: '#/components/schemas/DependantOn'
             productTagsFilter:
               $ref: '#/components/schemas/DependantOn'
-              description: ''
+              description: The filter that is used to restrict the prodcuts eligible for this competition
             products:
               description: ''
               type: array
@@ -4723,21 +4729,6 @@ components:
           type: string
           example: er5samHBdr48KgaPQq89asd
       example: '"Deleted"'
-    SimilarToProductRequest:
-      description: ''
-      type: object
-      properties:
-        skip:
-          format: int32
-          description: ''
-          type: integer
-        limit:
-          format: int32
-          description: ''
-          type: integer
-        id:
-          description: ''
-          type: string
     Member:
       description: This is the Member model
       allOf:
@@ -4868,39 +4859,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Error'
-    InstantWinTile:
-      description: ''
-      required:
-        - orderNumber
-        - probability
-        - icon
-        - horizontalPosition
-        - verticalPosition
-      type: object
-      properties:
-        icon:
-          description: The id to the image file
-          type: string
-        iconLink:
-          description: The uri to this image
-          type: string
-        text:
-          description: ''
-          type: string
-        contraints:
-          description: 'hasPrizes, glow'
-          type: array
-          items:
-            type: string
-        reward:
-          $ref: '#/components/schemas/RewardReduced'
-          description: The reward associated with this tile
-        horizontalPosition:
-          description: The horizontal position of the tile
-          type: integer
-        verticalPosition:
-          description: The vertical position of the tile
-          type: integer
     Contest:
       description: This is a contest model
       type: object
@@ -5149,6 +5107,124 @@ components:
         statusCode:
           - 60
           - 45
+    ProductFilter:
+      description: ''
+      type: object
+      properties:
+        entityIDs:
+          description: The entity id to search. The default is product id
+          type: array
+          items:
+            type: string
+        sortBy:
+          description: >-
+            Allow data to be sorted by name, description, created, etc. The default is name.
+            Sorting is not available on translations
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        skip:
+          format: int32
+          description: >-
+            Allows paging through the data. The default is zero. If the limit is set 20, and the
+            skip is set to 20 then it will return the next 20 records i.e. page 2
+          type: integer
+        limit:
+          format: int32
+          description: 'Limit the result set. Default value is 20, maximum value is 50.'
+          type: integer
+        constraints:
+          description: Specify the constraints that need to be applied to the filter.
+          type: array
+          items:
+            type: string
+          example: '- similarTo'
+        entityType:
+          description: >-
+            This field determines the meaning of the IDs field. The default is product, you can
+            also specify competition or achievement.
+          type: string
+    ProductRequest:
+      description: ''
+      type: object
+      properties:
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        productFilter:
+          $ref: '#/components/schemas/ProductFilter'
+          description: ''
+      example:
+        languageKey: some text
+        productFilter:
+          entityIDs:
+            - some text
+            - some text
+          sortBy:
+            -
+              queryField: some text
+              order: Asc
+            -
+              queryField: some text
+              order: Desc
+          skip: 57
+          limit: 9
+          constraints:
+            - some text
+            - some text
+          entityType: some text
+    GridLocation:
+      description: >-
+        This struct contains two integer-valued fields, row and col . A GridLocation can be used to
+        represent a location in a two-dimensional grid.
+      required:
+        - row
+        - col
+      type: object
+      properties:
+        row:
+          description: ''
+          type: integer
+        col:
+          description: ''
+          type: integer
+    InstantWinTile:
+      description: ''
+      required:
+        - orderNumber
+        - probability
+        - icon
+        - horizontalPosition
+        - verticalPosition
+        - location
+      type: object
+      properties:
+        icon:
+          description: The id to the image file
+          type: string
+        iconLink:
+          description: The uri to this image
+          type: string
+        text:
+          description: ''
+          type: string
+        contraints:
+          description: 'hasPrizes, glow'
+          type: array
+          items:
+            type: string
+        reward:
+          $ref: '#/components/schemas/RewardReduced'
+          description: The reward associated with this tile
+        probability:
+          format: double
+          description: ''
+          type: number
+        location:
+          $ref: '#/components/schemas/GridLocation'
+          description: ''
   responses:
     AchievementResponseBody:
       content:
