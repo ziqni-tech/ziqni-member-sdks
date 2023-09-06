@@ -1,6 +1,6 @@
 
 
-# EntityGraphNode
+# Mission
 
 Mission is a specialised view of connected achievements. The first achievement is the container, every dependant achievement is a chained dependency
 
@@ -8,14 +8,15 @@ Mission is a specialised view of connected achievements. The first achievement i
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**entries** | [**List&lt;MissionEntry&gt;**](MissionEntry.md) |  | 
+**id** | **String** |  | 
 **name** | **String** |  |  [optional]
+**description** | **String** |  |  [optional]
+**termsAndConditions** | **String** |  |  [optional]
+**availableFrom** | **OffsetDateTime** |  | 
+**availableUntil** | **OffsetDateTime** |  |  [optional]
+**isCompleted** | **Boolean** |  | 
 **optInStatus** | [**OptinStatus**](OptinStatus.md) |  | 
-**constraints** | **List&lt;String&gt;** | isCompleted, etc |  [optional]
-**entityType** | **String** |  |  [optional]
-**entityId** | **String** |  | 
-**entityStatusCode** | **Integer** |  |  [optional]
-**entityStatus** | **String** |  |  [optional]
-**includes** | **Map&lt;String, Object&gt;** |  |  [optional]
 
 
 
