@@ -1,4 +1,4 @@
-# ziqni_member_api
+# @ziqni-tech/member-api-client
 
 ZiqniMemberApi - JavaScript client for ziqni_member_api
 The ZIQNI Member-API is the primary resource used to build services and widgets for your members [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the system is decribed using OpenApi schema for convenience.
