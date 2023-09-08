@@ -15,5 +15,6 @@ Name | Type | Description | Notes
 **constraints** | **[String]** | Specify the constraints that need to be applied to the filter. | [optional] 
 **productTags** | **[String]** |  | [optional] 
 **productIds** | **[String]** |  | [optional] 
+**scheduleTypes** | **[String]** |  | [optional] 
 
 
