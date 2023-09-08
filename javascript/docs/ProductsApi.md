@@ -4,13 +4,13 @@ All URIs are relative to *https://member-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getProductsSimilarTo**](ProductsApi.md#getProductsSimilarTo) | **POST** /products | Get recommended products by product Id
+[**getProducts**](ProductsApi.md#getProducts) | **POST** /products | Get recommended products by product Id
 
 
 
-## getProductsSimilarTo
+## getProducts
 
-> ProductResponse getProductsSimilarTo(similarToProductRequest)
+> ProductResponse getProducts(productRequest)
 
 Get recommended products by product Id
 
@@ -26,8 +26,8 @@ let OAuth2 = defaultClient.authentications['OAuth2'];
 OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new ZiqniMemberApi.ProductsApi();
-let similarToProductRequest = new ZiqniMemberApi.SimilarToProductRequest(); // SimilarToProductRequest | 
-apiInstance.getProductsSimilarTo(similarToProductRequest, (error, data, response) => {
+let productRequest = new ZiqniMemberApi.ProductRequest(); // ProductRequest | 
+apiInstance.getProducts(productRequest, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -41,7 +41,7 @@ apiInstance.getProductsSimilarTo(similarToProductRequest, (error, data, response
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **similarToProductRequest** | [**SimilarToProductRequest**](SimilarToProductRequest.md)|  | 
+ **productRequest** | [**ProductRequest**](ProductRequest.md)|  | 
 
 ### Return type
 
