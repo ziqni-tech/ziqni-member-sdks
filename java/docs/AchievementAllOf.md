@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **memberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
 **achievementDependencies** | [**DependantOn**](DependantOn.md) |  |  [optional]
 **productTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
+**products** | [**List&lt;ProductReduced&gt;**](ProductReduced.md) |  |  [optional]
 
 
 

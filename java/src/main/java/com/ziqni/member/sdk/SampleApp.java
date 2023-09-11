@@ -122,7 +122,7 @@ public class SampleApp {
     }
 
     private void getContests(Competition competition){
-        factory.getContestsApi().getContests(new ContestRequest() )//.contestFilter(new ContestFilter().competitionIds(List.of("9_gpx4UBVvqeSvI0ovX7"))))
+        factory.getContestsApi().getContests(new ContestRequest().languageKey("de") )//.contestFilter(new ContestFilter().competitionIds(List.of("9_gpx4UBVvqeSvI0ovX7"))))
                 .thenAccept(contestResponse -> {
                     logger.info(contestResponse.getData().toString());
                     contestResponse.getData().stream().findFirst().ifPresent(contest -> {
@@ -249,7 +249,12 @@ public class SampleApp {
                 });
 
         factory.getAchievementsApi()
-                .getAchievements(new AchievementRequest().achievementFilter(new AchievementFilter().statusCode(new NumberRange().moreThan(20L).lessThan(30L))))
+                .getAchievements(new AchievementRequest().achievementFilter(
+                        new AchievementFilter()
+                                .statusCode(new NumberRange().moreThan(20L).lessThan(30L))
+//                                .addProductTagsItem("fruit")
+                        )
+                )
                 .thenAccept(this::handleResponse)
                 .exceptionally(throwable -> {
                     logger.error("Fail",throwable);

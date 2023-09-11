@@ -7,6 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**probability** | **BigDecimal** | What is the probability of winning this reward |  [optional]
 **entityType** | **EntityType** |  |  [optional]
 **entityId** | **String** | A unique identifier of an achievement or contest. Dependant on entityType |  [optional]
 **name** | **String** | The name of a reward |  [optional]

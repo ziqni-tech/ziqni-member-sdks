@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **statusCode** | [**NumberRange**](NumberRange.md) |  |  [optional]
 **constraints** | **List&lt;String&gt;** | Specify the constraints that need to be applied to the filter. |  [optional]
 **productTags** | **List&lt;String&gt;** |  |  [optional]
-**productIds** | **List&lt;String&gt;** | deprecated |  [optional]
+**productIds** | **List&lt;String&gt;** |  |  [optional]
 
 
 

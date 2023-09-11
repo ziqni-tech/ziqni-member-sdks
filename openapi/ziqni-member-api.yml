@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Member API
-  version: 1.0.9
+  version: 1.0.11
   description: >-
     The ZIQNI Member-API is the primary resource used to build services and widgets for your members
     [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
@@ -399,6 +399,61 @@ paths:
       summary: Get achievements by member reference id
       description: Returns a list of graphs based on the entity type.
       x-ws-only: true
+  /instant-wins:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstantWinRequest'
+        required: true
+      tags:
+        - instant-wins
+      responses:
+        '200':
+          $ref: '#/components/responses/InstantWinResponseBody'
+      operationId: listInstantWins
+  /instant-wins-play:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstantWinPlayRequest'
+        required: true
+      tags:
+        - instant-wins
+      responses:
+        '200':
+          $ref: '#/components/responses/InstantWinPlayResponseBody'
+      operationId: playInstantWin
+  /products:
+    summary: Member products operation
+    description: This endpoint supports member's products operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductRequest'
+        required: true
+      tags:
+        - products
+      responses:
+        '200':
+          $ref: '#/components/responses/ProductResponseBody'
+        '400':
+          $ref: '#/components/responses/ProductResponseBody'
+        '500':
+          $ref: '#/components/responses/ProductResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewProducts
+      operationId: getProducts
+      summary: Get recommended products by product Id
+      description: Returns a list of products recommended for a product with given id.
+      x-ws-only: true
   /callbacks:
     description: For websockets use this queue "/queue/callbacks" to receive push messages.
     get:
@@ -418,6 +473,7 @@ paths:
                     Your implementation should only return return this HTTP status code if
                     it is using the HTTP protocol and only if the data was received
                     successfully
+              operationId: entityChanged
         entityStateChanged:
           '{$request.body#/entityType}':
             post:
@@ -433,6 +489,7 @@ paths:
                     Your implementation should only return return this HTTP status code if
                     it is using the HTTP protocol and only if the data was received
                     successfully
+              operationId: entityStateChanged
         proxy:
           '{$request.body#/entityType}':
             post:
@@ -448,6 +505,7 @@ paths:
                     Your implementation should only return return this HTTP status code if
                     it is using the HTTP protocol and only if the data was received
                     successfully
+              operationId: proxy
         notification:
           '{$request.body#/id}':
             post:
@@ -463,6 +521,7 @@ paths:
                     Your implementation should only return return this HTTP status code if
                     it is using the HTTP protocol and only if the data was received
                     successfully
+              operationId: notification
         leaderboardUpdate:
           '{$request.body#/id}':
             post:
@@ -478,6 +537,7 @@ paths:
                     Your implementation should only return return this HTTP status code if
                     it is using the HTTP protocol and only if the data was received
                     successfully
+              operationId: leaderboardUpdate
         optinStatus:
           '{$request.body#/id}':
             post:
@@ -493,6 +553,7 @@ paths:
                     Your implementation should only return return this HTTP status code if
                     it is using the HTTP protocol and only if the data was received
                     successfully
+              operationId: optinStatus
       tags:
         - callbacks
       responses:
@@ -2263,39 +2324,6 @@ components:
         - join
         - leave
       type: string
-    Member:
-      description: This is the Member model
-      allOf:
-        -
-          type: object
-          properties:
-            name:
-              description: The name of the member that is used on leader boards and public displays
-              type: string
-              example: Player 1
-            memberRefId:
-              description: The reference to this member in your system
-              type: string
-              example: Player-1
-            memberType:
-              $ref: '#/components/schemas/MemberType'
-            teamMembers:
-              description: A social group like Guilds
-              type: array
-              items:
-                type: string
-            constraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-            timeZoneOffset:
-              description: To what time zone teh emmber belongs to
-              type: string
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptionalModelFields'
     UnsubscribeRequest:
       description: ''
       required:
@@ -2588,352 +2616,6 @@ components:
           - some text
         skip: 81
         limit: 79
-    Competition:
-      description: ''
-      type: object
-      allOf:
-        -
-          type: object
-          properties:
-            competitionType:
-              $ref: '#/components/schemas/CompetitionType'
-            numberOfRounds:
-              format: int32
-              description: Number of rounds to be played in a competition
-              type: integer
-            numberOfGroupStages:
-              description: Number of group stages
-              type: integer
-            maxNumberOfEntrants:
-              format: int32
-              description: Maximum number of partiipants allowed in a competition
-              type: integer
-              example: '9999'
-            minNumberOfEntrants:
-              format: int32
-              description: Maximum number of partiipants allowed in a competition
-              type: integer
-              example: '0'
-            name:
-              description: ''
-              type: string
-            description:
-              description: ''
-              type: string
-            termsAndConditions:
-              description: ''
-              type: string
-            entrantMemberType:
-              type: string
-            scheduledStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition should start. All records are stored
-                in UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            scheduledEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition should end. All records are stored in
-                UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            actualStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition started. All records are stored in
-                UTC time zone
-              type: string
-              readOnly: true
-              example: '2019-09-25T15:47:00.000+0000'
-            actualEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition ended. All records are stored in UTC
-                time zone
-              type: string
-              readOnly: true
-              example: '2019-09-25T15:47:00.000+0000'
-            status:
-              $ref: '#/components/schemas/CompetitionStatus'
-            statusCode:
-              description: The code of the competition
-              type: integer
-              readOnly: true
-              example: '5'
-            constraints:
-              description: Additional constraints
-              uniqueItems: true
-              type: array
-              items:
-                type: string
-              example: |-
-                - hasTranslations
-                - hasRewards
-                - isPublic
-                - optinRequiredForEntrants
-            products:
-              description: ''
-              type: array
-              items:
-                $ref: '#/components/schemas/ProductReduced'
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptionalModelFields'
-      example:
-        id: ziqniId
-        competitionType: Leaderboard
-        numberOfRounds: 70
-        numberOfGroupStages: 98
-        maxNumberOfEntrants: 70
-        minNumberOfEntrants: 25
-        jsonClass: some text
-        name: some text
-        description: some text
-        termsAndConditions: some text
-        entrantMemberType: some text
-        dependantOn:
-          entityType: some text
-          dependantOn:
-            must:
-              - some text
-              - some text
-            mustNot:
-              - some text
-              - some text
-            should:
-              - some text
-              - some text
-            shouldMatchAtLeast: 8
-        scheduledStartDate: '2018-02-10T09:30Z'
-        scheduledEndDate: '2018-02-10T09:30Z'
-        actualStartDate: '2018-02-10T09:30Z'
-        actualEndDate: '2018-02-10T09:30Z'
-        status: Ready
-        statusCode: 22
-        contests:
-          -
-            competitionId: some text
-            row: 80
-            name: some text
-            round: 63
-            groupStage: 4
-            entrantsFromContest:
-              - some text
-              - some text
-            status: Cancelled
-            statusCode: 11
-            scheduledStartDate: '2018-02-10T09:30Z'
-            scheduledEndDate: '2018-02-10T09:30Z'
-            actualStartDate: '2018-02-10T09:30Z'
-            actualEndDate: '2018-02-10T09:30Z'
-            tags:
-              - some text
-              - some text
-            rewards:
-              -
-                rewardRank: some text
-                name: some text
-                rewardValue: 16.29
-                rewardType: some text
-                rewardTypeId: some text
-              -
-                rewardRank: some text
-                name: some text
-                rewardValue: 63.01
-                rewardType: some text
-                rewardTypeId: some text
-          -
-            competitionId: some text
-            row: 5
-            name: some text
-            round: 62
-            groupStage: 35
-            entrantsFromContest:
-              - some text
-              - some text
-            status: Finished
-            statusCode: 8
-            scheduledStartDate: '2018-02-10T09:30Z'
-            scheduledEndDate: '2018-02-10T09:30Z'
-            actualStartDate: '2018-02-10T09:30Z'
-            actualEndDate: '2018-02-10T09:30Z'
-            tags:
-              - some text
-              - some text
-            rewards:
-              -
-                rewardRank: some text
-                name: some text
-                rewardValue: 94.38
-                rewardType: some text
-                rewardTypeId: some text
-              -
-                rewardRank: some text
-                name: some text
-                rewardValue: 4.66
-                rewardType: some text
-                rewardTypeId: some text
-        constraints:
-          - some text
-          - some text
-        products:
-          -
-            name: some text
-            productRefId: some text
-            tags:
-              - some text
-              - some text
-          -
-            name: some text
-            productRefId: some text
-            tags:
-              - some text
-              - some text
-    Contest:
-      description: This is a contest model
-      type: object
-      allOf:
-        -
-          type: object
-          properties:
-            name:
-              description: ''
-              type: string
-            description:
-              description: ''
-              type: string
-            termsAndConditions:
-              description: ''
-              type: string
-            competitionId:
-              description: A unique identifier of a Competition
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            round:
-              format: int32
-              description: To what round does the contest belong
-              type: integer
-              example: '2'
-            roundType:
-              $ref: '#/components/schemas/RoundType'
-            groupStage:
-              format: int32
-              description: >-
-                Is used for more complex Competitions e.g. multi round competitions where
-                round 1 group stage matched round 2
-              type: integer
-              example: '2'
-            groupStageLabel:
-              description: The name of the group stages
-              type: string
-              example: Semi-finals
-            maxNumberOfEntrants:
-              format: int32
-              description: Maximum number of entrants for the contest
-              type: integer
-              example: '9999'
-            minNumberOfEntrants:
-              format: int32
-              description: Minimum number of entrants for the contest
-              type: integer
-              example: '0'
-            scheduledStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Contest should start. All records are stored in
-                UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            scheduledEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Contest should end. All records are stored in UTC
-                time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            actualStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition started. All records are stored in
-                UTC time zone
-              type: string
-              readOnly: true
-              example: '2019-09-25T15:47:00.000+0000'
-            actualEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition ended. All records are stored in UTC
-                time zone
-              type: string
-              readOnly: true
-              example: '2019-09-25T15:47:00.000+0000'
-            strategies:
-              $ref: '#/components/schemas/Strategy'
-            status:
-              $ref: '#/components/schemas/ContestStatus'
-            statusCode:
-              description: The code of the contest
-              type: integer
-              readOnly: true
-              example: '3'
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            constraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: |-
-                - hasTranslations
-                - hasRewards
-                - hasRules
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptionalModelFields'
-      example:
-        jsonClass: some text
-        name: some text
-        description: some text
-        termsAndConditions: some text
-        competitionId: some text
-        row: 6
-        round: 11
-        roundType: TargetBased
-        groupStage: 90
-        groupStageLabel: some text
-        entrantsFromContest:
-          - some text
-          - some text
-        maxNumberOfEntrants: 25
-        minNumberOfEntrants: 91
-        scheduledStartDate: '2018-02-10T09:30Z'
-        scheduledEndDate: '2018-02-10T09:30Z'
-        actualStartDate: '2018-02-10T09:30Z'
-        actualEndDate: '2018-02-10T09:30Z'
-        strategies:
-          strategyType: SumBest
-          rankingStrategy:
-            constraints:
-              - some text
-              - some text
-          scoringStrategy:
-            limitUpdatesTo: 83
-            sumBestXOf: 0
-            lastUpdateTimeStamp: 7
-            recordTimeWhenSumReaches: 9.61
-        status: Finalised
-        statusCode: 46
-        constraints:
-          - some text
-          - some text
     EntityFilter:
       description: ''
       type: object
@@ -3123,9 +2805,6 @@ components:
           description: ''
       example:
         memberRefId: some text
-    Product:
-      description: ''
-      type: object
     Transformer:
       description: ''
       type: object
@@ -3252,89 +2931,6 @@ components:
       allOf:
         -
           $ref: '#/components/schemas/MetaInfo'
-    Reward:
-      description: ''
-      type: object
-      properties:
-        entityType:
-          $ref: '#/components/schemas/EntityType'
-        entityId:
-          description: A unique identifier of an achievement or contest. Dependant on entityType
-          type: string
-          example: Dc4swmQBVd51K6gPQqFx
-        name:
-          description: The name of a reward
-          type: string
-          example: Welcome badge
-        description:
-          description: The description of a Reward
-          type: string
-          example: A badge to welcome a new player
-        rewardRank:
-          description: If used in the context of contest this will associate with the rank of the leaderboard
-          type: string
-          example: '1,2 3 ...10'
-        rewardValue:
-          format: double
-          description: Numerical value of the reward that will be issued based on the reward type
-          type: number
-          example: '1'
-        rewardType:
-          $ref: '#/components/schemas/RewardTypeReduced'
-        icon:
-          description: An Icon id that has been pre uploaded to the system to display for reward
-          type: string
-          example: Dc4swmQBVd51K6gPQqFx
-        issueLimit:
-          format: int32
-          description: how many of thsese rewards are
-          type: integer
-          example: '2'
-        delay:
-          format: int32
-          description: Delay of issuing a reward in minutes
-          type: integer
-          example: '2'
-        pointInTime:
-          format: date-time
-          description: >-
-            ISO8601 timestamp for when a Reward is available until a specific point in time. All
-            records are stored in UTC time zone
-          type: string
-          example: '2019-09-25T15:47:00.000+0000'
-        period:
-          format: int32
-          description: Reward available for a period of time from issuing in minutes
-          type: integer
-          example: '2'
-        id:
-          description: Unique system identifier of a Main Rule
-          type: string
-          readOnly: true
-          example: Dc4swmQBVd51K6gPQqFx
-        constraints:
-          description: Additional constraints
-          type: array
-          items:
-            type: string
-          example: '- notifyMember - isMemberAcknowledgmentRequired'
-      example:
-        entityType: FileObject
-        entityId: some text
-        name: some text
-        description: some text
-        rewardRank: some text
-        rewardValue: 7.85
-        rewardType:
-          key: some text
-        icon: some text
-        issueLimit: 60
-        delay: 19
-        pointInTime: '2018-02-10T09:30Z'
-        period: 32
-        constraints:
-          - some text
-          - some text
     Message:
       description: ''
       type: object
@@ -3854,6 +3450,7 @@ components:
         - entityId
         - statusCode
         - status
+        - points
       type: object
       properties:
         entityType:
@@ -3874,6 +3471,10 @@ components:
           type: string
         percentageComplete:
           description: 'What percentage has been completed so far, this is a number between 0 and 100'
+          type: number
+        points:
+          format: double
+          description: ''
           type: number
     EntityGraphResponse:
       description: '        '
@@ -4130,95 +3731,6 @@ components:
               type: array
               items:
                 type: string
-    Achievement:
-      description: ''
-      type: object
-      allOf:
-        -
-          type: object
-          properties:
-            name:
-              description: ''
-              type: string
-            description:
-              description: ''
-              type: string
-            termsAndConditions:
-              description: ''
-              type: string
-            constraints:
-              description: >-
-                Additional constraints, if set means true [optinRequiredForEntrants, hasRules,
-                hasRewards]
-              type: array
-              items:
-                type: string
-              example: |-
-                - deprecated
-                - notifyMember
-                - isHidden
-                - optinRequiredForEntrants
-                - expired
-            maxNumberOfIssues:
-              format: int32
-              description: Maximum number of issued achievements
-              type: integer
-            scheduling:
-              $ref: '#/components/schemas/Scheduling'
-            status:
-              description: Achievement status
-              type: string
-            statusCode:
-              format: int32
-              description: ''
-              type: integer
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            achievementDependencies:
-              $ref: '#/components/schemas/DependantOn'
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptionalModelFields'
-      example:
-        id: ziqniId
-        name: some text
-        description: some text
-        termsAndConditions: some text
-        constraints:
-          - some text
-          - some text
-        maxNumberOfIssues: 37
-        scheduling:
-          scheduleType: Weekly
-          scheduleOccurrencesLimit: 4
-          every:
-            - 73
-            - 79
-          startDate: '2018-02-10T09:30Z'
-          endDate: '2018-02-10T09:30Z'
-          constraints:
-            - some text
-            - some text
-        dependantOn:
-          entityType: some text
-          dependantOn:
-            must:
-              - some text
-              - some text
-            mustNot:
-              - some text
-              - some text
-            should:
-              - some text
-              - some text
-            shouldMatchAtLeast: 75
-        status: some text
-        statusCode: 80
     FileRequest:
       description: ''
       type: object
@@ -4244,100 +3756,6 @@ components:
         repositoryId:
           description: ''
           type: string
-    AchievementFilter:
-      description: ''
-      type: object
-      properties:
-        tags:
-          description: ''
-          type: array
-          items:
-            type: string
-        startDate:
-          $ref: '#/components/schemas/DateRange'
-          description: startDate
-        endDate:
-          $ref: '#/components/schemas/DateRange'
-          description: ''
-        ids:
-          description: ''
-          type: array
-          items:
-            type: string
-        sortBy:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/QuerySortBy'
-        skip:
-          format: int32
-          description: ''
-          type: integer
-        limit:
-          format: int32
-          description: ''
-          type: integer
-        statusCode:
-          $ref: '#/components/schemas/NumberRange'
-          description: Achievement status code
-          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
-        constraints:
-          description: Specify the constraints that need to be applied to the filter.
-          type: array
-          items:
-            type: string
-          example: |-
-            - hasTranslations
-            - hasRewards
-            - hasRules
-            - optinRequired
-        productTags:
-          description: ''
-          type: array
-          items:
-            type: string
-        productIds:
-          description: deprecated
-          type: array
-          items:
-            type: string
-      example:
-        productIds:
-          - some text
-          - some text
-        tags:
-          - some text
-          - some text
-        startDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        endDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        ids:
-          - some text
-          - some text
-        status:
-          - some text
-          - some text
-        sortBy:
-          -
-            queryField: some text
-            order: Asc
-          -
-            queryField: some text
-            order: Desc
-        skip: 0
-        limit: 72
-        statusCode:
-          - 60
-          - 45
     AwardRequest:
       description: ''
       type: object
@@ -4620,6 +4038,399 @@ components:
         customFields:
           type: object
           additionalProperties: true
+    InstantWin:
+      description: ''
+      type: object
+      allOf:
+        -
+          required:
+            - instantWinType
+            - tiles
+          type: object
+          properties:
+            name:
+              description: ''
+              type: string
+            description:
+              description: ''
+              type: string
+            termsAndConditions:
+              description: ''
+              type: string
+            constraints:
+              description: >-
+                Additional constraints, if set means true [optinRequiredForEntrants, hasRules,
+                hasRewards]
+              type: array
+              items:
+                type: string
+              example: |-
+                - deprecated
+                - notifyMember
+                - isHidden
+                - optinRequiredForEntrants
+                - expired
+            statusCode:
+              format: int32
+              description: ''
+              type: integer
+            instantWinType:
+              description: ''
+              type: integer
+            tiles:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/InstantWinTile'
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+    InstantWinFilter:
+      description: ''
+      type: object
+      properties:
+        tags:
+          description: ''
+          type: array
+          items:
+            type: string
+        ids:
+          description: ''
+          type: array
+          items:
+            type: string
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
+        constraints:
+          description: Specify the constraints that need to be applied to the filter.
+          type: array
+          items:
+            type: string
+          example: |-
+            - hasTranslations
+            - hasRewards
+            - hasRules
+            - optinRequired
+        instantWinTypes:
+          description: ''
+          type: array
+          items:
+            type: integer
+      example:
+        productIds:
+          - some text
+          - some text
+        tags:
+          - some text
+          - some text
+        startDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        endDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        ids:
+          - some text
+          - some text
+        status:
+          - some text
+          - some text
+        sortBy:
+          -
+            queryField: some text
+            order: Asc
+          -
+            queryField: some text
+            order: Desc
+        skip: 0
+        limit: 72
+        statusCode:
+          - 60
+          - 45
+    InstantWinPlayRequest:
+      description: ''
+      type: object
+      properties:
+        awardId:
+          description: The award identifier is required to claim this. This can only be made once.
+          type: string
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        currencyKey:
+          description: >-
+            The UoM currency key to normalise the value to for presentation. Example; If the
+            reward is in EUR and this value is set to USD then the value will be multiplied by
+            1.09387699997429
+          type: string
+    InstantWinResponse:
+      description: ''
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/InstantWin'
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    InstantWinRequest:
+      description: ''
+      required:
+        - instantWinId
+      type: object
+      properties:
+        instantWinFilter:
+          $ref: '#/components/schemas/InstantWinFilter'
+          description: The unique identifier for this instant win
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        currencyKey:
+          description: >-
+            The UoM currency key to normalise the value to for presentation. Example; If the
+            reward is in EUR and this value is set to USD then the value will be multiplied by
+            1.09387699997429
+          type: string
+    InstantWinResult:
+      description: ''
+      type: object
+      allOf:
+        -
+          required:
+            - instantWinType
+            - tiles
+          type: object
+          properties:
+            awards:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/Award'
+            tiles:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/InstantWinTile'
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+    Achievement:
+      description: ''
+      type: object
+      allOf:
+        -
+          type: object
+          properties:
+            name:
+              description: ''
+              type: string
+            description:
+              description: ''
+              type: string
+            termsAndConditions:
+              description: ''
+              type: string
+            constraints:
+              description: >-
+                Additional constraints, if set means true [optinRequiredForEntrants, hasRules,
+                hasRewards]
+              type: array
+              items:
+                type: string
+              example: |-
+                - deprecated
+                - notifyMember
+                - isHidden
+                - optinRequiredForEntrants
+                - expired
+            maxNumberOfIssues:
+              format: int32
+              description: Maximum number of issued achievements
+              type: integer
+            scheduling:
+              $ref: '#/components/schemas/Scheduling'
+            status:
+              description: Achievement status
+              type: string
+            statusCode:
+              format: int32
+              description: ''
+              type: integer
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            achievementDependencies:
+              $ref: '#/components/schemas/DependantOn'
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: The filter that is used to restrict the prodcuts eligible for this competition
+            products:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductReduced'
+            iconLink:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+      example:
+        id: ziqniId
+        name: some text
+        description: some text
+        termsAndConditions: some text
+        constraints:
+          - some text
+          - some text
+        maxNumberOfIssues: 37
+        scheduling:
+          scheduleType: Weekly
+          scheduleOccurrencesLimit: 4
+          every:
+            - 73
+            - 79
+          startDate: '2018-02-10T09:30Z'
+          endDate: '2018-02-10T09:30Z'
+          constraints:
+            - some text
+            - some text
+        dependantOn:
+          entityType: some text
+          dependantOn:
+            must:
+              - some text
+              - some text
+            mustNot:
+              - some text
+              - some text
+            should:
+              - some text
+              - some text
+            shouldMatchAtLeast: 75
+        status: some text
+        statusCode: 80
+    Reward:
+      description: ''
+      type: object
+      properties:
+        probability:
+          description: What is the probability of winning this reward
+          type: number
+        entityType:
+          $ref: '#/components/schemas/EntityType'
+        entityId:
+          description: A unique identifier of an achievement or contest. Dependant on entityType
+          type: string
+          example: Dc4swmQBVd51K6gPQqFx
+        name:
+          description: The name of a reward
+          type: string
+          example: Welcome badge
+        description:
+          description: The description of a Reward
+          type: string
+          example: A badge to welcome a new player
+        rewardRank:
+          description: If used in the context of contest this will associate with the rank of the leaderboard
+          type: string
+          example: '1,2 3 ...10'
+        rewardValue:
+          format: double
+          description: Numerical value of the reward that will be issued based on the reward type
+          type: number
+          example: '1'
+        rewardType:
+          $ref: '#/components/schemas/RewardTypeReduced'
+        iconLink:
+          description: Link to the icon
+          type: string
+          example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+        icon:
+          description: id the icon
+          type: string
+          example: DNBIOOONK
+        spaceName:
+          description: spaceName
+          type: string
+          example: example-space
+        issueLimit:
+          format: int32
+          description: how many of thsese rewards are
+          type: integer
+          example: '2'
+        delay:
+          format: int32
+          description: Delay of issuing a reward in minutes
+          type: integer
+          example: '2'
+        pointInTime:
+          format: date-time
+          description: >-
+            ISO8601 timestamp for when a Reward is available until a specific point in time. All
+            records are stored in UTC time zone
+          type: string
+          example: '2019-09-25T15:47:00.000+0000'
+        period:
+          format: int32
+          description: Reward available for a period of time from issuing in minutes
+          type: integer
+          example: '2'
+        id:
+          description: Unique system identifier of a Main Rule
+          type: string
+          readOnly: true
+          example: Dc4swmQBVd51K6gPQqFx
+        constraints:
+          description: Additional constraints
+          type: array
+          items:
+            type: string
+          example: '- notifyMember - isMemberAcknowledgmentRequired'
+      example:
+        entityType: FileObject
+        entityId: some text
+        name: some text
+        description: some text
+        rewardRank: some text
+        rewardValue: 7.85
+        rewardType:
+          key: some text
+        icon: some text
+        issueLimit: 60
+        delay: 19
+        pointInTime: '2018-02-10T09:30Z'
+        period: 32
+        constraints:
+          - some text
+          - some text
     ProductReduced:
       description: ''
       type: object
@@ -4636,6 +4447,14 @@ components:
                 be changed after the product has been created
               type: string
               example: hockey-madness
+            customFields:
+              type: object
+              additionalProperties: true
+            id:
+              description: Unique system identifier of a Main Rule
+              type: string
+              readOnly: true
+              example: Dc4swmQBVd51K6gPQqFx
           example:
             name: some text
             productRefId: some text
@@ -4644,6 +4463,810 @@ components:
               - some text
         -
           $ref: '#/components/schemas/OptionalModelFields'
+    ProductResponse:
+      description: This is a Contest Response
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      example:
+        meta:
+          totalRecordsFound: 9
+          skip: 25
+          limit: 21
+          objectType: some text
+          resultCount: 46
+        data:
+          - {}
+          - {}
+        errors:
+          -
+            message: some text
+            code: 20
+            status: 19
+          -
+            message: some text
+            code: 99
+            status: 34
+    ActionTypeAdjustmentFactor:
+      required:
+        - adjustmentFactor
+        - actionTypeId
+      type: object
+      properties:
+        adjustmentFactor:
+          format: double
+          description: The multiplier to apply to source values received for this product events
+          type: number
+          example: 1
+        actionTypeId:
+          description: A unique system generated identifier for Action Type
+          type: string
+          example: er5samHBdr48KgaPQq89asd
+      example: '"Deleted"'
+    Member:
+      description: This is the Member model
+      allOf:
+        -
+          type: object
+          properties:
+            name:
+              description: The name of the member that is used on leader boards and public displays
+              type: string
+              example: Player 1
+            memberRefId:
+              description: The reference to this member in your system
+              type: string
+              example: Player-1
+            memberType:
+              $ref: '#/components/schemas/MemberType'
+            teamMembers:
+              description: A social group like Guilds
+              type: array
+              items:
+                type: string
+            constraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+            iconLink:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            timeZoneOffset:
+              description: To what time zone teh emmber belongs to
+              type: string
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+    Product:
+      type: object
+      allOf:
+        -
+          required:
+            - id
+            - spaceName
+            - created
+          type: object
+          properties:
+            id:
+              description: A unique system generated identifier
+              type: string
+              readOnly: false
+              example: sc1samQmVr61KgaPQq7x
+            spaceName:
+              description: This is the space name which is linked to the account
+              type: string
+              readOnly: false
+              example: Your_space_name
+            created:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Model was created. All records are stored in UTC
+                time zone
+              type: string
+              readOnly: false
+              example: '2019-09-25T15:47:00.000+0000'
+            name:
+              description: The name of the product
+              type: string
+              example: Hockey madness
+            description:
+              description: The description of the product for your reference
+              type: string
+              example: Spin the hockey wheal
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+            productRefId:
+              description: >-
+                The reference to this product in your system. The reference identifier can not
+                be changed after the product has been created
+              type: string
+              example: hockey-madness
+            productType:
+              description: The type to this product in your system.
+              type: string
+              example: hockey-madness
+            iconLink:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            actionTypeAdjustmentFactors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+    InstantWinPlayOutcome:
+      description: ''
+      type: object
+      properties:
+        awards:
+          description: The awards that the member unlocked
+          type: array
+          items:
+            $ref: '#/components/schemas/Award'
+        tiles:
+          description: >-
+            The tiles uncovered during the game session, for the wheel of fortune this will be the
+            slice the player landed on for a scratch card it would be the revealed tiles
+          type: array
+          items:
+            $ref: '#/components/schemas/InstantWinTile'
+    InstantWinPlayResponse:
+      description: ''
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/InstantWinPlayOutcome'
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    AchievementFilter:
+      description: ''
+      type: object
+      properties:
+        tags:
+          description: ''
+          type: array
+          items:
+            type: string
+        startDate:
+          $ref: '#/components/schemas/DateRange'
+          description: startDate
+        endDate:
+          $ref: '#/components/schemas/DateRange'
+          description: ''
+        ids:
+          description: ''
+          type: array
+          items:
+            type: string
+        sortBy:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
+        statusCode:
+          $ref: '#/components/schemas/NumberRange'
+          description: Achievement status code
+          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
+        constraints:
+          description: Specify the constraints that need to be applied to the filter.
+          type: array
+          items:
+            type: string
+          example: |-
+            - hasTranslations
+            - hasRewards
+            - hasRules
+            - optinRequired
+        productTags:
+          description: ''
+          type: array
+          items:
+            type: string
+        productIds:
+          description: ''
+          type: array
+          items:
+            type: string
+        scheduleTypes:
+          description: ''
+          type: array
+          items:
+            type: string
+      example:
+        productIds:
+          - some text
+          - some text
+        tags:
+          - some text
+          - some text
+        startDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        endDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        ids:
+          - some text
+          - some text
+        status:
+          - some text
+          - some text
+        sortBy:
+          -
+            queryField: some text
+            order: Asc
+          -
+            queryField: some text
+            order: Desc
+        skip: 0
+        limit: 72
+        statusCode:
+          - 60
+          - 45
+    ProductFilter:
+      description: ''
+      type: object
+      properties:
+        entityIDs:
+          description: The entity id to search. The default is product id
+          type: array
+          items:
+            type: string
+        sortBy:
+          description: >-
+            Allow data to be sorted by name, description, created, etc. The default is name.
+            Sorting is not available on translations
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        skip:
+          format: int32
+          description: >-
+            Allows paging through the data. The default is zero. If the limit is set 20, and the
+            skip is set to 20 then it will return the next 20 records i.e. page 2
+          type: integer
+        limit:
+          format: int32
+          description: 'Limit the result set. Default value is 20, maximum value is 50.'
+          type: integer
+        constraints:
+          description: >-
+            Specify the constraints that need to be applied to the filter.
+            
+            - empty (default) == search based on the provided criteria
+            
+            - productRefId == This means the entityId(s) provided are product reference
+            identifiers
+            
+            - similarTo == Find product similar to the prouct ID(s) provided
+          type: array
+          items:
+            type: string
+          example: '- similarTo'
+        entityType:
+          description: |-
+            This field determines the meaning of the IDs field
+            - product (default)
+            - competition
+            - achievement.
+          type: string
+    ProductRequest:
+      description: ''
+      type: object
+      properties:
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        productFilter:
+          $ref: '#/components/schemas/ProductFilter'
+          description: ''
+      example:
+        languageKey: some text
+        productFilter:
+          entityIDs:
+            - some text
+            - some text
+          sortBy:
+            -
+              queryField: some text
+              order: Asc
+            -
+              queryField: some text
+              order: Desc
+          skip: 57
+          limit: 9
+          constraints:
+            - some text
+            - some text
+          entityType: some text
+    GridLocation:
+      description: >-
+        This struct contains two integer-valued fields, row and col . A GridLocation can be used to
+        represent a location in a two-dimensional grid.
+      required:
+        - row
+        - col
+      type: object
+      properties:
+        row:
+          description: ''
+          type: integer
+        col:
+          description: ''
+          type: integer
+    InstantWinTile:
+      description: ''
+      required:
+        - orderNumber
+        - probability
+        - icon
+        - horizontalPosition
+        - verticalPosition
+        - location
+      type: object
+      properties:
+        icon:
+          description: The id to the image file
+          type: string
+        iconLink:
+          description: The uri to this image
+          type: string
+        text:
+          description: ''
+          type: string
+        contraints:
+          description: 'hasPrizes, glow'
+          type: array
+          items:
+            type: string
+        reward:
+          $ref: '#/components/schemas/RewardReduced'
+          description: The reward associated with this tile
+        probability:
+          format: double
+          description: ''
+          type: number
+        location:
+          $ref: '#/components/schemas/GridLocation'
+          description: ''
+    Competition:
+      description: ''
+      type: object
+      allOf:
+        -
+          type: object
+          properties:
+            competitionType:
+              $ref: '#/components/schemas/CompetitionType'
+            numberOfRounds:
+              format: int32
+              description: Number of rounds to be played in a competition
+              type: integer
+            numberOfGroupStages:
+              description: Number of group stages
+              type: integer
+            maxNumberOfEntrants:
+              format: int32
+              description: Maximum number of partiipants allowed in a competition
+              type: integer
+              example: '9999'
+            minNumberOfEntrants:
+              format: int32
+              description: Maximum number of partiipants allowed in a competition
+              type: integer
+              example: '0'
+            name:
+              description: ''
+              type: string
+            description:
+              description: ''
+              type: string
+            termsAndConditions:
+              description: ''
+              type: string
+            entrantMemberType:
+              type: string
+            scheduledStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition should start. All records are stored
+                in UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            scheduledEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition should end. All records are stored in
+                UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            actualStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition started. All records are stored in
+                UTC time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+            actualEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition ended. All records are stored in UTC
+                time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+            status:
+              $ref: '#/components/schemas/CompetitionStatus'
+            icon:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            statusCode:
+              description: The code of the competition
+              type: integer
+              readOnly: true
+              example: '5'
+            constraints:
+              description: Additional constraints
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+              example: |-
+                - hasTranslations
+                - hasRewards
+                - isPublic
+                - optinRequiredForEntrants
+            products:
+              description: >-
+                If individual product were selected then they will be listed here. If the
+                proproduct tags filter was used then this field will be empty and the
+                productTagsFilter will be populated.
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductReduced'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: The filter that is used to restrict the prodcuts eligible for this competition
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+      example:
+        id: ziqniId
+        competitionType: Leaderboard
+        numberOfRounds: 70
+        numberOfGroupStages: 98
+        maxNumberOfEntrants: 70
+        minNumberOfEntrants: 25
+        jsonClass: some text
+        name: some text
+        description: some text
+        termsAndConditions: some text
+        entrantMemberType: some text
+        dependantOn:
+          entityType: some text
+          dependantOn:
+            must:
+              - some text
+              - some text
+            mustNot:
+              - some text
+              - some text
+            should:
+              - some text
+              - some text
+            shouldMatchAtLeast: 8
+        scheduledStartDate: '2018-02-10T09:30Z'
+        scheduledEndDate: '2018-02-10T09:30Z'
+        actualStartDate: '2018-02-10T09:30Z'
+        actualEndDate: '2018-02-10T09:30Z'
+        status: Ready
+        statusCode: 22
+        contests:
+          -
+            competitionId: some text
+            row: 80
+            name: some text
+            round: 63
+            groupStage: 4
+            entrantsFromContest:
+              - some text
+              - some text
+            status: Cancelled
+            statusCode: 11
+            scheduledStartDate: '2018-02-10T09:30Z'
+            scheduledEndDate: '2018-02-10T09:30Z'
+            actualStartDate: '2018-02-10T09:30Z'
+            actualEndDate: '2018-02-10T09:30Z'
+            tags:
+              - some text
+              - some text
+            rewards:
+              -
+                rewardRank: some text
+                name: some text
+                rewardValue: 16.29
+                rewardType: some text
+                rewardTypeId: some text
+              -
+                rewardRank: some text
+                name: some text
+                rewardValue: 63.01
+                rewardType: some text
+                rewardTypeId: some text
+          -
+            competitionId: some text
+            row: 5
+            name: some text
+            round: 62
+            groupStage: 35
+            entrantsFromContest:
+              - some text
+              - some text
+            status: Finished
+            statusCode: 8
+            scheduledStartDate: '2018-02-10T09:30Z'
+            scheduledEndDate: '2018-02-10T09:30Z'
+            actualStartDate: '2018-02-10T09:30Z'
+            actualEndDate: '2018-02-10T09:30Z'
+            tags:
+              - some text
+              - some text
+            rewards:
+              -
+                rewardRank: some text
+                name: some text
+                rewardValue: 94.38
+                rewardType: some text
+                rewardTypeId: some text
+              -
+                rewardRank: some text
+                name: some text
+                rewardValue: 4.66
+                rewardType: some text
+                rewardTypeId: some text
+        constraints:
+          - some text
+          - some text
+        products:
+          -
+            name: some text
+            productRefId: some text
+            tags:
+              - some text
+              - some text
+          -
+            name: some text
+            productRefId: some text
+            tags:
+              - some text
+              - some text
+    Contest:
+      description: This is a contest model
+      type: object
+      allOf:
+        -
+          type: object
+          properties:
+            name:
+              description: ''
+              type: string
+            description:
+              description: ''
+              type: string
+            termsAndConditions:
+              description: ''
+              type: string
+            competitionId:
+              description: A unique identifier of a Competition
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            round:
+              format: int32
+              description: To what round does the contest belong
+              type: integer
+              example: '2'
+            roundType:
+              $ref: '#/components/schemas/RoundType'
+            groupStage:
+              format: int32
+              description: >-
+                Is used for more complex Competitions e.g. multi round competitions where
+                round 1 group stage matched round 2
+              type: integer
+              example: '2'
+            entrantsFromContest:
+              description: >-
+                A list of Ziqni contest identifiers to allow contests chaining. When a
+                Progression competition is active and you have a 2 round competition the first
+                round has to reference the second round then this parameter becomes mandatory
+                instead of Optional.
+              type: array
+              items:
+                type: string
+              example: '- Dc4swmQBVd51K6gPQqFx - sc3jsrfLewVdt6KugPqFx'
+            groupStageLabel:
+              description: The name of the group stages
+              type: string
+              example: Semi-finals
+            maxNumberOfEntrants:
+              format: int32
+              description: Maximum number of entrants for the contest
+              type: integer
+              example: '9999'
+            minNumberOfEntrants:
+              format: int32
+              description: Minimum number of entrants for the contest
+              type: integer
+              example: '0'
+            scheduledStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Contest should start. All records are stored in
+                UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            scheduledEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Contest should end. All records are stored in UTC
+                time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            actualStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition started. All records are stored in
+                UTC time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+            actualEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition ended. All records are stored in UTC
+                time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+            strategies:
+              $ref: '#/components/schemas/Strategy'
+            status:
+              $ref: '#/components/schemas/ContestStatus'
+            statusCode:
+              description: The code of the contest
+              type: integer
+              readOnly: true
+              example: '3'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            icon:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            constraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: |-
+                - hasTranslations
+                - hasRewards
+                - hasRules
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+      example:
+        jsonClass: some text
+        name: some text
+        description: some text
+        termsAndConditions: some text
+        competitionId: some text
+        row: 6
+        round: 11
+        roundType: TargetBased
+        groupStage: 90
+        groupStageLabel: some text
+        entrantsFromContest:
+          - some text
+          - some text
+        maxNumberOfEntrants: 25
+        minNumberOfEntrants: 91
+        scheduledStartDate: '2018-02-10T09:30Z'
+        scheduledEndDate: '2018-02-10T09:30Z'
+        actualStartDate: '2018-02-10T09:30Z'
+        actualEndDate: '2018-02-10T09:30Z'
+        strategies:
+          strategyType: SumBest
+          rankingStrategy:
+            constraints:
+              - some text
+              - some text
+          scoringStrategy:
+            limitUpdatesTo: 83
+            sumBestXOf: 0
+            lastUpdateTimeStamp: 7
+            recordTimeWhenSumReaches: 9.61
+        status: Finalised
+        statusCode: 46
+        constraints:
+          - some text
+          - some text
   responses:
     AchievementResponseBody:
       content:
@@ -4823,6 +5446,24 @@ components:
           schema:
             $ref: '#/components/schemas/EntityGraphResponse'
       description: ''
+    InstantWinResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InstantWinResponse'
+      description: ''
+    InstantWinPlayResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InstantWinPlayResponse'
+      description: ''
+    ProductResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProductResponse'
+      description: ''
   securitySchemes:
     OAuth2:
       flows:
@@ -4870,3 +5511,6 @@ tags:
   -
     name: files
     description: Perform POST operations on Files
+  -
+    name: products
+    description: Perform POST operations on Products
