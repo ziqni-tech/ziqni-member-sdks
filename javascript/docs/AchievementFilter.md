@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **statusCode** | [**NumberRange**](NumberRange.md) |  | [optional] 
 **constraints** | **[String]** | Specify the constraints that need to be applied to the filter. | [optional] 
 **productTags** | **[String]** |  | [optional] 
-**productIds** | **[String]** | deprecated | [optional] 
+**productIds** | **[String]** |  | [optional] 
+**scheduleTypes** | **[String]** |  | [optional] 
 
 

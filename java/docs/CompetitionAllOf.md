@@ -23,8 +23,9 @@ Name | Type | Description | Notes
 **status** | **CompetitionStatus** |  |  [optional]
 **statusCode** | **Integer** | The code of the competition |  [optional] [readonly]
 **constraints** | **Set&lt;String&gt;** | Additional constraints |  [optional]
-**products** | [**List&lt;ProductReduced&gt;**](ProductReduced.md) |  |  [optional]
+**products** | [**List&lt;ProductReduced&gt;**](ProductReduced.md) | If individual product were selected then they will be listed here. If the proproduct tags filter was used then this field will be empty and the productTagsFilter will be populated. |  [optional]
 **memberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
+**productTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
 
 
 

@@ -1,21 +1,21 @@
-# MissionsApi
+# ProductsApi
 
 All URIs are relative to *https://member-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getMissions**](MissionsApi.md#getMissions) | **POST** /missions | Get achievements by member reference id
-[**getMissionsWithHttpInfo**](MissionsApi.md#getMissionsWithHttpInfo) | **POST** /missions | Get achievements by member reference id
+[**getProducts**](ProductsApi.md#getProducts) | **POST** /products | Get recommended products by product Id
+[**getProductsWithHttpInfo**](ProductsApi.md#getProductsWithHttpInfo) | **POST** /products | Get recommended products by product Id
 
 
 
-## getMissions
+## getProducts
 
-> CompletableFuture<MissionResponse> getMissions(missionRequest)
+> CompletableFuture<ProductResponse> getProducts(productRequest)
 
-Get achievements by member reference id
+Get recommended products by product Id
 
-Returns a list of achievements for the provided member ref id and applied filters.
+Returns a list of products recommended for a product with given id.
 
 ### Example
 
@@ -26,7 +26,7 @@ import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
 import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
-import com.ziqni.member.sdk.api.MissionsApi;
+import com.ziqni.member.sdk.api.ProductsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -38,13 +38,13 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        MissionsApi apiInstance = new MissionsApi(defaultClient);
-        MissionRequest missionRequest = new MissionRequest(); // MissionRequest | 
+        ProductsApi apiInstance = new ProductsApi(defaultClient);
+        ProductRequest productRequest = new ProductRequest(); // ProductRequest | 
         try {
-            CompletableFuture<MissionResponse> result = apiInstance.getMissions(missionRequest);
+            CompletableFuture<ProductResponse> result = apiInstance.getProducts(productRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling MissionsApi#getMissions");
+            System.err.println("Exception when calling ProductsApi#getProducts");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -59,11 +59,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **missionRequest** | [**MissionRequest**](MissionRequest.md)|  |
+ **productRequest** | [**ProductRequest**](ProductRequest.md)|  |
 
 ### Return type
 
-CompletableFuture<[**MissionResponse**](MissionResponse.md)>
+CompletableFuture<[**ProductResponse**](ProductResponse.md)>
 
 
 ### Authorization
@@ -82,13 +82,13 @@ CompletableFuture<[**MissionResponse**](MissionResponse.md)>
 | **400** |  |  -  |
 | **500** |  |  -  |
 
-## getMissionsWithHttpInfo
+## getProductsWithHttpInfo
 
-> CompletableFuture<ApiResponse<MissionResponse>> getMissions getMissionsWithHttpInfo(missionRequest)
+> CompletableFuture<ApiResponse<ProductResponse>> getProducts getProductsWithHttpInfo(productRequest)
 
-Get achievements by member reference id
+Get recommended products by product Id
 
-Returns a list of achievements for the provided member ref id and applied filters.
+Returns a list of products recommended for a product with given id.
 
 ### Example
 
@@ -100,7 +100,7 @@ import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
 import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
-import com.ziqni.member.sdk.api.MissionsApi;
+import com.ziqni.member.sdk.api.ProductsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -112,22 +112,22 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        MissionsApi apiInstance = new MissionsApi(defaultClient);
-        MissionRequest missionRequest = new MissionRequest(); // MissionRequest | 
+        ProductsApi apiInstance = new ProductsApi(defaultClient);
+        ProductRequest productRequest = new ProductRequest(); // ProductRequest | 
         try {
-            CompletableFuture<ApiResponse<MissionResponse>> response = apiInstance.getMissionsWithHttpInfo(missionRequest);
+            CompletableFuture<ApiResponse<ProductResponse>> response = apiInstance.getProductsWithHttpInfo(productRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling MissionsApi#getMissions");
+            System.err.println("Exception when calling ProductsApi#getProducts");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling MissionsApi#getMissions");
+            System.err.println("Exception when calling ProductsApi#getProducts");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -142,11 +142,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **missionRequest** | [**MissionRequest**](MissionRequest.md)|  |
+ **productRequest** | [**ProductRequest**](ProductRequest.md)|  |
 
 ### Return type
 
-CompletableFuture<ApiResponse<[**MissionResponse**](MissionResponse.md)>>
+CompletableFuture<ApiResponse<[**ProductResponse**](ProductResponse.md)>>
 
 
 ### Authorization

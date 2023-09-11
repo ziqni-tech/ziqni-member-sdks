@@ -7,11 +7,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**indexNumber** | **Integer** |  |  [optional]
-**icon** | **String** |  | 
+**icon** | **String** | The id to the image file | 
+**iconLink** | **String** | The uri to this image |  [optional]
 **text** | **String** |  |  [optional]
 **contraints** | **List&lt;String&gt;** | hasPrizes, glow |  [optional]
-**rewardId** | **String** | The reward associated with this tile |  [optional]
+**reward** | [**RewardReduced**](RewardReduced.md) |  |  [optional]
+**probability** | **Double** |  | 
+**location** | [**GridLocation**](GridLocation.md) |  | 
 
 
 
