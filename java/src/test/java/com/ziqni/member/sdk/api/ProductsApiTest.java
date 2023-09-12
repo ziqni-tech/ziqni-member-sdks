@@ -14,10 +14,8 @@
 package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.member.sdk.data.LoadRulesData;
 import com.ziqni.member.sdk.model.ProductFilter;
 import com.ziqni.member.sdk.model.ProductRequest;
-import com.ziqni.member.sdk.model.SimilarToProductRequest;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
 
