@@ -4851,22 +4851,6 @@ components:
               example: '2019-09-25T15:47:00.000+0000'
             status:
               $ref: '#/components/schemas/CompetitionStatus'
-            icon:
-              description: Link to the icon
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            banner:
-              description: Link to the banner
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerLowResolution:
-              description: Link to the bannerLowResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerHighResolution:
-              description: Link to the bannerHighResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
             statusCode:
               description: The code of the competition
               type: integer
@@ -4897,6 +4881,22 @@ components:
             productTagsFilter:
               $ref: '#/components/schemas/DependantOn'
               description: The filter that is used to restrict the prodcuts eligible for this competition
+            bannerLink:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolutionLink:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolutionLink:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            iconLink:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
         -
           $ref: '#/components/schemas/ModelDefault'
         -
@@ -5111,22 +5111,6 @@ components:
             memberTagsFilter:
               $ref: '#/components/schemas/DependantOn'
               description: ''
-            icon:
-              description: Link to the icon
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            banner:
-              description: Link to the banner
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerLowResolution:
-              description: Link to the bannerLowResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerHighResolution:
-              description: Link to the bannerHighResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
             constraints:
               description: Additional constraints
               type: array
@@ -5136,6 +5120,22 @@ components:
                 - hasTranslations
                 - hasRewards
                 - hasRules
+            bannerLink:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolutionLink:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolutionLink:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            iconLink:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
         -
           $ref: '#/components/schemas/ModelDefault'
         -
@@ -5235,15 +5235,15 @@ components:
               description: Link to the icon
               type: string
               example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            banner:
+            bannerLink:
               description: Link to the banner
               type: string
               example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerLowResolution:
+            bannerLowResolutionLink:
               description: Link to the bannerLowResolution
               type: string
               example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerHighResolution:
+            bannerHighResolutionLink:
               description: Link to the bannerHighResolution
               type: string
               example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
