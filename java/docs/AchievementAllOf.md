@@ -20,6 +20,9 @@ Name | Type | Description | Notes
 **productTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
 **products** | [**List&lt;ProductReduced&gt;**](ProductReduced.md) |  |  [optional]
 **iconLink** | **String** | Link to the icon |  [optional]
+**banner** | **String** | Link to the banner |  [optional]
+**bannerLowResolution** | **String** | Link to the bannerLowResolution |  [optional]
+**bannerHighResolution** | **String** | Link to the bannerHighResolution |  [optional]
 
 
 

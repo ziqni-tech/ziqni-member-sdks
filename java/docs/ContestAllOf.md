@@ -26,6 +26,10 @@ Name | Type | Description | Notes
 **status** | **ContestStatus** |  |  [optional]
 **statusCode** | **Integer** | The code of the contest |  [optional] [readonly]
 **memberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
+**icon** | **String** | Link to the icon |  [optional]
+**banner** | **String** | Link to the banner |  [optional]
+**bannerLowResolution** | **String** | Link to the bannerLowResolution |  [optional]
+**bannerHighResolution** | **String** | Link to the bannerHighResolution |  [optional]
 **constraints** | **List&lt;String&gt;** | Additional constraints |  [optional]
 
 
