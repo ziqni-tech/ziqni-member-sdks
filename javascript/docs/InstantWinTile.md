@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **text** | **String** |  | [optional] 
 **contraints** | **[String]** | hasPrizes, glow | [optional] 
 **reward** | [**RewardReduced**](RewardReduced.md) |  | [optional] 
-**horizontalPosition** | **Number** | The horizontal position of the tile | 
-**verticalPosition** | **Number** | The vertical position of the tile | 
+**probability** | **Number** |  | 
+**location** | [**GridLocation**](GridLocation.md) |  | 
 
 

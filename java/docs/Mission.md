@@ -8,15 +8,15 @@ Mission is a specialised view of connected achievements. The first achievement i
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entries** | [**List&lt;MissionEntry&gt;**](MissionEntry.md) |  | 
+**steps** | [**List&lt;MissionStep&gt;**](MissionStep.md) |  |  [optional]
 **id** | **String** |  | 
 **name** | **String** |  |  [optional]
 **description** | **String** |  |  [optional]
 **termsAndConditions** | **String** |  |  [optional]
 **availableFrom** | **OffsetDateTime** |  | 
 **availableUntil** | **OffsetDateTime** |  |  [optional]
-**isCompleted** | **Boolean** |  | 
 **optInStatus** | [**OptinStatus**](OptinStatus.md) |  | 
+**constraints** | **List&lt;String&gt;** | isCompleted, etc |  [optional]
 
 
 

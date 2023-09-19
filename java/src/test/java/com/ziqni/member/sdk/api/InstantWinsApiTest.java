@@ -14,10 +14,8 @@
 package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.member.sdk.model.InstantWin;
 import com.ziqni.member.sdk.model.InstantWinFilter;
 import com.ziqni.member.sdk.model.InstantWinRequest;
-import com.ziqni.member.sdk.model.SimilarToProductRequest;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
 

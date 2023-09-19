@@ -132,7 +132,6 @@ public class WsClient extends WebSocketStompClient{
 
     /**
      * Add a listener which fires when the WebSocket/Stomp connection is broken (or fails to connect)
-     * @param listener
      */
     public void addDisconnectListener(FailureCallback listener) {
         disconnectListeners.add(listener);
