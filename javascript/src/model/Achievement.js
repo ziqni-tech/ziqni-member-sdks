@@ -100,6 +100,15 @@ class Achievement {
             if (data.hasOwnProperty('iconLink')) {
                 obj['iconLink'] = ApiClient.convertToType(data['iconLink'], 'String');
             }
+            if (data.hasOwnProperty('bannerLink')) {
+                obj['bannerLink'] = ApiClient.convertToType(data['bannerLink'], 'String');
+            }
+            if (data.hasOwnProperty('bannerLowResolutionLink')) {
+                obj['bannerLowResolutionLink'] = ApiClient.convertToType(data['bannerLowResolutionLink'], 'String');
+            }
+            if (data.hasOwnProperty('bannerHighResolutionLink')) {
+                obj['bannerHighResolutionLink'] = ApiClient.convertToType(data['bannerHighResolutionLink'], 'String');
+            }
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
@@ -195,6 +204,24 @@ Achievement.prototype['products'] = undefined;
 Achievement.prototype['iconLink'] = undefined;
 
 /**
+ * Link to the banner
+ * @member {String} bannerLink
+ */
+Achievement.prototype['bannerLink'] = undefined;
+
+/**
+ * Link to the bannerLowResolution
+ * @member {String} bannerLowResolutionLink
+ */
+Achievement.prototype['bannerLowResolutionLink'] = undefined;
+
+/**
+ * Link to the bannerHighResolution
+ * @member {String} bannerHighResolutionLink
+ */
+Achievement.prototype['bannerHighResolutionLink'] = undefined;
+
+/**
  * Ziqni id of the model
  * @member {String} id
  */
@@ -286,6 +313,21 @@ AchievementAllOf.prototype['products'] = undefined;
  * @member {String} iconLink
  */
 AchievementAllOf.prototype['iconLink'] = undefined;
+/**
+ * Link to the banner
+ * @member {String} bannerLink
+ */
+AchievementAllOf.prototype['bannerLink'] = undefined;
+/**
+ * Link to the bannerLowResolution
+ * @member {String} bannerLowResolutionLink
+ */
+AchievementAllOf.prototype['bannerLowResolutionLink'] = undefined;
+/**
+ * Link to the bannerHighResolution
+ * @member {String} bannerHighResolutionLink
+ */
+AchievementAllOf.prototype['bannerHighResolutionLink'] = undefined;
 // Implement ModelDefault interface:
 /**
  * Ziqni id of the model

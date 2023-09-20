@@ -111,6 +111,18 @@ class ContestAllOf {
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
             }
+            if (data.hasOwnProperty('bannerLink')) {
+                obj['bannerLink'] = ApiClient.convertToType(data['bannerLink'], 'String');
+            }
+            if (data.hasOwnProperty('bannerHighResolutionLink')) {
+                obj['bannerHighResolutionLink'] = ApiClient.convertToType(data['bannerHighResolutionLink'], 'String');
+            }
+            if (data.hasOwnProperty('bannerLowResolutionLink')) {
+                obj['bannerLowResolutionLink'] = ApiClient.convertToType(data['bannerLowResolutionLink'], 'String');
+            }
+            if (data.hasOwnProperty('iconLink')) {
+                obj['iconLink'] = ApiClient.convertToType(data['iconLink'], 'String');
+            }
         }
         return obj;
     }
@@ -230,6 +242,30 @@ ContestAllOf.prototype['memberTagsFilter'] = undefined;
  * @member {Array.<String>} constraints
  */
 ContestAllOf.prototype['constraints'] = undefined;
+
+/**
+ * Link to the banner
+ * @member {String} bannerLink
+ */
+ContestAllOf.prototype['bannerLink'] = undefined;
+
+/**
+ * Link to the bannerHighResolution
+ * @member {String} bannerHighResolutionLink
+ */
+ContestAllOf.prototype['bannerHighResolutionLink'] = undefined;
+
+/**
+ * Link to the bannerLowResolution
+ * @member {String} bannerLowResolutionLink
+ */
+ContestAllOf.prototype['bannerLowResolutionLink'] = undefined;
+
+/**
+ * Link to the icon
+ * @member {String} iconLink
+ */
+ContestAllOf.prototype['iconLink'] = undefined;
 
 
 
