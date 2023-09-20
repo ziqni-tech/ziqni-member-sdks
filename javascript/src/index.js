@@ -126,6 +126,7 @@ import RankingStrategy from './model/RankingStrategy';
 import ResponseMeta from './model/ResponseMeta';
 import Reward from './model/Reward';
 import RewardReduced from './model/RewardReduced';
+import RewardReducedAllOf from './model/RewardReducedAllOf';
 import RewardRequest from './model/RewardRequest';
 import RewardResponse from './model/RewardResponse';
 import RewardTypeReduced from './model/RewardTypeReduced';
@@ -877,6 +878,12 @@ export {
      * @property {module:model/RewardReduced}
      */
     RewardReduced,
+
+    /**
+     * The RewardReducedAllOf model constructor.
+     * @property {module:model/RewardReducedAllOf}
+     */
+    RewardReducedAllOf,
 
     /**
      * The RewardRequest model constructor.

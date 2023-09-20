@@ -108,6 +108,18 @@ class CompetitionAllOf {
             if (data.hasOwnProperty('productTagsFilter')) {
                 obj['productTagsFilter'] = DependantOn.constructFromObject(data['productTagsFilter']);
             }
+            if (data.hasOwnProperty('bannerLink')) {
+                obj['bannerLink'] = ApiClient.convertToType(data['bannerLink'], 'String');
+            }
+            if (data.hasOwnProperty('bannerHighResolutionLink')) {
+                obj['bannerHighResolutionLink'] = ApiClient.convertToType(data['bannerHighResolutionLink'], 'String');
+            }
+            if (data.hasOwnProperty('bannerLowResolutionLink')) {
+                obj['bannerLowResolutionLink'] = ApiClient.convertToType(data['bannerLowResolutionLink'], 'String');
+            }
+            if (data.hasOwnProperty('iconLink')) {
+                obj['iconLink'] = ApiClient.convertToType(data['iconLink'], 'String');
+            }
         }
         return obj;
     }
@@ -220,6 +232,30 @@ CompetitionAllOf.prototype['memberTagsFilter'] = undefined;
  * @member {module:model/DependantOn} productTagsFilter
  */
 CompetitionAllOf.prototype['productTagsFilter'] = undefined;
+
+/**
+ * Link to the banner
+ * @member {String} bannerLink
+ */
+CompetitionAllOf.prototype['bannerLink'] = undefined;
+
+/**
+ * Link to the bannerHighResolution
+ * @member {String} bannerHighResolutionLink
+ */
+CompetitionAllOf.prototype['bannerHighResolutionLink'] = undefined;
+
+/**
+ * Link to the bannerLowResolution
+ * @member {String} bannerLowResolutionLink
+ */
+CompetitionAllOf.prototype['bannerLowResolutionLink'] = undefined;
+
+/**
+ * Link to the icon
+ * @member {String} iconLink
+ */
+CompetitionAllOf.prototype['iconLink'] = undefined;
 
 
 

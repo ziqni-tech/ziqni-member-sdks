@@ -123,6 +123,18 @@ class Contest {
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
             }
+            if (data.hasOwnProperty('bannerLink')) {
+                obj['bannerLink'] = ApiClient.convertToType(data['bannerLink'], 'String');
+            }
+            if (data.hasOwnProperty('bannerHighResolutionLink')) {
+                obj['bannerHighResolutionLink'] = ApiClient.convertToType(data['bannerHighResolutionLink'], 'String');
+            }
+            if (data.hasOwnProperty('bannerLowResolutionLink')) {
+                obj['bannerLowResolutionLink'] = ApiClient.convertToType(data['bannerLowResolutionLink'], 'String');
+            }
+            if (data.hasOwnProperty('iconLink')) {
+                obj['iconLink'] = ApiClient.convertToType(data['iconLink'], 'String');
+            }
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
@@ -262,6 +274,30 @@ Contest.prototype['memberTagsFilter'] = undefined;
 Contest.prototype['constraints'] = undefined;
 
 /**
+ * Link to the banner
+ * @member {String} bannerLink
+ */
+Contest.prototype['bannerLink'] = undefined;
+
+/**
+ * Link to the bannerHighResolution
+ * @member {String} bannerHighResolutionLink
+ */
+Contest.prototype['bannerHighResolutionLink'] = undefined;
+
+/**
+ * Link to the bannerLowResolution
+ * @member {String} bannerLowResolutionLink
+ */
+Contest.prototype['bannerLowResolutionLink'] = undefined;
+
+/**
+ * Link to the icon
+ * @member {String} iconLink
+ */
+Contest.prototype['iconLink'] = undefined;
+
+/**
  * Ziqni id of the model
  * @member {String} id
  */
@@ -390,6 +426,26 @@ ContestAllOf.prototype['memberTagsFilter'] = undefined;
  * @member {Array.<String>} constraints
  */
 ContestAllOf.prototype['constraints'] = undefined;
+/**
+ * Link to the banner
+ * @member {String} bannerLink
+ */
+ContestAllOf.prototype['bannerLink'] = undefined;
+/**
+ * Link to the bannerHighResolution
+ * @member {String} bannerHighResolutionLink
+ */
+ContestAllOf.prototype['bannerHighResolutionLink'] = undefined;
+/**
+ * Link to the bannerLowResolution
+ * @member {String} bannerLowResolutionLink
+ */
+ContestAllOf.prototype['bannerLowResolutionLink'] = undefined;
+/**
+ * Link to the icon
+ * @member {String} iconLink
+ */
+ContestAllOf.prototype['iconLink'] = undefined;
 // Implement ModelDefault interface:
 /**
  * Ziqni id of the model

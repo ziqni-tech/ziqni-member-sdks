@@ -98,13 +98,13 @@ ProductFilter.prototype['skip'] = undefined;
 ProductFilter.prototype['limit'] = undefined;
 
 /**
- * Specify the constraints that need to be applied to the filter.
+ * Specify the constraints that need to be applied to the filter. - empty (default) == search based on the provided criteria - productRefId == This means the entityId(s) provided are product reference identifiers - similarTo == Find product similar to the prouct ID(s) provided
  * @member {Array.<String>} constraints
  */
 ProductFilter.prototype['constraints'] = undefined;
 
 /**
- * This field determines the meaning of the IDs field. The default is product, you can also specify competition or achievement.
+ * This field determines the meaning of the IDs field - product (default) - competition - achievement.
  * @member {String} entityType
  */
 ProductFilter.prototype['entityType'] = undefined;

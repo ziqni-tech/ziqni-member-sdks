@@ -89,6 +89,15 @@ class AchievementAllOf {
             if (data.hasOwnProperty('iconLink')) {
                 obj['iconLink'] = ApiClient.convertToType(data['iconLink'], 'String');
             }
+            if (data.hasOwnProperty('bannerLink')) {
+                obj['bannerLink'] = ApiClient.convertToType(data['bannerLink'], 'String');
+            }
+            if (data.hasOwnProperty('bannerLowResolutionLink')) {
+                obj['bannerLowResolutionLink'] = ApiClient.convertToType(data['bannerLowResolutionLink'], 'String');
+            }
+            if (data.hasOwnProperty('bannerHighResolutionLink')) {
+                obj['bannerHighResolutionLink'] = ApiClient.convertToType(data['bannerHighResolutionLink'], 'String');
+            }
         }
         return obj;
     }
@@ -164,6 +173,24 @@ AchievementAllOf.prototype['products'] = undefined;
  * @member {String} iconLink
  */
 AchievementAllOf.prototype['iconLink'] = undefined;
+
+/**
+ * Link to the banner
+ * @member {String} bannerLink
+ */
+AchievementAllOf.prototype['bannerLink'] = undefined;
+
+/**
+ * Link to the bannerLowResolution
+ * @member {String} bannerLowResolutionLink
+ */
+AchievementAllOf.prototype['bannerLowResolutionLink'] = undefined;
+
+/**
+ * Link to the bannerHighResolution
+ * @member {String} bannerHighResolutionLink
+ */
+AchievementAllOf.prototype['bannerHighResolutionLink'] = undefined;
 
 
 
