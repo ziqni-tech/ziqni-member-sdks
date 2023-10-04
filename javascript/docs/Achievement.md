@@ -17,6 +17,9 @@ Name | Type | Description | Notes
 **productTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **products** | [**[ProductReduced]**](ProductReduced.md) |  | [optional] 
 **iconLink** | **String** | Link to the icon | [optional] 
+**bannerLink** | **String** | Link to the banner | [optional] 
+**bannerLowResolutionLink** | **String** | Link to the bannerLowResolution | [optional] 
+**bannerHighResolutionLink** | **String** | Link to the bannerHighResolution | [optional] 
 **id** | **String** | Ziqni id of the model | 
 **spaceName** | **String** | This is the space name which is linked to the account | [optional] 
 **created** | **Date** | ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone | [optional] 

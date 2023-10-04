@@ -51,12 +51,12 @@ public class InstantWinsApiTest implements tests.utils.CompleteableFutureTestWra
      */
     @Test
     public void getInstantWinsTest() throws ApiException {
-        final var similarToProductRequest = new InstantWinRequest()
+        final var instantWinRequest = new InstantWinRequest()
                 .instantWinFilter(new InstantWinFilter()
                         .skip(0)
-                        .limit(10));
+                        .limit(20));
 
-        var response = $(api.listInstantWins(similarToProductRequest));
+        var response = $(api.listInstantWins(instantWinRequest));
 
         assertNotNull(response);
         assertNotNull(response.getData());

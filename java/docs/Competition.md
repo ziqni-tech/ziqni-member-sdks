@@ -26,6 +26,10 @@ Name | Type | Description | Notes
 **products** | [**List&lt;ProductReduced&gt;**](ProductReduced.md) | If individual product were selected then they will be listed here. If the proproduct tags filter was used then this field will be empty and the productTagsFilter will be populated. |  [optional]
 **memberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
 **productTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
+**bannerLink** | **String** | Link to the banner |  [optional]
+**bannerHighResolutionLink** | **String** | Link to the bannerHighResolution |  [optional]
+**bannerLowResolutionLink** | **String** | Link to the bannerLowResolution |  [optional]
+**iconLink** | **String** | Link to the icon |  [optional]
 **id** | **String** | Ziqni id of the model | 
 **spaceName** | **String** | This is the space name which is linked to the account |  [optional]
 **created** | **OffsetDateTime** | ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone |  [optional]

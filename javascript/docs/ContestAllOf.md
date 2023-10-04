@@ -24,5 +24,9 @@ Name | Type | Description | Notes
 **statusCode** | **Number** | The code of the contest | [optional] [readonly] 
 **memberTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **constraints** | **[String]** | Additional constraints | [optional] 
+**bannerLink** | **String** | Link to the banner | [optional] 
+**bannerHighResolutionLink** | **String** | Link to the bannerHighResolution | [optional] 
+**bannerLowResolutionLink** | **String** | Link to the bannerLowResolution | [optional] 
+**iconLink** | **String** | Link to the icon | [optional] 
 
 
