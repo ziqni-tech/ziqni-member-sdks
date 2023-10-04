@@ -1,0 +1,7 @@
+basePackage: com.ziqni.member.sdk
+configPackage: com.ziqni.member.sdk.config
+apiPackage: com.ziqni.member.sdk.api
+modelPackage: com.ziqni.member.sdk.model
+groupId: com.ziqni
+artifactId: ziqni-member-sdk
+hideGenerationTimestamp: true
