@@ -19,6 +19,8 @@ import com.ziqni.member.sdk.model.ProductRequest;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
@@ -53,6 +55,7 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
     public void getProductsSimilarToTest() throws ApiException {
         final var productRequest = new ProductRequest()
                 .productFilter(new ProductFilter()
+                        .entityIDs(List.of("W8hCJn8B12kHGcfxMwfI"))
                         .addConstraintsItem("similarTo")
                         .limit(20)
                         .skip(0));
