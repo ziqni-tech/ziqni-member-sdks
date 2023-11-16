@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Member API
-  version: 1.0.11
+  version: 1.0.12
   description: >-
     The ZIQNI Member-API is the primary resource used to build services and widgets for your members
     [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
@@ -2010,121 +2010,6 @@ components:
             message: 'No account found for space name - [test]'
             code: 1007
             status: 404
-    MemberSession:
-      description: ''
-      type: object
-    MemberSessionResponse:
-      description: '        '
-      required: []
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-          description: ''
-        data:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/MemberSession'
-        errors:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-      example:
-        meta:
-          totalRecordsFound: 56
-          skip: 59
-          limit: 22
-          time: '2018-02-10T09:30Z'
-        data:
-          -
-            id: ziqniId
-            icon: some text
-            jsonClass: some text
-            name: some text
-            description: some text
-            termsAndConditions: some text
-            constraints:
-              - some text
-              - some text
-            maxNumberOfIssues: 53
-            scheduling:
-              scheduleType: Weekly
-              scheduleOccurrencesLimit: 21
-              every:
-                - 5
-                - 21
-              startDate: '2018-02-10T09:30Z'
-              endDate: '2018-02-10T09:30Z'
-              constraints:
-                - some text
-                - some text
-            dependantOn:
-              entityType: some text
-              dependantOn:
-                must:
-                  - some text
-                  - some text
-                mustNot:
-                  - some text
-                  - some text
-                should:
-                  - some text
-                  - some text
-                shouldMatchAtLeast: 30
-          -
-            id: ziqniId
-            icon: some text
-            jsonClass: some text
-            name: some text
-            description: some text
-            termsAndConditions: some text
-            constraints:
-              - some text
-              - some text
-            maxNumberOfIssues: 56
-            scheduling:
-              scheduleType: Weekly
-              scheduleOccurrencesLimit: 81
-              every:
-                - 71
-                - 96
-              startDate: '2018-02-10T09:30Z'
-              endDate: '2018-02-10T09:30Z'
-              constraints:
-                - some text
-                - some text
-            dependantOn:
-              entityType: some text
-              dependantOn:
-                must:
-                  - some text
-                  - some text
-                mustNot:
-                  - some text
-                  - some text
-                should:
-                  - some text
-                  - some text
-                shouldMatchAtLeast: 9
-        errors:
-          -
-            message: some text
-            code: 39
-            status: 20
-          -
-            message: some text
-            code: 24
-            status: 48
-    MemberSessionRequest:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
-      example:
-        memberRefId: some text
     OptionalModelFields:
       description: ''
       type: object

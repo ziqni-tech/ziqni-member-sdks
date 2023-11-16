@@ -1,0 +1,152 @@
+{{>header}}
+
+part of ziqni.member.api;
+
+class ApiClientWs {
+
+    ApiClientWs({this.basePath = 'wss://member-api.ziqni.com/ws/websocket'});
+
+    final String basePath;
+    late StompClient client;
+    late Completer<ApiClientWs> isReady;
+
+    Future<ApiClientWs> start(String token) async {
+
+        client = StompClient(
+        config: StompConfig(
+        url: 'wss://member-api.ziqni.com/ws/websocket',
+        onConnect: onConnectCallback,
+        onWebSocketError: (dynamic error) => print('+++++ onWebSocketError ::: $error'),
+        // onDebugMessage: (dynamic frame) => print('+++++ onDebugMessage ::: ' + frame.toString()), // Very noisy
+        onDisconnect: (dynamic frame) => print('+++++ onDisconnect ::: $frame'),
+        onWebSocketDone: () => print('+++++ onWebSocketDone ::: Websocket is done'),
+        onStompError: (dynamic frame) => print('+++++ onStompError ::: ' + frame.body),
+        onUnhandledFrame: (dynamic frame) => print('+++++ onUnhandledFrame ::: ' + frame.body),
+        onUnhandledMessage: (dynamic frame) => print('+++++ onUnhandledMessage ::: ' + frame.body),
+        onUnhandledReceipt: (dynamic frame) => print('+++++ onUnhandledReceipt ::: ' + frame.body),
+        stompConnectHeaders: {
+            'login': username,
+            'passcode': token  },
+        ));
+
+
+        client.activate();
+        isReady = Completer<ApiClientWs>();
+        return isReady.future;
+    }
+
+    void onConnectCallback(StompFrame connectFrame) {
+        print('+++++ Websocket connected to $basePath');
+        subscribe();
+        defaultApiClientWs = this;
+        isReady.complete(this);
+    }
+
+    void subscribe() {
+        client.subscribe(destination: '/user/queue/rpc-results', headers: {}, callback: handleRpcResultsCallbacks );
+        client.subscribe(destination: '/user/queue/callbacks', headers: {}, callback: handleGeneralCallbacks );
+    }
+
+    void handleRpcResultsCallbacks(StompFrame frame){
+        var messageId = frame.headers[message_id_header];
+
+        if(messageId != null) {
+        var stompMessageCompleter = messages[messageId];
+
+        if(stompMessageCompleter != null) {
+            messages.remove(messageId);
+            stompMessageCompleter.completed(frame);
+            }
+        }
+    }
+
+    void handleGeneralCallbacks(StompFrame frame){
+        print('+++++ user/queue/callbacks ::: ');
+        print(frame);
+    }
+
+    Completer<TResponse> send<TResponse extends Object>({required String destination, required Map<String, dynamic> body, required String messageResponseType}) {
+        final stompMessageCompleter = StompMessageCompleter<TResponse>(messageResponseType); // Create a new completer
+        final bodyJson = json.encode(body); // Serialize the request body
+        final messageId = uuid.v1(); // Generate a v1 (time-based) id
+        messages.putIfAbsent(messageId, () =>  stompMessageCompleter); // Add the completer to the messages map
+        client.send(destination: destination, body: bodyJson, headers: { message_id_header: messageId }); // Send the request
+        return stompMessageCompleter.completer; // Return the completer future
+    }
+
+
+
+    Future<dynamic> deserializeAsync(String value, String targetType, {bool growable = false,}) async =>
+        // ignore: deprecated_member_use_from_same_package
+        deserialize(value, targetType, growable: growable);
+
+        @Deprecated('Scheduled for removal in OpenAPI Generator 6.x. Use deserializeAsync() instead.')
+        dynamic deserialize(String value, String targetType, {bool growable = false,}) {
+        // Remove all spaces. Necessary for regular expressions as well.
+        targetType = targetType.replaceAll(' ', ''); // ignore: parameter_assignments
+
+        // If the expected target type is String, nothing to do...
+        return targetType == 'String'
+            ? value
+            : fromJson(json.decode(value), targetType, growable: growable);
+    }
+
+    Future<String> serializeAsync(Object? value) async => value == null ? '' : json.encode(value);
+
+    /// Returns a native instance of an OpenAPI class matching the [specified type][targetType].
+    static dynamic fromJson(dynamic value, String targetType, {bool growable = false,}) {
+        try {
+            switch (targetType) {
+                case 'String':
+                return value is String ? value : value.toString();
+            case 'int':
+                return value is int ? value : int.parse('$value');
+            case 'double':
+                return value is double ? value : double.parse('$value');
+            case 'bool':
+                if (value is bool) {
+                    return value;
+                }
+                final valueString = '$value'.toLowerCase();
+                return valueString == 'true' || valueString == '1';
+            case 'DateTime':
+                return value is DateTime ? value : DateTime.tryParse(value);
+            {{#models}}
+                {{#model}}
+                    case '{{{classname}}}':
+                    {{#isEnum}}
+                        {{#native_serialization}}return {{{classname}}}TypeTransformer().decode(value);{{/native_serialization}}
+                    {{/isEnum}}
+                    {{^isEnum}}
+                        return {{{classname}}}.fromJson(value);
+                    {{/isEnum}}
+                {{/model}}
+            {{/models}}
+            default:
+                dynamic match;
+                if (value is List && (match = _regList.firstMatch(targetType)?.group(1)) != null) {
+                return value
+                .map<dynamic>((dynamic v) => fromJson(v, match, growable: growable,))
+                .toList(growable: growable);
+                }
+                if (value is Set && (match = _regSet.firstMatch(targetType)?.group(1)) != null) {
+                return value
+                .map<dynamic>((dynamic v) => fromJson(v, match, growable: growable,))
+                .toSet();
+                }
+                if (value is Map && (match = _regMap.firstMatch(targetType)?.group(1)) != null) {
+                return Map<String, dynamic>.fromIterables(
+                value.keys.cast<String>(),
+                value.values.map<dynamic>((dynamic v) => fromJson(v, match, growable: growable,)),
+                );
+                }
+                }
+                } on Exception catch (error, trace) {
+                throw ApiException.withInner(HttpStatus.internalServerError, 'Exception during deserialization.', error, trace,);
+                }
+                throw ApiException(HttpStatus.internalServerError, 'Could not find a suitable class for deserialization',);
+    }
+}
+
+/// Primarily intended for use in an isolate.
+Future<String> serializeAsync(Object? value) async => value == null ? '' : json.encode(value);

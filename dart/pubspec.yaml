@@ -1,0 +1,22 @@
+name: ziqni_member_sdk
+description: A sample SDK library to connect to the ZIQNI member API.
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: ^3.1.5
+
+# Add regular dependencies here.
+dependencies:
+  # path: ^1.8.0
+  stomp_dart_client: ^1.0.0
+  collection: '^1.17.0'
+  http: '>=0.13.0 <0.14.0'
+  intl: '^0.18.0'
+  meta: '^1.1.8'
+  uuid: ^4.0.0
+  rxdart: ^0.27.7
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.21.0
