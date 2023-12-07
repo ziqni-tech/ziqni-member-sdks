@@ -3122,81 +3122,6 @@ components:
                 data:
                     $ref: '#/components/schemas/Leaderboard'
                     description: ''
-        MessageFilter:
-            description: ''
-            type: object
-            properties:
-                tags:
-                    description: ''
-                    type: array
-                    items:
-                        type: string
-                ids:
-                    description: ''
-                    type: array
-                    items:
-                        type: string
-                sortBy:
-                    description: ''
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/QuerySortBy'
-                skip:
-                    format: int32
-                    description: ''
-                    type: integer
-                limit:
-                    format: int32
-                    description: ''
-                    type: integer
-                messageType:
-                    $ref: '#/components/schemas/MessageType'
-                    description: ''
-                    example: |4-
-                            - Achievement
-                            - Ticket
-                            - Reward
-                            - Text
-                            - Notification
-                            - InboxItem
-                            - NotificationInboxItem
-            example:
-                productIds:
-                    - some text
-                    - some text
-                tags:
-                    - some text
-                    - some text
-                startDate:
-                    gt: some text
-                    lt: some text
-                    constraints:
-                        - some text
-                        - some text
-                endDate:
-                    gt: some text
-                    lt: some text
-                    constraints:
-                        - some text
-                        - some text
-                ids:
-                    - some text
-                    - some text
-                status:
-                    - some text
-                    - some text
-                sortBy:
-                    -
-                        queryField: some text
-                        order: Asc
-                    -
-                        queryField: some text
-                        order: Desc
-                skip: 0
-                limit: 72
-                statusCode:
-                    - 60
-                    - 45
         AwardStatus:
             description: The status of award
             enum:
@@ -4574,7 +4499,7 @@ components:
                         - productRefId == This means the entityId(s) provided are product reference
                         identifiers
 
-                        - similarTo == Find product similar to the prouct ID(s) provided
+                        - similarTo == Find product similar to the prouct ID(s) provided 
                     type: array
                     items:
                         type: string
@@ -4584,7 +4509,7 @@ components:
                         This field determines the meaning of the IDs field
                         - product (default)
                         - competition
-                        - achievement.
+                        - achievement. 
                     type: string
         ProductRequest:
             description: ''
@@ -5171,6 +5096,87 @@ components:
                         shouldMatchAtLeast: 75
                 status: some text
                 statusCode: 80
+        MessageFilter:
+            description: ''
+            type: object
+            properties:
+                tags:
+                    description: ''
+                    type: array
+                    items:
+                        type: string
+                ids:
+                    description: ''
+                    type: array
+                    items:
+                        type: string
+                sortBy:
+                    description: ''
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/QuerySortBy'
+                skip:
+                    format: int32
+                    description: ''
+                    type: integer
+                limit:
+                    format: int32
+                    description: ''
+                    type: integer
+                expiryDateRange:
+                    $ref: '#/components/schemas/DateRange'
+                    description: ''
+                createdDateRange:
+                    $ref: '#/components/schemas/DateRange'
+                    description: ''
+                messageType:
+                    $ref: '#/components/schemas/MessageType'
+                    description: ''
+                    example: |4-
+                            - Achievement
+                            - Ticket
+                            - Reward
+                            - Text
+                            - Notification
+                            - InboxItem
+                            - NotificationInboxItem
+            example:
+                productIds:
+                    - some text
+                    - some text
+                tags:
+                    - some text
+                    - some text
+                startDate:
+                    gt: some text
+                    lt: some text
+                    constraints:
+                        - some text
+                        - some text
+                endDate:
+                    gt: some text
+                    lt: some text
+                    constraints:
+                        - some text
+                        - some text
+                ids:
+                    - some text
+                    - some text
+                status:
+                    - some text
+                    - some text
+                sortBy:
+                    -
+                        queryField: some text
+                        order: Asc
+                    -
+                        queryField: some text
+                        order: Desc
+                skip: 0
+                limit: 72
+                statusCode:
+                    - 60
+                    - 45
     responses:
         AchievementResponseBody:
             content:
