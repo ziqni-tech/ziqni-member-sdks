@@ -1,0 +1,56 @@
+{{>header}}
+{{>part_of}}
+{{#operations}}
+
+class {{{classname}}}Ws {
+    {{{classname}}}Ws([ApiClientWs? apiClientWs]) : apiClientWs = apiClientWs ?? defaultApiClientWs;
+
+    final ApiClientWs apiClientWs;
+{{#operation}}
+
+    {{#summary}}
+            /// {{{.}}}
+    {{/summary}}
+    {{#notes}}
+        {{#summary}}
+                ///
+        {{/summary}}
+            /// {{{notes}}}
+    {{/notes}}
+    {{#hasParams}}
+        {{#summary}}
+                ///
+        {{/summary}}
+        {{^summary}}
+            {{#notes}}
+                    ///
+            {{/notes}}
+        {{/summary}}
+            /// Parameters:
+            ///
+    {{/hasParams}}
+    {{#allParams}}
+            /// * [{{{dataType}}}] {{{paramName}}}{{#required}} (required){{/required}}{{#optional}} (optional){{/optional}}:
+        {{#description}}
+                ///   {{{.}}}
+        {{/description}}
+        {{^-last}}
+                ///
+        {{/-last}}
+{{/allParams}}
+    Future<{{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {{{nickname}}}({{#allParams}}{{#required}}{{{dataType}}} {{{paramName}}},{{^-last}} {{/-last}}{{/required}}{{/allParams}}{{#hasOptionalParams}}{ {{#allParams}}{{^required}}{{{dataType}}}? {{{paramName}}},{{^-last}} {{/-last}}{{/required}}{{/allParams}} }{{/hasOptionalParams}}) async {
+
+        final preparedRequest = <String, dynamic>{}; // Generate a body wrapper
+        {{#allParams}}{{#isBodyParam}}preparedRequest.putIfAbsent("body", () => {{{paramName}}}); // Wrap the request in a body wrapper{{/isBodyParam}}{{/allParams}}
+
+        Completer<{{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}> out = apiClientWs.send(destination: '/gapi/{{{nickname}}}', body: preparedRequest, messageResponseType:  "{{{returnType}}}");
+
+        return out.future;
+
+        //if (response.statusCode >= HttpStatus.badRequest) {
+        //  throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+        //}
+    }
+{{/operation}}
+}
+{{/operations}}

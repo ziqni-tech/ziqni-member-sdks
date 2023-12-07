@@ -14,10 +14,8 @@
 package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.member.sdk.model.InstantWin;
 import com.ziqni.member.sdk.model.InstantWinFilter;
 import com.ziqni.member.sdk.model.InstantWinRequest;
-import com.ziqni.member.sdk.model.SimilarToProductRequest;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
 
@@ -53,12 +51,12 @@ public class InstantWinsApiTest implements tests.utils.CompleteableFutureTestWra
      */
     @Test
     public void getInstantWinsTest() throws ApiException {
-        final var similarToProductRequest = new InstantWinRequest()
+        final var instantWinRequest = new InstantWinRequest()
                 .instantWinFilter(new InstantWinFilter()
                         .skip(0)
-                        .limit(10));
+                        .limit(20));
 
-        var response = $(api.listInstantWins(similarToProductRequest));
+        var response = $(api.listInstantWins(instantWinRequest));
 
         assertNotNull(response);
         assertNotNull(response.getData());

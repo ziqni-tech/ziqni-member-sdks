@@ -1,0 +1,21 @@
+#basePackage: ziqni.member.sdk
+#configPackage: ziqni.member.sdk.config
+#apiPackage: ziqni.member.sdk.api
+#modelPackage: ziqni.member.sdk.model
+pubLibrary: ziqni.member.api
+pubName: ziqni
+groupId: ziqni
+artifactId: ziqni-member-sdk
+hideGenerationTimestamp: true
+files:
+  api_ws.mustache:
+    templateType: API
+    destinationFilename: _ws.dart
+  apilib_ws.mustache:
+    folder: lib/
+    templateType: SupportingFiles
+    destinationFilename: api_ws.dart
+  api_client_ws.mustache:
+    folder: lib/
+    templateType: SupportingFiles
+    destinationFilename: api_client_ws.dart

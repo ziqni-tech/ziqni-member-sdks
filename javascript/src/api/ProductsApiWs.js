@@ -8,16 +8,16 @@ export default class ProductsApiWs {
   }
 
 
-  getProductsSimilarTo(similarToProductRequest,  callback) {
+  getProducts(productRequest,  callback) {
 
     
-    if (similarToProductRequest === undefined || similarToProductRequest === null) {
-      throw new Error("Missing the required parameter 'similarToProductRequest' when calling getProductsSimilarTo");
+    if (productRequest === undefined || productRequest === null) {
+      throw new Error("Missing the required parameter 'productRequest' when calling getProducts");
     }
     
-    const message = { body: similarToProductRequest };
+    const message = { body: productRequest };
 
-    apiClientStomp.instance.sendRpc('/gapi/getProductsSimilarTo', message, callback);
+    apiClientStomp.instance.sendRpc('/gapi/getProducts', message, callback);
 
   }
 
