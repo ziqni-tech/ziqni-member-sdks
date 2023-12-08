@@ -3132,94 +3132,6 @@ components:
                 - Expired
             type: string
             readOnly: true
-        AwardFilter:
-            description: ''
-            type: object
-            properties:
-                productIds:
-                    description: ''
-                    type: array
-                    items:
-                        type: string
-                tags:
-                    description: ''
-                    type: array
-                    items:
-                        type: string
-                ids:
-                    description: ''
-                    type: array
-                    items:
-                        type: string
-                statusCode:
-                    $ref: '#/components/schemas/NumberRange'
-                    description: Award status code
-                    example: |-
-                        0=Unknown 
-                        10=Preparing
-                        15=NotClaimed
-                        35=Claimed
-                        115=Expired
-                sortBy:
-                    description: ''
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/QuerySortBy'
-                skip:
-                    format: int32
-                    description: ''
-                    type: integer
-                limit:
-                    format: int32
-                    description: ''
-                    type: integer
-                constraints:
-                    description: ''
-                    type: array
-                    items:
-                        type: string
-                entityIds:
-                    description: 'Achievement, Contest or Competition'
-                    type: array
-                    items:
-                        type: string
-            example:
-                productIds:
-                    - some text
-                    - some text
-                tags:
-                    - some text
-                    - some text
-                startDate:
-                    gt: some text
-                    lt: some text
-                    constraints:
-                        - some text
-                        - some text
-                endDate:
-                    gt: some text
-                    lt: some text
-                    constraints:
-                        - some text
-                        - some text
-                ids:
-                    - some text
-                    - some text
-                status:
-                    - some text
-                    - some text
-                sortBy:
-                    -
-                        queryField: some text
-                        order: Asc
-                    -
-                        queryField: some text
-                        order: Desc
-                skip: 0
-                limit: 72
-                statusCode:
-                    - 60
-                    - 45
         LeaderboardMember:
             required:
                 - name
@@ -4499,7 +4411,7 @@ components:
                         - productRefId == This means the entityId(s) provided are product reference
                         identifiers
 
-                        - similarTo == Find product similar to the prouct ID(s) provided 
+                        - similarTo == Find product similar to the prouct ID(s) provided
                     type: array
                     items:
                         type: string
@@ -4509,7 +4421,7 @@ components:
                         This field determines the meaning of the IDs field
                         - product (default)
                         - competition
-                        - achievement. 
+                        - achievement.
                     type: string
         ProductRequest:
             description: ''
@@ -5140,6 +5052,97 @@ components:
                             - Notification
                             - InboxItem
                             - NotificationInboxItem
+            example:
+                productIds:
+                    - some text
+                    - some text
+                tags:
+                    - some text
+                    - some text
+                startDate:
+                    gt: some text
+                    lt: some text
+                    constraints:
+                        - some text
+                        - some text
+                endDate:
+                    gt: some text
+                    lt: some text
+                    constraints:
+                        - some text
+                        - some text
+                ids:
+                    - some text
+                    - some text
+                status:
+                    - some text
+                    - some text
+                sortBy:
+                    -
+                        queryField: some text
+                        order: Asc
+                    -
+                        queryField: some text
+                        order: Desc
+                skip: 0
+                limit: 72
+                statusCode:
+                    - 60
+                    - 45
+        AwardFilter:
+            description: ''
+            type: object
+            properties:
+                productIds:
+                    description: ''
+                    type: array
+                    items:
+                        type: string
+                tags:
+                    description: ''
+                    type: array
+                    items:
+                        type: string
+                ids:
+                    description: ''
+                    type: array
+                    items:
+                        type: string
+                pointInTimeDateRange:
+                    $ref: '#/components/schemas/DateRange'
+                    description: ''
+                statusCode:
+                    $ref: '#/components/schemas/NumberRange'
+                    description: Award status code
+                    example: |-
+                        0=Unknown 
+                        10=Preparing
+                        15=NotClaimed
+                        35=Claimed
+                        115=Expired
+                sortBy:
+                    description: ''
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/QuerySortBy'
+                skip:
+                    format: int32
+                    description: ''
+                    type: integer
+                limit:
+                    format: int32
+                    description: ''
+                    type: integer
+                constraints:
+                    description: ''
+                    type: array
+                    items:
+                        type: string
+                entityIds:
+                    description: 'Achievement, Contest or Competition'
+                    type: array
+                    items:
+                        type: string
             example:
                 productIds:
                     - some text
