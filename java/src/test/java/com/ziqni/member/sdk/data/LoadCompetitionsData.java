@@ -42,4 +42,8 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
         return competitionRequest;
     }
 
+    public ModelCountRequest getCompetitionCountReq(){
+        return new ModelCountRequest();
+    }
+
 }

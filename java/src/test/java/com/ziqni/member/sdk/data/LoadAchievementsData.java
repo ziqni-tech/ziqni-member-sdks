@@ -42,4 +42,9 @@ public class LoadAchievementsData implements CompleteableFutureTestWrapper {
         return achievementRequest;
     }
 
+    public ModelCountRequest getAchievementCountRequest(){
+        var req = new ModelCountRequest();
+        return req;
+    }
+
 }

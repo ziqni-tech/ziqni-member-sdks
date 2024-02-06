@@ -19,6 +19,8 @@ import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
@@ -65,6 +67,19 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
         assertNotNull(response.getErrors());
         Assertions.assertTrue(response.getErrors().isEmpty(), "Should have no errors");
         Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
+    }
+
+    @Test
+    public void getCompetitionsCountTest() throws Exception {
+        var response = api.getCompetitionsCount(loadCompetitionsData.getCompetitionCountReq())
+                .orTimeout(60, TimeUnit.SECONDS)
+                .join();
+
+        assertNotNull(response);
+//        assertNotNull(response.getData());
+//        assertNotNull(response.getErrors());
+//        Assertions.assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+//        Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
     }
     
 }
