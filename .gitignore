@@ -52,3 +52,5 @@ build/
 /openapi/swift5/generated/
 /openapi/dart/openapitools.json
 /openapi/dart/generated/
+/dart/pubspec.lock
+/dart/.dart_tool/
