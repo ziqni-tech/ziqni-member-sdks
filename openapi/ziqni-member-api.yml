@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Member API
-  version: 1.0.11
+  version: 1.0.12
   description: >-
     The ZIQNI Member-API is the primary resource used to build services and widgets for your members
     [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
@@ -564,6 +564,60 @@ paths:
       operationId: listCallbacks
       summary: Describe the system callbacks and there constraints
       description: subscribes a client to receive out-of-band data
+  /achievements/count:
+    summary: Member achievements operation
+    description: This endpoint supports member's achievements operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelCountRequest'
+        required: true
+      tags:
+        - achievements
+      responses:
+        '200':
+          $ref: '#/components/responses/AchievementCountResponseBody'
+        '400':
+          $ref: '#/components/responses/AchievementCountResponseBody'
+        '500':
+          $ref: '#/components/responses/AchievementCountResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewAchievements
+      operationId: getAchievementsCount
+      summary: Get achievements count by member reference id
+      description: Returns a count of achievements for the provided member ref id and applied filters.
+      x-ws-only: true
+  /competitions/count:
+    summary: Member competitions operation
+    description: This endpoint supports member's competitions operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelCountRequest'
+        required: true
+      tags:
+        - competitions
+      responses:
+        '200':
+          $ref: '#/components/responses/CompetitionCountResponseBody'
+        '400':
+          $ref: '#/components/responses/CompetitionCountResponseBody'
+        '500':
+          $ref: '#/components/responses/CompetitionCountResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewCompetitions
+      operationId: getCompetitionsCount
+      summary: Get competitions by member reference id
+      description: Returns a count of competitions for the provided member ref id and applied filters.
+      x-ws-only: true
 components:
   schemas:
     ResponseMeta:
@@ -2010,121 +2064,6 @@ components:
             message: 'No account found for space name - [test]'
             code: 1007
             status: 404
-    MemberSession:
-      description: ''
-      type: object
-    MemberSessionResponse:
-      description: '        '
-      required: []
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-          description: ''
-        data:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/MemberSession'
-        errors:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-      example:
-        meta:
-          totalRecordsFound: 56
-          skip: 59
-          limit: 22
-          time: '2018-02-10T09:30Z'
-        data:
-          -
-            id: ziqniId
-            icon: some text
-            jsonClass: some text
-            name: some text
-            description: some text
-            termsAndConditions: some text
-            constraints:
-              - some text
-              - some text
-            maxNumberOfIssues: 53
-            scheduling:
-              scheduleType: Weekly
-              scheduleOccurrencesLimit: 21
-              every:
-                - 5
-                - 21
-              startDate: '2018-02-10T09:30Z'
-              endDate: '2018-02-10T09:30Z'
-              constraints:
-                - some text
-                - some text
-            dependantOn:
-              entityType: some text
-              dependantOn:
-                must:
-                  - some text
-                  - some text
-                mustNot:
-                  - some text
-                  - some text
-                should:
-                  - some text
-                  - some text
-                shouldMatchAtLeast: 30
-          -
-            id: ziqniId
-            icon: some text
-            jsonClass: some text
-            name: some text
-            description: some text
-            termsAndConditions: some text
-            constraints:
-              - some text
-              - some text
-            maxNumberOfIssues: 56
-            scheduling:
-              scheduleType: Weekly
-              scheduleOccurrencesLimit: 81
-              every:
-                - 71
-                - 96
-              startDate: '2018-02-10T09:30Z'
-              endDate: '2018-02-10T09:30Z'
-              constraints:
-                - some text
-                - some text
-            dependantOn:
-              entityType: some text
-              dependantOn:
-                must:
-                  - some text
-                  - some text
-                mustNot:
-                  - some text
-                  - some text
-                should:
-                  - some text
-                  - some text
-                shouldMatchAtLeast: 9
-        errors:
-          -
-            message: some text
-            code: 39
-            status: 20
-          -
-            message: some text
-            code: 24
-            status: 48
-    MemberSessionRequest:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
-      example:
-        memberRefId: some text
     OptionalModelFields:
       description: ''
       type: object
@@ -2540,12 +2479,6 @@ components:
           type: array
           items:
             type: string
-        startDate:
-          $ref: '#/components/schemas/DateRange'
-          description: startDate
-        endDate:
-          $ref: '#/components/schemas/DateRange'
-          description: ''
         productIds:
           description: ''
           type: array
@@ -2586,6 +2519,12 @@ components:
             - hasRewards
             - hasRules
             - optinRequired
+        endDateRange:
+          $ref: '#/components/schemas/DateRange'
+          description: ''
+        startDateRange:
+          $ref: '#/components/schemas/DateRange'
+          description: startDate
       example:
         tags:
           - some text
@@ -3237,81 +3176,6 @@ components:
         data:
           $ref: '#/components/schemas/Leaderboard'
           description: ''
-    MessageFilter:
-      description: ''
-      type: object
-      properties:
-        tags:
-          description: ''
-          type: array
-          items:
-            type: string
-        ids:
-          description: ''
-          type: array
-          items:
-            type: string
-        sortBy:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/QuerySortBy'
-        skip:
-          format: int32
-          description: ''
-          type: integer
-        limit:
-          format: int32
-          description: ''
-          type: integer
-        messageType:
-          $ref: '#/components/schemas/MessageType'
-          description: ''
-          example: |4-
-                  - Achievement
-                  - Ticket
-                  - Reward
-                  - Text
-                  - Notification
-                  - InboxItem
-                  - NotificationInboxItem
-      example:
-        productIds:
-          - some text
-          - some text
-        tags:
-          - some text
-          - some text
-        startDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        endDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        ids:
-          - some text
-          - some text
-        status:
-          - some text
-          - some text
-        sortBy:
-          -
-            queryField: some text
-            order: Asc
-          -
-            queryField: some text
-            order: Desc
-        skip: 0
-        limit: 72
-        statusCode:
-          - 60
-          - 45
     AwardStatus:
       description: The status of award
       enum:
@@ -3322,94 +3186,6 @@ components:
         - Expired
       type: string
       readOnly: true
-    AwardFilter:
-      description: ''
-      type: object
-      properties:
-        productIds:
-          description: ''
-          type: array
-          items:
-            type: string
-        tags:
-          description: ''
-          type: array
-          items:
-            type: string
-        ids:
-          description: ''
-          type: array
-          items:
-            type: string
-        statusCode:
-          $ref: '#/components/schemas/NumberRange'
-          description: Award status code
-          example: |-
-            0=Unknown 
-            10=Preparing
-            15=NotClaimed
-            35=Claimed
-            115=Expired
-        sortBy:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/QuerySortBy'
-        skip:
-          format: int32
-          description: ''
-          type: integer
-        limit:
-          format: int32
-          description: ''
-          type: integer
-        constraints:
-          description: ''
-          type: array
-          items:
-            type: string
-        entityIds:
-          description: 'Achievement, Contest or Competition'
-          type: array
-          items:
-            type: string
-      example:
-        productIds:
-          - some text
-          - some text
-        tags:
-          - some text
-          - some text
-        startDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        endDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        ids:
-          - some text
-          - some text
-        status:
-          - some text
-          - some text
-        sortBy:
-          -
-            queryField: some text
-            order: Asc
-          -
-            queryField: some text
-            order: Desc
-        skip: 0
-        limit: 72
-        statusCode:
-          - 60
-          - 45
     LeaderboardMember:
       required:
         - name
@@ -5286,6 +5062,447 @@ components:
             shouldMatchAtLeast: 75
         status: some text
         statusCode: 80
+    MessageFilter:
+      description: ''
+      type: object
+      properties:
+        tags:
+          description: ''
+          type: array
+          items:
+            type: string
+        ids:
+          description: ''
+          type: array
+          items:
+            type: string
+        sortBy:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
+        expiryDateRange:
+          $ref: '#/components/schemas/DateRange'
+          description: ''
+        createdDateRange:
+          $ref: '#/components/schemas/DateRange'
+          description: ''
+        messageType:
+          $ref: '#/components/schemas/MessageType'
+          description: ''
+          example: |4-
+                  - Achievement
+                  - Ticket
+                  - Reward
+                  - Text
+                  - Notification
+                  - InboxItem
+                  - NotificationInboxItem
+      example:
+        productIds:
+          - some text
+          - some text
+        tags:
+          - some text
+          - some text
+        startDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        endDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        ids:
+          - some text
+          - some text
+        status:
+          - some text
+          - some text
+        sortBy:
+          -
+            queryField: some text
+            order: Asc
+          -
+            queryField: some text
+            order: Desc
+        skip: 0
+        limit: 72
+        statusCode:
+          - 60
+          - 45
+    AwardFilter:
+      description: ''
+      type: object
+      properties:
+        productIds:
+          description: ''
+          type: array
+          items:
+            type: string
+        tags:
+          description: ''
+          type: array
+          items:
+            type: string
+        ids:
+          description: ''
+          type: array
+          items:
+            type: string
+        pointInTimeDateRange:
+          $ref: '#/components/schemas/DateRange'
+          description: ''
+        statusCode:
+          $ref: '#/components/schemas/NumberRange'
+          description: Award status code
+          example: |-
+            0=Unknown 
+            10=Preparing
+            15=NotClaimed
+            35=Claimed
+            115=Expired
+        sortBy:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
+        constraints:
+          description: ''
+          type: array
+          items:
+            type: string
+        entityIds:
+          description: 'Achievement, Contest or Competition'
+          type: array
+          items:
+            type: string
+      example:
+        productIds:
+          - some text
+          - some text
+        tags:
+          - some text
+          - some text
+        startDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        endDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        ids:
+          - some text
+          - some text
+        status:
+          - some text
+          - some text
+        sortBy:
+          -
+            queryField: some text
+            order: Asc
+          -
+            queryField: some text
+            order: Desc
+        skip: 0
+        limit: 72
+        statusCode:
+          - 60
+          - 45
+    ModelCountRequest:
+      description: ''
+      type: object
+      properties:
+        memberId:
+          description: ''
+          type: string
+        productId:
+          description: ''
+          type: string
+    AchievementCountResponse:
+      description: '        '
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+      example:
+        meta:
+          totalRecordsFound: 46
+          skip: 99
+          limit: 1
+          objectType: some text
+          resultCount: 55
+    CompetitionCountResponse:
+      description: '        '
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+      example:
+        meta:
+          totalRecordsFound: 11
+          skip: 77
+          limit: 58
+          time: '2018-02-10T09:30Z'
+        data:
+          -
+            id: ziqniId
+            competitionType: Leaderboard
+            numberOfRounds: 95
+            numberOfGroupStages: 46
+            maxNumberOfEntrants: 7
+            minNumberOfEntrants: 74
+            jsonClass: some text
+            name: some text
+            description: some text
+            termsAndConditions: some text
+            entrantMemberType: some text
+            dependantOn:
+              entityType: some text
+              dependantOn:
+                must:
+                  - some text
+                  - some text
+                mustNot:
+                  - some text
+                  - some text
+                should:
+                  - some text
+                  - some text
+                shouldMatchAtLeast: 6
+            scheduledStartDate: '2018-02-10T09:30Z'
+            scheduledEndDate: '2018-02-10T09:30Z'
+            actualStartDate: '2018-02-10T09:30Z'
+            actualEndDate: '2018-02-10T09:30Z'
+            status: Starting
+            statusCode: 91
+            contests:
+              -
+                competitionId: some text
+                row: 56
+                name: some text
+                round: 89
+                groupStage: 54
+                entrantsFromContest:
+                  - some text
+                  - some text
+                status: Deleted
+                statusCode: 72
+                scheduledStartDate: '2018-02-10T09:30Z'
+                scheduledEndDate: '2018-02-10T09:30Z'
+                actualStartDate: '2018-02-10T09:30Z'
+                actualEndDate: '2018-02-10T09:30Z'
+                tags:
+                  - some text
+                  - some text
+                rewards:
+                  -
+                    rewardRank: some text
+                    name: some text
+                    rewardValue: 60.22
+                    rewardType: some text
+                    rewardTypeId: some text
+                  -
+                    rewardRank: some text
+                    name: some text
+                    rewardValue: 84.71
+                    rewardType: some text
+                    rewardTypeId: some text
+              -
+                competitionId: some text
+                row: 84
+                name: some text
+                round: 73
+                groupStage: 83
+                entrantsFromContest:
+                  - some text
+                  - some text
+                status: Finalised
+                statusCode: 33
+                scheduledStartDate: '2018-02-10T09:30Z'
+                scheduledEndDate: '2018-02-10T09:30Z'
+                actualStartDate: '2018-02-10T09:30Z'
+                actualEndDate: '2018-02-10T09:30Z'
+                tags:
+                  - some text
+                  - some text
+                rewards:
+                  -
+                    rewardRank: some text
+                    name: some text
+                    rewardValue: 24.39
+                    rewardType: some text
+                    rewardTypeId: some text
+                  -
+                    rewardRank: some text
+                    name: some text
+                    rewardValue: 61.73
+                    rewardType: some text
+                    rewardTypeId: some text
+            constraints:
+              - some text
+              - some text
+            products:
+              -
+                name: some text
+                productRefId: some text
+                tags:
+                  - some text
+                  - some text
+              -
+                name: some text
+                productRefId: some text
+                tags:
+                  - some text
+                  - some text
+          -
+            id: ziqniId
+            competitionType: Leaderboard
+            numberOfRounds: 96
+            numberOfGroupStages: 57
+            maxNumberOfEntrants: 68
+            minNumberOfEntrants: 89
+            jsonClass: some text
+            name: some text
+            description: some text
+            termsAndConditions: some text
+            entrantMemberType: some text
+            dependantOn:
+              entityType: some text
+              dependantOn:
+                must:
+                  - some text
+                  - some text
+                mustNot:
+                  - some text
+                  - some text
+                should:
+                  - some text
+                  - some text
+                shouldMatchAtLeast: 63
+            scheduledStartDate: '2018-02-10T09:30Z'
+            scheduledEndDate: '2018-02-10T09:30Z'
+            actualStartDate: '2018-02-10T09:30Z'
+            actualEndDate: '2018-02-10T09:30Z'
+            status: Starting
+            statusCode: 91
+            contests:
+              -
+                competitionId: some text
+                row: 65
+                name: some text
+                round: 54
+                groupStage: 15
+                entrantsFromContest:
+                  - some text
+                  - some text
+                status: Active
+                statusCode: 98
+                scheduledStartDate: '2018-02-10T09:30Z'
+                scheduledEndDate: '2018-02-10T09:30Z'
+                actualStartDate: '2018-02-10T09:30Z'
+                actualEndDate: '2018-02-10T09:30Z'
+                tags:
+                  - some text
+                  - some text
+                rewards:
+                  -
+                    rewardRank: some text
+                    name: some text
+                    rewardValue: 49.18
+                    rewardType: some text
+                    rewardTypeId: some text
+                  -
+                    rewardRank: some text
+                    name: some text
+                    rewardValue: 78.24
+                    rewardType: some text
+                    rewardTypeId: some text
+              -
+                competitionId: some text
+                row: 0
+                name: some text
+                round: 57
+                groupStage: 43
+                entrantsFromContest:
+                  - some text
+                  - some text
+                status: Deleted
+                statusCode: 65
+                scheduledStartDate: '2018-02-10T09:30Z'
+                scheduledEndDate: '2018-02-10T09:30Z'
+                actualStartDate: '2018-02-10T09:30Z'
+                actualEndDate: '2018-02-10T09:30Z'
+                tags:
+                  - some text
+                  - some text
+                rewards:
+                  -
+                    rewardRank: some text
+                    name: some text
+                    rewardValue: 56.72
+                    rewardType: some text
+                    rewardTypeId: some text
+                  -
+                    rewardRank: some text
+                    name: some text
+                    rewardValue: 0.58
+                    rewardType: some text
+                    rewardTypeId: some text
+            constraints:
+              - some text
+              - some text
+            products:
+              -
+                name: some text
+                productRefId: some text
+                tags:
+                  - some text
+                  - some text
+              -
+                name: some text
+                productRefId: some text
+                tags:
+                  - some text
+                  - some text
+        errors:
+          -
+            message: some text
+            code: 41
+            status: 18
+          -
+            message: some text
+            code: 25
+            status: 98
   responses:
     AchievementResponseBody:
       content:
@@ -5482,6 +5699,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ProductResponse'
+      description: ''
+    AchievementCountResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AchievementCountResponse'
+      description: ''
+    CompetitionCountResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CompetitionCountResponse'
       description: ''
   securitySchemes:
     OAuth2:
