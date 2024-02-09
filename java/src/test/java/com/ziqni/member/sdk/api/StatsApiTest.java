@@ -6,6 +6,8 @@ import com.ziqni.member.sdk.model.ModelCountRequest;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.Test;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class StatsApiTest implements tests.utils.CompleteableFutureTestWrapper {
@@ -18,8 +20,8 @@ public class StatsApiTest implements tests.utils.CompleteableFutureTestWrapper {
     }
 
     @Test
-    public void getMemberCompetitionsTest() throws ApiException {
-        var response = $(api.getActiveEntitiesCount(new ModelCountRequest().entityId("Test_key-16ff1182-cce0-4931-bd21-899dbade9bbb").entityType(EntityType.PRODUCT.getValue())));
+    public void getActiveEntitiesCountTest() throws ApiException {
+        var response = $(api.getActiveEntitiesCount(new ModelCountRequest()));
 
         assertNotNull(response);
 
