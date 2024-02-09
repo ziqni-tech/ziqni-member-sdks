@@ -564,33 +564,6 @@ paths:
       operationId: listCallbacks
       summary: Describe the system callbacks and there constraints
       description: subscribes a client to receive out-of-band data
-  /actives-by-entity:
-    summary: Member achievements operation
-    description: This endpoint supports member's achievements operation.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ModelCountRequest'
-        required: true
-      tags:
-        - stats
-      responses:
-        '200':
-          $ref: '#/components/responses/ModelCountResponseBody'
-        '400':
-          $ref: '#/components/responses/ModelCountResponseBody'
-        '500':
-          $ref: '#/components/responses/ModelCountResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewAchievements
-      operationId: getActiveEntitiesCount
-      summary: Get achievements count by member reference id
-      description: Returns a count of achievements for the provided member ref id and applied filters.
-      x-ws-only: true
   /competitions/count:
     summary: Member competitions operation
     description: This endpoint supports member's competitions operation.
@@ -617,6 +590,33 @@ paths:
       operationId: getCompetitionsCount
       summary: Get competitions by member reference id
       description: Returns a count of competitions for the provided member ref id and applied filters.
+      x-ws-only: true
+  /actives-by-entity:
+    summary: Member achievements operation
+    description: This endpoint supports member's achievements operation.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelCountRequest'
+        required: true
+      tags:
+        - stats
+      responses:
+        '200':
+          $ref: '#/components/responses/ModelCountResponseBody'
+        '400':
+          $ref: '#/components/responses/ModelCountResponseBody'
+        '500':
+          $ref: '#/components/responses/ModelCountResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewAchievements
+      operationId: getActiveEntitiesCount
+      summary: Get achievements count by member reference id
+      description: Returns a count of achievements for the provided member ref id and applied filters.
       x-ws-only: true
 components:
   schemas:
@@ -5239,13 +5239,13 @@ components:
       type: object
       properties:
         entityId:
-          description: ''
+          description: 'The entity id, like the meber reference id or ziqni member id or even a product id'
           type: string
         entityType:
-          description: ''
+          description: Product etc
           type: string
         isReferenceId:
-          description: ''
+          description: If true it is the objects reference ID otherwise it is the ZIQNI id
           type: boolean
     CompetitionCountResponse:
       description: '        '
@@ -5496,16 +5496,12 @@ components:
       required: []
       type: object
       properties:
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-          description: ''
+        modelCount:
+          type: object
+          additionalProperties:
+            type: string
       example:
-        meta:
-          totalRecordsFound: 46
-          skip: 99
-          limit: 1
-          objectType: some text
-          resultCount: 55
+        modelCount: {}
   responses:
     AchievementResponseBody:
       content:
@@ -5713,7 +5709,9 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ModelCountResponse'
+            type: object
+            additionalProperties:
+              type: integer
       description: ''
   securitySchemes:
     OAuth2:

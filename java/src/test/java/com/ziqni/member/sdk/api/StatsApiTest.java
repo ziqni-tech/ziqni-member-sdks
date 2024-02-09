@@ -1,11 +1,9 @@
 package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.member.sdk.data.LoadCompetitionsData;
 import com.ziqni.member.sdk.model.EntityType;
 import com.ziqni.member.sdk.model.ModelCountRequest;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -13,12 +11,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class StatsApiTest implements tests.utils.CompleteableFutureTestWrapper {
 
     private final StatsApiWs api;
-    private final LoadCompetitionsData loadCompetitionsData;
 
 
     public StatsApiTest() throws Exception {
         this.api = ApiClientFactoryUtil.initApiClientFactory().getStatsApi();
-        this.loadCompetitionsData = new LoadCompetitionsData();
     }
 
     @Test

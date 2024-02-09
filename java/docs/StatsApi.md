@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## getActiveEntitiesCount
 
-> CompletableFuture<ModelCountResponse> getActiveEntitiesCount(modelCountRequest)
+> CompletableFuture<Map<String, Integer>> getActiveEntitiesCount(modelCountRequest)
 
 Get achievements count by member reference id
 
@@ -41,7 +41,7 @@ public class Example {
         StatsApi apiInstance = new StatsApi(defaultClient);
         ModelCountRequest modelCountRequest = new ModelCountRequest(); // ModelCountRequest | 
         try {
-            CompletableFuture<ModelCountResponse> result = apiInstance.getActiveEntitiesCount(modelCountRequest);
+            CompletableFuture<Map<String, Integer>> result = apiInstance.getActiveEntitiesCount(modelCountRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling StatsApi#getActiveEntitiesCount");
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-CompletableFuture<[**ModelCountResponse**](ModelCountResponse.md)>
+CompletableFuture<**Map&lt;String, Integer&gt;**>
 
 
 ### Authorization
@@ -84,7 +84,7 @@ CompletableFuture<[**ModelCountResponse**](ModelCountResponse.md)>
 
 ## getActiveEntitiesCountWithHttpInfo
 
-> CompletableFuture<ApiResponse<ModelCountResponse>> getActiveEntitiesCount getActiveEntitiesCountWithHttpInfo(modelCountRequest)
+> CompletableFuture<ApiResponse<Map<String, Integer>>> getActiveEntitiesCount getActiveEntitiesCountWithHttpInfo(modelCountRequest)
 
 Get achievements count by member reference id
 
@@ -115,7 +115,7 @@ public class Example {
         StatsApi apiInstance = new StatsApi(defaultClient);
         ModelCountRequest modelCountRequest = new ModelCountRequest(); // ModelCountRequest | 
         try {
-            CompletableFuture<ApiResponse<ModelCountResponse>> response = apiInstance.getActiveEntitiesCountWithHttpInfo(modelCountRequest);
+            CompletableFuture<ApiResponse<Map<String, Integer>>> response = apiInstance.getActiveEntitiesCountWithHttpInfo(modelCountRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-CompletableFuture<ApiResponse<[**ModelCountResponse**](ModelCountResponse.md)>>
+CompletableFuture<ApiResponse<**Map&lt;String, Integer&gt;**>>
 
 
 ### Authorization

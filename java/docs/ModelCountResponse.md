@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**meta** | [**ResponseMeta**](ResponseMeta.md) |  |  [optional]
+**modelCount** | **Map&lt;String, String&gt;** |  |  [optional]
 
 
 

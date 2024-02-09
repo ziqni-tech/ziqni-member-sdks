@@ -123,7 +123,7 @@ public class SampleApp {
     }
 
     private void getContests(Competition competition){
-        factory.getContestsApi().getContests(new ContestRequest().contestFilter(new ContestFilter().competitionIds(List.of("V-UJyIcB2XLhi587MUz1"))))
+        factory.getContestsApi().getContests(new ContestRequest().contestFilter(new ContestFilter()/*.competitionIds(List.of("V-UJyIcB2XLhi587MUz1"))*/))
                 .thenAccept(contestResponse -> {
                     logger.info(contestResponse.getData().toString());
                     contestResponse.getData().stream().findFirst().ifPresent(contest -> {
@@ -180,7 +180,8 @@ public class SampleApp {
                         .topRanksToInclude(10)
                 )
                 .action(LeaderboardSubscriptionRequest.ActionEnum.SUBSCRIBE)
-                .entityId("WOUJyIcB2XLhi587MUz6")
+                .entityId("irz6kokBl_S2IPKJ_s6w")
+//                .entityId("drSzrIoBrdKHnCgruK_G")
         ).thenAccept(leaderboardsResponse -> {
             logger.info(leaderboardsResponse.toString());
         }).exceptionally(throwable -> {
