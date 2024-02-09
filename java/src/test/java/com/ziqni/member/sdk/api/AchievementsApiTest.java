@@ -74,17 +74,4 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
         Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
     }
 
-    @Test
-    public void getAchievementsCountTest() throws Exception {
-        var response = api.getAchievementsCount(loadAchievementsData.getAchievementCountRequest())
-                .orTimeout(60, TimeUnit.SECONDS)
-                .join();
-
-        assertNotNull(response);
-//        assertNotNull(response.getData());
-//        assertNotNull(response.getErrors());
-//        Assertions.assertTrue(response.getErrors().isEmpty(), "Should have no errors");
-//        Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
-    }
-
 }

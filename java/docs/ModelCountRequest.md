@@ -7,8 +7,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**memberId** | **String** |  |  [optional]
-**productId** | **String** |  |  [optional]
+**entityId** | **String** |  |  [optional]
+**entityType** | **String** |  |  [optional]
+**isReferenceId** | **Boolean** |  |  [optional]
 
 
 

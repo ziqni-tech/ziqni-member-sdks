@@ -564,7 +564,7 @@ paths:
       operationId: listCallbacks
       summary: Describe the system callbacks and there constraints
       description: subscribes a client to receive out-of-band data
-  /achievements/count:
+  /actives-by-entity:
     summary: Member achievements operation
     description: This endpoint supports member's achievements operation.
     post:
@@ -575,19 +575,19 @@ paths:
               $ref: '#/components/schemas/ModelCountRequest'
         required: true
       tags:
-        - achievements
+        - stats
       responses:
         '200':
-          $ref: '#/components/responses/AchievementCountResponseBody'
+          $ref: '#/components/responses/ModelCountResponseBody'
         '400':
-          $ref: '#/components/responses/AchievementCountResponseBody'
+          $ref: '#/components/responses/ModelCountResponseBody'
         '500':
-          $ref: '#/components/responses/AchievementCountResponseBody'
+          $ref: '#/components/responses/ModelCountResponseBody'
       security:
         -
           OAuth2:
             - ViewAchievements
-      operationId: getAchievementsCount
+      operationId: getActiveEntitiesCount
       summary: Get achievements count by member reference id
       description: Returns a count of achievements for the provided member ref id and applied filters.
       x-ws-only: true
@@ -5238,27 +5238,15 @@ components:
       description: ''
       type: object
       properties:
-        memberId:
+        entityId:
           description: ''
           type: string
-        productId:
+        entityType:
           description: ''
           type: string
-    AchievementCountResponse:
-      description: '        '
-      required: []
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
+        isReferenceId:
           description: ''
-      example:
-        meta:
-          totalRecordsFound: 46
-          skip: 99
-          limit: 1
-          objectType: some text
-          resultCount: 55
+          type: boolean
     CompetitionCountResponse:
       description: '        '
       required: []
@@ -5503,6 +5491,21 @@ components:
             message: some text
             code: 25
             status: 98
+    ModelCountResponse:
+      description: '        '
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+      example:
+        meta:
+          totalRecordsFound: 46
+          skip: 99
+          limit: 1
+          objectType: some text
+          resultCount: 55
   responses:
     AchievementResponseBody:
       content:
@@ -5700,17 +5703,17 @@ components:
           schema:
             $ref: '#/components/schemas/ProductResponse'
       description: ''
-    AchievementCountResponseBody:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AchievementCountResponse'
-      description: ''
     CompetitionCountResponseBody:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/CompetitionCountResponse'
+      description: ''
+    ModelCountResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ModelCountResponse'
       description: ''
   securitySchemes:
     OAuth2:
