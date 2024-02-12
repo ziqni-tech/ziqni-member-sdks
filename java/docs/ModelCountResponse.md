@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**modelCount** | **Map&lt;String, String&gt;** |  |  [optional]
+**modelCount** | **Map&lt;String, Integer&gt;** |  |  [optional]
 
 
 
