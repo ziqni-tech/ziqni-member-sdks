@@ -592,8 +592,8 @@ paths:
       description: Returns a count of competitions for the provided member ref id and applied filters.
       x-ws-only: true
   /actives-by-entity:
-    summary: Member achievements operation
-    description: This endpoint supports member's achievements operation.
+    summary: Member achievements and competitions operation
+    description: This endpoint supports member's active achievements and competitions operation.
     post:
       requestBody:
         content:
@@ -615,8 +615,8 @@ paths:
           OAuth2:
             - ViewAchievements
       operationId: getActiveEntitiesCount
-      summary: Get achievements count by member reference id
-      description: Returns a count of achievements for the provided member ref id and applied filters.
+      summary: Get competitions and/or achievements count by product id or reference id
+      description: Returns the count of active competitions and/or achievements by product id or reference id
       x-ws-only: true
 components:
   schemas:
