@@ -13,8 +13,10 @@
 
 
 import ApiClient from "../ApiClient";
+import CompetitionCountResponse from '../model/CompetitionCountResponse';
 import CompetitionRequest from '../model/CompetitionRequest';
 import CompetitionResponse from '../model/CompetitionResponse';
+import ModelCountRequest from '../model/ModelCountRequest';
 
 /**
 * Competitions service.
@@ -72,6 +74,48 @@ export default class CompetitionsApi {
       let returnType = CompetitionResponse;
       return this.apiClient.callApi(
         '/competitions', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getCompetitionsCount operation.
+     * @callback module:api/CompetitionsApi~getCompetitionsCountCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/CompetitionCountResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get competitions by member reference id
+     * Returns a count of competitions for the provided member ref id and applied filters.
+     * @param {module:model/ModelCountRequest} modelCountRequest 
+     * @param {module:api/CompetitionsApi~getCompetitionsCountCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/CompetitionCountResponse}
+     */
+    getCompetitionsCount(modelCountRequest, callback) {
+      let postBody = modelCountRequest;
+      // verify the required parameter 'modelCountRequest' is set
+      if (modelCountRequest === undefined || modelCountRequest === null) {
+        throw new Error("Missing the required parameter 'modelCountRequest' when calling getCompetitionsCount");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = CompetitionCountResponse;
+      return this.apiClient.callApi(
+        '/competitions/count', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );
