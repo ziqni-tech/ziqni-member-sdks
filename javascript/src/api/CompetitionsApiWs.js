@@ -21,4 +21,17 @@ export default class CompetitionsApiWs {
 
   }
 
+  getCompetitionsCount(modelCountRequest,  callback) {
+
+    
+    if (modelCountRequest === undefined || modelCountRequest === null) {
+      throw new Error("Missing the required parameter 'modelCountRequest' when calling getCompetitionsCount");
+    }
+    
+    const message = { body: modelCountRequest };
+
+    apiClientStomp.instance.sendRpc('/gapi/getCompetitionsCount', message, callback);
+
+  }
+
 }

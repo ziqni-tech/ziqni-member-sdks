@@ -30,6 +30,7 @@ import CallbacksResponse from './model/CallbacksResponse';
 import ClaimAwardRequest from './model/ClaimAwardRequest';
 import Competition from './model/Competition';
 import CompetitionAllOf from './model/CompetitionAllOf';
+import CompetitionCountResponse from './model/CompetitionCountResponse';
 import CompetitionFilter from './model/CompetitionFilter';
 import CompetitionRequest from './model/CompetitionRequest';
 import CompetitionResponse from './model/CompetitionResponse';
@@ -103,6 +104,8 @@ import MessageStatus from './model/MessageStatus';
 import MessageType from './model/MessageType';
 import MetaBasic from './model/MetaBasic';
 import MetaInfo from './model/MetaInfo';
+import ModelCountRequest from './model/ModelCountRequest';
+import ModelCountResponse from './model/ModelCountResponse';
 import ModelDefault from './model/ModelDefault';
 import NumberRange from './model/NumberRange';
 import OptInResponse from './model/OptInResponse';
@@ -160,6 +163,7 @@ import OptInApiWs from './api/OptInApiWs';
 import ProductsApiWs from './api/ProductsApiWs';
 import RewardsApiWs from './api/RewardsApiWs';
 import RulesApiWs from './api/RulesApiWs';
+import StatsApiWs from './api/StatsApiWs';
 import ApiClientStomp from './ApiClientStomp';
 import DefaultApiWs from './api/DefaultApiWs';
 
@@ -302,6 +306,12 @@ export {
      * @property {module:model/CompetitionAllOf}
      */
     CompetitionAllOf,
+
+    /**
+     * The CompetitionCountResponse model constructor.
+     * @property {module:model/CompetitionCountResponse}
+     */
+    CompetitionCountResponse,
 
     /**
      * The CompetitionFilter model constructor.
@@ -742,6 +752,18 @@ export {
     MetaInfo,
 
     /**
+     * The ModelCountRequest model constructor.
+     * @property {module:model/ModelCountRequest}
+     */
+    ModelCountRequest,
+
+    /**
+     * The ModelCountResponse model constructor.
+     * @property {module:model/ModelCountResponse}
+     */
+    ModelCountResponse,
+
+    /**
      * The ModelDefault model constructor.
      * @property {module:model/ModelDefault}
      */
@@ -1088,6 +1110,12 @@ export {
     * @property {module:api/RulesApi}
     */
     RulesApiWs,
+
+    /**
+     * The StatsApi service constructor.
+     * @property {module:api/StatsApi}
+     */
+      StatsApiWs,
 
     /**
      * The ApiClientStomp service instance.
