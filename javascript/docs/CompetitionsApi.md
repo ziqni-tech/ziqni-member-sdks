@@ -5,6 +5,7 @@ All URIs are relative to *https://member-api.ziqni.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getCompetitions**](CompetitionsApi.md#getCompetitions) | **POST** /competitions | Get competitions by member reference id
+[**getCompetitionsCount**](CompetitionsApi.md#getCompetitionsCount) | **POST** /competitions/count | Get competitions by member reference id
 
 
 
@@ -46,6 +47,55 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CompetitionResponse**](CompetitionResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## getCompetitionsCount
+
+> CompetitionCountResponse getCompetitionsCount(modelCountRequest)
+
+Get competitions by member reference id
+
+Returns a count of competitions for the provided member ref id and applied filters.
+
+### Example
+
+```javascript
+import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
+// Configure OAuth2 access token for authorization: OAuth2
+let OAuth2 = defaultClient.authentications['OAuth2'];
+OAuth2.accessToken = 'YOUR ACCESS TOKEN';
+
+let apiInstance = new ZiqniMemberApi.CompetitionsApi();
+let modelCountRequest = new ZiqniMemberApi.ModelCountRequest(); // ModelCountRequest | 
+apiInstance.getCompetitionsCount(modelCountRequest, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **modelCountRequest** | [**ModelCountRequest**](ModelCountRequest.md)|  | 
+
+### Return type
+
+[**CompetitionCountResponse**](CompetitionCountResponse.md)
 
 ### Authorization
 
