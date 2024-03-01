@@ -4,8 +4,8 @@ All URIs are relative to *https://member-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getActiveEntitiesCount**](StatsApi.md#getActiveEntitiesCount) | **POST** /actives-by-entity | Get achievements count by member reference id
-[**getActiveEntitiesCountWithHttpInfo**](StatsApi.md#getActiveEntitiesCountWithHttpInfo) | **POST** /actives-by-entity | Get achievements count by member reference id
+[**getActiveEntitiesCount**](StatsApi.md#getActiveEntitiesCount) | **POST** /actives-by-entity | Get competitions and/or achievements count by product id or reference id
+[**getActiveEntitiesCountWithHttpInfo**](StatsApi.md#getActiveEntitiesCountWithHttpInfo) | **POST** /actives-by-entity | Get competitions and/or achievements count by product id or reference id
 
 
 
@@ -13,9 +13,9 @@ Method | HTTP request | Description
 
 > CompletableFuture<ModelCountResponse> getActiveEntitiesCount(modelCountRequest)
 
-Get achievements count by member reference id
+Get competitions and/or achievements count by product id or reference id
 
-Returns a count of achievements for the provided member ref id and applied filters.
+Returns the count of active competitions and/or achievements by product id or reference id
 
 ### Example
 
@@ -86,9 +86,9 @@ CompletableFuture<[**ModelCountResponse**](ModelCountResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelCountResponse>> getActiveEntitiesCount getActiveEntitiesCountWithHttpInfo(modelCountRequest)
 
-Get achievements count by member reference id
+Get competitions and/or achievements count by product id or reference id
 
-Returns a count of achievements for the provided member ref id and applied filters.
+Returns the count of active competitions and/or achievements by product id or reference id
 
 ### Example
 

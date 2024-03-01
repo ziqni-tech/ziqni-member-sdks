@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **bannerLink** | **String** | Link to the banner |  [optional]
 **bannerLowResolutionLink** | **String** | Link to the bannerLowResolution |  [optional]
 **bannerHighResolutionLink** | **String** | Link to the bannerHighResolution |  [optional]
+**strategies** | [**AchievementStrategies**](AchievementStrategies.md) |  |  [optional]
 
 
 

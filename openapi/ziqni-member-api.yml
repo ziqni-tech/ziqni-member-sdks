@@ -4523,41 +4523,6 @@ components:
         col:
           description: ''
           type: integer
-    InstantWinTile:
-      description: ''
-      required:
-        - orderNumber
-        - probability
-        - icon
-        - horizontalPosition
-        - verticalPosition
-        - location
-      type: object
-      properties:
-        icon:
-          description: The id to the image file
-          type: string
-        iconLink:
-          description: The uri to this image
-          type: string
-        text:
-          description: ''
-          type: string
-        contraints:
-          description: 'hasPrizes, glow'
-          type: array
-          items:
-            type: string
-        reward:
-          $ref: '#/components/schemas/RewardReduced'
-          description: The reward associated with this tile
-        probability:
-          format: double
-          description: ''
-          type: number
-        location:
-          $ref: '#/components/schemas/GridLocation'
-          description: ''
     Competition:
       description: ''
       type: object
@@ -4952,116 +4917,6 @@ components:
         constraints:
           - some text
           - some text
-    Achievement:
-      description: ''
-      type: object
-      allOf:
-        -
-          type: object
-          properties:
-            name:
-              description: ''
-              type: string
-            description:
-              description: ''
-              type: string
-            termsAndConditions:
-              description: ''
-              type: string
-            constraints:
-              description: >-
-                Additional constraints, if set means true [optinRequiredForEntrants, hasRules,
-                hasRewards]
-              type: array
-              items:
-                type: string
-              example: |-
-                - deprecated
-                - notifyMember
-                - isHidden
-                - optinRequiredForEntrants
-                - expired
-            maxNumberOfIssues:
-              format: int32
-              description: Maximum number of issued achievements
-              type: integer
-            scheduling:
-              $ref: '#/components/schemas/Scheduling'
-            status:
-              description: Achievement status
-              type: string
-            statusCode:
-              format: int32
-              description: ''
-              type: integer
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            achievementDependencies:
-              $ref: '#/components/schemas/DependantOn'
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: The filter that is used to restrict the prodcuts eligible for this competition
-            products:
-              description: ''
-              type: array
-              items:
-                $ref: '#/components/schemas/ProductReduced'
-            iconLink:
-              description: Link to the icon
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerLink:
-              description: Link to the banner
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerLowResolutionLink:
-              description: Link to the bannerLowResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerHighResolutionLink:
-              description: Link to the bannerHighResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptionalModelFields'
-      example:
-        id: ziqniId
-        name: some text
-        description: some text
-        termsAndConditions: some text
-        constraints:
-          - some text
-          - some text
-        maxNumberOfIssues: 37
-        scheduling:
-          scheduleType: Weekly
-          scheduleOccurrencesLimit: 4
-          every:
-            - 73
-            - 79
-          startDate: '2018-02-10T09:30Z'
-          endDate: '2018-02-10T09:30Z'
-          constraints:
-            - some text
-            - some text
-        dependantOn:
-          entityType: some text
-          dependantOn:
-            must:
-              - some text
-              - some text
-            mustNot:
-              - some text
-              - some text
-            should:
-              - some text
-              - some text
-            shouldMatchAtLeast: 75
-        status: some text
-        statusCode: 80
     MessageFilter:
       description: ''
       type: object
@@ -5501,6 +5356,183 @@ components:
             type: integer
       example:
         modelCount: {}
+    InstantWinTile:
+      description: ''
+      required:
+        - orderNumber
+        - probability
+        - icon
+        - horizontalPosition
+        - verticalPosition
+        - location
+      type: object
+      properties:
+        icon:
+          description: The id to the image file
+          type: string
+        iconLink:
+          description: The uri to this image
+          type: string
+        text:
+          description: ''
+          type: string
+        contraints:
+          description: 'hasPrizes, glow'
+          type: array
+          items:
+            type: string
+        reward:
+          $ref: '#/components/schemas/RewardReduced'
+          description: The reward associated with this tile
+        probability:
+          format: double
+          description: ''
+          type: number
+        location:
+          $ref: '#/components/schemas/GridLocation'
+          description: ''
+    Achievement:
+      description: ''
+      type: object
+      allOf:
+        -
+          type: object
+          properties:
+            name:
+              description: ''
+              type: string
+            description:
+              description: ''
+              type: string
+            termsAndConditions:
+              description: ''
+              type: string
+            constraints:
+              description: >-
+                Additional constraints, if set means true [optinRequiredForEntrants, hasRules,
+                hasRewards]
+              type: array
+              items:
+                type: string
+              example: |-
+                - deprecated
+                - notifyMember
+                - isHidden
+                - optinRequiredForEntrants
+                - expired
+            maxNumberOfIssues:
+              format: int32
+              description: Maximum number of issued achievements
+              type: integer
+            scheduling:
+              $ref: '#/components/schemas/Scheduling'
+            status:
+              description: Achievement status
+              type: string
+            statusCode:
+              format: int32
+              description: ''
+              type: integer
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            achievementDependencies:
+              $ref: '#/components/schemas/DependantOn'
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: The filter that is used to restrict the prodcuts eligible for this competition
+            products:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductReduced'
+            iconLink:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLink:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolutionLink:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolutionLink:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            strategies:
+              $ref: '#/components/schemas/AchievementStrategies'
+              description: The target to reach in order to receive this achievement
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+      example:
+        id: ziqniId
+        name: some text
+        description: some text
+        termsAndConditions: some text
+        constraints:
+          - some text
+          - some text
+        maxNumberOfIssues: 37
+        scheduling:
+          scheduleType: Weekly
+          scheduleOccurrencesLimit: 4
+          every:
+            - 73
+            - 79
+          startDate: '2018-02-10T09:30Z'
+          endDate: '2018-02-10T09:30Z'
+          constraints:
+            - some text
+            - some text
+        dependantOn:
+          entityType: some text
+          dependantOn:
+            must:
+              - some text
+              - some text
+            mustNot:
+              - some text
+              - some text
+            should:
+              - some text
+              - some text
+            shouldMatchAtLeast: 75
+        status: some text
+        statusCode: 80
+    AchievementStrategies:
+      required:
+        - scoringStrategy
+      type: object
+      properties:
+        pointsStrategy:
+          $ref: '#/components/schemas/PointsStrategy'
+    PointsStrategy:
+      description: The target points to achieve
+      required:
+        - TargetType
+        - TargetPoints
+        - pointsValueMin
+        - operator
+      type: object
+      properties:
+        operator:
+          description: >-
+            The operator: Equals, GreaterThan, GreaterThanEquals, LessThan, LessThanEquals,
+            Between, Average, AverageBetween
+          type: string
+        pointsValueUpper:
+          description: >-
+            The upper points to achieve. This is only used where secondary number are required
+            like, between, or average between
+          type: number
+        pointsValue:
+          description: The points to achieve
+          type: number
   responses:
     AchievementResponseBody:
       content:
