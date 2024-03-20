@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **productTags** | **List&lt;String&gt;** |  |  [optional]
 **productIds** | **List&lt;String&gt;** |  |  [optional]
 **scheduleTypes** | **List&lt;String&gt;** |  |  [optional]
+**includeOptInState** | **Boolean** |  | 
 
 
 

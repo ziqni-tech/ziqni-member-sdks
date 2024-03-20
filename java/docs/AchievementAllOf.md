@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **bannerLowResolutionLink** | **String** | Link to the bannerLowResolution |  [optional]
 **bannerHighResolutionLink** | **String** | Link to the bannerHighResolution |  [optional]
 **strategies** | [**AchievementStrategies**](AchievementStrategies.md) |  |  [optional]
+**optInStatus** | [**OptinStatus**](OptinStatus.md) |  |  [optional]
 
 
 

@@ -4333,6 +4333,8 @@ components:
             $ref: '#/components/schemas/Error'
     AchievementFilter:
       description: ''
+      required:
+        - includeOptInState
       type: object
       properties:
         tags:
@@ -4393,6 +4395,9 @@ components:
           type: array
           items:
             type: string
+        includeOptInState:
+          description: ''
+          type: boolean
       example:
         productIds:
           - some text
@@ -5396,6 +5401,7 @@ components:
       type: object
       allOf:
         -
+          required: []
           type: object
           properties:
             name:
@@ -5465,6 +5471,9 @@ components:
             strategies:
               $ref: '#/components/schemas/AchievementStrategies'
               description: The target to reach in order to receive this achievement
+            optInStatus:
+              $ref: '#/components/schemas/OptinStatus'
+              description: ''
         -
           $ref: '#/components/schemas/ModelDefault'
         -
