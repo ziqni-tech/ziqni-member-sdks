@@ -4439,11 +4439,6 @@ components:
       description: ''
       type: object
       properties:
-        entityIDs:
-          description: The entity id to search. The default is product id
-          type: array
-          items:
-            type: string
         sortBy:
           description: >-
             Allow data to be sorted by name, description, created, etc. The default is name.
@@ -4482,6 +4477,11 @@ components:
             - competition
             - achievement.
           type: string
+        entityIds:
+          description: The entity id to search. The default is product id
+          type: array
+          items:
+            type: string
     ProductRequest:
       description: ''
       type: object
