@@ -52,7 +52,9 @@ public class RpcResultsResponse<TIN, TOUT> {
             else {
                 try {
                     final var result = (TOUT)response;
-                    return () -> getCompletableFuture().complete(result);
+                    return () -> {
+                        getCompletableFuture().complete(result);
+                    };
                 }
                 catch (ClassCastException classCastException){
                     return () -> getCompletableFuture().completeExceptionally(new RpcResultError(classCastException,response));

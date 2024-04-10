@@ -12,44 +12,51 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
-import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.stream.Collectors;
 
 public class SampleApp {
     private static final Logger logger = LoggerFactory.getLogger(SampleApp.class);
 
     private static final ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor();
-    
+
     private static ZiqniMemberApiFactory factory;
+
+    private static Map<String, Map<Integer, Double>> prevScores = new HashMap<>();
 
     public static void main(String[] args) throws Exception {
 
         factory = new ZiqniMemberApiFactory(MemberApiClientConfigBuilder.build());
 
-//        factory.getCallbacksApi().leaderboardUpdateHandler(
-//                (stompHeaders, leaderboard) -> {
-//                    logger.info("Leaderboard {} - ", leaderboard.getId());
-//                    if(leaderboard.getLeaderboardEntries().size() > 0){
-//                        leaderboard.getLeaderboardEntries().stream()
-//                                .sorted((o1, o2) -> o1.getRank().compareTo(o2.getRank()))
-//                                .forEach(leaderboardEntry -> logger.info("-{}- {}",leaderboardEntry.getRank(),leaderboardEntry.getMembers()));
-//                    }
-//                },
-//                (stompHeaders, e) -> {}
-//        );
-//        factory.getStreamingClient().getCallbackEventHandler().registerCallbackHandler(new CallbackConsumer<Leaderboard>(
-//                (stompHeaders, leaderboard) -> {
-//                    logger.info("Leaderboard {} - ", leaderboard.getId());
-//                    if(leaderboard.getLeaderboardEntries().size() > 0){
-//                        leaderboard.getLeaderboardEntries().stream()
-//                                .sorted((o1, o2) -> o1.getRank().compareTo(o2.getRank()))
-//                                .forEach(leaderboardEntry -> logger.info("-{}- {}",leaderboardEntry.getRank(),leaderboardEntry.getMembers()));
-//                    }
-//                },
-//                (stompHeaders, e) -> {}
-//        ));
+        factory.getCallbacksApi().leaderboardUpdateHandler(
+                (stompHeaders, leaderboard) -> {
+                    logger.info("Leaderboard {} - ", leaderboard.getId());
+                    prevScores.putIfAbsent(leaderboard.getId(), new HashMap<>());
+                    final Map<Integer, Double> map = prevScores.get(leaderboard.getId());
+
+                    if(!Objects.requireNonNull(leaderboard.getLeaderboardEntries()).isEmpty()){
+                        leaderboard.getLeaderboardEntries().stream()
+                                .sorted(Comparator.comparing(LeaderboardEntry::getRank))
+                                .forEach(leaderboardEntry -> {
+                                    final var changed = !Objects.equals(map.getOrDefault(leaderboardEntry.getRank(), 0.0), leaderboardEntry.getScore())
+                                            ? " *" : "";
+                                    logger.info("-{} {}- {} {}", leaderboardEntry.getRank(), leaderboardEntry.getScore(), leaderboardEntry.getMembers().stream().map(LeaderboardMember::getName).collect(Collectors.toList()), changed);
+                                })
+                        ;
+
+                        map.clear();
+                        leaderboard.getLeaderboardEntries().forEach(leaderboardEntry -> {
+                            map.put(leaderboardEntry.getRank(), leaderboardEntry.getScore());
+                        });
+                    }
+                },
+                (stompHeaders, e) -> {}
+        );
         factory.initialise(() -> {
                     factory.getZiqniAdminEventBus().register(new SampleApp());
                     try {
@@ -180,8 +187,7 @@ public class SampleApp {
                         .topRanksToInclude(10)
                 )
                 .action(LeaderboardSubscriptionRequest.ActionEnum.SUBSCRIBE)
-                .entityId("irz6kokBl_S2IPKJ_s6w")
-//                .entityId("drSzrIoBrdKHnCgruK_G")
+                .entityId(contest.getId())
         ).thenAccept(leaderboardsResponse -> {
             logger.info(leaderboardsResponse.toString());
         }).exceptionally(throwable -> {
@@ -259,7 +265,11 @@ public class SampleApp {
                 });
 
         factory.getCompetitionsApi()
-                .getCompetitions(new CompetitionRequest().competitionFilter(new CompetitionFilter().statusCode(new NumberRange().moreThan(20L).lessThan(30L))))
+                .getCompetitions(new CompetitionRequest()
+                        .competitionFilter(new CompetitionFilter()
+                                .statusCode(new NumberRange().moreThan(20L).lessThan(30L))
+                        ).languageKey("de")
+                )
                 .thenAccept(this::handleResponse)
                 .exceptionally(throwable -> {
                     logger.error("Fail",throwable);
@@ -278,22 +288,22 @@ public class SampleApp {
                     return null;
                 });
 
-//        factory.getGraphsApi()
-//                .getGraph(
-//                        new EntityGraphRequest()
-//                                .entityType(EntityType.ACHIEVEMENT)
-//                                .addIdsItem("wr47SoYB4W1yU_TfNeYL")
-////                                .addIdsItem("oLOWY4YBF0c3Crf1gj7J")
-////                                .addIncludesItem("description")
-////                                .addIncludesItem("scheduling")
-//                )
-//                .thenAccept(response -> {
-//                    logger.info(response.toString());
-//                })
-//                .exceptionally(throwable -> {
-//                    logger.error("Fail",throwable);
-//                    return null;
-//                });
+        factory.getGraphsApi()
+                .getGraph(
+                        new EntityGraphRequest()
+                                .entityType(EntityType.ACHIEVEMENT)
+                                .addIdsItem("wr47SoYB4W1yU_TfNeYL")
+//                                .addIdsItem("oLOWY4YBF0c3Crf1gj7J")
+//                                .addIncludesItem("description")
+//                                .addIncludesItem("scheduling")
+                )
+                .thenAccept(response -> {
+                    logger.info(response.toString());
+                })
+                .exceptionally(throwable -> {
+                    logger.error("Fail",throwable);
+                    return null;
+                });
     }
 
     private void subscribeToCallbacks(){
