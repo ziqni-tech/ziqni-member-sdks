@@ -1,6 +1,6 @@
 
 
-# EntityGraphEdgeType
+# EntityGraphLinkType
 
 ## Enum
 
