@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Member API
-  version: 1.0.12
+  version: 1.0.14
   description: >-
     The ZIQNI Member-API is the primary resource used to build services and widgets for your members
     [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
@@ -564,33 +564,6 @@ paths:
       operationId: listCallbacks
       summary: Describe the system callbacks and there constraints
       description: subscribes a client to receive out-of-band data
-  /competitions/count:
-    summary: Member competitions operation
-    description: This endpoint supports member's competitions operation.
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ModelCountRequest'
-        required: true
-      tags:
-        - competitions
-      responses:
-        '200':
-          $ref: '#/components/responses/CompetitionCountResponseBody'
-        '400':
-          $ref: '#/components/responses/CompetitionCountResponseBody'
-        '500':
-          $ref: '#/components/responses/CompetitionCountResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewCompetitions
-      operationId: getCompetitionsCount
-      summary: Get competitions by member reference id
-      description: Returns a count of competitions for the provided member ref id and applied filters.
-      x-ws-only: true
   /actives-by-entity:
     summary: Member achievements and competitions operation
     description: This endpoint supports member's active achievements and competitions operation.
@@ -618,6 +591,21 @@ paths:
       summary: Get competitions and/or achievements count by product id or reference id
       description: Returns the count of active competitions and/or achievements by product id or reference id
       x-ws-only: true
+  /mission-states:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MissionStatesRequest'
+        required: true
+      tags:
+        - missions
+      responses:
+        '200':
+          $ref: '#/components/responses/MissionStatesResponseBody'
+      operationId: getMissionStates
+      description: Get mission states
 components:
   schemas:
     ResponseMeta:
@@ -2942,36 +2930,6 @@ components:
         optinStatesFilter:
           $ref: '#/components/schemas/OptinStatesFilter'
           description: ''
-    OptinStatesFilter:
-      description: ''
-      required: []
-      type: object
-      properties:
-        entityTypes:
-          description: >-
-            Optionally provide entity types to filer by. Valid options are Achievement,
-            Competition, or Contest
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityType'
-        ids:
-          description: >-
-            Optionally provide a list of identifiers for either Achievements, Competitions, or
-            Contest
-          type: array
-          items:
-            type: string
-        statusCodes:
-          $ref: '#/components/schemas/RangeQuery'
-          description: Optionally provide a range of status codes to return
-        skip:
-          format: int32
-          description: 'The number of records to skip. Zero [0] is the defualt value'
-          type: integer
-        limit:
-          format: int32
-          description: Limit t6he results. The default is 20 if left empty
-          type: integer
     Heartbeat:
       description: ''
       type: object
@@ -4068,110 +4026,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Error'
-    AchievementFilter:
-      description: ''
-      required:
-        - includeOptInState
-      type: object
-      properties:
-        tags:
-          description: ''
-          type: array
-          items:
-            type: string
-        startDate:
-          $ref: '#/components/schemas/DateRange'
-          description: startDate
-        endDate:
-          $ref: '#/components/schemas/DateRange'
-          description: ''
-        ids:
-          description: ''
-          type: array
-          items:
-            type: string
-        sortBy:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/QuerySortBy'
-        skip:
-          format: int32
-          description: ''
-          type: integer
-        limit:
-          format: int32
-          description: ''
-          type: integer
-        statusCode:
-          $ref: '#/components/schemas/NumberRange'
-          description: Achievement status code
-          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
-        constraints:
-          description: Specify the constraints that need to be applied to the filter.
-          type: array
-          items:
-            type: string
-          example: |-
-            - hasTranslations
-            - hasRewards
-            - hasRules
-            - optinRequired
-        productTags:
-          description: ''
-          type: array
-          items:
-            type: string
-        productIds:
-          description: ''
-          type: array
-          items:
-            type: string
-        scheduleTypes:
-          description: ''
-          type: array
-          items:
-            type: string
-        includeOptInState:
-          description: ''
-          type: boolean
-      example:
-        productIds:
-          - some text
-          - some text
-        tags:
-          - some text
-          - some text
-        startDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        endDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        ids:
-          - some text
-          - some text
-        status:
-          - some text
-          - some text
-        sortBy:
-          -
-            queryField: some text
-            order: Asc
-          -
-            queryField: some text
-            order: Desc
-        skip: 0
-        limit: 72
-        statusCode:
-          - 60
-          - 45
     ProductFilter:
       description: ''
       type: object
@@ -5386,46 +5240,6 @@ components:
           - some text
         skip: 55
         limit: 61
-    OptinStatus:
-      description: ''
-      required:
-        - entityType
-        - statusCode
-        - status
-        - entityType
-        - entityId
-        - statusCode
-        - status
-        - points
-      type: object
-      properties:
-        entityType:
-          description: ''
-          type: string
-        entityId:
-          description: ''
-          type: string
-        statusCode:
-          description: >-
-            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15, Preparing = 20, Running =
-            25, Completing = 30, Completed = 35
-          type: integer
-        status:
-          description: |-
-            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15,\
-                        \ Preparing = 20, Running = 25, Completing = 30, Completed = 35
-          type: string
-        percentageComplete:
-          description: 'What percentage has been completed so far, this is a number between 0 and 100'
-          type: number
-        points:
-          format: double
-          description: ''
-          type: number
-        position:
-          format: int32
-          description: ''
-          type: integer
     Product:
       type: object
       allOf:
@@ -5609,6 +5423,330 @@ components:
               - some text
         -
           $ref: '#/components/schemas/OptionalModelFields'
+    OptinStatus:
+      description: ''
+      required:
+        - entityType
+        - statusCode
+        - status
+        - entityType
+        - entityId
+        - statusCode
+        - status
+        - points
+      type: object
+      properties:
+        entityType:
+          description: 'The type of this entity like Achievement, Competition, or Contest'
+          type: string
+        entityId:
+          description: The unique identifier of this entity
+          type: string
+        statusCode:
+          description: >-
+            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15, Preparing = 20, Running =
+            25, Completing = 30, Completed = 35
+          type: integer
+        status:
+          description: |-
+            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15,\
+                        \ Preparing = 20, Running = 25, Completing = 30, Completed = 35
+          type: string
+        percentageComplete:
+          description: 'What percentage has been completed so far, this is a number between 0 and 100'
+          type: number
+        points:
+          format: double
+          description: The current points total
+          type: number
+        position:
+          format: int32
+          description: The current position of the member
+          type: integer
+    MissionStatesResponse:
+      description: '        '
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/MissionStates'
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    MissionState:
+      description: |-
+        Mission is a specialised view of connected achievements.
+        The first achievement is the container, every dependant achievement is a chained dependency
+      required:
+        - entries
+        - entityId
+        - optInStatus
+      type: object
+      properties:
+        name:
+          description: ''
+          type: string
+        optInStatus:
+          $ref: '#/components/schemas/OptinStatus'
+          description: ''
+        constraints:
+          description: 'isCompleted, etc'
+          type: array
+          items:
+            type: string
+        entityType:
+          description: ''
+          type: string
+        entityId:
+          description: ''
+          type: string
+        entityStatusCode:
+          description: ''
+          type: integer
+        entityStatus:
+          description: ''
+          type: string
+        includes:
+          description: ''
+          type: object
+          additionalProperties:
+            type: object
+    MissionStates:
+      description: ''
+      required:
+        - missionId
+        - optinStates
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        missionStates:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/MissionState'
+    MissionStatesRequest:
+      description: ''
+      required:
+        - missionStatesFilter
+      type: object
+      properties:
+        missionStatesFilter:
+          $ref: '#/components/schemas/MissionStatesFilter'
+          description: ''
+        includes:
+          description: >-
+            What objects to include from the entity in this response. For achievement the
+            following can be included; description, memberTagsFilter, scheduling, and
+            termsAndConditions, optin-status
+          type: array
+          items:
+            type: string
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+    OptinStatesFilter:
+      description: ''
+      required: []
+      type: object
+      properties:
+        entityTypes:
+          description: >-
+            Optionally provide entity types to filer by. Valid options are Achievement,
+            Competition, or Contest
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityType'
+        ids:
+          description: >-
+            Optionally provide a list of identifiers for either Achievements, Competitions, or
+            Contest
+          type: array
+          items:
+            type: string
+        statusCodes:
+          $ref: '#/components/schemas/RangeQuery'
+          description: Optionally provide a range of status codes for the netity to return
+        optInStatusCodes:
+          $ref: '#/components/schemas/RangeQuery'
+          description: Optionally provide a range of status codes for the member. Default is all
+        skip:
+          format: int32
+          description: 'The number of records to skip. Zero [0] is the defualt value'
+          type: integer
+        limit:
+          format: int32
+          description: Limit the results. The default is 20 if left empty
+          type: integer
+    TagFilter:
+      description: ''
+      required:
+        - tag
+        - operand
+      type: object
+      properties:
+        tag:
+          description: ''
+          type: string
+        operand:
+          description: must or mustNot
+          type: string
+    MissionStatesFilter:
+      description: ''
+      required: []
+      type: object
+      properties:
+        ids:
+          description: Optionally provide a list of identifiers for the missoion
+          type: array
+          items:
+            type: string
+        statusCodes:
+          $ref: '#/components/schemas/RangeQuery'
+          description: >-
+            Optionally provide a range of status codes for the root achievement to return. Default
+            is active only
+        optInStatusCodes:
+          $ref: '#/components/schemas/RangeQuery'
+          description: >-
+            Optionally provide a range of status codes for the member. Default is entrant
+            [running] only
+        skip:
+          format: int32
+          description: 'The number of records to skip. Zero [0] is the defualt value'
+          type: integer
+        limit:
+          format: int32
+          description: Limit the results. The default and maximum is 20
+          type: integer
+        constraints:
+          description: ''
+          type: array
+          items:
+            type: string
+        tagFilters:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/TagFilter'
+    AchievementFilter:
+      description: ''
+      required:
+        - includeOptInState
+      type: object
+      properties:
+        tags:
+          description: ''
+          type: array
+          items:
+            type: string
+        startDate:
+          $ref: '#/components/schemas/DateRange'
+          description: startDate
+        endDate:
+          $ref: '#/components/schemas/DateRange'
+          description: ''
+        ids:
+          description: ''
+          type: array
+          items:
+            type: string
+        sortBy:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
+        statusCode:
+          $ref: '#/components/schemas/NumberRange'
+          description: Achievement status code
+          example: ' Unknown = 0; Draft = 5; Preparing = 10; Ready = 15; Starting = 20; Active = 25; Finishing = 30; Finished = 35; Template = 100; Cancelling = 110; Cancelled = 115; Deleting = 120; Deleted = 125'
+        optInStatusCodes:
+          $ref: '#/components/schemas/RangeQuery'
+          description: Optionally provide a range of status codes for the member. Default is all
+        constraints:
+          description: Specify the constraints that need to be applied to the filter.
+          type: array
+          items:
+            type: string
+          example: |-
+            - hasTranslations
+            - hasRewards
+            - hasRules
+            - optinRequired
+        productTags:
+          description: ''
+          type: array
+          items:
+            type: string
+        productIds:
+          description: ''
+          type: array
+          items:
+            type: string
+        scheduleTypes:
+          description: ''
+          type: array
+          items:
+            type: string
+        includeOptInState:
+          description: ''
+          type: boolean
+      example:
+        productIds:
+          - some text
+          - some text
+        tags:
+          - some text
+          - some text
+        startDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        endDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        ids:
+          - some text
+          - some text
+        status:
+          - some text
+          - some text
+        sortBy:
+          -
+            queryField: some text
+            order: Asc
+          -
+            queryField: some text
+            order: Desc
+        skip: 0
+        limit: 72
+        statusCode:
+          - 60
+          - 45
   responses:
     AchievementResponseBody:
       content:
@@ -5817,6 +5955,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ModelCountResponse'
+      description: ''
+    MissionStatesResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MissionStatesResponse'
       description: ''
   securitySchemes:
     OAuth2:

@@ -4,18 +4,18 @@ All URIs are relative to *https://member-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getMissions**](MissionsApi.md#getMissions) | **POST** /missions | Get achievements by member reference id
-[**getMissionsWithHttpInfo**](MissionsApi.md#getMissionsWithHttpInfo) | **POST** /missions | Get achievements by member reference id
+[**getMissionStates**](MissionsApi.md#getMissionStates) | **POST** /mission-states | 
+[**getMissionStatesWithHttpInfo**](MissionsApi.md#getMissionStatesWithHttpInfo) | **POST** /mission-states | 
 
 
 
-## getMissions
+## getMissionStates
 
-> CompletableFuture<MissionResponse> getMissions(missionRequest)
+> CompletableFuture<MissionStatesResponse> getMissionStates(missionStatesRequest)
 
-Get achievements by member reference id
 
-Returns a list of achievements for the provided member ref id and applied filters.
+
+Get mission states
 
 ### Example
 
@@ -24,7 +24,6 @@ Returns a list of achievements for the provided member ref id and applied filter
 import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.MissionsApi;
 import java.util.concurrent.CompletableFuture;
@@ -33,18 +32,14 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         MissionsApi apiInstance = new MissionsApi(defaultClient);
-        MissionRequest missionRequest = new MissionRequest(); // MissionRequest | 
+        MissionStatesRequest missionStatesRequest = new MissionStatesRequest(); // MissionStatesRequest | 
         try {
-            CompletableFuture<MissionResponse> result = apiInstance.getMissions(missionRequest);
+            CompletableFuture<MissionStatesResponse> result = apiInstance.getMissionStates(missionStatesRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling MissionsApi#getMissions");
+            System.err.println("Exception when calling MissionsApi#getMissionStates");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -59,16 +54,16 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **missionRequest** | [**MissionRequest**](MissionRequest.md)|  |
+ **missionStatesRequest** | [**MissionStatesRequest**](MissionStatesRequest.md)|  |
 
 ### Return type
 
-CompletableFuture<[**MissionResponse**](MissionResponse.md)>
+CompletableFuture<[**MissionStatesResponse**](MissionStatesResponse.md)>
 
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -79,16 +74,14 @@ CompletableFuture<[**MissionResponse**](MissionResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
 
-## getMissionsWithHttpInfo
+## getMissionStatesWithHttpInfo
 
-> CompletableFuture<ApiResponse<MissionResponse>> getMissions getMissionsWithHttpInfo(missionRequest)
+> CompletableFuture<ApiResponse<MissionStatesResponse>> getMissionStates getMissionStatesWithHttpInfo(missionStatesRequest)
 
-Get achievements by member reference id
 
-Returns a list of achievements for the provided member ref id and applied filters.
+
+Get mission states
 
 ### Example
 
@@ -98,7 +91,6 @@ import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.MissionsApi;
 import java.util.concurrent.CompletableFuture;
@@ -107,27 +99,23 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         MissionsApi apiInstance = new MissionsApi(defaultClient);
-        MissionRequest missionRequest = new MissionRequest(); // MissionRequest | 
+        MissionStatesRequest missionStatesRequest = new MissionStatesRequest(); // MissionStatesRequest | 
         try {
-            CompletableFuture<ApiResponse<MissionResponse>> response = apiInstance.getMissionsWithHttpInfo(missionRequest);
+            CompletableFuture<ApiResponse<MissionStatesResponse>> response = apiInstance.getMissionStatesWithHttpInfo(missionStatesRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling MissionsApi#getMissions");
+            System.err.println("Exception when calling MissionsApi#getMissionStates");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling MissionsApi#getMissions");
+            System.err.println("Exception when calling MissionsApi#getMissionStates");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -142,16 +130,16 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **missionRequest** | [**MissionRequest**](MissionRequest.md)|  |
+ **missionStatesRequest** | [**MissionStatesRequest**](MissionStatesRequest.md)|  |
 
 ### Return type
 
-CompletableFuture<ApiResponse<[**MissionResponse**](MissionResponse.md)>>
+CompletableFuture<ApiResponse<[**MissionStatesResponse**](MissionStatesResponse.md)>>
 
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -162,6 +150,4 @@ CompletableFuture<ApiResponse<[**MissionResponse**](MissionResponse.md)>>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
 
