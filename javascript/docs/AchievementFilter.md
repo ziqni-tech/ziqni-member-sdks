@@ -16,5 +16,6 @@ Name | Type | Description | Notes
 **productTags** | **[String]** |  | [optional] 
 **productIds** | **[String]** |  | [optional] 
 **scheduleTypes** | **[String]** |  | [optional] 
+**includeOptInState** | **Boolean** |  | 
 
 

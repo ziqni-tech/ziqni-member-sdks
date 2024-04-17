@@ -10,6 +10,10 @@ Name | Type | Description | Notes
 **constraints** | **[String]** | Additional constraints, if set means true [optinRequiredForEntrants, hasRules, hasRewards] | [optional] 
 **statusCode** | **Number** |  | [optional] 
 **instantWinType** | **Number** |  | 
+**iconLink** | **String** | Attachement id for the corresponding icon image. | [optional] 
+**bannerLink** | **String** | Link to the banner | [optional] 
+**bannerLowResolutionLink** | **String** | Link to the bannerLowResolution | [optional] 
+**bannerHighResolutionLink** | **String** | Link to the bannerHighResolution | [optional] 
 **tiles** | [**[InstantWinTile]**](InstantWinTile.md) |  | 
 **id** | **String** | Ziqni id of the model | 
 **spaceName** | **String** | This is the space name which is linked to the account | [optional] 
