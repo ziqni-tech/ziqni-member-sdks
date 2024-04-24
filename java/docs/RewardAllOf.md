@@ -1,6 +1,6 @@
 
 
-# Reward
+# RewardAllOf
 
 
 ## Properties
@@ -24,9 +24,6 @@ Name | Type | Description | Notes
 **period** | **Integer** | Reward available for a period of time from issuing in minutes |  [optional]
 **id** | **String** | Unique system identifier of a Main Rule |  [optional] [readonly]
 **constraints** | **List&lt;String&gt;** | Additional constraints |  [optional]
-**customFields** | **Map&lt;String, Object&gt;** |  |  [optional]
-**tags** | **List&lt;String&gt;** | A list of id&#39;s used to tag models |  [optional]
-**metadata** | **Map&lt;String, String&gt;** |  |  [optional]
 
 
 
