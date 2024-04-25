@@ -13,25 +13,21 @@
 
 import ApiClient from '../ApiClient';
 import EntityType from './EntityType';
-import OptionalModelFields from './OptionalModelFields';
-import RewardAllOf from './RewardAllOf';
 import RewardTypeReduced from './RewardTypeReduced';
 
 /**
- * The Reward model module.
- * @module model/Reward
+ * The RewardAllOf model module.
+ * @module model/RewardAllOf
  * @version 1.0.14
  */
-class Reward {
+class RewardAllOf {
     /**
-     * Constructs a new <code>Reward</code>.
-     * @alias module:model/Reward
-     * @implements module:model/RewardAllOf
-     * @implements module:model/OptionalModelFields
+     * Constructs a new <code>RewardAllOf</code>.
+     * @alias module:model/RewardAllOf
      */
     constructor() { 
-        RewardAllOf.initialize(this);OptionalModelFields.initialize(this);
-        Reward.initialize(this);
+        
+        RewardAllOf.initialize(this);
     }
 
     /**
@@ -43,17 +39,15 @@ class Reward {
     }
 
     /**
-     * Constructs a <code>Reward</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>RewardAllOf</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/Reward} obj Optional instance to populate.
-     * @return {module:model/Reward} The populated <code>Reward</code> instance.
+     * @param {module:model/RewardAllOf} obj Optional instance to populate.
+     * @return {module:model/RewardAllOf} The populated <code>RewardAllOf</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new Reward();
-            RewardAllOf.constructFromObject(data, obj);
-            OptionalModelFields.constructFromObject(data, obj);
+            obj = obj || new RewardAllOf();
 
             if (data.hasOwnProperty('probability')) {
                 obj['probability'] = ApiClient.convertToType(data['probability'], 'Number');
@@ -106,15 +100,6 @@ class Reward {
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
             }
-            if (data.hasOwnProperty('customFields')) {
-                obj['customFields'] = ApiClient.convertToType(data['customFields'], {'String': Object});
-            }
-            if (data.hasOwnProperty('tags')) {
-                obj['tags'] = ApiClient.convertToType(data['tags'], ['String']);
-            }
-            if (data.hasOwnProperty('metadata')) {
-                obj['metadata'] = ApiClient.convertToType(data['metadata'], {'String': 'String'});
-            }
         }
         return obj;
     }
@@ -126,220 +111,106 @@ class Reward {
  * What is the probability of winning this reward
  * @member {Number} probability
  */
-Reward.prototype['probability'] = undefined;
-
-/**
- * @member {module:model/EntityType} entityType
- */
-Reward.prototype['entityType'] = undefined;
-
-/**
- * A unique identifier of an achievement or contest. Dependant on entityType
- * @member {String} entityId
- */
-Reward.prototype['entityId'] = undefined;
-
-/**
- * The name of a reward
- * @member {String} name
- */
-Reward.prototype['name'] = undefined;
-
-/**
- * The description of a Reward
- * @member {String} description
- */
-Reward.prototype['description'] = undefined;
-
-/**
- * If used in the context of contest this will associate with the rank of the leaderboard
- * @member {String} rewardRank
- */
-Reward.prototype['rewardRank'] = undefined;
-
-/**
- * Numerical value of the reward that will be issued based on the reward type
- * @member {Number} rewardValue
- */
-Reward.prototype['rewardValue'] = undefined;
-
-/**
- * @member {module:model/RewardTypeReduced} rewardType
- */
-Reward.prototype['rewardType'] = undefined;
-
-/**
- * Link to the icon
- * @member {String} iconLink
- */
-Reward.prototype['iconLink'] = undefined;
-
-/**
- * id the icon
- * @member {String} icon
- */
-Reward.prototype['icon'] = undefined;
-
-/**
- * spaceName
- * @member {String} spaceName
- */
-Reward.prototype['spaceName'] = undefined;
-
-/**
- * how many of thsese rewards are
- * @member {Number} issueLimit
- */
-Reward.prototype['issueLimit'] = undefined;
-
-/**
- * Delay of issuing a reward in minutes
- * @member {Number} delay
- */
-Reward.prototype['delay'] = undefined;
-
-/**
- * ISO8601 timestamp for when a Reward is available until a specific point in time. All records are stored in UTC time zone
- * @member {Date} pointInTime
- */
-Reward.prototype['pointInTime'] = undefined;
-
-/**
- * Reward available for a period of time from issuing in minutes
- * @member {Number} period
- */
-Reward.prototype['period'] = undefined;
-
-/**
- * Unique system identifier of a Main Rule
- * @member {String} id
- */
-Reward.prototype['id'] = undefined;
-
-/**
- * Additional constraints
- * @member {Array.<String>} constraints
- */
-Reward.prototype['constraints'] = undefined;
-
-/**
- * @member {Object.<String, Object>} customFields
- */
-Reward.prototype['customFields'] = undefined;
-
-/**
- * A list of id's used to tag models
- * @member {Array.<String>} tags
- */
-Reward.prototype['tags'] = undefined;
-
-/**
- * @member {Object.<String, String>} metadata
- */
-Reward.prototype['metadata'] = undefined;
-
-
-// Implement RewardAllOf interface:
-/**
- * What is the probability of winning this reward
- * @member {Number} probability
- */
 RewardAllOf.prototype['probability'] = undefined;
+
 /**
  * @member {module:model/EntityType} entityType
  */
 RewardAllOf.prototype['entityType'] = undefined;
+
 /**
  * A unique identifier of an achievement or contest. Dependant on entityType
  * @member {String} entityId
  */
 RewardAllOf.prototype['entityId'] = undefined;
+
 /**
  * The name of a reward
  * @member {String} name
  */
 RewardAllOf.prototype['name'] = undefined;
+
 /**
  * The description of a Reward
  * @member {String} description
  */
 RewardAllOf.prototype['description'] = undefined;
+
 /**
  * If used in the context of contest this will associate with the rank of the leaderboard
  * @member {String} rewardRank
  */
 RewardAllOf.prototype['rewardRank'] = undefined;
+
 /**
  * Numerical value of the reward that will be issued based on the reward type
  * @member {Number} rewardValue
  */
 RewardAllOf.prototype['rewardValue'] = undefined;
+
 /**
  * @member {module:model/RewardTypeReduced} rewardType
  */
 RewardAllOf.prototype['rewardType'] = undefined;
+
 /**
  * Link to the icon
  * @member {String} iconLink
  */
 RewardAllOf.prototype['iconLink'] = undefined;
+
 /**
  * id the icon
  * @member {String} icon
  */
 RewardAllOf.prototype['icon'] = undefined;
+
 /**
  * spaceName
  * @member {String} spaceName
  */
 RewardAllOf.prototype['spaceName'] = undefined;
+
 /**
  * how many of thsese rewards are
  * @member {Number} issueLimit
  */
 RewardAllOf.prototype['issueLimit'] = undefined;
+
 /**
  * Delay of issuing a reward in minutes
  * @member {Number} delay
  */
 RewardAllOf.prototype['delay'] = undefined;
+
 /**
  * ISO8601 timestamp for when a Reward is available until a specific point in time. All records are stored in UTC time zone
  * @member {Date} pointInTime
  */
 RewardAllOf.prototype['pointInTime'] = undefined;
+
 /**
  * Reward available for a period of time from issuing in minutes
  * @member {Number} period
  */
 RewardAllOf.prototype['period'] = undefined;
+
 /**
  * Unique system identifier of a Main Rule
  * @member {String} id
  */
 RewardAllOf.prototype['id'] = undefined;
+
 /**
  * Additional constraints
  * @member {Array.<String>} constraints
  */
 RewardAllOf.prototype['constraints'] = undefined;
-// Implement OptionalModelFields interface:
-/**
- * @member {Object.<String, Object>} customFields
- */
-OptionalModelFields.prototype['customFields'] = undefined;
-/**
- * A list of id's used to tag models
- * @member {Array.<String>} tags
- */
-OptionalModelFields.prototype['tags'] = undefined;
-/**
- * @member {Object.<String, String>} metadata
- */
-OptionalModelFields.prototype['metadata'] = undefined;
 
 
 
 
-export default Reward;
+
+
+export default RewardAllOf;
 
