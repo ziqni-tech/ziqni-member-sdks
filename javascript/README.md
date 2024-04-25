@@ -285,6 +285,7 @@ Class | Method | HTTP request | Description
  - [ZiqniMemberApi.RankingStrategy](docs/RankingStrategy.md)
  - [ZiqniMemberApi.ResponseMeta](docs/ResponseMeta.md)
  - [ZiqniMemberApi.Reward](docs/Reward.md)
+ - [ZiqniMemberApi.RewardAllOf](docs/RewardAllOf.md)
  - [ZiqniMemberApi.RewardReduced](docs/RewardReduced.md)
  - [ZiqniMemberApi.RewardReducedAllOf](docs/RewardReducedAllOf.md)
  - [ZiqniMemberApi.RewardRequest](docs/RewardRequest.md)
