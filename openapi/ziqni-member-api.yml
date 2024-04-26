@@ -3809,107 +3809,6 @@ components:
           $ref: '#/components/schemas/ModelDefault'
         -
           $ref: '#/components/schemas/OptionalModelFields'
-    Reward:
-      description: ''
-      type: object
-      allOf:
-        -
-          type: object
-          properties:
-            probability:
-              description: What is the probability of winning this reward
-              type: number
-            entityType:
-              $ref: '#/components/schemas/EntityType'
-            entityId:
-              description: A unique identifier of an achievement or contest. Dependant on entityType
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            name:
-              description: The name of a reward
-              type: string
-              example: Welcome badge
-            description:
-              description: The description of a Reward
-              type: string
-              example: A badge to welcome a new player
-            rewardRank:
-              description: >-
-                If used in the context of contest this will associate with the rank of the
-                leaderboard
-              type: string
-              example: '1,2 3 ...10'
-            rewardValue:
-              format: double
-              description: Numerical value of the reward that will be issued based on the reward type
-              type: number
-              example: '1'
-            rewardType:
-              $ref: '#/components/schemas/RewardTypeReduced'
-            iconLink:
-              description: Link to the icon
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            icon:
-              description: id the icon
-              type: string
-              example: DNBIOOONK
-            spaceName:
-              description: spaceName
-              type: string
-              example: example-space
-            issueLimit:
-              format: int32
-              description: how many of thsese rewards are
-              type: integer
-              example: '2'
-            delay:
-              format: int32
-              description: Delay of issuing a reward in minutes
-              type: integer
-              example: '2'
-            pointInTime:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Reward is available until a specific point in
-                time. All records are stored in UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            period:
-              format: int32
-              description: Reward available for a period of time from issuing in minutes
-              type: integer
-              example: '2'
-            id:
-              description: Unique system identifier of a Main Rule
-              type: string
-              readOnly: true
-              example: Dc4swmQBVd51K6gPQqFx
-            constraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - isMemberAcknowledgmentRequired'
-        -
-          $ref: '#/components/schemas/OptionalModelFields'
-      example:
-        entityType: FileObject
-        entityId: some text
-        name: some text
-        description: some text
-        rewardRank: some text
-        rewardValue: 7.85
-        rewardType:
-          key: some text
-        icon: some text
-        issueLimit: 60
-        delay: 19
-        pointInTime: '2018-02-10T09:30Z'
-        period: 32
-        constraints:
-          - some text
-          - some text
     ProductResponse:
       description: This is a Contest Response
       required: []
@@ -5754,6 +5653,112 @@ components:
         statusCode:
           - 60
           - 45
+    Reward:
+      description: ''
+      type: object
+      allOf:
+        -
+          type: object
+          properties:
+            probability:
+              description: What is the probability of winning this reward
+              type: number
+            entityType:
+              $ref: '#/components/schemas/EntityType'
+            entityId:
+              description: A unique identifier of an achievement or contest. Dependant on entityType
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            name:
+              description: The name of a reward
+              type: string
+              example: Welcome badge
+            description:
+              description: The description of a Reward
+              type: string
+              example: A badge to welcome a new player
+            rewardRank:
+              description: >-
+                If used in the context of contest this will associate with the rank of the
+                leaderboard
+              type: string
+              example: '1,2 3 ...10'
+            rewardValue:
+              format: double
+              description: Numerical value of the reward that will be issued based on the reward type
+              type: number
+              example: '1'
+            rewardType:
+              $ref: '#/components/schemas/RewardTypeReduced'
+            iconLink:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            icon:
+              description: id the icon
+              type: string
+              example: DNBIOOONK
+            spaceName:
+              description: spaceName
+              type: string
+              example: example-space
+            issueLimit:
+              format: int32
+              description: how many of thsese rewards are
+              type: integer
+              example: '2'
+            limitToMembersByTag:
+              $ref: '#/components/schemas/DependantOn'
+              description: >-
+                This filter limits which member are eligible for this prize based on their
+                tags
+            delay:
+              format: int32
+              description: Delay of issuing a reward in minutes
+              type: integer
+              example: '2'
+            pointInTime:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Reward is available until a specific point in
+                time. All records are stored in UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            period:
+              format: int32
+              description: Reward available for a period of time from issuing in minutes
+              type: integer
+              example: '2'
+            id:
+              description: Unique system identifier of a Main Rule
+              type: string
+              readOnly: true
+              example: Dc4swmQBVd51K6gPQqFx
+            constraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - isMemberAcknowledgmentRequired'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+      example:
+        entityType: FileObject
+        entityId: some text
+        name: some text
+        description: some text
+        rewardRank: some text
+        rewardValue: 7.85
+        rewardType:
+          key: some text
+        icon: some text
+        issueLimit: 60
+        delay: 19
+        pointInTime: '2018-02-10T09:30Z'
+        period: 32
+        constraints:
+          - some text
+          - some text
   responses:
     AchievementResponseBody:
       content:
