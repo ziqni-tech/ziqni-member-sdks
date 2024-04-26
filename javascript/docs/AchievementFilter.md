@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **skip** | **Number** |  | [optional] 
 **limit** | **Number** |  | [optional] 
 **statusCode** | [**NumberRange**](NumberRange.md) |  | [optional] 
+**optInStatusCodes** | [**RangeQuery**](RangeQuery.md) |  | [optional] 
 **constraints** | **[String]** | Specify the constraints that need to be applied to the filter. | [optional] 
 **productTags** | **[String]** |  | [optional] 
 **productIds** | **[String]** |  | [optional] 

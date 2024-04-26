@@ -1,4 +1,4 @@
-# ZiqniMemberApi.Reward
+# ZiqniMemberApi.RewardAllOf
 
 ## Properties
 
@@ -21,8 +21,5 @@ Name | Type | Description | Notes
 **period** | **Number** | Reward available for a period of time from issuing in minutes | [optional] 
 **id** | **String** | Unique system identifier of a Main Rule | [optional] [readonly] 
 **constraints** | **[String]** | Additional constraints | [optional] 
-**customFields** | **{String: Object}** |  | [optional] 
-**tags** | **[String]** | A list of id&#39;s used to tag models | [optional] 
-**metadata** | **{String: String}** |  | [optional] 
 
 

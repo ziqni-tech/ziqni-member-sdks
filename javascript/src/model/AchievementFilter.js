@@ -15,6 +15,7 @@ import ApiClient from '../ApiClient';
 import DateRange from './DateRange';
 import NumberRange from './NumberRange';
 import QuerySortBy from './QuerySortBy';
+import RangeQuery from './RangeQuery';
 
 /**
  * The AchievementFilter model module.
@@ -75,6 +76,9 @@ class AchievementFilter {
             }
             if (data.hasOwnProperty('statusCode')) {
                 obj['statusCode'] = NumberRange.constructFromObject(data['statusCode']);
+            }
+            if (data.hasOwnProperty('optInStatusCodes')) {
+                obj['optInStatusCodes'] = RangeQuery.constructFromObject(data['optInStatusCodes']);
             }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
@@ -137,6 +141,11 @@ AchievementFilter.prototype['limit'] = undefined;
  * @member {module:model/NumberRange} statusCode
  */
 AchievementFilter.prototype['statusCode'] = undefined;
+
+/**
+ * @member {module:model/RangeQuery} optInStatusCodes
+ */
+AchievementFilter.prototype['optInStatusCodes'] = undefined;
 
 /**
  * Specify the constraints that need to be applied to the filter.
