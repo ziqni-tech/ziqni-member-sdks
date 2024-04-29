@@ -2463,18 +2463,6 @@ components:
           - some text
         skip: 81
         limit: 79
-    EntityFilter:
-      description: ''
-      type: object
-      properties:
-        entityType:
-          description: 'Achievement, Contest or Competition'
-          type: string
-        entityIds:
-          description: ''
-          type: array
-          items:
-            type: string
     AchievementRequest:
       description: ''
       type: object
@@ -3480,41 +3468,6 @@ components:
             order: Desc
         skip: 29
         limit: 3
-    RewardRequest:
-      description: ''
-      required:
-        - entityIds
-      type: object
-      properties:
-        entityFilter:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityFilter'
-        languageKey:
-          description: >-
-            The language codes can be found in the settings/transalations section of the back
-            office
-          type: string
-        sortBy:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/QuerySortBy'
-        currencyKey:
-          description: >-
-            The UoM currency key to normalise the value to for presentation. Example; If the
-            reward is in EUR and this value is set to USD then the value will be multiplied by
-            1.09387699997429
-          type: string
-        skip:
-          format: int32
-          description: ''
-          type: integer
-        limit:
-          format: int32
-          description: ''
-          type: integer
     RewardTypeReduced:
       description: ''
       type: object
@@ -5759,6 +5712,58 @@ components:
         constraints:
           - some text
           - some text
+    RewardRequest:
+      description: ''
+      required:
+        - entityIds
+      type: object
+      properties:
+        entityFilter:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityFilter'
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        sortBy:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        currencyKey:
+          description: >-
+            The UoM currency key to normalise the value to for presentation. Example; If the
+            reward is in EUR and this value is set to USD then the value will be multiplied by
+            1.09387699997429
+          type: string
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
+    EntityFilter:
+      description: ''
+      type: object
+      properties:
+        entityType:
+          description: 'Achievement, Contest or Competition'
+          type: string
+        entityIds:
+          description: ''
+          type: array
+          items:
+            type: string
+        limitToMembersByTag:
+          description: member tags
+          type: array
+          items:
+            type: string
   responses:
     AchievementResponseBody:
       content:
