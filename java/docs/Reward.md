@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **icon** | **String** | id the icon |  [optional]
 **spaceName** | **String** | spaceName |  [optional]
 **issueLimit** | **Integer** | how many of thsese rewards are |  [optional]
-**limitToMembersByTag** | [**DependantOn**](DependantOn.md) |  |  [optional]
+**memberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
 **delay** | **Integer** | Delay of issuing a reward in minutes |  [optional]
 **pointInTime** | **OffsetDateTime** | ISO8601 timestamp for when a Reward is available until a specific point in time. All records are stored in UTC time zone |  [optional]
 **period** | **Integer** | Reward available for a period of time from issuing in minutes |  [optional]

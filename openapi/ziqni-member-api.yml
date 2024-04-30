@@ -5606,6 +5606,41 @@ components:
         statusCode:
           - 60
           - 45
+    RewardRequest:
+      description: ''
+      required:
+        - entityIds
+      type: object
+      properties:
+        entityFilter:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityFilter'
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        sortBy:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        currencyKey:
+          description: >-
+            The UoM currency key to normalise the value to for presentation. Example; If the
+            reward is in EUR and this value is set to USD then the value will be multiplied by
+            1.09387699997429
+          type: string
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
     Reward:
       description: ''
       type: object
@@ -5660,7 +5695,7 @@ components:
               description: how many of thsese rewards are
               type: integer
               example: '2'
-            limitToMembersByTag:
+            memberTagsFilter:
               $ref: '#/components/schemas/DependantOn'
               description: >-
                 This filter limits which member are eligible for this prize based on their
@@ -5712,41 +5747,6 @@ components:
         constraints:
           - some text
           - some text
-    RewardRequest:
-      description: ''
-      required:
-        - entityIds
-      type: object
-      properties:
-        entityFilter:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityFilter'
-        languageKey:
-          description: >-
-            The language codes can be found in the settings/transalations section of the back
-            office
-          type: string
-        sortBy:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/QuerySortBy'
-        currencyKey:
-          description: >-
-            The UoM currency key to normalise the value to for presentation. Example; If the
-            reward is in EUR and this value is set to USD then the value will be multiplied by
-            1.09387699997429
-          type: string
-        skip:
-          format: int32
-          description: ''
-          type: integer
-        limit:
-          format: int32
-          description: ''
-          type: integer
     EntityFilter:
       description: ''
       type: object
@@ -5759,7 +5759,7 @@ components:
           type: array
           items:
             type: string
-        limitToMembersByTag:
+        memberTags:
           description: member tags
           type: array
           items:
