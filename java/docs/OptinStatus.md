@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **percentageComplete** | **BigDecimal** | What percentage has been completed so far, this is a number between 0 and 100 |  [optional]
 **points** | **Double** | The current points total | 
 **position** | **Integer** | The current position of the member |  [optional]
+**params** | **Map&lt;String, BigDecimal&gt;** | The user defined values used in the rules builder |  [optional]
 
 
 

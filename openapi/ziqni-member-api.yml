@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Member API
-  version: 1.0.14
+  version: 1.0.15
   description: >-
     The ZIQNI Member-API is the primary resource used to build services and widgets for your members
     [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
@@ -5282,46 +5282,6 @@ components:
               - some text
         -
           $ref: '#/components/schemas/OptionalModelFields'
-    OptinStatus:
-      description: ''
-      required:
-        - entityType
-        - statusCode
-        - status
-        - entityType
-        - entityId
-        - statusCode
-        - status
-        - points
-      type: object
-      properties:
-        entityType:
-          description: 'The type of this entity like Achievement, Competition, or Contest'
-          type: string
-        entityId:
-          description: The unique identifier of this entity
-          type: string
-        statusCode:
-          description: >-
-            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15, Preparing = 20, Running =
-            25, Completing = 30, Completed = 35
-          type: integer
-        status:
-          description: |-
-            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15,\
-                        \ Preparing = 20, Running = 25, Completing = 30, Completed = 35
-          type: string
-        percentageComplete:
-          description: 'What percentage has been completed so far, this is a number between 0 and 100'
-          type: number
-        points:
-          format: double
-          description: The current points total
-          type: number
-        position:
-          format: int32
-          description: The current position of the member
-          type: integer
     MissionStatesResponse:
       description: '        '
       required: []
@@ -5764,6 +5724,51 @@ components:
           type: array
           items:
             type: string
+    OptinStatus:
+      description: ''
+      required:
+        - entityType
+        - statusCode
+        - status
+        - entityType
+        - entityId
+        - statusCode
+        - status
+        - points
+      type: object
+      properties:
+        entityType:
+          description: 'The type of this entity like Achievement, Competition, or Contest'
+          type: string
+        entityId:
+          description: The unique identifier of this entity
+          type: string
+        statusCode:
+          description: >-
+            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15, Preparing = 20, Running =
+            25, Completing = 30, Completed = 35
+          type: integer
+        status:
+          description: |-
+            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15,\
+                        \ Preparing = 20, Running = 25, Completing = 30, Completed = 35
+          type: string
+        percentageComplete:
+          description: 'What percentage has been completed so far, this is a number between 0 and 100'
+          type: number
+        points:
+          format: double
+          description: The current points total
+          type: number
+        position:
+          format: int32
+          description: The current position of the member
+          type: integer
+        params:
+          description: The user defined values used in the rules builder
+          type: object
+          additionalProperties:
+            type: number
   responses:
     AchievementResponseBody:
       content:
