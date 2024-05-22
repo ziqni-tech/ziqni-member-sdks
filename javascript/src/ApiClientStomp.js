@@ -192,7 +192,10 @@ class ApiClientStomp {
         const messageId = this.uuidv4();
         const messageHeaders = { 'message-id': messageId };
 
-        this.client.publish({destination, headers: messageHeaders, body: JSON.stringify(message)});
+        if (this.client.connected) {
+            this.client.publish({destination, headers: messageHeaders, body: JSON.stringify(message)});
+        }
+
         this.rpcCallBacks.set(messageId, callback);
     }
 
