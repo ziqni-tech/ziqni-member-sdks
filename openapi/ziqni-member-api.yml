@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Member API
-  version: 1.0.15
+  version: 1.0.16
   description: >-
     The ZIQNI Member-API is the primary resource used to build services and widgets for your members
     [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
@@ -606,6 +606,33 @@ paths:
           $ref: '#/components/responses/MissionStatesResponseBody'
       operationId: getMissionStates
       description: Get mission states
+  /awards-decline:
+    summary: Award operations
+    description: This endpoint is used to perform award operations.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeclineAwardRequest'
+        required: true
+      tags:
+        - awards
+      responses:
+        '200':
+          $ref: '#/components/responses/AwardResponseBody'
+        '400':
+          $ref: '#/components/responses/AwardResponseBody'
+        '500':
+          $ref: '#/components/responses/AwardResponseBody'
+      security:
+        -
+          OAuth2:
+            - ClaimAwards
+      operationId: declineAwards
+      summary: Claim awards.
+      description: This operation enables a member to claim awards.
+      x-ws-only: true
 components:
   schemas:
     ResponseMeta:
@@ -2252,12 +2279,6 @@ components:
           type: string
       example:
         id: some text
-    OptinAction:
-      description: ''
-      enum:
-        - join
-        - leave
-      type: string
     UnsubscribeRequest:
       description: ''
       required:
@@ -3468,29 +3489,6 @@ components:
             order: Desc
         skip: 29
         limit: 3
-    RewardTypeReduced:
-      description: ''
-      type: object
-      properties:
-        key:
-          description: A unique key that represents the reward type
-          type: string
-          example: free-spin-reward
-        uom:
-          description: 'The key assigned to the unit of measure '
-          type: string
-          example: USD
-        uomIsoCode:
-          description: The ISO code assigned to the unit of measure
-          type: string
-          example: USD
-        uomSymbol:
-          description: The symbol assigned to the unit of measure
-          type: string
-          example: $
-        uomType:
-          description: ' The type of UOM, either Other Currency Mass Time Temperature ElectricCurrent AmountOfSubstance LuminousIntensity Distance'
-          type: string
     Award:
       description: ''
       type: object
@@ -5769,6 +5767,54 @@ components:
           type: object
           additionalProperties:
             type: number
+    OptinAction:
+      description: ''
+      enum:
+        - join
+        - leave
+      type: string
+    DeclineAwardRequest:
+      description: ''
+      required:
+        - awardId
+      type: object
+      properties:
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        awardIds:
+          description: ''
+          type: array
+          items:
+            type: string
+    RewardTypeReduced:
+      description: ''
+      type: object
+      properties:
+        key:
+          description: A unique key that represents the reward type
+          type: string
+          example: free-spin-reward
+        uom:
+          description: 'The key assigned to the unit of measure '
+          type: string
+          example: USD
+        uomIsoCode:
+          description: The ISO code assigned to the unit of measure
+          type: string
+          example: USD
+        uomSymbol:
+          description: The symbol assigned to the unit of measure
+          type: string
+          example: $
+        uomType:
+          description: ' The type of UOM, either Other Currency Mass Time Temperature ElectricCurrent AmountOfSubstance LuminousIntensity Distance'
+          type: string
+        customFields:
+          type: object
+          additionalProperties: true
   responses:
     AchievementResponseBody:
       content:
