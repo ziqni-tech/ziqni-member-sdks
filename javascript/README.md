@@ -98,23 +98,37 @@ module: {
 Please follow the [installation](#installation) instruction and execute the following JS code:
 
 ```javascript
-var ZiqniMemberApi = require('ziqni_member_api');
+import { ApiClientStomp, AchievementsApiWs, AchievementRequest } from '@ziqni-tech/member-api-client';
 
-var defaultClient = ZiqniMemberApi.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-var OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = "YOUR ACCESS TOKEN"
+const apiClientStomp = ApiClientStomp.instance;
 
-var api = new ZiqniMemberApi.AchievementsApi()
-var achievementRequest = new ZiqniMemberApi.AchievementRequest(); // {AchievementRequest} 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.getAchievements(achievementRequest, callback);
+await apiClientStomp.connect({ token: "YOUR ACCESS TOKEN" });
+
+const achievementsApiWsClient = new AchievementsApiWs(apiClientStomp);
+
+const achievementRequest = AchievementRequest.constructFromObject({
+  achievementFilter: {
+    productIds: [],
+    tags: [],
+    startDate: null,
+    endDate: null,
+    ids: [],
+    statusCode: {
+      moreThan: 0,
+      lessThan: 40
+    },
+    sortBy: [{
+      queryField: 'created',
+      order: 'Desc'
+    }],
+    skip: 0,
+    limit: 10,
+    constraints: []
+  }, null);
+
+achievementsApiWsClient.getAchievements(achievementRequest, (json) => {
+  console.log('API called successfully. Returned data: ' + json.data);
+});
 
 ```
 
