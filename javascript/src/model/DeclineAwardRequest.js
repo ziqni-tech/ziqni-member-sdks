@@ -12,21 +12,20 @@
  */
 
 import ApiClient from '../ApiClient';
-import ProductFilter from './ProductFilter';
 
 /**
- * The ProductRequest model module.
- * @module model/ProductRequest
+ * The DeclineAwardRequest model module.
+ * @module model/DeclineAwardRequest
  * @version 1.0.16
  */
-class ProductRequest {
+class DeclineAwardRequest {
     /**
-     * Constructs a new <code>ProductRequest</code>.
-     * @alias module:model/ProductRequest
+     * Constructs a new <code>DeclineAwardRequest</code>.
+     * @alias module:model/DeclineAwardRequest
      */
     constructor() { 
         
-        ProductRequest.initialize(this);
+        DeclineAwardRequest.initialize(this);
     }
 
     /**
@@ -38,21 +37,21 @@ class ProductRequest {
     }
 
     /**
-     * Constructs a <code>ProductRequest</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>DeclineAwardRequest</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/ProductRequest} obj Optional instance to populate.
-     * @return {module:model/ProductRequest} The populated <code>ProductRequest</code> instance.
+     * @param {module:model/DeclineAwardRequest} obj Optional instance to populate.
+     * @return {module:model/DeclineAwardRequest} The populated <code>DeclineAwardRequest</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new ProductRequest();
+            obj = obj || new DeclineAwardRequest();
 
             if (data.hasOwnProperty('languageKey')) {
                 obj['languageKey'] = ApiClient.convertToType(data['languageKey'], 'String');
             }
-            if (data.hasOwnProperty('productFilter')) {
-                obj['productFilter'] = ProductFilter.constructFromObject(data['productFilter']);
+            if (data.hasOwnProperty('awardIds')) {
+                obj['awardIds'] = ApiClient.convertToType(data['awardIds'], ['String']);
             }
         }
         return obj;
@@ -65,17 +64,17 @@ class ProductRequest {
  * The language codes can be found in the settings/transalations section of the back office
  * @member {String} languageKey
  */
-ProductRequest.prototype['languageKey'] = undefined;
+DeclineAwardRequest.prototype['languageKey'] = undefined;
 
 /**
- * @member {module:model/ProductFilter} productFilter
+ * @member {Array.<String>} awardIds
  */
-ProductRequest.prototype['productFilter'] = undefined;
+DeclineAwardRequest.prototype['awardIds'] = undefined;
 
 
 
 
 
 
-export default ProductRequest;
+export default DeclineAwardRequest;
 

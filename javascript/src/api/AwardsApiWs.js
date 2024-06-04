@@ -21,6 +21,19 @@ export default class AwardsApiWs {
 
   }
 
+  declineAwards(declineAwardRequest,  callback) {
+
+    
+    if (declineAwardRequest === undefined || declineAwardRequest === null) {
+      throw new Error("Missing the required parameter 'declineAwardRequest' when calling declineAwards");
+    }
+    
+    const message = { body: declineAwardRequest };
+
+    apiClientStomp.instance.sendRpc('/gapi/declineAwards', message, callback);
+
+  }
+
   getAwards(awardRequest,  callback) {
 
     
