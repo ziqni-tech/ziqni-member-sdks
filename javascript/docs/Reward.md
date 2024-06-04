@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **icon** | **String** | id the icon | [optional] 
 **spaceName** | **String** | spaceName | [optional] 
 **issueLimit** | **Number** | how many of thsese rewards are | [optional] 
+**memberTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **delay** | **Number** | Delay of issuing a reward in minutes | [optional] 
 **pointInTime** | **Date** | ISO8601 timestamp for when a Reward is available until a specific point in time. All records are stored in UTC time zone | [optional] 
 **period** | **Number** | Reward available for a period of time from issuing in minutes | [optional] 

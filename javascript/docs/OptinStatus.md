@@ -11,5 +11,6 @@ Name | Type | Description | Notes
 **percentageComplete** | **Number** | What percentage has been completed so far, this is a number between 0 and 100 | [optional] 
 **points** | **Number** | The current points total | 
 **position** | **Number** | The current position of the member | [optional] 
+**params** | **{String: Number}** | The user defined values used in the rules builder | [optional] 
 
 
