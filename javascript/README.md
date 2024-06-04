@@ -124,7 +124,8 @@ const achievementRequest = AchievementRequest.constructFromObject({
     skip: 0,
     limit: 10,
     constraints: []
-  }, null);
+  }
+}, null);
 
 achievementsApiWsClient.getAchievements(achievementRequest, (json) => {
   console.log('API called successfully. Returned data: ' + json.data);
