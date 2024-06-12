@@ -2532,22 +2532,6 @@ components:
             - some text
             - some text
         languageKey: some text
-    ClaimAwardRequest:
-      description: ''
-      required:
-        - awardId
-      type: object
-      properties:
-        languageKey:
-          description: >-
-            The language codes can be found in the settings/transalations section of the back
-            office
-          type: string
-        awardIds:
-          description: ''
-          type: array
-          items:
-            type: string
     CompetitionRequest:
       description: ''
       type: object
@@ -4286,97 +4270,6 @@ components:
         statusCode:
           - 60
           - 45
-    AwardFilter:
-      description: ''
-      type: object
-      properties:
-        productIds:
-          description: ''
-          type: array
-          items:
-            type: string
-        tags:
-          description: ''
-          type: array
-          items:
-            type: string
-        ids:
-          description: ''
-          type: array
-          items:
-            type: string
-        pointInTimeDateRange:
-          $ref: '#/components/schemas/DateRange'
-          description: ''
-        statusCode:
-          $ref: '#/components/schemas/NumberRange'
-          description: Award status code
-          example: |-
-            0=Unknown 
-            10=Preparing
-            15=NotClaimed
-            35=Claimed
-            115=Expired
-        sortBy:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/QuerySortBy'
-        skip:
-          format: int32
-          description: ''
-          type: integer
-        limit:
-          format: int32
-          description: ''
-          type: integer
-        constraints:
-          description: ''
-          type: array
-          items:
-            type: string
-        entityIds:
-          description: 'Achievement, Contest or Competition'
-          type: array
-          items:
-            type: string
-      example:
-        productIds:
-          - some text
-          - some text
-        tags:
-          - some text
-          - some text
-        startDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        endDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        ids:
-          - some text
-          - some text
-        status:
-          - some text
-          - some text
-        sortBy:
-          -
-            queryField: some text
-            order: Asc
-          -
-            queryField: some text
-            order: Desc
-        skip: 0
-        limit: 72
-        statusCode:
-          - 60
-          - 45
     ModelCountRequest:
       description: ''
       type: object
@@ -5773,22 +5666,6 @@ components:
         - join
         - leave
       type: string
-    DeclineAwardRequest:
-      description: ''
-      required:
-        - awardId
-      type: object
-      properties:
-        languageKey:
-          description: >-
-            The language codes can be found in the settings/transalations section of the back
-            office
-          type: string
-        awardIds:
-          description: ''
-          type: array
-          items:
-            type: string
     RewardTypeReduced:
       description: ''
       type: object
@@ -5815,6 +5692,154 @@ components:
         customFields:
           type: object
           additionalProperties: true
+    ClaimAwardRequest:
+      description: ''
+      required:
+        - awardId
+      type: object
+      properties:
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        awardIds:
+          description: ''
+          type: array
+          items:
+            type: string
+        currencyKey:
+          description: >-
+            The UoM currency key to normalise the value to for presentation. Example; If the
+            reward is in EUR and this value is set to USD then the value will be multiplied by
+            1.09387699997429
+          type: string
+    DeclineAwardRequest:
+      description: ''
+      required:
+        - awardId
+      type: object
+      properties:
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        awardIds:
+          description: ''
+          type: array
+          items:
+            type: string
+        currencyKey:
+          description: >-
+            The UoM currency key to normalise the value to for presentation. Example; If the
+            reward is in EUR and this value is set to USD then the value will be multiplied by
+            1.09387699997429
+          type: string
+    AwardFilter:
+      description: ''
+      type: object
+      properties:
+        productIds:
+          description: Filter by specific product identifiers
+          type: array
+          items:
+            type: string
+        tags:
+          description: Filter only records that have these tags
+          type: array
+          items:
+            type: string
+        ids:
+          description: The award identifiers to filter by
+          type: array
+          items:
+            type: string
+        statusCode:
+          $ref: '#/components/schemas/NumberRange'
+          description: >-
+            Award status code. Available actions for award status Issued (Code 15) Held (Code 25)
+            Claimed (Code 35) Processing (Code 45) Delivered (Code 55) Completed (Code 65) Expired
+            (Code 100) Cancelled (Code 101) Declined (Code 102)
+          example: ''
+        sortBy:
+          description: Define Sorting requirements by field keys
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        skip:
+          format: int32
+          description: 'Skip the first records, allows for paging'
+          type: integer
+        limit:
+          format: int32
+          description: 'Only return this many records, allows for paging. default is 20 if not set'
+          type: integer
+        constraints:
+          description: 'System defined [optional]'
+          type: array
+          items:
+            type: string
+        entityIds:
+          description: 'Achievement, Contest or Competition'
+          type: array
+          items:
+            type: string
+        lifecycleStatus:
+          description: >-
+            These states are derived values from the activeFrom and activeUntil values in the
+            Award
+            
+            Upcoming: Refers to events, activities, or items that are scheduled to happen or
+            become available in the future.
+            
+            Active: Describes events, processes, or items that are currently happening or in
+            progress.
+            
+            Archived: Indicates events, documents, or records that are no longer active or current
+            but have been stored or preserved for reference or historical purposes.
+          enum:
+            - Upcoming
+            - Active
+            - Archived
+          type: string
+      example:
+        productIds:
+          - some text
+          - some text
+        tags:
+          - some text
+          - some text
+        startDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        endDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        ids:
+          - some text
+          - some text
+        status:
+          - some text
+          - some text
+        sortBy:
+          -
+            queryField: some text
+            order: Asc
+          -
+            queryField: some text
+            order: Desc
+        skip: 0
+        limit: 72
+        statusCode:
+          - 60
+          - 45
   responses:
     AchievementResponseBody:
       content:
