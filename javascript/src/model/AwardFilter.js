@@ -12,7 +12,6 @@
  */
 
 import ApiClient from '../ApiClient';
-import DateRange from './DateRange';
 import NumberRange from './NumberRange';
 import QuerySortBy from './QuerySortBy';
 
@@ -59,9 +58,6 @@ class AwardFilter {
             if (data.hasOwnProperty('ids')) {
                 obj['ids'] = ApiClient.convertToType(data['ids'], ['String']);
             }
-            if (data.hasOwnProperty('pointInTimeDateRange')) {
-                obj['pointInTimeDateRange'] = DateRange.constructFromObject(data['pointInTimeDateRange']);
-            }
             if (data.hasOwnProperty('statusCode')) {
                 obj['statusCode'] = NumberRange.constructFromObject(data['statusCode']);
             }
@@ -80,6 +76,9 @@ class AwardFilter {
             if (data.hasOwnProperty('entityIds')) {
                 obj['entityIds'] = ApiClient.convertToType(data['entityIds'], ['String']);
             }
+            if (data.hasOwnProperty('lifecycleStatus')) {
+                obj['lifecycleStatus'] = ApiClient.convertToType(data['lifecycleStatus'], 'String');
+            }
         }
         return obj;
     }
@@ -88,24 +87,22 @@ class AwardFilter {
 }
 
 /**
+ * Filter by specific product identifiers
  * @member {Array.<String>} productIds
  */
 AwardFilter.prototype['productIds'] = undefined;
 
 /**
+ * Filter only records that have these tags
  * @member {Array.<String>} tags
  */
 AwardFilter.prototype['tags'] = undefined;
 
 /**
+ * The award identifiers to filter by
  * @member {Array.<String>} ids
  */
 AwardFilter.prototype['ids'] = undefined;
-
-/**
- * @member {module:model/DateRange} pointInTimeDateRange
- */
-AwardFilter.prototype['pointInTimeDateRange'] = undefined;
 
 /**
  * @member {module:model/NumberRange} statusCode
@@ -113,21 +110,25 @@ AwardFilter.prototype['pointInTimeDateRange'] = undefined;
 AwardFilter.prototype['statusCode'] = undefined;
 
 /**
+ * Define Sorting requirements by field keys
  * @member {Array.<module:model/QuerySortBy>} sortBy
  */
 AwardFilter.prototype['sortBy'] = undefined;
 
 /**
+ * Skip the first records, allows for paging
  * @member {Number} skip
  */
 AwardFilter.prototype['skip'] = undefined;
 
 /**
+ * Only return this many records, allows for paging. default is 20 if not set
  * @member {Number} limit
  */
 AwardFilter.prototype['limit'] = undefined;
 
 /**
+ * System defined [optional]
  * @member {Array.<String>} constraints
  */
 AwardFilter.prototype['constraints'] = undefined;
@@ -138,8 +139,41 @@ AwardFilter.prototype['constraints'] = undefined;
  */
 AwardFilter.prototype['entityIds'] = undefined;
 
+/**
+ * These states are derived values from the activeFrom and activeUntil values in the Award Upcoming: Refers to events, activities, or items that are scheduled to happen or become available in the future. Active: Describes events, processes, or items that are currently happening or in progress. Archived: Indicates events, documents, or records that are no longer active or current but have been stored or preserved for reference or historical purposes.
+ * @member {module:model/AwardFilter.LifecycleStatusEnum} lifecycleStatus
+ */
+AwardFilter.prototype['lifecycleStatus'] = undefined;
 
 
+
+
+
+/**
+ * Allowed values for the <code>lifecycleStatus</code> property.
+ * @enum {String}
+ * @readonly
+ */
+AwardFilter['LifecycleStatusEnum'] = {
+
+    /**
+     * value: "Upcoming"
+     * @const
+     */
+    "Upcoming": "Upcoming",
+
+    /**
+     * value: "Active"
+     * @const
+     */
+    "Active": "Active",
+
+    /**
+     * value: "Archived"
+     * @const
+     */
+    "Archived": "Archived"
+};
 
 
 

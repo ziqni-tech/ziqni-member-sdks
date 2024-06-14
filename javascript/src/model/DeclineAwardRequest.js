@@ -53,6 +53,9 @@ class DeclineAwardRequest {
             if (data.hasOwnProperty('awardIds')) {
                 obj['awardIds'] = ApiClient.convertToType(data['awardIds'], ['String']);
             }
+            if (data.hasOwnProperty('currencyKey')) {
+                obj['currencyKey'] = ApiClient.convertToType(data['currencyKey'], 'String');
+            }
         }
         return obj;
     }
@@ -70,6 +73,12 @@ DeclineAwardRequest.prototype['languageKey'] = undefined;
  * @member {Array.<String>} awardIds
  */
 DeclineAwardRequest.prototype['awardIds'] = undefined;
+
+/**
+ * The UoM currency key to normalise the value to for presentation. Example; If the reward is in EUR and this value is set to USD then the value will be multiplied by 1.09387699997429
+ * @member {String} currencyKey
+ */
+DeclineAwardRequest.prototype['currencyKey'] = undefined;
 
 
 
