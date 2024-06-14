@@ -26,6 +26,8 @@ Name | Type | Description | Notes
 **name** | **String** | name from reward |  [optional]
 **description** | **String** | Text limited description |  [optional]
 **memberRefId** | **String** |  |  [optional]
+**activeFrom** | **OffsetDateTime** | This record is considered active up until this date time |  [optional]
+**activeUntil** | **OffsetDateTime** | This record is considered active up until this date time |  [optional]
 
 
 

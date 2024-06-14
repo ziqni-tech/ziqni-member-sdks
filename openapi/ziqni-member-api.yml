@@ -3473,117 +3473,6 @@ components:
             order: Desc
         skip: 29
         limit: 3
-    Award:
-      description: ''
-      type: object
-      allOf:
-        -
-          type: object
-          properties:
-            memberId:
-              description: A unique identifier of a Member
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            rewardId:
-              description: A unique identifier of a Reward
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            rewardType:
-              $ref: '#/components/schemas/RewardTypeReduced'
-              description: The type of reward issued
-            rewardRank:
-              description: >-
-                If used in the context of contest this will associate with the rank of the
-                leaderboard
-              type: string
-              example: '1'
-            rewardValue:
-              format: double
-              description: Numerical value of the reward that will be issued based on the reward type
-              type: number
-              example: '1'
-            delay:
-              format: int32
-              description: Delay of issuing a reward in minutes
-              type: integer
-              example: '2'
-            entityType:
-              $ref: '#/components/schemas/EntityType'
-              description: 'Competition, Contest, or Achievement'
-            entityId:
-              description: >-
-                The Id of the contest or achievement related to this Award. Dependant on
-                entityType
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            pointInTime:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when an Award is available until a specific point in
-                time. All records are stored in UTC time zone. * There can only be one time
-                definition used for claim period either "pointInTime" or "period"
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            period:
-              format: int32
-              description: >-
-                Claimable duration in minutes, this value will set the controls until when the
-                award is claimable. * There can only be one time definition used for claim
-                period either "pointInTime" or "period"
-              type: integer
-              example: '2'
-            tags:
-              description: A list of Strings of groups that the reward belongs to.
-              type: array
-              items:
-                type: string
-            metadata:
-              description: The metadata associated with this award
-              type: object
-              additionalProperties:
-                type: string
-            statusCode:
-              description: The code of the award
-              type: integer
-              readOnly: true
-              example: |-
-                0=Unknown 
-                10=Preparing
-                15=NotClaimed
-                35=Claimed
-                115=Expired
-            constraints:
-              description: 'Additional constraints, if the value is present it means the'
-              type: array
-              items:
-                type: string
-              example: |-
-                - memberAcknowledgmentRequired
-                - claimed
-            claimed:
-              description: ' Award is claimed.'
-              type: boolean
-              example: '2019-09-25T15:47:00.000+0000'
-            status:
-              $ref: '#/components/schemas/AwardStatus'
-              description: ''
-              example: |-
-                0=Unknown 
-                10=Preparing
-                15=NotClaimed
-                35=Claimed
-                115=Expired
-            name:
-              description: name from reward
-              type: string
-            description:
-              description: Text limited description
-              type: string
-            memberRefId:
-              description: ''
-              type: string
-        -
-          $ref: '#/components/schemas/ModelDefault'
     CustomFields:
       description: ''
       type: object
@@ -5840,6 +5729,125 @@ components:
         statusCode:
           - 60
           - 45
+    Award:
+      description: ''
+      type: object
+      allOf:
+        -
+          type: object
+          properties:
+            memberId:
+              description: A unique identifier of a Member
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            rewardId:
+              description: A unique identifier of a Reward
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            rewardType:
+              $ref: '#/components/schemas/RewardTypeReduced'
+              description: The type of reward issued
+            rewardRank:
+              description: >-
+                If used in the context of contest this will associate with the rank of the
+                leaderboard
+              type: string
+              example: '1'
+            rewardValue:
+              format: double
+              description: Numerical value of the reward that will be issued based on the reward type
+              type: number
+              example: '1'
+            delay:
+              format: int32
+              description: Delay of issuing a reward in minutes
+              type: integer
+              example: '2'
+            entityType:
+              $ref: '#/components/schemas/EntityType'
+              description: 'Competition, Contest, or Achievement'
+            entityId:
+              description: >-
+                The Id of the contest or achievement related to this Award. Dependant on
+                entityType
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            pointInTime:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when an Award is available until a specific point in
+                time. All records are stored in UTC time zone. * There can only be one time
+                definition used for claim period either "pointInTime" or "period"
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            period:
+              format: int32
+              description: >-
+                Claimable duration in minutes, this value will set the controls until when the
+                award is claimable. * There can only be one time definition used for claim
+                period either "pointInTime" or "period"
+              type: integer
+              example: '2'
+            tags:
+              description: A list of Strings of groups that the reward belongs to.
+              type: array
+              items:
+                type: string
+            metadata:
+              description: The metadata associated with this award
+              type: object
+              additionalProperties:
+                type: string
+            statusCode:
+              description: The code of the award
+              type: integer
+              readOnly: true
+              example: |-
+                0=Unknown 
+                10=Preparing
+                15=NotClaimed
+                35=Claimed
+                115=Expired
+            constraints:
+              description: 'Additional constraints, if the value is present it means the'
+              type: array
+              items:
+                type: string
+              example: |-
+                - memberAcknowledgmentRequired
+                - claimed
+            claimed:
+              description: ' Award is claimed.'
+              type: boolean
+              example: '2019-09-25T15:47:00.000+0000'
+            status:
+              $ref: '#/components/schemas/AwardStatus'
+              description: ''
+              example: |-
+                0=Unknown 
+                10=Preparing
+                15=NotClaimed
+                35=Claimed
+                115=Expired
+            name:
+              description: name from reward
+              type: string
+            description:
+              description: Text limited description
+              type: string
+            memberRefId:
+              description: ''
+              type: string
+            activeFrom:
+              format: date-time
+              description: This record is considered active up until this date time
+              type: string
+            activeUntil:
+              format: date-time
+              description: This record is considered active up until this date time
+              type: string
+        -
+          $ref: '#/components/schemas/ModelDefault'
   responses:
     AchievementResponseBody:
       content:
