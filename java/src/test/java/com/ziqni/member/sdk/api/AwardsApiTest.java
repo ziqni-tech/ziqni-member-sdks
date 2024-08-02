@@ -87,9 +87,10 @@ public class AwardsApiTest  implements tests.utils.CompleteableFutureTestWrapper
 
     @Test
     public void getAwardsShouldNotReturnStaleData2SecondsAfterAwardClaimedTest() throws ApiException, InterruptedException {
-        var awardId="vq40E5EB9HGg6SrVLd2b";
+        var awardId="TFanE5EBPlKJ0KyIs4hH";
         var response = $(api.getAwards(loadAwardsData.getRequest(awardId)));
         var claimedResponse = $(api.claimAwards(loadAwardsData.getClaimAwardRequest(awardId,List.of(awardId))));
+        Thread.sleep(2000);
         var getResponse = $(api.getAwards(loadAwardsData.getRequest(awardId)));
         assertNotNull(getResponse);
         final var data = getResponse.getData();
