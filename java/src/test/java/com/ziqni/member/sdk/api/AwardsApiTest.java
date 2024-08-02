@@ -96,9 +96,9 @@ public class AwardsApiTest  implements tests.utils.CompleteableFutureTestWrapper
         final var claimedAward = data.get(0);
         final var memberId = claimedAward.getMemberId();
         assertNull(getResponse.getErrors());
-        assertEquals(claimedResponse.getData().get(0).getMemberId(),memberId, "Should have results");
-        assertEquals(AwardStateActions.CLAIMED,claimedAward.getStatus(), "Should have results");
-        assertEquals(35,claimedAward.getStatusCode(), "Should have results");
+        assertEquals(claimedResponse.getData().get(0).getMemberId(),memberId, "Should be equal");
+        assertEquals(AwardStateActions.CLAIMED,claimedAward.getStatus(), "Should be equal");
+        assertEquals(35,claimedAward.getStatusCode(), "Should be equal");
     }
 
     @Test
@@ -111,9 +111,9 @@ public class AwardsApiTest  implements tests.utils.CompleteableFutureTestWrapper
         final var claimedAward = data.get(0);
         final var memberId = claimedAward.getMemberId();
         assertNull(claimedResponse.getErrors());
-        assertEquals(claimedResponse.getData().get(0).getMemberId(),memberId, "Should have results");
-        assertEquals(AwardStateActions.CLAIMED,claimedAward.getStatus(), "Should have results");
-        assertEquals(35,claimedAward.getStatusCode(), "Should have results");
+        assertEquals(claimedResponse.getData().get(0).getMemberId(),memberId, "Should be equal");
+        assertEquals(AwardStateActions.CLAIMED,claimedAward.getStatus(), "Should be equal");
+        assertEquals(35,claimedAward.getStatusCode(), "Should be equal");
     }
 
 }
