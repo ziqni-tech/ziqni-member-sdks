@@ -75,7 +75,7 @@ public class AwardsApiTest  implements tests.utils.CompleteableFutureTestWrapper
     @Test
     public void getAwardsTest() throws ApiException {
         //already created awards and get the memberRefId
-        var expected="Test_key-7770c0a6-37c1-4ed4-a4d0-f7f5a7836c66";
+        var expected="vq40E5EB9HGg6SrVLd2b";
         var response = $(api.getAwards(loadAwardsData.getRequest(expected)));
 
         assertNotNull(response);
@@ -87,7 +87,8 @@ public class AwardsApiTest  implements tests.utils.CompleteableFutureTestWrapper
 
     @Test
     public void getAwardsShouldNotReturnStaleData2SecondsAfterAwardClaimedTest() throws ApiException, InterruptedException {
-        var awardId="mq4AE5EB9HGg6SrVRd0b";
+        var awardId="vq40E5EB9HGg6SrVLd2b";
+        var response = $(api.getAwards(loadAwardsData.getRequest(awardId)));
         var claimedResponse = $(api.claimAwards(loadAwardsData.getClaimAwardRequest(awardId,List.of(awardId))));
         var getResponse = $(api.getAwards(loadAwardsData.getRequest(awardId)));
         assertNotNull(getResponse);
