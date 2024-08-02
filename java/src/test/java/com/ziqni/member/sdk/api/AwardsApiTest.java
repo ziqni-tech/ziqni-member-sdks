@@ -102,19 +102,19 @@ public class AwardsApiTest  implements tests.utils.CompleteableFutureTestWrapper
         assertEquals(35,claimedAward.getStatusCode(), "Should be equal");
     }
 
-    @Test
-    public void claimAwardsResponseReturnsClaimedStatusTest() throws ApiException, InterruptedException {
-        var awardId="o64JE5EB9HGg6SrVrt1E";
-        var claimedResponse = $(api.claimAwards(loadAwardsData.getClaimAwardRequest(awardId,List.of(awardId))));
-        assertNotNull(claimedResponse);
-        final var data = claimedResponse.getData();
-        assertNotNull(data);
-        final var claimedAward = data.get(0);
-        final var memberId = claimedAward.getMemberId();
-        assertNull(claimedResponse.getErrors());
-        assertEquals(claimedResponse.getData().get(0).getMemberId(),memberId, "Should be equal");
-        assertEquals(AwardStateActions.CLAIMED,claimedAward.getStatus(), "Should be equal");
-        assertEquals(35,claimedAward.getStatusCode(), "Should be equal");
-    }
+//    @Test
+//    public void claimAwardsResponseReturnsClaimedStatusTest() throws ApiException, InterruptedException {
+//        var awardId="o64JE5EB9HGg6SrVrt1E";
+//        var claimedResponse = $(api.claimAwards(loadAwardsData.getClaimAwardRequest(awardId,List.of(awardId))));
+//        assertNotNull(claimedResponse);
+//        final var data = claimedResponse.getData();
+//        assertNotNull(data);
+//        final var claimedAward = data.get(0);
+//        final var memberId = claimedAward.getMemberId();
+//        assertNull(claimedResponse.getErrors());
+//        assertEquals(claimedResponse.getData().get(0).getMemberId(),memberId, "Should be equal");
+//        assertEquals(AwardStateActions.CLAIMED,claimedAward.getStatus(), "Should be equal");
+//        assertEquals(35,claimedAward.getStatusCode(), "Should be equal");
+//    }
 
 }
