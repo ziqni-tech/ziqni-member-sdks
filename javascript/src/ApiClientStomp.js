@@ -95,7 +95,7 @@ class ApiClientStomp {
             debug: function (str) {
                 console.log(str);
             },
-            reconnectDelay: 5000,
+            reconnectDelay: 300,
             heartbeatIncoming: 4000,
             heartbeatOutgoing: 4000,
         });

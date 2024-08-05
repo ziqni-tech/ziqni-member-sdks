@@ -15,14 +15,15 @@ package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.data.LoadAwardsData;
+import com.ziqni.member.sdk.model.Award;
+import com.ziqni.member.sdk.model.AwardStateActions;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * API tests for AwardsApi
@@ -50,7 +51,8 @@ public class AwardsApiTest  implements tests.utils.CompleteableFutureTestWrapper
     public void claimAwardsTest() throws ApiException {
         //already created awards and get the memberRefId
         var expected="Test_key-7770c0a6-37c1-4ed4-a4d0-f7f5a7836c66";
-        var awardId="AH_HC20B2mXnzdxZP9kr";
+//        var awardId="AH_HC20B2mXnzdxZP9kr";
+        var awardId="eK7mDpEB9HGg6SrV-N2A";
         var response = $(api.claimAwards(loadAwardsData.getClaimAwardRequest(expected,List.of(awardId))));
 
         assertNotNull(response);
@@ -73,7 +75,7 @@ public class AwardsApiTest  implements tests.utils.CompleteableFutureTestWrapper
     @Test
     public void getAwardsTest() throws ApiException {
         //already created awards and get the memberRefId
-        var expected="Test_key-7770c0a6-37c1-4ed4-a4d0-f7f5a7836c66";
+        var expected="vq40E5EB9HGg6SrVLd2b";
         var response = $(api.getAwards(loadAwardsData.getRequest(expected)));
 
         assertNotNull(response);
@@ -82,5 +84,38 @@ public class AwardsApiTest  implements tests.utils.CompleteableFutureTestWrapper
         Assertions.assertTrue(response.getErrors().isEmpty(), "Should have no errors");
 
     }
+
+    @Test
+    public void getAwardsShouldNotReturnStaleData2SecondsAfterAwardClaimedTest() throws ApiException, InterruptedException {
+        var awardId="TFanE5EBPlKJ0KyIs4hH";
+        var response = $(api.getAwards(loadAwardsData.getRequest(awardId)));
+        var claimedResponse = $(api.claimAwards(loadAwardsData.getClaimAwardRequest(awardId,List.of(awardId))));
+        Thread.sleep(2000);
+        var getResponse = $(api.getAwards(loadAwardsData.getRequest(awardId)));
+        assertNotNull(getResponse);
+        final var data = getResponse.getData();
+        assertNotNull(data);
+        final var claimedAward = data.get(0);
+        final var memberId = claimedAward.getMemberId();
+        assertNull(getResponse.getErrors());
+        assertEquals(claimedResponse.getData().get(0).getMemberId(),memberId, "Should be equal");
+        assertEquals(AwardStateActions.CLAIMED,claimedAward.getStatus(), "Should be equal");
+        assertEquals(35,claimedAward.getStatusCode(), "Should be equal");
+    }
+
+//    @Test
+//    public void claimAwardsResponseReturnsClaimedStatusTest() throws ApiException, InterruptedException {
+//        var awardId="o64JE5EB9HGg6SrVrt1E";
+//        var claimedResponse = $(api.claimAwards(loadAwardsData.getClaimAwardRequest(awardId,List.of(awardId))));
+//        assertNotNull(claimedResponse);
+//        final var data = claimedResponse.getData();
+//        assertNotNull(data);
+//        final var claimedAward = data.get(0);
+//        final var memberId = claimedAward.getMemberId();
+//        assertNull(claimedResponse.getErrors());
+//        assertEquals(claimedResponse.getData().get(0).getMemberId(),memberId, "Should be equal");
+//        assertEquals(AwardStateActions.CLAIMED,claimedAward.getStatus(), "Should be equal");
+//        assertEquals(35,claimedAward.getStatusCode(), "Should be equal");
+//    }
 
 }
