@@ -5,9 +5,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**pointsStrategy** | [**PointsStrategy**](PointsStrategy.md) |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**pointsStrategy** | [**PointsStrategy**](PointsStrategy.md) |  |  [optional] |
 
 
 

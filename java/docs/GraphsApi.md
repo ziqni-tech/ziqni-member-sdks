@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://member-api.ziqni.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getGraph**](GraphsApi.md#getGraph) | **POST** /graphs | Get achievements by member reference id
-[**getGraphWithHttpInfo**](GraphsApi.md#getGraphWithHttpInfo) | **POST** /graphs | Get achievements by member reference id
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**getGraph**](GraphsApi.md#getGraph) | **POST** /graphs | Get achievements by member reference id |
+| [**getGraphWithHttpInfo**](GraphsApi.md#getGraphWithHttpInfo) | **POST** /graphs | Get achievements by member reference id |
 
 
 
@@ -57,9 +57,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **entityGraphRequest** | [**EntityGraphRequest**](EntityGraphRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **entityGraphRequest** | [**EntityGraphRequest**](EntityGraphRequest.md)|  | |
 
 ### Return type
 
@@ -140,9 +140,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **entityGraphRequest** | [**EntityGraphRequest**](EntityGraphRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **entityGraphRequest** | [**EntityGraphRequest**](EntityGraphRequest.md)|  | |
 
 ### Return type
 

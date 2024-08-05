@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://member-api.ziqni.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getMessages**](MessagesApi.md#getMessages) | **POST** /messages | Get messages by member reference id
-[**getMessagesWithHttpInfo**](MessagesApi.md#getMessagesWithHttpInfo) | **POST** /messages | Get messages by member reference id
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**getMessages**](MessagesApi.md#getMessages) | **POST** /messages | Get messages by member reference id |
+| [**getMessagesWithHttpInfo**](MessagesApi.md#getMessagesWithHttpInfo) | **POST** /messages | Get messages by member reference id |
 
 
 
@@ -57,9 +57,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **messageRequest** | [**MessageRequest**](MessageRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **messageRequest** | [**MessageRequest**](MessageRequest.md)|  | |
 
 ### Return type
 
@@ -140,9 +140,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **messageRequest** | [**MessageRequest**](MessageRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **messageRequest** | [**MessageRequest**](MessageRequest.md)|  | |
 
 ### Return type
 

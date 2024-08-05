@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://member-api.ziqni.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**heartbeat**](HeartbeatApi.md#heartbeat) | **POST** /heartbeat | 
-[**heartbeatWithHttpInfo**](HeartbeatApi.md#heartbeatWithHttpInfo) | **POST** /heartbeat | 
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**heartbeat**](HeartbeatApi.md#heartbeat) | **POST** /heartbeat |  |
+| [**heartbeatWithHttpInfo**](HeartbeatApi.md#heartbeatWithHttpInfo) | **POST** /heartbeat |  |
 
 
 

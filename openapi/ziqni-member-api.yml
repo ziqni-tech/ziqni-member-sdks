@@ -3554,24 +3554,6 @@ components:
         statusCode:
           - 60
           - 45
-    InstantWinPlayRequest:
-      description: ''
-      type: object
-      properties:
-        awardId:
-          description: The award identifier is required to claim this. This can only be made once.
-          type: string
-        languageKey:
-          description: >-
-            The language codes can be found in the settings/transalations section of the back
-            office
-          type: string
-        currencyKey:
-          description: >-
-            The UoM currency key to normalise the value to for presentation. Example; If the
-            reward is in EUR and this value is set to USD then the value will be multiplied by
-            1.09387699997429
-          type: string
     InstantWinResponse:
       description: ''
       type: object
@@ -4426,41 +4408,6 @@ components:
             type: integer
       example:
         modelCount: {}
-    InstantWinTile:
-      description: ''
-      required:
-        - orderNumber
-        - probability
-        - icon
-        - horizontalPosition
-        - verticalPosition
-        - location
-      type: object
-      properties:
-        icon:
-          description: The id to the image file
-          type: string
-        iconLink:
-          description: The uri to this image
-          type: string
-        text:
-          description: ''
-          type: string
-        contraints:
-          description: 'hasPrizes, glow'
-          type: array
-          items:
-            type: string
-        reward:
-          $ref: '#/components/schemas/RewardReduced'
-          description: The reward associated with this tile
-        probability:
-          format: double
-          description: ''
-          type: number
-        location:
-          $ref: '#/components/schemas/GridLocation'
-          description: ''
     Achievement:
       description: ''
       type: object
@@ -4751,6 +4698,9 @@ components:
               description: Link to the icon
               type: string
               example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            entrantsCount:
+              description: The number of entrants participating in a contest
+              type: integer
         -
           $ref: '#/components/schemas/ModelDefault'
         -
@@ -5821,7 +5771,7 @@ components:
               type: boolean
               example: '2019-09-25T15:47:00.000+0000'
             status:
-              $ref: '#/components/schemas/AwardStatus'
+              $ref: '#/components/schemas/AwardStateActions'
               description: ''
               example: |-
                 0=Unknown 
@@ -5848,6 +5798,90 @@ components:
               type: string
         -
           $ref: '#/components/schemas/ModelDefault'
+    AwardStateActions:
+      description: |-
+        Available actions for award status
+        Issued (Code 15)
+        Held (Code 25)
+        Claimed (Code 35)
+        Processing (Code 45)
+        Delivered (Code 55)
+        Completed (Code 65)
+        Expired (Code 100)
+        Cancelled (Code 101)
+        Declined (Code 102)
+      enum:
+        - Issued
+        - Held
+        - Claimed
+        - Processing
+        - Delivered
+        - Expired
+        - Cancelled
+        - Declined
+        - Completed
+      type: string
+      example: '"Claimed"'
+    InstantWinTile:
+      description: ''
+      required:
+        - orderNumber
+        - probability
+        - icon
+        - horizontalPosition
+        - verticalPosition
+        - location
+        - background
+      type: object
+      properties:
+        icon:
+          description: The id to the image file
+          type: string
+        iconLink:
+          description: The uri to this image
+          type: string
+        text:
+          description: ''
+          type: string
+        contraints:
+          description: 'hasPrizes, glow'
+          type: array
+          items:
+            type: string
+        reward:
+          $ref: '#/components/schemas/RewardReduced'
+          description: The reward associated with this tile
+        probability:
+          format: double
+          description: ''
+          type: number
+        location:
+          $ref: '#/components/schemas/GridLocation'
+          description: ''
+        background:
+          description: ''
+          type: string
+    InstantWinPlayRequest:
+      description: ''
+      type: object
+      properties:
+        instantWinFilter:
+          $ref: '#/components/schemas/InstantWinFilter'
+          description: The unique identifier for this instant win
+        awardId:
+          description: The award identifier is required to claim this. This can only be made once.
+          type: string
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        currencyKey:
+          description: >-
+            The UoM currency key to normalise the value to for presentation. Example; If the
+            reward is in EUR and this value is set to USD then the value will be multiplied by
+            1.09387699997429
+          type: string
   responses:
     AchievementResponseBody:
       content:

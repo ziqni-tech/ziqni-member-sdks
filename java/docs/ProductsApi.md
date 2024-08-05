@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://member-api.ziqni.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getProducts**](ProductsApi.md#getProducts) | **POST** /products | Get recommended products by product Id
-[**getProductsWithHttpInfo**](ProductsApi.md#getProductsWithHttpInfo) | **POST** /products | Get recommended products by product Id
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**getProducts**](ProductsApi.md#getProducts) | **POST** /products | Get recommended products by product Id |
+| [**getProductsWithHttpInfo**](ProductsApi.md#getProductsWithHttpInfo) | **POST** /products | Get recommended products by product Id |
 
 
 
@@ -57,9 +57,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **productRequest** | [**ProductRequest**](ProductRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **productRequest** | [**ProductRequest**](ProductRequest.md)|  | |
 
 ### Return type
 
@@ -140,9 +140,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **productRequest** | [**ProductRequest**](ProductRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **productRequest** | [**ProductRequest**](ProductRequest.md)|  | |
 
 ### Return type
 

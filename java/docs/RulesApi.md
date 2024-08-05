@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://member-api.ziqni.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getRules**](RulesApi.md#getRules) | **POST** /rules | Get rules
-[**getRulesWithHttpInfo**](RulesApi.md#getRulesWithHttpInfo) | **POST** /rules | Get rules
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**getRules**](RulesApi.md#getRules) | **POST** /rules | Get rules |
+| [**getRulesWithHttpInfo**](RulesApi.md#getRulesWithHttpInfo) | **POST** /rules | Get rules |
 
 
 
@@ -57,9 +57,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **entityRequest** | [**EntityRequest**](EntityRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **entityRequest** | [**EntityRequest**](EntityRequest.md)|  | |
 
 ### Return type
 
@@ -140,9 +140,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **entityRequest** | [**EntityRequest**](EntityRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **entityRequest** | [**EntityRequest**](EntityRequest.md)|  | |
 
 ### Return type
 

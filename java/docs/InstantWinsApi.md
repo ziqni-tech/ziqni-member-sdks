@@ -2,12 +2,12 @@
 
 All URIs are relative to *https://member-api.ziqni.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**listInstantWins**](InstantWinsApi.md#listInstantWins) | **POST** /instant-wins | 
-[**listInstantWinsWithHttpInfo**](InstantWinsApi.md#listInstantWinsWithHttpInfo) | **POST** /instant-wins | 
-[**playInstantWin**](InstantWinsApi.md#playInstantWin) | **POST** /instant-wins-play | 
-[**playInstantWinWithHttpInfo**](InstantWinsApi.md#playInstantWinWithHttpInfo) | **POST** /instant-wins-play | 
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**listInstantWins**](InstantWinsApi.md#listInstantWins) | **POST** /instant-wins |  |
+| [**listInstantWinsWithHttpInfo**](InstantWinsApi.md#listInstantWinsWithHttpInfo) | **POST** /instant-wins |  |
+| [**playInstantWin**](InstantWinsApi.md#playInstantWin) | **POST** /instant-wins-play |  |
+| [**playInstantWinWithHttpInfo**](InstantWinsApi.md#playInstantWinWithHttpInfo) | **POST** /instant-wins-play |  |
 
 
 
@@ -52,9 +52,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **instantWinRequest** | [**InstantWinRequest**](InstantWinRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **instantWinRequest** | [**InstantWinRequest**](InstantWinRequest.md)|  | |
 
 ### Return type
 
@@ -126,9 +126,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **instantWinRequest** | [**InstantWinRequest**](InstantWinRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **instantWinRequest** | [**InstantWinRequest**](InstantWinRequest.md)|  | |
 
 ### Return type
 
@@ -191,9 +191,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **instantWinPlayRequest** | [**InstantWinPlayRequest**](InstantWinPlayRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **instantWinPlayRequest** | [**InstantWinPlayRequest**](InstantWinPlayRequest.md)|  | |
 
 ### Return type
 
@@ -265,9 +265,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **instantWinPlayRequest** | [**InstantWinPlayRequest**](InstantWinPlayRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **instantWinPlayRequest** | [**InstantWinPlayRequest**](InstantWinPlayRequest.md)|  | |
 
 ### Return type
 

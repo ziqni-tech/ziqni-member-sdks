@@ -2,12 +2,12 @@
 
 All URIs are relative to *https://member-api.ziqni.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**manageOptin**](OptInApi.md#manageOptin) | **POST** /manage-optin | Get member optin information
-[**manageOptinWithHttpInfo**](OptInApi.md#manageOptinWithHttpInfo) | **POST** /manage-optin | Get member optin information
-[**optInStates**](OptInApi.md#optInStates) | **POST** /optin-states | Get member optin status information
-[**optInStatesWithHttpInfo**](OptInApi.md#optInStatesWithHttpInfo) | **POST** /optin-states | Get member optin status information
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**manageOptin**](OptInApi.md#manageOptin) | **POST** /manage-optin | Get member optin information |
+| [**manageOptinWithHttpInfo**](OptInApi.md#manageOptinWithHttpInfo) | **POST** /manage-optin | Get member optin information |
+| [**optInStates**](OptInApi.md#optInStates) | **POST** /optin-states | Get member optin status information |
+| [**optInStatesWithHttpInfo**](OptInApi.md#optInStatesWithHttpInfo) | **POST** /optin-states | Get member optin status information |
 
 
 
@@ -59,9 +59,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **manageOptinRequest** | [**ManageOptinRequest**](ManageOptinRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **manageOptinRequest** | [**ManageOptinRequest**](ManageOptinRequest.md)|  | |
 
 ### Return type
 
@@ -142,9 +142,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **manageOptinRequest** | [**ManageOptinRequest**](ManageOptinRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **manageOptinRequest** | [**ManageOptinRequest**](ManageOptinRequest.md)|  | |
 
 ### Return type
 
@@ -216,9 +216,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **optInStatesRequest** | [**OptInStatesRequest**](OptInStatesRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **optInStatesRequest** | [**OptInStatesRequest**](OptInStatesRequest.md)|  | |
 
 ### Return type
 
@@ -299,9 +299,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **optInStatesRequest** | [**OptInStatesRequest**](OptInStatesRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **optInStatesRequest** | [**OptInStatesRequest**](OptInStatesRequest.md)|  | |
 
 ### Return type
 
