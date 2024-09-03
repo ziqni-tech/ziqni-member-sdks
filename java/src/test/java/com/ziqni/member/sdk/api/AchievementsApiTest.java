@@ -26,6 +26,7 @@ import java.time.OffsetDateTime;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * API tests for AchievementsApi
@@ -100,7 +101,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
 
         assertNotNull(response);
         assertNotNull(response.getData());
-        assertNotNull(response.getErrors());
+        assertNull(response.getErrors());
         Assertions.assertTrue(response.getErrors().isEmpty(), "Should have no errors");
         Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
     }
