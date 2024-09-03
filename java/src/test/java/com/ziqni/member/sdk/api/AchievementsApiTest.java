@@ -105,4 +105,29 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
         Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
     }
 
+    @Test
+    public void getMemberAchievementsWithScheduledStartDatesTest() throws Exception {
+        final var achievementFilter = new AchievementFilter();
+        achievementFilter.includeOptInState(true);
+        achievementFilter.skip(0);
+        achievementFilter.limit(20);
+        achievementFilter.statusCode(new NumberRange()
+                .moreThan(1L)
+                .lessThan(1000L));
+        achievementFilter.addProductIdsItem("hIlqeJAB8AyZ3Dx3dSqP");
+        achievementFilter.startDate(new DateRange()
+                .before(OffsetDateTime.parse("2025-09-03T13:39:32.000Z"))
+                .after(OffsetDateTime.parse("2024-09-03T13:38:32.000Z")));
+
+        final var achievementRequest = new AchievementRequest()
+                .achievementFilter(achievementFilter);
+
+        final var response = $(api.getAchievements(achievementRequest));
+
+        assertNotNull(response);
+        assertNotNull(response.getData());
+        assertNull(response.getErrors());
+        Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
+    }
+
 }
