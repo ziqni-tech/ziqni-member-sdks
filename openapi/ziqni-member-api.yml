@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Member API
-  version: 1.0.16
+  version: 1.0.17
   description: >-
     The ZIQNI Member-API is the primary resource used to build services and widgets for your members
     [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
@@ -633,6 +633,33 @@ paths:
       summary: Claim awards.
       description: This operation enables a member to claim awards.
       x-ws-only: true
+  /member-token:
+    description: >-
+      The services returns a JWT token used to authorize requests to the other service end points. Use
+      this JWT as an auth header parameter for future requests: 
+      
+      --header 'Authorization: Bearer <jwt-token-from-api>'
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberTokenRequest'
+        required: true
+      tags:
+        - member-token
+      responses:
+        '200':
+          $ref: '#/components/responses/TokenResponseBody'
+        '400':
+          $ref: '#/components/responses/TokenResponseBody'
+        '500':
+          $ref: '#/components/responses/TokenResponseBody'
+      security:
+        -
+          OAuth2: []
+      operationId: createMemberToken
+      description: Get Jwt Token
 components:
   schemas:
     ResponseMeta:
@@ -3473,117 +3500,6 @@ components:
             order: Desc
         skip: 29
         limit: 3
-    Award:
-      description: ''
-      type: object
-      allOf:
-        -
-          type: object
-          properties:
-            memberId:
-              description: A unique identifier of a Member
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            rewardId:
-              description: A unique identifier of a Reward
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            rewardType:
-              $ref: '#/components/schemas/RewardTypeReduced'
-              description: The type of reward issued
-            rewardRank:
-              description: >-
-                If used in the context of contest this will associate with the rank of the
-                leaderboard
-              type: string
-              example: '1'
-            rewardValue:
-              format: double
-              description: Numerical value of the reward that will be issued based on the reward type
-              type: number
-              example: '1'
-            delay:
-              format: int32
-              description: Delay of issuing a reward in minutes
-              type: integer
-              example: '2'
-            entityType:
-              $ref: '#/components/schemas/EntityType'
-              description: 'Competition, Contest, or Achievement'
-            entityId:
-              description: >-
-                The Id of the contest or achievement related to this Award. Dependant on
-                entityType
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            pointInTime:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when an Award is available until a specific point in
-                time. All records are stored in UTC time zone. * There can only be one time
-                definition used for claim period either "pointInTime" or "period"
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            period:
-              format: int32
-              description: >-
-                Claimable duration in minutes, this value will set the controls until when the
-                award is claimable. * There can only be one time definition used for claim
-                period either "pointInTime" or "period"
-              type: integer
-              example: '2'
-            tags:
-              description: A list of Strings of groups that the reward belongs to.
-              type: array
-              items:
-                type: string
-            metadata:
-              description: The metadata associated with this award
-              type: object
-              additionalProperties:
-                type: string
-            statusCode:
-              description: The code of the award
-              type: integer
-              readOnly: true
-              example: |-
-                0=Unknown 
-                10=Preparing
-                15=NotClaimed
-                35=Claimed
-                115=Expired
-            constraints:
-              description: 'Additional constraints, if the value is present it means the'
-              type: array
-              items:
-                type: string
-              example: |-
-                - memberAcknowledgmentRequired
-                - claimed
-            claimed:
-              description: ' Award is claimed.'
-              type: boolean
-              example: '2019-09-25T15:47:00.000+0000'
-            status:
-              $ref: '#/components/schemas/AwardStatus'
-              description: ''
-              example: |-
-                0=Unknown 
-                10=Preparing
-                15=NotClaimed
-                35=Claimed
-                115=Expired
-            name:
-              description: name from reward
-              type: string
-            description:
-              description: Text limited description
-              type: string
-            memberRefId:
-              description: ''
-              type: string
-        -
-          $ref: '#/components/schemas/ModelDefault'
     CustomFields:
       description: ''
       type: object
@@ -3665,24 +3581,6 @@ components:
         statusCode:
           - 60
           - 45
-    InstantWinPlayRequest:
-      description: ''
-      type: object
-      properties:
-        awardId:
-          description: The award identifier is required to claim this. This can only be made once.
-          type: string
-        languageKey:
-          description: >-
-            The language codes can be found in the settings/transalations section of the back
-            office
-          type: string
-        currencyKey:
-          description: >-
-            The UoM currency key to normalise the value to for presentation. Example; If the
-            reward is in EUR and this value is set to USD then the value will be multiplied by
-            1.09387699997429
-          type: string
     InstantWinResponse:
       description: ''
       type: object
@@ -4537,41 +4435,6 @@ components:
             type: integer
       example:
         modelCount: {}
-    InstantWinTile:
-      description: ''
-      required:
-        - orderNumber
-        - probability
-        - icon
-        - horizontalPosition
-        - verticalPosition
-        - location
-      type: object
-      properties:
-        icon:
-          description: The id to the image file
-          type: string
-        iconLink:
-          description: The uri to this image
-          type: string
-        text:
-          description: ''
-          type: string
-        contraints:
-          description: 'hasPrizes, glow'
-          type: array
-          items:
-            type: string
-        reward:
-          $ref: '#/components/schemas/RewardReduced'
-          description: The reward associated with this tile
-        probability:
-          format: double
-          description: ''
-          type: number
-        location:
-          $ref: '#/components/schemas/GridLocation'
-          description: ''
     Achievement:
       description: ''
       type: object
@@ -4862,6 +4725,9 @@ components:
               description: Link to the icon
               type: string
               example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            entrantsCount:
+              description: The number of entrants participating in a contest
+              type: integer
         -
           $ref: '#/components/schemas/ModelDefault'
         -
@@ -5840,6 +5706,393 @@ components:
         statusCode:
           - 60
           - 45
+    Award:
+      description: ''
+      type: object
+      allOf:
+        -
+          type: object
+          properties:
+            memberId:
+              description: A unique identifier of a Member
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            rewardId:
+              description: A unique identifier of a Reward
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            rewardType:
+              $ref: '#/components/schemas/RewardTypeReduced'
+              description: The type of reward issued
+            rewardRank:
+              description: >-
+                If used in the context of contest this will associate with the rank of the
+                leaderboard
+              type: string
+              example: '1'
+            rewardValue:
+              format: double
+              description: Numerical value of the reward that will be issued based on the reward type
+              type: number
+              example: '1'
+            delay:
+              format: int32
+              description: Delay of issuing a reward in minutes
+              type: integer
+              example: '2'
+            entityType:
+              $ref: '#/components/schemas/EntityType'
+              description: 'Competition, Contest, or Achievement'
+            entityId:
+              description: >-
+                The Id of the contest or achievement related to this Award. Dependant on
+                entityType
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            pointInTime:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when an Award is available until a specific point in
+                time. All records are stored in UTC time zone. * There can only be one time
+                definition used for claim period either "pointInTime" or "period"
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            period:
+              format: int32
+              description: >-
+                Claimable duration in minutes, this value will set the controls until when the
+                award is claimable. * There can only be one time definition used for claim
+                period either "pointInTime" or "period"
+              type: integer
+              example: '2'
+            tags:
+              description: A list of Strings of groups that the reward belongs to.
+              type: array
+              items:
+                type: string
+            metadata:
+              description: The metadata associated with this award
+              type: object
+              additionalProperties:
+                type: string
+            statusCode:
+              description: The code of the award
+              type: integer
+              readOnly: true
+              example: |-
+                0=Unknown 
+                10=Preparing
+                15=NotClaimed
+                35=Claimed
+                115=Expired
+            constraints:
+              description: 'Additional constraints, if the value is present it means the'
+              type: array
+              items:
+                type: string
+              example: |-
+                - memberAcknowledgmentRequired
+                - claimed
+            claimed:
+              description: ' Award is claimed.'
+              type: boolean
+              example: '2019-09-25T15:47:00.000+0000'
+            status:
+              $ref: '#/components/schemas/AwardStateActions'
+              description: ''
+              example: |-
+                0=Unknown 
+                10=Preparing
+                15=NotClaimed
+                35=Claimed
+                115=Expired
+            name:
+              description: name from reward
+              type: string
+            description:
+              description: Text limited description
+              type: string
+            memberRefId:
+              description: ''
+              type: string
+            activeFrom:
+              format: date-time
+              description: This record is considered active up until this date time
+              type: string
+            activeUntil:
+              format: date-time
+              description: This record is considered active up until this date time
+              type: string
+        -
+          $ref: '#/components/schemas/ModelDefault'
+    AwardStateActions:
+      description: |-
+        Available actions for award status
+        Issued (Code 15)
+        Held (Code 25)
+        Claimed (Code 35)
+        Processing (Code 45)
+        Delivered (Code 55)
+        Completed (Code 65)
+        Expired (Code 100)
+        Cancelled (Code 101)
+        Declined (Code 102)
+      enum:
+        - Issued
+        - Held
+        - Claimed
+        - Processing
+        - Delivered
+        - Expired
+        - Cancelled
+        - Declined
+        - Completed
+      type: string
+      example: '"Claimed"'
+    InstantWinTile:
+      description: ''
+      required:
+        - orderNumber
+        - probability
+        - icon
+        - horizontalPosition
+        - verticalPosition
+        - location
+        - background
+      type: object
+      properties:
+        icon:
+          description: The id to the image file
+          type: string
+        iconLink:
+          description: The uri to this image
+          type: string
+        text:
+          description: ''
+          type: string
+        contraints:
+          description: 'hasPrizes, glow'
+          type: array
+          items:
+            type: string
+        reward:
+          $ref: '#/components/schemas/RewardReduced'
+          description: The reward associated with this tile
+        probability:
+          format: double
+          description: ''
+          type: number
+        location:
+          $ref: '#/components/schemas/GridLocation'
+          description: ''
+        background:
+          description: ''
+          type: string
+    InstantWinPlayRequest:
+      description: ''
+      type: object
+      properties:
+        instantWinFilter:
+          $ref: '#/components/schemas/InstantWinFilter'
+          description: The unique identifier for this instant win
+        awardId:
+          description: The award identifier is required to claim this. This can only be made once.
+          type: string
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        currencyKey:
+          description: >-
+            The UoM currency key to normalise the value to for presentation. Example; If the
+            reward is in EUR and this value is set to USD then the value will be multiplied by
+            1.09387699997429
+          type: string
+    MemberTokenRequest:
+      description: ''
+      required:
+        - member
+        - apiKey
+      type: object
+      properties:
+        apiKey:
+          description: The API key to use to generate this token.
+          type: string
+        isReferenceId:
+          description: >-
+            Default is FALSE, if set to TRUE then the meberId will be assumed to be client
+            provided reference id, if set to false then the memberId will be assumed to be a ZIQNI
+            generated identifier.
+          type: boolean
+        origins:
+          description: >
+            Allowed origins for the generated token. Leave empty to permit all origins,
+            Alternative provide up to 3 allowed origin URIs like https://my-space.api.ziqni.app
+          type: array
+          items:
+            type: string
+        member:
+          description: >-
+            The identifier used to find the member information. if this value is set to
+            "__PUBLIC__" and isReferenceId is set to "FALSE" then a genral use, non-member
+            specific token will be issued
+          type: string
+        expires:
+          description: >-
+            The number of minutes this token will be valid for. If left blank the token will only
+            be valid for 30 minutes
+          type: integer
+        disabledServices:
+          description: |-
+            A list of services to be disabled for this web token 
+            - Public,
+            - Member
+            - ViewAchievements
+            - ViewAwards
+            - ClaimAwards
+            - ViewCompetitions
+            - ViewContests
+            - ViewFiles
+            - ViewMembers
+            - MembersOptin
+            - ViewMessages
+            - ConnectProxy
+            - ViewRewards
+            - ViewRules
+          type: array
+          items:
+            type: string
+        languageKey:
+          description: 'The language code to use if none is provided in the member api requests '
+          type: string
+        currencyKey:
+          description: The language key to use if none is provided in the member api requests
+          type: string
+        timeZoneOffset:
+          description: The time zone to use when returning date and time values
+          type: integer
+      example:
+        apiKey: some text
+        isReferenceId: true
+        origins:
+          - some text
+          - some text
+        member: some text
+        expires: 72
+    TokenResponse:
+      description: '        '
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaBasic'
+          description: ''
+        data:
+          $ref: '#/components/schemas/Token'
+          description: ''
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      example:
+        meta:
+          totalRecordsFound: 59
+          skip: 93
+          limit: 53
+          time: '2018-02-10T09:30Z'
+        data:
+          -
+            icon: some text
+            jsonClass: some text
+            name: some text
+            description: some text
+            termsAndConditions: some text
+            constraints:
+              - some text
+              - some text
+            maxNumberOfIssues: 44
+            achievementLiveStatus: Live
+            scheduling:
+              scheduleType: Once
+              scheduleOccurrencesLimit: 63
+              every:
+                - 2
+                - 29
+              startDate: '2018-02-10T09:30Z'
+              endDate: '2018-02-10T09:30Z'
+              constraints:
+                - some text
+                - some text
+            dependantOn:
+              entityType: some text
+              dependantOn:
+                must:
+                  - some text
+                  - some text
+                mustNot:
+                  - some text
+                  - some text
+                should:
+                  - some text
+                  - some text
+                shouldMatchAtLeast: 8
+          -
+            icon: some text
+            jsonClass: some text
+            name: some text
+            description: some text
+            termsAndConditions: some text
+            constraints:
+              - some text
+              - some text
+            maxNumberOfIssues: 62
+            achievementLiveStatus: Draft
+            scheduling:
+              scheduleType: Weekly
+              scheduleOccurrencesLimit: 15
+              every:
+                - 36
+                - 65
+              startDate: '2018-02-10T09:30Z'
+              endDate: '2018-02-10T09:30Z'
+              constraints:
+                - some text
+                - some text
+            dependantOn:
+              entityType: some text
+              dependantOn:
+                must:
+                  - some text
+                  - some text
+                mustNot:
+                  - some text
+                  - some text
+                should:
+                  - some text
+                  - some text
+                shouldMatchAtLeast: 18
+        errors:
+          -
+            message: some text
+            code: 61
+            status: 75
+          -
+            message: some text
+            code: 88
+            status: 70
+    Token:
+      description: ''
+      required:
+        - jwtToken
+      type: object
+      properties:
+        jwtToken:
+          description: ''
+          type: string
+      example:
+        jwtToken: some text
   responses:
     AchievementResponseBody:
       content:
@@ -6054,6 +6307,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/MissionStatesResponse'
+      description: ''
+    TokenResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TokenResponse'
       description: ''
   securitySchemes:
     OAuth2:
