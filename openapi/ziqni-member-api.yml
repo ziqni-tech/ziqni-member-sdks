@@ -5972,6 +5972,12 @@ components:
         timeZoneOffset:
           description: The time zone to use when returning date and time values
           type: integer
+        includeActivesByEntity:
+          $ref: '#/components/schemas/ModelCountRequest'
+          description: >-
+            If set the information specific to this player and a specific entity will be returned.
+            It is designed to reduce the number of calls made to decide whether or not to render
+            the widget for a member
       example:
         apiKey: some text
         isReferenceId: true
@@ -5980,7 +5986,7 @@ components:
           - some text
         member: some text
         expires: 72
-    TokenResponse:
+    MemberTokenResponse:
       description: '        '
       required: []
       type: object
@@ -5989,7 +5995,7 @@ components:
           $ref: '#/components/schemas/MetaBasic'
           description: ''
         data:
-          $ref: '#/components/schemas/Token'
+          $ref: '#/components/schemas/MemberTokenInfo'
           description: ''
         errors:
           description: ''
@@ -6082,7 +6088,7 @@ components:
             message: some text
             code: 88
             status: 70
-    Token:
+    MemberTokenInfo:
       description: ''
       required:
         - jwtToken
@@ -6091,6 +6097,10 @@ components:
         jwtToken:
           description: ''
           type: string
+        modelCount:
+          type: object
+          additionalProperties:
+            type: integer
       example:
         jwtToken: some text
   responses:
@@ -6312,7 +6322,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/TokenResponse'
+            $ref: '#/components/schemas/MemberTokenResponse'
       description: ''
   securitySchemes:
     OAuth2:
