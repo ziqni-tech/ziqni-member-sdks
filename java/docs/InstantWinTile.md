@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **reward** | [**RewardReduced**](RewardReduced.md) |  |  [optional]
 **probability** | **Double** |  | 
 **location** | [**GridLocation**](GridLocation.md) |  | 
+**background** | **String** |  | 
 
 
 

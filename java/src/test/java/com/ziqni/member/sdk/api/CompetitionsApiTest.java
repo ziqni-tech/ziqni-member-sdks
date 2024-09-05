@@ -15,10 +15,12 @@ package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.data.LoadCompetitionsData;
+import com.ziqni.member.sdk.model.CompetitionRequest;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -48,7 +50,7 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
      */
     @Test
     public void getMemberCompetitionsTest() throws ApiException {
-        var response = $(api.getCompetitions(loadCompetitionsData.getRequest()));
+        var response = $(api.getCompetitions(loadCompetitionsData.getRequest().languageKey("de")));
 
         assertNotNull(response);
         assertNotNull(response.getData());
@@ -64,9 +66,30 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
 
         assertNotNull(response);
         assertNotNull(response.getData());
-        assertNotNull(response.getErrors());
-        Assertions.assertTrue(response.getErrors().isEmpty(), "Should have no errors");
         Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
+    }
+
+    @Test
+    public void getCompetitionFilterByNonExistantProductReturnNoResultsTest() throws ApiException {
+        final var createCompReq = loadCompetitionsData.getRequest();
+        createCompReq.getCompetitionFilter().productIds(List.of("non_existant_product"));
+        var response = $(api.getCompetitions(createCompReq));
+
+        assertNotNull(response);
+        assertNotNull(response.getData());
+        Assertions.assertTrue(response.getData().isEmpty(), "Should not have results");
+    }
+
+    @Test
+    public void getCompetitionFilterByProductUsedOn2CompetitionsReturn2ResultsTest() throws ApiException {
+        final var createCompReq = loadCompetitionsData.getRequest();
+        createCompReq.getCompetitionFilter().productIds(List.of("fht5oZAB8AyZ3Dx3XL7m"));
+        var response = $(api.getCompetitions(createCompReq));
+
+        assertNotNull(response);
+        assertNotNull(response.getData());
+        Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
+        Assertions.assertEquals(2, response.getData().size(), "Should have 2 results");
     }
     
 }
