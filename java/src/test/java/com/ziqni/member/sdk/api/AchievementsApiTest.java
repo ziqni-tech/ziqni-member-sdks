@@ -15,12 +15,18 @@ package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.data.LoadAchievementsData;
+import com.ziqni.member.sdk.model.AchievementFilter;
+import com.ziqni.member.sdk.model.AchievementRequest;
+import com.ziqni.member.sdk.model.DateRange;
+import com.ziqni.member.sdk.model.NumberRange;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
 
+import java.time.OffsetDateTime;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * API tests for AchievementsApi
@@ -54,7 +60,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
      */
     @Test
     public void getMemberAchievementsTest() throws Exception {
-        var response = $(api.getAchievements(loadAchievementsData.getRequest()));
+        var response = $(api.getAchievements(loadAchievementsData.getRequest().languageKey("de")));
 
         assertNotNull(response);
         assertNotNull(response.getData());
@@ -71,6 +77,56 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
         assertNotNull(response.getData());
         assertNotNull(response.getErrors());
         Assertions.assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+        Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
+    }
+
+    @Test
+    public void getMemberAchievementsWithScheduledEndDatesTest() throws Exception {
+        final var achievementFilter = new AchievementFilter();
+        achievementFilter.includeOptInState(true);
+        achievementFilter.skip(0);
+        achievementFilter.limit(20);
+        achievementFilter.statusCode(new NumberRange()
+                .moreThan(1L)
+                .lessThan(1000L));
+        achievementFilter.addProductIdsItem("hIlqeJAB8AyZ3Dx3dSqP");
+        achievementFilter.endDate(new DateRange()
+                .before(OffsetDateTime.parse("2025-09-03T13:39:32.000Z"))
+                .after(OffsetDateTime.parse("2024-09-03T13:38:32.000Z")));
+
+        final var achievementRequest = new AchievementRequest()
+                .achievementFilter(achievementFilter);
+
+        final var response = $(api.getAchievements(achievementRequest));
+
+        assertNotNull(response);
+        assertNotNull(response.getData());
+        assertNull(response.getErrors());
+        Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
+    }
+
+    @Test
+    public void getMemberAchievementsWithScheduledStartDatesTest() throws Exception {
+        final var achievementFilter = new AchievementFilter();
+        achievementFilter.includeOptInState(true);
+        achievementFilter.skip(0);
+        achievementFilter.limit(20);
+        achievementFilter.statusCode(new NumberRange()
+                .moreThan(1L)
+                .lessThan(1000L));
+        achievementFilter.addProductIdsItem("hIlqeJAB8AyZ3Dx3dSqP");
+        achievementFilter.startDate(new DateRange()
+                .before(OffsetDateTime.parse("2025-09-03T13:39:32.000Z"))
+                .after(OffsetDateTime.parse("2024-09-03T13:38:32.000Z")));
+
+        final var achievementRequest = new AchievementRequest()
+                .achievementFilter(achievementFilter);
+
+        final var response = $(api.getAchievements(achievementRequest));
+
+        assertNotNull(response);
+        assertNotNull(response.getData());
+        assertNull(response.getErrors());
         Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
     }
 
