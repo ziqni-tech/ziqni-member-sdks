@@ -6,10 +6,10 @@ This struct contains two integer-valued fields, row and col . A GridLocation can
 
 ## Properties
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**row** | **Integer** |  |  |
-|**col** | **Integer** |  |  |
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**row** | **Integer** |  | 
+**col** | **Integer** |  | 
 
 
 

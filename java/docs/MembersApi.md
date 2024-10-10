@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://member-api.ziqni.com*
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**getMember**](MembersApi.md#getMember) | **POST** /member-info | Get member information by member reference id |
-| [**getMemberWithHttpInfo**](MembersApi.md#getMemberWithHttpInfo) | **POST** /member-info | Get member information by member reference id |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getMember**](MembersApi.md#getMember) | **POST** /member-info | Get member information by member reference id
+[**getMemberWithHttpInfo**](MembersApi.md#getMemberWithHttpInfo) | **POST** /member-info | Get member information by member reference id
 
 
 
@@ -57,9 +57,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **memberRequest** | [**MemberRequest**](MemberRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **memberRequest** | [**MemberRequest**](MemberRequest.md)|  |
 
 ### Return type
 
@@ -140,9 +140,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **memberRequest** | [**MemberRequest**](MemberRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **memberRequest** | [**MemberRequest**](MemberRequest.md)|  |
 
 ### Return type
 

@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://member-api.ziqni.com*
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**subscribeToLeaderboard**](LeaderboardApi.md#subscribeToLeaderboard) | **POST** /leaderboard |  |
-| [**subscribeToLeaderboardWithHttpInfo**](LeaderboardApi.md#subscribeToLeaderboardWithHttpInfo) | **POST** /leaderboard |  |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**subscribeToLeaderboard**](LeaderboardApi.md#subscribeToLeaderboard) | **POST** /leaderboard | 
+[**subscribeToLeaderboardWithHttpInfo**](LeaderboardApi.md#subscribeToLeaderboardWithHttpInfo) | **POST** /leaderboard | 
 
 
 
@@ -50,9 +50,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **leaderboardSubscriptionRequest** | [**LeaderboardSubscriptionRequest**](LeaderboardSubscriptionRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **leaderboardSubscriptionRequest** | [**LeaderboardSubscriptionRequest**](LeaderboardSubscriptionRequest.md)|  | [optional]
 
 ### Return type
 
@@ -124,9 +124,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **leaderboardSubscriptionRequest** | [**LeaderboardSubscriptionRequest**](LeaderboardSubscriptionRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **leaderboardSubscriptionRequest** | [**LeaderboardSubscriptionRequest**](LeaderboardSubscriptionRequest.md)|  | [optional]
 
 ### Return type
 

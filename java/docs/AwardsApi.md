@@ -2,14 +2,14 @@
 
 All URIs are relative to *https://member-api.ziqni.com*
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**claimAwards**](AwardsApi.md#claimAwards) | **POST** /awards-claim | Claim awards. |
-| [**claimAwardsWithHttpInfo**](AwardsApi.md#claimAwardsWithHttpInfo) | **POST** /awards-claim | Claim awards. |
-| [**declineAwards**](AwardsApi.md#declineAwards) | **POST** /awards-decline | Claim awards. |
-| [**declineAwardsWithHttpInfo**](AwardsApi.md#declineAwardsWithHttpInfo) | **POST** /awards-decline | Claim awards. |
-| [**getAwards**](AwardsApi.md#getAwards) | **POST** /awards | Get awards. |
-| [**getAwardsWithHttpInfo**](AwardsApi.md#getAwardsWithHttpInfo) | **POST** /awards | Get awards. |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**claimAwards**](AwardsApi.md#claimAwards) | **POST** /awards-claim | Claim awards.
+[**claimAwardsWithHttpInfo**](AwardsApi.md#claimAwardsWithHttpInfo) | **POST** /awards-claim | Claim awards.
+[**declineAwards**](AwardsApi.md#declineAwards) | **POST** /awards-decline | Claim awards.
+[**declineAwardsWithHttpInfo**](AwardsApi.md#declineAwardsWithHttpInfo) | **POST** /awards-decline | Claim awards.
+[**getAwards**](AwardsApi.md#getAwards) | **POST** /awards | Get awards.
+[**getAwardsWithHttpInfo**](AwardsApi.md#getAwardsWithHttpInfo) | **POST** /awards | Get awards.
 
 
 
@@ -61,9 +61,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **claimAwardRequest** | [**ClaimAwardRequest**](ClaimAwardRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **claimAwardRequest** | [**ClaimAwardRequest**](ClaimAwardRequest.md)|  |
 
 ### Return type
 
@@ -144,9 +144,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **claimAwardRequest** | [**ClaimAwardRequest**](ClaimAwardRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **claimAwardRequest** | [**ClaimAwardRequest**](ClaimAwardRequest.md)|  |
 
 ### Return type
 
@@ -218,9 +218,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **declineAwardRequest** | [**DeclineAwardRequest**](DeclineAwardRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **declineAwardRequest** | [**DeclineAwardRequest**](DeclineAwardRequest.md)|  |
 
 ### Return type
 
@@ -301,9 +301,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **declineAwardRequest** | [**DeclineAwardRequest**](DeclineAwardRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **declineAwardRequest** | [**DeclineAwardRequest**](DeclineAwardRequest.md)|  |
 
 ### Return type
 
@@ -375,9 +375,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **awardRequest** | [**AwardRequest**](AwardRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **awardRequest** | [**AwardRequest**](AwardRequest.md)|  |
 
 ### Return type
 
@@ -458,9 +458,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **awardRequest** | [**AwardRequest**](AwardRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **awardRequest** | [**AwardRequest**](AwardRequest.md)|  |
 
 ### Return type
 

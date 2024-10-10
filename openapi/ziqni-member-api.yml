@@ -660,6 +660,20 @@ paths:
           OAuth2: []
       operationId: createMemberToken
       description: Get Jwt Token
+  /instant-wins-available-plays:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstantWinAvailablePlaysRequest'
+        required: true
+      tags:
+        - instant-wins
+      responses:
+        '200':
+          $ref: '#/components/responses/InstantWinsAvailablePlayResponseBody'
+      operationId: getInstantWinAvailablePlays
 components:
   schemas:
     ResponseMeta:
@@ -3632,7 +3646,7 @@ components:
               description: ''
               type: array
               items:
-                $ref: '#/components/schemas/Award'
+                $ref: '#/components/schemas/AwardReduced'
             tiles:
               description: ''
               type: array
@@ -3732,22 +3746,6 @@ components:
           $ref: '#/components/schemas/ModelDefault'
         -
           $ref: '#/components/schemas/OptionalModelFields'
-    InstantWinPlayOutcome:
-      description: ''
-      type: object
-      properties:
-        awards:
-          description: The awards that the member unlocked
-          type: array
-          items:
-            $ref: '#/components/schemas/Award'
-        tiles:
-          description: >-
-            The tiles uncovered during the game session, for the wheel of fortune this will be the
-            slice the player landed on for a scratch card it would be the revealed tiles
-          type: array
-          items:
-            $ref: '#/components/schemas/InstantWinTile'
     InstantWinPlayResponse:
       description: ''
       type: object
@@ -3759,7 +3757,7 @@ components:
           description: ''
           type: array
           items:
-            $ref: '#/components/schemas/InstantWinPlayOutcome'
+            $ref: '#/components/schemas/InstantWinPlayResults'
         errors:
           description: ''
           type: array
@@ -5870,11 +5868,6 @@ components:
         text:
           description: ''
           type: string
-        contraints:
-          description: 'hasPrizes, glow'
-          type: array
-          items:
-            type: string
         reward:
           $ref: '#/components/schemas/RewardReduced'
           description: The reward associated with this tile
@@ -5888,27 +5881,11 @@ components:
         background:
           description: ''
           type: string
-    InstantWinPlayRequest:
-      description: ''
-      type: object
-      properties:
-        instantWinFilter:
-          $ref: '#/components/schemas/InstantWinFilter'
-          description: The unique identifier for this instant win
-        awardId:
-          description: The award identifier is required to claim this. This can only be made once.
-          type: string
-        languageKey:
-          description: >-
-            The language codes can be found in the settings/transalations section of the back
-            office
-          type: string
-        currencyKey:
-          description: >-
-            The UoM currency key to normalise the value to for presentation. Example; If the
-            reward is in EUR and this value is set to USD then the value will be multiplied by
-            1.09387699997429
-          type: string
+        contraints:
+          description: 'hasPrizes, glow'
+          type: array
+          items:
+            type: string
     MemberTokenRequest:
       description: ''
       required:
@@ -6103,6 +6080,96 @@ components:
             type: integer
       example:
         jwtToken: some text
+    InstantWinPlayRequest:
+      description: ''
+      type: object
+      properties:
+        instantWinId:
+          description: The game to play.
+          type: string
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        currencyKey:
+          description: >-
+            The UoM currency key to normalise the value to for presentation. Example; If the
+            reward is in EUR and this value is set to USD then the value will be multiplied by
+            1.09387699997429
+          type: string
+    AwardReduced:
+      description: ''
+      type: object
+      allOf:
+        -
+          type: object
+          properties:
+            awardId:
+              description: A unique identifier of a Award
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            rewardId:
+              description: A unique identifier of a Reward
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            value:
+              format: double
+              description: Numerical value of the award that will be issued
+              type: number
+              example: '1'
+    InstantWinPlayResults:
+      description: ''
+      required:
+        - results
+      type: object
+      properties:
+        remainingPlays:
+          description: spins left
+          type: integer
+        results:
+          $ref: '#/components/schemas/InstantWinResult'
+          description: ''
+    InstantWinAvailablePlaysRequest:
+      description: ''
+      required:
+        - instantWinIds
+      type: object
+      properties:
+        instantWinIds:
+          description: The game to play.
+          type: array
+          items:
+            type: string
+    InstantWinsAvailablePlayResponse:
+      description: ''
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/InstantWinsAvailablePlayResults'
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    InstantWinsAvailablePlayResults:
+      description: ''
+      required:
+        - instantWinId
+      type: object
+      properties:
+        remainingPlays:
+          description: spins left
+          type: integer
+        instantWinId:
+          description: ''
+          type: string
   responses:
     AchievementResponseBody:
       content:
@@ -6323,6 +6390,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/MemberTokenResponse'
+      description: ''
+    InstantWinsAvailablePlayResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InstantWinsAvailablePlayResponse'
       description: ''
   securitySchemes:
     OAuth2:

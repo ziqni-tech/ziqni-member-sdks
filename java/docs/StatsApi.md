@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://member-api.ziqni.com*
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**getActiveEntitiesCount**](StatsApi.md#getActiveEntitiesCount) | **POST** /actives-by-entity | Get competitions and/or achievements count by product id or reference id |
-| [**getActiveEntitiesCountWithHttpInfo**](StatsApi.md#getActiveEntitiesCountWithHttpInfo) | **POST** /actives-by-entity | Get competitions and/or achievements count by product id or reference id |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getActiveEntitiesCount**](StatsApi.md#getActiveEntitiesCount) | **POST** /actives-by-entity | Get competitions and/or achievements count by product id or reference id
+[**getActiveEntitiesCountWithHttpInfo**](StatsApi.md#getActiveEntitiesCountWithHttpInfo) | **POST** /actives-by-entity | Get competitions and/or achievements count by product id or reference id
 
 
 
@@ -57,9 +57,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **modelCountRequest** | [**ModelCountRequest**](ModelCountRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **modelCountRequest** | [**ModelCountRequest**](ModelCountRequest.md)|  |
 
 ### Return type
 
@@ -140,9 +140,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **modelCountRequest** | [**ModelCountRequest**](ModelCountRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **modelCountRequest** | [**ModelCountRequest**](ModelCountRequest.md)|  |
 
 ### Return type
 

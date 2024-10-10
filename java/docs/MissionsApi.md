@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://member-api.ziqni.com*
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**getMissionStates**](MissionsApi.md#getMissionStates) | **POST** /mission-states |  |
-| [**getMissionStatesWithHttpInfo**](MissionsApi.md#getMissionStatesWithHttpInfo) | **POST** /mission-states |  |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getMissionStates**](MissionsApi.md#getMissionStates) | **POST** /mission-states | 
+[**getMissionStatesWithHttpInfo**](MissionsApi.md#getMissionStatesWithHttpInfo) | **POST** /mission-states | 
 
 
 
@@ -52,9 +52,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **missionStatesRequest** | [**MissionStatesRequest**](MissionStatesRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **missionStatesRequest** | [**MissionStatesRequest**](MissionStatesRequest.md)|  |
 
 ### Return type
 
@@ -128,9 +128,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **missionStatesRequest** | [**MissionStatesRequest**](MissionStatesRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **missionStatesRequest** | [**MissionStatesRequest**](MissionStatesRequest.md)|  |
 
 ### Return type
 

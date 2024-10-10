@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://member-api.ziqni.com*
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**getRewards**](RewardsApi.md#getRewards) | **POST** /rewards | Get rewards |
-| [**getRewardsWithHttpInfo**](RewardsApi.md#getRewardsWithHttpInfo) | **POST** /rewards | Get rewards |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getRewards**](RewardsApi.md#getRewards) | **POST** /rewards | Get rewards
+[**getRewardsWithHttpInfo**](RewardsApi.md#getRewardsWithHttpInfo) | **POST** /rewards | Get rewards
 
 
 
@@ -57,9 +57,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **rewardRequest** | [**RewardRequest**](RewardRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rewardRequest** | [**RewardRequest**](RewardRequest.md)|  |
 
 ### Return type
 
@@ -140,9 +140,9 @@ public class Example {
 ### Parameters
 
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **rewardRequest** | [**RewardRequest**](RewardRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rewardRequest** | [**RewardRequest**](RewardRequest.md)|  |
 
 ### Return type
 

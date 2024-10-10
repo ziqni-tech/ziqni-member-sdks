@@ -24,7 +24,7 @@ else
 fi
 
 
-openapi-generator  generate -g java -i $SPEC_FILE -c $CONF_FILE -o ./generated --additional-properties=asyncNative=true --additional-properties=library=native -t ./templates
+openapi-generator-cli  generate -g java -i $SPEC_FILE -c $CONF_FILE -o ./generated --additional-properties=asyncNative=true --additional-properties=library=native -t ./templates
 
 # Copy the updated docs
 rm -rf ../../java/docs
