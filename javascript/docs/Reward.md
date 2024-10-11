@@ -4,6 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**customFields** | **{String: Object}** |  | [optional] 
+**tags** | **[String]** | A list of id&#39;s used to tag models | [optional] 
+**metadata** | **{String: String}** |  | [optional] 
 **probability** | **Number** | What is the probability of winning this reward | [optional] 
 **entityType** | [**EntityType**](EntityType.md) |  | [optional] 
 **entityId** | **String** | A unique identifier of an achievement or contest. Dependant on entityType | [optional] 
@@ -22,8 +25,5 @@ Name | Type | Description | Notes
 **period** | **Number** | Reward available for a period of time from issuing in minutes | [optional] 
 **id** | **String** | Unique system identifier of a Main Rule | [optional] [readonly] 
 **constraints** | **[String]** | Additional constraints | [optional] 
-**customFields** | **{String: Object}** |  | [optional] 
-**tags** | **[String]** | A list of id&#39;s used to tag models | [optional] 
-**metadata** | **{String: String}** |  | [optional] 
 
 

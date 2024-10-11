@@ -8,6 +8,19 @@ export default class InstantWinsApiWs {
   }
 
 
+  getInstantWinAvailablePlays(instantWinAvailablePlaysRequest,  callback) {
+
+    
+    if (instantWinAvailablePlaysRequest === undefined || instantWinAvailablePlaysRequest === null) {
+      throw new Error("Missing the required parameter 'instantWinAvailablePlaysRequest' when calling getInstantWinAvailablePlays");
+    }
+    
+    const message = { body: instantWinAvailablePlaysRequest };
+
+    apiClientStomp.instance.sendRpc('/gapi/getInstantWinAvailablePlays', message, callback);
+
+  }
+
   listInstantWins(instantWinRequest,  callback) {
 
     
