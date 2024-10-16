@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Member API
-  version: 1.0.17
+  version: 1.0.18
   description: >-
     The ZIQNI Member-API is the primary resource used to build services and widgets for your members
     [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
@@ -399,20 +399,6 @@ paths:
       summary: Get achievements by member reference id
       description: Returns a list of graphs based on the entity type.
       x-ws-only: true
-  /instant-wins:
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/InstantWinRequest'
-        required: true
-      tags:
-        - instant-wins
-      responses:
-        '200':
-          $ref: '#/components/responses/InstantWinResponseBody'
-      operationId: listInstantWins
   /instant-wins-play:
     post:
       requestBody:
@@ -426,6 +412,10 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/InstantWinPlayResponseBody'
+      security:
+        -
+          OAuth2:
+            - PlayInstantWin
       operationId: playInstantWin
   /products:
     summary: Member products operation
@@ -673,7 +663,29 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/InstantWinsAvailablePlayResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewInstantWinsAvailablePlays
       operationId: getInstantWinAvailablePlays
+  /instant-wins:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstantWinRequest'
+        required: true
+      tags:
+        - instant-wins
+      responses:
+        '200':
+          $ref: '#/components/responses/InstantWinResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewInstantWin
+      operationId: listInstantWins
 components:
   schemas:
     ResponseMeta:
@@ -6412,6 +6424,9 @@ components:
             ViewAwards: Grants read access
             ViewRules: Grants read access
             ViewMembers: Grants read access
+            ViewInstantWins: Grant read access
+            ViewInstantWinsAvailablePlays: Grant read access
+            PlayInstantWin: Grant read access
       type: oauth2
 tags:
   -

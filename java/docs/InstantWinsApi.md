@@ -26,6 +26,7 @@ Method | HTTP request | Description
 import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.InstantWinsApi;
 import java.util.concurrent.CompletableFuture;
@@ -34,6 +35,10 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
         InstantWinAvailablePlaysRequest instantWinAvailablePlaysRequest = new InstantWinAvailablePlaysRequest(); // InstantWinAvailablePlaysRequest | 
@@ -65,7 +70,7 @@ CompletableFuture<[**InstantWinsAvailablePlayResponse**](InstantWinsAvailablePla
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -91,6 +96,7 @@ import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.InstantWinsApi;
 import java.util.concurrent.CompletableFuture;
@@ -99,6 +105,10 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
         InstantWinAvailablePlaysRequest instantWinAvailablePlaysRequest = new InstantWinAvailablePlaysRequest(); // InstantWinAvailablePlaysRequest | 
@@ -139,7 +149,7 @@ CompletableFuture<ApiResponse<[**InstantWinsAvailablePlayResponse**](InstantWins
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -165,6 +175,7 @@ No authorization required
 import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.InstantWinsApi;
 import java.util.concurrent.CompletableFuture;
@@ -173,6 +184,10 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
         InstantWinRequest instantWinRequest = new InstantWinRequest(); // InstantWinRequest | 
@@ -204,7 +219,7 @@ CompletableFuture<[**InstantWinResponse**](InstantWinResponse.md)>
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -230,6 +245,7 @@ import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.InstantWinsApi;
 import java.util.concurrent.CompletableFuture;
@@ -238,6 +254,10 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
         InstantWinRequest instantWinRequest = new InstantWinRequest(); // InstantWinRequest | 
@@ -278,7 +298,7 @@ CompletableFuture<ApiResponse<[**InstantWinResponse**](InstantWinResponse.md)>>
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -304,6 +324,7 @@ No authorization required
 import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.InstantWinsApi;
 import java.util.concurrent.CompletableFuture;
@@ -312,6 +333,10 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
         InstantWinPlayRequest instantWinPlayRequest = new InstantWinPlayRequest(); // InstantWinPlayRequest | 
@@ -343,7 +368,7 @@ CompletableFuture<[**InstantWinPlayResponse**](InstantWinPlayResponse.md)>
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -369,6 +394,7 @@ import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.InstantWinsApi;
 import java.util.concurrent.CompletableFuture;
@@ -377,6 +403,10 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
         InstantWinPlayRequest instantWinPlayRequest = new InstantWinPlayRequest(); // InstantWinPlayRequest | 
@@ -417,7 +447,7 @@ CompletableFuture<ApiResponse<[**InstantWinPlayResponse**](InstantWinPlayRespons
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
