@@ -1817,33 +1817,6 @@ components:
         - TimeBound
         - TargetBased
       type: string
-    EntityType:
-      description: Entity the item is associated to.
-      enum:
-        - Member
-        - Product
-        - Achievement
-        - Repository
-        - FileObject
-        - Language
-        - MemberMessage
-        - Reward
-        - MemberAward
-        - Award
-        - Message
-        - RewardType
-        - ActionType
-        - UnitOfMeasure
-        - Competition
-        - Contest
-        - SqsConnection
-        - KafkaConnection
-        - RabbitMqConnection
-        - Events
-        - Webhook
-        - Attachment
-        - RuleSet
-      type: string
     RuleExpression:
       description: >-
         A conditional expressions is an element that declares either a rule expression, condition or
@@ -6182,6 +6155,34 @@ components:
         instantWinId:
           description: ''
           type: string
+    EntityType:
+      description: Entity the item is associated to.
+      enum:
+        - Member
+        - Product
+        - Achievement
+        - Repository
+        - FileObject
+        - Language
+        - MemberMessage
+        - Reward
+        - MemberAward
+        - Award
+        - Message
+        - RewardType
+        - ActionType
+        - UnitOfMeasure
+        - Competition
+        - Contest
+        - SqsConnection
+        - KafkaConnection
+        - RabbitMqConnection
+        - Events
+        - Webhook
+        - Attachment
+        - RuleSet
+        - InstantWin
+      type: string
   responses:
     AchievementResponseBody:
       content:
