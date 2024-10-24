@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Member API
-  version: 1.0.18
+  version: 1.0.19
   description: >-
     The ZIQNI Member-API is the primary resource used to build services and widgets for your members
     [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
@@ -4911,69 +4911,6 @@ components:
                 $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
         -
           $ref: '#/components/schemas/OptionalModelFields'
-    InstantWin:
-      description: ''
-      type: object
-      allOf:
-        -
-          required:
-            - instantWinType
-            - tiles
-          type: object
-          properties:
-            name:
-              description: ''
-              type: string
-            description:
-              description: ''
-              type: string
-            termsAndConditions:
-              description: ''
-              type: string
-            constraints:
-              description: >-
-                Additional constraints, if set means true [optinRequiredForEntrants, hasRules,
-                hasRewards]
-              type: array
-              items:
-                type: string
-              example: |-
-                - deprecated
-                - notifyMember
-                - isHidden
-                - optinRequiredForEntrants
-                - expired
-            statusCode:
-              format: int32
-              description: ''
-              type: integer
-            instantWinType:
-              description: ''
-              type: integer
-            iconLink:
-              description: Attachement id for the corresponding icon image.
-              type: string
-            bannerLink:
-              description: Link to the banner
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerLowResolutionLink:
-              description: Link to the bannerLowResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerHighResolutionLink:
-              description: Link to the bannerHighResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            tiles:
-              description: ''
-              type: array
-              items:
-                $ref: '#/components/schemas/InstantWinTile'
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptionalModelFields'
     ProductReduced:
       description: ''
       type: object
@@ -6183,6 +6120,74 @@ components:
         - RuleSet
         - InstantWin
       type: string
+    InstantWin:
+      description: ''
+      type: object
+      allOf:
+        -
+          required:
+            - instantWinType
+            - tiles
+          type: object
+          properties:
+            name:
+              description: The display name
+              type: string
+            description:
+              description: The description of this game
+              type: string
+            termsAndConditions:
+              description: The standard terms applied to this game
+              type: string
+            constraints:
+              description: >-
+                Additional constraints, if set means true [optinRequiredForEntrants, hasRules,
+                hasRewards]
+              type: array
+              items:
+                type: string
+              example: |-
+                - deprecated
+                - notifyMember
+                - isHidden
+                - optinRequiredForEntrants
+                - expired
+            statusCode:
+              format: int32
+              description: The status of this game
+              type: integer
+            instantWinType:
+              description: Spinner etc
+              type: integer
+            iconLink:
+              description: Attachement id for the corresponding icon image.
+              type: string
+            bannerLink:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolutionLink:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolutionLink:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            tiles:
+              description: Tiles are the buiilding blocks of the instant win game
+              type: array
+              items:
+                $ref: '#/components/schemas/InstantWinTile'
+            instanceResourceLink:
+              description: >-
+                Link to the system resources for this instant win.
+                https://<<space-name>>.cdn.ziqni.com/system-resources/instant-wins/<<instant-win-id>>
+              type: string
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
   responses:
     AchievementResponseBody:
       content:
