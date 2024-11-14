@@ -686,6 +686,24 @@ paths:
           OAuth2:
             - ViewInstantWin
       operationId: listInstantWins
+  /instant-wins-donate:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstantWinDonateRequest'
+        required: true
+      tags:
+        - instant-wins
+      responses:
+        '200':
+          $ref: '#/components/responses/InstantWinsAvailablePlayResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewInstantWinsAvailablePlays
+      operationId: donateInstantWinPlays
 components:
   schemas:
     ResponseMeta:
@@ -5885,108 +5903,6 @@ components:
           - some text
         member: some text
         expires: 72
-    MemberTokenResponse:
-      description: '        '
-      required: []
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/MetaBasic'
-          description: ''
-        data:
-          $ref: '#/components/schemas/MemberTokenInfo'
-          description: ''
-        errors:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-      example:
-        meta:
-          totalRecordsFound: 59
-          skip: 93
-          limit: 53
-          time: '2018-02-10T09:30Z'
-        data:
-          -
-            icon: some text
-            jsonClass: some text
-            name: some text
-            description: some text
-            termsAndConditions: some text
-            constraints:
-              - some text
-              - some text
-            maxNumberOfIssues: 44
-            achievementLiveStatus: Live
-            scheduling:
-              scheduleType: Once
-              scheduleOccurrencesLimit: 63
-              every:
-                - 2
-                - 29
-              startDate: '2018-02-10T09:30Z'
-              endDate: '2018-02-10T09:30Z'
-              constraints:
-                - some text
-                - some text
-            dependantOn:
-              entityType: some text
-              dependantOn:
-                must:
-                  - some text
-                  - some text
-                mustNot:
-                  - some text
-                  - some text
-                should:
-                  - some text
-                  - some text
-                shouldMatchAtLeast: 8
-          -
-            icon: some text
-            jsonClass: some text
-            name: some text
-            description: some text
-            termsAndConditions: some text
-            constraints:
-              - some text
-              - some text
-            maxNumberOfIssues: 62
-            achievementLiveStatus: Draft
-            scheduling:
-              scheduleType: Weekly
-              scheduleOccurrencesLimit: 15
-              every:
-                - 36
-                - 65
-              startDate: '2018-02-10T09:30Z'
-              endDate: '2018-02-10T09:30Z'
-              constraints:
-                - some text
-                - some text
-            dependantOn:
-              entityType: some text
-              dependantOn:
-                must:
-                  - some text
-                  - some text
-                mustNot:
-                  - some text
-                  - some text
-                should:
-                  - some text
-                  - some text
-                shouldMatchAtLeast: 18
-        errors:
-          -
-            message: some text
-            code: 61
-            status: 75
-          -
-            message: some text
-            code: 88
-            status: 70
     MemberTokenInfo:
       description: ''
       required:
@@ -6174,6 +6090,22 @@ components:
               description: Link to the bannerHighResolution
               type: string
               example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            startDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Instant Win started. All records are stored in
+                UTC time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+            endDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Instant Win ended. All records are stored in UTC
+                time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
             tiles:
               description: Tiles are the buiilding blocks of the instant win game
               type: array
@@ -6188,6 +6120,35 @@ components:
           $ref: '#/components/schemas/ModelDefault'
         -
           $ref: '#/components/schemas/OptionalModelFields'
+    MemberTokenResponse:
+      description: '        '
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaBasic'
+          description: ''
+        data:
+          $ref: '#/components/schemas/MemberTokenInfo'
+          description: ''
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    InstantWinDonateRequest:
+      description: ''
+      required:
+        - instantWinIds
+        - numberOfPlaysToDonate
+      type: object
+      properties:
+        instantWinId:
+          description: The game to play.
+          type: string
+        numberOfPlaysToDonate:
+          description: ''
+          type: integer
   responses:
     AchievementResponseBody:
       content:

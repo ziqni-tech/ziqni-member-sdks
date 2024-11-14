@@ -4,6 +4,8 @@ All URIs are relative to *https://member-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**donateInstantWinPlays**](InstantWinsApi.md#donateInstantWinPlays) | **POST** /instant-wins-donate | 
+[**donateInstantWinPlaysWithHttpInfo**](InstantWinsApi.md#donateInstantWinPlaysWithHttpInfo) | **POST** /instant-wins-donate | 
 [**getInstantWinAvailablePlays**](InstantWinsApi.md#getInstantWinAvailablePlays) | **POST** /instant-wins-available-plays | 
 [**getInstantWinAvailablePlaysWithHttpInfo**](InstantWinsApi.md#getInstantWinAvailablePlaysWithHttpInfo) | **POST** /instant-wins-available-plays | 
 [**listInstantWins**](InstantWinsApi.md#listInstantWins) | **POST** /instant-wins | 
@@ -11,6 +13,155 @@ Method | HTTP request | Description
 [**playInstantWin**](InstantWinsApi.md#playInstantWin) | **POST** /instant-wins-play | 
 [**playInstantWinWithHttpInfo**](InstantWinsApi.md#playInstantWinWithHttpInfo) | **POST** /instant-wins-play | 
 
+
+
+## donateInstantWinPlays
+
+> CompletableFuture<InstantWinsAvailablePlayResponse> donateInstantWinPlays(instantWinDonateRequest)
+
+
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.member.sdk.ApiClient;
+import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.InstantWinsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://member-api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
+        InstantWinDonateRequest instantWinDonateRequest = new InstantWinDonateRequest(); // InstantWinDonateRequest | 
+        try {
+            CompletableFuture<InstantWinsAvailablePlayResponse> result = apiInstance.donateInstantWinPlays(instantWinDonateRequest);
+            System.out.println(result.get());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstantWinsApi#donateInstantWinPlays");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instantWinDonateRequest** | [**InstantWinDonateRequest**](InstantWinDonateRequest.md)|  |
+
+### Return type
+
+CompletableFuture<[**InstantWinsAvailablePlayResponse**](InstantWinsAvailablePlayResponse.md)>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+## donateInstantWinPlaysWithHttpInfo
+
+> CompletableFuture<ApiResponse<InstantWinsAvailablePlayResponse>> donateInstantWinPlays donateInstantWinPlaysWithHttpInfo(instantWinDonateRequest)
+
+
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.member.sdk.ApiClient;
+import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.ApiResponse;
+import com.ziqni.member.sdk.Configuration;
+import com.ziqni.member.sdk.auth.*;
+import com.ziqni.member.sdk.models.*;
+import com.ziqni.member.sdk.api.InstantWinsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://member-api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
+        InstantWinDonateRequest instantWinDonateRequest = new InstantWinDonateRequest(); // InstantWinDonateRequest | 
+        try {
+            CompletableFuture<ApiResponse<InstantWinsAvailablePlayResponse>> response = apiInstance.donateInstantWinPlaysWithHttpInfo(instantWinDonateRequest);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling InstantWinsApi#donateInstantWinPlays");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstantWinsApi#donateInstantWinPlays");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instantWinDonateRequest** | [**InstantWinDonateRequest**](InstantWinDonateRequest.md)|  |
+
+### Return type
+
+CompletableFuture<ApiResponse<[**InstantWinsAvailablePlayResponse**](InstantWinsAvailablePlayResponse.md)>>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
 
 
 ## getInstantWinAvailablePlays
