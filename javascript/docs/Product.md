@@ -4,6 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**customFields** | **{String: Object}** |  | [optional] 
+**tags** | **[String]** | A list of id&#39;s used to tag models | [optional] 
+**metadata** | **{String: String}** |  | [optional] 
 **id** | **String** | A unique system generated identifier | 
 **spaceName** | **String** | This is the space name which is linked to the account | 
 **created** | **Date** | ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone | 
@@ -17,8 +20,5 @@ Name | Type | Description | Notes
 **bannerLowResolutionLink** | **String** | Link to the bannerLowResolution | [optional] 
 **bannerHighResolutionLink** | **String** | Link to the bannerHighResolution | [optional] 
 **actionTypeAdjustmentFactors** | [**[ActionTypeAdjustmentFactor]**](ActionTypeAdjustmentFactor.md) |  | [optional] 
-**customFields** | **{String: Object}** |  | [optional] 
-**tags** | **[String]** | A list of id&#39;s used to tag models | [optional] 
-**metadata** | **{String: String}** |  | [optional] 
 
 
