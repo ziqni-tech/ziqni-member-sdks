@@ -8,6 +8,19 @@ export default class InstantWinsApiWs {
   }
 
 
+  donateInstantWinPlays(instantWinDonateRequest,  callback) {
+
+    
+    if (instantWinDonateRequest === undefined || instantWinDonateRequest === null) {
+      throw new Error("Missing the required parameter 'instantWinDonateRequest' when calling donateInstantWinPlays");
+    }
+    
+    const message = { body: instantWinDonateRequest };
+
+    apiClientStomp.instance.sendRpc('/gapi/donateInstantWinPlays', message, callback);
+
+  }
+
   getInstantWinAvailablePlays(instantWinAvailablePlaysRequest,  callback) {
 
     
