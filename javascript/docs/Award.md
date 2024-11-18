@@ -4,9 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | Ziqni id of the model | 
-**spaceName** | **String** | This is the space name which is linked to the account | [optional] 
-**created** | **Date** | ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone | [optional] 
 **memberId** | **String** | A unique identifier of a Member | [optional] 
 **rewardId** | **String** | A unique identifier of a Reward | [optional] 
 **rewardType** | [**RewardTypeReduced**](RewardTypeReduced.md) |  | [optional] 
@@ -28,5 +25,8 @@ Name | Type | Description | Notes
 **memberRefId** | **String** |  | [optional] 
 **activeFrom** | **Date** | This record is considered active up until this date time | [optional] 
 **activeUntil** | **Date** | This record is considered active up until this date time | [optional] 
+**id** | **String** | Ziqni id of the model | 
+**spaceName** | **String** | This is the space name which is linked to the account | [optional] 
+**created** | **Date** | ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone | [optional] 
 
 
