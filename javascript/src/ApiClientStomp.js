@@ -15,6 +15,10 @@
 import superagent from "superagent";
 import querystring from "querystring";
 
+if (window && window.chrome && window.chrome.app && !window.chrome.app.runtime) {
+    window.chrome.app.runtime = {};
+}
+
 const StompJs = require('@stomp/stompjs');
 const SockJS = require('sockjs-client');
 
