@@ -14,7 +14,6 @@ public class MemberApiClientConfiguration {
 
     private  Boolean loaded = false;
 
-    //todo - replace this with member client
     private  String memberClientServerHost;
     private  Integer memberClientServerPort;
     private  String memberClientServerScheme;
