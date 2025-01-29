@@ -19,9 +19,11 @@ Name | Type | Description | Notes
 **statusCode** | **Number** | The code of the award | [optional] [readonly] 
 **constraints** | **[String]** | Additional constraints, if the value is present it means the | [optional] 
 **claimed** | **Boolean** |  Award is claimed. | [optional] 
-**status** | [**AwardStatus**](AwardStatus.md) |  | [optional] 
+**status** | [**AwardStateActions**](AwardStateActions.md) |  | [optional] 
 **name** | **String** | name from reward | [optional] 
 **description** | **String** | Text limited description | [optional] 
 **memberRefId** | **String** |  | [optional] 
+**activeFrom** | **Date** | This record is considered active up until this date time | [optional] 
+**activeUntil** | **Date** | This record is considered active up until this date time | [optional] 
 
 

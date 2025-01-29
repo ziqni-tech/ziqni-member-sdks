@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**awards** | [**[Award]**](Award.md) |  | [optional] 
+**awards** | [**[AwardReduced]**](AwardReduced.md) |  | [optional] 
 **tiles** | [**[InstantWinTile]**](InstantWinTile.md) |  | 
 
 

@@ -29,5 +29,6 @@ Name | Type | Description | Notes
 **bannerHighResolutionLink** | **String** | Link to the bannerHighResolution | [optional] 
 **bannerLowResolutionLink** | **String** | Link to the bannerLowResolution | [optional] 
 **iconLink** | **String** | Link to the icon | [optional] 
+**entrantsCount** | **Number** | The number of entrants participating in a contest | [optional] 
 
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**awards** | [**[Award]**](Award.md) |  | [optional] 
+**awards** | [**[AwardReduced]**](AwardReduced.md) |  | [optional] 
 **tiles** | [**[InstantWinTile]**](InstantWinTile.md) |  | 
 **id** | **String** | Ziqni id of the model | 
 **spaceName** | **String** | This is the space name which is linked to the account | [optional] 

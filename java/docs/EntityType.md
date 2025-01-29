@@ -53,5 +53,7 @@
 
 * `INSTANT_WIN` (value: `"InstantWin"`)
 
+* `INSTANTWIN` (value: `"InstantWin"`)
+
 
 
