@@ -17,6 +17,9 @@ import java.util.stream.Collectors;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
+/**
+ * SampleStreamingApp is a sample application that demonstrates how to use the streaming Ziqni Member API.
+ */
 public class SampleStreamingApp {
 
     private static final ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor();
@@ -24,10 +27,17 @@ public class SampleStreamingApp {
     private static final Map<String, Map<Integer, Double>> prevScores = new HashMap<>();
     private static ZiqniMemberApiFactory factory;
 
+    /**
+     * Main method for SampleStreamingApp
+     * @param args - the arguments
+     * @throws Exception - if an exception occurs
+     */
     public static void main(String[] args) throws Exception {
 
+        // Create a new ZiqniMemberApiFactory
         factory = new ZiqniMemberApiFactory(MemberApiClientConfigBuilder.build());
 
+        // Set up the callbacks for the LeaderboardUpdateHandler
         factory.getCallbacksApi().leaderboardUpdateHandler(
                 (stompHeaders, leaderboard) -> {
                     logger.info("Leaderboard {} - ", leaderboard.getId());
@@ -77,6 +87,10 @@ public class SampleStreamingApp {
         logger.info("Shutting down {} ", in);
     }
 
+    /**
+     * Constructor for SampleStreamingApp
+     * @param ziqniAdminEventBus - the ZiqniSimpleEventBus
+     */
     public SampleStreamingApp(ZiqniSimpleEventBus ziqniAdminEventBus) {
         ziqniAdminEventBus.onWSClientConnected(this::onWSClientConnected);
         ziqniAdminEventBus.onWSClientConnecting(this::onWSClientConnecting);
@@ -84,23 +98,43 @@ public class SampleStreamingApp {
         ziqniAdminEventBus.onWSClientSevereFailure(this::onWSClientSevereFailure);
     }
 
+    /**
+     * Callback for Websocket Client Connected
+     * @param change - the WSClientConnected change
+     */
     public void onWSClientConnected(StompOverWebSocketLifeCycle.WSClientConnected change) {
         logger.info("WSClientConnected {}", change);
-        this.onStart();
+        this.onStart(); // Do some stuff to show how to use the API
     }
 
+    /**
+     * Callback for Websocket Client Connecting
+     * @param change - the WSClientConnecting change
+     */
     public void onWSClientConnecting(StompOverWebSocketLifeCycle.WSClientConnecting change) {
         logger.info("WSClientConnecting {}", change);
     }
 
+    /**
+     * Callback for Websocket Client Disconnected
+     * @param change - the WSClientDisconnected change
+     */
     public void onWSClientDisconnected(StompOverWebSocketLifeCycle.WSClientDisconnected change){
         logger.info("WSClientDisconnected {}", change);
     }
 
+    /**
+     * Callback for Websocket Client Severe Failure
+     * @param change - the WSClientSevereFailure change
+     */
     public void onWSClientSevereFailure(StompOverWebSocketLifeCycle.WSClientSevereFailure change) {
         logger.info("WSClientSevereFailure {}", change);
     }
 
+    /**
+     * Handle the response from the Achievement API
+     * @param achievementResponse - the AchievementResponse
+     */
     private void handleResponse(AchievementResponse achievementResponse) {
 
         if(achievementResponse.getData() != null){
@@ -114,6 +148,10 @@ public class SampleStreamingApp {
         System.out.println(achievementResponse);
     }
 
+    /**
+     * Handle the response from the Competition API
+     * @param competitionResponse - the CompetitionResponse
+     */
     private void handleResponse(CompetitionResponse competitionResponse){
 
         if(competitionResponse.getData() != null){
@@ -132,6 +170,10 @@ public class SampleStreamingApp {
         competitionResponse.getData().stream().findFirst().ifPresent(this::getContests);
     }
 
+    /**
+     * Get the contests for a competition
+     * @param competition - the Competition
+     */
     private void getContests(Competition competition){
         factory.getContestsApi()
                 .getContests(new ContestRequest().contestFilter(new ContestFilter()/*.competitionIds(List.of("V-UJyIcB2XLhi587MUz1"))*/))
@@ -147,6 +189,10 @@ public class SampleStreamingApp {
                 });
     }
 
+    /**
+     * Get the rewards for a contest
+     * @param contest - the Contest
+     */
     private void getRewards(Contest contest) {
         factory.getRewardsApi()
                 .getRewards(new RewardRequest()
@@ -169,6 +215,9 @@ public class SampleStreamingApp {
                 });
     }
 
+    /**
+     * Get the awards
+     */
     private void getAwards() {
         factory.getAwardsApi().getAwards(new AwardRequest()
                         //.addSortByItem(new QuerySortBy().queryField("created").order(SortOrder.ASC))
@@ -184,6 +233,10 @@ public class SampleStreamingApp {
                 });
     }
 
+    /**
+     * Subscribe to the leaderboard
+     * @param contest - the Contest
+     */
     private void subscribeToLeaderboard(Contest contest){
         factory.getLeaderboardApi().subscribeToLeaderboard(new LeaderboardSubscriptionRequest()
                 .leaderboardFilter(new LeaderboardFilter()
@@ -201,6 +254,10 @@ public class SampleStreamingApp {
         });;
     }
 
+    /**
+     * Opt into an achievement
+     * @param achievement - the Achievement
+     */
     private void optIntoAchievement(Achievement achievement){
         factory.getOptInApi().manageOptin(new ManageOptinRequest()
                 .action(OptinAction.JOIN)
@@ -214,6 +271,9 @@ public class SampleStreamingApp {
         });
     }
 
+    /**
+     * Run when the application starts
+     */
     private void onStart() {
 
         subscribeToCallbacks();
@@ -311,6 +371,9 @@ public class SampleStreamingApp {
                 });
     }
 
+    /**
+     * Subscribe to the callbacks
+     */
     private void subscribeToCallbacks(){
 
         factory.getCallbacksApi().entityChangedHandler(
