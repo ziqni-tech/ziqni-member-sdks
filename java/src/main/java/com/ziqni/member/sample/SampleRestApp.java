@@ -29,9 +29,7 @@ public class SampleRestApp {
 
     public static void main(String[] args) throws Exception {
 
-//        new SampleRestApp("your-api-key").getCompetitionsForMember("member-ref-id");
-        new SampleRestApp("eyJhbGciOiJIUzUxMiJ9.eyJhcGlfa2V5X2lkIjoiZEJGQ2RwSUI3WHB2TGlaUkFLUnYiLCJtZW1iZXJfcmVmZXJlbmNlX2lkIjoiWEFQSSIsImFjY291bnRfaWQiOiJGaXhwWG9JQjJaYXhTeTZpcFVXMyIsInNwYWNlX25hbWUiOiJzdXBlcnNwb3J0IiwibmFtZSI6IlhBUEkiLCJtZW1iZXJfdHlwZSI6IlhBUEkiLCJtZW1iZXJfaWQiOiIzMWUzNDFmMi1iYzJiLTRkZTItYWNlMi1iOWUzZWIwMDM2M2MiLCJyZXNvdXJjZV9hY2Nlc3MiOnsiemlxbmktYWFwaSI6eyJyb2xlcyI6WyJDcmVhdGVNZW1iZXJUb2tlbiJdfX0sInR5cCI6IngtYXBpLWtleSIsInN1YiI6IjMxZTM0MWYyLWJjMmItNGRlMi1hY2UyLWI5ZTNlYjAwMzYzYyIsImp0aSI6Ijc2NGM5Njc4LWI2YTItNGYzNS05MzNjLTViN2ZkN2EzMmZhZSIsImlhdCI6MTcyODU2MDg4OSwiZXhwIjoxNzYwMDk2ODg5LCJhenAiOiJzdXBlcnNwb3J0LnppcW5pLmFwcCJ9.81MUoHUofMv0D-o7mTOnFM03LiaA7j4FFY1hu4ecPlsiB0ja6gZViCmkID2jvLPg2WjnYO4T8CIW6D-QiQR2TA")
-                .getCompetitionsForMember("87635"); // your member reference id
+        new SampleRestApp("your-api-key").getCompetitionsForMember("member-ref-id");
 
         logger.info("Shutting down!");
     }
