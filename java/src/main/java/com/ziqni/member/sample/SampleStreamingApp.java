@@ -44,7 +44,7 @@ public class SampleStreamingApp {
                     prevScores.putIfAbsent(leaderboard.getId(), new HashMap<>());
                     final Map<Integer, Double> map = prevScores.get(leaderboard.getId());
 
-                    if(!Objects.requireNonNull(leaderboard.getLeaderboardEntries()).isEmpty()){
+                    if(!Objects.requireNonNull(leaderboard.getLeaderboardEntries()).isEmpty()) {
                         leaderboard.getLeaderboardEntries().stream()
                                 .sorted(Comparator.comparing(LeaderboardEntry::getRank))
                                 .forEach(leaderboardEntry -> {
