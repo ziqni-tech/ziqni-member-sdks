@@ -16,8 +16,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 
 /**
- * Sample Rest App
+ * Sample Rest App that demonstrates how to use the Ziqni Member API.
  * <a href="https://documentation.ziqni.com/member-api/">Member API Docs</a>
+ * WE DO NOT RECOMMEND THE USE OF THE REST API FOR PRODUCTION USE. WEB SOCKETS ARE RECOMMENDED.
  */
 public class SampleRestApp {
 
@@ -39,6 +40,13 @@ public class SampleRestApp {
         this.memberTokenApi = new MemberTokenApi(new ApiClient());
     }
 
+    /**
+     * Get competitions for a member.
+     * @param memberRefId - the member reference id
+     * @throws ApiException - if the API call fails
+     * @throws ExecutionException - if the API call fails
+     * @throws InterruptedException - if the API call fails
+     */
     public void getCompetitionsForMember(String memberRefId) throws ApiException, ExecutionException, InterruptedException {
         final var result = getMemberSession(memberRefId).getCompetitionsApi().getCompetitions(new CompetitionRequest()
                     .languageKey("en")
@@ -65,6 +73,10 @@ public class SampleRestApp {
         return memberTokens.computeIfAbsent(memberRefId, key -> new MemberSession(memberRefId, this::tokenSupplier));
     }
 
+    /**
+     * Token supplier for the member session.
+     * @param memberSession - the member session
+     */
     public void tokenSupplier(MemberSession memberSession){
         try {
             if (memberSession != null && memberSession.validUntil != null && memberSession.validUntil.isAfter(OffsetDateTime.now())) {
@@ -87,6 +99,9 @@ public class SampleRestApp {
         }
     }
 
+    /**
+     * Member session class is a convenience class to hold the member session.
+     */
     public static class MemberSession {
 
         public String token;
@@ -98,6 +113,11 @@ public class SampleRestApp {
 
         private final CompetitionsApi competitionsApi;
 
+        /**
+         * Member session constructor.
+         * @param memberRefId - the member reference id
+         * @param tokenSupplier - the token supplier
+         */
         public MemberSession(String memberRefId, Consumer<MemberSession> tokenSupplier) {
             this. apiClient = new ApiClient().setRequestInterceptor(request -> {
                 request.setHeader("Authorization", "Bearer " + token);
@@ -107,6 +127,10 @@ public class SampleRestApp {
             this.competitionsApi = new CompetitionsApi(apiClient);
         }
 
+        /**
+         * Get the competitions API.
+         * @return CompetitionsApi
+         */
         public CompetitionsApi getCompetitionsApi() {
             tokenSupplier.accept(this);
             return competitionsApi;
