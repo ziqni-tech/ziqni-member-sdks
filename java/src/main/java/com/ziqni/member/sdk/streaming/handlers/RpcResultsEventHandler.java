@@ -1,33 +1,39 @@
 /*
- * Copyright (c) 2022. ZIQNI LTD registered in England and Wales, company registration number-09693684
+ * Copyright (c) 2024. ZIQNI LTD registered in England and Wales, company registration number-09693684
  */
+
 package com.ziqni.member.sdk.streaming.handlers;
 
-import com.fasterxml.jackson.databind.JavaType;
-import com.ziqni.member.sdk.streaming.EventHandler;
-import com.ziqni.member.sdk.streaming.Message;
+import com.github.benmanes.caffeine.cache.AsyncCache;
+import com.github.benmanes.caffeine.cache.Caffeine;
+import com.ziqni.member.sdk.streaming.stomp.StompHeaders;
 import com.ziqni.member.sdk.util.ClassScanner;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.messaging.simp.stomp.StompHeaders;
 
-import java.lang.reflect.Type;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.BiConsumer;
 
-public class RpcResultsEventHandler extends EventHandler<String> {
+public class RpcResultsEventHandler extends EventHandler {
 
     public final static String DEFAULT_TOPIC = "/user/queue/rpc-results";
-    public final static String CLASS_TO_SCAN_FOR_PAYLOAD_TYPE = "com.ziqni.member.sdk.model";
+    public final static String CLASS_TO_SCAN_FOR_PAYLOAD_TYPE = "com.ziqni.admin.sdk.model";
     private static final Logger logger = LoggerFactory.getLogger(RpcResultsEventHandler.class);
     private static final AtomicLong sequenceNumber = new AtomicLong(0);
-    private static final ConcurrentHashMap<String, RpcResultsResponse<?,?>> awaitingResponse = new ConcurrentHashMap<>();
-    private static final ExecutorService executorService = Executors.newCachedThreadPool();
+
+    public static final AsyncCache<String, RpcResultsResponse<?,?>> awaitingResponseCache = Caffeine.newBuilder()
+            .maximumSize(250_000)
+            .expireAfterWrite(5, TimeUnit.MINUTES)
+            .evictionListener(new OnRemovalListener(logger))
+            .buildAsync();
+    private static final ExecutorService executorService = new ForkJoinPool(Runtime.getRuntime().availableProcessors()*4);
 
     private final String topic;
     private final ClassScanner classScanner;
@@ -47,21 +53,11 @@ public class RpcResultsEventHandler extends EventHandler<String> {
     }
 
     @Override
-    public JavaType getValType(StompHeaders headers) {
-        return objectMapper.constructType(getPayloadType(headers));
-    }
+    public void handleFrame(@NonNull StompHeaders headers, String payload) {
+        var messageId = headers.getMessageId();
 
-    @Override
-    public Type getPayloadType(StompHeaders headers) {
-        return this.classScanner.get(headers.getFirst("objectType")).orElse(Object.class);
-    }
-
-    @Override
-    public void handleFrame(StompHeaders headers, Object payload) {
-        var messageId = getMessageId(headers);
-
-        if(messageId.isPresent()){
-            handleWithMessageId(messageId.get(), headers, payload);
+        if(Objects.nonNull(messageId)){
+            handleWithMessageId(messageId, headers, super.unpack(classScanner,headers,payload));
         }
         else {
             if(!payload.getClass().isInstance(Message.class))
@@ -69,40 +65,30 @@ public class RpcResultsEventHandler extends EventHandler<String> {
         }
     }
 
+    private static void handleWithMessageId(String messageId, StompHeaders headers, Object payload) {
+
+        Optional.ofNullable(awaitingResponseCache.getIfPresent(messageId)).ifPresent( callback ->
+                callback.thenAccept(rpcResultsResponse ->
+                                executorService.submit(rpcResultsResponse.onCallBack(headers, payload))
+                        )
+        );
+    }
+
     public static  <TIN, TOUT> RpcResultsResponse<TIN, TOUT> submit(String destination, TIN payload, CompletableFuture<TOUT> completableFuture, BiConsumer<StompHeaders, TIN> doSend){
 
         final var messageId = sequenceNumber.incrementAndGet();
         final var streamingResponse = new RpcResultsResponse<>(messageId, payload, completableFuture);
 
-        try {
-            var nextSeq = Long.toString(messageId);
-            StompHeaders headers = new StompHeaders();
-            headers.setDestination(destination);
-            headers.setMessageId(nextSeq);
+        var nextSeq = Long.toString(messageId);
+        StompHeaders headers = new StompHeaders();
+        headers.setDestination(destination);
+        headers.setMessageId(nextSeq);
 
-            logger.debug("WS sent request to destination [{}] with receipt id [{}] and payload [{}] and headers [{}] and callback []", destination, nextSeq, payload, headers.toSingleValueMap());
-
-            awaitingResponse.put(streamingResponse.getSequenceNumberAsString(), streamingResponse);
-
-            doSend.accept(headers, payload);
-            return streamingResponse;
-        }
-        catch (Throwable throwable){
-            awaitingResponse.remove(streamingResponse.getSequenceNumberAsString());
-            throw throwable;
-        }
-    }
-
-    private static Optional<String> getMessageId(StompHeaders headers){
-        return Optional.ofNullable(headers.getMessageId());
-    }
-
-    private static void handleWithMessageId(String messageId, StompHeaders headers, Object payload) {
-        Optional.ofNullable(awaitingResponse.get(messageId)).ifPresent( callback ->
-                executorService.submit(callback.onCallBack(headers, payload))
-        );
-
-        awaitingResponse.remove(messageId);
+        doSend.accept(headers, payload);
+        final var in = new CompletableFuture<RpcResultsResponse<TIN, TOUT>>();
+        in.complete(streamingResponse);
+        awaitingResponseCache.put(streamingResponse.getSequenceNumberAsString(), in);
+        return streamingResponse;
     }
 
     public static RpcResultsEventHandler create(){

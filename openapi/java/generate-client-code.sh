@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Execute this script from inside the openapi folder
-openapi-generator-cli version 5.2.1
+openapi-generator-cli version-manager set 7.11.0
+
 SPEC_FILE=../ziqni-member-api.yml
 CONF_FILE=ziqni-member-api.config.yml
 GEN_DIR=../../java/target/generated-sources/openapi/src/main/java/com/ziqni/member/sdk
@@ -36,7 +37,7 @@ mkdir -p $GEN_DIR/api
 mkdir -p $GEN_DIR/model
 
 # Copy the new sources - openapi/java/generated/src/main/java/com/ziqni/member/sdk/api
-cp -rf ./generated/src/main/java/com/ziqni/member/sdk/api/*Ws.java $GEN_DIR/api/
+cp -rf ./generated/src/main/java/com/ziqni/member/sdk/api/*.java $GEN_DIR/api/
 
 # Copy the new sources - openapi/java/generated/src/main/java/com/ziqni/member/sdk/model
 cp -rf ./generated/src/main/java/com/ziqni/member/sdk/model $GEN_DIR

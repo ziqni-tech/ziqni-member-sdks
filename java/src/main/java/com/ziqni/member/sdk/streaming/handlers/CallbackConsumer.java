@@ -1,12 +1,18 @@
+/*
+ * Copyright (c) 2024. ZIQNI LTD registered in England and Wales, company registration number-09693684
+ */
+
 package com.ziqni.member.sdk.streaming.handlers;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.ziqni.member.sdk.ApiException;
-import org.springframework.messaging.simp.stomp.StompHeaders;
+import com.ziqni.member.sdk.streaming.stomp.StompHeaders;
 
 import java.util.function.BiConsumer;
 
 public class CallbackConsumer<T> {
+
+    private boolean completed = false;
 
     public final JavaType javaType;
 
@@ -15,7 +21,7 @@ public class CallbackConsumer<T> {
     private final Class<T> tClass;
 
     private final BiConsumer<StompHeaders,T> onCallback;
-    private final BiConsumer<StompHeaders,ApiException> onApiException;
+    private final BiConsumer<StompHeaders, ApiException> onApiException;
 
     public CallbackConsumer(Class<T> tClass, String callback, BiConsumer<StompHeaders,T> onCallback, BiConsumer<StompHeaders,ApiException> onApiException) {
         this.tClass = tClass;
@@ -25,23 +31,32 @@ public class CallbackConsumer<T> {
         this.onApiException = onApiException;
     }
 
-    public final JavaType getJavaType() {
+    public JavaType getJavaType() {
         return javaType;
     }
 
-    public final String getCallback() {
+    public String getCallback() {
         return callback;
     }
 
-    public final Class<T> getMessageClass() {
+    public Class<T> gettClass() {
         return tClass;
     }
 
-    public final void consumeCallback(StompHeaders headers, Object response) {
+    public void consumeCallback(StompHeaders headers, Object response) {
         onCallback.accept(headers, (T) response);
     }
 
-    public final void consumeApiExceptionCallBack(StompHeaders headers, ApiException response) {
+    public void consumeApiExceptionCallBack(StompHeaders headers, ApiException response) {
         onApiException.accept(headers, response);
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public boolean isCompleted(boolean in) {
+        completed = in;
+        return completed;
     }
 }

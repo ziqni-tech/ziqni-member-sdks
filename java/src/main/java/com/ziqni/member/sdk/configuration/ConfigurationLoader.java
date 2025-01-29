@@ -3,11 +3,6 @@
  */
 package com.ziqni.member.sdk.configuration;
 
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.simplesystemsmanagement.AWSSimpleSystemsManagement;
-import com.amazonaws.services.simplesystemsmanagement.AWSSimpleSystemsManagementClientBuilder;
-import com.amazonaws.services.simplesystemsmanagement.model.GetParametersByPathRequest;
-import com.amazonaws.services.simplesystemsmanagement.model.GetParametersByPathResult;
 import com.ziqni.member.sdk.util.Common;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.FileBasedConfiguration;
@@ -34,49 +29,6 @@ public abstract class ConfigurationLoader {
     private static String instanceId = null;
 
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationLoader.class);
-
-    public static void loadFromAws(Boolean onFailTryFile) {
-        logger.info("Ziqni environment set to [{}]", prefix);
-
-        initIntanceId();
-
-        try {
-            var c = AWSSimpleSystemsManagementClientBuilder.standard().withRegion(Regions.EU_WEST_1).build();
-            var request = new GetParametersByPathRequest()
-                    .withPath(prefix)
-                    .withRecursive(true)
-                    .withWithDecryption(true)
-                    .withMaxResults(10);
-            process(c.getParametersByPath(request), c, request);
-        } catch(Throwable t) {
-            logger.error("Could not load configuration from AWS", t);
-
-            if(onFailTryFile)
-                loadFromFile(false);
-            else
-                throw new RuntimeException(t);
-        }
-
-        loadFromFile(true);
-
-        assert cache != null;
-        assert cache.size() > 0;
-    }
-
-    private static void process(GetParametersByPathResult result, AWSSimpleSystemsManagement client, GetParametersByPathRequest request){
-        result.getParameters().forEach( parameter -> {
-            if(cache == null) ConfigurationLoader.cache = new HashMap<>();
-            var configKey = parameter.getName().substring(prefix.length()).replaceAll("/", ".");
-            var configVal = parameter.getValue();
-            ConfigurationLoader.cache.put(configKey, configVal);
-            logger.debug("Loaded parameter [{}] with value [{}] from AWS with path prefix [{}] ", configKey, configVal, prefix);
-        });
-
-        if(result.getNextToken() != null) {
-            process(client.getParametersByPath(request.withNextToken(result.getNextToken())), client, request);
-        }
-    }
-
 
     public static void loadFromFile(Boolean doNotOverwrite) {
         Parameters params = new Parameters();
@@ -130,7 +82,7 @@ public abstract class ConfigurationLoader {
 
     public static Map<String, String> Parameters() {
         if(ConfigurationLoader.cache == null) {
-            loadFromAws(true);
+            loadFromFile(true);
             assert ConfigurationLoader.cache.size() > 0;
         }
 
@@ -163,7 +115,7 @@ public abstract class ConfigurationLoader {
 
     public static String getInstanceId() {
         if(ConfigurationLoader.cache == null) {
-            loadFromAws(true);
+            loadFromFile(true);
             assert ConfigurationLoader.cache.size() > 0;
         }
 

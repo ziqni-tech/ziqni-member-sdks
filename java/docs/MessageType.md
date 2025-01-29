@@ -15,9 +15,9 @@
 
 * `NOTIFICATION` (value: `"Notification"`)
 
-* `INBOXITEM` (value: `"InboxItem"`)
+* `INBOX_ITEM` (value: `"InboxItem"`)
 
-* `NOTIFICATIONINBOXITEM` (value: `"NotificationInboxItem"`)
+* `NOTIFICATION_INBOX_ITEM` (value: `"NotificationInboxItem"`)
 
 
 

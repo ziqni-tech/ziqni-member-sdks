@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://member-api.ziqni.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getActiveEntitiesCount**](StatsApi.md#getActiveEntitiesCount) | **POST** /actives-by-entity | Get competitions and/or achievements count by product id or reference id
-[**getActiveEntitiesCountWithHttpInfo**](StatsApi.md#getActiveEntitiesCountWithHttpInfo) | **POST** /actives-by-entity | Get competitions and/or achievements count by product id or reference id
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**getActiveEntitiesCount**](StatsApi.md#getActiveEntitiesCount) | **POST** /actives-by-entity | Get competitions and/or achievements count by product id or reference id |
+| [**getActiveEntitiesCountWithHttpInfo**](StatsApi.md#getActiveEntitiesCountWithHttpInfo) | **POST** /actives-by-entity | Get competitions and/or achievements count by product id or reference id |
 
 
 
@@ -24,7 +24,6 @@ Returns the count of active competitions and/or achievements by product id or re
 import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.StatsApi;
 import java.util.concurrent.CompletableFuture;
@@ -33,10 +32,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         StatsApi apiInstance = new StatsApi(defaultClient);
         ModelCountRequest modelCountRequest = new ModelCountRequest(); // ModelCountRequest | 
@@ -57,9 +52,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **modelCountRequest** | [**ModelCountRequest**](ModelCountRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **modelCountRequest** | [**ModelCountRequest**](ModelCountRequest.md)|  | |
 
 ### Return type
 
@@ -68,7 +63,7 @@ CompletableFuture<[**ModelCountResponse**](ModelCountResponse.md)>
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -98,7 +93,6 @@ import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.StatsApi;
 import java.util.concurrent.CompletableFuture;
@@ -107,10 +101,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         StatsApi apiInstance = new StatsApi(defaultClient);
         ModelCountRequest modelCountRequest = new ModelCountRequest(); // ModelCountRequest | 
@@ -140,9 +130,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **modelCountRequest** | [**ModelCountRequest**](ModelCountRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **modelCountRequest** | [**ModelCountRequest**](ModelCountRequest.md)|  | |
 
 ### Return type
 
@@ -151,7 +141,7 @@ CompletableFuture<ApiResponse<[**ModelCountResponse**](ModelCountResponse.md)>>
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
