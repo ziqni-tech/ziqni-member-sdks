@@ -126,7 +126,7 @@ public class StreamingClient {
             throw new IllegalStateException("Websocket executor is terminated");
         }
         else if (stompOverWebSocket == null) {
-            stompOverWebSocket = new StompOverWebSocket(URL, configuration::getAccessTokenString, eventBus);
+            stompOverWebSocket = new StompOverWebSocket(URL, configuration::getMemberBearerToken, eventBus);
         }
     }
 

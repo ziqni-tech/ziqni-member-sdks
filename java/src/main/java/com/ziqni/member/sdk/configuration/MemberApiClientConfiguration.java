@@ -101,8 +101,8 @@ public class MemberApiClientConfiguration {
         return this;
     }
 
-    public  String getAccessTokenString() throws IdentityAuthorisationException {
-        return getIdentityAuthorization().getAccessTokenString();
+    public  String getMemberBearerToken() throws IdentityAuthorisationException {
+        return getIdentityAuthorization().getBearerToken();
     }
 
     public ObjectMapper createDefaultObjectMapper() {
