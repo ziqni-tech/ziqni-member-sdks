@@ -26,7 +26,7 @@ public class CallbackEventHandler extends EventHandler {
 
     public final static String DEFAULT_TOPIC = "/user/queue/callbacks";
 
-    public final static String CLASS_TO_SCAN_FOR_PAYLOAD_TYPE = "com.ziqni.admin.sdk.model";
+    public final static String CLASS_TO_SCAN_FOR_PAYLOAD_TYPE = "com.ziqni.member.sdk.model";
     private final ClassScanner classScanner;
 
     private static final ExecutorService executorService = Executors.newCachedThreadPool();

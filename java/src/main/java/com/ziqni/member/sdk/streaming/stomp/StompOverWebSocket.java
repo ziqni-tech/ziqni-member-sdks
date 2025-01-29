@@ -25,6 +25,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Supplier;
 import java.util.zip.GZIPOutputStream;
 
 
@@ -44,8 +45,7 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
     private static final ByteBuffer PING_MESSAGE = ByteBuffer.wrap("Ping".getBytes(StandardCharsets.UTF_8));
 
     private final String wsUri;
-    private final String username;
-    private final String passcode;
+    private final Supplier<String> bearerTokenSupplier;
     private final ScheduledExecutorService scheduler;
     private final StompOverWebSocketListener listener;
     private final StompHeartbeatManager heartbeatManager;
@@ -54,11 +54,10 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
     private WebSocket webSocket;
     private int reconnectAttempts = 0;
 
-    public StompOverWebSocket(String wsUri, String username, String passcode, ZiqniSimpleEventBus eventBus) {
+    public StompOverWebSocket(String wsUri, Supplier<String> bearerTokenSupplier, ZiqniSimpleEventBus eventBus) {
 
         this.wsUri = wsUri;
-        this.username = username;
-        this.passcode = passcode;
+        this.bearerTokenSupplier = bearerTokenSupplier;
         this.scheduler = Executors.newSingleThreadScheduledExecutor();
 
         this.heartbeatManager = new StompHeartbeatManager(eventBus, 10000);
@@ -110,7 +109,7 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
 
         HttpClient client = HttpClient.newHttpClient();
 
-        return client.newWebSocketBuilder()
+        return client.newWebSocketBuilder().header("Authorization", "Bearer " + bearerTokenSupplier.get())
                 .buildAsync(URI.create(wsUri), this.listener)
                 .thenAccept(ws -> {
                     this.webSocket = ws;
@@ -134,10 +133,9 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
 
     private void sendConnectFrame() {
         lifeCycleStateManager.setState(State.CONNECTING);
+        final var token = bearerTokenSupplier.get();
 
         StompHeaders connectHeaders = new StompHeaders();
-        connectHeaders.setLogin(username);
-        connectHeaders.setPasscode(passcode);
         connectHeaders.setAcceptVersion("1.2");
         connectHeaders.setHeartbeat(10000, 10000);
 

@@ -16,7 +16,7 @@ public class WebSocketAddress {
         if(configuration.getMemberClientServerPort() != null && !(configuration.getMemberClientServerPort() == 80 || configuration.getMemberClientServerPort() == 443))
             sb.append(":").append(configuration.getMemberClientServerPort());
 
-        sb.append("/ws");
+        sb.append("/ws-stomp");
 
         this.address = sb.toString();
     }

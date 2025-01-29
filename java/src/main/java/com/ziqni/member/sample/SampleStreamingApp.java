@@ -56,7 +56,6 @@ public class SampleStreamingApp {
         factory.initialise(() -> {
 
             try {
-                new SampleStreamingApp(factory.getZiqniAdminEventBus());
                 return factory.getStreamingClient().start();
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -69,6 +68,9 @@ public class SampleStreamingApp {
         .thenAccept(started -> {
             logger.error("Connection is {}", started == null || !started ? "NOT_STARTED" : "RUNNING");
         });
+
+
+        new SampleStreamingApp(factory.getZiqniAdminEventBus());
 
         logger.info("Press any key to exit");
         final var in = System.in.read();
@@ -83,8 +85,6 @@ public class SampleStreamingApp {
     }
 
     public void onWSClientConnected(StompOverWebSocketLifeCycle.WSClientConnected change) {
-        if(change.headers() == null)
-            return;
         logger.info("WSClientConnected {}", change);
         this.onStart();
     }
