@@ -137,7 +137,7 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
 
         StompHeaders connectHeaders = new StompHeaders();
         connectHeaders.setAcceptVersion("1.2");
-        connectHeaders.setHeartbeat(10000, 10000);
+        connectHeaders.setHeartbeat(5_000, 5_000);
 
         StringBuilder connectFrame = new StringBuilder("CONNECT\n");
         connectHeaders.toMap().forEach((key, value) -> connectFrame.append(key).append(":").append(String.join(",", value)).append("\n"));

@@ -370,6 +370,19 @@ public class SampleStreamingApp {
                     logger.error("Fail",throwable);
                     return null;
                 });
+
+        factory.getProductsApi()
+                .getProducts(new ProductRequest().productFilter(
+                        new ProductFilter().limit(5).entityType("Product").addEntityIdsItem("c8u4ipQB8gfdDfA3aiJV")
+                        )
+                )
+                .thenAccept(productResponse -> {
+                    logger.info(productResponse.toString());
+                })
+                .exceptionally(throwable -> {
+                    logger.error("Fail",throwable);
+                    return null;
+                });
     }
 
     /**
