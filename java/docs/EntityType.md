@@ -13,35 +13,35 @@
 
 * `REPOSITORY` (value: `"Repository"`)
 
-* `FILE_OBJECT` (value: `"FileObject"`)
+* `FILEOBJECT` (value: `"FileObject"`)
 
 * `LANGUAGE` (value: `"Language"`)
 
-* `MEMBER_MESSAGE` (value: `"MemberMessage"`)
+* `MEMBERMESSAGE` (value: `"MemberMessage"`)
 
 * `REWARD` (value: `"Reward"`)
 
-* `MEMBER_AWARD` (value: `"MemberAward"`)
+* `MEMBERAWARD` (value: `"MemberAward"`)
 
 * `AWARD` (value: `"Award"`)
 
 * `MESSAGE` (value: `"Message"`)
 
-* `REWARD_TYPE` (value: `"RewardType"`)
+* `REWARDTYPE` (value: `"RewardType"`)
 
-* `ACTION_TYPE` (value: `"ActionType"`)
+* `ACTIONTYPE` (value: `"ActionType"`)
 
-* `UNIT_OF_MEASURE` (value: `"UnitOfMeasure"`)
+* `UNITOFMEASURE` (value: `"UnitOfMeasure"`)
 
 * `COMPETITION` (value: `"Competition"`)
 
 * `CONTEST` (value: `"Contest"`)
 
-* `SQS_CONNECTION` (value: `"SqsConnection"`)
+* `SQSCONNECTION` (value: `"SqsConnection"`)
 
-* `KAFKA_CONNECTION` (value: `"KafkaConnection"`)
+* `KAFKACONNECTION` (value: `"KafkaConnection"`)
 
-* `RABBIT_MQ_CONNECTION` (value: `"RabbitMqConnection"`)
+* `RABBITMQCONNECTION` (value: `"RabbitMqConnection"`)
 
 * `EVENTS` (value: `"Events"`)
 
@@ -49,9 +49,9 @@
 
 * `ATTACHMENT` (value: `"Attachment"`)
 
-* `RULE_SET` (value: `"RuleSet"`)
+* `RULESET` (value: `"RuleSet"`)
 
-* `INSTANT_WIN` (value: `"InstantWin"`)
+* `INSTANTWIN` (value: `"InstantWin"`)
 
 
 

@@ -22,9 +22,10 @@ import java.util.concurrent.ScheduledExecutorService;
  */
 public class SampleStreamingApp {
 
-    private static final ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor();
-    private static final Logger logger = LoggerFactory.getLogger(SampleStreamingApp.class);
     private static final Map<String, Map<Integer, Double>> prevScores = new HashMap<>();
+    private static final Logger logger = LoggerFactory.getLogger(SampleStreamingApp.class);
+    private static final ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor();
+
     private static ZiqniMemberApiFactory factory;
 
     /**

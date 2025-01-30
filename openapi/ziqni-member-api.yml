@@ -1771,21 +1771,6 @@ components:
           $ref: '#/components/schemas/RankingStrategy'
         scoringStrategy:
           $ref: '#/components/schemas/ScoringStrategy'
-    StrategyType:
-      description: >
-        The scoring strategy type. SUMMARY: * "TotalCumulative": The basic strategy where all the
-        points sum up and are shown in the Leaderboard. Depending on the Rules, all the points are
-        Cumulative. * "SumBest": This strategy requires a value to indicate how many highest points
-        will be calculated and shown on the leaderboard * "LimitedTo": This strategy requires a value
-        to indicate how many events will be summed up and shown in the leaderboard. * "FirstTo": This
-        strategy requires a value to indicate how many points have to be received to complete the
-        mission.
-      enum:
-        - TotalCumulative
-        - SumBest
-        - LimitedTo
-        - FirstTo
-      type: string
     RankingStrategy:
       description: ''
       type: object
@@ -1829,12 +1814,6 @@ components:
           description: Not supported at the moment
           type: number
           example: '1'
-    RoundType:
-      description: The type of rounds in a contest
-      enum:
-        - TimeBound
-        - TargetBased
-      type: string
     RuleExpression:
       description: >-
         A conditional expressions is an element that declares either a rule expression, condition or
@@ -2149,38 +2128,6 @@ components:
         metadata:
           m1: v1
           m2: 1
-    EventRefType:
-      description: Defines an even type attached to the message
-      enum:
-        - Competition
-        - Contest
-        - Achievement
-        - User
-        - MemberMessage
-      type: string
-    MessageType:
-      description: The type of message of the member
-      enum:
-        - Achievement
-        - Ticket
-        - Reward
-        - Text
-        - Notification
-        - InboxItem
-        - NotificationInboxItem
-      type: string
-    MessageStatus:
-      description: The status of the message
-      enum:
-        - New
-        - Read
-        - CollaborationRequest
-        - Actioned
-        - Claimed
-        - Expired
-        - Canceled
-        - Deprecated
-      type: string
     AwardResponse:
       description: '        '
       required: []
@@ -3084,16 +3031,6 @@ components:
         data:
           $ref: '#/components/schemas/Leaderboard'
           description: ''
-    AwardStatus:
-      description: The status of award
-      enum:
-        - Unknown
-        - Preparing
-        - NotClaimed
-        - Claimed
-        - Expired
-      type: string
-      readOnly: true
     LeaderboardMember:
       required:
         - name
@@ -4594,16 +4531,6 @@ components:
         action:
           description: 'The action this strategy is bound to, like: achievement.points'
           type: string
-    ConditionalOperator:
-      description: Available actions for competition status
-      enum:
-        - Equals
-        - GreaterThan
-        - GreaterThanEquals
-        - LessThan
-        - LessThanEquals
-        - Between
-      type: string
     Contest:
       description: This is a contest model
       type: object
@@ -6014,34 +5941,6 @@ components:
         instantWinId:
           description: ''
           type: string
-    EntityType:
-      description: Entity the item is associated to.
-      enum:
-        - Member
-        - Product
-        - Achievement
-        - Repository
-        - FileObject
-        - Language
-        - MemberMessage
-        - Reward
-        - MemberAward
-        - Award
-        - Message
-        - RewardType
-        - ActionType
-        - UnitOfMeasure
-        - Competition
-        - Contest
-        - SqsConnection
-        - KafkaConnection
-        - RabbitMqConnection
-        - Events
-        - Webhook
-        - Attachment
-        - RuleSet
-        - InstantWin
-      type: string
     InstantWin:
       description: ''
       type: object
@@ -6155,6 +6054,176 @@ components:
         numberOfPlaysToDonate:
           description: ''
           type: integer
+    RoundType:
+      description: The type of rounds in a contest
+      enum:
+        - TimeBound
+        - TargetBased
+      type: string
+      x-enum-varnames:
+        - TIMEBOUND
+        - TARGETBASED
+    StrategyType:
+      description: >
+        The scoring strategy type. SUMMARY: * "TotalCumulative": The basic strategy where all the
+        points sum up and are shown in the Leaderboard. Depending on the Rules, all the points are
+        Cumulative. * "SumBest": This strategy requires a value to indicate how many highest points
+        will be calculated and shown on the leaderboard * "LimitedTo": This strategy requires a value
+        to indicate how many events will be summed up and shown in the leaderboard. * "FirstTo": This
+        strategy requires a value to indicate how many points have to be received to complete the
+        mission.
+      enum:
+        - TotalCumulative
+        - SumBest
+        - LimitedTo
+        - FirstTo
+      type: string
+      x-enum-varnames:
+        - TOTALCUMULATIVE
+        - SUMBEST
+        - LIMITEDTO
+        - FIRSTTO
+    EventRefType:
+      description: Defines an even type attached to the message
+      enum:
+        - Competition
+        - Contest
+        - Achievement
+        - User
+        - MemberMessage
+      type: string
+      x-enum-varnames:
+        - COMPETITION
+        - CONTEST
+        - ACHIEVEMENT
+        - USER
+        - MEMBERMESSAGE
+    EntityType:
+      description: Entity the item is associated to.
+      enum:
+        - Member
+        - Product
+        - Achievement
+        - Repository
+        - FileObject
+        - Language
+        - MemberMessage
+        - Reward
+        - MemberAward
+        - Award
+        - Message
+        - RewardType
+        - ActionType
+        - UnitOfMeasure
+        - Competition
+        - Contest
+        - SqsConnection
+        - KafkaConnection
+        - RabbitMqConnection
+        - Events
+        - Webhook
+        - Attachment
+        - RuleSet
+        - InstantWin
+      type: string
+      x-enum-varnames:
+        - MEMBER
+        - PRODUCT
+        - ACHIEVEMENT
+        - REPOSITORY
+        - FILEOBJECT
+        - LANGUAGE
+        - MEMBERMESSAGE
+        - REWARD
+        - MEMBERAWARD
+        - AWARD
+        - MESSAGE
+        - REWARDTYPE
+        - ACTIONTYPE
+        - UNITOFMEASURE
+        - COMPETITION
+        - CONTEST
+        - SQSCONNECTION
+        - KAFKACONNECTION
+        - RABBITMQCONNECTION
+        - EVENTS
+        - WEBHOOK
+        - ATTACHMENT
+        - RULESET
+        - INSTANTWIN
+    ConditionalOperator:
+      description: Available actions for competition status
+      enum:
+        - Equals
+        - GreaterThan
+        - GreaterThanEquals
+        - LessThan
+        - LessThanEquals
+        - Between
+      type: string
+      x-enum-varnames:
+        - EQUALS
+        - GREATERTHAN
+        - GREATERTHANEQUALS
+        - LESSTHAN
+        - LESSTHANEQUALS
+        - BETWEEN
+    AwardStatus:
+      description: The status of award
+      enum:
+        - Unknown
+        - Preparing
+        - NotClaimed
+        - Claimed
+        - Expired
+      type: string
+      readOnly: true
+      x-enum-varnames:
+        - UNKNOWN
+        - PREPARING
+        - NOTCLAIMED
+        - CLAIMED
+        - EXPIRED
+    MessageStatus:
+      description: The status of the message
+      enum:
+        - New
+        - Read
+        - CollaborationRequest
+        - Actioned
+        - Claimed
+        - Expired
+        - Canceled
+        - Deprecated
+      type: string
+      x-enum-varnames:
+        - NEW
+        - READ
+        - COLLABORATIONREQUEST
+        - ACTIONED
+        - CLAIMED
+        - EXPIRED
+        - CANCELED
+        - DEPRECATED
+    MessageType:
+      description: The type of message of the member
+      enum:
+        - Achievement
+        - Ticket
+        - Reward
+        - Text
+        - Notification
+        - InboxItem
+        - NotificationInboxItem
+      type: string
+      x-enum-varnames:
+        - ACHIEVEMENT
+        - TICKET
+        - REWARD
+        - TEXT
+        - NOTIFICATION
+        - INBOXITEM
+        - NOTIFICATIONINBOXITEM
   responses:
     AchievementResponseBody:
       content:

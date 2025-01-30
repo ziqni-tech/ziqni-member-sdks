@@ -5,9 +5,9 @@
 ## Enum
 
 
-* `TIME_BOUND` (value: `"TimeBound"`)
+* `TIMEBOUND` (value: `"TimeBound"`)
 
-* `TARGET_BASED` (value: `"TargetBased"`)
+* `TARGETBASED` (value: `"TargetBased"`)
 
 
 

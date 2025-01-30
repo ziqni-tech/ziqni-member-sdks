@@ -9,7 +9,7 @@
 
 * `READ` (value: `"Read"`)
 
-* `COLLABORATION_REQUEST` (value: `"CollaborationRequest"`)
+* `COLLABORATIONREQUEST` (value: `"CollaborationRequest"`)
 
 * `ACTIONED` (value: `"Actioned"`)
 

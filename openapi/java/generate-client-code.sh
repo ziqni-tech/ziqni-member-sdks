@@ -24,7 +24,7 @@ else
   exit
 fi
 
-
+openapi-generator-cli version-manager set 7.5.0
 openapi-generator-cli  generate -g java -i $SPEC_FILE -c $CONF_FILE -o ./generated --additional-properties=asyncNative=true --additional-properties=library=native -t ./templates
 
 # Copy the updated docs

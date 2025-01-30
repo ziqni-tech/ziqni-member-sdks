@@ -13,7 +13,7 @@
 
 * `USER` (value: `"User"`)
 
-* `MEMBER_MESSAGE` (value: `"MemberMessage"`)
+* `MEMBERMESSAGE` (value: `"MemberMessage"`)
 
 
 

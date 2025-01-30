@@ -5,13 +5,13 @@
 ## Enum
 
 
-* `TOTAL_CUMULATIVE` (value: `"TotalCumulative"`)
+* `TOTALCUMULATIVE` (value: `"TotalCumulative"`)
 
-* `SUM_BEST` (value: `"SumBest"`)
+* `SUMBEST` (value: `"SumBest"`)
 
-* `LIMITED_TO` (value: `"LimitedTo"`)
+* `LIMITEDTO` (value: `"LimitedTo"`)
 
-* `FIRST_TO` (value: `"FirstTo"`)
+* `FIRSTTO` (value: `"FirstTo"`)
 
 
 

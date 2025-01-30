@@ -9,7 +9,7 @@
 
 * `PREPARING` (value: `"Preparing"`)
 
-* `NOT_CLAIMED` (value: `"NotClaimed"`)
+* `NOTCLAIMED` (value: `"NotClaimed"`)
 
 * `CLAIMED` (value: `"Claimed"`)
 

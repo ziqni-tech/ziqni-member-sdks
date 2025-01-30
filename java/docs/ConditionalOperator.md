@@ -7,13 +7,13 @@
 
 * `EQUALS` (value: `"Equals"`)
 
-* `GREATER_THAN` (value: `"GreaterThan"`)
+* `GREATERTHAN` (value: `"GreaterThan"`)
 
-* `GREATER_THAN_EQUALS` (value: `"GreaterThanEquals"`)
+* `GREATERTHANEQUALS` (value: `"GreaterThanEquals"`)
 
-* `LESS_THAN` (value: `"LessThan"`)
+* `LESSTHAN` (value: `"LessThan"`)
 
-* `LESS_THAN_EQUALS` (value: `"LessThanEquals"`)
+* `LESSTHANEQUALS` (value: `"LessThanEquals"`)
 
 * `BETWEEN` (value: `"Between"`)
 
