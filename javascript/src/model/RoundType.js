@@ -23,14 +23,14 @@ export default class RoundType {
          * value: "TimeBound"
          * @const
          */
-        "TimeBound" = "TimeBound";
+        "TIMEBOUND" = "TimeBound";
 
     
         /**
          * value: "TargetBased"
          * @const
          */
-        "TargetBased" = "TargetBased";
+        "TARGETBASED" = "TargetBased";
 
     
 

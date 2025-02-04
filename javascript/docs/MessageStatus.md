@@ -3,20 +3,20 @@
 ## Enum
 
 
-* `New` (value: `"New"`)
+* `NEW` (value: `"New"`)
 
-* `Read` (value: `"Read"`)
+* `READ` (value: `"Read"`)
 
-* `CollaborationRequest` (value: `"CollaborationRequest"`)
+* `COLLABORATIONREQUEST` (value: `"CollaborationRequest"`)
 
-* `Actioned` (value: `"Actioned"`)
+* `ACTIONED` (value: `"Actioned"`)
 
-* `Claimed` (value: `"Claimed"`)
+* `CLAIMED` (value: `"Claimed"`)
 
-* `Expired` (value: `"Expired"`)
+* `EXPIRED` (value: `"Expired"`)
 
-* `Canceled` (value: `"Canceled"`)
+* `CANCELED` (value: `"Canceled"`)
 
-* `Deprecated` (value: `"Deprecated"`)
+* `DEPRECATED` (value: `"Deprecated"`)
 
 

@@ -90,6 +90,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property isDependantId (base name: "isDependantId")', function() {
+      // uncomment below and update the code to test the property isDependantId
+      //var instance = new ZiqniMemberApi.EntityGraphRequest();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

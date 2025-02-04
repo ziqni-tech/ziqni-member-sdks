@@ -3,52 +3,52 @@
 ## Enum
 
 
-* `Member` (value: `"Member"`)
+* `MEMBER` (value: `"Member"`)
 
-* `Product` (value: `"Product"`)
+* `PRODUCT` (value: `"Product"`)
 
-* `Achievement` (value: `"Achievement"`)
+* `ACHIEVEMENT` (value: `"Achievement"`)
 
-* `Repository` (value: `"Repository"`)
+* `REPOSITORY` (value: `"Repository"`)
 
-* `FileObject` (value: `"FileObject"`)
+* `FILEOBJECT` (value: `"FileObject"`)
 
-* `Language` (value: `"Language"`)
+* `LANGUAGE` (value: `"Language"`)
 
-* `MemberMessage` (value: `"MemberMessage"`)
+* `MEMBERMESSAGE` (value: `"MemberMessage"`)
 
-* `Reward` (value: `"Reward"`)
+* `REWARD` (value: `"Reward"`)
 
-* `MemberAward` (value: `"MemberAward"`)
+* `MEMBERAWARD` (value: `"MemberAward"`)
 
-* `Award` (value: `"Award"`)
+* `AWARD` (value: `"Award"`)
 
-* `Message` (value: `"Message"`)
+* `MESSAGE` (value: `"Message"`)
 
-* `RewardType` (value: `"RewardType"`)
+* `REWARDTYPE` (value: `"RewardType"`)
 
-* `ActionType` (value: `"ActionType"`)
+* `ACTIONTYPE` (value: `"ActionType"`)
 
-* `UnitOfMeasure` (value: `"UnitOfMeasure"`)
+* `UNITOFMEASURE` (value: `"UnitOfMeasure"`)
 
-* `Competition` (value: `"Competition"`)
+* `COMPETITION` (value: `"Competition"`)
 
-* `Contest` (value: `"Contest"`)
+* `CONTEST` (value: `"Contest"`)
 
-* `SqsConnection` (value: `"SqsConnection"`)
+* `SQSCONNECTION` (value: `"SqsConnection"`)
 
-* `KafkaConnection` (value: `"KafkaConnection"`)
+* `KAFKACONNECTION` (value: `"KafkaConnection"`)
 
-* `RabbitMqConnection` (value: `"RabbitMqConnection"`)
+* `RABBITMQCONNECTION` (value: `"RabbitMqConnection"`)
 
-* `Events` (value: `"Events"`)
+* `EVENTS` (value: `"Events"`)
 
-* `Webhook` (value: `"Webhook"`)
+* `WEBHOOK` (value: `"Webhook"`)
 
-* `Attachment` (value: `"Attachment"`)
+* `ATTACHMENT` (value: `"Attachment"`)
 
-* `RuleSet` (value: `"RuleSet"`)
+* `RULESET` (value: `"RuleSet"`)
 
-* `InstantWin` (value: `"InstantWin"`)
+* `INSTANTWIN` (value: `"InstantWin"`)
 
 

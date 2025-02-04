@@ -71,6 +71,9 @@ class EntityGraphRequest {
             if (data.hasOwnProperty('entityType')) {
                 obj['entityType'] = EntityType.constructFromObject(data['entityType']);
             }
+            if (data.hasOwnProperty('isDependantId')) {
+                obj['isDependantId'] = ApiClient.convertToType(data['isDependantId'], 'Boolean');
+            }
         }
         return obj;
     }
@@ -111,6 +114,11 @@ EntityGraphRequest.prototype['includes'] = undefined;
  * @member {module:model/EntityType} entityType
  */
 EntityGraphRequest.prototype['entityType'] = undefined;
+
+/**
+ * @member {Boolean} isDependantId
+ */
+EntityGraphRequest.prototype['isDependantId'] = undefined;
 
 
 
