@@ -46,7 +46,6 @@ class ApiClient {
          * @type {Array.<String>}
          */
         this.authentications = {
-            'OAuth2': {type: 'oauth2'}
         }
 
         /**

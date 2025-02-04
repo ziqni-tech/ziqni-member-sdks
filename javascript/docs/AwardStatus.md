@@ -3,14 +3,14 @@
 ## Enum
 
 
-* `Unknown` (value: `"Unknown"`)
+* `UNKNOWN` (value: `"Unknown"`)
 
-* `Preparing` (value: `"Preparing"`)
+* `PREPARING` (value: `"Preparing"`)
 
-* `NotClaimed` (value: `"NotClaimed"`)
+* `NOTCLAIMED` (value: `"NotClaimed"`)
 
-* `Claimed` (value: `"Claimed"`)
+* `CLAIMED` (value: `"Claimed"`)
 
-* `Expired` (value: `"Expired"`)
+* `EXPIRED` (value: `"Expired"`)
 
 

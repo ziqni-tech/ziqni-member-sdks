@@ -20,10 +20,6 @@ Returns a list of graphs based on the entity type.
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
-let defaultClient = ZiqniMemberApi.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new ZiqniMemberApi.GraphsApi();
 let entityGraphRequest = new ZiqniMemberApi.EntityGraphRequest(); // EntityGraphRequest | 
@@ -49,7 +45,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

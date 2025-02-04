@@ -23,35 +23,35 @@ export default class AwardStatus {
          * value: "Unknown"
          * @const
          */
-        "Unknown" = "Unknown";
+        "UNKNOWN" = "Unknown";
 
     
         /**
          * value: "Preparing"
          * @const
          */
-        "Preparing" = "Preparing";
+        "PREPARING" = "Preparing";
 
     
         /**
          * value: "NotClaimed"
          * @const
          */
-        "NotClaimed" = "NotClaimed";
+        "NOTCLAIMED" = "NotClaimed";
 
     
         /**
          * value: "Claimed"
          * @const
          */
-        "Claimed" = "Claimed";
+        "CLAIMED" = "Claimed";
 
     
         /**
          * value: "Expired"
          * @const
          */
-        "Expired" = "Expired";
+        "EXPIRED" = "Expired";
 
     
 

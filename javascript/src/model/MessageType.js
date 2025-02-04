@@ -23,49 +23,49 @@ export default class MessageType {
          * value: "Achievement"
          * @const
          */
-        "Achievement" = "Achievement";
+        "ACHIEVEMENT" = "Achievement";
 
     
         /**
          * value: "Ticket"
          * @const
          */
-        "Ticket" = "Ticket";
+        "TICKET" = "Ticket";
 
     
         /**
          * value: "Reward"
          * @const
          */
-        "Reward" = "Reward";
+        "REWARD" = "Reward";
 
     
         /**
          * value: "Text"
          * @const
          */
-        "Text" = "Text";
+        "TEXT" = "Text";
 
     
         /**
          * value: "Notification"
          * @const
          */
-        "Notification" = "Notification";
+        "NOTIFICATION" = "Notification";
 
     
         /**
          * value: "InboxItem"
          * @const
          */
-        "InboxItem" = "InboxItem";
+        "INBOXITEM" = "InboxItem";
 
     
         /**
          * value: "NotificationInboxItem"
          * @const
          */
-        "NotificationInboxItem" = "NotificationInboxItem";
+        "NOTIFICATIONINBOXITEM" = "NotificationInboxItem";
 
     
 

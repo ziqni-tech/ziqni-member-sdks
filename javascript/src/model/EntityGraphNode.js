@@ -12,6 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import AchievementStrategies from './AchievementStrategies';
 import OptinStatus from './OptinStatus';
 
 /**
@@ -77,6 +78,9 @@ class EntityGraphNode {
             if (data.hasOwnProperty('includes')) {
                 obj['includes'] = ApiClient.convertToType(data['includes'], {'String': Object});
             }
+            if (data.hasOwnProperty('strategies')) {
+                obj['strategies'] = AchievementStrategies.constructFromObject(data['strategies']);
+            }
         }
         return obj;
     }
@@ -124,6 +128,11 @@ EntityGraphNode.prototype['entityStatus'] = undefined;
  * @member {Object.<String, Object>} includes
  */
 EntityGraphNode.prototype['includes'] = undefined;
+
+/**
+ * @member {module:model/AchievementStrategies} strategies
+ */
+EntityGraphNode.prototype['strategies'] = undefined;
 
 
 

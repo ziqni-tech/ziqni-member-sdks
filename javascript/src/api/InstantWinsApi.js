@@ -69,7 +69,7 @@ export default class InstantWinsApi {
       let formParams = {
       };
 
-      let authNames = ['OAuth2'];
+      let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = InstantWinsAvailablePlayResponse;
@@ -109,7 +109,7 @@ export default class InstantWinsApi {
       let formParams = {
       };
 
-      let authNames = ['OAuth2'];
+      let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = InstantWinsAvailablePlayResponse;
@@ -149,7 +149,7 @@ export default class InstantWinsApi {
       let formParams = {
       };
 
-      let authNames = ['OAuth2'];
+      let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = InstantWinResponse;
@@ -189,7 +189,7 @@ export default class InstantWinsApi {
       let formParams = {
       };
 
-      let authNames = ['OAuth2'];
+      let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = InstantWinPlayResponse;

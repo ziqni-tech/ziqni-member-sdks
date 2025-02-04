@@ -20,10 +20,6 @@ Returns the count of active competitions and/or achievements by product id or re
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
-let defaultClient = ZiqniMemberApi.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new ZiqniMemberApi.StatsApi();
 let modelCountRequest = new ZiqniMemberApi.ModelCountRequest(); // ModelCountRequest | 
@@ -49,7 +45,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

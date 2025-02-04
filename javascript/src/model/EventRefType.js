@@ -23,35 +23,35 @@ export default class EventRefType {
          * value: "Competition"
          * @const
          */
-        "Competition" = "Competition";
+        "COMPETITION" = "Competition";
 
     
         /**
          * value: "Contest"
          * @const
          */
-        "Contest" = "Contest";
+        "CONTEST" = "Contest";
 
     
         /**
          * value: "Achievement"
          * @const
          */
-        "Achievement" = "Achievement";
+        "ACHIEVEMENT" = "Achievement";
 
     
         /**
          * value: "User"
          * @const
          */
-        "User" = "User";
+        "USER" = "User";
 
     
         /**
          * value: "MemberMessage"
          * @const
          */
-        "MemberMessage" = "MemberMessage";
+        "MEMBERMESSAGE" = "MemberMessage";
 
     
 

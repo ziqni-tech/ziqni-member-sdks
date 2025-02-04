@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **entityStatusCode** | **Number** |  | [optional] 
 **entityStatus** | **String** |  | [optional] 
 **includes** | **{String: Object}** |  | [optional] 
+**strategies** | [**AchievementStrategies**](AchievementStrategies.md) |  | [optional] 
 
 

@@ -23,168 +23,168 @@ export default class EntityType {
          * value: "Member"
          * @const
          */
-        "Member" = "Member";
+        "MEMBER" = "Member";
 
     
         /**
          * value: "Product"
          * @const
          */
-        "Product" = "Product";
+        "PRODUCT" = "Product";
 
     
         /**
          * value: "Achievement"
          * @const
          */
-        "Achievement" = "Achievement";
+        "ACHIEVEMENT" = "Achievement";
 
     
         /**
          * value: "Repository"
          * @const
          */
-        "Repository" = "Repository";
+        "REPOSITORY" = "Repository";
 
     
         /**
          * value: "FileObject"
          * @const
          */
-        "FileObject" = "FileObject";
+        "FILEOBJECT" = "FileObject";
 
     
         /**
          * value: "Language"
          * @const
          */
-        "Language" = "Language";
+        "LANGUAGE" = "Language";
 
     
         /**
          * value: "MemberMessage"
          * @const
          */
-        "MemberMessage" = "MemberMessage";
+        "MEMBERMESSAGE" = "MemberMessage";
 
     
         /**
          * value: "Reward"
          * @const
          */
-        "Reward" = "Reward";
+        "REWARD" = "Reward";
 
     
         /**
          * value: "MemberAward"
          * @const
          */
-        "MemberAward" = "MemberAward";
+        "MEMBERAWARD" = "MemberAward";
 
     
         /**
          * value: "Award"
          * @const
          */
-        "Award" = "Award";
+        "AWARD" = "Award";
 
     
         /**
          * value: "Message"
          * @const
          */
-        "Message" = "Message";
+        "MESSAGE" = "Message";
 
     
         /**
          * value: "RewardType"
          * @const
          */
-        "RewardType" = "RewardType";
+        "REWARDTYPE" = "RewardType";
 
     
         /**
          * value: "ActionType"
          * @const
          */
-        "ActionType" = "ActionType";
+        "ACTIONTYPE" = "ActionType";
 
     
         /**
          * value: "UnitOfMeasure"
          * @const
          */
-        "UnitOfMeasure" = "UnitOfMeasure";
+        "UNITOFMEASURE" = "UnitOfMeasure";
 
     
         /**
          * value: "Competition"
          * @const
          */
-        "Competition" = "Competition";
+        "COMPETITION" = "Competition";
 
     
         /**
          * value: "Contest"
          * @const
          */
-        "Contest" = "Contest";
+        "CONTEST" = "Contest";
 
     
         /**
          * value: "SqsConnection"
          * @const
          */
-        "SqsConnection" = "SqsConnection";
+        "SQSCONNECTION" = "SqsConnection";
 
     
         /**
          * value: "KafkaConnection"
          * @const
          */
-        "KafkaConnection" = "KafkaConnection";
+        "KAFKACONNECTION" = "KafkaConnection";
 
     
         /**
          * value: "RabbitMqConnection"
          * @const
          */
-        "RabbitMqConnection" = "RabbitMqConnection";
+        "RABBITMQCONNECTION" = "RabbitMqConnection";
 
     
         /**
          * value: "Events"
          * @const
          */
-        "Events" = "Events";
+        "EVENTS" = "Events";
 
     
         /**
          * value: "Webhook"
          * @const
          */
-        "Webhook" = "Webhook";
+        "WEBHOOK" = "Webhook";
 
     
         /**
          * value: "Attachment"
          * @const
          */
-        "Attachment" = "Attachment";
+        "ATTACHMENT" = "Attachment";
 
     
         /**
          * value: "RuleSet"
          * @const
          */
-        "RuleSet" = "RuleSet";
+        "RULESET" = "RuleSet";
 
     
         /**
          * value: "InstantWin"
          * @const
          */
-        "InstantWin" = "InstantWin";
+        "INSTANTWIN" = "InstantWin";
 
     
 
