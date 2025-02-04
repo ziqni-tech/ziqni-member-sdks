@@ -285,6 +285,34 @@ public class SampleStreamingApp {
             throw new RuntimeException("Not connected");
         }
 
+        try {
+            Thread.sleep(3_000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        factory.getInstantWinsApi().getInstantWinAvailablePlays(new InstantWinAvailablePlaysRequest().addInstantWinIdsItem("1dnBs5QBjMwdu0-Jrobf"))
+                .thenCompose(instantWinAvailablePlaysResponse -> {
+                    logger.info(instantWinAvailablePlaysResponse.toString());
+                    return factory.getInstantWinsApi().playInstantWin(new InstantWinPlayRequest().instantWinId(instantWinAvailablePlaysResponse.getData().get(0).getInstantWinId()));
+                })
+                .thenAccept(instantWinPlayResponse -> {
+                    logger.info(instantWinPlayResponse.toString());
+                })
+                .exceptionally(throwable -> {
+                    logger.error("Fail",throwable);
+                    return null;
+                });
+
+        factory.getInstantWinsApi().getInstantWinAvailablePlays(new InstantWinAvailablePlaysRequest().addInstantWinIdsItem("1dnBs5QBjMwdu0-Jrobf"))
+                .thenAccept(instantWinAvailablePlaysResponse -> {
+                    logger.info(instantWinAvailablePlaysResponse.toString());
+                })
+                .exceptionally(throwable -> {
+                    logger.error("Fail",throwable);
+                    return null;
+                });
+
         factory.getCallbacksApi()
                 .listCallbacks()
                 .thenApply(response -> {
