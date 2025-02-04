@@ -3,18 +3,18 @@
 ## Enum
 
 
-* `Achievement` (value: `"Achievement"`)
+* `ACHIEVEMENT` (value: `"Achievement"`)
 
-* `Ticket` (value: `"Ticket"`)
+* `TICKET` (value: `"Ticket"`)
 
-* `Reward` (value: `"Reward"`)
+* `REWARD` (value: `"Reward"`)
 
-* `Text` (value: `"Text"`)
+* `TEXT` (value: `"Text"`)
 
-* `Notification` (value: `"Notification"`)
+* `NOTIFICATION` (value: `"Notification"`)
 
-* `InboxItem` (value: `"InboxItem"`)
+* `INBOXITEM` (value: `"InboxItem"`)
 
-* `NotificationInboxItem` (value: `"NotificationInboxItem"`)
+* `NOTIFICATIONINBOXITEM` (value: `"NotificationInboxItem"`)
 
 

@@ -23,56 +23,56 @@ export default class MessageStatus {
          * value: "New"
          * @const
          */
-        "New" = "New";
+        "NEW" = "New";
 
     
         /**
          * value: "Read"
          * @const
          */
-        "Read" = "Read";
+        "READ" = "Read";
 
     
         /**
          * value: "CollaborationRequest"
          * @const
          */
-        "CollaborationRequest" = "CollaborationRequest";
+        "COLLABORATIONREQUEST" = "CollaborationRequest";
 
     
         /**
          * value: "Actioned"
          * @const
          */
-        "Actioned" = "Actioned";
+        "ACTIONED" = "Actioned";
 
     
         /**
          * value: "Claimed"
          * @const
          */
-        "Claimed" = "Claimed";
+        "CLAIMED" = "Claimed";
 
     
         /**
          * value: "Expired"
          * @const
          */
-        "Expired" = "Expired";
+        "EXPIRED" = "Expired";
 
     
         /**
          * value: "Canceled"
          * @const
          */
-        "Canceled" = "Canceled";
+        "CANCELED" = "Canceled";
 
     
         /**
          * value: "Deprecated"
          * @const
          */
-        "Deprecated" = "Deprecated";
+        "DEPRECATED" = "Deprecated";
 
     
 

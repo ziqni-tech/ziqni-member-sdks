@@ -3,14 +3,14 @@
 ## Enum
 
 
-* `Competition` (value: `"Competition"`)
+* `COMPETITION` (value: `"Competition"`)
 
-* `Contest` (value: `"Contest"`)
+* `CONTEST` (value: `"Contest"`)
 
-* `Achievement` (value: `"Achievement"`)
+* `ACHIEVEMENT` (value: `"Achievement"`)
 
-* `User` (value: `"User"`)
+* `USER` (value: `"User"`)
 
-* `MemberMessage` (value: `"MemberMessage"`)
+* `MEMBERMESSAGE` (value: `"MemberMessage"`)
 
 

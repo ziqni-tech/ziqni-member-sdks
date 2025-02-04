@@ -3,16 +3,16 @@
 ## Enum
 
 
-* `Equals` (value: `"Equals"`)
+* `EQUALS` (value: `"Equals"`)
 
-* `GreaterThan` (value: `"GreaterThan"`)
+* `GREATERTHAN` (value: `"GreaterThan"`)
 
-* `GreaterThanEquals` (value: `"GreaterThanEquals"`)
+* `GREATERTHANEQUALS` (value: `"GreaterThanEquals"`)
 
-* `LessThan` (value: `"LessThan"`)
+* `LESSTHAN` (value: `"LessThan"`)
 
-* `LessThanEquals` (value: `"LessThanEquals"`)
+* `LESSTHANEQUALS` (value: `"LessThanEquals"`)
 
-* `Between` (value: `"Between"`)
+* `BETWEEN` (value: `"Between"`)
 
 

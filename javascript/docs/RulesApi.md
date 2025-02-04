@@ -20,10 +20,6 @@ This operation support retrieval of rules for one or many entities.
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
-let defaultClient = ZiqniMemberApi.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new ZiqniMemberApi.RulesApi();
 let entityRequest = new ZiqniMemberApi.EntityRequest(); // EntityRequest | 
@@ -49,7 +45,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

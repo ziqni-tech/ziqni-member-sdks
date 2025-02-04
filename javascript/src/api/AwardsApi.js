@@ -68,7 +68,7 @@ export default class AwardsApi {
       let formParams = {
       };
 
-      let authNames = ['OAuth2'];
+      let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = AwardResponse;
@@ -110,7 +110,7 @@ export default class AwardsApi {
       let formParams = {
       };
 
-      let authNames = ['OAuth2'];
+      let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = AwardResponse;
@@ -152,7 +152,7 @@ export default class AwardsApi {
       let formParams = {
       };
 
-      let authNames = ['OAuth2'];
+      let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = AwardResponse;

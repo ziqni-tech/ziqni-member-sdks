@@ -23,28 +23,28 @@ export default class StrategyType {
          * value: "TotalCumulative"
          * @const
          */
-        "TotalCumulative" = "TotalCumulative";
+        "TOTALCUMULATIVE" = "TotalCumulative";
 
     
         /**
          * value: "SumBest"
          * @const
          */
-        "SumBest" = "SumBest";
+        "SUMBEST" = "SumBest";
 
     
         /**
          * value: "LimitedTo"
          * @const
          */
-        "LimitedTo" = "LimitedTo";
+        "LIMITEDTO" = "LimitedTo";
 
     
         /**
          * value: "FirstTo"
          * @const
          */
-        "FirstTo" = "FirstTo";
+        "FIRSTTO" = "FirstTo";
 
     
 

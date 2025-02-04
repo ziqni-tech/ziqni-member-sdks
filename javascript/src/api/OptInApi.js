@@ -67,7 +67,7 @@ export default class OptInApi {
       let formParams = {
       };
 
-      let authNames = ['OAuth2'];
+      let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = OptInResponse;
@@ -109,7 +109,7 @@ export default class OptInApi {
       let formParams = {
       };
 
-      let authNames = ['OAuth2'];
+      let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = OptInResponse;

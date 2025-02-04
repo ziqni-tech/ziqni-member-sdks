@@ -23,42 +23,42 @@ export default class ConditionalOperator {
          * value: "Equals"
          * @const
          */
-        "Equals" = "Equals";
+        "EQUALS" = "Equals";
 
     
         /**
          * value: "GreaterThan"
          * @const
          */
-        "GreaterThan" = "GreaterThan";
+        "GREATERTHAN" = "GreaterThan";
 
     
         /**
          * value: "GreaterThanEquals"
          * @const
          */
-        "GreaterThanEquals" = "GreaterThanEquals";
+        "GREATERTHANEQUALS" = "GreaterThanEquals";
 
     
         /**
          * value: "LessThan"
          * @const
          */
-        "LessThan" = "LessThan";
+        "LESSTHAN" = "LessThan";
 
     
         /**
          * value: "LessThanEquals"
          * @const
          */
-        "LessThanEquals" = "LessThanEquals";
+        "LESSTHANEQUALS" = "LessThanEquals";
 
     
         /**
          * value: "Between"
          * @const
          */
-        "Between" = "Between";
+        "BETWEEN" = "Between";
 
     
 
