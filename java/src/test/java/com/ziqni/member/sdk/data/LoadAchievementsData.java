@@ -20,6 +20,10 @@ public class LoadAchievementsData implements CompleteableFutureTestWrapper {
         rangeQuery.setMoreThan(20L);
         rangeQuery.setLessThan(30L);
 
+        var optInRangeQuery = new RangeQuery();
+        rangeQuery.setMoreThan(30L);
+        rangeQuery.setLessThan(40L);
+
         var querySortBy = new QuerySortBy();
         querySortBy.setQueryField("created");
         querySortBy.setOrder(SortOrder.ASC);
@@ -35,6 +39,8 @@ public class LoadAchievementsData implements CompleteableFutureTestWrapper {
         achievementFilter.setSkip(skip);
 //        achievementFilter.addConstraintsItem("hasNoDependancies");
         achievementFilter.setStatusCode(rangeQuery);
+        achievementFilter.setOptInStatusCodes(optInRangeQuery);
+        achievementFilter.addConstraintsItem("allFinished");
 
         var achievementRequest = new AchievementRequest();
         achievementRequest.setAchievementFilter(achievementFilter);

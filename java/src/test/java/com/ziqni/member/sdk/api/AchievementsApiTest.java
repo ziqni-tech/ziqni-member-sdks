@@ -36,6 +36,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
 
     private AchievementsApiWs api;
     private LoadAchievementsData loadAchievementsData;
+    final String productId = "hIlqeJAB8AyZ3Dx3dSqP";
 
     @BeforeAll
     public void start() throws Exception {
@@ -88,7 +89,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
         achievementFilter.statusCode(new NumberRange()
                 .moreThan(1L)
                 .lessThan(1000L));
-        achievementFilter.addProductIdsItem("hIlqeJAB8AyZ3Dx3dSqP");
+        achievementFilter.addProductIdsItem(productId);
         achievementFilter.endDate(new DateRange()
                 .before(OffsetDateTime.parse("2025-09-03T13:39:32.000Z"))
                 .after(OffsetDateTime.parse("2024-09-03T13:38:32.000Z")));
@@ -113,7 +114,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
         achievementFilter.statusCode(new NumberRange()
                 .moreThan(1L)
                 .lessThan(1000L));
-        achievementFilter.addProductIdsItem("hIlqeJAB8AyZ3Dx3dSqP");
+        achievementFilter.addProductIdsItem(productId);
         achievementFilter.startDate(new DateRange()
                 .before(OffsetDateTime.parse("2025-09-03T13:39:32.000Z"))
                 .after(OffsetDateTime.parse("2024-09-03T13:38:32.000Z")));
