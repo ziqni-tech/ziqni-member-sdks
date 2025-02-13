@@ -51,5 +51,7 @@
 
 * `RULESET` (value: `"RuleSet"`)
 
+* `INSTANTWIN` (value: `"InstantWin"`)
+
 
 

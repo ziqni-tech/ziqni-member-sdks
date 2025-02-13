@@ -1,13 +1,13 @@
 
 
-# Proxy
+# InstantWinAvailablePlaysRequest
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **String** |  |  [optional]
+**instantWinIds** | **List&lt;String&gt;** | The game to play. | 
 
 
 

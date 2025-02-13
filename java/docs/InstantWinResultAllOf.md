@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**awards** | [**List&lt;Award&gt;**](Award.md) |  |  [optional]
+**awards** | [**List&lt;AwardReduced&gt;**](AwardReduced.md) |  |  [optional]
 **tiles** | [**List&lt;InstantWinTile&gt;**](InstantWinTile.md) |  | 
 
 

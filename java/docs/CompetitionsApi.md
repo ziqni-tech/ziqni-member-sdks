@@ -24,7 +24,6 @@ Returns a list of competitions for the provided member ref id and applied filter
 import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.CompetitionsApi;
 import java.util.concurrent.CompletableFuture;
@@ -33,10 +32,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         CompetitionsApi apiInstance = new CompetitionsApi(defaultClient);
         CompetitionRequest competitionRequest = new CompetitionRequest(); // CompetitionRequest | 
@@ -68,7 +63,7 @@ CompletableFuture<[**CompetitionResponse**](CompetitionResponse.md)>
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -98,7 +93,6 @@ import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.CompetitionsApi;
 import java.util.concurrent.CompletableFuture;
@@ -107,10 +101,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         CompetitionsApi apiInstance = new CompetitionsApi(defaultClient);
         CompetitionRequest competitionRequest = new CompetitionRequest(); // CompetitionRequest | 
@@ -151,7 +141,7 @@ CompletableFuture<ApiResponse<[**CompetitionResponse**](CompetitionResponse.md)>
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

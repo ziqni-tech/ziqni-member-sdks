@@ -1,19 +1,21 @@
-# DefaultApi
+# MemberTokenApi
 
 All URIs are relative to *https://member-api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**heartbeat**](DefaultApi.md#heartbeat) | **POST** /heartbeat | 
-[**heartbeatWithHttpInfo**](DefaultApi.md#heartbeatWithHttpInfo) | **POST** /heartbeat | 
+[**createMemberToken**](MemberTokenApi.md#createMemberToken) | **POST** /member-token | 
+[**createMemberTokenWithHttpInfo**](MemberTokenApi.md#createMemberTokenWithHttpInfo) | **POST** /member-token | 
 
 
 
-## heartbeat
+## createMemberToken
 
-> CompletableFuture<Void> heartbeat()
+> CompletableFuture<MemberTokenResponse> createMemberToken(memberTokenRequest)
 
 
+
+Get Jwt Token
 
 ### Example
 
@@ -23,7 +25,7 @@ import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
 import com.ziqni.member.sdk.models.*;
-import com.ziqni.member.sdk.api.DefaultApi;
+import com.ziqni.member.sdk.api.MemberTokenApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -31,11 +33,13 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
 
-        DefaultApi apiInstance = new DefaultApi(defaultClient);
+        MemberTokenApi apiInstance = new MemberTokenApi(defaultClient);
+        MemberTokenRequest memberTokenRequest = new MemberTokenRequest(); // MemberTokenRequest | 
         try {
-            CompletableFuture<Void> result = apiInstance.heartbeat();
+            CompletableFuture<MemberTokenResponse> result = apiInstance.createMemberToken(memberTokenRequest);
+            System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#heartbeat");
+            System.err.println("Exception when calling MemberTokenApi#createMemberToken");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -47,12 +51,15 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **memberTokenRequest** | [**MemberTokenRequest**](MemberTokenRequest.md)|  |
 
 ### Return type
 
+CompletableFuture<[**MemberTokenResponse**](MemberTokenResponse.md)>
 
-CompletableFuture<void> (empty response body)
 
 ### Authorization
 
@@ -60,19 +67,23 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | On receipt |  -  |
+| **200** |  |  -  |
+| **400** |  |  -  |
+| **500** |  |  -  |
 
-## heartbeatWithHttpInfo
+## createMemberTokenWithHttpInfo
 
-> CompletableFuture<ApiResponse<Void>> heartbeat heartbeatWithHttpInfo()
+> CompletableFuture<ApiResponse<MemberTokenResponse>> createMemberToken createMemberTokenWithHttpInfo(memberTokenRequest)
 
 
+
+Get Jwt Token
 
 ### Example
 
@@ -83,7 +94,7 @@ import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
 import com.ziqni.member.sdk.models.*;
-import com.ziqni.member.sdk.api.DefaultApi;
+import com.ziqni.member.sdk.api.MemberTokenApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -91,20 +102,22 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
 
-        DefaultApi apiInstance = new DefaultApi(defaultClient);
+        MemberTokenApi apiInstance = new MemberTokenApi(defaultClient);
+        MemberTokenRequest memberTokenRequest = new MemberTokenRequest(); // MemberTokenRequest | 
         try {
-            CompletableFuture<ApiResponse<Void>> response = apiInstance.heartbeatWithHttpInfo();
+            CompletableFuture<ApiResponse<MemberTokenResponse>> response = apiInstance.createMemberTokenWithHttpInfo(memberTokenRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling DefaultApi#heartbeat");
+            System.err.println("Exception when calling MemberTokenApi#createMemberToken");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#heartbeat");
+            System.err.println("Exception when calling MemberTokenApi#createMemberToken");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -116,12 +129,15 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **memberTokenRequest** | [**MemberTokenRequest**](MemberTokenRequest.md)|  |
 
 ### Return type
 
+CompletableFuture<ApiResponse<[**MemberTokenResponse**](MemberTokenResponse.md)>>
 
-CompletableFuture<ApiResponse<Void>>
 
 ### Authorization
 
@@ -129,11 +145,13 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | On receipt |  -  |
+| **200** |  |  -  |
+| **400** |  |  -  |
+| **500** |  |  -  |
 

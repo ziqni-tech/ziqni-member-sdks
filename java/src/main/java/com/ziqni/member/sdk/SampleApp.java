@@ -12,10 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.stream.Collectors;
@@ -130,7 +127,11 @@ public class SampleApp {
     }
 
     private void getContests(Competition competition){
-        factory.getContestsApi().getContests(new ContestRequest().contestFilter(new ContestFilter()/*.competitionIds(List.of("V-UJyIcB2XLhi587MUz1"))*/))
+        factory.getContestsApi().getContests(new ContestRequest()
+                        .contestFilter(new ContestFilter()
+                                .competitionIds(List.of("mdc2QJQB3KX70SKb_9Ae")).statusCode(new NumberRange()
+                                        .moreThan(20L)
+                                        .lessThan(30L))))
                 .thenAccept(contestResponse -> {
                     logger.info(contestResponse.getData().toString());
                     contestResponse.getData().stream().findFirst().ifPresent(contest -> {

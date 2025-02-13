@@ -24,7 +24,6 @@ Returns a list of products recommended for a product with given id.
 import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.ProductsApi;
 import java.util.concurrent.CompletableFuture;
@@ -33,10 +32,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         ProductsApi apiInstance = new ProductsApi(defaultClient);
         ProductRequest productRequest = new ProductRequest(); // ProductRequest | 
@@ -68,7 +63,7 @@ CompletableFuture<[**ProductResponse**](ProductResponse.md)>
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -98,7 +93,6 @@ import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.ProductsApi;
 import java.util.concurrent.CompletableFuture;
@@ -107,10 +101,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         ProductsApi apiInstance = new ProductsApi(defaultClient);
         ProductRequest productRequest = new ProductRequest(); // ProductRequest | 
@@ -151,7 +141,7 @@ CompletableFuture<ApiResponse<[**ProductResponse**](ProductResponse.md)>>
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

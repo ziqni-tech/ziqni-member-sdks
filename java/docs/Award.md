@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **statusCode** | **Integer** | The code of the award |  [optional] [readonly]
 **constraints** | **List&lt;String&gt;** | Additional constraints, if the value is present it means the |  [optional]
 **claimed** | **Boolean** |  Award is claimed. |  [optional]
-**status** | **AwardStatus** |  |  [optional]
+**status** | **AwardStateActions** |  |  [optional]
 **name** | **String** | name from reward |  [optional]
 **description** | **String** | Text limited description |  [optional]
 **memberRefId** | **String** |  |  [optional]

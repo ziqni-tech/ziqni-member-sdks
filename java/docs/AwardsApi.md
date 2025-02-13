@@ -28,7 +28,6 @@ This operation enables a member to claim awards.
 import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.AwardsApi;
 import java.util.concurrent.CompletableFuture;
@@ -37,10 +36,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         AwardsApi apiInstance = new AwardsApi(defaultClient);
         ClaimAwardRequest claimAwardRequest = new ClaimAwardRequest(); // ClaimAwardRequest | 
@@ -72,7 +67,7 @@ CompletableFuture<[**AwardResponse**](AwardResponse.md)>
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -102,7 +97,6 @@ import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.AwardsApi;
 import java.util.concurrent.CompletableFuture;
@@ -111,10 +105,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         AwardsApi apiInstance = new AwardsApi(defaultClient);
         ClaimAwardRequest claimAwardRequest = new ClaimAwardRequest(); // ClaimAwardRequest | 
@@ -155,7 +145,7 @@ CompletableFuture<ApiResponse<[**AwardResponse**](AwardResponse.md)>>
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -185,7 +175,6 @@ This operation enables a member to claim awards.
 import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.AwardsApi;
 import java.util.concurrent.CompletableFuture;
@@ -194,10 +183,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         AwardsApi apiInstance = new AwardsApi(defaultClient);
         DeclineAwardRequest declineAwardRequest = new DeclineAwardRequest(); // DeclineAwardRequest | 
@@ -229,7 +214,7 @@ CompletableFuture<[**AwardResponse**](AwardResponse.md)>
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -259,7 +244,6 @@ import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.AwardsApi;
 import java.util.concurrent.CompletableFuture;
@@ -268,10 +252,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         AwardsApi apiInstance = new AwardsApi(defaultClient);
         DeclineAwardRequest declineAwardRequest = new DeclineAwardRequest(); // DeclineAwardRequest | 
@@ -312,7 +292,7 @@ CompletableFuture<ApiResponse<[**AwardResponse**](AwardResponse.md)>>
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -342,7 +322,6 @@ This operation supports retrieval of awards for one or many entities.
 import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.AwardsApi;
 import java.util.concurrent.CompletableFuture;
@@ -351,10 +330,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         AwardsApi apiInstance = new AwardsApi(defaultClient);
         AwardRequest awardRequest = new AwardRequest(); // AwardRequest | 
@@ -386,7 +361,7 @@ CompletableFuture<[**AwardResponse**](AwardResponse.md)>
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -416,7 +391,6 @@ import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.AwardsApi;
 import java.util.concurrent.CompletableFuture;
@@ -425,10 +399,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         AwardsApi apiInstance = new AwardsApi(defaultClient);
         AwardRequest awardRequest = new AwardRequest(); // AwardRequest | 
@@ -469,7 +439,7 @@ CompletableFuture<ApiResponse<[**AwardResponse**](AwardResponse.md)>>
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

@@ -1,13 +1,14 @@
 
 
-# AchievementCountResponse
+# MemberTokenInfo
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**meta** | [**ResponseMeta**](ResponseMeta.md) |  |  [optional]
+**jwtToken** | **String** |  | 
+**modelCount** | **Map&lt;String, Integer&gt;** |  |  [optional]
 
 
 
