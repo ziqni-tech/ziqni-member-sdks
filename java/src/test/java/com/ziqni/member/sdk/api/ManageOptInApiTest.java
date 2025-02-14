@@ -45,7 +45,7 @@ public class ManageOptInApiTest implements tests.utils.CompleteableFutureTestWra
 
     @Test
     public void manageOptInStatesTest() throws Exception {
-        final var entityId = "yYSOUoQBSPM0WYwF7N_S";
+        final var entityId = "PHk04JQB_zkdor8I8kUk";
         final var entityType = "Achievement";
 
         final var manageOptInRequest = new ManageOptinRequest()

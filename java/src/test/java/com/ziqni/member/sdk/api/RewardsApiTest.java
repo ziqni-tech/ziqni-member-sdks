@@ -14,6 +14,7 @@ package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.data.LoadRewardsData;
+import com.ziqni.member.sdk.model.EntityType;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
 
@@ -53,7 +54,9 @@ public class RewardsApiTest implements tests.utils.CompleteableFutureTestWrapper
      */
     @Test
     public void getRewardsTest() throws ApiException {
-        var response = $(api.getRewards(loadRewardsData.getRequest()));
+        var entityId = "PHk04JQB_zkdor8I8kUk";
+        var entityType = EntityType.ACHIEVEMENT.getValue();
+        var response = $(api.getRewards(loadRewardsData.getRequest(entityId, entityType)));
 
         assertNotNull(response);
         assertNotNull(response.getData());
