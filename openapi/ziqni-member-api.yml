@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Member API
-  version: 1.0.16
+  version: 1.0.19
   description: >-
     The ZIQNI Member-API is the primary resource used to build services and widgets for your members
     [customers, players, patients, etc]. The service is Stomp websokets with SOCK.js even though the
@@ -399,20 +399,6 @@ paths:
       summary: Get achievements by member reference id
       description: Returns a list of graphs based on the entity type.
       x-ws-only: true
-  /instant-wins:
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/InstantWinRequest'
-        required: true
-      tags:
-        - instant-wins
-      responses:
-        '200':
-          $ref: '#/components/responses/InstantWinResponseBody'
-      operationId: listInstantWins
   /instant-wins-play:
     post:
       requestBody:
@@ -426,6 +412,10 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/InstantWinPlayResponseBody'
+      security:
+        -
+          OAuth2:
+            - PlayInstantWin
       operationId: playInstantWin
   /products:
     summary: Member products operation
@@ -633,6 +623,87 @@ paths:
       summary: Claim awards.
       description: This operation enables a member to claim awards.
       x-ws-only: true
+  /member-token:
+    description: >-
+      The services returns a JWT token used to authorize requests to the other service end points. Use
+      this JWT as an auth header parameter for future requests: 
+      
+      --header 'Authorization: Bearer <jwt-token-from-api>'
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberTokenRequest'
+        required: true
+      tags:
+        - member-token
+      responses:
+        '200':
+          $ref: '#/components/responses/TokenResponseBody'
+        '400':
+          $ref: '#/components/responses/TokenResponseBody'
+        '500':
+          $ref: '#/components/responses/TokenResponseBody'
+      security:
+        -
+          OAuth2: []
+      operationId: createMemberToken
+      description: Get Jwt Token
+  /instant-wins-available-plays:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstantWinAvailablePlaysRequest'
+        required: true
+      tags:
+        - instant-wins
+      responses:
+        '200':
+          $ref: '#/components/responses/InstantWinsAvailablePlayResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewInstantWinsAvailablePlays
+      operationId: getInstantWinAvailablePlays
+  /instant-wins:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstantWinRequest'
+        required: true
+      tags:
+        - instant-wins
+      responses:
+        '200':
+          $ref: '#/components/responses/InstantWinResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewInstantWin
+      operationId: listInstantWins
+  /instant-wins-donate:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstantWinDonateRequest'
+        required: true
+      tags:
+        - instant-wins
+      responses:
+        '200':
+          $ref: '#/components/responses/InstantWinsAvailablePlayResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewInstantWinsAvailablePlays
+      operationId: donateInstantWinPlays
 components:
   schemas:
     ResponseMeta:
@@ -1700,21 +1771,6 @@ components:
           $ref: '#/components/schemas/RankingStrategy'
         scoringStrategy:
           $ref: '#/components/schemas/ScoringStrategy'
-    StrategyType:
-      description: >
-        The scoring strategy type. SUMMARY: * "TotalCumulative": The basic strategy where all the
-        points sum up and are shown in the Leaderboard. Depending on the Rules, all the points are
-        Cumulative. * "SumBest": This strategy requires a value to indicate how many highest points
-        will be calculated and shown on the leaderboard * "LimitedTo": This strategy requires a value
-        to indicate how many events will be summed up and shown in the leaderboard. * "FirstTo": This
-        strategy requires a value to indicate how many points have to be received to complete the
-        mission.
-      enum:
-        - TotalCumulative
-        - SumBest
-        - LimitedTo
-        - FirstTo
-      type: string
     RankingStrategy:
       description: ''
       type: object
@@ -1758,39 +1814,6 @@ components:
           description: Not supported at the moment
           type: number
           example: '1'
-    RoundType:
-      description: The type of rounds in a contest
-      enum:
-        - TimeBound
-        - TargetBased
-      type: string
-    EntityType:
-      description: Entity the item is associated to.
-      enum:
-        - Member
-        - Product
-        - Achievement
-        - Repository
-        - FileObject
-        - Language
-        - MemberMessage
-        - Reward
-        - MemberAward
-        - Award
-        - Message
-        - RewardType
-        - ActionType
-        - UnitOfMeasure
-        - Competition
-        - Contest
-        - SqsConnection
-        - KafkaConnection
-        - RabbitMqConnection
-        - Events
-        - Webhook
-        - Attachment
-        - RuleSet
-      type: string
     RuleExpression:
       description: >-
         A conditional expressions is an element that declares either a rule expression, condition or
@@ -2105,38 +2128,6 @@ components:
         metadata:
           m1: v1
           m2: 1
-    EventRefType:
-      description: Defines an even type attached to the message
-      enum:
-        - Competition
-        - Contest
-        - Achievement
-        - User
-        - MemberMessage
-      type: string
-    MessageType:
-      description: The type of message of the member
-      enum:
-        - Achievement
-        - Ticket
-        - Reward
-        - Text
-        - Notification
-        - InboxItem
-        - NotificationInboxItem
-      type: string
-    MessageStatus:
-      description: The status of the message
-      enum:
-        - New
-        - Read
-        - CollaborationRequest
-        - Actioned
-        - Claimed
-        - Expired
-        - Canceled
-        - Deprecated
-      type: string
     AwardResponse:
       description: '        '
       required: []
@@ -3040,16 +3031,6 @@ components:
         data:
           $ref: '#/components/schemas/Leaderboard'
           description: ''
-    AwardStatus:
-      description: The status of award
-      enum:
-        - Unknown
-        - Preparing
-        - NotClaimed
-        - Claimed
-        - Expired
-      type: string
-      readOnly: true
     LeaderboardMember:
       required:
         - name
@@ -3141,6 +3122,9 @@ components:
           type: object
           additionalProperties:
             type: object
+        strategies:
+          $ref: '#/components/schemas/AchievementStrategies'
+          description: ''
     EntityGraphTraversal:
       description: The status of award
       enum:
@@ -3206,6 +3190,9 @@ components:
         entityType:
           $ref: '#/components/schemas/EntityType'
           description: ''
+        isDependantId:
+          description: ''
+          type: boolean
     EntityGraphEdgeType:
       description: The type of link
       enum:
@@ -3554,24 +3541,6 @@ components:
         statusCode:
           - 60
           - 45
-    InstantWinPlayRequest:
-      description: ''
-      type: object
-      properties:
-        awardId:
-          description: The award identifier is required to claim this. This can only be made once.
-          type: string
-        languageKey:
-          description: >-
-            The language codes can be found in the settings/transalations section of the back
-            office
-          type: string
-        currencyKey:
-          description: >-
-            The UoM currency key to normalise the value to for presentation. Example; If the
-            reward is in EUR and this value is set to USD then the value will be multiplied by
-            1.09387699997429
-          type: string
     InstantWinResponse:
       description: ''
       type: object
@@ -3623,7 +3592,7 @@ components:
               description: ''
               type: array
               items:
-                $ref: '#/components/schemas/Award'
+                $ref: '#/components/schemas/AwardReduced'
             tiles:
               description: ''
               type: array
@@ -3723,22 +3692,6 @@ components:
           $ref: '#/components/schemas/ModelDefault'
         -
           $ref: '#/components/schemas/OptionalModelFields'
-    InstantWinPlayOutcome:
-      description: ''
-      type: object
-      properties:
-        awards:
-          description: The awards that the member unlocked
-          type: array
-          items:
-            $ref: '#/components/schemas/Award'
-        tiles:
-          description: >-
-            The tiles uncovered during the game session, for the wheel of fortune this will be the
-            slice the player landed on for a scratch card it would be the revealed tiles
-          type: array
-          items:
-            $ref: '#/components/schemas/InstantWinTile'
     InstantWinPlayResponse:
       description: ''
       type: object
@@ -3750,7 +3703,7 @@ components:
           description: ''
           type: array
           items:
-            $ref: '#/components/schemas/InstantWinPlayOutcome'
+            $ref: '#/components/schemas/InstantWinPlayResults'
         errors:
           description: ''
           type: array
@@ -4578,16 +4531,6 @@ components:
         action:
           description: 'The action this strategy is bound to, like: achievement.points'
           type: string
-    ConditionalOperator:
-      description: Available actions for competition status
-      enum:
-        - Equals
-        - GreaterThan
-        - GreaterThanEquals
-        - LessThan
-        - LessThanEquals
-        - Between
-      type: string
     Contest:
       description: This is a contest model
       type: object
@@ -4917,69 +4860,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
-        -
-          $ref: '#/components/schemas/OptionalModelFields'
-    InstantWin:
-      description: ''
-      type: object
-      allOf:
-        -
-          required:
-            - instantWinType
-            - tiles
-          type: object
-          properties:
-            name:
-              description: ''
-              type: string
-            description:
-              description: ''
-              type: string
-            termsAndConditions:
-              description: ''
-              type: string
-            constraints:
-              description: >-
-                Additional constraints, if set means true [optinRequiredForEntrants, hasRules,
-                hasRewards]
-              type: array
-              items:
-                type: string
-              example: |-
-                - deprecated
-                - notifyMember
-                - isHidden
-                - optinRequiredForEntrants
-                - expired
-            statusCode:
-              format: int32
-              description: ''
-              type: integer
-            instantWinType:
-              description: ''
-              type: integer
-            iconLink:
-              description: Attachement id for the corresponding icon image.
-              type: string
-            bannerLink:
-              description: Link to the banner
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerLowResolutionLink:
-              description: Link to the bannerLowResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerHighResolutionLink:
-              description: Link to the bannerHighResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            tiles:
-              description: ''
-              type: array
-              items:
-                $ref: '#/components/schemas/InstantWinTile'
-        -
-          $ref: '#/components/schemas/ModelDefault'
         -
           $ref: '#/components/schemas/OptionalModelFields'
     ProductReduced:
@@ -5861,11 +5741,6 @@ components:
         text:
           description: ''
           type: string
-        contraints:
-          description: 'hasPrizes, glow'
-          type: array
-          items:
-            type: string
         reward:
           $ref: '#/components/schemas/RewardReduced'
           description: The reward associated with this tile
@@ -5879,6 +5754,476 @@ components:
         background:
           description: ''
           type: string
+        contraints:
+          description: 'hasPrizes, glow'
+          type: array
+          items:
+            type: string
+    MemberTokenRequest:
+      description: ''
+      required:
+        - member
+        - apiKey
+      type: object
+      properties:
+        apiKey:
+          description: The API key to use to generate this token.
+          type: string
+        isReferenceId:
+          description: >-
+            Default is FALSE, if set to TRUE then the meberId will be assumed to be client
+            provided reference id, if set to false then the memberId will be assumed to be a ZIQNI
+            generated identifier.
+          type: boolean
+        origins:
+          description: >
+            Allowed origins for the generated token. Leave empty to permit all origins,
+            Alternative provide up to 3 allowed origin URIs like https://my-space.api.ziqni.app
+          type: array
+          items:
+            type: string
+        member:
+          description: >-
+            The identifier used to find the member information. if this value is set to
+            "__PUBLIC__" and isReferenceId is set to "FALSE" then a genral use, non-member
+            specific token will be issued
+          type: string
+        expires:
+          description: >-
+            The number of minutes this token will be valid for. If left blank the token will only
+            be valid for 30 minutes
+          type: integer
+        disabledServices:
+          description: |-
+            A list of services to be disabled for this web token 
+            - Public,
+            - Member
+            - ViewAchievements
+            - ViewAwards
+            - ClaimAwards
+            - ViewCompetitions
+            - ViewContests
+            - ViewFiles
+            - ViewMembers
+            - MembersOptin
+            - ViewMessages
+            - ConnectProxy
+            - ViewRewards
+            - ViewRules
+          type: array
+          items:
+            type: string
+        languageKey:
+          description: 'The language code to use if none is provided in the member api requests '
+          type: string
+        currencyKey:
+          description: The language key to use if none is provided in the member api requests
+          type: string
+        timeZoneOffset:
+          description: The time zone to use when returning date and time values
+          type: integer
+        includeActivesByEntity:
+          $ref: '#/components/schemas/ModelCountRequest'
+          description: >-
+            If set the information specific to this player and a specific entity will be returned.
+            It is designed to reduce the number of calls made to decide whether or not to render
+            the widget for a member
+      example:
+        apiKey: some text
+        isReferenceId: true
+        origins:
+          - some text
+          - some text
+        member: some text
+        expires: 72
+    MemberTokenInfo:
+      description: ''
+      required:
+        - jwtToken
+      type: object
+      properties:
+        jwtToken:
+          description: ''
+          type: string
+        modelCount:
+          type: object
+          additionalProperties:
+            type: integer
+      example:
+        jwtToken: some text
+    InstantWinPlayRequest:
+      description: ''
+      type: object
+      properties:
+        instantWinId:
+          description: The game to play.
+          type: string
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        currencyKey:
+          description: >-
+            The UoM currency key to normalise the value to for presentation. Example; If the
+            reward is in EUR and this value is set to USD then the value will be multiplied by
+            1.09387699997429
+          type: string
+    AwardReduced:
+      description: ''
+      type: object
+      allOf:
+        -
+          type: object
+          properties:
+            awardId:
+              description: A unique identifier of a Award
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            rewardId:
+              description: A unique identifier of a Reward
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            value:
+              format: double
+              description: Numerical value of the award that will be issued
+              type: number
+              example: '1'
+    InstantWinPlayResults:
+      description: ''
+      required:
+        - results
+      type: object
+      properties:
+        remainingPlays:
+          description: spins left
+          type: integer
+        results:
+          $ref: '#/components/schemas/InstantWinResult'
+          description: ''
+    InstantWinAvailablePlaysRequest:
+      description: ''
+      required:
+        - instantWinIds
+      type: object
+      properties:
+        instantWinIds:
+          description: The game to play.
+          type: array
+          items:
+            type: string
+    InstantWinsAvailablePlayResponse:
+      description: ''
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+          description: ''
+        data:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/InstantWinsAvailablePlayResults'
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    InstantWinsAvailablePlayResults:
+      description: ''
+      required:
+        - instantWinId
+      type: object
+      properties:
+        remainingPlays:
+          description: spins left
+          type: integer
+        instantWinId:
+          description: ''
+          type: string
+    InstantWin:
+      description: ''
+      type: object
+      allOf:
+        -
+          required:
+            - instantWinType
+            - tiles
+          type: object
+          properties:
+            name:
+              description: The display name
+              type: string
+            description:
+              description: The description of this game
+              type: string
+            termsAndConditions:
+              description: The standard terms applied to this game
+              type: string
+            constraints:
+              description: >-
+                Additional constraints, if set means true [optinRequiredForEntrants, hasRules,
+                hasRewards]
+              type: array
+              items:
+                type: string
+              example: |-
+                - deprecated
+                - notifyMember
+                - isHidden
+                - optinRequiredForEntrants
+                - expired
+            statusCode:
+              format: int32
+              description: The status of this game
+              type: integer
+            instantWinType:
+              description: Spinner etc
+              type: integer
+            iconLink:
+              description: Attachement id for the corresponding icon image.
+              type: string
+            bannerLink:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolutionLink:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolutionLink:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            startDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Instant Win started. All records are stored in
+                UTC time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+            endDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Instant Win ended. All records are stored in UTC
+                time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+            tiles:
+              description: Tiles are the buiilding blocks of the instant win game
+              type: array
+              items:
+                $ref: '#/components/schemas/InstantWinTile'
+            instanceResourceLink:
+              description: >-
+                Link to the system resources for this instant win.
+                https://<<space-name>>.cdn.ziqni.com/system-resources/instant-wins/<<instant-win-id>>
+              type: string
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
+    MemberTokenResponse:
+      description: '        '
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaBasic'
+          description: ''
+        data:
+          $ref: '#/components/schemas/MemberTokenInfo'
+          description: ''
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    InstantWinDonateRequest:
+      description: ''
+      required:
+        - instantWinIds
+        - numberOfPlaysToDonate
+      type: object
+      properties:
+        instantWinId:
+          description: The game to play.
+          type: string
+        numberOfPlaysToDonate:
+          description: ''
+          type: integer
+    RoundType:
+      description: The type of rounds in a contest
+      enum:
+        - TimeBound
+        - TargetBased
+      type: string
+      x-enum-varnames:
+        - TIMEBOUND
+        - TARGETBASED
+    StrategyType:
+      description: >
+        The scoring strategy type. SUMMARY: * "TotalCumulative": The basic strategy where all the
+        points sum up and are shown in the Leaderboard. Depending on the Rules, all the points are
+        Cumulative. * "SumBest": This strategy requires a value to indicate how many highest points
+        will be calculated and shown on the leaderboard * "LimitedTo": This strategy requires a value
+        to indicate how many events will be summed up and shown in the leaderboard. * "FirstTo": This
+        strategy requires a value to indicate how many points have to be received to complete the
+        mission.
+      enum:
+        - TotalCumulative
+        - SumBest
+        - LimitedTo
+        - FirstTo
+      type: string
+      x-enum-varnames:
+        - TOTALCUMULATIVE
+        - SUMBEST
+        - LIMITEDTO
+        - FIRSTTO
+    EventRefType:
+      description: Defines an even type attached to the message
+      enum:
+        - Competition
+        - Contest
+        - Achievement
+        - User
+        - MemberMessage
+      type: string
+      x-enum-varnames:
+        - COMPETITION
+        - CONTEST
+        - ACHIEVEMENT
+        - USER
+        - MEMBERMESSAGE
+    EntityType:
+      description: Entity the item is associated to.
+      enum:
+        - Member
+        - Product
+        - Achievement
+        - Repository
+        - FileObject
+        - Language
+        - MemberMessage
+        - Reward
+        - MemberAward
+        - Award
+        - Message
+        - RewardType
+        - ActionType
+        - UnitOfMeasure
+        - Competition
+        - Contest
+        - SqsConnection
+        - KafkaConnection
+        - RabbitMqConnection
+        - Events
+        - Webhook
+        - Attachment
+        - RuleSet
+        - InstantWin
+      type: string
+      x-enum-varnames:
+        - MEMBER
+        - PRODUCT
+        - ACHIEVEMENT
+        - REPOSITORY
+        - FILEOBJECT
+        - LANGUAGE
+        - MEMBERMESSAGE
+        - REWARD
+        - MEMBERAWARD
+        - AWARD
+        - MESSAGE
+        - REWARDTYPE
+        - ACTIONTYPE
+        - UNITOFMEASURE
+        - COMPETITION
+        - CONTEST
+        - SQSCONNECTION
+        - KAFKACONNECTION
+        - RABBITMQCONNECTION
+        - EVENTS
+        - WEBHOOK
+        - ATTACHMENT
+        - RULESET
+        - INSTANTWIN
+    ConditionalOperator:
+      description: Available actions for competition status
+      enum:
+        - Equals
+        - GreaterThan
+        - GreaterThanEquals
+        - LessThan
+        - LessThanEquals
+        - Between
+      type: string
+      x-enum-varnames:
+        - EQUALS
+        - GREATERTHAN
+        - GREATERTHANEQUALS
+        - LESSTHAN
+        - LESSTHANEQUALS
+        - BETWEEN
+    AwardStatus:
+      description: The status of award
+      enum:
+        - Unknown
+        - Preparing
+        - NotClaimed
+        - Claimed
+        - Expired
+      type: string
+      readOnly: true
+      x-enum-varnames:
+        - UNKNOWN
+        - PREPARING
+        - NOTCLAIMED
+        - CLAIMED
+        - EXPIRED
+    MessageStatus:
+      description: The status of the message
+      enum:
+        - New
+        - Read
+        - CollaborationRequest
+        - Actioned
+        - Claimed
+        - Expired
+        - Canceled
+        - Deprecated
+      type: string
+      x-enum-varnames:
+        - NEW
+        - READ
+        - COLLABORATIONREQUEST
+        - ACTIONED
+        - CLAIMED
+        - EXPIRED
+        - CANCELED
+        - DEPRECATED
+    MessageType:
+      description: The type of message of the member
+      enum:
+        - Achievement
+        - Ticket
+        - Reward
+        - Text
+        - Notification
+        - InboxItem
+        - NotificationInboxItem
+      type: string
+      x-enum-varnames:
+        - ACHIEVEMENT
+        - TICKET
+        - REWARD
+        - TEXT
+        - NOTIFICATION
+        - INBOXITEM
+        - NOTIFICATIONINBOXITEM
   responses:
     AchievementResponseBody:
       content:
@@ -6094,22 +6439,21 @@ components:
           schema:
             $ref: '#/components/schemas/MissionStatesResponse'
       description: ''
-  securitySchemes:
-    OAuth2:
-      flows:
-        authorizationCode:
-          authorizationUrl: 'https://iam.ziqni.io/oauth/authorize'
-          tokenUrl: 'https://iam.ziqni.io/oauth/token'
-          scopes:
-            ViewContests: Grants read access
-            ViewCompetitions: Grants read access
-            ViewAchievements: Grants read access
-            ViewRewards: Grants read access
-            ViewMessages: Grants read access
-            ViewAwards: Grants read access
-            ViewRules: Grants read access
-            ViewMembers: Grants read access
-      type: oauth2
+    TokenResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MemberTokenResponse'
+      description: ''
+    InstantWinsAvailablePlayResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InstantWinsAvailablePlayResponse'
+      description: ''
+security:
+  -
+    BearerAuth: []
 tags:
   -
     name: competitions

@@ -1,7 +1,7 @@
 package tests.utils;//package tests.utils;
 //
-//import com.ziqni.admin.client.ApiException;
-//import com.ziqni.admin.client.model.Error;
+//import com.ziqni.member.client.ApiException;
+//import com.ziqni.member.client.model.Error;
 //
 //import java.util.List;
 //import java.util.Objects;

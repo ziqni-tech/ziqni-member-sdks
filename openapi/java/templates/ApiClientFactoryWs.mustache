@@ -1,9 +1,10 @@
 package {{invokerPackage}};
 
 import {{invokerPackage}}.api.*;
-import {{invokerPackage}}.streaming.WsAddress;
+import {{invokerPackage}}.configuration.WebSocketAddress;
 import {{invokerPackage}}.streaming.StreamingClient;
 import {{invokerPackage}}.configuration.MemberApiClientConfiguration;
+import {{invokerPackage}}.eventbus.ZiqniSimpleEventBus;
 import java.time.Duration;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
@@ -12,7 +13,7 @@ import java.util.function.Supplier;
 public class ZiqniMemberApiFactory {
 
     private StreamingClient streamingClient;
-    private ZiqniMemberSDKEventBus ziqniAdminEventBus;
+    private ZiqniSimpleEventBus ziqniAdminEventBus;
     private Boolean initialised = false;
     {{#apiInfo}}{{#apis}}private {{classname}}Ws {{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}Ws;
     {{/apis}}{{/apiInfo}}
@@ -31,8 +32,8 @@ public class ZiqniMemberApiFactory {
     public void initialise() throws Exception {
         if(initialised) return;
         this.initialised = true;
-        this.ziqniAdminEventBus = new ZiqniMemberSDKEventBus();
-        this.streamingClient = new StreamingClient(this.configuration, new WsAddress(this.configuration).getAddress(), getZiqniAdminEventBus());
+        this.ziqniAdminEventBus = new ZiqniSimpleEventBus();
+        this.streamingClient = new StreamingClient(this.configuration, new WebSocketAddress(this.configuration).getAddress(), getZiqniAdminEventBus());
     }
 
     private void init() {
@@ -52,7 +53,7 @@ public class ZiqniMemberApiFactory {
         return streamingClient;
     }
 
-    public ZiqniMemberSDKEventBus getZiqniAdminEventBus() {
+    public ZiqniSimpleEventBus getZiqniAdminEventBus() {
         return ziqniAdminEventBus;
     }
 

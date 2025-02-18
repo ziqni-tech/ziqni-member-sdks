@@ -55,7 +55,7 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
     public void getProductsSimilarToTest() throws ApiException {
         final var productRequest = new ProductRequest()
                 .productFilter(new ProductFilter()
-                        .entityIds(List.of("W8hCJn8B12kHGcfxMwfI"))
+                        .entityIds(List.of("ZY1I1pQBImuEfQiP-_Kn"))
                         .addConstraintsItem("similarTo")
                         .limit(20)
                         .skip(0));

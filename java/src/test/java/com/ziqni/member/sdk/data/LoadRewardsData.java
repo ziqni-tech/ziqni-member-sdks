@@ -10,11 +10,11 @@ import java.util.List;
 
 public class LoadRewardsData implements CompleteableFutureTestWrapper {
 
-    public RewardRequest getRequest() {
-//        EntityFilter entityFilter=new EntityFilter();
-//        entityFilter.entityIds(List.of(entityId));
-//        entityFilter.setEntityType(entityType);
-        return new RewardRequest();
+    public RewardRequest getRequest(String entityId, String entityType) {
+        EntityFilter entityFilter=new EntityFilter();
+        entityFilter.entityIds(List.of(entityId));
+        entityFilter.setEntityType(entityType);
+        return new RewardRequest().entityFilter(List.of(entityFilter));
     }
 
 }

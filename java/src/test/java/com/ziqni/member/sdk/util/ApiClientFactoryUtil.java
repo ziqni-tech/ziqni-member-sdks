@@ -27,7 +27,7 @@ public class ApiClientFactoryUtil {
         while (!ziqniMemberApiFactory.getStreamingClient().isConnected()) {
             Thread.sleep(500);
             logger.info("Waiting for the streaming client start");
-            if(ziqniMemberApiFactory.getStreamingClient().isFailure())
+            if(ziqniMemberApiFactory.getStreamingClient().isNotConnected())
                 throw new RuntimeException("Streaming client dead");
         }
         return ziqniMemberApiFactory;

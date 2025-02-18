@@ -14,7 +14,6 @@ public class MemberApiClientConfiguration {
 
     private  Boolean loaded = false;
 
-    //todo - replace this with member client
     private  String memberClientServerHost;
     private  Integer memberClientServerPort;
     private  String memberClientServerScheme;
@@ -101,8 +100,8 @@ public class MemberApiClientConfiguration {
         return this;
     }
 
-    public  String getAccessTokenString() throws IdentityAuthorisationException {
-        return getIdentityAuthorization().getAccessTokenString();
+    public  String getMemberBearerToken() throws IdentityAuthorisationException {
+        return getIdentityAuthorization().getBearerToken();
     }
 
     public ObjectMapper createDefaultObjectMapper() {

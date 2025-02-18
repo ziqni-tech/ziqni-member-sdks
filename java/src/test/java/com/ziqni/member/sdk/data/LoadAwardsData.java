@@ -12,8 +12,8 @@ public class LoadAwardsData implements CompleteableFutureTestWrapper {
 
     public AwardRequest getRequest(String awardId) {
         final var numRange = new NumberRange();
-        numRange.setLessThan(16L);
-        numRange.setMoreThan(14L);
+        numRange.setLessThan(120L);
+        numRange.setMoreThan(0L);
 
         return new AwardRequest()
                 .awardFilter(new AwardFilter()

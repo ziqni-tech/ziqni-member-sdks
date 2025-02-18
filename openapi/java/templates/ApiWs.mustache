@@ -1,13 +1,12 @@
 {{>licenseInfo}}
 package {{package}};
-import javax.ws.rs.core.GenericType;
 import {{invokerPackage}}.streaming.StreamingClient;
-import {{invokerPackage}}.streaming.EventHandler;
+import {{invokerPackage}}.streaming.handlers.EventHandler;
 import com.ziqni.member.sdk.streaming.handlers.CallbackConsumer;
+import com.ziqni.member.sdk.streaming.stomp.StompHeaders;
 import {{invokerPackage}}.ApiException;
-import org.springframework.messaging.simp.stomp.StompHeaders;
 {{#imports}}
-    import {{import}};
+import {{import}};
 {{/imports}}
 
 import com.fasterxml.jackson.core.type.TypeReference;

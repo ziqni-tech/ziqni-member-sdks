@@ -3,13 +3,14 @@
 # DeclineAwardRequest
 
 
+
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**languageKey** | **String** | The language codes can be found in the settings/transalations section of the back office |  [optional]
-**awardIds** | **List&lt;String&gt;** |  |  [optional]
-**currencyKey** | **String** | The UoM currency key to normalise the value to for presentation. Example; If the reward is in EUR and this value is set to USD then the value will be multiplied by 1.09387699997429 |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**languageKey** | **String** | The language codes can be found in the settings/transalations section of the back office |  [optional] |
+|**awardIds** | **List&lt;String&gt;** |  |  [optional] |
+|**currencyKey** | **String** | The UoM currency key to normalise the value to for presentation. Example; If the reward is in EUR and this value is set to USD then the value will be multiplied by 1.09387699997429 |  [optional] |
 
 
 

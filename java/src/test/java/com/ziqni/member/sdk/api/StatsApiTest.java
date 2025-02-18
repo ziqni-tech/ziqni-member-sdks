@@ -14,7 +14,6 @@ public class StatsApiTest implements tests.utils.CompleteableFutureTestWrapper {
 
     private final StatsApiWs api;
 
-
     public StatsApiTest() throws Exception {
         this.api = ApiClientFactoryUtil.initApiClientFactory().getStatsApi();
     }

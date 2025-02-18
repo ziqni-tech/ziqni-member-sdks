@@ -2,12 +2,12 @@
 
 All URIs are relative to *https://member-api.ziqni.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**manageOptin**](OptInApi.md#manageOptin) | **POST** /manage-optin | Get member optin information
-[**manageOptinWithHttpInfo**](OptInApi.md#manageOptinWithHttpInfo) | **POST** /manage-optin | Get member optin information
-[**optInStates**](OptInApi.md#optInStates) | **POST** /optin-states | Get member optin status information
-[**optInStatesWithHttpInfo**](OptInApi.md#optInStatesWithHttpInfo) | **POST** /optin-states | Get member optin status information
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**manageOptin**](OptInApi.md#manageOptin) | **POST** /manage-optin | Get member optin information |
+| [**manageOptinWithHttpInfo**](OptInApi.md#manageOptinWithHttpInfo) | **POST** /manage-optin | Get member optin information |
+| [**optInStates**](OptInApi.md#optInStates) | **POST** /optin-states | Get member optin status information |
+| [**optInStatesWithHttpInfo**](OptInApi.md#optInStatesWithHttpInfo) | **POST** /optin-states | Get member optin status information |
 
 
 
@@ -26,7 +26,6 @@ Returns a list of member optin information
 import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.OptInApi;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +34,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         OptInApi apiInstance = new OptInApi(defaultClient);
         ManageOptinRequest manageOptinRequest = new ManageOptinRequest(); // ManageOptinRequest | 
@@ -59,9 +54,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **manageOptinRequest** | [**ManageOptinRequest**](ManageOptinRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **manageOptinRequest** | [**ManageOptinRequest**](ManageOptinRequest.md)|  | |
 
 ### Return type
 
@@ -70,7 +65,7 @@ CompletableFuture<[**OptInResponse**](OptInResponse.md)>
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -100,7 +95,6 @@ import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.OptInApi;
 import java.util.concurrent.CompletableFuture;
@@ -109,10 +103,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         OptInApi apiInstance = new OptInApi(defaultClient);
         ManageOptinRequest manageOptinRequest = new ManageOptinRequest(); // ManageOptinRequest | 
@@ -142,9 +132,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **manageOptinRequest** | [**ManageOptinRequest**](ManageOptinRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **manageOptinRequest** | [**ManageOptinRequest**](ManageOptinRequest.md)|  | |
 
 ### Return type
 
@@ -153,7 +143,7 @@ CompletableFuture<ApiResponse<[**OptInResponse**](OptInResponse.md)>>
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -183,7 +173,6 @@ Returns a list of member optin status information
 import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.OptInApi;
 import java.util.concurrent.CompletableFuture;
@@ -192,10 +181,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         OptInApi apiInstance = new OptInApi(defaultClient);
         OptInStatesRequest optInStatesRequest = new OptInStatesRequest(); // OptInStatesRequest | 
@@ -216,9 +201,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **optInStatesRequest** | [**OptInStatesRequest**](OptInStatesRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **optInStatesRequest** | [**OptInStatesRequest**](OptInStatesRequest.md)|  | |
 
 ### Return type
 
@@ -227,7 +212,7 @@ CompletableFuture<[**OptInResponse**](OptInResponse.md)>
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -257,7 +242,6 @@ import com.ziqni.member.sdk.ApiClient;
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.ApiResponse;
 import com.ziqni.member.sdk.Configuration;
-import com.ziqni.member.sdk.auth.*;
 import com.ziqni.member.sdk.models.*;
 import com.ziqni.member.sdk.api.OptInApi;
 import java.util.concurrent.CompletableFuture;
@@ -266,10 +250,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://member-api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         OptInApi apiInstance = new OptInApi(defaultClient);
         OptInStatesRequest optInStatesRequest = new OptInStatesRequest(); // OptInStatesRequest | 
@@ -299,9 +279,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **optInStatesRequest** | [**OptInStatesRequest**](OptInStatesRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **optInStatesRequest** | [**OptInStatesRequest**](OptInStatesRequest.md)|  | |
 
 ### Return type
 
@@ -310,7 +290,7 @@ CompletableFuture<ApiResponse<[**OptInResponse**](OptInResponse.md)>>
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

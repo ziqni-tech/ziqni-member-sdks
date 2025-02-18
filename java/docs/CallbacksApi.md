@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://member-api.ziqni.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**listCallbacks**](CallbacksApi.md#listCallbacks) | **GET** /callbacks | Describe the system callbacks and there constraints
-[**listCallbacksWithHttpInfo**](CallbacksApi.md#listCallbacksWithHttpInfo) | **GET** /callbacks | Describe the system callbacks and there constraints
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**listCallbacks**](CallbacksApi.md#listCallbacks) | **GET** /callbacks | Describe the system callbacks and there constraints |
+| [**listCallbacksWithHttpInfo**](CallbacksApi.md#listCallbacksWithHttpInfo) | **GET** /callbacks | Describe the system callbacks and there constraints |
 
 
 

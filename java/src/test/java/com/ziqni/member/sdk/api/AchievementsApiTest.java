@@ -25,8 +25,7 @@ import org.junit.jupiter.api.*;
 import java.time.OffsetDateTime;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * API tests for AchievementsApi
@@ -37,6 +36,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
 
     private AchievementsApiWs api;
     private LoadAchievementsData loadAchievementsData;
+    final String productId = "hIlqeJAB8AyZ3Dx3dSqP";
 
     @BeforeAll
     public void start() throws Exception {
@@ -89,7 +89,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
         achievementFilter.statusCode(new NumberRange()
                 .moreThan(1L)
                 .lessThan(1000L));
-        achievementFilter.addProductIdsItem("hIlqeJAB8AyZ3Dx3dSqP");
+        achievementFilter.addProductIdsItem(productId);
         achievementFilter.endDate(new DateRange()
                 .before(OffsetDateTime.parse("2025-09-03T13:39:32.000Z"))
                 .after(OffsetDateTime.parse("2024-09-03T13:38:32.000Z")));
@@ -101,7 +101,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
 
         assertNotNull(response);
         assertNotNull(response.getData());
-        assertNull(response.getErrors());
+        assertTrue(response.getErrors().isEmpty());
         Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
     }
 
@@ -114,7 +114,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
         achievementFilter.statusCode(new NumberRange()
                 .moreThan(1L)
                 .lessThan(1000L));
-        achievementFilter.addProductIdsItem("hIlqeJAB8AyZ3Dx3dSqP");
+        achievementFilter.addProductIdsItem(productId);
         achievementFilter.startDate(new DateRange()
                 .before(OffsetDateTime.parse("2025-09-03T13:39:32.000Z"))
                 .after(OffsetDateTime.parse("2024-09-03T13:38:32.000Z")));
@@ -126,7 +126,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
 
         assertNotNull(response);
         assertNotNull(response.getData());
-        assertNull(response.getErrors());
+        assertTrue(response.getErrors().isEmpty());
         Assertions.assertFalse(response.getData().isEmpty(), "Should have results");
     }
 

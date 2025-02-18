@@ -3,8 +3,8 @@
 ## Enum
 
 
-* `TimeBound` (value: `"TimeBound"`)
+* `TIMEBOUND` (value: `"TimeBound"`)
 
-* `TargetBased` (value: `"TargetBased"`)
+* `TARGETBASED` (value: `"TargetBased"`)
 
 

@@ -19,10 +19,12 @@ Name | Type | Description | Notes
 **statusCode** | **Number** | The code of the award | [optional] [readonly] 
 **constraints** | **[String]** | Additional constraints, if the value is present it means the | [optional] 
 **claimed** | **Boolean** |  Award is claimed. | [optional] 
-**status** | [**AwardStatus**](AwardStatus.md) |  | [optional] 
+**status** | [**AwardStateActions**](AwardStateActions.md) |  | [optional] 
 **name** | **String** | name from reward | [optional] 
 **description** | **String** | Text limited description | [optional] 
 **memberRefId** | **String** |  | [optional] 
+**activeFrom** | **Date** | This record is considered active up until this date time | [optional] 
+**activeUntil** | **Date** | This record is considered active up until this date time | [optional] 
 **id** | **String** | Ziqni id of the model | 
 **spaceName** | **String** | This is the space name which is linked to the account | [optional] 
 **created** | **Date** | ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone | [optional] 

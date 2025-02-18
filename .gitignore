@@ -48,6 +48,7 @@ build/
 /logs/
 /.idea/
 /javascript/dist/*
+/javascript/dist/
 /javascript/node_modules/
 /openapi/swift5/generated/
 /openapi/dart/openapitools.json
