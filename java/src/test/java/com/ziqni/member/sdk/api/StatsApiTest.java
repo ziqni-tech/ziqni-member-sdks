@@ -20,7 +20,10 @@ public class StatsApiTest implements tests.utils.CompleteableFutureTestWrapper {
 
     @Test
     public void getActiveEntitiesCountTest() throws ApiException {
-        var response = $(api.getActiveEntitiesCount(new ModelCountRequest()));
+        var response = $(api.getActiveEntitiesCount(new ModelCountRequest()
+                .entityId("FuAnimals")
+                .entityType("Product")
+                .isReferenceId(true)));
 
         assertNotNull(response);
 
