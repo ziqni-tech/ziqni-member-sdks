@@ -14,6 +14,7 @@
 package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.configuration.ConfigurationLoader;
 import com.ziqni.member.sdk.model.InstantWinFilter;
 import com.ziqni.member.sdk.model.InstantWinPlayRequest;
 import com.ziqni.member.sdk.model.InstantWinRequest;
@@ -33,6 +34,7 @@ public class InstantWinsApiTest implements tests.utils.CompleteableFutureTestWra
 
     @BeforeAll
     public void start() throws Exception {
+        ConfigurationLoader.setConfigFile("testing-application.properties");
         this.api = ApiClientFactoryUtil.initApiClientFactory().getInstantWinsApi();
 
     }

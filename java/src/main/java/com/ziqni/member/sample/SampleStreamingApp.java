@@ -1,6 +1,7 @@
 package com.ziqni.member.sample;
 
 import com.ziqni.member.sdk.ZiqniMemberApiFactory;
+import com.ziqni.member.sdk.configuration.ConfigurationLoader;
 import com.ziqni.member.sdk.model.*;
 import com.ziqni.member.sdk.eventbus.ZiqniSimpleEventBus;
 import com.ziqni.member.sdk.configuration.MemberApiClientConfigBuilder;
@@ -34,6 +35,8 @@ public class SampleStreamingApp {
      * @throws Exception - if an exception occurs
      */
     public static void main(String[] args) throws Exception {
+
+        ConfigurationLoader.setConfigFile("application.properties");
 
         // Create a new ZiqniMemberApiFactory
         factory = new ZiqniMemberApiFactory(MemberApiClientConfigBuilder.build());

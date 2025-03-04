@@ -14,6 +14,7 @@
 package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.configuration.ConfigurationLoader;
 import com.ziqni.member.sdk.data.LoadRulesData;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
@@ -32,6 +33,7 @@ public class RulesApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
     @BeforeAll
     public void start() throws Exception {
+        ConfigurationLoader.setConfigFile("testing-application.properties");
         this.api = ApiClientFactoryUtil.initApiClientFactory().getRulesApi();
         this.loadRulesData = new LoadRulesData();
 
