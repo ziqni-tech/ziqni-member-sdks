@@ -291,6 +291,20 @@ public class SampleStreamingApp {
             throw new RuntimeException(e);
         }
 
+        factory.getOptInApi().optInStates(new OptInStatesRequest().optinStatesFilter(new OptinStatesFilter()
+                        .addIdsItem("SGv10JQB9fSa-5KrfYds")
+//                                .addEntityTypesItem(EntityType.ACHIEVEMENT)
+                        ))
+                .handle((optInStatesResponse, throwable) -> {
+                    if(throwable != null){
+                        logger.error("Failed to get opt-in states", throwable);
+                    }
+                    else {
+                        logger.info(optInStatesResponse.toString());
+                    }
+                    return null;
+                });
+
         factory.getInstantWinsApi().getInstantWinAvailablePlays(new InstantWinAvailablePlaysRequest().addInstantWinIdsItem("1dnBs5QBjMwdu0-Jrobf"))
                 .thenCompose(instantWinAvailablePlaysResponse -> {
                     logger.info(instantWinAvailablePlaysResponse.toString());
