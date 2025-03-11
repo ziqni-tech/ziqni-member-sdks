@@ -99,7 +99,7 @@ class ApiClientStomp {
             debug: function (str) {
                 console.log(str);
             },
-            reconnectDelay: 300,
+            reconnectDelay: 5000,
             heartbeatIncoming: 4000,
             heartbeatOutgoing: 4000,
         });
@@ -144,6 +144,9 @@ class ApiClientStomp {
             console.log('Broker reported error: ' + frame.headers['message']);
             console.log('Additional details: ' + frame.body);
             resolve(frame.headers['message']);
+            if (typeof this.sysCallBack === 'function') {
+                this.sysCallBack(frame.headers['message'], {objectType: 'Error'})
+            }
             // this.client.deactivate()
             // reject({
             //     error: {
