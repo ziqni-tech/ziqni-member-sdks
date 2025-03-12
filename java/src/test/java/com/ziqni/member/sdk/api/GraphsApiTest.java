@@ -1,10 +1,12 @@
 package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.configuration.ConfigurationLoader;
 import com.ziqni.member.sdk.data.LoadAwardsData;
 import com.ziqni.member.sdk.model.EntityGraphRequest;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -19,6 +21,11 @@ public class GraphsApiTest implements tests.utils.CompleteableFutureTestWrapper{
     public GraphsApiTest() throws Exception {
         this.api = ApiClientFactoryUtil.initApiClientFactory().getGraphsApi();
         this.loadAwardsData=new LoadAwardsData();
+    }
+
+    @BeforeAll
+    public static void start() throws Exception {
+        ConfigurationLoader.setConfigFile("testing-application.properties");
     }
 
     @Test
