@@ -15,8 +15,13 @@ package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.data.LoadMessageData;
+import com.ziqni.member.sdk.model.MessageRequest;
+import com.ziqni.member.sdk.model.MessageStatus;
+import com.ziqni.member.sdk.model.UpdateMessageStateRequest;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,10 +49,28 @@ public class MessagesApiTest implements tests.utils.CompleteableFutureTestWrappe
      */
     @Test
     public void getMessagesTest() throws ApiException {
-        var response = $(api.getMessages(loadMessageData.getRequest()));
+        final var request = loadMessageData.getRequest();
+        request.getMessageFilter().addIdsItem("JBWRgoEBh5HwBxhdOdWF");
+                //.status(List.of(MessageStatus.READ));
+        var response = $(api.getMessages(request));
 
         assertNotNull(response);
         assertNotNull(response.getData());
+        assertNotNull(response.getErrors());
+        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+
+    }
+
+    @Test
+    public void updateMessagesTest() throws ApiException {
+        var request = new UpdateMessageStateRequest()
+                .id("JBWRgoEBh5HwBxhdOdWF")
+                .status(MessageStatus.READ);
+
+        var response = $(api.updateMessagesState(List.of(request)));
+
+        assertNotNull(response);
+//        assertNotNull(response.getData());
         assertNotNull(response.getErrors());
         assertTrue(response.getErrors().isEmpty(), "Should have no errors");
 

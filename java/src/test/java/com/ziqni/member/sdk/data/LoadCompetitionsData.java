@@ -3,6 +3,7 @@ package com.ziqni.member.sdk.data;
 import com.ziqni.member.sdk.model.*;
 import tests.utils.CompleteableFutureTestWrapper;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,10 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
         competitionFilter.setSortBy(List.of(querySortBy));
         competitionFilter.setLimit(limit);
         competitionFilter.setSkip(skip);
+//        competitionFilter.endDateRange(new DateRange()
+//                .before(OffsetDateTime.now().plusMonths(1).minusDays(6))
+//                .after(OffsetDateTime.now().plusMonths(1).minusDays(8)));
+        competitionFilter.sortBy(List.of(new QuerySortBy().queryField("scheduledEndDate").order(SortOrder.ASC)));
 
         var competitionRequest = new CompetitionRequest();
 //        competitionRequest.setMemberRefId(memberRefId);

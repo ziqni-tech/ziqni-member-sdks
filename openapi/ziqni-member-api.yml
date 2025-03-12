@@ -704,6 +704,42 @@ paths:
           OAuth2:
             - ViewInstantWinsAvailablePlays
       operationId: donateInstantWinPlays
+  /messages/state:
+    put:
+      requestBody:
+        description: Updates the state of the Message
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateMessageStateRequest'
+      tags:
+        - messages
+      responses:
+        '201':
+          $ref: '#/components/responses/ApiResponseBody'
+        '202':
+          description: Accepted
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '413':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+        '503':
+          $ref: '#/components/responses/ApiResponseBody'
+      operationId: updateMessagesState
+      description: Manages the Messages state
+      x-codegen-request-body-name: body
 components:
   schemas:
     ResponseMeta:
@@ -4031,87 +4067,6 @@ components:
             tags:
               - some text
               - some text
-    MessageFilter:
-      description: ''
-      type: object
-      properties:
-        tags:
-          description: ''
-          type: array
-          items:
-            type: string
-        ids:
-          description: ''
-          type: array
-          items:
-            type: string
-        sortBy:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/QuerySortBy'
-        skip:
-          format: int32
-          description: ''
-          type: integer
-        limit:
-          format: int32
-          description: ''
-          type: integer
-        expiryDateRange:
-          $ref: '#/components/schemas/DateRange'
-          description: ''
-        createdDateRange:
-          $ref: '#/components/schemas/DateRange'
-          description: ''
-        messageType:
-          $ref: '#/components/schemas/MessageType'
-          description: ''
-          example: |4-
-                  - Achievement
-                  - Ticket
-                  - Reward
-                  - Text
-                  - Notification
-                  - InboxItem
-                  - NotificationInboxItem
-      example:
-        productIds:
-          - some text
-          - some text
-        tags:
-          - some text
-          - some text
-        startDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        endDate:
-          gt: some text
-          lt: some text
-          constraints:
-            - some text
-            - some text
-        ids:
-          - some text
-          - some text
-        status:
-          - some text
-          - some text
-        sortBy:
-          -
-            queryField: some text
-            order: Asc
-          -
-            queryField: some text
-            order: Desc
-        skip: 0
-        limit: 72
-        statusCode:
-          - 60
-          - 45
     ModelCountRequest:
       description: ''
       type: object
@@ -6195,6 +6150,7 @@ components:
         - Expired
         - Canceled
         - Deprecated
+        - Deleted
       type: string
       x-enum-varnames:
         - NEW
@@ -6224,6 +6180,173 @@ components:
         - NOTIFICATION
         - INBOXITEM
         - NOTIFICATIONINBOXITEM
+    MessageFilter:
+      description: ''
+      type: object
+      properties:
+        tags:
+          description: ''
+          type: array
+          items:
+            type: string
+        ids:
+          description: ''
+          type: array
+          items:
+            type: string
+        sortBy:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
+        skip:
+          format: int32
+          description: ''
+          type: integer
+        limit:
+          format: int32
+          description: ''
+          type: integer
+        expiryDateRange:
+          $ref: '#/components/schemas/DateRange'
+          description: ''
+        createdDateRange:
+          $ref: '#/components/schemas/DateRange'
+          description: ''
+        messageType:
+          $ref: '#/components/schemas/MessageType'
+          description: ''
+          example: |4-
+                  - Achievement
+                  - Ticket
+                  - Reward
+                  - Text
+                  - Notification
+                  - InboxItem
+                  - NotificationInboxItem
+        status:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageStatus'
+      example:
+        productIds:
+          - some text
+          - some text
+        tags:
+          - some text
+          - some text
+        startDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        endDate:
+          gt: some text
+          lt: some text
+          constraints:
+            - some text
+            - some text
+        ids:
+          - some text
+          - some text
+        status:
+          - some text
+          - some text
+        sortBy:
+          -
+            queryField: some text
+            order: Asc
+          -
+            queryField: some text
+            order: Desc
+        skip: 0
+        limit: 72
+        statusCode:
+          - 60
+          - 45
+    ApiResponse:
+      required:
+        - meta
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaBasic'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    Result:
+      required:
+        - id
+        - result
+      type: object
+      properties:
+        id:
+          description: A unique system identifier of an updated record
+          type: string
+          example: sc1samQmVr61KgaPQq7x
+        externalReference:
+          description: A reference id from external system
+          type: string
+          example: fruits
+        result:
+          description: |
+            The response of an action Possible values:
+              * created: Will be returned for a POST action to create entity
+              * updated: Will be returned for a PUT action to update entity
+              * deleted: Will be returned for a DELETE action on an entity
+          type: string
+          example: created
+        relations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Relation'
+      example:
+        id: modelId
+        externalReference: externalRef
+        result: Created
+        relations:
+          -
+            id: otherModelId
+            relationType: Contest
+          -
+            id: oneMoreModelId
+            relationType: Product
+    Relation:
+      required:
+        - id
+        - relationType
+      properties:
+        id:
+          description: A unique system identifier to which this record is related to
+          type: string
+          example: sc1samQmVr61KgaPQq7x
+        relationType:
+          description: Entity type of the id
+          type: string
+          example: contest
+      example:
+        id: modelId
+        relationType: Product
+    UpdateMessageStateRequest:
+      allOf:
+        -
+          required:
+            - id
+            - status
+          type: object
+          properties:
+            id:
+              description: A unique system generated identifier
+              type: string
+              example: sc1samQmVr61KgaPQq7x
+            status:
+              $ref: '#/components/schemas/MessageStatus'
   responses:
     AchievementResponseBody:
       content:
@@ -6451,6 +6574,12 @@ components:
           schema:
             $ref: '#/components/schemas/InstantWinsAvailablePlayResponse'
       description: ''
+    ApiResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+      description: A list of outcomes and/or errors
 security:
   -
     BearerAuth: []
