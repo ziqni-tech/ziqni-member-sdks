@@ -10,7 +10,7 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
 
     public CompetitionRequest getRequest() {
         int limit =  20;
-        int skip = 0;
+        int skip = 20;
 //        String memberRefId = "Test_key-9a1f3fce-f8dc-456a-9eeb-3ee4d8116596";
 //        String compId = "M2aFXYEBl_GIktlkShBQ";
 //        List<String> productIds = new ArrayList<>();
@@ -22,8 +22,8 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
         rangeQuery.setLt("");
 
         var querySortBy = new QuerySortBy();
-        querySortBy.setQueryField("created");
-        querySortBy.setOrder(SortOrder.ASC);
+        querySortBy.setQueryField("scheduledEndDate");
+        querySortBy.setOrder(SortOrder.DESC);
 
         var competitionFilter = new CompetitionFilter();
 //        competitionFilter.setIds(List.of(compId));
@@ -34,6 +34,9 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
         competitionFilter.setSortBy(List.of(querySortBy));
         competitionFilter.setLimit(limit);
         competitionFilter.setSkip(skip);
+        competitionFilter.statusCode(new NumberRange()
+                .moreThan(0L)
+                .lessThan(100L));
 
         var competitionRequest = new CompetitionRequest();
 //        competitionRequest.setMemberRefId(memberRefId);

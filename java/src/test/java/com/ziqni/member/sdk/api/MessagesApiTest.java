@@ -15,8 +15,13 @@ package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.data.LoadMessageData;
+import com.ziqni.member.sdk.model.MessageRequest;
+import com.ziqni.member.sdk.model.MessageStatus;
+import com.ziqni.member.sdk.model.UpdateMessageStateRequest;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -45,6 +50,35 @@ public class MessagesApiTest implements tests.utils.CompleteableFutureTestWrappe
     @Test
     public void getMessagesTest() throws ApiException {
         var response = $(api.getMessages(loadMessageData.getRequest()));
+
+        assertNotNull(response);
+        assertNotNull(response.getData());
+        assertNotNull(response.getErrors());
+        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+
+    }
+
+    @Test
+    public void updateMessageStatusTest() throws ApiException {
+        var response = $(api.getMessages(loadMessageData.getRequest()));
+        var id = response.getData().get(1).getId();
+        var id1 = response.getData().get(2).getId();
+        var updateResponse = $(api.updateMessagesState(List.of(new UpdateMessageStateRequest()
+                .id(List.of(id, id1))
+                .status(MessageStatus.ACTIONED))));
+
+        assertNotNull(updateResponse);
+        assertNotNull(updateResponse.getResults());
+        assertNotNull(updateResponse.getErrors());
+        assertTrue(updateResponse.getErrors().isEmpty(), "Should have no errors");
+
+    }
+
+    @Test
+    public void filterMessagesByStatusTest() throws ApiException {
+        var request = loadMessageData.getRequest();
+        request.getMessageFilter().addStatusItem(MessageStatus.ACTIONED);
+        var response = $(api.getMessages(request));
 
         assertNotNull(response);
         assertNotNull(response.getData());

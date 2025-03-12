@@ -31,11 +31,13 @@ public class LoadContestsData implements CompleteableFutureTestWrapper {
         contestFilter.setConstraints(constraints);
         contestFilter.setStartDate(null);
         contestFilter.setEndDate(null);
-        contestFilter.setProductIds(productIds);
+//        contestFilter.setProductIds(productIds);
 //        contestFilter.setTags(tags);
         contestFilter.addSortByItem(querySortBy);
         contestFilter.setLimit(limit);
         contestFilter.setSkip(skip);
+//        contestFilter.addIdsItem("TaaMHpUB5vQx3cRMJ5VT");
+        contestFilter.statusCode(new NumberRange().lessThan(100L).moreThan(0L));
 
         var contestRequest = new ContestRequest();
         //contestRequest.setMemberRefId(memberRefId);
