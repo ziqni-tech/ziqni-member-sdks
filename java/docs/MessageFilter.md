@@ -16,6 +16,7 @@
 |**expiryDateRange** | [**DateRange**](DateRange.md) |  |  [optional] |
 |**createdDateRange** | [**DateRange**](DateRange.md) |  |  [optional] |
 |**messageType** | **MessageType** |  |  [optional] |
+|**status** | **List&lt;MessageStatus&gt;** |  |  [optional] |
 
 
 
