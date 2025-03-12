@@ -24,6 +24,7 @@ public class ApiClientFactoryUtil {
         }
 
         final var started = ziqniMemberApiFactory.getStreamingClient().start();
+        Thread.sleep(10000);
         while (!ziqniMemberApiFactory.getStreamingClient().isConnected()) {
             Thread.sleep(500);
             logger.info("Waiting for the streaming client start");

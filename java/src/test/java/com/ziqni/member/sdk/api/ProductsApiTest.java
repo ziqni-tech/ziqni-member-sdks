@@ -14,6 +14,7 @@
 package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.configuration.ConfigurationLoader;
 import com.ziqni.member.sdk.model.ProductFilter;
 import com.ziqni.member.sdk.model.ProductRequest;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
@@ -31,9 +32,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
     private ProductsApiWs api;
-
     @BeforeAll
     public void start() throws Exception {
+        ConfigurationLoader.setConfigFile("testing-application.properties");
         this.api = ApiClientFactoryUtil.initApiClientFactory().getProductsApi();
 
     }

@@ -14,9 +14,11 @@
 package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
+import com.ziqni.member.sdk.configuration.ConfigurationLoader;
 import com.ziqni.member.sdk.model.FileRequest;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -31,6 +33,11 @@ public class FilesApiTest implements tests.utils.CompleteableFutureTestWrapper {
 
     public FilesApiTest() throws Exception {
         this.api = ApiClientFactoryUtil.initApiClientFactory().getFilesApi();
+    }
+
+    @BeforeAll
+    public static void start() throws Exception {
+        ConfigurationLoader.setConfigFile("testing-application.properties");
     }
 
     /**
