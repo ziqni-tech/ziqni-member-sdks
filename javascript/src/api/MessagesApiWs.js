@@ -21,4 +21,17 @@ export default class MessagesApiWs {
 
   }
 
+  updateMessagesState(body,  callback) {
+
+    
+    if (body === undefined || body === null) {
+      throw new Error("Missing the required parameter 'body' when calling updateMessagesState");
+    }
+    
+    const message = { body: body };
+
+    apiClientStomp.instance.sendRpc('/gapi/updateMessagesState', message, callback);
+
+  }
+
 }
