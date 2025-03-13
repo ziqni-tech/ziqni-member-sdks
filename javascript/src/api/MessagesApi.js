@@ -13,8 +13,10 @@
 
 
 import ApiClient from "../ApiClient";
+import ApiResponse from '../model/ApiResponse';
 import MessageRequest from '../model/MessageRequest';
 import MessageResponse from '../model/MessageResponse';
+import UpdateMessageStateRequest from '../model/UpdateMessageStateRequest';
 
 /**
 * Messages service.
@@ -72,6 +74,45 @@ export default class MessagesApi {
       let returnType = MessageResponse;
       return this.apiClient.callApi(
         '/messages', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the updateMessagesState operation.
+     * @callback module:api/MessagesApi~updateMessagesStateCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/ApiResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Manages the Messages state
+     * @param {Object} opts Optional parameters
+     * @param {Array.<module:model/UpdateMessageStateRequest>} opts.body Updates the state of the Message
+     * @param {module:api/MessagesApi~updateMessagesStateCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/ApiResponse}
+     */
+    updateMessagesState(opts, callback) {
+      opts = opts || {};
+      let postBody = opts['body'];
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = [];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = ApiResponse;
+      return this.apiClient.callApi(
+        '/messages/state', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

@@ -13,6 +13,7 @@
 
 import ApiClient from '../ApiClient';
 import DateRange from './DateRange';
+import MessageStatus from './MessageStatus';
 import MessageType from './MessageType';
 import QuerySortBy from './QuerySortBy';
 
@@ -74,6 +75,9 @@ class MessageFilter {
             if (data.hasOwnProperty('messageType')) {
                 obj['messageType'] = MessageType.constructFromObject(data['messageType']);
             }
+            if (data.hasOwnProperty('status')) {
+                obj['status'] = ApiClient.convertToType(data['status'], [MessageStatus]);
+            }
         }
         return obj;
     }
@@ -120,6 +124,11 @@ MessageFilter.prototype['createdDateRange'] = undefined;
  * @member {module:model/MessageType} messageType
  */
 MessageFilter.prototype['messageType'] = undefined;
+
+/**
+ * @member {Array.<module:model/MessageStatus>} status
+ */
+MessageFilter.prototype['status'] = undefined;
 
 
 

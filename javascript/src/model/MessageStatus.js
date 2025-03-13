@@ -75,6 +75,13 @@ export default class MessageStatus {
         "DEPRECATED" = "Deprecated";
 
     
+        /**
+         * value: "Deleted"
+         * @const
+         */
+        "Deleted" = "Deleted";
+
+    
 
     /**
     * Returns a <code>MessageStatus</code> enum value from a Javascript object name.
