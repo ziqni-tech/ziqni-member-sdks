@@ -44,14 +44,17 @@ class ApiClientStomp {
      * The base URL against which to resolve every API call's (relative) path.
      * Overrides the default value set in spec file if present
      * @param {String} basePath
+     * @param {String} sockJSPath
      */
-    constructor(basePath = 'wss://member-api.ziqni.com/ws') {
+    constructor(basePath = 'wss://member-api.ziqni.com/ws', sockJSPath = 'https://member-api.ziqni.com/ws') {
         /**
          * The base URL against which to resolve every API call's (relative) path.
          * @type {String}
          * @default https://member-api.ziqni.com
          */
         this.basePath = basePath.replace(/\/+$/, '');
+
+        this.sockJSPath = sockJSPath;
 
         /**
          * The authentication methods to be included for all API calls.
@@ -76,6 +79,8 @@ class ApiClientStomp {
          * @default 60000
          */
         this.timeout = 60000;
+
+        const _this = this;
 
         /*
          * Used to save and return cookies in a node.js (non-browser) setting,
@@ -105,7 +110,7 @@ class ApiClientStomp {
         });
 
         this.client.webSocketFactory = function () {
-            return new SockJS('https://member-api.ziqni.com/ws');
+            return new SockJS(_this.sockJSPath);
         };
     }
 
