@@ -110,7 +110,7 @@ class ApiClientStomp {
         });
 
         this.client.webSocketFactory = function () {
-            return new SockJS(_this.sockJSPath);
+            return new SockJS(_this.sockJSPath, [], {timeout: 10000});
         };
     }
 
