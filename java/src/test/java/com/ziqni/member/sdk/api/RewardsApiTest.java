@@ -13,7 +13,6 @@
 package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
-import com.ziqni.member.sdk.configuration.ConfigurationLoader;
 import com.ziqni.member.sdk.data.LoadRewardsData;
 import com.ziqni.member.sdk.model.EntityType;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
@@ -33,7 +32,7 @@ public class RewardsApiTest implements tests.utils.CompleteableFutureTestWrapper
 
     @BeforeAll
     public void start() throws Exception {
-        ConfigurationLoader.setConfigFile("testing-application.properties");
+//        ConfigurationLoader.setConfigFile("testing-application.properties");
         this.api = ApiClientFactoryUtil.initApiClientFactory().getRewardsApi();
         this.loadRewardsData = new LoadRewardsData();
 
@@ -58,6 +57,19 @@ public class RewardsApiTest implements tests.utils.CompleteableFutureTestWrapper
     public void getRewardsTest() throws ApiException {
         var entityId = "PHk04JQB_zkdor8I8kUk";
         var entityType = EntityType.ACHIEVEMENT.getValue();
+        var response = $(api.getRewards(loadRewardsData.getRequest(entityId, entityType)));
+
+        assertNotNull(response);
+        assertNotNull(response.getData());
+        assertNotNull(response.getErrors());
+        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+        assertFalse(response.getData().isEmpty(), "Should have results");
+    }
+
+    @Test
+    public void getRewardsForInstantWinTest() throws ApiException {
+        var entityId = "HQgqs5UBjPQO8Lf15eqs/row/0/col/2";
+        var entityType = EntityType.INSTANTWIN.getValue();
         var response = $(api.getRewards(loadRewardsData.getRequest(entityId, entityType)));
 
         assertNotNull(response);
