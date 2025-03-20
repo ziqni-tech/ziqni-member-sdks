@@ -40,6 +40,7 @@ public class SampleStreamingApp {
 
         // Create a new ZiqniMemberApiFactory
         factory = new ZiqniMemberApiFactory(MemberApiClientConfigBuilder.build());
+        factory.initialise();
 
         // Set up the callbacks for the LeaderboardUpdateHandler
         factory.getCallbacksApi().leaderboardUpdateHandler(
