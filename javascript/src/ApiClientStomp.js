@@ -87,7 +87,7 @@ class ApiClientStomp {
          * if this.enableCookies is set to true.
          */
         if (typeof window === 'undefined') {
-          this.agent = new superagent.agent();
+            this.agent = new superagent.agent();
         }
 
         this.publicToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5X2lkIjoicXhtcXFZRUJUZVV0U0VzNEVJLWgiLCJtZW1iZXJfcmVmZXJlbmNlX2lkIjoiVGVzdF9rZXktMDYwNzg0NGYtMjU1Yy00ZDE5LTg1YTAtYzQzNmMxZDRmNTVlIiwiYWNjb3VudF9pZCI6IkY3bThkSHdCc3ctT0gzTUVvVzIzIiwic3BhY2VfbmFtZSI6ImZpcnN0LXNwYWNlIiwibmFtZSI6IlRlc3RfbmFtZS0zYWE1YzRlZS1jY2VlLTRiZWMtYjU5My1kYTdiMzAwZWU4OTAiLCJtZW1iZXJfdHlwZSI6IkluZGl2aWR1YWwiLCJtZW1iZXJfaWQiOiJ3LVVlSElJQnVwTjhDRjN6YzBoeiIsInJlc291cmNlX2FjY2VzcyI6eyJ6aXFuaS1nYXBpIjp7InJvbGVzIjpbIlB1YmxpYyIsIk1lbWJlciIsIlZpZXdBY2hpZXZlbWVudHMiLCJWaWV3QXdhcmRzIiwiQ2xhaW1Bd2FyZHMiLCJWaWV3Q29tcGV0aXRpb25zIiwiVmlld0NvbnRlc3RzIiwiVmlld0ZpbGVzIiwiVmlld01lbWJlcnMiLCJNZW1iZXJzT3B0aW4iLCJWaWV3TWVzc2FnZXMiLCJDb25uZWN0UHJveHkiLCJWaWV3UmV3YXJkcyIsIlZpZXdSdWxlcyJdfX0sInN1YiI6InctVWVISUlCdXBOOENGM3pjMGh6IiwianRpIjoiM2JkZjFhMmQtOTg1NS00NTJiLWEyZDctYTFmY2ZiNTUyMzZmIiwiaWF0IjoxNjU5MDk4Mjk3LCJleHAiOjE2NjEyNTgyOTd9.xurnAsrRccborCMqEhLYDkhpYLmvSWn9U3qP550H3fg';
@@ -99,7 +99,7 @@ class ApiClientStomp {
             brokerURL: this.basePath,
             connectHeaders: {
                 login: 'Bearer',
-                passcode: this.publicToken, // 'JWT token you get from https://api.ziqni.com/swagger-ui/#/member-token/createMemberToken',
+                passcode: this.publicToken,
             },
             debug: function (str) {
                 console.log(str);
@@ -115,16 +115,45 @@ class ApiClientStomp {
     }
 
     /**
-    * Returns a string representation for an actual parameter.
-    * @param param The actual parameter.
-    * @returns {String} The string representation of <code>param</code>.
-    */
+     * Updates the basePath and sockJSPath for the client
+     * @param {String} basePath - New WebSocket URL
+     * @param {String} sockJSPath - New SockJS URL
+     */
+    updatePaths(basePath, sockJSPath) {
+        this.basePath = basePath.replace(/\/+$/, '');
+        this.sockJSPath = sockJSPath;
+
+        // Recreate the client with new paths
+        this.client = new StompJs.Client({
+            brokerURL: this.basePath,
+            connectHeaders: {
+                login: 'Bearer',
+                passcode: this.publicToken,
+            },
+            debug: function (str) {
+                console.log(str);
+            },
+            reconnectDelay: 5000,
+            heartbeatIncoming: 4000,
+            heartbeatOutgoing: 4000,
+        });
+
+        this.client.webSocketFactory = () => {
+            return new SockJS(this.sockJSPath, [], {timeout: 10000});
+        };
+    }
+
+    /**
+     * Returns a string representation for an actual parameter.
+     * @param param The actual parameter.
+     * @returns {String} The string representation of <code>param</code>.
+     */
     connect = async (param) => new Promise((resolve, reject) => {
         this.client.beforeConnect =  () => {
             if (param && param.token){
                 this.client.connectHeaders = {
                     login: 'Bearer',
-                    passcode: param.token, // 'JWT token you get from https://api.ziqni.com/swagger-ui/#/member-token/createMemberToken',
+                    passcode: param.token,
                 }
             }
         };
@@ -136,40 +165,27 @@ class ApiClientStomp {
 
                 resolve()
             }
-            // Do something, all subscribes must be done is this callback
-            // This is needed because this will be executed after a (re)connect
         };
 
         this.client.onStompError = (frame) => {
-            // Will be invoked in case of error encountered at Broker
-            // Bad login/passcode typically will cause an error
-            // Complaint brokers will set `message` header with a brief message. Body may contain details.
-            // Compliant brokers will terminate the connection after any error
-            //Todo: check if we really need to deactivate client
             console.log('Broker reported error: ' + frame.headers['message']);
             console.log('Additional details: ' + frame.body);
             resolve(frame.headers['message']);
             if (typeof this.sysCallBack === 'function') {
                 this.sysCallBack(frame.headers['message'], {objectType: 'Error'})
             }
-            // this.client.deactivate()
-            // reject({
-            //     error: {
-            //         message: frame.headers['message'],
-            //         body: frame.body
-            //     }
-            // })
         };
 
         this.client.activate();
     })
+
     disconnect = async () => new Promise((resolve, reject) => {
         this.client.deactivate().then(() => resolve()).catch(() => reject());
     });
 
     uuidv4() {
         return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+          (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
         );
     }
 
@@ -181,11 +197,8 @@ class ApiClientStomp {
             if(callback) {
                 callback(JSON.parse(message.body));
             }
-            // ToDo: Handle messages with unknown message id
-            // console.log("Got Message With Body " + message.body);
         } else {
             console.log('message with empty body', message);
-            // ToDo: Handle message with empty body
         }
     };
 
@@ -218,11 +231,19 @@ class ApiClientStomp {
     }
 }
 
-
+/**
+ * The default API Stomp client implementation.
+ * @type {module:ApiClientStomp}
+ */
+ApiClientStomp.instance = new ApiClientStomp();
 
 /**
-* The default API  Stomp client implementation.
-* @type {module:ApiClientStomp}
-*/
-ApiClientStomp.instance = new ApiClientStomp();
+ * Static method to update paths for the default instance
+ * @param {String} basePath - New WebSocket URL
+ * @param {String} sockJSPath - New SockJS URL
+ */
+ApiClientStomp.updateInstancePaths = function(basePath, sockJSPath) {
+    ApiClientStomp.instance.updatePaths(basePath, sockJSPath);
+};
+
 export default ApiClientStomp;
