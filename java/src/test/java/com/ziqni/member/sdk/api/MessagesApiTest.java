@@ -79,6 +79,30 @@ public class MessagesApiTest implements tests.utils.CompleteableFutureTestWrappe
     }
 
     @Test
+    public void updateMessageStatusToDeletedTest() throws ApiException, InterruptedException {
+        var response = $(api.getMessages(loadMessageData.getRequest()));
+        var id = "04prrZUBOj_U9-LQGMM4";
+        var updateMessageStateRequest = new UpdateMessageStateRequest()
+                .id(List.of(id))
+                .status(MessageStatus.DELETED);
+
+        var updateResponse = $(api.updateMessagesState(List.of(updateMessageStateRequest)));
+
+        Thread.sleep(2000);
+        var request = loadMessageData.getRequest();
+        request.getMessageFilter().addIdsItem(id);
+        var getResponse = $(api.getMessages(request));
+
+        assertNotNull(updateResponse);
+        assertNotNull(updateResponse.getResults());
+        assert getResponse.getData().get(0).getStatus() != null;
+        assertNotNull(MessageStatus.DELETED.compareTo(getResponse.getData().get(0).getStatus()) == 0);
+        assertNotNull(updateResponse.getErrors());
+        assertTrue(updateResponse.getErrors().isEmpty(), "Should have no errors");
+
+    }
+
+    @Test
     public void filterMessagesByStatusTest() throws ApiException {
         var request = loadMessageData.getRequest();
         request.getMessageFilter().addStatusItem(MessageStatus.READ);
