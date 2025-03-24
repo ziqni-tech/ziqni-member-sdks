@@ -15,9 +15,7 @@ package com.ziqni.member.sdk.api;
 
 import com.ziqni.member.sdk.ApiException;
 import com.ziqni.member.sdk.data.LoadMessageData;
-import com.ziqni.member.sdk.model.MessageRequest;
-import com.ziqni.member.sdk.model.MessageStatus;
-import com.ziqni.member.sdk.model.UpdateMessageStateRequest;
+import com.ziqni.member.sdk.model.*;
 import com.ziqni.member.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.Test;
 
@@ -91,6 +89,30 @@ public class MessagesApiTest implements tests.utils.CompleteableFutureTestWrappe
         assertNotNull(response.getErrors());
         assertTrue(response.getErrors().isEmpty(), "Should have no errors");
 
+    }
+
+    @Test
+    public void getMessagesSortByCreatedDateTest() throws ApiException {
+        var request = loadMessageData.getRequest();
+        request.getMessageFilter().addSortByItem(new QuerySortBy().queryField("created").order(SortOrder.DESC));
+        var response = $(api.getMessages(request));
+
+        assertNotNull(response);
+        assertNotNull(response.getData());
+        assertNotNull(response.getErrors());
+        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+
+        // Check descending order
+        var messages = response.getData();
+        assertFalse(messages.isEmpty(), "Messages list should not be empty");
+
+        for (int i = 0; i < messages.size() - 1; i++) {
+            var currentCreated = messages.get(i).getCreated();
+            var nextCreated = messages.get(i + 1).getCreated();
+            assertTrue(currentCreated.compareTo(nextCreated) >= 0,
+                    String.format("Message at index %d with created %s should be >= message at index %d with created %s",
+                            i, currentCreated, i + 1, nextCreated));
+        }
     }
     
 }
