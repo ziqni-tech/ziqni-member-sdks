@@ -1,4 +1,4 @@
-# ziqni-Member-api-client
+# Ziqni-Member-Api-Client
 
 Ziqni Member Cloud API
 
