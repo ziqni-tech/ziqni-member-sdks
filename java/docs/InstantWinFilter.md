@@ -14,6 +14,7 @@
 |**limit** | **Integer** |  |  [optional] |
 |**constraints** | **List&lt;String&gt;** | Specify the constraints that need to be applied to the filter. |  [optional] |
 |**instantWinTypes** | **List&lt;Integer&gt;** |  |  [optional] |
+|**statusCode** | [**NumberRange**](NumberRange.md) |  |  [optional] |
 
 
 
