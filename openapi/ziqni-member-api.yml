@@ -1,4 +1,4 @@
-openapi: 3.0.2
+openapi: 3.0.3
 info:
   title: ZIQNI Member API
   version: 1.0.19
@@ -198,7 +198,13 @@ paths:
             - ViewCompetitions
       operationId: getCompetitions
       summary: Get competitions by member reference id
-      description: Returns a list of competitions for the provided member ref id and applied filters.
+      description: >-
+        Returns a list of competitions for the provided member ref id and applied filters.
+        
+        
+        When using skip limit from REST (DO NOT USE REST) then the max page size is 20, example; 50
+        can be passed as limit, but then skip will need to be at least 30, so that the difference
+        between skip and limit is 20 max.
       x-ws-only: true
   /contests:
     summary: Member contests operation
@@ -645,9 +651,6 @@ paths:
           $ref: '#/components/responses/TokenResponseBody'
         '500':
           $ref: '#/components/responses/TokenResponseBody'
-      security:
-        -
-          OAuth2: []
       operationId: createMemberToken
       description: Get Jwt Token
   /instant-wins-available-plays:
@@ -2798,56 +2801,6 @@ components:
       allOf:
         -
           $ref: '#/components/schemas/MetaInfo'
-    Message:
-      description: ''
-      type: object
-      allOf:
-        -
-          required:
-            - id
-          type: object
-          properties:
-            eventRefType:
-              $ref: '#/components/schemas/EventRefType'
-            eventRefId:
-              description: The reference ID of the event object
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            messageType:
-              $ref: '#/components/schemas/MessageType'
-            subject:
-              description: The title of the message
-              type: string
-              example: Hello and welcome
-            body:
-              description: The context of the message
-              type: string
-              example: Here is a message to welcome you on board!
-            status:
-              $ref: '#/components/schemas/MessageStatus'
-            expiry:
-              format: date-time
-              description: The time that the message will disappear after. ISO8601 timestamp
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            memberIds:
-              description: The reference ID of the event object
-              type: array
-              items:
-                type: string
-              example: '- Dc4swmQBVd51K6gPQqFx'
-            memberTags:
-              description: ''
-              type: array
-              items:
-                type: string
-            id:
-              description: ''
-              type: string
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptionalModelFields'
     OptInResponse:
       description: '        '
       required: []
@@ -3540,6 +3493,9 @@ components:
           type: array
           items:
             type: integer
+        statusCode:
+          $ref: '#/components/schemas/NumberRange'
+          description: ''
       example:
         productIds:
           - some text
@@ -4979,7 +4935,7 @@ components:
             type: string
         statusCodes:
           $ref: '#/components/schemas/RangeQuery'
-          description: Optionally provide a range of status codes for the netity to return
+          description: Optionally provide a range of status codes for the entity to return
         optInStatusCodes:
           $ref: '#/components/schemas/RangeQuery'
           description: Optionally provide a range of status codes for the member. Default is all
@@ -6349,6 +6305,58 @@ components:
               example: sc1samQmVr61KgaPQq7x
             status:
               $ref: '#/components/schemas/MessageStatus'
+    Message:
+      description: ''
+      type: object
+      allOf:
+        -
+          required:
+            - id
+          type: object
+          properties:
+            scheduling:
+              $ref: '#/components/schemas/Scheduling'
+            eventRefType:
+              $ref: '#/components/schemas/EventRefType'
+            eventRefId:
+              description: The reference ID of the event object
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            messageType:
+              $ref: '#/components/schemas/MessageType'
+            subject:
+              description: The title of the message
+              type: string
+              example: Hello and welcome
+            body:
+              description: The context of the message
+              type: string
+              example: Here is a message to welcome you on board!
+            status:
+              $ref: '#/components/schemas/MessageStatus'
+            expiry:
+              format: date-time
+              description: The time that the message will disappear after. ISO8601 timestamp
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            memberIds:
+              description: The reference ID of the event object
+              type: array
+              items:
+                type: string
+              example: '- Dc4swmQBVd51K6gPQqFx'
+            memberTags:
+              description: ''
+              type: array
+              items:
+                type: string
+            id:
+              description: ''
+              type: string
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptionalModelFields'
   responses:
     AchievementResponseBody:
       content:
@@ -6582,9 +6590,10 @@ components:
           schema:
             $ref: '#/components/schemas/ApiResponse'
       description: A list of outcomes and/or errors
-security:
-  -
-    BearerAuth: []
+  securitySchemes:
+    OAuth2:
+      flows: {}
+      type: oauth2
 tags:
   -
     name: competitions
@@ -6619,3 +6628,9 @@ tags:
   -
     name: products
     description: Perform POST operations on Products
+  -
+    name: instant-wins
+    description: Perform POST operations on instant wins
+  -
+    name: jackpot-contributions
+    description: Perform POST operations on jackpot contributions
