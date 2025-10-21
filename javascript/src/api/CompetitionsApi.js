@@ -45,7 +45,7 @@ export default class CompetitionsApi {
 
     /**
      * Get competitions by member reference id
-     * Returns a list of competitions for the provided member ref id and applied filters.
+     * Returns a list of competitions for the provided member ref id and applied filters.  When using skip limit from REST (DO NOT USE REST) then the max page size is 20, example; 50 can be passed as limit, but then skip will need to be at least 30, so that the difference between skip and limit is 20 max.
      * @param {module:model/CompetitionRequest} competitionRequest 
      * @param {module:api/CompetitionsApi~getCompetitionsCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/CompetitionResponse}

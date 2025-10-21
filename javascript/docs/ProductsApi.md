@@ -20,6 +20,7 @@ Returns a list of products recommended for a product with given id.
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 
 let apiInstance = new ZiqniMemberApi.ProductsApi();
 let productRequest = new ZiqniMemberApi.ProductRequest(); // ProductRequest | 

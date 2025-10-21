@@ -20,6 +20,7 @@ Returns member information for the provided member reference id
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 
 let apiInstance = new ZiqniMemberApi.MembersApi();
 let memberRequest = new ZiqniMemberApi.MemberRequest(); // MemberRequest | 

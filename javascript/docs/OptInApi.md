@@ -21,6 +21,7 @@ Returns a list of member optin information
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 
 let apiInstance = new ZiqniMemberApi.OptInApi();
 let manageOptinRequest = new ZiqniMemberApi.ManageOptinRequest(); // ManageOptinRequest | 
@@ -66,6 +67,7 @@ Returns a list of member optin status information
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 
 let apiInstance = new ZiqniMemberApi.OptInApi();
 let optInStatesRequest = new ZiqniMemberApi.OptInStatesRequest(); // OptInStatesRequest | 

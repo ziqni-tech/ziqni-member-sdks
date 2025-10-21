@@ -22,6 +22,7 @@ This operation enables a member to claim awards.
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 
 let apiInstance = new ZiqniMemberApi.AwardsApi();
 let claimAwardRequest = new ZiqniMemberApi.ClaimAwardRequest(); // ClaimAwardRequest | 
@@ -67,6 +68,7 @@ This operation enables a member to claim awards.
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 
 let apiInstance = new ZiqniMemberApi.AwardsApi();
 let declineAwardRequest = new ZiqniMemberApi.DeclineAwardRequest(); // DeclineAwardRequest | 
@@ -112,6 +114,7 @@ This operation supports retrieval of awards for one or many entities.
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 
 let apiInstance = new ZiqniMemberApi.AwardsApi();
 let awardRequest = new ZiqniMemberApi.AwardRequest(); // AwardRequest | 

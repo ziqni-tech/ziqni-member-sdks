@@ -20,6 +20,7 @@ Returns the count of active competitions and/or achievements by product id or re
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 
 let apiInstance = new ZiqniMemberApi.StatsApi();
 let modelCountRequest = new ZiqniMemberApi.ModelCountRequest(); // ModelCountRequest | 

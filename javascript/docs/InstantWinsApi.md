@@ -21,6 +21,7 @@ Method | HTTP request | Description
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 
 let apiInstance = new ZiqniMemberApi.InstantWinsApi();
 let instantWinDonateRequest = new ZiqniMemberApi.InstantWinDonateRequest(); // InstantWinDonateRequest | 
@@ -64,6 +65,7 @@ No authorization required
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 
 let apiInstance = new ZiqniMemberApi.InstantWinsApi();
 let instantWinAvailablePlaysRequest = new ZiqniMemberApi.InstantWinAvailablePlaysRequest(); // InstantWinAvailablePlaysRequest | 
@@ -107,6 +109,7 @@ No authorization required
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 
 let apiInstance = new ZiqniMemberApi.InstantWinsApi();
 let instantWinRequest = new ZiqniMemberApi.InstantWinRequest(); // InstantWinRequest | 
@@ -150,6 +153,7 @@ No authorization required
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 
 let apiInstance = new ZiqniMemberApi.InstantWinsApi();
 let instantWinPlayRequest = new ZiqniMemberApi.InstantWinPlayRequest(); // InstantWinPlayRequest | 

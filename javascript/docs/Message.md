@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**scheduling** | [**Scheduling**](Scheduling.md) |  | [optional] 
 **eventRefType** | [**EventRefType**](EventRefType.md) |  | [optional] 
 **eventRefId** | **String** | The reference ID of the event object | [optional] 
 **messageType** | [**MessageType**](MessageType.md) |  | [optional] 

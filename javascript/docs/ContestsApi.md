@@ -20,6 +20,7 @@ Returns a list of contests for the provided member ref id and applied filters.
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 
 let apiInstance = new ZiqniMemberApi.ContestsApi();
 let contestRequest = new ZiqniMemberApi.ContestRequest(); // ContestRequest | 

@@ -12,6 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import NumberRange from './NumberRange';
 
 /**
  * The InstantWinFilter model module.
@@ -65,6 +66,9 @@ class InstantWinFilter {
             if (data.hasOwnProperty('instantWinTypes')) {
                 obj['instantWinTypes'] = ApiClient.convertToType(data['instantWinTypes'], ['Number']);
             }
+            if (data.hasOwnProperty('statusCode')) {
+                obj['statusCode'] = NumberRange.constructFromObject(data['statusCode']);
+            }
         }
         return obj;
     }
@@ -102,6 +106,11 @@ InstantWinFilter.prototype['constraints'] = undefined;
  * @member {Array.<Number>} instantWinTypes
  */
 InstantWinFilter.prototype['instantWinTypes'] = undefined;
+
+/**
+ * @member {module:model/NumberRange} statusCode
+ */
+InstantWinFilter.prototype['statusCode'] = undefined;
 
 
 

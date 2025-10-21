@@ -15,6 +15,7 @@ import ApiClient from '../ApiClient';
 import EventRefType from './EventRefType';
 import MessageStatus from './MessageStatus';
 import MessageType from './MessageType';
+import Scheduling from './Scheduling';
 
 /**
  * The MessageAllOf model module.
@@ -52,6 +53,9 @@ class MessageAllOf {
         if (data) {
             obj = obj || new MessageAllOf();
 
+            if (data.hasOwnProperty('scheduling')) {
+                obj['scheduling'] = Scheduling.constructFromObject(data['scheduling']);
+            }
             if (data.hasOwnProperty('eventRefType')) {
                 obj['eventRefType'] = EventRefType.constructFromObject(data['eventRefType']);
             }
@@ -88,6 +92,11 @@ class MessageAllOf {
 
 
 }
+
+/**
+ * @member {module:model/Scheduling} scheduling
+ */
+MessageAllOf.prototype['scheduling'] = undefined;
 
 /**
  * @member {module:model/EventRefType} eventRefType

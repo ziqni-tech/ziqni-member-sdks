@@ -10,5 +10,6 @@ Name | Type | Description | Notes
 **limit** | **Number** |  | [optional] 
 **constraints** | **[String]** | Specify the constraints that need to be applied to the filter. | [optional] 
 **instantWinTypes** | **[Number]** |  | [optional] 
+**statusCode** | [**NumberRange**](NumberRange.md) |  | [optional] 
 
 
