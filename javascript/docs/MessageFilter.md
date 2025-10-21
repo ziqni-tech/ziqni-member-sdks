@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **expiryDateRange** | [**DateRange**](DateRange.md) |  | [optional] 
 **createdDateRange** | [**DateRange**](DateRange.md) |  | [optional] 
 **messageType** | [**MessageType**](MessageType.md) |  | [optional] 
+**status** | [**[MessageStatus]**](MessageStatus.md) |  | [optional] 
 
 

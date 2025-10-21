@@ -18,6 +18,7 @@ import MessageStatus from './MessageStatus';
 import MessageType from './MessageType';
 import ModelDefault from './ModelDefault';
 import OptionalModelFields from './OptionalModelFields';
+import Scheduling from './Scheduling';
 
 /**
  * The Message model module.
@@ -61,6 +62,9 @@ class Message {
             ModelDefault.constructFromObject(data, obj);
             OptionalModelFields.constructFromObject(data, obj);
 
+            if (data.hasOwnProperty('scheduling')) {
+                obj['scheduling'] = Scheduling.constructFromObject(data['scheduling']);
+            }
             if (data.hasOwnProperty('eventRefType')) {
                 obj['eventRefType'] = EventRefType.constructFromObject(data['eventRefType']);
             }
@@ -112,6 +116,11 @@ class Message {
 
 
 }
+
+/**
+ * @member {module:model/Scheduling} scheduling
+ */
+Message.prototype['scheduling'] = undefined;
 
 /**
  * @member {module:model/EventRefType} eventRefType
@@ -199,6 +208,10 @@ Message.prototype['metadata'] = undefined;
 
 
 // Implement MessageAllOf interface:
+/**
+ * @member {module:model/Scheduling} scheduling
+ */
+MessageAllOf.prototype['scheduling'] = undefined;
 /**
  * @member {module:model/EventRefType} eventRefType
  */

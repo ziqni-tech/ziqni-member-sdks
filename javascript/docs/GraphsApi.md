@@ -20,6 +20,7 @@ Returns a list of graphs based on the entity type.
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 
 let apiInstance = new ZiqniMemberApi.GraphsApi();
 let entityGraphRequest = new ZiqniMemberApi.EntityGraphRequest(); // EntityGraphRequest | 

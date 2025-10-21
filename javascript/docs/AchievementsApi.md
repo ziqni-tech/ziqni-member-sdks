@@ -20,6 +20,7 @@ Returns a list of achievements for the provided member ref id and applied filter
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 
 let apiInstance = new ZiqniMemberApi.AchievementsApi();
 let achievementRequest = new ZiqniMemberApi.AchievementRequest(); // AchievementRequest | 

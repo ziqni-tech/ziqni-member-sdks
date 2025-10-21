@@ -20,6 +20,7 @@ This operation support retrieval of rewards for one or many entitites.
 
 ```javascript
 import ZiqniMemberApi from 'ziqni_member_api';
+let defaultClient = ZiqniMemberApi.ApiClient.instance;
 
 let apiInstance = new ZiqniMemberApi.RewardsApi();
 let rewardRequest = new ZiqniMemberApi.RewardRequest(); // RewardRequest | 
